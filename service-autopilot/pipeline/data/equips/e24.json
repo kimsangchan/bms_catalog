@@ -1,0 +1,163 @@
+{
+ "id": "e24",
+ "no": 24,
+ "title": "환경 · 실내공기질",
+ "domain": "환경·공기질",
+ "tagSummary": "**태그(물리량)** `co2-concentration` ✓ · `pm25-concentration` ✓ · `pm10-concentration` ✓ · `pm01-concentration` ✓ · `tvoc-concentration` ✓ · `ch2o-concentration` ✓ (포름알데히드) · `radon` ✓ · `o3-concentration` ✓ · `no2-concentration` ✓ · `nh3-concentration` ✓ · `voc` ✓ · `occupancy` ✓ **외기·기상** `weatherCond` ✓ · `wind-speed` ✓ · `wind-direction` ✓ · `precipitation` ✓ · `visibility` ✓ · `cloudage` ✓ · `atmospheric-pressure` ✓ · `solar-irradiance` ✓ · `feelsLike` ✓ · `wetBulb` ✓ · `dewPoint` ✓",
+ "notes": [
+  "알람 기본값은 **실내공기질 관리법 시행규칙의 유지기준**을 따르되, 수치는 법령 원문으로 확정한다",
+  "(본 조사에서 법령 원문 미확인 → `unverified`로 등록). 관제 실무에서 CO2 1,000 ppm이 널리 쓰인다."
+ ],
+ "specTables": [
+  {
+   "header": [
+    "spec 항목",
+    "단위",
+    "비고"
+   ],
+   "rows": [
+    [
+     "측정 대상·범위",
+     "— / 물리량 단위",
+     ""
+    ],
+    [
+     "정확도",
+     "± 단위 또는 %",
+     ""
+    ],
+    [
+     "응답 시간 (T90)",
+     "s",
+     ""
+    ],
+    [
+     "교정 주기",
+     "개월",
+     "**유지보수 계획의 입력값**"
+    ],
+    [
+     "센서 방식",
+     "—",
+     "NDIR(CO2)·광산란(PM)·PID(VOC)·전기화학"
+    ],
+    [
+     "출력",
+     "—",
+     "4–20mA·0–10V·Modbus·BACnet"
+    ],
+    [
+     "사용 환경",
+     "℃ / %RH",
+     ""
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "CO2 농도",
+     "AI",
+     "ppm",
+     "sensor",
+     "`co2-concentration` ✓",
+     "필수"
+    ],
+    [
+     "PM10 / PM2.5",
+     "AI",
+     "㎍/㎥",
+     "sensor",
+     "`pm10-concentration` ✓ / `pm25-concentration` ✓",
+     "필수"
+    ],
+    [
+     "TVOC",
+     "AI",
+     "ppb / ㎍/㎥",
+     "sensor",
+     "`tvoc-concentration` ✓",
+     "권장"
+    ],
+    [
+     "포름알데히드",
+     "AI",
+     "㎍/㎥",
+     "sensor",
+     "`ch2o-concentration` ✓",
+     "선택"
+    ],
+    [
+     "라돈",
+     "AI",
+     "Bq/㎥",
+     "sensor",
+     "`radon` ✓",
+     "선택"
+    ],
+    [
+     "실내 온·습도",
+     "AI",
+     "℃ / %",
+     "sensor",
+     "`zone` ✓ `air` ✓ + `temp`·`humidity` ✓",
+     "필수"
+    ],
+    [
+     "재실 인원",
+     "AI",
+     "인",
+     "sensor",
+     "`occupancy` ✓",
+     "권장"
+    ],
+    [
+     "외기 온·습도",
+     "AI",
+     "℃ / %",
+     "sensor",
+     "`outside-air` ✓ + `temp`·`humidity` ✓",
+     "필수"
+    ],
+    [
+     "외기 풍속 / 풍향",
+     "AI",
+     "m/s / °",
+     "sensor",
+     "`wind-speed` ✓ / `wind-direction` ✓",
+     "권장"
+    ],
+    [
+     "일사량",
+     "AI",
+     "W/㎡",
+     "sensor",
+     "`solar-irradiance` ✓",
+     "권장"
+    ],
+    [
+     "강수 감지",
+     "BI",
+     "—",
+     "sensor",
+     "`precipitation` ✓",
+     "선택"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 24
+ }
+}

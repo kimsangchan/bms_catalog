@@ -1,0 +1,170 @@
+{
+ "id": "e8",
+ "no": 8,
+ "title": "VRF (실내기 · 실외기)",
+ "domain": "공기측 설비",
+ "tagSummary": "**태그** `vrf-indoorUnit-fcu` ✓ ← `vrf-indoorUnit` ✓ ← `vrf-equip` / 실외기 `vrf-outdoorUnit` ✓ · 분배기 `branchSelector` ✓ · 계통 `vrf-refrig-plant` ✓ / 히트펌프 계열은 `heatPump` ✓ **Brick** `Terminal_Unit` / `Heat_Pump`",
+ "notes": [],
+ "specTables": [
+  {
+   "header": [
+    "항목",
+    "단위",
+    "조건·비고"
+   ],
+   "rows": [
+    [
+     "냉방능력 / 난방능력",
+     "kW",
+     "표준조건 (냉방 실내27/실외35℃, 난방 실내20/실외7℃)"
+    ],
+    [
+     "정격 소비전력",
+     "kW",
+     "냉방·난방 각각"
+    ],
+    [
+     "COP / SEER",
+     "—",
+     "`cop` ✓ `eer` ✓ 태그 존재"
+    ],
+    [
+     "냉매 종류·충전량",
+     "— / kg",
+     "R410A·R32·R134a"
+    ],
+    [
+     "배관 구경 (액·가스)",
+     "mm",
+     ""
+    ],
+    [
+     "정격 풍량",
+     "CMH",
+     "강 기준"
+    ],
+    [
+     "형식",
+     "—",
+     "4WAY 카세트·1WAY·덕트·벽걸이·바닥"
+    ],
+    [
+     "실외기 조합",
+     "—",
+     "매칭 모델·연결 대수·최대 연장배관"
+    ],
+    [
+     "통신 방식",
+     "—",
+     "벤더 게이트웨이 (BACnet/Modbus 변환)"
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "실내온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`zone`✓ `air`✓ `temp`✓",
+     "필수"
+    ],
+    [
+     "설정온도",
+     "AV",
+     "℃",
+     "sp",
+     "`zone`✓ `air`✓ `temp`✓",
+     "필수"
+    ],
+    [
+     "토출온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`discharge`✓ `air`✓ `temp`✓",
+     "권장"
+    ],
+    [
+     "운전 모드",
+     "MSO",
+     "—",
+     "cmd",
+     "(냉방/난방/송풍/제습/자동)",
+     "필수"
+    ],
+    [
+     "풍량 단계",
+     "MSO",
+     "—",
+     "cmd",
+     "`fan`✓ `speed`✓",
+     "필수"
+    ],
+    [
+     "에러 코드",
+     "AI/MSO",
+     "—",
+     "sensor",
+     "`fault`✓ `alarm-text`✓",
+     "필수"
+    ],
+    [
+     "필터 청소 신호",
+     "BI",
+     "—",
+     "sensor",
+     "`airfilter`✓ `alarm`✓",
+     "권장"
+    ],
+    [
+     "재실 감지",
+     "BI",
+     "—",
+     "sensor",
+     "`occupancy`✓",
+     "권장"
+    ],
+    [
+     "리모컨 잠금",
+     "BO",
+     "—",
+     "cmd",
+     "`enable`✓",
+     "선택"
+    ],
+    [
+     "(실외기) 압축기 운전율",
+     "AI",
+     "%",
+     "sensor",
+     "`compressor`✓ `load`★",
+     "권장"
+    ],
+    [
+     "(실외기) 소비전력",
+     "AI",
+     "kW",
+     "sensor",
+     "`elec-power`✓",
+     "권장"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 8
+ }
+}

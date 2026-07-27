@@ -1,0 +1,170 @@
+{
+ "id": "e22",
+ "no": 22,
+ "title": "승강 설비",
+ "domain": "승강",
+ "tagSummary": "**태그** `elevator` ✓ · `escalator` ✓ · `movingWalkway` ✓ ← 부모 `verticalTransport` ✓ **Brick** `Elevator` / `Escalator`",
+ "notes": [],
+ "specTables": [
+  {
+   "header": [
+    "spec 항목",
+    "단위",
+    "비고"
+   ],
+   "rows": [
+    [
+     "정격 적재하중 / 정원",
+     "kg / 인",
+     ""
+    ],
+    [
+     "정격 속도",
+     "m/min",
+     ""
+    ],
+    [
+     "층수 / 정지층 / 행정거리",
+     "층 / 층 / m",
+     ""
+    ],
+    [
+     "구동 방식",
+     "—",
+     "권상(기어드·기어리스)·유압·MRL"
+    ],
+    [
+     "제어 방식",
+     "—",
+     "VVVF·군관리"
+    ],
+    [
+     "전동기 출력",
+     "kW",
+     ""
+    ],
+    [
+     "도어 방식·개폐 시간",
+     "— / s",
+     "중앙개폐·측면개폐"
+    ],
+    [
+     "비상 장치",
+     "—",
+     "정전시 구출운전·비상통화·자가발전 운전"
+    ],
+    [
+     "(에스컬레이터) 유효폭·경사각·양정",
+     "mm / ° / m",
+     ""
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "현재 층",
+     "AI",
+     "—",
+     "sensor",
+     "`elevator` ✓ `floor-position` ✓",
+     "필수"
+    ],
+    [
+     "운행 방향",
+     "MSO",
+     "—",
+     "sensor",
+     "`elevator` ✓ (정지/상승/하강)",
+     "필수"
+    ],
+    [
+     "운전 상태",
+     "BI",
+     "—",
+     "sensor",
+     "`elevator` ✓ `run` ✓",
+     "필수"
+    ],
+    [
+     "도어 개폐",
+     "BI",
+     "—",
+     "sensor",
+     "`door` ✓",
+     "권장"
+    ],
+    [
+     "고장",
+     "BI",
+     "—",
+     "sensor",
+     "`elevator` ✓ `fault` ✓ `major` ✓",
+     "필수"
+    ],
+    [
+     "갇힘 (구출 요청)",
+     "BI",
+     "—",
+     "sensor",
+     "`elevator` ✓ `alarm` ✓ `critical` ✓",
+     "필수"
+    ],
+    [
+     "화재관제 운전",
+     "BI",
+     "—",
+     "sensor",
+     "`elevator` ✓ `fire-mode` ✓",
+     "필수"
+    ],
+    [
+     "비상전원 운전",
+     "BI",
+     "—",
+     "sensor",
+     "`elevator` ✓ `generator` ✓",
+     "권장"
+    ],
+    [
+     "점검 중",
+     "BI",
+     "—",
+     "sensor",
+     "`elevator` ✓ `enable` ✓",
+     "권장"
+    ],
+    [
+     "소비전력",
+     "AI",
+     "kW",
+     "sensor",
+     "`elec-power` ✓",
+     "선택"
+    ],
+    [
+     "운행 횟수",
+     "AI",
+     "회",
+     "sensor",
+     "`runtime` ★",
+     "선택"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 22
+ }
+}

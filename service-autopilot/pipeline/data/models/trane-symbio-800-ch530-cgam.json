@@ -1,0 +1,608 @@
+{
+ "id": "trane-symbio-800-ch530-cgam",
+ "equipId": "e9",
+ "vendor": "Trane",
+ "model": "Symbio™ 800 (CH530) — CGAM",
+ "name": "Symbio™ 800 공랭 스크류 냉동기 — BACnet CGAM",
+ "cat": "HVAC.PLANT.CHILLER",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "앞서 자동 추출에 실패했던 문서를 **pdftotext로 재추출해 확보**했다. 회로 2개(Ckt1/Ckt2)·압축기 6대(1A~2C)의 시동 횟수·운전시간이 개별 포인트로 나온다.",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "comm": [
+  [
+   "BACnet",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "io": [],
+ "elec": null,
+ "points": [
+  {
+   "type": "AI",
+   "inst": 1,
+   "name": "Active Cool/Heat Setpoint Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Active chiller water or hot water setpoint."
+  },
+  {
+   "type": "AI",
+   "inst": 3,
+   "name": "Active Demand Limit Setpoint",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Active demand limit setpoint."
+  },
+  {
+   "type": "AI",
+   "inst": 5,
+   "name": "Actual Running Capacity",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Level of capacity that the chiller is currently running at."
+  },
+  {
+   "type": "AI",
+   "inst": 8,
+   "name": "Suction Pressure- Ckt 1",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Circuit 1 suction pressure."
+  },
+  {
+   "type": "AI",
+   "inst": 11,
+   "name": "Suction Pressure- Ckt 2",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Circuit 2 suction pressure."
+  },
+  {
+   "type": "AI",
+   "inst": 13,
+   "name": "Suction Saturated Refrigerant Temperature- Ckt 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Circuit 1 suction refrigerant temperature."
+  },
+  {
+   "type": "AI",
+   "inst": 15,
+   "name": "Suction Saturated Refrigerant Temperature- Ckt 2",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Circuit 2 suction refrigerant temperature."
+  },
+  {
+   "type": "AI",
+   "inst": 17,
+   "name": "Discharge Pressure- Ckt 1",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Circuit 1 discharge pressure."
+  },
+  {
+   "type": "AI",
+   "inst": 19,
+   "name": "Discharge Pressure- Ckt 2",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Circuit 2 discharge pressure."
+  },
+  {
+   "type": "AI",
+   "inst": 21,
+   "name": "Discharge Saturated Refrigerant Temperature- Ckt 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Circuit 1 discharge refrigerant temperature."
+  },
+  {
+   "type": "AI",
+   "inst": 23,
+   "name": "Discharge Saturated Refrigerant Temperature- Ckt 2",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Circuit 2 discharge refrigerant temperature."
+  },
+  {
+   "type": "AI",
+   "inst": 25,
+   "name": "Local Atmospheric Pressure",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Local atmospheric pressure."
+  },
+  {
+   "type": "AI",
+   "inst": 26,
+   "name": "Starts- Compressor 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Number of starts for compressor 1A."
+  },
+  {
+   "type": "AI",
+   "inst": 27,
+   "name": "Starts- Compressor 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Number of starts for compressor 1B."
+  },
+  {
+   "type": "AI",
+   "inst": 30,
+   "name": "Starts- Compressor 1C",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Number of starts for compressor 1C."
+  },
+  {
+   "type": "AI",
+   "inst": 31,
+   "name": "Starts- Compressor 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Number of starts for compressor 2A."
+  },
+  {
+   "type": "AI",
+   "inst": 32,
+   "name": "Starts- Compressor 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Number of starts for compressor 2B."
+  },
+  {
+   "type": "AI",
+   "inst": 33,
+   "name": "Starts- Compressor 2C",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Number of starts for compressor 2C."
+  },
+  {
+   "type": "AI",
+   "inst": 34,
+   "name": "Run Time- Compressor 1A",
+   "unitRaw": "h",
+   "unit": "h",
+   "note": "Total run time of compressor 1A."
+  },
+  {
+   "type": "AI",
+   "inst": 35,
+   "name": "Run Time- Compressor 1B",
+   "unitRaw": "h",
+   "unit": "h",
+   "note": "Total run time of compressor 1B."
+  },
+  {
+   "type": "AI",
+   "inst": 38,
+   "name": "Run Time- Compressor 1C",
+   "unitRaw": "h",
+   "unit": "h",
+   "note": "Total run time of compressor 1C."
+  },
+  {
+   "type": "AI",
+   "inst": 39,
+   "name": "Run Time- Compressor 2A",
+   "unitRaw": "h",
+   "unit": "h",
+   "note": "Total run time of compressor 2A."
+  },
+  {
+   "type": "AI",
+   "inst": 40,
+   "name": "Run Time- Compressor 2B",
+   "unitRaw": "h",
+   "unit": "h",
+   "note": "Total run time of compressor 2B."
+  },
+  {
+   "type": "AI",
+   "inst": 41,
+   "name": "Run Time- Compressor 2C",
+   "unitRaw": "h",
+   "unit": "h",
+   "note": "Total run time of compressor 2C."
+  },
+  {
+   "type": "AI",
+   "inst": 42,
+   "name": "Airflow Percentage- Circuit 1",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Approximate airflow percentage of circuit 1."
+  },
+  {
+   "type": "AI",
+   "inst": 43,
+   "name": "Airflow Percentage- Circuit 2",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Approximate airflow percentage of circuit 2."
+  },
+  {
+   "type": "AI",
+   "inst": 44,
+   "name": "Evaporator Entering Water Temp",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature of the water entering the evaporator."
+  },
+  {
+   "type": "AI",
+   "inst": 45,
+   "name": "Evaporator Leaving Water Temp",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature of the water leaving the evaporator."
+  },
+  {
+   "type": "AI",
+   "inst": 57,
+   "name": "Outdoor Air Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Outdoor air temperature."
+  },
+  {
+   "type": "AI",
+   "inst": 95,
+   "name": "Number of Circuits",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Number of Circuits"
+  },
+  {
+   "type": "AI",
+   "inst": 96,
+   "name": "Number of Compressors, Ckt 1",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Number of Compressors, Ckt 1"
+  },
+  {
+   "type": "AI",
+   "inst": 97,
+   "name": "Number of Compressors, Ckt 2",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Number of Compressors, Ckt 2"
+  },
+  {
+   "type": "AI",
+   "inst": 98,
+   "name": "Chiller Design Capacity",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Design Capacity of the Chiller"
+  },
+  {
+   "type": "AI",
+   "inst": 99,
+   "name": "Heat Recovery Entering Water Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature of the water entering the auxiliary heat exchanger"
+  },
+  {
+   "type": "AI",
+   "inst": 100,
+   "name": "Heat Recovery Leaving Water Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature of the water leaving the auxiliary heat exchanger"
+  },
+  {
+   "type": "AI",
+   "inst": 101,
+   "name": "Heat Recovery Control Status",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Active Command Percent of the Heat Recovery Analog Output for heat exchanger water flow rate adjustment"
+  },
+  {
+   "type": "AI",
+   "inst": 102,
+   "name": "Supplemental Heat Status",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Supplemental Heat Control output status which is expressed as a percentage"
+  },
+  {
+   "type": "AO",
+   "inst": 1,
+   "name": "Chilled Water Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Desired leaving water temperature if chiller is in cooling mode. · 범위 0°F to 75°F (-17.8°C to 23.8°C)"
+  },
+  {
+   "type": "AO",
+   "inst": 3,
+   "name": "Demand Limit Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Sets the maximum capacity that the chiller can use. · 범위 0% to 120%"
+  },
+  {
+   "type": "AO",
+   "inst": 4,
+   "name": "Hot Water Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Desired leaving water temperature if chiller is in heating mode. Leaving condenser water temperature control. · 범위 80°F to 140°F (26.7°C to 60°C)"
+  },
+  {
+   "type": "AO",
+   "inst": 6,
+   "name": "Heat Recovery Leaving Water Temperature Setpoint BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Preferred Heat Recovery Leaving Water Temperature if chiller is in Heat Recovery mode · 범위 80°F to 140°F (26.7°C to 60°C)"
+  },
+  {
+   "type": "BI",
+   "inst": 1,
+   "name": "Run Enabled",
+   "unitRaw": "Inactive = Stop Active = Auto",
+   "unit": null,
+   "note": "Indicates if the chiller is available to run or is currently running."
+  },
+  {
+   "type": "BI",
+   "inst": 2,
+   "name": "Local Setpoint Control",
+   "unitRaw": "Inactive =Remote Control Active = Local Control",
+   "unit": null,
+   "note": "Indicates if the chiller is being controlled by local setpoints instead of BAS setpoints."
+  },
+  {
+   "type": "BI",
+   "inst": 3,
+   "name": "Capacity Limited",
+   "unitRaw": "Inactive = Not Limited Active = Limited",
+   "unit": null,
+   "note": "Indicates if conditions may exist that prevent the chiller from reaching setpoint."
+  },
+  {
+   "type": "BI",
+   "inst": 4,
+   "name": "Chiller Running State",
+   "unitRaw": "Inactive = Off Active = On",
+   "unit": null,
+   "note": "Indicates if the chiller is running or stopped."
+  },
+  {
+   "type": "BI",
+   "inst": 6,
+   "name": "Maximum Capacity",
+   "unitRaw": "Inactive = Off Active = On",
+   "unit": null,
+   "note": "Indicates if all available chiller capacity is being used."
+  },
+  {
+   "type": "BI",
+   "inst": 9,
+   "name": "Compressor 1A Running",
+   "unitRaw": "Inactive = Off Active = Running",
+   "unit": null,
+   "note": "Indicates if compressor 1A is running."
+  },
+  {
+   "type": "BI",
+   "inst": 10,
+   "name": "Compressor 1B Running",
+   "unitRaw": "Inactive = Off Active = Running",
+   "unit": null,
+   "note": "Indicates if compressor 1B is running."
+  },
+  {
+   "type": "BI",
+   "inst": 13,
+   "name": "Compressor 1C Running",
+   "unitRaw": "Inactive = Off Active = Running",
+   "unit": null,
+   "note": "Indicates if compressor 1C is running."
+  },
+  {
+   "type": "BI",
+   "inst": 14,
+   "name": "Compressor 2A Running",
+   "unitRaw": "Inactive = Off Active = Running",
+   "unit": null,
+   "note": "Indicates if compressor 2A is running."
+  },
+  {
+   "type": "BI",
+   "inst": 15,
+   "name": "Compressor 2B Running",
+   "unitRaw": "Inactive = Off Active = Running",
+   "unit": null,
+   "note": "Indicates if compressor 2B is running."
+  },
+  {
+   "type": "BI",
+   "inst": 16,
+   "name": "Compressor 2C Running",
+   "unitRaw": "Inactive = Off Active = Running",
+   "unit": null,
+   "note": "Indicates if compressor 2C is running."
+  },
+  {
+   "type": "BI",
+   "inst": 18,
+   "name": "Water Pump Request",
+   "unitRaw": "Inactive = Off Active = On",
+   "unit": null,
+   "note": "Indicates a request from the chiller to turn on the water pump."
+  },
+  {
+   "type": "BI",
+   "inst": 20,
+   "name": "Noise Reduction Active",
+   "unitRaw": "Inactive = Off Active = On",
+   "unit": null,
+   "note": "Indicates if the chiller is in a state where noise is being reduced."
+  },
+  {
+   "type": "BI",
+   "inst": 21,
+   "name": "Defrost Mode (or in Defrost)",
+   "unitRaw": "Inactive = Not in Defrost Active = Defrost",
+   "unit": null,
+   "note": "Indicates if one or more circuits are in a defrost mode."
+  },
+  {
+   "type": "BI",
+   "inst": 22,
+   "name": "Evaporator Water Flow Status",
+   "unitRaw": "Inactive = No Flow Active = Flow",
+   "unit": null,
+   "note": "Indicates if water is flowing through the evaporator."
+  },
+  {
+   "type": "BI",
+   "inst": 23,
+   "name": "Alarm Present",
+   "unitRaw": "Inactive = No Alarm Active = Alarm",
+   "unit": null,
+   "note": "Indicates if an alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 24,
+   "name": "Shutdown Alarm Present",
+   "unitRaw": "Inactive = No Alarm Active = None",
+   "unit": null,
+   "note": "Indicates if a shutdown alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 25,
+   "name": "Last Diagnostic",
+   "unitRaw": "Inactive = Off Active = On",
+   "unit": null,
+   "note": "Indicates last diagnostic for the chiller."
+  },
+  {
+   "type": "BI",
+   "inst": 26,
+   "name": "Heat Recovery Control Active Status",
+   "unitRaw": "Inactive = Off Active = On",
+   "unit": null,
+   "note": "Indicates if the chiller is changing behavior to get heat recovery"
+  },
+  {
+   "type": "BO",
+   "inst": 1,
+   "name": "Chiller Auto Stop Command",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Allows the chiller to run if conditions for running are met. · True"
+  },
+  {
+   "type": "BO",
+   "inst": 2,
+   "name": "Remote Diagnostic Reset Command",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Resets remotely diagnostics that can be reset. · False"
+  },
+  {
+   "type": "BO",
+   "inst": 4,
+   "name": "Noise Reduction Request",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Requests chiller to enter mode to reduce noise. · False"
+  },
+  {
+   "type": "BO",
+   "inst": 5,
+   "name": "Heat Recovery Enable BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Request chiller to enter in Heat Recovery control mode, which enables the heat recovery control feature on a chiller. · False"
+  },
+  {
+   "type": "MSI",
+   "inst": 1,
+   "name": "Running Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the primary running mode of the chiller. · 1 = Chiller Off 2 = Chiller in Start Mode 3 = Chiller in Run Mode 4 = Chiller in Pre-shutdown Mode 5 = Chiller in Service Mode"
+  },
+  {
+   "type": "MSI",
+   "inst": 2,
+   "name": "Operating Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the primary operating mode of the chiller. · 1 = HVAC Cool _ 2 = HVAC Heat _ 3 = HVAC Ice (a) _ 4 = Not Used"
+  },
+  {
+   "type": "MSI",
+   "inst": 3,
+   "name": "MP Communication Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Do Not Use This Point · Do Not Use This Point"
+  },
+  {
+   "type": "MSI",
+   "inst": 4,
+   "name": "Refrigerant Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Refrigerant type. · 1 = R-11 2 = R-12 3 = R-22 4 = R-123 5 = R-134A 6 = R407C 7 = R-410A 8 = R-113 9 = R-114 10 = R-500 11 = R-502 12 = R-404A 13 = R-513A"
+  },
+  {
+   "type": "MSI",
+   "inst": 5,
+   "name": "Model Information",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the model type of the chiller. · 1 = RTA 2 = CVH 3 = CVG 4 = CVR 5 = CDH 6 = RTH 7 = CGW 8 = CGA 9 = CCA 10 = RTW 11 = RTX 12 = RTU 13 = CCU 14 = CXA 15 = CGC 16 = RAU"
+  },
+  {
+   "type": "MSI",
+   "inst": 6,
+   "name": "Cooling Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Cooling type of the condenser. · 1 = Water Cooled 2 = Air Cooled"
+  },
+  {
+   "type": "MSI",
+   "inst": 7,
+   "name": "Manufacturing Location",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Location where chiller was manufactured. · 1 = Field Applied 2 = La Crosse 3 = Pueblo 4 = Charmes 5 = Rushville 6 = Macon 7 = Waco 8 = Lexington 9 = Forsyth 10 = Clarksville 11 = Ft. Smith 12 = Penang 13 = Colchester 14 = Curitiba 15 = Tai"
+  },
+  {
+   "type": "MSO",
+   "inst": 1,
+   "name": "Chiller Mode Command",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Mode of operation of the chiller. · 1 = Cool"
+  }
+ ],
+ "gap": "레이아웃 추출이라 설명·단위 열이 한 행씩 밀려 붙은 경우가 있다 — **단위 열은 참고값**으로 보고 확정 전 원문 대조 필요. 정격 성능표는 별도 카탈로그 필요.",
+ "extractor": "table",
+ "sourceDoc": "BAS-PTS027A-EN_CGAM.pdf"
+}

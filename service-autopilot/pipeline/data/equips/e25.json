@@ -1,0 +1,160 @@
+{
+ "id": "e25",
+ "no": 25,
+ "title": "급배수 · 위생",
+ "domain": "급배수·위생",
+ "tagSummary": "**태그** `tank` ✓ · `rooftop-tank` ✓ · `septic-tank` ✓ · `expansion-tank` ✓ · `expansion-vessel` ✓ · `well` ✓ · `booster-pump` ✓ · `submersible-pump` ✓ · `strainer` ✓ · `header` ✓ · `level-sensor` ✓ **유체** `domestic-water` ✓ · `cold-water` ✓ · `hot-water` ✓ · `ground-water` ✓ · `wastewater` ✓ · `greywater` ✓ · `makeup-water` ✓ · `condensate` ✓ **수질** `ph` ✓ · `tds` ✓ · `chlorine` ✓ · `hardness` ✓ · `salinity` ✓ · `dissolved-oxygen` ✓",
+ "notes": [],
+ "specTables": [
+  {
+   "header": [
+    "spec 항목",
+    "단위",
+    "대상"
+   ],
+   "rows": [
+    [
+     "수조 용량 / 재질 / 형식",
+     "㎥ / —",
+     "저수조·고가수조"
+    ],
+    [
+     "급수 방식",
+     "—",
+     "고가수조·압력수조·부스터(인버터)"
+    ],
+    [
+     "부스터 펌프 대수·토출압·유량",
+     "대 / kPa / LPM",
+     ""
+    ],
+    [
+     "배수 방식·펌프 사양",
+     "— / LPM·m·kW",
+     "오수·잡배수·우수"
+    ],
+    [
+     "정수·소독 방식",
+     "—",
+     "염소·자외선"
+    ],
+    [
+     "배관 재질·구경",
+     "— / mm",
+     ""
+    ],
+    [
+     "급탕 저탕량·가열능력",
+     "L / kW",
+     ""
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "수조 수위",
+     "AI",
+     "%",
+     "sensor",
+     "`domestic-water` ✓ `level` ✓",
+     "필수"
+    ],
+    [
+     "고수위 / 저수위 경보",
+     "BI",
+     "—",
+     "sensor",
+     "`level` ✓ + `high-high` ✓ / `low-low` ✓ + `alarm` ✓",
+     "필수"
+    ],
+    [
+     "급수 펌프 운전",
+     "BI",
+     "—",
+     "sensor",
+     "`booster-pump` ✓ `run` ✓",
+     "필수"
+    ],
+    [
+     "토출 압력",
+     "AI",
+     "kPa",
+     "sensor",
+     "`domestic-water` ✓ `pressure` ✓ `discharge` ✓",
+     "필수"
+    ],
+    [
+     "급수 유량 / 적산",
+     "AI",
+     "㎥/h / ㎥",
+     "sensor",
+     "`domestic-water` ✓ + `flow` ✓ / `volume` ✓",
+     "필수"
+    ],
+    [
+     "배수(오수) 수위",
+     "AI/BI",
+     "%",
+     "sensor",
+     "`wastewater` ✓ `level` ✓",
+     "필수"
+    ],
+    [
+     "배수 펌프 운전",
+     "BI",
+     "—",
+     "sensor",
+     "`submersible-pump` ✓ `run` ✓",
+     "필수"
+    ],
+    [
+     "누수 감지",
+     "BI",
+     "—",
+     "sensor",
+     "`water-leak` ✓ `alarm` ✓",
+     "필수"
+    ],
+    [
+     "잔류 염소",
+     "AI",
+     "mg/L",
+     "sensor",
+     "`chlorine` ✓",
+     "권장"
+    ],
+    [
+     "pH / 전도도(TDS)",
+     "AI",
+     "— / µS/cm",
+     "sensor",
+     "`ph` ✓ / `tds` ✓",
+     "선택"
+    ],
+    [
+     "급탕 온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`hot-water` ✓ `temp` ✓",
+     "필수"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 25
+ }
+}

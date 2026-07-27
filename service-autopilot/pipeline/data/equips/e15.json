@@ -1,0 +1,183 @@
+{
+ "id": "e15",
+ "no": 15,
+ "title": "인버터 (VFD)",
+ "domain": "반송·구동",
+ "tagSummary": "**태그** `vfd` ✓ / 유량형 `flowInverter` ✓ / 구동 대상 `motor` ✓ (`fan-motor` ✓ · `pump-motor` ✓) **Brick** `Variable_Frequency_Drive` **전용 물리량 태그 존재**: `vfd-freq` ✓ · `vfd-speed` ✓ — 일반 `freq`/`speed`보다 이것을 쓴다.",
+ "notes": [],
+ "specTables": [
+  {
+   "header": [
+    "항목",
+    "단위",
+    "조건·비고"
+   ],
+   "rows": [
+    [
+     "정격 용량",
+     "kW",
+     "적용 모터 기준"
+    ],
+    [
+     "정격 입력 전압·상",
+     "V / φ",
+     ""
+    ],
+    [
+     "정격 출력 전류",
+     "A",
+     ""
+    ],
+    [
+     "과부하 내량",
+     "% / s",
+     "예 110%/60s (HVAC용), 150%/60s (일반)"
+    ],
+    [
+     "제어 방식",
+     "—",
+     "V/f·센서리스 벡터·벡터"
+    ],
+    [
+     "통신 프로토콜",
+     "—",
+     "Modbus RTU·BACnet MSTP·Profibus·EtherNet/IP"
+    ],
+    [
+     "내장 필터·리액터",
+     "—",
+     "EMC 필터·DC 리액터"
+    ],
+    [
+     "냉각 방식",
+     "—",
+     "강제공랭·수랭"
+    ],
+    [
+     "보호등급",
+     "IP",
+     ""
+    ],
+    [
+     "주변온도 범위",
+     "℃",
+     "디레이팅 조건"
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "주파수 지령",
+     "AO",
+     "Hz",
+     "cmd",
+     "`vfd`✓ `vfd-freq`✓",
+     "필수"
+    ],
+    [
+     "현재 주파수",
+     "AI",
+     "Hz",
+     "sensor",
+     "`vfd`✓ `vfd-freq`✓",
+     "필수"
+    ],
+    [
+     "출력 전류",
+     "AI",
+     "A",
+     "sensor",
+     "`vfd`✓ `elec-current`✓",
+     "필수"
+    ],
+    [
+     "출력 전압",
+     "AI",
+     "V",
+     "sensor",
+     "`vfd`✓ `volt`✓",
+     "권장"
+    ],
+    [
+     "출력 전력",
+     "AI",
+     "kW",
+     "sensor",
+     "`vfd`✓ `elec-power`✓",
+     "필수"
+    ],
+    [
+     "적산 전력량",
+     "AI",
+     "kWh",
+     "sensor",
+     "`vfd`✓ `elec-energy`✓",
+     "권장"
+    ],
+    [
+     "DC 링크 전압",
+     "AI",
+     "V",
+     "sensor",
+     "`vfd`✓ `dc-elec`✓ `volt`✓",
+     "권장"
+    ],
+    [
+     "방열판 온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`vfd`✓ `temp`✓",
+     "권장"
+    ],
+    [
+     "누적 운전시간",
+     "AI",
+     "h",
+     "sensor",
+     "`vfd`✓ `runtime`★",
+     "권장"
+    ],
+    [
+     "트립·고장",
+     "BI",
+     "—",
+     "sensor",
+     "`vfd`✓ `fault`✓ `alarm`✓",
+     "필수"
+    ],
+    [
+     "트립 코드",
+     "AI/MSO",
+     "—",
+     "sensor",
+     "`vfd`✓ `fault`✓ `alarm-text`✓",
+     "권장"
+    ],
+    [
+     "정·역 지령",
+     "BO",
+     "—",
+     "cmd",
+     "`vfd`✓ `cmd`✓",
+     "선택"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 15
+ }
+}

@@ -1,0 +1,135 @@
+{
+ "id": "e23",
+ "no": 23,
+ "title": "보안 · 출입 (BMS 연동 범위)",
+ "domain": "보안·출입",
+ "tagSummary": "**태그** `access-control` ✓ · `card-reader` ✓ · `door-controller` ✓ · `cctv` ✓ · `ip-camera` ✓ · `ptz` ✓ · `nvr` ✓ · `dvr` ✓ · `vms` ✓ · `motion-sensor` ✓ · `door-sensor` ✓ · `proximity-sensor` ✓",
+ "notes": [
+  "BMS는 상태 감시와 **화재 연동 개방**까지만 다룬다. 출입 권한 관리는 전용 시스템 영역이다."
+ ],
+ "specTables": [
+  {
+   "header": [
+    "spec 항목",
+    "단위",
+    "대상"
+   ],
+   "rows": [
+    [
+     "해상도 / 프레임 / 압축",
+     "MP / fps / —",
+     "카메라 (H.264·H.265)"
+    ],
+    [
+     "렌즈 초점거리·화각",
+     "mm / °",
+     "카메라"
+    ],
+    [
+     "야간 촬영·IR 거리",
+     "m",
+     "카메라"
+    ],
+    [
+     "보호등급·동작온도",
+     "IP / ℃",
+     "카메라"
+    ],
+    [
+     "리더 인증 방식",
+     "—",
+     "RF(125kHz·13.56MHz)·생체·모바일"
+    ],
+    [
+     "도어 잠금 방식",
+     "—",
+     "EM락·데드볼트·스트라이크"
+    ],
+    [
+     "저장 채널 수·보존 기간",
+     "ch / 일",
+     "NVR"
+    ],
+    [
+     "전원",
+     "V / PoE",
+     ""
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "도어 개방 상태",
+     "BI",
+     "—",
+     "sensor",
+     "`door-sensor` ✓ `door` ✓",
+     "필수"
+    ],
+    [
+     "강제 개방 경보",
+     "BI",
+     "—",
+     "sensor",
+     "`access-control` ✓ `alarm` ✓ `major` ✓",
+     "필수"
+    ],
+    [
+     "장시간 개방 경보",
+     "BI",
+     "—",
+     "sensor",
+     "`access-control` ✓ `alarm` ✓ `warning` ✓",
+     "권장"
+    ],
+    [
+     "출입 이벤트",
+     "BI",
+     "—",
+     "sensor",
+     "`card-reader` ✓",
+     "권장"
+    ],
+    [
+     "카메라 상태",
+     "BI",
+     "—",
+     "sensor",
+     "`ip-camera` ✓ `fault` ✓",
+     "권장"
+    ],
+    [
+     "움직임 감지",
+     "BI",
+     "—",
+     "sensor",
+     "`motion-sensor` ✓",
+     "선택"
+    ],
+    [
+     "화재 연동 비상 개방",
+     "BO",
+     "—",
+     "cmd",
+     "`door-controller` ✓ `fire-mode` ✓",
+     "필수"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 23
+ }
+}

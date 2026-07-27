@@ -1,0 +1,175 @@
+{
+ "id": "e12",
+ "no": 12,
+ "title": "열교환기 · 전열교환기",
+ "domain": "열원·수측 설비",
+ "tagSummary": "**태그** 수-수 열교환 `heatExchanger` ✓ / 공기 전열교환 `heat-recovery` ✓ / 냉매측 `condenser` ✓ · `evaporator` ✓ (부모 `heatExchanger`) **Brick** `Heat_Exchanger` / `Energy_Recovery_Ventilator`",
+ "notes": [],
+ "specTables": [
+  {
+   "header": [
+    "항목",
+    "단위",
+    "조건·비고"
+   ],
+   "rows": [
+    [
+     "열교환량",
+     "kW",
+     "**조건**: 1·2차 입출구온도·유량 명기"
+    ],
+    [
+     "형식",
+     "—",
+     "판형·쉘앤튜브 / 회전식·고정식(현열·전열)"
+    ],
+    [
+     "1차·2차 유체",
+     "—",
+     "냉수-냉각수, 급기-배기 등"
+    ],
+    [
+     "1차·2차 유량",
+     "LPM / CMH",
+     ""
+    ],
+    [
+     "1차·2차 입·출구온도",
+     "℃",
+     ""
+    ],
+    [
+     "전열 면적",
+     "㎡",
+     ""
+    ],
+    [
+     "압력 손실",
+     "kPa / Pa",
+     "1·2차 각각"
+    ],
+    [
+     "온도(현열)교환효율",
+     "%",
+     ""
+    ],
+    [
+     "습도(전열)교환효율",
+     "%",
+     "전열교환기만"
+    ],
+    [
+     "최고 사용압력·온도",
+     "MPa / ℃",
+     ""
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "1차 입구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "(해당 유체)✓ `temp`✓ `entering`★",
+     "필수"
+    ],
+    [
+     "1차 출구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "(해당 유체)✓ `temp`✓ `leaving`★",
+     "필수"
+    ],
+    [
+     "2차 입구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "(해당 유체)✓ `temp`✓ `entering`★",
+     "필수"
+    ],
+    [
+     "2차 출구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "(해당 유체)✓ `temp`✓ `leaving`★",
+     "필수"
+    ],
+    [
+     "급기온도 (전열)",
+     "AI",
+     "℃",
+     "sensor",
+     "`discharge`✓ `air`✓ `temp`✓",
+     "필수"
+    ],
+    [
+     "배기온도 (전열)",
+     "AI",
+     "℃",
+     "sensor",
+     "`exhaust-air`✓ `temp`✓",
+     "필수"
+    ],
+    [
+     "바이패스 댐퍼",
+     "AO/BO",
+     "%",
+     "cmd",
+     "`bypass`✓ `damper`✓",
+     "권장"
+    ],
+    [
+     "로터 회전 확인 (회전식)",
+     "BI",
+     "—",
+     "sensor",
+     "`heat-recovery`✓ `run`✓",
+     "권장"
+    ],
+    [
+     "차압",
+     "AI",
+     "Pa / kPa",
+     "sensor",
+     "`differential-pressure`✓",
+     "권장"
+    ],
+    [
+     "급기 CO2",
+     "AI",
+     "ppm",
+     "sensor",
+     "`discharge`✓ `air`✓ `co2-concentration`✓",
+     "선택"
+    ],
+    [
+     "2차측 제어밸브 개도",
+     "AO",
+     "%",
+     "cmd",
+     "(유체)✓ `valve`✓ `position`★",
+     "권장"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 12
+ }
+}

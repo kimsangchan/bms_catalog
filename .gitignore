@@ -1,0 +1,16 @@
+# 제조사 원문 문서는 저장소에 넣지 않는다.
+# 근거: decision-log.md D-008 — 경로·SHA-256·출처 메타데이터만 보관하고
+# 원본 바이너리는 재배포하지 않는다. 수집 대장(data/collected.json)에
+# URL·해시·크기가 남아 있어 언제든 다시 내려받을 수 있다.
+service-autopilot/pipeline/data/raw/
+service-autopilot/evidence/ede-sample/
+
+# 파이썬
+__pycache__/
+*.pyc
+.venv/
+
+# 임시
+*.tmp
+*.bak
+data/tmp.json

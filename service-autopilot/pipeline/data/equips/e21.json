@@ -1,0 +1,190 @@
+{
+ "id": "e21",
+ "no": 21,
+ "title": "방재 (소방 · 제연 · 검지)",
+ "domain": "방재",
+ "tagSummary": "**태그** `firealarm-panel` ✓ · `sprinkler` ✓ · `pre-action` ✓ · `heat-detector` ✓ · `gas-detector` ✓ · `co-detector` ✓ · `alarm-bell` ✓ · `fire-extinguisher` ✓ · `fire-pump` ✓ · `smoke-damper` ✓ · `fire-damper` ✓ 구역 태그 `fire-zone` ✓ · `smoke-zone` ✓ · 모드 `fire-mode` ✓",
+ "notes": [
+  "⚠ **원칙: BMS는 소방 설비를 감시만 하고 제어하지 않는다.** 자동화재탐지설비·소화설비는 법정 독립",
+  "계통이며 BMS의 제어 개입은 법적·안전상 허용되지 않는다. 카탈로그에서도 이 도메인 포인트는",
+  "**`sensor` 역할만** 두고 `cmd`를 두지 않는 것을 원칙으로 한다(연동 제어는 소방 수신기가 수행)."
+ ],
+ "specTables": [
+  {
+   "header": [
+    "spec 항목",
+    "단위",
+    "대상"
+   ],
+   "rows": [
+    [
+     "수신기 회로 수",
+     "회로",
+     "화재 수신기"
+    ],
+    [
+     "감지기 종류·작동 온도",
+     "— / ℃",
+     "정온·차동·광전·불꽃"
+    ],
+    [
+     "경계구역 구성",
+     "—",
+     "층·구역 매핑"
+    ],
+    [
+     "스프링클러 헤드 종류·방수량·작동온도",
+     "— / LPM / ℃",
+     ""
+    ],
+    [
+     "소화 배관 사용압력",
+     "MPa",
+     ""
+    ],
+    [
+     "소화펌프 토출량·양정·출력",
+     "LPM / m / kW",
+     "주펌프·충압펌프"
+    ],
+    [
+     "제연 풍량·정압",
+     "CMH / Pa",
+     "제연팬"
+    ],
+    [
+     "방화·방연 댐퍼 구동방식",
+     "—",
+     "퓨즈·모터·복귀형"
+    ],
+    [
+     "가스검지기 대상가스·검지범위·경보값",
+     "— / ppm(%LEL)",
+     ""
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "화재 발생 (구역별)",
+     "BI",
+     "—",
+     "sensor",
+     "`fire-zone` ✓ `alarm` ✓ `critical` ✓",
+     "필수"
+    ],
+    [
+     "감지기 동작",
+     "BI",
+     "—",
+     "sensor",
+     "`heat-detector` ✓ `alarm` ✓",
+     "필수"
+    ],
+    [
+     "수신기 고장·단선",
+     "BI",
+     "—",
+     "sensor",
+     "`firealarm-panel` ✓ `fault` ✓",
+     "필수"
+    ],
+    [
+     "경보 출력 상태",
+     "BI",
+     "—",
+     "sensor",
+     "`alarm-bell` ✓ `run` ✓",
+     "권장"
+    ],
+    [
+     "방화댐퍼 폐쇄 확인",
+     "BI",
+     "—",
+     "sensor",
+     "`fire-damper` ✓",
+     "필수"
+    ],
+    [
+     "제연댐퍼 개방 확인",
+     "BI",
+     "—",
+     "sensor",
+     "`smoke-damper` ✓ `smoke-zone` ✓",
+     "필수"
+    ],
+    [
+     "제연팬 운전",
+     "BI",
+     "—",
+     "sensor",
+     "`exhaust-fan` ✓ `smoke-zone` ✓ `run` ✓",
+     "필수"
+    ],
+    [
+     "소화펌프 운전",
+     "BI",
+     "—",
+     "sensor",
+     "`fire-pump` ✓ `run` ✓",
+     "필수"
+    ],
+    [
+     "소화배관 압력",
+     "AI",
+     "MPa",
+     "sensor",
+     "`fire-pump` ✓ `pressure` ✓",
+     "권장"
+    ],
+    [
+     "가스 농도",
+     "AI",
+     "ppm / %LEL",
+     "sensor",
+     "`gas-detector` ✓ + `ch4`·`co` ✓ + `concentration` ✓",
+     "필수"
+    ],
+    [
+     "일산화탄소 농도",
+     "AI",
+     "ppm",
+     "sensor",
+     "`co-detector` ✓ `co-concentration` ✓",
+     "권장"
+    ],
+    [
+     "누수 감지",
+     "BI",
+     "—",
+     "sensor",
+     "`water-leak` ✓ `alarm` ✓",
+     "권장"
+    ],
+    [
+     "화재 연동 운전 (설비측)",
+     "BI",
+     "—",
+     "sensor",
+     "`fire-mode` ✓",
+     "필수"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 21
+ }
+}

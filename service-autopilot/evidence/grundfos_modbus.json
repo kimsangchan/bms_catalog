@@ -1,0 +1,723 @@
+[
+ {
+  "inst": 1,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "CIM configuration",
+  "note": "R/W                     Configuration of the CIM module"
+ },
+ {
+  "inst": 3,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "SoftwareDefinedModbusAddress",
+  "note": "[1; 247], default: 1"
+ },
+ {
+  "inst": 4,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "SoftwareDefinedBitRate",
+  "note": "2: 4800 bit/s (Not supported by the SoftCIM Modbus RTU)     "
+ },
+ {
+  "inst": 5,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "AutoAckControlBits",
+  "note": "Used for selecting the behaviour of control bit acknowledgem"
+ },
+ {
+  "inst": 9,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Status",
+  "note": "ON                 ON"
+ },
+ {
+  "inst": 10,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "SoftwareDefineStopBits",
+  "note": "5=38400] bits/s, default:"
+ },
+ {
+  "inst": 12,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Watchdog",
+  "note": "2: 2 stop bits"
+ },
+ {
+  "inst": 13,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "GENIbusDiodeOff",
+  "note": "\"software-defined\" on DIP switches SW4 and SW5. Otherwise, t"
+ },
+ {
+  "inst": 21,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "CIM status",
+  "note": "R                       Status registers for the CIM module"
+ },
+ {
+  "inst": 22,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "GENIbusDataErrorCnt",
+  "note": "It holds a data error counter for the GENIbus connection to "
+ },
+ {
+  "inst": 23,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "VersionNumber",
+  "note": "A Grundfos-specific version number, BCD coded unsigned integ"
+ },
+ {
+  "inst": 24,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "ActualModbusAddress",
+  "note": "Valid value range: 1-247"
+ },
+ {
+  "inst": 25,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "GENIbusTXcountHI",
+  "note": "It holds a transmit counter for the total number of telegram"
+ },
+ {
+  "inst": 26,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "GENIbusTXcountLO",
+  "note": "GENIbus connection."
+ },
+ {
+  "inst": 27,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "GENIbusRXcountHI",
+  "note": "It holds a receive counter for the total number of telegrams"
+ },
+ {
+  "inst": 28,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "GENIbusRXcountLO",
+  "note": "the GENIbus connection."
+ },
+ {
+  "inst": 30,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "UnitFamily",
+  "note": "1 Circulator pumps                5 UPE, 3 phase"
+ },
+ {
+  "inst": 32,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "UnitVersion",
+  "note": "7 Magna, 1 phase"
+ },
+ {
+  "inst": 35,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "ProductSoftwareVersionLO",
+  "note": "Product software version (BCD digit 1-4 aa.bb)"
+ },
+ {
+  "inst": 37,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "ProductSoftwareYear",
+  "note": "Product software version (BCD digit 5-8 cc.dd)"
+ },
+ {
+  "inst": 101,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Pump control",
+  "note": "R/W                     Registers for control of the E-pump"
+ },
+ {
+  "inst": 102,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "ControlMode",
+  "note": "You can read the actual status from register 00201 bit 9."
+ },
+ {
+  "inst": 103,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "OperationMode",
+  "note": "Control bit that resets alarms and warnings from the E-pump"
+ },
+ {
+  "inst": 104,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Setpoint",
+  "note": "1: Resetting alarm"
+ },
+ {
+  "inst": 106,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "SetMaxFlowLimit",
+  "note": "1: Open"
+ },
+ {
+  "inst": 108,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "SetPumpUnixRtcLO",
+  "note": "Controls the state of relay 3"
+ },
+ {
+  "inst": 109,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "SensorFeedback",
+  "note": "0: Closed"
+ },
+ {
+  "inst": 112,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "SetDirectCtr",
+  "note": "0: Closed"
+ },
+ {
+  "inst": 201,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Pump status",
+  "note": "R                       Registers for reading mode status fr"
+ },
+ {
+  "inst": 202,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "ProcessFeedback",
+  "note": "It indicates the actual process feedback from the E-pump."
+ },
+ {
+  "inst": 203,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "ControlMode",
+  "note": "This value can be compared with the setpoint value."
+ },
+ {
+  "inst": 204,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "OperationMode",
+  "note": "Percentage of closed-loop feedback sensor range"
+ },
+ {
+  "inst": 205,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "AlarmCode",
+  "note": "Percentage of E-pump performance"
+ },
+ {
+  "inst": 206,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "WarningCode",
+  "note": "Common examples:"
+ },
+ {
+  "inst": 208,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "DriveState",
+  "note": "1: Constant frequency"
+ },
+ {
+  "inst": 209,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "FeedbackSensorUnit",
+  "note": "4: Constant pressure"
+ },
+ {
+  "inst": 210,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "FeedbackSensorMin",
+  "note": "6: Proportional pressure"
+ },
+ {
+  "inst": 211,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "FeedbackSensorMax",
+  "note": "Maximum value of the feedback sensor"
+ },
+ {
+  "inst": 213,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "MinFrequency",
+  "note": "Scale: 0.1 Hz"
+ },
+ {
+  "inst": 215,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "SetpointRangeMin",
+  "note": "Scale is 0.01 %"
+ },
+ {
+  "inst": 221,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "FlowEstimationState",
+  "note": "Only available on MAGNA3 and MGE model H and later"
+ },
+ {
+  "inst": 224,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "DirectControl",
+  "note": "RESERVED"
+ },
+ {
+  "inst": 225,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "ControlSource",
+  "note": "RESERVED"
+ },
+ {
+  "inst": 301,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Pump data",
+  "note": "R                       Registers for reading measured data "
+ },
+ {
+  "inst": 302,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "VolumeFlow",
+  "note": "Actual system flow                        0.1 m3/h          "
+ },
+ {
+  "inst": 303,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "RelativePerformance",
+  "note": "performance                               1 rpm"
+ },
+ {
+  "inst": 305,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Frequency",
+  "note": "Logical value of external digital input                     "
+ },
+ {
+  "inst": 306,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "DigitalInput",
+  "note": "Logical value of external digital output                    "
+ },
+ {
+  "inst": 307,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "DigitalOutput",
+  "note": "Actual setpoint:"
+ },
+ {
+  "inst": 308,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "ActualSetpoint",
+  "note": "Closed loop: % of sensor maximum          0.1 V"
+ },
+ {
+  "inst": 309,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "MotorCurrent",
+  "note": "Frequency converter DC-Link voltage       1W"
+ },
+ {
+  "inst": 310,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "DCLinkVoltage",
+  "note": "Motor voltage                             0.1 m3/h"
+ },
+ {
+  "inst": 312,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "PowerHI",
+  "note": "Total power consumption of the system     0.001 bar"
+ },
+ {
+  "inst": 313,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "PowerLO",
+  "note": "Model G only                   -"
+ },
+ {
+  "inst": 314,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "RemoteFlow",
+  "note": "Measured flow at external sensor          0.001 bar"
+ },
+ {
+  "inst": 315,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "InletPressure",
+  "note": "atmospheric pressure                      0.01 m"
+ },
+ {
+  "inst": 316,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "RemotePressure1",
+  "note": "Offset -100m                              0.01 K           G"
+ },
+ {
+  "inst": 317,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "FeedTankLevel",
+  "note": "Motor winding temperature                 0.01 K           S"
+ },
+ {
+  "inst": 318,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "PowerElectronicTemp",
+  "note": "E-pump electronics temperature            1 Wh/m3           "
+ },
+ {
+  "inst": 319,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "MotorTemp",
+  "note": "Pumped-liquid temperature                 1 hour"
+ },
+ {
+  "inst": 320,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "RemoteTemp1",
+  "note": "Bearing temperature, drive end                             -"
+ },
+ {
+  "inst": 321,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "ElectronicTemp",
+  "note": "Bearing temperature, non-drive end"
+ },
+ {
+  "inst": 322,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "PumpLiquidTemp",
+  "note": "Auxiliary sensor input                                     S"
+ },
+ {
+  "inst": 323,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "BearingTempDE",
+  "note": "Specific energy consumption"
+ },
+ {
+  "inst": 324,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "BearingTempNDE",
+  "note": "H              MGE"
+ },
+ {
+  "inst": 325,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "AuxSensorInput",
+  "note": "Total operating time of the system"
+ },
+ {
+  "inst": 326,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "SpecificEnergyConsumption",
+  "note": "G+S            S"
+ },
+ {
+  "inst": 328,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "OperationTimeLO",
+  "note": "-              CUE + S         -"
+ },
+ {
+  "inst": 330,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "TotalPoweredTimeLO",
+  "note": "-              CUE + S         -"
+ },
+ {
+  "inst": 332,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "EnergyHI",
+  "note": "S              S               -"
+ },
+ {
+  "inst": 334,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "NumberOfStartsHI",
+  "note": "H+S            CUE + S"
+ },
+ {
+  "inst": 337,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "RemoteTemp2",
+  "note": "sensor 2"
+ },
+ {
+  "inst": 338,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "UserSetpoint",
+  "note": "Open loop: % of nominal frequency."
+ },
+ {
+  "inst": 339,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Diffpressure",
+  "note": "Pressure between pump flanges              0.001 bar  H+S   "
+ },
+ {
+  "inst": 340,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "OutletPressure",
+  "note": "Pressure at pump outlet                    0.001 bar"
+ },
+ {
+  "inst": 341,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "RemotePressure2",
+  "note": "Pressure measured by external sensor 2     0.01 %     H+S   "
+ },
+ {
+  "inst": 342,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "LoadPercent",
+  "note": "current                                    1 second   H+S   "
+ },
+ {
+  "inst": 343,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "PumpUnixRtcHI",
+  "note": "Pump time and date in UNIX format          0.01 K     H     "
+ },
+ {
+  "inst": 344,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "PumpUnixRtcLO",
+  "note": "(seconds since 01-01-1970 00:00:00)        0.001 bar"
+ },
+ {
+  "inst": 345,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "MaxFlowLimit",
+  "note": "0.001 bar  H                              K"
+ },
+ {
+  "inst": 346,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "RemoteDiffTemp",
+  "note": "Actual maximum flow limit                  0.001 bar"
+ },
+ {
+  "inst": 347,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "InletDiffPressure",
+  "note": "0.01 m     H                              K"
+ },
+ {
+  "inst": 348,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "OutletDiffPressure",
+  "note": "Remote differential temperature            0.01 K"
+ },
+ {
+  "inst": 349,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "RemoteDiffPressure",
+  "note": "Inlet differential pressure                1 kWh      H+S   "
+ },
+ {
+  "inst": 350,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "StorageTankLevel",
+  "note": "Remote differential pressure                          H+S   "
+ },
+ {
+  "inst": 351,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "AmbientTemp",
+  "note": "Offset -100                                           H+S   "
+ },
+ {
+  "inst": 352,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "HeatEnergyCounter1HI",
+  "note": "Ambient temperature"
+ },
+ {
+  "inst": 353,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "HeatEnergyCounter1LO",
+  "note": "H+S                            K                   -"
+ },
+ {
+  "inst": 354,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "HeatPowerHI",
+  "note": "Total accumulated heat energy in pump"
+ },
+ {
+  "inst": 355,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "HeatPowerLO",
+  "note": "lifetime (direction 1)                                H+S   "
+ },
+ {
+  "inst": 356,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "HeatDiffTemp",
+  "note": "H+S                            K                   -"
+ },
+ {
+  "inst": 357,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Volume1HI",
+  "note": "H+S                            K                   S"
+ },
+ {
+  "inst": 359,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "HeatEnergyCounter2HI",
+  "note": "Actual heat power                          1W         H+S   "
+ },
+ {
+  "inst": 361,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Volume2HI",
+  "note": "Differential temperature between forward   0.01 K     H+S   "
+ },
+ {
+  "inst": 362,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Volume2LO",
+  "note": "and return pipe used for heat calculation"
+ },
+ {
+  "inst": 364,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "PHMeasure",
+  "note": "Total pumped volume (direction 1)          0.01 m3    H+S  K"
+ },
+ {
+  "inst": 630,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Hungary",
+  "note": "Norway                                       Tel.: +90 - 262"
+ },
+ {
+  "inst": 701,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Alarm simulation",
+  "note": "R/W                     Registers for simulating alarms and "
+ },
+ {
+  "inst": 702,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Simulation. WarningCode",
+  "note": "Alarm code to simulate                                      "
+ },
+ {
+  "inst": 708,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Simulation. Activate",
+  "note": "Warning code to simulate                                    "
+ },
+ {
+  "inst": 709,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Simulation. Active",
+  "note": "Used for activating alarm simulation with alarms and warning"
+ },
+ {
+  "inst": 2941,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Brighton Road",
+  "note": "Graha intirub Lt. 2 & 3                                     "
+ },
+ {
+  "inst": 11415,
+  "type": "—",
+  "unitDisp": "—",
+  "name": "Tallinn",
+  "note": "Fax: + 371 914 9646                       Tel.: (+27) 10 248"
+ }
+]

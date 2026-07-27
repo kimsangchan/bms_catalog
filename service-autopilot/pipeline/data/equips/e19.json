@@ -1,0 +1,450 @@
+{
+ "id": "e19",
+ "no": 19,
+ "title": "전력 설비",
+ "domain": "전력 설비",
+ "tagSummary": "**태그** `substation` ✓ · `transformer` ✓ · `switchgear` ✓ · `incoming-power` ✓ · `breaker` ✓ · `elec-panel` ✓ · `distribution-panel` ✓ · `sub-distribution-panel` ✓ · `mcc` ✓ · `pdu` ✓ · `contactor` ✓ · `fuse` ✓ · `relay` ✓ **Brick** `Switchgear` / `Transformer` / `Electrical_Meter` 계열",
+ "notes": [],
+ "specTables": [
+  {
+   "header": [
+    "spec 항목",
+    "단위",
+    "조건·비고"
+   ],
+   "rows": [
+    [
+     "정격 용량",
+     "kVA",
+     "변압기"
+    ],
+    [
+     "1차·2차 전압",
+     "V",
+     "예 22.9kV / 380-220V"
+    ],
+    [
+     "결선",
+     "—",
+     "Δ-Y, Y-Y"
+    ],
+    [
+     "임피던스 전압",
+     "%",
+     "단락전류 계산용"
+    ],
+    [
+     "냉각 방식",
+     "—",
+     "건식(몰드)·유입"
+    ],
+    [
+     "무부하손·부하손",
+     "W",
+     "효율 산정"
+    ],
+    [
+     "정격 전류 / 차단 용량",
+     "A / kA",
+     "차단기"
+    ],
+    [
+     "절연 등급·내압",
+     "— / kV",
+     ""
+    ],
+    [
+     "보호 계전 방식",
+     "—",
+     "OCR·OCGR·디지털 계전기"
+    ]
+   ]
+  },
+  {
+   "header": [
+    "spec 항목",
+    "단위",
+    "비고"
+   ],
+   "rows": [
+    [
+     "정격 출력",
+     "kVA / kW",
+     "비상용·상용 구분"
+    ],
+    [
+     "원동기 형식",
+     "—",
+     "디젤·가스"
+    ],
+    [
+     "연료 종류·소비량",
+     "— / L/h",
+     "정격 부하 기준"
+    ],
+    [
+     "연료 탱크 용량·연속 운전시간",
+     "L / h",
+     "법정 확보시간"
+    ],
+    [
+     "정격 전압·주파수·역률",
+     "V / Hz / —",
+     ""
+    ],
+    [
+     "기동 방식",
+     "—",
+     "전기식(축전지)·공기식"
+    ],
+    [
+     "기동 시간",
+     "s",
+     "법정 요구(비상전원)"
+    ],
+    [
+     "축전지 사양",
+     "V / Ah",
+     ""
+    ],
+    [
+     "소음·배기 처리",
+     "dB(A) / —",
+     ""
+    ]
+   ]
+  },
+  {
+   "header": [
+    "장비",
+    "핵심 spec 항목"
+   ],
+   "rows": [
+    [
+     "**UPS**",
+     "정격 용량(kVA/kW), 방식(온라인 더블컨버전·라인인터랙티브), 백업 시간(분), 입·출력 전압·주파수, 배터리 형식·수량·설계수명, 효율(%), 바이패스 방식"
+    ],
+    [
+     "**ESS**",
+     "정격 용량(kWh), 정격 출력(kW), 셀 화학(LFP·NMC), C-rate, 왕복 효율(%), 사이클 수명, 동작 온도범위, PCS 정격(kW)·계통연계 방식"
+    ],
+    [
+     "**태양광**",
+     "모듈 정격(Wp)·수량·어레이 용량(kWp), 모듈 효율(%), 인버터 정격(kW)·MPPT 수·최대 효율(%), 계통 연계 전압, 경사각·방위각"
+    ],
+    [
+     "**EV충전**",
+     "정격 출력(kW), 충전 방식(AC 완속·DC 급속), 커넥터 규격(AC 5핀·DC 콤보), 입력 전압, 통신 프로토콜(OCPP), 동시 충전 포트 수"
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "상전압 (R/S/T)",
+     "AI",
+     "V",
+     "sensor",
+     "`phase-voltage` ✓",
+     "필수"
+    ],
+    [
+     "선전류",
+     "AI",
+     "A",
+     "sensor",
+     "`phaseCurrent` ✓ / `lineCurrent` ✓",
+     "필수"
+    ],
+    [
+     "유효 전력",
+     "AI",
+     "kW",
+     "sensor",
+     "`active-power` ✓",
+     "필수"
+    ],
+    [
+     "무효 / 피상 전력",
+     "AI",
+     "kvar / kVA",
+     "sensor",
+     "`reactive-power` ✓ / `apparent-power` ✓",
+     "권장"
+    ],
+    [
+     "역률",
+     "AI",
+     "—",
+     "sensor",
+     "`power-factor` ★",
+     "권장"
+    ],
+    [
+     "주파수",
+     "AI",
+     "Hz",
+     "sensor",
+     "`ac-freq` ✓",
+     "권장"
+    ],
+    [
+     "적산 전력량",
+     "AI",
+     "kWh",
+     "sensor",
+     "`active-energy` ✓",
+     "필수"
+    ],
+    [
+     "차단기 개폐 상태",
+     "BI",
+     "—",
+     "sensor",
+     "`breaker` ✓ `run` ✓",
+     "필수"
+    ],
+    [
+     "차단기 트립",
+     "BI",
+     "—",
+     "sensor",
+     "`breaker` ✓ `fault` ✓ `critical` ✓",
+     "필수"
+    ],
+    [
+     "변압기 권선 온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`transformer` ✓ `temp` ✓",
+     "필수"
+    ],
+    [
+     "누설 전류",
+     "AI",
+     "mA",
+     "sensor",
+     "`leakage-current` ✓",
+     "권장"
+    ],
+    [
+     "전압·전류 불평형",
+     "AI",
+     "%",
+     "sensor",
+     "`volt-imbalance` ✓ / `current-imbalance` ✓",
+     "선택"
+    ],
+    [
+     "고조파 왜형률",
+     "AI",
+     "%",
+     "sensor",
+     "`volt-thd` ✓ / `current-thd` ✓",
+     "선택"
+    ],
+    [
+     "정전",
+     "BI",
+     "—",
+     "sensor",
+     "`incoming-power` ✓ `fault` ✓ `critical` ✓",
+     "필수"
+    ]
+   ]
+  },
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "발전 전압 / 전류 / 전력",
+     "AI",
+     "V / A / kW",
+     "sensor",
+     "`generator` ✓ + `volt`·`elec-current`·`elec-power` ✓",
+     "필수"
+    ],
+    [
+     "주파수",
+     "AI",
+     "Hz",
+     "sensor",
+     "`generator` ✓ `ac-freq` ✓",
+     "필수"
+    ],
+    [
+     "연료 수위",
+     "AI",
+     "%",
+     "sensor",
+     "`generator` ✓ `level` ✓",
+     "필수"
+    ],
+    [
+     "냉각수 온도 / 윤활유 압력",
+     "AI",
+     "℃ / kPa",
+     "sensor",
+     "`generator` ✓ + `temp`·`pressure` ✓",
+     "권장"
+    ],
+    [
+     "축전지 전압",
+     "AI",
+     "V",
+     "sensor",
+     "`battery` ✓ `volt` ✓",
+     "권장"
+    ],
+    [
+     "자동 / 수동 절환",
+     "BI",
+     "—",
+     "sensor",
+     "`enable` ✓",
+     "필수"
+    ],
+    [
+     "시동 실패",
+     "BI",
+     "—",
+     "sensor",
+     "`fault` ✓ `critical` ✓",
+     "필수"
+    ],
+    [
+     "누적 운전시간",
+     "AI",
+     "h",
+     "sensor",
+     "`runtime` ★",
+     "권장"
+    ]
+   ]
+  },
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "태그 조합",
+    "적용"
+   ],
+   "rows": [
+    [
+     "배터리 충전율",
+     "AI",
+     "%",
+     "`stateOfCharge` ✓",
+     "UPS·ESS"
+    ],
+    [
+     "충·방전 전력",
+     "AI",
+     "kW",
+     "`elec-power` ✓ (부호로 방향)",
+     "ESS"
+    ],
+    [
+     "입력 / 출력 전압·전류",
+     "AI",
+     "V / A",
+     "`volt` ✓ `elec-current` ✓",
+     "UPS·PCS"
+    ],
+    [
+     "부하율",
+     "AI",
+     "%",
+     "`load` ★",
+     "UPS"
+    ],
+    [
+     "바이패스 / 배터리 운전",
+     "BI",
+     "—",
+     "`ups` ✓ `run` ✓",
+     "UPS"
+    ],
+    [
+     "셀 최고·최저 온도",
+     "AI",
+     "℃",
+     "`battery` ✓ `temp` ✓",
+     "ESS"
+    ],
+    [
+     "발전 전력 / 적산 발전량",
+     "AI",
+     "kW / kWh",
+     "`pv-array` ✓ + `elec-power`·`elec-energy` ✓",
+     "태양광"
+    ],
+    [
+     "DC 전압 / 전류",
+     "AI",
+     "V / A",
+     "`dc-elec` ✓ + `volt`·`elec-current` ✓",
+     "태양광·ESS"
+    ],
+    [
+     "일사량",
+     "AI",
+     "W/㎡",
+     "`solar-irradiance` ✓",
+     "태양광"
+    ],
+    [
+     "모듈 온도",
+     "AI",
+     "℃",
+     "`pv-array` ✓ `temp` ✓",
+     "태양광"
+    ],
+    [
+     "충전 상태",
+     "MSO",
+     "—",
+     "`evse-port` ✓ (대기/연결/충전/완료/고장)",
+     "EV충전"
+    ],
+    [
+     "충전 전력 / 적산 충전량",
+     "AI",
+     "kW / kWh",
+     "`evse-port` ✓ + `elec-power`·`elec-energy` ✓",
+     "EV충전"
+    ],
+    [
+     "커넥터 체결",
+     "BI",
+     "—",
+     "`evse-cable` ✓",
+     "EV충전"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 19
+ }
+}

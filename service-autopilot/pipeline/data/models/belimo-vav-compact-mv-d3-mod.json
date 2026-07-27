@@ -1,0 +1,342 @@
+{
+ "id": "belimo-vav-compact-mv-d3-mod",
+ "equipId": "e6",
+ "vendor": "Belimo",
+ "model": "VAV-Compact (..MV-D3-MOD)",
+ "name": "VAV-Compact — 압력센서 + VAV 컨트롤러 + 댐퍼 액추에이터 일체형",
+ "cat": "HVAC.AIR.TERMINAL.VAV",
+ "tag": "vav",
+ "status": "active",
+ "summary": "차압센서·제어기·액추에이터가 한 몸인 VAV 단말 장치. **제조사가 BACnet EDE 파일(CSV)을 직접 배포하는 드문 사례**라 오브젝트 목록을 기계가 그대로 읽어들일 수 있다. 모델: LMV-D3-MOD(5Nm) · NMV-D3-MOD(10Nm) · SMV-D3-MOD · LHV-D3-MOD.",
+ "has": {
+  "spec": true,
+  "points": true
+ },
+ "ede": true,
+ "spec": [
+  [
+   "전원",
+   "AC/DC 24",
+   "V",
+   "—",
+   "제품 데이터"
+  ],
+  [
+   "소비전력 (운전 중)",
+   "2 (LMV) / 3 (NMV)",
+   "W",
+   "토크에 따라",
+   "제품 데이터"
+  ],
+  [
+   "소비전력 (유지)",
+   "1 (LMV) / 1.5 (NMV)",
+   "W",
+   "정지 유지 상태",
+   "제품 데이터"
+  ],
+  [
+   "배선 산정용 용량",
+   "4 (LMV) / 5 (NMV)",
+   "VA",
+   "전선 굵기 계산용",
+   "제품 데이터"
+  ],
+  [
+   "토크",
+   "5 (LMV) / 10 (NMV)",
+   "Nm",
+   "댐퍼 크기에 따라 선정",
+   "제품 데이터"
+  ],
+  [
+   "제어 방식",
+   "BACnet MS/TP · Modbus RTU · MP-Bus · DC 0/2~10 V",
+   "—",
+   "하이브리드(통신+아날로그)",
+   "제품 데이터"
+  ],
+  [
+   "연결 케이블",
+   "1 m, 6×0.75",
+   "mm²",
+   "—",
+   "제품 데이터"
+  ],
+  [
+   "BACnet 장치 프로파일",
+   "B-ASC",
+   "—",
+   "BTL 인증 (BTL-31112)",
+   "PICS"
+  ],
+  [
+   "BACnet 프로토콜 개정",
+   "12",
+   "—",
+   "Vendor ID 423",
+   "PICS"
+  ],
+  [
+   "COV 구독",
+   "최대 6개 · 수명 1~28,800",
+   "s",
+   "8시간",
+   "PICS"
+  ],
+  [
+   "제어 모드 주의",
+   "FlowCtrl",
+   "—",
+   "**정상 동작하려면 풍량 제어로 설정해야 한다**(MV[123]=2)",
+   "인터페이스 설명서"
+  ]
+ ],
+ "comm": [
+  [
+   "BACnet MS/TP",
+   "내장",
+   "RS-485",
+   "PICS"
+  ],
+  [
+   "Modbus RTU",
+   "내장",
+   "RS-485",
+   "제품 데이터"
+  ],
+  [
+   "MP-Bus",
+   "내장",
+   "전용 2선 · 최대 8대",
+   "제품 데이터"
+  ],
+  [
+   "아날로그",
+   "DC 0/2~10 V",
+   "제어선",
+   "제품 데이터"
+  ]
+ ],
+ "io": [
+  [
+   "MS/TP 통신 속도",
+   "9,600 / 19,200 / 38,400 / 76,800 bps",
+   "기본 38,400",
+   "PICS"
+  ],
+  [
+   "MS/TP 주소",
+   "0~127",
+   "기본 1",
+   "PICS"
+  ],
+  [
+   "최대 노드 수",
+   "32 (리피터 없이)",
+   "1 full bus load",
+   "PICS"
+  ],
+  [
+   "종단 저항",
+   "120 Ω",
+   "BI[99]로 상태 확인",
+   "PICS"
+  ],
+  [
+   "쓰기 제한",
+   "인스턴스 ≥90 영구저장 객체",
+   "**상시 쓰기 금지** — 플래시 수명",
+   "인터페이스 설명서"
+  ]
+ ],
+ "elec": null,
+ "points": [
+  {
+   "type": "AI",
+   "inst": 1,
+   "name": "RelPos · 댐퍼 상대 개도",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Relative Position in %"
+  },
+  {
+   "type": "AI",
+   "inst": 2,
+   "name": "AbsPos · 댐퍼 절대 위치",
+   "unitRaw": "°",
+   "unit": "deg",
+   "note": "Absolute Position in degree or mm"
+  },
+  {
+   "type": "AI",
+   "inst": 6,
+   "name": "SpAnalog · 아날로그 설정값",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Analog Setpoint in %"
+  },
+  {
+   "type": "AI",
+   "inst": 10,
+   "name": "RelFlow · 상대 풍량",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Relative Flow in %"
+  },
+  {
+   "type": "AI",
+   "inst": 19,
+   "name": "AbsFlow_UnitSel · 절대 풍량",
+   "unitRaw": "L/s",
+   "unit": "Lps",
+   "note": "Absolute Flow in selected unit"
+  },
+  {
+   "type": "AI",
+   "inst": 20,
+   "name": "Sens1Analog · 센서1 아날로그 값",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Sensor 1 as analog value"
+  },
+  {
+   "type": "AO",
+   "inst": 1,
+   "name": "SpRel · 풍량 지령(상대 설정값)",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Relative Setpoint in % · 쓰기 가능"
+  },
+  {
+   "type": "AV",
+   "inst": 97,
+   "name": "Min · 최소 풍량 V'min",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Min Setpoint in %"
+  },
+  {
+   "type": "AV",
+   "inst": 98,
+   "name": "Max · 최대 풍량 V'max",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Max Setpoint in %"
+  },
+  {
+   "type": "AV",
+   "inst": 104,
+   "name": "Vnom_UnitSel · 정격 풍량 V'nom",
+   "unitRaw": "L/s",
+   "unit": "Lps",
+   "note": "Nominal Flow in [UnitSel]"
+  },
+  {
+   "type": "AV",
+   "inst": 130,
+   "name": "BusWatchdog · 통신 감시 시간",
+   "unitRaw": "s",
+   "unit": "s",
+   "note": "Timeout for Bus Watchdog in s"
+  },
+  {
+   "type": "BI",
+   "inst": 20,
+   "name": "Sens1Switch · 센서1 접점",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Sensor 1 as Switch · Inactive / Active"
+  },
+  {
+   "type": "BI",
+   "inst": 99,
+   "name": "BusTermination · 종단저항 120Ω",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Bus Termination · Disabled / Enabled"
+  },
+  {
+   "type": "BI",
+   "inst": 101,
+   "name": "SummaryStatus · 종합 상태",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Summary Status · OK / Not OK"
+  },
+  {
+   "type": "MSI",
+   "inst": 100,
+   "name": "InternalActivity · 내부 동작",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Internal Activity · None / Test / Adaption"
+  },
+  {
+   "type": "MSI",
+   "inst": 106,
+   "name": "StatusActuator · 액추에이터 상태",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Status Actuator · OK / Actuator cannot move / Gear disengaged / Mechanical travel increased"
+  },
+  {
+   "type": "MSI",
+   "inst": 110,
+   "name": "StatusDevice · 장치 상태",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Status Device · OK / BusWatchdog triggered"
+  },
+  {
+   "type": "MSO",
+   "inst": 1,
+   "name": "Override · 강제 제어",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Override Control · None / Open / Close / Min_Vmin / Mid_Vmid / Max_Vmax · 쓰기 가능"
+  },
+  {
+   "type": "MSV",
+   "inst": 120,
+   "name": "Command · 기능 지령",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Initiate Function · None / Adaption / Test / Reset"
+  },
+  {
+   "type": "MSV",
+   "inst": 121,
+   "name": "UnitSelFlow · 풍량 단위 선택",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Unit Selection Flow · [m3/s] / [m3/h] / [l/s] / [l/min] / [l/h] / [gpm] / [cfm]"
+  },
+  {
+   "type": "MSV",
+   "inst": 122,
+   "name": "SpSource · 설정값 소스",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Setpoint Source · Analog / Bus"
+  },
+  {
+   "type": "MSV",
+   "inst": 123,
+   "name": "ControlMode · 제어 모드",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Control Mode · PosCtrl / FlowCtrl"
+  },
+  {
+   "type": "MSV",
+   "inst": 220,
+   "name": "Sens1Type · 센서1 종류",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Sensor 1 Type · None / Active / Passive_1K / Passive_20K / Switch / PT1000_C / NI1000_C / NTC10K_C / PT1000_F / NI1000_F / NTC10K_F"
+  }
+ ],
+ "gap": "아래 오브젝트 목록은 **손으로 옮긴 것이 아니라 제조사 EDE 파일을 파서가 읽어 만든 것**이다 — 단위 코드(269종)와 상태 문자열(12집합)까지 자동 해석됐다. 벤더 배포 EDE 취입 경로의 첫 실증. 남은 것: Modbus 레지스터 문서 미취입. VAV 박스 자체의 정격 풍량·인렛 구경은 액추에이터가 아니라 **박스 제조사(OEM)** 자료에 있다 — Belimo는 OEM 채널로만 공급되므로 박스 제조사 선정표가 별도로 필요하다.",
+ "extractor": "ede"
+}

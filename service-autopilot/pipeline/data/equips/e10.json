@@ -1,0 +1,188 @@
+{
+ "id": "e10",
+ "no": 10,
+ "title": "냉각탑",
+ "domain": "열원·수측 설비",
+ "tagSummary": "**태그** `coolingTower` ✓ / 팬 `cooling-tower-fan` ✓ ← `fan` ✓ **Brick** `Cooling_Tower`",
+ "notes": [],
+ "specTables": [
+  {
+   "header": [
+    "항목",
+    "단위",
+    "조건·비고"
+   ],
+   "rows": [
+    [
+     "냉각능력",
+     "RT 또는 kW",
+     "**조건**: 입구 37℃ / 출구 32℃ / 습구 27℃ (국내 표준)"
+    ],
+    [
+     "순환 수량",
+     "LPM 또는 ㎥/h",
+     ""
+    ],
+    [
+     "설계 습구온도",
+     "℃",
+     "지역별"
+    ],
+    [
+     "형식",
+     "—",
+     "직교류·대향류 / 개방식·밀폐식"
+    ],
+    [
+     "팬 형식·모터출력·대수",
+     "— / kW / 대",
+     ""
+    ],
+    [
+     "팬 인버터 유무",
+     "—",
+     ""
+    ],
+    [
+     "충진재 형식",
+     "—",
+     "필름·스플래시"
+    ],
+    [
+     "보충수량",
+     "LPM",
+     "증발·비산·블로우다운"
+    ],
+    [
+     "살수 압력",
+     "kPa",
+     ""
+    ],
+    [
+     "소음",
+     "dB(A)",
+     ""
+    ],
+    [
+     "중량 (운전시)",
+     "kg",
+     "구조 검토용"
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "냉각수 출구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`condenser-water`✓ `temp`✓ `leaving`★",
+     "필수"
+    ],
+    [
+     "냉각수 입구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`condenser-water`✓ `temp`✓ `entering`★",
+     "필수"
+    ],
+    [
+     "출구온도 설정값",
+     "AV",
+     "℃",
+     "sp",
+     "`condenser-water`✓ `temp`✓",
+     "필수"
+    ],
+    [
+     "외기 습구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`outside-air`✓ `wetBulb`✓",
+     "권장"
+    ],
+    [
+     "팬 주파수 지령",
+     "AO",
+     "Hz",
+     "cmd",
+     "`cooling-tower-fan`✓ `vfd-freq`✓",
+     "권장"
+    ],
+    [
+     "팬 현재 주파수",
+     "AI",
+     "Hz",
+     "sensor",
+     "`cooling-tower-fan`✓ `vfd-freq`✓",
+     "권장"
+    ],
+    [
+     "수위 (저·고)",
+     "BI",
+     "—",
+     "sensor",
+     "`level`✓ `alarm`✓",
+     "필수"
+    ],
+    [
+     "보충수 밸브",
+     "BO",
+     "—",
+     "cmd",
+     "`makeup-water`✓ `valve`✓",
+     "권장"
+    ],
+    [
+     "블로우다운 밸브",
+     "BO",
+     "—",
+     "cmd",
+     "`blowdown-water`✓ `valve`✓",
+     "선택"
+    ],
+    [
+     "입구 전동밸브 개도",
+     "AO",
+     "%",
+     "cmd",
+     "`condenser-water`✓ `valve`✓ `position`★",
+     "권장"
+    ],
+    [
+     "진동 경보",
+     "BI",
+     "—",
+     "sensor",
+     "`vibration-sensor`✓ `alarm`✓",
+     "선택"
+    ],
+    [
+     "수질 (전도도·pH)",
+     "AI",
+     "µS/cm · —",
+     "sensor",
+     "`condenser-water`✓ `tds`✓ / `ph`✓",
+     "선택"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 10
+ }
+}

@@ -1,0 +1,198 @@
+{
+ "id": "e16",
+ "no": 16,
+ "title": "계량 · 계측 · 제어기",
+ "domain": "계측·제어",
+ "tagSummary": "**태그** `elec-meter` ✓(하위 `ac-elec-meter` ✓ `dc-elec-meter` ✓) · `flow-meter` ✓ · `power-meter` ✓ ← `meter` ✓ **Brick** `Electrical_Meter` / `Water_Flow_Meter` / `Building_Electrical_Meter`",
+ "notes": [
+  "제어기·판넬은 **장비 대장이 아니라 통신 토폴로지**로 관리한다. 포인트를 소유하는 주체이지",
+  "스펙 카탈로그의 적용 대상(장비)이 아니다."
+ ],
+ "specTables": [
+  {
+   "header": [
+    "spec 항목",
+    "단위",
+    "비고"
+   ],
+   "rows": [
+    [
+     "측정 범위",
+     "물리량 단위",
+     ""
+    ],
+    [
+     "정확도 등급",
+     "%",
+     "예 ±0.5%, KS C 계량 등급"
+    ],
+    [
+     "관경 (유량계)",
+     "mm",
+     ""
+    ],
+    [
+     "방식",
+     "—",
+     "초음파·전자식·터빈·차압 / CT·직결·PT"
+    ],
+    [
+     "출력",
+     "—",
+     "4–20mA·펄스·통신"
+    ],
+    [
+     "펄스 정수",
+     "펄스/단위",
+     "**적산 환산에 필수**"
+    ],
+    [
+     "통신 프로토콜",
+     "—",
+     "Modbus RTU·BACnet·M-Bus"
+    ]
+   ]
+  },
+  {
+   "header": [
+    "spec 항목",
+    "단위"
+   ],
+   "rows": [
+    [
+     "측정 범위 · 정확도",
+     "물리량 단위 / %"
+    ],
+    [
+     "출력 신호",
+     "4–20mA · 0–10V · 접점 · 통신"
+    ],
+    [
+     "전원",
+     "V DC"
+    ],
+    [
+     "보호등급 · 사용 온도",
+     "IP / ℃"
+    ],
+    [
+     "응답 시간",
+     "s"
+    ]
+   ]
+  },
+  {
+   "header": [
+    "spec 항목",
+    "단위",
+    "비고"
+   ],
+   "rows": [
+    [
+     "I/O 점수",
+     "점",
+     "AI/AO/DI/DO 각각"
+    ],
+    [
+     "확장 가능 점수",
+     "점",
+     ""
+    ],
+    [
+     "지원 프로토콜",
+     "—",
+     "BACnet IP/MSTP·Modbus TCP/RTU·LonWorks·전용"
+    ],
+    [
+     "프로그램 용량",
+     "—",
+     ""
+    ],
+    [
+     "전원",
+     "V",
+     ""
+    ],
+    [
+     "통신 속도",
+     "bps",
+     "MSTP 보율"
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "순시 유량",
+     "AI",
+     "㎥/h",
+     "sensor",
+     "(유체)✓ `flow`✓",
+     "필수"
+    ],
+    [
+     "적산 유량",
+     "AI",
+     "㎥",
+     "sensor",
+     "(유체)✓ `volume`✓",
+     "필수"
+    ],
+    [
+     "순시 전력",
+     "AI",
+     "kW",
+     "sensor",
+     "`elec-power`✓ `active-power`✓",
+     "필수"
+    ],
+    [
+     "적산 전력량",
+     "AI",
+     "kWh",
+     "sensor",
+     "`elec-energy`✓ `active-energy`✓",
+     "필수"
+    ],
+    [
+     "상전압 / 선전류",
+     "AI",
+     "V / A",
+     "sensor",
+     "`phase-voltage`✓ / `phaseCurrent`✓",
+     "권장"
+    ],
+    [
+     "무효·피상 전력",
+     "AI",
+     "kvar / kVA",
+     "sensor",
+     "`reactive-power`✓ / `apparent-power`✓",
+     "권장"
+    ],
+    [
+     "역률",
+     "AI",
+     "—",
+     "sensor",
+     "`power-factor`★",
+     "권장"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 16
+ }
+}

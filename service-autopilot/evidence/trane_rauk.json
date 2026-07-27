@@ -1,0 +1,954 @@
+[
+ {
+  "inst": 10101,
+  "type": "AI",
+  "unitDisp": "%",
+  "name": "Cooling Capacity Status",
+  "note": "Indicates the actual operating unit cooling capacity · 범위 0 to 120 · Modbus Input 30027"
+ },
+ {
+  "inst": 10111,
+  "type": "AI",
+  "unitDisp": "%",
+  "name": "Outdoor Air Damper Position",
+  "note": "Indicates the requested position of the Outdoor Air Damper · 범위 0 to 120 · 조건: Supply Air VAV Control and Economizer Present · Modbus Input 30119"
+ },
+ {
+  "inst": 10118,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Outdoor Air Temperature Active",
+  "note": "Indicates the active outdoor air temperature currently being used by the controller · 범위 -40 to 200 · Modbus Input 30129"
+ },
+ {
+  "inst": 10121,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Discharge Cooling Setpoint Active",
+  "note": "Indicates the discharge temperature cooling setpoint value resulting from arbitration · 범위 -40 to 200 · 조건: Supply Air VAV or EVP System Control · Modbus Input 30041"
+ },
+ {
+  "inst": 10124,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Discharge Temperature",
+  "note": "Indicates the actual discharge temperature being used by the controller · 범위 -40 to 200 · Modbus Input 30053"
+ },
+ {
+  "inst": 10154,
+  "type": "AI",
+  "unitDisp": "%",
+  "name": "Economizer Minimum Position Setpoint Active",
+  "note": "Indicates the economizer minimum position setpoint value resulting from arbitration · 범위 0 to 120 · 조건: Supply Air VAV Control and Economizer Present · Modbus Input 30073"
+ },
+ {
+  "inst": 10156,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Outdoor Air Temperature Local",
+  "note": "Indicates the outdoor air temperature value from a sensor connected to the controller · 범위 -40 to 200 · Modbus Input 30131"
+ },
+ {
+  "inst": 10161,
+  "type": "AI",
+  "unitDisp": "%",
+  "name": "Condenser Capacity",
+  "note": "Indicates the status of the unit condenser capacity · 범위 0 to 120 · Modbus Input 30021"
+ },
+ {
+  "inst": 10181,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Discharge Temperature Local",
+  "note": "Indicates the discharge temperature value from a sensor connected to the controller · 범위 -40 to 200 · Modbus Input 30055"
+ },
+ {
+  "inst": 10206,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Number of Circuits",
+  "note": "Indicates the number of refrigeration circuits in the unit · 범위 0 to 255 · Modbus Input 30105"
+ },
+ {
+  "inst": 10207,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Number of Compressors Circuit 1",
+  "note": "Indicates the number of compressors on DX circuit 1 of the unit · 범위 0 to 255 · Modbus Input 30107"
+ },
+ {
+  "inst": 10208,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Number of Compressors Circuit 2",
+  "note": "Indicates the number of compressors on DX circuit 2 of the unit · 범위 0 to 255 · 조건: 40-120T · Modbus Input 30109"
+ },
+ {
+  "inst": 10224,
+  "type": "AI",
+  "unitDisp": "A",
+  "name": "Average Current",
+  "note": "Indicates the average current, as reported by the optional power monitoring feature of the product · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30015"
+ },
+ {
+  "inst": 10227,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Run Time - Compressor 1A",
+  "note": "Indicates the run time of Compressor 1A · 범위 Display up to 9 digits · Modbus Input 30149"
+ },
+ {
+  "inst": 10228,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Starts - Compressor 1A",
+  "note": "Indicates the number of starts for Compressor 1A · 범위 Display up to 9 digits · Modbus Input 30191"
+ },
+ {
+  "inst": 10229,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Run Time - Compressor 1B",
+  "note": "Indicates the run time of Compressor 1B · 범위 Display up to 9 digits · Modbus Input 30151"
+ },
+ {
+  "inst": 10230,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Starts - Compressor 1B",
+  "note": "Indicates the number of starts for Compressor 1B · 범위 Display up to 9 digits · Modbus Input 30193"
+ },
+ {
+  "inst": 10231,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Run Time - Compressor 1C",
+  "note": "Indicates the run time of Compressor 1C · 범위 Display up to 9 digits · Modbus Input 30153"
+ },
+ {
+  "inst": 10232,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Starts - Compressor 1C",
+  "note": "Indicates the number of starts for Compressor 1C · 범위 Display up to 9 digits · 조건: 30T and 80- 120T · Modbus Input 30195"
+ },
+ {
+  "inst": 10233,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Run Time - Compressor 2A",
+  "note": "Indicates the run time of Compressor 2A · 범위 Display up to 9 digits · 조건: 40-120T · Modbus Input 30155"
+ },
+ {
+  "inst": 10234,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Starts - Compressor 2A",
+  "note": "Indicates the number of starts for Compressor 2A · 범위 Display up to 9 digits · 조건: 40-120T · Modbus Input 30197"
+ },
+ {
+  "inst": 10235,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Run Time - Compressor 2B",
+  "note": "Indicates the run time of Compressor 2B · 범위 Display up to 9 digits · 조건: 40-120T · Modbus Input 30157"
+ },
+ {
+  "inst": 10236,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Starts - Compressor 2B",
+  "note": "Indicates the number of starts for Compressor 2B · 범위 Display up to 9 digits · 조건: 40-120T · Modbus Input 30199"
+ },
+ {
+  "inst": 10237,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Run Time - Compressor 2C",
+  "note": "Indicates the run time of Compressor 2C · 범위 Display up to 9 digits · 조건: 40-120T · Modbus Input 30159"
+ },
+ {
+  "inst": 10238,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Starts - Compressor 2C",
+  "note": "Indicates the number of starts for Compressor 2C · 범위 Display up to 9 digits · 조건: 80-120T · Modbus Input 30201"
+ },
+ {
+  "inst": 10239,
+  "type": "AI",
+  "unitDisp": "A",
+  "name": "Current L1",
+  "note": "Indicates the current for line/leg 1, as reported by the optional power monitoring feature of the product · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30029"
+ },
+ {
+  "inst": 10240,
+  "type": "AI",
+  "unitDisp": "A",
+  "name": "Current L2",
+  "note": "Indicates the current for line/leg 2, as reported by the optional power monitoring feature of the product · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30031"
+ },
+ {
+  "inst": 10241,
+  "type": "AI",
+  "unitDisp": "A",
+  "name": "Current L3",
+  "note": "Indicates the current for line/leg 3, as reported by the optional power monitoring feature of the product · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30033"
+ },
+ {
+  "inst": 10242,
+  "type": "AI",
+  "unitDisp": "A",
+  "name": "Current Neutral",
+  "note": "Indicates the current for neutral, as reported by the optional power monitoring feature of the product · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30035"
+ },
+ {
+  "inst": 10243,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Discharge Cooling Setpoint Status",
+  "note": "Indicates the actual discharge temperature cooling setpoint value · 범위 -40 to 200 · 조건: Supply Air VAV or EVP System Control · Modbus Input 30043"
+ },
+ {
+  "inst": 10246,
+  "type": "AI",
+  "unitDisp": "PSI",
+  "name": "Discharge Gauge Pressure Circuit 1",
+  "note": "Indicates the refrigerant discharge gauge pressure for DX circuit 1 · 범위 -20 to 700 · Modbus Input 30059"
+ },
+ {
+  "inst": 10247,
+  "type": "AI",
+  "unitDisp": "PSI",
+  "name": "Discharge Gauge Pressure Circuit 2",
+  "note": "Indicates the refrigerant discharge gauge pressure for DX circuit 2 · 범위 -20 to 700 · 조건: 40-120T · Modbus Input 30061"
+ },
+ {
+  "inst": 10249,
+  "type": "AI",
+  "unitDisp": "kWh",
+  "name": "Energy Consumption Lifetime",
+  "note": "Indicates the total energy consumption of the unit (for the lifetime) when the power monitoring feature is included · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30077"
+ },
+ {
+  "inst": 10255,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Line Frequency",
+  "note": "Indicates the line frequency when the optional power monitoring option is included · 범위 0 to 500 · 조건: Power Monitoring Present · Modbus Input 30097"
+ },
+ {
+  "inst": 10258,
+  "type": "AI",
+  "unitDisp": "—",
+  "name": "Power Factor",
+  "note": "Indicates the reported power factor from the optional power monitoring option, when applicable · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30133"
+ },
+ {
+  "inst": 10262,
+  "type": "AI",
+  "unitDisp": "PSI",
+  "name": "Suction Gauge Pressure Circuit 1",
+  "note": "Indicates the gauge suction pressure for DX circuit 1, in PSIG · 범위 -20 to 700 · Modbus Input 30203"
+ },
+ {
+  "inst": 10263,
+  "type": "AI",
+  "unitDisp": "PSI",
+  "name": "Suction Gauge Pressure Circuit 2",
+  "note": "Indicates the gauge suction pressure for DX circuit 2, in PSIG · 범위 20 to 700 · 조건: 40-120T · Modbus Input 30205"
+ },
+ {
+  "inst": 10268,
+  "type": "AI",
+  "unitDisp": "kWh",
+  "name": "Total Apparent Energy",
+  "note": "Indicates the total apparent energy as reported by the optional power monitoring feature, when present · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30225"
+ },
+ {
+  "inst": 10269,
+  "type": "AI",
+  "unitDisp": "kWh",
+  "name": "Energy Consumption",
+  "note": "Indicates the total energy consumption of the unit (since last accumulation reset) when the power monitoring feature is included · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30075"
+ },
+ {
+  "inst": 10270,
+  "type": "AI",
+  "unitDisp": "kWh",
+  "name": "Total Reactive Energy",
+  "note": "Indicates the total reactive energy as reported by the optional power monitoring feature, when present · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30229"
+ },
+ {
+  "inst": 10271,
+  "type": "AI",
+  "unitDisp": "kWh",
+  "name": "Total Real Power",
+  "note": "Indicates the total real power as reported by the optional power monitoring feature, when present · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30233"
+ },
+ {
+  "inst": 10272,
+  "type": "AI",
+  "unitDisp": "kWh",
+  "name": "Total Apparent Power",
+  "note": "Indicates the total apparent power as reported by the optional power monitoring feature, when present · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30227"
+ },
+ {
+  "inst": 10273,
+  "type": "AI",
+  "unitDisp": "kWh",
+  "name": "Total Reactive Power",
+  "note": "Indicates the total reactive power as reported by the optional power monitoring feature, when present · 범위 Display up to 9 digits · 조건: Power Monitoring Present · Modbus Input 30231"
+ },
+ {
+  "inst": 10275,
+  "type": "AI",
+  "unitDisp": "V",
+  "name": "Voltage L1-L2",
+  "note": "Indicates the voltage between line/leg L1 and L2 · 범위 0 to 1000 · 조건: Power Monitoring Present · Modbus Input 30235"
+ },
+ {
+  "inst": 10276,
+  "type": "AI",
+  "unitDisp": "V",
+  "name": "Voltage L1-L3",
+  "note": "Indicates the voltage between line/leg L1 and L3 · 범위 0 to 1000 · 조건: Power Monitoring Present · Modbus Input 30237"
+ },
+ {
+  "inst": 10277,
+  "type": "AI",
+  "unitDisp": "V",
+  "name": "Voltage L1-N",
+  "note": "Indicates the voltage between line/leg L1 and Neutral · 범위 0 to 1000 · 조건: Power Monitoring Present · Modbus Input 30239"
+ },
+ {
+  "inst": 10278,
+  "type": "AI",
+  "unitDisp": "V",
+  "name": "Voltage L2-L3",
+  "note": "Indicates the voltage between line/leg L2 and L3 · 범위 0 to 1000 · 조건: Power Monitoring Present · Modbus Input 30241"
+ },
+ {
+  "inst": 10279,
+  "type": "AI",
+  "unitDisp": "V",
+  "name": "Voltage L2-N",
+  "note": "Indicates the voltage between line/leg L2 and Neutral · 범위 0 to 1000 · 조건: Power Monitoring Present · Modbus Input 30243"
+ },
+ {
+  "inst": 10280,
+  "type": "AI",
+  "unitDisp": "V",
+  "name": "Voltage L3-N",
+  "note": "Indicates the voltage between line/leg L3 and Neutral · 범위 0 to 1000 · 조건: Power Monitoring Present · Modbus Input 30245"
+ },
+ {
+  "inst": 10282,
+  "type": "AI",
+  "unitDisp": "%",
+  "name": "Air Flow Percentage Circuit 1",
+  "note": "Indicates the requested condenser percentage for circuit 1 · 범위 0 to 120 · Modbus Input 30011"
+ },
+ {
+  "inst": 10283,
+  "type": "AI",
+  "unitDisp": "%",
+  "name": "Air Flow Percentage Circuit 2",
+  "note": "Indicates the requested condenser percentage for circuit 2 · 범위 0 to 120 · 조건: 40-120T · Modbus Input 30013"
+ },
+ {
+  "inst": 10284,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Discharge Saturated Refrigerant Temperature Circuit 1",
+  "note": "Indicates the discharge saturation temperature for DX circuit 1 · 범위 -40 to 200 · Modbus Input 30063"
+ },
+ {
+  "inst": 10285,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Discharge Saturated Refrigerant Temperature Circuit 2",
+  "note": "Indicates the discharge saturation temperature for DX circuit 2 · 범위 -40 to 200 · 조건: 40-120T · Modbus Input 30065"
+ },
+ {
+  "inst": 10286,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Suction Saturated Refrigerant Temperature Circuit 1",
+  "note": "Indicates suction saturated refrigerant temperature for DX circuit 1 · 범위 -40 to 200 · Modbus Input 30207"
+ },
+ {
+  "inst": 10287,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Suction Saturated Refrigerant Temperature Circuit 2",
+  "note": "Indicates suction saturated refrigerant temperature for DX circuit 2 · 범위 -40 to 200 · 조건: 40-120T · Modbus Input 30209"
+ },
+ {
+  "inst": 10288,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Suction Temperature Ckt1",
+  "note": "Indicates the suction temperature for DX circuit 1 · 범위 -40 to 200 · Modbus Input 30211"
+ },
+ {
+  "inst": 10290,
+  "type": "AI",
+  "unitDisp": "℉",
+  "name": "Suction Temperature Ckt2",
+  "note": "Indicates the suction temperature for DX circuit 2 · 범위 -40 to 200 · 조건: 40-120T · Modbus Input 30215"
+ },
+ {
+  "inst": 10324,
+  "type": "AI",
+  "unitDisp": "Hours",
+  "name": "Run Time - Compressor 1A (Hours)",
+  "note": "Indicates the run time of Compressor 1A, in hours · 범위 Display up to 9 digits · Modbus Input 30331"
+ },
+ {
+  "inst": 10325,
+  "type": "AI",
+  "unitDisp": "Hours",
+  "name": "Run Time - Compressor 1B (Hours)",
+  "note": "Indicates the run time of Compressor 1B, in hours · 범위 Display up to 9 digits · Modbus Input 30333"
+ },
+ {
+  "inst": 10326,
+  "type": "AI",
+  "unitDisp": "Hours",
+  "name": "Run Time - Compressor 1C (Hours)",
+  "note": "Indicates the run time of Compressor 1C, in hours · 범위 Display up to 9 digits · 조건: 30T and 80- 120T · Modbus Input 30335"
+ },
+ {
+  "inst": 10327,
+  "type": "AI",
+  "unitDisp": "Hours",
+  "name": "Run Time - Compressor 2A (Hours)",
+  "note": "Indicates the run time of Compressor 2A, in hours · 범위 Display up to 9 digits · 조건: 40-120T · Modbus Input 30337"
+ },
+ {
+  "inst": 10328,
+  "type": "AI",
+  "unitDisp": "Hours",
+  "name": "Run Time - Compressor 2B (Hours)",
+  "note": "Indicates the run time of Compressor 2B, in hours · 범위 Display up to 9 digits · 조건: 40-120T · Modbus Input 30339"
+ },
+ {
+  "inst": 10329,
+  "type": "AI",
+  "unitDisp": "Hours",
+  "name": "Run Time - Compressor 2C (Hours)",
+  "note": "Indicates the run time of Compressor 2C, in hours · 범위 Display up to 9 digits · 조건: 80-120T · Modbus Input 30341"
+ },
+ {
+  "inst": 10330,
+  "type": "AI",
+  "unitDisp": "PSI",
+  "name": "Discharge Pressure Circuit 1",
+  "note": "Indicates the refrigerant discharge absolute pressure for DX circuit 1, in PSIA · 범위 -20 to 700 · Modbus Input 30343"
+ },
+ {
+  "inst": 10331,
+  "type": "AI",
+  "unitDisp": "PSI",
+  "name": "Discharge Pressure Circuit 2",
+  "note": "Indicates the refrigerant discharge absolute pressure for DX circuit 2, in PSIA · 범위 -20 to 700 · 조건: 40-120T · Modbus Input 30345"
+ },
+ {
+  "inst": 10332,
+  "type": "AI",
+  "unitDisp": "PSI",
+  "name": "Suction Pressure Circuit 1",
+  "note": "Indicates the absolute suction pressure for DX circuit 1, in PSIA · 범위 -20 to 700 · Modbus Input 30347"
+ },
+ {
+  "inst": 10333,
+  "type": "AI",
+  "unitDisp": "PSI",
+  "name": "Suction Pressure Circuit 2",
+  "note": "Indicates the absolute suction pressure for DX circuit 2, in PSIA · 범위 -20 to 700 · 조건: 40-120T · Modbus Input 30349"
+ },
+ {
+  "inst": 10400,
+  "type": "AI",
+  "unitDisp": "PSI",
+  "name": "Local Atmospheric Pressure",
+  "note": "Status of the Local Atmospheric Pressure Setting · 범위 Display up to 9 digits · Modbus Input 30361"
+ },
+ {
+  "inst": 10401,
+  "type": "AI",
+  "unitDisp": "kWh",
+  "name": "Unit Design Capacity",
+  "note": "Indicates design capacity for the Unit. · 범위 Display up to 9 digits · Modbus Input 30363"
+ },
+ {
+  "inst": 10402,
+  "type": "AI",
+  "unitDisp": "Hours",
+  "name": "Ctrl Box Ventilation Fan Run Time",
+  "note": "Indicates the run time of Control Box Fan · 범위 Display up to 9 digits · 조건: 80-120T · Modbus Input 30365"
+ },
+ {
+  "inst": 10101,
+  "type": "AV",
+  "unitDisp": "℉",
+  "name": "Discharge Temperature Arbitrator",
+  "note": "Indicates the actual discharge temperature being used by the controller, as determined by the arbitration logic that considers all possible sources · 범위 -40 to 200 · Modbus Holding 40027"
+ },
+ {
+  "inst": 10103,
+  "type": "AV",
+  "unitDisp": "℉",
+  "name": "Outdoor Air Temperature Arbitrator",
+  "note": "Indicates the actual outdoor air temperature being used by the controller, as determined by the arbitration logic that considers all possible sources · 범위 -40 to 200 · Modbus Holding 40079"
+ },
+ {
+  "inst": 10111,
+  "type": "AV",
+  "unitDisp": "℉",
+  "name": "Discharge Temperature BAS",
+  "note": "The value is normally provided by the BAS to send the discharge temperature sensor value. The value is subject to arbitration logic in the controller, in which case it may or may not be used for control purposes. · 범위 -4"
+ },
+ {
+  "inst": 10113,
+  "type": "AV",
+  "unitDisp": "℉",
+  "name": "Outdoor Air Temperature BAS",
+  "note": "The value is normally provided by the BAS to send the outdoor air temperature sensor value. The value is subject to arbitration logic in the controller, in which case it may or may not be used for control purposes. · 범위 "
+ },
+ {
+  "inst": 10121,
+  "type": "AV",
+  "unitDisp": "℉",
+  "name": "Discharge Cooling Setpoint BAS",
+  "note": "Normally provided by the BAS to request the discharge air temperature cooling setpoint value · 범위 9 to 95 · 조건: Supply Air VAV or EVP System Control · Modbus Holding 40021"
+ },
+ {
+  "inst": 10139,
+  "type": "AV",
+  "unitDisp": "%",
+  "name": "Cooling Capacity Enable",
+  "note": "This percentage value is normally provided by the BAS to deman limit the cooling capacity. · 범위 0 to 100 · Modbus Holding 40011"
+ },
+ {
+  "inst": 10144,
+  "type": "AV",
+  "unitDisp": "%",
+  "name": "Economizer Minimum Position Setpoint BAS",
+  "note": "Normally provided by the BAS to request the economizer minimum position setpoint · 범위 0 to 100 · 조건: Supply Air VAV Control and Economizer Present · Modbus Holding 40041"
+ },
+ {
+  "inst": 10150,
+  "type": "AV",
+  "unitDisp": "℉",
+  "name": "Economizer Outdoor Air Enable Setpoint BAS",
+  "note": "Related to the economizer enable decision, this value is normally provided by the BAS to determine the outdoor air temperature below which economizing is enabled. · 범위 50 to 140 · 조건: Supply Air VAV Control and Economize"
+ },
+ {
+  "inst": 10163,
+  "type": "AV",
+  "unitDisp": "%",
+  "name": "Demand Limit Setpoint",
+  "note": "This value is normally provided by the BAS to demand limit the unit. Demand Limit Request BAS must be set to \"Limited\" in order for the value to have meaning. · 범위 0 to 100 · Modbus Holding 40019"
+ },
+ {
+  "inst": 10001,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "microSD",
+  "note": "Indicates when a micro SD card is present · 0 = MicroSD card is not present 1 = MicroSD card is present"
+ },
+ {
+  "inst": 10002,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "USB Port 1",
+  "note": "Indicates when a USB device is present in port 1 · 0 = USB device is not present 1 = USB device is present"
+ },
+ {
+  "inst": 10003,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "USB Port 2",
+  "note": "Indicates when a USB device is present in port 2 · 0 = USB device is not present 1 = USB device is present"
+ },
+ {
+  "inst": 10004,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "USB Port 3",
+  "note": "Indicates when a USB device is present in port 3 · 0 = USB device is not present 1 = USB device is present"
+ },
+ {
+  "inst": 10005,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "USB Port 4",
+  "note": "Indicates when a USB device is present in port 4 · 0 = USB device is not present 1 = USB device is present"
+ },
+ {
+  "inst": 10105,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "FDD: Unit Economizing When It Should Not",
+  "note": "FDD: Indicates when the unit is economizing but should not be · 0 = Inactive 1 = Active · 조건: Supply Air VAV Control and Economizer Present · Modbus Input 33053"
+ },
+ {
+  "inst": 10106,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "FDD: Unit Not Economizing When it Should Be",
+  "note": "FDD: Indicates when the unit is not economizing but should be · 0 = Inactive 1 = Active · 조건: Supply Air VAV Control and Economizer Present · Modbus Input 33054"
+ },
+ {
+  "inst": 10111,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Compressor 1A Status",
+  "note": "Indicates the operating status of compressor 1A · 0 = Off 1 = Running · Modbus Input 33015"
+ },
+ {
+  "inst": 10112,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Compressor 1B Status",
+  "note": "Indicates the operating status of compressor 1B · 0 = Off 1 = Running · Modbus Input 33016"
+ },
+ {
+  "inst": 10113,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Compressor 1C Status",
+  "note": "Indicates the operating status of compressor 1C · 0 = Off 1 = Running · 조건: 30T and 80-120T · Modbus Input 33017"
+ },
+ {
+  "inst": 10114,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Compressor 2A Status",
+  "note": "Indicates the operating status of compressor 2A · 0 = Off 1 = Running · 조건: 40 - 120T · Modbus Input 33018"
+ },
+ {
+  "inst": 10115,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Compressor 2B Status",
+  "note": "Indicates the operating status of compressor 2B · 0 = Off 1 = Running · 조건: 40 - 120T · Modbus Input 33019"
+ },
+ {
+  "inst": 10116,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Compressor 2C Status",
+  "note": "Indicates the operating status of compressor 2C · 0 = Off 1 = Running · 조건: 80 - 120T · Modbus Input 33020"
+ },
+ {
+  "inst": 10132,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "FDD: Outdoor Air Temperature Sensor Failure",
+  "note": "FDD: Indicates when the outdoor air temperature sensor has failed · 0 = Inactive 1 = Active · 조건: Supply Air VAV Control and Economizer Present · Modbus Input 33052"
+ },
+ {
+  "inst": 10155,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Rapid Restart Status",
+  "note": "Indicates the active status of the Rapid Restart event · 0 = Inactive 1 = Active · 조건: Supply Air VAV or EVP System Control and Rapid Restart Present · Modbus Input 33078"
+ },
+ {
+  "inst": 10164,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Coil Frost Protection Status Circuit 1",
+  "note": "Indicates Active when actively in coil frost protection for circuit 1 · 0 = Inactive 1 = Active · 조건: No System Control or Supply Air VAV Control · Modbus Input 33013"
+ },
+ {
+  "inst": 10165,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Coil Frost Protection Status Circuit 2",
+  "note": "Indicates Active when actively in coil frost protection for circuit 2 · 0 = Inactive 1 = Active · 조건: 40 - 120T and No System Control or Supply Air VAV Control · Modbus Input 33014"
+ },
+ {
+  "inst": 10176,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Diagnostic Present",
+  "note": "Diagnostic Present · 0 = Normal 1 = In Alarm · Modbus Input 33076"
+ },
+ {
+  "inst": 10202,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Condenser Fan Circuit 1 Relay 1 Status",
+  "note": "Indicates the status of condenser fan circuit 1, relay 1 · 0 = Off 1 = On · Modbus Input 33022"
+ },
+ {
+  "inst": 10203,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Condenser Fan Circuit 1 Relay 2 Status",
+  "note": "Indicates the status of condenser fan circuit 1, relay 2 · 0 = Off 1 = On · Modbus Input 33023"
+ },
+ {
+  "inst": 10204,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Condenser Fan Circuit 1 Relay 3 Status",
+  "note": "Indicates the status of condenser fan circuit 1, relay 3 · 0 = Off 1 = On · 조건: 25-30T and 50- 120T · Modbus Input 33024"
+ },
+ {
+  "inst": 10205,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Condenser Fan Circuit 1 Relay 4 Status",
+  "note": "Indicates the status of condenser fan circuit 1, relay 4 · 0 = Off 1 = On · 조건: 80-120T · Modbus Input 33025"
+ },
+ {
+  "inst": 10206,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Condenser Fan Circuit 2 Relay 1 Status",
+  "note": "Indicates the status of condenser fan circuit 2, relay 1 · 0 = Off 1 = On · 조건: 40-120T · Modbus Input 33026"
+ },
+ {
+  "inst": 10207,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Condenser Fan Circuit 2 Relay 2 Status",
+  "note": "Indicates the status of condenser fan circuit 2, relay 2 · 0 = Off 1 = On · 조건: 40-120T · Modbus Input 33027"
+ },
+ {
+  "inst": 10208,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Condenser Fan Circuit 2 Relay 3 Status",
+  "note": "Indicates the status of condenser fan circuit 2, relay 3 · 0 = Off 1 = On · 조건: 50-120T · Modbus Input 33028"
+ },
+ {
+  "inst": 10209,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Condenser Fan Circuit 2 Relay 4 Status",
+  "note": "Indicates the status of condenser fan circuit 2, relay 4 · 0 = Off 1 = On · 조건: 80-120T · Modbus Input 33029"
+ },
+ {
+  "inst": 10210,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Emergency Stop",
+  "note": "Indicates the status of the emergency stop function of the unit · 0 = Auto 1 = Emergency Stop - Manual Reset Required · Modbus Input 33047"
+ },
+ {
+  "inst": 10211,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Equipment Stop Status",
+  "note": "Indicates the status of the externally- wired auto/stop input · 0 = Stop 1 = Auto · Modbus Input 33049"
+ },
+ {
+  "inst": 10218,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Diagnostic: Manual Reset Required",
+  "note": "Indicates when a diagnostic exists that requires manual reset · 0 = Normal 1 = In Alarm · Modbus Input 33031"
+ },
+ {
+  "inst": 10219,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Economizer Airside Status",
+  "note": "Indicates the status of airside economizing. This value will be true when airside economizing is active / enabled. · 0 = Inactive 1 = Active · 조건: Supply Air VAV Control and Economizer Present · Modbus Input 33046"
+ },
+ {
+  "inst": 10605,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Diagnostic: Loss of Charge Lockout Ckt1",
+  "note": "Indicates when a loss of charge lockout diagnostic exists for DX circuit 1 · 0 = No 1 = Yes · Modbus Input 33037"
+ },
+ {
+  "inst": 10606,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Diagnostic: Loss of Charge Lockout Ckt2",
+  "note": "Indicates when a loss of charge lockout diagnostic exists for DX circuit 2 · 1 = No 1 = Yes · Modbus Input 33038"
+ },
+ {
+  "inst": 10619,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Diagnostic Shutdown Present",
+  "note": "Unit is shut down due to diagnostics · 0 = Normal 1 = In Alarm · Modbus Input 33082"
+ },
+ {
+  "inst": 10620,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Diagnostic: Local Manual Reset Required",
+  "note": "Diagnostic Reset required [Local only] · 0 = Normal 1 = In Alarm · Modbus Input 33083"
+ },
+ {
+  "inst": 13000,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Front Panel Auto Stop Status",
+  "note": "Status of the the Local Auto Stop setting · 0 = Stop 1 = Auto · Modbus Input 33084"
+ },
+ {
+  "inst": 13002,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Manual Override Exists",
+  "note": "Indicator of a Manual Override being active · 0 = Off 1 = On · Modbus Input 33086"
+ },
+ {
+  "inst": 13003,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Frostat Input Status Circuit 1",
+  "note": "Status of the Frostat Input for Circuit 1C · 0 = Open 1 = Closed · 조건: ontrol or Supply Air · Modbus Input 33087"
+ },
+ {
+  "inst": 13004,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Frostat Input Status Circuit 2",
+  "note": "Status of the Frostat Input for Circuit 2 · 0 = Open 1 = Closed · 조건: stem Control or Sup · Modbus Input 33088"
+ },
+ {
+  "inst": 13005,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Freezestat Input Status",
+  "note": "Status of the Freezestat Input · 0 = Open 1 = Closed · 조건: EVP System Contro · Modbus Input 33089"
+ },
+ {
+  "inst": 13006,
+  "type": "BI",
+  "unitDisp": "—",
+  "name": "Refrigerant Leak Detection",
+  "note": "Indicates the active status of a refrigerant leak event. · 0 = Open 1 = Closed · Modbus Input 33091"
+ },
+ {
+  "inst": 10110,
+  "type": "BV",
+  "unitDisp": "—",
+  "name": "Reset Diagnostic",
+  "note": "Normally used by the BAS to initiate a request to reset any remote controller diangostic · 0 = Normal 1 = Reset · Modbus Holding 43020"
+ },
+ {
+  "inst": 10115,
+  "type": "BV",
+  "unitDisp": "—",
+  "name": "Cooling Lockout BAS",
+  "note": "Normally used by the BAS as a command to (temporarily) prevent all mechanical cooling · 0 = Normal 1 = Locked Out · Modbus Holding 43011"
+ },
+ {
+  "inst": 10116,
+  "type": "BV",
+  "unitDisp": "—",
+  "name": "Demand Limit Request BAS",
+  "note": "This command is normally provided by the BAS to demand limit the unit. The command is used in conjuction with Demand Limit Setpoint to determine the percentage the unit will be limited. · 0 = Not Limited 1 = Limited · Mo"
+ },
+ {
+  "inst": 10117,
+  "type": "BV",
+  "unitDisp": "—",
+  "name": "Energy Consumption Reset",
+  "note": "Normally used by the BAS to reset the energy consumption accumulated total · 0 = Accumulating 1 = Reset · 조건: Power Monitoring Present · Modbus Holding 43015"
+ },
+ {
+  "inst": 10120,
+  "type": "BV",
+  "unitDisp": "—",
+  "name": "Rapid Restart Enable",
+  "note": "Enables/Disables rapid restart operation. · 0 = Disable 1 = Enable · 조건: Supply Air VAV or EVP System Control and Rapid Restart Present · Modbus Holding 43023"
+ },
+ {
+  "inst": 10140,
+  "type": "BV",
+  "unitDisp": "—",
+  "name": "Auto Stop Command BAS",
+  "note": "BAS Auto Stop Command · 0 = Stop 1 = Auto · Modbus Holding 43084"
+ },
+ {
+  "inst": 10105,
+  "type": "MI",
+  "unitDisp": "—",
+  "name": "Cooling Reset Type Status",
+  "note": "Indicates the type of cooling reset used by the controller · 1 = None 2 = Outdor Air · 조건: Supply Air VAV or EVP System Control · Modbus Input 32013"
+ },
+ {
+  "inst": 10108,
+  "type": "MI",
+  "unitDisp": "—",
+  "name": "Economizer Type",
+  "note": "Indicates the general description of the type of economizer system · 1 = None 2 = 2 Position Ventilation 3 = Modulation Economizer 4 = 2 Position Ventilation/Waterside Economizer 5 = Waterside Economizer 6 = Airside/Wate"
+ },
+ {
+  "inst": 10109,
+  "type": "MI",
+  "unitDisp": "—",
+  "name": "Condenser Type",
+  "note": "Indicates the general description of the equipment condenser system · 1 = None 2 = Air Cooled Condenser 3 = Water Cooled Condenser 4 = Evaporative Condenser · Modbus Input 32012"
+ },
+ {
+  "inst": 10117,
+  "type": "MI",
+  "unitDisp": "—",
+  "name": "Refrigerant Type",
+  "note": "Indicates the type of refrigerant used in the equipment · 1 = R-11 2 = R-12 3 = R-22 4 = R-123 5 = R-134A 6 = R-407C 7 = R-410A 8 = R-113 9 = R-114 10 = R-500 11 = R-502 12 = R-404A 13 = R-513A 14 = R-1233zd(E) 15 = R-51"
+ },
+ {
+  "inst": 10119,
+  "type": "MI",
+  "unitDisp": "—",
+  "name": "Arbitration Method",
+  "note": "The arbitration method is used to define the source of the data being provided to the controller. The source can be defined as DEFAULT (stored in the controller, such as setpoints and settings), LOCAL (for wired/wireless"
+ },
+ {
+  "inst": 10121,
+  "type": "MI",
+  "unitDisp": "—",
+  "name": "Electrical Service Type",
+  "note": "Indicates the electrical service type used for the unit · 1 = A+N 2 = A+B 3 = A+B+N 4 = A+B+C 5 = A+B+C+N · 조건: Power Monitoring Present · Modbus Input 32016"
+ },
+ {
+  "inst": 10132,
+  "type": "MI",
+  "unitDisp": "—",
+  "name": "Economizer Decision Method",
+  "note": "Normally provided by the BAS to determine the method of enabling airside economizing · 1 = Absolute Temperature 2 = Relative Temperature 3 = Absolute Enthalpy 4 = Comparative Enthalpy · 조건: Supply Air VAV Control and Eco"
+ },
+ {
+  "inst": 10140,
+  "type": "MI",
+  "unitDisp": "—",
+  "name": "Unit Status",
+  "note": "Indicates the unit is off, waiting for a need to cool, or cooling is running. · 1 = Off 2 = Waiting 3 = Running · Modbus Input 32029"
+ },
+ {
+  "inst": 10144,
+  "type": "MI",
+  "unitDisp": "—",
+  "name": "Economizer System Status",
+  "note": "Indicates the status of enabling economizing · 1 = Disabled 2 = Enabled 3 = Not Present · 조건: Supply Air VAV Control and Economizer Present · Modbus Input 32027"
+ },
+ {
+  "inst": 10145,
+  "type": "MI",
+  "unitDisp": "—",
+  "name": "Model Information [GEN2]",
+  "note": "Model Information · 64 = RAUK · Modbus Input 32028"
+ },
+ {
+  "inst": 10103,
+  "type": "MV",
+  "unitDisp": "—",
+  "name": "Economizer Airside Enable BAS",
+  "note": "Normally provided by the BAS to enable airside economizing · 1 = Disabled 2 = Enabled 3 = Auto · 조건: Supply Air VAV Control and Economizer Present · Modbus Holding 42011"
+ }
+]

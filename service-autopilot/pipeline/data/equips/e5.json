@@ -1,0 +1,303 @@
+{
+ "id": "e5",
+ "no": 5,
+ "title": "공조기 (AHU)",
+ "domain": "공기측 설비",
+ "tagSummary": "**태그** `ahu` ✓ ← 부모 `airHandlingEquip` ✓ / 변형 `doas` ✓(외기전용) · `mau` ✓ · `rtu` ✓(옥상형) **Brick** `Air_Handling_Unit` (`AHU`) / 옥상형 `Rooftop_Unit` **부속 장비** `supply-fan` ✓ · `return-fan` ✓ · `coolingCoil` ✓ · `heatingCoil` ✓ · `airfilter` ✓ · `humidifier-equip` ✓ · `damper-actuator` ✓ (부속은 `equipRef`로 AHU에 매단다)",
+ "notes": [
+  "제어 시퀀스: ASHRAE Guideline 36-2024 다구역 VAV AHU 절 참조."
+ ],
+ "specTables": [
+  {
+   "header": [
+    "항목",
+    "단위",
+    "조건·비고"
+   ],
+   "rows": [
+    [
+     "급기 풍량",
+     "CMH",
+     "정격/설계 구분"
+    ],
+    [
+     "환기 풍량",
+     "CMH",
+     "환기팬 있는 경우"
+    ],
+    [
+     "최소 외기량",
+     "CMH 또는 %",
+     "환기기준 산출값"
+    ],
+    [
+     "기외정압",
+     "mmAq / Pa",
+     "덕트 저항"
+    ],
+    [
+     "급기팬 형식·모터출력",
+     "— / kW",
+     "시로코·터보·플러그"
+    ],
+    [
+     "환기팬 형식·모터출력",
+     "— / kW",
+     ""
+    ],
+    [
+     "냉수코일 능력",
+     "kW",
+     "**조건**: 냉수 7/12℃, 입구공기 27℃DB·19℃WB"
+    ],
+    [
+     "온수코일 능력",
+     "kW",
+     "**조건**: 온수 60/50℃, 입구공기 5℃"
+    ],
+    [
+     "냉수·온수 유량",
+     "LPM",
+     ""
+    ],
+    [
+     "코일 열수·핀피치",
+     "row / mm",
+     "냉수·온수 각각"
+    ],
+    [
+     "코일 정면풍속",
+     "m/s",
+     "보통 2.5~3.0"
+    ],
+    [
+     "필터 형식·효율·차압",
+     "— / % / Pa",
+     "프리·미디엄·HEPA (초기·최종 차압)"
+    ],
+    [
+     "가습 방식·가습량",
+     "— / kg/h",
+     "증기·기화·초음파"
+    ],
+    [
+     "열회수 유무·효율",
+     "— / %",
+     "전열교환 내장형"
+    ],
+    [
+     "케이싱·단열",
+     "—",
+     "판넬 두께·단열재"
+    ],
+    [
+     "전원",
+     "V/φ/Hz",
+     ""
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "급기온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`discharge`✓ `air`✓ `temp`✓",
+     "필수"
+    ],
+    [
+     "환기온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`return-air`✓ `temp`✓",
+     "필수"
+    ],
+    [
+     "외기온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`outside-air`✓ `temp`✓",
+     "필수"
+    ],
+    [
+     "혼합공기온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`mixed-air`✓ `temp`✓",
+     "권장"
+    ],
+    [
+     "급기습도",
+     "AI",
+     "%",
+     "sensor",
+     "`discharge`✓ `air`✓ `humidity`✓",
+     "권장"
+    ],
+    [
+     "환기습도",
+     "AI",
+     "%",
+     "sensor",
+     "`return-air`✓ `humidity`✓",
+     "권장"
+    ],
+    [
+     "급기 정압",
+     "AI",
+     "Pa",
+     "sensor",
+     "`discharge`✓ `static-pressure`✓",
+     "필수"
+    ],
+    [
+     "급기 풍량",
+     "AI",
+     "CMH",
+     "sensor",
+     "`discharge`✓ `air`✓ `flow`✓",
+     "권장"
+    ],
+    [
+     "환기 CO2",
+     "AI",
+     "ppm",
+     "sensor",
+     "`return-air`✓ `co2-concentration`✓",
+     "권장"
+    ],
+    [
+     "급기온도 설정값",
+     "AV",
+     "℃",
+     "sp",
+     "`discharge`✓ `air`✓ `temp`✓",
+     "필수"
+    ],
+    [
+     "급기 정압 설정값",
+     "AV",
+     "Pa",
+     "sp",
+     "`discharge`✓ `static-pressure`✓",
+     "권장"
+    ],
+    [
+     "급기팬 주파수 지령",
+     "AO",
+     "Hz",
+     "cmd",
+     "`supply-fan`✓ `vfd-freq`✓",
+     "필수"
+    ],
+    [
+     "환기팬 주파수 지령",
+     "AO",
+     "Hz",
+     "cmd",
+     "`return-fan`✓ `vfd-freq`✓",
+     "권장"
+    ],
+    [
+     "냉수밸브 개도",
+     "AO",
+     "%",
+     "cmd",
+     "`chilled-water`✓ `valve`✓ `position`★",
+     "필수"
+    ],
+    [
+     "온수밸브 개도",
+     "AO",
+     "%",
+     "cmd",
+     "`hot-water`✓ `valve`✓ `position`★",
+     "필수"
+    ],
+    [
+     "외기댐퍼 개도",
+     "AO",
+     "%",
+     "cmd",
+     "`outside-air`✓ `damper`✓ `position`★",
+     "필수"
+    ],
+    [
+     "환기댐퍼 개도",
+     "AO",
+     "%",
+     "cmd",
+     "`return-air`✓ `damper`✓ `position`★",
+     "권장"
+    ],
+    [
+     "배기댐퍼 개도",
+     "AO",
+     "%",
+     "cmd",
+     "`exhaust-air`✓ `damper`✓ `position`★",
+     "권장"
+    ],
+    [
+     "가습 지령",
+     "AO/BO",
+     "%",
+     "cmd",
+     "`humidifier-equip`✓ `cmd`✓",
+     "선택"
+    ],
+    [
+     "필터 차압",
+     "AI/BI",
+     "Pa",
+     "sensor",
+     "`airfilter`✓ `differential-pressure`✓",
+     "권장"
+    ],
+    [
+     "동결 방지 경보",
+     "BI",
+     "—",
+     "sensor",
+     "`temp`✓ `alarm`✓ `critical`✓",
+     "권장"
+    ],
+    [
+     "운전 모드",
+     "MSO",
+     "—",
+     "cmd",
+     "(정지/냉방/난방/송풍/외기냉방)",
+     "필수"
+    ],
+    [
+     "외기냉방 모드",
+     "BV",
+     "—",
+     "cmd",
+     "`economizer-mode`✓ `free-cooling`✓",
+     "권장"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 5
+ }
+}

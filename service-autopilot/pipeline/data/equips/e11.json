@@ -1,0 +1,185 @@
+{
+ "id": "e11",
+ "no": 11,
+ "title": "보일러 · 온수발생기",
+ "domain": "열원·수측 설비",
+ "tagSummary": "**태그** `boiler` ✓ / 하위 `hot-water-boiler` ✓ · `steam-boiler` ✓ · `biomass-boiler` ✓ / 계통 `hot-water-plant` ✓ · `steam-plant` ✓ **Brick** `Boiler`",
+ "notes": [],
+ "specTables": [
+  {
+   "header": [
+    "항목",
+    "단위",
+    "조건·비고"
+   ],
+   "rows": [
+    [
+     "정격 열출력",
+     "kW 또는 kcal/h",
+     ""
+    ],
+    [
+     "열효율",
+     "%",
+     "**저위발열량 기준 명기**"
+    ],
+    [
+     "연료 종류",
+     "—",
+     "도시가스(LNG)·LPG·경유·전기·바이오매스"
+    ],
+    [
+     "연료 소비량",
+     "N㎥/h 또는 L/h",
+     "정격 기준"
+    ],
+    [
+     "최고 사용압력",
+     "MPa",
+     ""
+    ],
+    [
+     "온수 출구온도 범위",
+     "℃",
+     "(증기식은 증기압력 범위)"
+    ],
+    [
+     "전열면적",
+     "㎡",
+     ""
+    ],
+    [
+     "버너 형식·제어",
+     "—",
+     "단단·2단·비례·저NOx"
+    ],
+    [
+     "NOx 배출",
+     "ppm",
+     "환경 규제치"
+    ],
+    [
+     "배기 온도·배기통 구경",
+     "℃ / mm",
+     ""
+    ],
+    [
+     "안전장치",
+     "—",
+     "저수위·과압·실화"
+    ],
+    [
+     "전원",
+     "V/φ",
+     ""
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "온수 출구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`hot-water`✓ `temp`✓ `leaving`★",
+     "필수"
+    ],
+    [
+     "온수 환수온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`hot-water`✓ `temp`✓ `entering`★",
+     "필수"
+    ],
+    [
+     "출구온도 설정값",
+     "AV",
+     "℃",
+     "sp",
+     "`hot-water`✓ `temp`✓",
+     "필수"
+    ],
+    [
+     "버너 단계 / 출력",
+     "MSO/AO",
+     "— / %",
+     "cmd",
+     "`stage`★ / `load`★",
+     "권장"
+    ],
+    [
+     "관내 압력",
+     "AI",
+     "kPa",
+     "sensor",
+     "`hot-water`✓ `pressure`✓",
+     "권장"
+    ],
+    [
+     "(증기) 증기압력",
+     "AI",
+     "MPa",
+     "sensor",
+     "`steam`✓ `pressure`✓",
+     "필수(증기식)"
+    ],
+    [
+     "급수 저수위",
+     "BI",
+     "—",
+     "sensor",
+     "`level`✓ `low-low`✓ `alarm`✓",
+     "필수"
+    ],
+    [
+     "가스 누설",
+     "BI",
+     "—",
+     "sensor",
+     "`gas-detector`✓ `alarm`✓ `critical`✓",
+     "필수"
+    ],
+    [
+     "연료 적산 사용량",
+     "AI",
+     "N㎥",
+     "sensor",
+     "`naturalGas`✓ `volume`✓",
+     "권장"
+    ],
+    [
+     "배기 온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`exhaust-air`✓ `temp`✓",
+     "선택"
+    ],
+    [
+     "실화·소염 경보",
+     "BI",
+     "—",
+     "sensor",
+     "`fault`✓ `critical`✓",
+     "필수"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 11
+ }
+}

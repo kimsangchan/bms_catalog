@@ -1,0 +1,172 @@
+{
+ "id": "e20",
+ "no": 20,
+ "title": "조명 · 차양",
+ "domain": "조명·차양",
+ "tagSummary": "**태그** `luminaire` ✓ · 비상조명 `emergency-light` ✓ · 블라인드 `blind` ✓ · 커튼 `curtain` ✓ **Brick** `Lighting_Equipment` / `Luminaire`",
+ "notes": [],
+ "specTables": [
+  {
+   "header": [
+    "spec 항목",
+    "단위",
+    "비고"
+   ],
+   "rows": [
+    [
+     "정격 소비전력",
+     "W",
+     ""
+    ],
+    [
+     "광속",
+     "lm",
+     ""
+    ],
+    [
+     "광효율",
+     "lm/W",
+     ""
+    ],
+    [
+     "색온도",
+     "K",
+     "3000·4000·5700"
+    ],
+    [
+     "연색성",
+     "Ra (CRI)",
+     ""
+    ],
+    [
+     "배광 각도",
+     "°",
+     ""
+    ],
+    [
+     "조광 방식",
+     "—",
+     "0–10V · DALI · PWM · 위상"
+    ],
+    [
+     "정격 수명",
+     "h",
+     "L70 기준 명기"
+    ],
+    [
+     "보호등급",
+     "IP",
+     ""
+    ],
+    [
+     "(비상등) 예비전원 시간",
+     "분",
+     "법정 확보시간"
+    ],
+    [
+     "(블라인드) 구동 모터 출력·행정시간",
+     "W / s",
+     ""
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "점멸 지령",
+     "BO",
+     "—",
+     "cmd",
+     "`luminaire` ✓ `enable` ✓",
+     "필수"
+    ],
+    [
+     "점등 상태",
+     "BI",
+     "—",
+     "sensor",
+     "`luminaire` ✓ `run` ✓",
+     "필수"
+    ],
+    [
+     "조광 지령",
+     "AO",
+     "%",
+     "cmd",
+     "`dimming` ✓",
+     "권장"
+    ],
+    [
+     "조도 (실측)",
+     "AI",
+     "lux",
+     "sensor",
+     "`illuminance` ✓",
+     "권장"
+    ],
+    [
+     "색온도 지령",
+     "AO",
+     "K",
+     "cmd",
+     "`color-temperature` ✓",
+     "선택"
+    ],
+    [
+     "재실 감지",
+     "BI",
+     "—",
+     "sensor",
+     "`occupancy` ✓ `motion-sensor` ✓",
+     "권장"
+    ],
+    [
+     "그룹 / 씬 호출",
+     "MSO",
+     "—",
+     "cmd",
+     "`luminaire` ✓",
+     "권장"
+    ],
+    [
+     "비상등 자기진단 결과",
+     "BI",
+     "—",
+     "sensor",
+     "`emergency-light` ✓ `fault` ✓",
+     "필수"
+    ],
+    [
+     "블라인드 개도",
+     "AO",
+     "%",
+     "cmd",
+     "`blind` ✓ `position` ★",
+     "선택"
+    ],
+    [
+     "소비전력",
+     "AI",
+     "kW",
+     "sensor",
+     "`elec-power` ✓",
+     "선택"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 20
+ }
+}

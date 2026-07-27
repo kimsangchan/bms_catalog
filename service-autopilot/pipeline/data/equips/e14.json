@@ -1,0 +1,151 @@
+{
+ "id": "e14",
+ "no": 14,
+ "title": "펌프",
+ "domain": "반송·구동",
+ "tagSummary": "**태그** `pump` ✓ / 하위 `booster-pump` ✓ · `submersible-pump` ✓ · `fire-pump` ✓ / 전동기 `pump-motor` ✓ **Brick** `Pump` (하위 `Chilled_Water_Pump`, `Condenser_Water_Pump`, `Hot_Water_Pump`)",
+ "notes": [
+  "계통 태그 필수: 냉수 `chilled-water` ✓ · 냉각수 `condenser-water` ✓ · 온수 `hot-water` ✓ ·",
+  "급수 `domestic-water` ✓. 같은 모델이라도 계통이 다르면 태그가 다르다."
+ ],
+ "specTables": [
+  {
+   "header": [
+    "항목",
+    "단위",
+    "조건·비고"
+   ],
+   "rows": [
+    [
+     "정격 유량",
+     "LPM 또는 ㎥/h",
+     ""
+    ],
+    [
+     "전양정",
+     "m",
+     ""
+    ],
+    [
+     "전동기 출력",
+     "kW",
+     ""
+    ],
+    [
+     "극수 / 회전수",
+     "P / rpm",
+     ""
+    ],
+    [
+     "형식",
+     "—",
+     "원심·다단·라인·수중·인라인"
+    ],
+    [
+     "효율",
+     "%",
+     "최고효율점(BEP)"
+    ],
+    [
+     "흡입·토출 구경",
+     "mm",
+     ""
+    ],
+    [
+     "필요 NPSH",
+     "m",
+     "캐비테이션 검토"
+    ],
+    [
+     "인버터 유무",
+     "—",
+     "변유량 계통은 필수"
+    ],
+    [
+     "전원",
+     "V/φ",
+     ""
+    ],
+    [
+     "용도(계통)",
+     "—",
+     "냉수·냉각수·온수·급수·소화 (**태그가 달라진다**)"
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "주파수 지령",
+     "AO",
+     "Hz",
+     "cmd",
+     "`pump`✓ `vfd-freq`✓",
+     "필수(변유량)"
+    ],
+    [
+     "현재 주파수",
+     "AI",
+     "Hz",
+     "sensor",
+     "`pump`✓ `vfd-freq`✓",
+     "필수(변유량)"
+    ],
+    [
+     "토출 압력",
+     "AI",
+     "kPa",
+     "sensor",
+     "(계통 유체)✓ `discharge`✓ `pressure`✓",
+     "권장"
+    ],
+    [
+     "계통 차압",
+     "AI",
+     "kPa",
+     "sensor",
+     "(계통 유체)✓ `differential-pressure`✓",
+     "필수(변유량)"
+    ],
+    [
+     "차압 설정값",
+     "AV",
+     "kPa",
+     "sp",
+     "(계통 유체)✓ `differential-pressure`✓",
+     "필수(변유량)"
+    ],
+    [
+     "유량",
+     "AI",
+     "㎥/h",
+     "sensor",
+     "(계통 유체)✓ `flow`✓",
+     "권장"
+    ],
+    [
+     "전류",
+     "AI",
+     "A",
+     "sensor",
+     "`elec-current`✓",
+     "권장"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 14
+ }
+}

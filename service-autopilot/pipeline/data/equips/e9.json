@@ -1,0 +1,227 @@
+{
+ "id": "e9",
+ "no": 9,
+ "title": "냉동기 (칠러)",
+ "domain": "열원·수측 설비",
+ "tagSummary": "**태그** `chiller` ✓ / 계통 `chilled-water-plant` ✓ / 부속 `compressor` ✓ · `evaporator` ✓ · `condenser` ✓ **Brick** `Chiller` (하위 `Absorption_Chiller`, `Centrifugal_Chiller`, `Screw_Chiller` 계열) **형식 구분은 태그가 아니라 spec 항목으로** — 사전에 `centrifugal-chiller` 등은 없다(17절)",
+ "notes": [],
+ "specTables": [
+  {
+   "header": [
+    "항목",
+    "단위",
+    "조건·비고"
+   ],
+   "rows": [
+    [
+     "냉동능력",
+     "RT 또는 kW",
+     "**조건 필수**: 냉수 12/7℃, 냉각수 32/37℃"
+    ],
+    [
+     "압축기 형식",
+     "—",
+     "터보(원심)·스크류·스크롤·왕복동·흡수식"
+    ],
+    [
+     "COP / IPLV",
+     "—",
+     "부분부하 효율"
+    ],
+    [
+     "냉수 입·출구온도",
+     "℃",
+     "설계치"
+    ],
+    [
+     "냉수 유량",
+     "LPM 또는 ㎥/h",
+     ""
+    ],
+    [
+     "냉각수 입·출구온도",
+     "℃",
+     "수냉식"
+    ],
+    [
+     "냉각수 유량",
+     "LPM",
+     ""
+    ],
+    [
+     "증발기·응축기 압력손실",
+     "kPa",
+     ""
+    ],
+    [
+     "정격 전압·전류·소비전력",
+     "V / A / kW",
+     ""
+    ],
+    [
+     "기동 방식",
+     "—",
+     "Y-Δ·리액터·인버터"
+    ],
+    [
+     "냉매 종류·충전량",
+     "— / kg",
+     "R134a·R1234ze·R513A"
+    ],
+    [
+     "최소 부하율",
+     "%",
+     "언로딩 한계"
+    ],
+    [
+     "(흡수식) 열원·소비량",
+     "— / N㎥/h·kg/h",
+     "가스·중온수·증기"
+    ],
+    [
+     "소음",
+     "dB(A)",
+     ""
+    ]
+   ]
+  }
+ ],
+ "pointTables": [
+  {
+   "header": [
+    "포인트",
+    "종류",
+    "단위",
+    "역할",
+    "태그 조합",
+    "등급"
+   ],
+   "rows": [
+    [
+     "냉수 출구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`chilled-water`✓ `temp`✓ `leaving`★",
+     "필수"
+    ],
+    [
+     "냉수 입구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`chilled-water`✓ `temp`✓ `entering`★",
+     "필수"
+    ],
+    [
+     "냉수 출구온도 설정값",
+     "AV",
+     "℃",
+     "sp",
+     "`chilled-water`✓ `temp`✓",
+     "필수"
+    ],
+    [
+     "냉각수 출구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`condenser-water`✓ `temp`✓ `leaving`★",
+     "필수"
+    ],
+    [
+     "냉각수 입구온도",
+     "AI",
+     "℃",
+     "sensor",
+     "`condenser-water`✓ `temp`✓ `entering`★",
+     "필수"
+    ],
+    [
+     "부하율",
+     "AI",
+     "%",
+     "sensor",
+     "`load`★",
+     "필수"
+    ],
+    [
+     "소비전력",
+     "AI",
+     "kW",
+     "sensor",
+     "`elec-power`✓",
+     "필수"
+    ],
+    [
+     "적산 전력량",
+     "AI",
+     "kWh",
+     "sensor",
+     "`elec-energy`✓",
+     "권장"
+    ],
+    [
+     "압축기 전류",
+     "AI",
+     "A",
+     "sensor",
+     "`compressor`✓ `elec-current`✓",
+     "권장"
+    ],
+    [
+     "증발 압력·온도",
+     "AI",
+     "kPa / ℃",
+     "sensor",
+     "`evaporator`✓ `refrig`✓ `pressure`✓",
+     "권장"
+    ],
+    [
+     "응축 압력·온도",
+     "AI",
+     "kPa / ℃",
+     "sensor",
+     "`condenser`✓ `refrig`✓ `pressure`✓",
+     "권장"
+    ],
+    [
+     "냉수 유량",
+     "AI",
+     "㎥/h",
+     "sensor",
+     "`chilled-water`✓ `flow`✓",
+     "권장"
+    ],
+    [
+     "알람 코드",
+     "AI/MSO",
+     "—",
+     "sensor",
+     "`fault`✓ `alarm-text`✓",
+     "필수"
+    ],
+    [
+     "대수제어 순위",
+     "AV",
+     "—",
+     "sp",
+     "`stage`★",
+     "권장"
+    ],
+    [
+     "원격 기동 허용",
+     "BO",
+     "—",
+     "cmd",
+     "`enable`✓",
+     "필수"
+    ]
+   ]
+  }
+ ],
+ "source": {
+  "file": "08-equip-spec-tag-catalog.md",
+  "section": 9
+ }
+}
