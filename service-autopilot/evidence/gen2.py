@@ -67,6 +67,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #q{width:100%;max-width:340px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;
  background:var(--bg);color:var(--ink);font-size:12.5px;outline:none}
 #q:focus{border-color:var(--accent)}
+.qbox{display:flex;gap:6px;align-items:center}
+#qall{padding:6px 10px;border:1px solid var(--line);border-radius:6px;font-size:11.5px;
+ color:var(--dim);white-space:nowrap}
+#qall:hover{border-color:var(--accent);color:var(--accent)}
+.jump{color:var(--accent);text-decoration:underline;text-underline-offset:2px;font-size:12px}
 .tot{display:flex;gap:14px;font-size:11.5px;color:var(--dim);white-space:nowrap}
 .tot b{color:var(--ink);font-family:var(--mono)}
 
@@ -206,7 +211,10 @@ nav .sm{color:var(--accent)}
 </style></head><body>
 <div class="top">
   <div class="brand">BMS 장비 카탈로그<span>Haystack 4 기준 · 2026-07-27</span></div>
-  <input id="q" placeholder="장비 · 포인트 · 태그 · 모델 검색" autocomplete="off">
+  <div class="qbox">
+   <input id="q" placeholder="장비 · 포인트 · 태그 · 모델 검색" autocomplete="off">
+   <button id="qall" title="모든 모델을 가로질러 찾아요">전체에서 찾기</button>
+  </div>
   <div class="tot"><span>장비 <b>__NEQ__</b></span><span>포인트 <b>__TOTP__</b></span>
    <span>모델 <b>__NMODEL__</b></span><span>모델 포인트 <b>__NMPTS__</b></span>
    <span>정격 사양 <b>__NSPEC__</b><small>모델</small></span></div>
@@ -224,6 +232,7 @@ var nav = document.getElementById('nav'), main = document.getElementById('main')
 var cur = 'home', tab = 'pt', mi = 0, kindF = '', gradeF = '', term = '';
 var vsel = 0;   // 고른 형번 (variants) — 모델을 바꾸면 0 으로 되돌린다
 var ssel = 0;   // 고른 사양 표
+var searchAll_on = false;   // 전체 검색 화면인가
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -365,6 +374,68 @@ function kindChips(tabs){
 }
 
 // ── 화면
+// 모든 모델을 가로질러 찾는다. 표 안 필터만으로는 '이 오브젝트명이 어느 모델에
+// 있나'를 알 수 없다 — 모델을 하나씩 열어 봐야 했다.
+function searchAll(t){
+  var hitEq = [], hitMd = [], hitPt = [], hitSp = [];
+  D.equips.forEach(function(e){
+    if((e.title+' '+e.domain+' '+(e.head||'')).toLowerCase().indexOf(t)>=0)
+      hitEq.push({eq:e});
+  });
+  Object.keys(D.models).forEach(function(eid){
+    var e = D.equips.filter(function(x){return x.id===eid;})[0];
+    (D.models[eid]||[]).forEach(function(m, mi){
+      if((m.name+' '+m.model+' '+m.vendor+' '+m.cat+' '+m.tag).toLowerCase().indexOf(t)>=0)
+        hitMd.push({eq:e, m:m, mi:mi});
+      (m.points||[]).forEach(function(p){
+        if(hitPt.length>400) return;
+        if((p.name+' '+(p.note||'')).toLowerCase().indexOf(t)>=0)
+          hitPt.push({eq:e, m:m, mi:mi, p:p});
+      });
+      (m.variants||[]).forEach(function(v){
+        (v.spec||[]).forEach(function(r){
+          if(hitSp.length>200) return;
+          if((r[0]+' '+r[1]).toLowerCase().indexOf(t)>=0)
+            hitSp.push({eq:e, m:m, mi:mi, code:v.code, r:r});
+        });
+      });
+      (m.specTables||[]).forEach(function(st){
+        if(hitSp.length>200) return;
+        if((st.title||'').toLowerCase().indexOf(t)>=0)
+          hitSp.push({eq:e, m:m, mi:mi, code:'', r:[st.title, st.rows.length+'행', '', st.source||'']});
+      });
+    });
+  });
+  return {eq:hitEq, md:hitMd, pt:hitPt, sp:hitSp};
+}
+
+function renderSearch(){
+  var r = searchAll(term), n = r.eq.length+r.md.length+r.pt.length+r.sp.length;
+  var h = '<div class="hd"><div class="dom">전체 검색</div><h1>'+esc(q.value.trim())+'</h1>'
+        + '<div class="tag">모든 모델을 가로질러 찾았어요 — 결과 <b class="num">'+n+'</b>건'
+        + (r.pt.length>400?' (포인트는 400건까지)':'')+'</div></div><div class="wrap">';
+  if(!n) return h + '<div class="sec">찾은 게 없어요</div></div>';
+  if(r.md.length) h += sec('모델', r.md.length)
+    + table({header:['장비','모델','제조사','포인트','사양'],
+             rows:r.md.map(function(x){ return [
+               '[['+x.eq.id+'|'+x.mi+'|'+esc(x.eq.title)+']]', x.m.name, x.m.vendor,
+               (x.m.points||[]).length, specCount(x.m)]; }), key:'srchmd', nopage:true});
+  if(r.pt.length) h += sec('오브젝트', r.pt.length)
+    + table({header:['장비','모델','종류','인스턴스','오브젝트명'],
+             rows:r.pt.map(function(x){ return [
+               '[['+x.eq.id+'|'+x.mi+'|'+esc(x.eq.title)+']]', x.m.name,
+               x.p.type, x.p.inst, x.p.name]; }), key:'srchpt'});
+  if(r.sp.length) h += sec('사양', r.sp.length)
+    + table({header:['장비','모델','형번','항목','값'],
+             rows:r.sp.map(function(x){ return [
+               '[['+x.eq.id+'|'+x.mi+'|'+esc(x.eq.title)+']]', x.m.name, x.code||'—',
+               x.r[0], x.r[1]]; }), key:'srchsp'});
+  if(r.eq.length) h += sec('장비 계열', r.eq.length)
+    + table({header:['계열','도메인'], rows:r.eq.map(function(x){ return [
+        '[['+x.eq.id+'|0|'+esc(x.eq.title)+']]', x.eq.domain]; }), key:'srcheq', nopage:true});
+  return h + '</div>';
+}
+
 function renderHome(){
   return '<div class="home"><h1>현업은 장비 정보를 이렇게 봐요</h1>'
    + '<p class="lead">건설·설비 현장은 장비 정보를 단계마다 다른 문서로 나눠서 봐요. '
@@ -587,9 +658,19 @@ function sec(t,n){ return '<div class="sec">'+esc(t)+(n?' <b>'+n+'</b>':'')+'</d
 
 function render(){
   markNav();
-  if(cur==='home'){ main.innerHTML = renderHome(); return; }
-  var e = D.equips.filter(function(x){return x.id===cur;})[0];
-  main.innerHTML = renderEquip(e);
+  var html;
+  if(searchAll_on && term.length>=2) html = renderSearch();
+  else if(cur==='home') html = renderHome();
+  else html = renderEquip(D.equips.filter(function(x){return x.id===cur;})[0]);
+  // 링크 표기 [[계열|모델|이름]] → 이동 버튼. **이벤트를 붙이기 전에** 바꿔야 한다.
+  // 예전엔 붙인 뒤 innerHTML 을 다시 넣어 앞서 건 이벤트가 전부 날아갔다.
+  main.innerHTML = html.replace(/\[\[([^|]+)\|(\d+)\|([^\]]+)\]\]/g,
+    '<button class="jump" data-eq="$1" data-mi="$2">$3</button>');
+  wire();
+}
+
+function wire(){
+  var re = function(){ var y=window.scrollY; render(); window.scrollTo(0,y); };
   main.querySelectorAll('.tabs button').forEach(function(b){
     b.addEventListener('click',function(){ tab=b.dataset.tab; kindF=''; gradeF=''; render(); });});
   main.querySelectorAll('.mlist button').forEach(function(b){
@@ -600,25 +681,28 @@ function render(){
     b.addEventListener('click',function(){ ssel=+b.dataset.si; pageOf={}; render(); });});
   main.querySelectorAll('th.srt').forEach(function(th){
     th.addEventListener('click',function(){
-      var k = th.closest('table').dataset.tk, c = +th.dataset.col;
-      var cur = sortOf[k];
-      sortOf[k] = (cur && cur.col===c) ? {col:c, dir:-cur.dir} : {col:c, dir:1};
-      var y = window.scrollY; render(); window.scrollTo(0,y);
+      var k = th.closest('table').dataset.tk, c = +th.dataset.col, cu = sortOf[k];
+      sortOf[k] = (cu && cu.col===c) ? {col:c, dir:-cu.dir} : {col:c, dir:1};
+      re();
     });});
   main.querySelectorAll('.pgb').forEach(function(b){
     b.addEventListener('click',function(){
       if(b.disabled) return;
-      var y = window.scrollY;
       pageOf[b.parentNode.dataset.pk] = +b.dataset.go;
-      render(); window.scrollTo(0, y);   // 쪽만 바뀌고 보던 자리는 그대로
+      re();   // 쪽만 바뀌고 보던 자리는 그대로
     });});
   main.querySelectorAll('.chip').forEach(function(b){
     b.addEventListener('click',function(){
       if(b.dataset.kind!==undefined) kindF = (kindF===b.dataset.kind)?'':b.dataset.kind;
       if(b.dataset.grade!==undefined) gradeF = (gradeF===b.dataset.grade)?'':b.dataset.grade;
       render();});});
-  // 행 수는 **필터 칩 바로 다음 표**만 센다. main 전체를 세다가 통신표·근거문서표
-  // 행까지 더해져 550점이 553행으로 보였다.
+  main.querySelectorAll('.jump').forEach(function(b){
+    b.addEventListener('click', function(){
+      cur = b.dataset.eq; mi = +b.dataset.mi; tab='md';
+      vsel=0; ssel=0; pageOf={}; sortOf={};
+      q.value=''; term=''; searchAll_on=false; render(); window.scrollTo(0,0);
+    });});
+  // 행 수는 **필터 칩 바로 다음 표**만 센다 (통신표·근거문서표까지 세던 것 수정)
   var c = main.querySelector('#cnt');
   if(c){
     var bar = c.closest('.chips') || c.parentNode;
@@ -632,6 +716,15 @@ var t0;
 q.addEventListener('input', function(){
   clearTimeout(t0);
   t0 = setTimeout(function(){ term = q.value.trim().toLowerCase(); render(); }, 120);
+});
+q.addEventListener('keydown', function(ev){
+  if(ev.key === 'Enter'){ searchAll_on = true; term = q.value.trim().toLowerCase(); render(); }
+  if(ev.key === 'Escape'){ q.value=''; term=''; searchAll_on=false; render(); }
+});
+document.getElementById('qall').addEventListener('click', function(){
+  term = q.value.trim().toLowerCase();
+  if(term.length < 2){ q.focus(); return; }
+  searchAll_on = true; render();
 });
 buildNav(); render();
 })();
