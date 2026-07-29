@@ -301,6 +301,36 @@ SOURCES = [
         "access": "헤더 필요",
     },
     {
+        "id": "belimo-datasheets-family",
+        "vendor": "Belimo",
+        "kind": "카탈로그·데이터시트",
+        "note": "계열 데이터시트 — 형번 자리에 '..' 를 쓰는 제품군 단위 문서. "
+                "규칙을 실측으로 알아냈다: 주문코드의 '+' 가 URL 에서는 '_' 가 되고, "
+                "계열 문서는 en-gb, 구체 형번은 en-us 에 있다 (belimo_EV..R2_BAC_...). "
+                "에너지밸브·EPIV 처럼 형번 조합이 많은 제품은 이쪽에만 있다.",
+        "enumerate": "list",
+        "headers": {
+            "Referer": "https://www.belimo.com/",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-GB,en;q=0.9",
+            "Sec-Fetch-Dest": "document", "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-Site": "same-origin", "Upgrade-Insecure-Requests": "1",
+        },
+        "urls": [
+            "https://www.belimo.com/mam/general-documents/datasheets/en-gb/"
+            "belimo_%s_datasheet_en-gb.pdf" % n
+            for n in ["EV..R2_BAC", "EV..R2_KBAC", "EV..F_BAC", "EV..R3_BAC",
+                      "EP..R2_BAC"]
+        ] + [
+            "https://www.belimo.com/mam/general-documents/datasheets/en-us/"
+            "belimo_%s_datasheet_en-us.pdf" % n
+            for n in ["EV050_ARX-E_N4HT", "EP050_LRX-E",
+                      "22DTM-56", "22DTH-56M", "22UTH-560X", "VRU-D3-BAC"]
+        ],
+        "extractor": "spec",
+        "access": "헤더 필요",
+    },
+    {
         "id": "ebmpapst-modbus",
         "vendor": "ebm-papst",
         "kind": "Modbus 파라미터 명세",
