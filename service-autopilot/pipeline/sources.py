@@ -307,7 +307,7 @@ SOURCES = [
         "note": "계열 데이터시트 — 형번 자리에 '..' 를 쓰는 제품군 단위 문서. "
                 "규칙을 실측으로 알아냈다: 주문코드의 '+' 가 URL 에서는 '_' 가 되고, "
                 "계열 문서는 en-gb, 구체 형번은 en-us 에 있다 (belimo_EV..R2_BAC_...). "
-                "에너지밸브·EPIV 처럼 형번 조합이 많은 제품은 이쪽에만 있다.",
+                "에너지밸브·EPIV·열량계처럼 형번 조합이 많은 제품은 이쪽에만 있다. 버터플라이는 구동기(PR)가 아니라 **밸브 형번**(D6..)으로 문서가 난다.",
         "enumerate": "list",
         "headers": {
             "Referer": "https://www.belimo.com/",
@@ -325,7 +325,21 @@ SOURCES = [
             "https://www.belimo.com/mam/general-documents/datasheets/en-us/"
             "belimo_%s_datasheet_en-us.pdf" % n
             for n in ["EV050_ARX-E_N4HT", "EP050_LRX-E",
-                      "22DTM-56", "22DTH-56M", "22UTH-560X", "VRU-D3-BAC"]
+                      "22DTM-56", "22DTH-56M", "22UTH-560X", "VRU-D3-BAC",
+                      "22PE-5U..", "D6..N"]
+        ] + [
+            "https://www.belimo.com/mam/general-documents/datasheets/en-gb/"
+            "belimo_%s_datasheet_en-gb.pdf" % n
+            for n in [
+                "22PEM-1U..",    # 열량계 (MID 인증)
+                "22PE-1U..",     # 열량계 (비인증)
+                "G-22PEM-A01",   # 열량계 조합품
+                "22PF-1U..",     # 유량센서
+                "CQ24A-BAC",     # 존 회전 구동기
+                "D6..BL", "D6..N",   # 버터플라이 밸브 (PR 구동기 조합)
+                # Air Water 계열 — 구동기 형번은 MOD 접미사로 개별 문서다
+                "LR24A-MOD", "NR24A-MOD", "GK24A-MOD", "SR24A-MOD", "LM24A-MOD",
+            ]
         ],
         "extractor": "spec",
         "access": "헤더 필요",
