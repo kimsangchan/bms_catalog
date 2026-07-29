@@ -26,13 +26,31 @@ sources.py ─► collect.py ─┬─► extract.py ─► register.py ─► n
 **포인트 리스트에는 정격이 실리지 않는다.** 시뮬레이터가 쓸 값(전력 소모·온도)은
 카탈로그에만 있어 따로 모은다. 각 모델의 `gap` 에 그 사실을 적어 두었다.
 
-`specs.py` 는 두 가지 구조를 읽는다.
+`specs.py` 는 세 가지 구조를 읽는다. 벤더마다 사양을 적는 방식이 다르다.
 
-- **행렬** — 행=형번, 열=속성 (Danfoss 설계 가이드: 형번별 kW·A·kg·mm)
-- **항목/값 두 줄** — 라벨 줄 다음이 값 줄 (Belimo 데이터시트:
-  `Power consumption in operation` → `1.5 W`). 표가 아니라서 표 인식은 0개를 냈다.
+| 구조 | 생김새 | 실례 |
+|---|---|---|
+| **행렬(column)** | 행=형번, 열=속성 | Danfoss 설계 가이드 — 형번별 kW·A·kg·mm |
+| **행렬(row)** | **행=속성, 열=형번** (전치) | Trane 카탈로그 — General data |
+| **항목/값** | 라벨 줄 다음이 값 줄 | Belimo 데이터시트 — `Power consumption in operation` → `1.5 W` |
+
+세 번째는 표가 아니라서 표 인식이 0개를 냈다. 두 번째는 방향이 반대라
+'열 이름에 속성이 있는가'만 보면 놓친다 — **첫 열도 본다**.
 
 형번별 사양은 `variants` 로 붙는다 — 제품군을 고르고 형번을 고르면 그 정격이 나온다.
+
+## 사양 문서는 통신 맵과 따로 발행된다
+
+같은 제품이라도 포인트 리스트와 제품 카탈로그는 문서번호 체계가 다르다
+(Trane: `BAS-PTS###` vs `CTV-PRC###`). 파일 이름만으로는 이을 수 없어
+`data/spec-map.json` 에 **문서 ↔ 모델** 짝을 적는다. 짝의 근거는 추측이 아니라
+**양쪽 문서 표지에 적힌 같은 제품명**이다. 카탈로그 하나가 계열 전체를 덮으므로 1:N 이다.
+
+```bash
+python specs.py --scan                    # 어느 문서에 사양이 있는지
+python specs.py --apply                   # 연결표대로 한꺼번에 붙인다
+python specs.py --variant <모델> <데이터시트>  # 형번 하나를 붙인다
+```
 
 **사람이 손대는 곳은 두 군데뿐이다** — 소스 규칙(`sources.py`)과 자동 판정이 틀린
 문서의 예외(`register.py` 의 `OVERRIDE`). 나머지는 문서에서 나온다.
@@ -146,10 +164,11 @@ data/
 ## 현재 상태 (2026-07-29)
 
 ```
-장비 19계열 · 공통 포인트 236 · 사양 216 · 모델 59건 · 모델 포인트 10,510점
-검증: 오류 0 · 경고 48 · 정보 62
-수집: Trane 30 · Belimo 26 · Danfoss 5 · ebm-papst 4 · Vertiv 2 · Schneider 2
-      · Daikin 2 · Grundfos 1 = 72건
+장비 19계열 · 공통 포인트 236 · 모델 59건 · 모델 포인트 10,510점
+정격 사양: 모델 15건 · 사양 표 238개 2,649행 · 형번 10개
+검증: 오류 0 · 경고 92 · 정보 92
+수집: 통신 맵 72건 + 사양 문서 21건 (Trane 카탈로그 8 · ebm-papst 3 ·
+      Belimo 데이터시트 10) = 93건
 ```
 
 벤더별 모델: Trane 32 · Belimo 16 · ebm-papst 4 · Danfoss 3 · JCI 2 · Daikin 1 · Grundfos 1
@@ -199,6 +218,7 @@ File Archive 페이지를 한 번 열어 긁고, 같은 제품의 옛 판을 걸
 | Daikin DMS502B71 · iTM | PICS(통신 능력 선언) — 오브젝트 ID 가 계산식으로 정의된다 |
 | Danfoss Design Guide | 제품 설계 가이드 |
 | Schneider PM5300 매뉴얼 | 레지스터 목록 정본이 xls 라 PDF 에는 표가 없다 |
+| Trane RTHD_Catalog_2018 · Sintesis 브로슈어 | 사양 표 없음 — 홍보 자료다 |
 
 ## 아직 안 한 것
 

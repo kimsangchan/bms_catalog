@@ -87,18 +87,26 @@ def merge_header(data):
 
 
 def looks_like_spec(header, rows):
-    """이 표가 정격 사양 표인가.
+    """이 표가 정격 사양 표인가 → 방향 문자열, 아니면 None.
 
-    사양 표는 (1) 열 이름에 물리량이나 대괄호 단위가 있고
-    (2) 값 칸에 숫자가 실제로 들어 있다. 둘 다 봐야 목차·부호 설명표를 걸러낸다.
+    사양 표는 방향이 두 가지다.
+
+      column  열 이름이 속성 (Danfoss: 행=형번, 열=kW·A·kg)
+      row     **첫 칸이 속성** (Trane 카탈로그: 행=항목, 열=형번 — 전치돼 있다)
+
+    어느 쪽이든 값 칸에 숫자가 실제로 있어야 한다. 그래야 목차·부호 설명표를 거른다.
     """
-    head = " | ".join(header)
-    if not (SPECWORD.search(head) or UNIT_BRACKET.search(head)):
-        return False
     cells = [c for r in rows for c in map(_c, r) if c]
-    if not cells:
-        return False
-    return sum(1 for c in cells if NUMERIC.search(c)) >= max(3, len(cells) * 0.25)
+    if not cells or sum(1 for c in cells if NUMERIC.search(c)) < max(3, len(cells) * 0.2):
+        return None
+    head = " | ".join(header)
+    if SPECWORD.search(head) or UNIT_BRACKET.search(head):
+        return "column"
+    # 전치형 — 첫 열에 속성 이름이 줄줄이 있다
+    first = [_c(r[0]) for r in rows if r]
+    if sum(1 for c in first if SPECWORD.search(c) or UNIT_BRACKET.search(c)) >= 3:
+        return "row"
+    return None
 
 
 def caption(pg, table_bbox, limit=90):
@@ -129,17 +137,24 @@ def extract_specs(pdf, max_pages=None):
                 continue
             header, rows = merge_header(data)
             rows = [[_c(c) for c in r] for r in rows if any(_c(c) for c in r)]
-            if len(rows) < 2 or not looks_like_spec(header, rows):
+            if len(rows) < 2:
+                continue
+            orient = looks_like_spec(header, rows)
+            if not orient:
                 continue
             key = (tuple(header), len(rows), rows[0][0] if rows[0] else "")
             if key in seen:            # 같은 표가 여러 쪽에 이어지면 한 번만
                 continue
             seen.add(key)
+            # 물리량은 속성이 적힌 쪽에서 읽는다 — 전치형은 첫 열이 속성이다
+            qs = ([quantity_of(h) for h in header] if orient == "column"
+                  else [quantity_of(r[0]) for r in rows])
             out.append({
                 "title": caption(pg, t.bbox),
                 "page": pi + 1,
+                "orientation": orient,
                 "header": header,
-                "quantities": [quantity_of(h) for h in header],
+                "quantities": qs,
                 "rows": rows,
             })
     return out
@@ -237,6 +252,40 @@ def main(argv):
             print("%-52s %5d %6d  %s"
                   % (os.path.basename(f)[:52], len(ts), sum(len(t["rows"]) for t in ts),
                      ", ".join("%s×%d" % kv for kv in sorted(d.items(), key=lambda x: -x[1])[:8])))
+        return 0
+
+    if "--apply" in argv:
+        # 사양 문서 ↔ 모델 연결표를 읽어 한꺼번에 붙인다.
+        # 카탈로그 하나가 여러 모델(형번 계열)을 덮으므로 1:N 이다.
+        mp = json.load(open(os.path.join(DATA, "spec-map.json"), encoding="utf-8"))
+        done = 0
+        for fname, mids in mp.items():
+            if fname.startswith("_"):
+                continue
+            path = os.path.join(RAW, fname)
+            if not os.path.exists(path):
+                print("  · %s 없음" % fname)
+                continue
+            ts = extract_specs(path)
+            if not ts:
+                print("  · %-44s 사양 표 없음" % fname[:44])
+                continue
+            for mid in mids:
+                mpath = os.path.join(DATA, "models", mid + ".json")
+                if not os.path.exists(mpath):
+                    print("  ⚠ 모델 없음: %s" % mid)
+                    continue
+                m = json.load(open(mpath, encoding="utf-8"))
+                keep = [t for t in m.get("specTables", []) if t.get("source") != fname]
+                m["specTables"] = keep + [dict(t, source=fname) for t in ts]
+                m["has"] = dict(m.get("has", {}), spec=True)
+                json.dump(m, open(mpath, "w", encoding="utf-8"),
+                          ensure_ascii=False, indent=1)
+                done += 1
+            print("%-46s 표 %2d · 행 %4d → 모델 %d건  %s"
+                  % (fname[:46], len(ts), sum(len(t["rows"]) for t in ts), len(mids),
+                     ", ".join(sorted({q for t in ts for q in t["quantities"] if q}))[:44]))
+        print("\n사양 적용 %d건" % done)
         return 0
 
     if "--variant" in argv:

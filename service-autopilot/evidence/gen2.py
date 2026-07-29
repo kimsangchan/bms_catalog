@@ -135,6 +135,7 @@ td.n{color:var(--dim);white-space:nowrap;font-size:11.5px}
 .qrow{display:flex;gap:5px;flex-wrap:wrap;align-items:center;padding:0 18px 8px}
 .qtag{font-size:10.5px;letter-spacing:.03em;padding:2px 7px;border:1px solid var(--line);
  border-radius:4px;color:var(--dim)}
+.qtag.alt{border-color:var(--accent);color:var(--ink)}
 .qsrc{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--faint)}
 .mn{font-family:var(--mono);font-size:10.5px;color:var(--dim);border-left:1px solid var(--line2);padding-left:6px}
 .mtop{padding:14px 18px 0}
@@ -391,9 +392,12 @@ function renderModels(models, l3){
   // 열이 속성이라 포인트 표와 구조가 다르다 — 표마다 따로 그린다.
   (m.specTables||[]).forEach(function(t){
     var q = t.quantities || [];
+    var uq = [];
+    q.forEach(function(x){ if(x && uq.indexOf(x)<0) uq.push(x); });
     h += sec('정격 사양 — ' + (t.title || '표'), t.rows.length)
-       + '<div class="qrow">' + q.filter(Boolean).map(function(x){
-             return '<span class="qtag">'+esc(QLABEL[x]||x)+'</span>'; }).join('')
+       + '<div class="qrow">'
+       + (t.orientation==='row' ? '<span class="qtag alt">행=항목 · 열=형번</span>' : '')
+       + uq.map(function(x){ return '<span class="qtag">'+esc(QLABEL[x]||x)+'</span>'; }).join('')
        + '<span class="qsrc">' + esc(t.source||'') + ' p'+t.page+'</span></div>'
        + table({header:t.header, rows:t.rows});
   });

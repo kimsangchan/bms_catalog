@@ -165,6 +165,37 @@ SOURCES = [
     # 통합 포인트 리스트에는 정격이 실리지 않는다. 시뮬레이터가 쓸 전압·전류·
     # 소비전력·용량은 카탈로그와 데이터시트에만 있어 따로 모은다.
     {
+        "id": "trane-product-catalog",
+        "vendor": "Trane",
+        "kind": "카탈로그·데이터시트",
+        "note": "냉동기 제품 카탈로그. 형번별 냉동능력(ton·kW)·소비전력·kW/ton·IPLV·"
+                "전기 정격이 실린다 — 냉동기 26모델의 정격 공백을 메운다. "
+                "포인트 리스트와 같은 elibrary 저장소이고 문서번호는 <계열>-PRC###<개정>-EN.",
+        "enumerate": "list",
+        "urls": [
+            # 원심(CenTraVac) · 마그네틱 원심(Agility)
+            "https://elibrary.tranetechnologies.com/public/commercial-hvac/Literature/"
+            "Product%20Catalog/CTV-PRC021G-EN_12202024.pdf",
+            "https://www.tranehk.com/files/Products/CTV-PRC021B-EN_06302022.pdf",
+            # 공랭 스크류(RTAC) · 수랭 스크류(RTHD·RTAG)
+            "https://www.trane.com/content/dam/Trane/Commercial/lar/Peru/Manuales/"
+            "Chiller_RTAC/RLC-PRC006M-EN_Catalog.pdf",
+            "https://www.tranehk.com/files/Products/RLC-PRC039C-EN.pdf",
+            "https://www.trane.com/content/dam/Trane/Commercial/global/products-systems/"
+            "equipment/chillers/water-cooled/helical-rotary/optimus-rthd/"
+            "RLC-PRC020J-EN_03112020.pdf",
+            "https://www.tranehk.com/files/Products/RTHD_Catalog__AUG2018.pdf",
+            "https://www.trane.com/content/dam/Trane/Commercial/lar/es/product-systems/"
+            "catalog/RTAG-PRC001E-EN.pdf",
+            # 공랭 스크류(Sintesis RTAF)
+            "https://www.trane.com/content/dam/Trane/Commercial/lar/literatura/products/"
+            "chillers/air-cooled-chillers/sintesis-air-cooled-chiller/english/brochure/"
+            "PROD-SLB038-EN_06162020.pdf",
+        ],
+        "extractor": "spec",
+        "access": "무로그인",
+    },
+    {
         "id": "ebmpapst-catalog",
         "vendor": "ebm-papst",
         "kind": "카탈로그·데이터시트",
