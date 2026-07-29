@@ -17,7 +17,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import schema as S  # noqa: E402
 
-OBJID = re.compile(r"^(AI|AO|AV|BI|BO|BV|MI|MO|MV|MSI|MSO|MSV)[\s-]*(\d{1,6})$")
+# 구분자로 '-', 공백, ':' 을 모두 받는다 — Danfoss 는 'AI: 0' 처럼 콜론을 쓴다.
+# NC(알림)·TL(추세)·EE(이벤트)·SO(스케줄)·CO(달력) 도 BACnet 표준 오브젝트다.
+OBJID = re.compile(
+    r"^(AI|AO|AV|BI|BO|BV|MI|MO|MV|MSI|MSO|MSV|NC|TL|EE|SO|CO|Dev|SV|LAV)"
+    r"[\s:-]*(\d{1,6})$", re.I)
 BARE_ID = re.compile(r"^(\d{1,6})$")
 # 'Analog Input, 1' / 'Binary Value 3' 처럼 타입을 풀어 쓴 형식 — CH530 문서가 이렇게 쓴다.
 # 이걸 못 읽어 RTHD(CH530) 문서에서 0점이 나왔다.
@@ -30,11 +34,17 @@ SPELLED_TYPE = {("analog", "input"): "AI", ("analog", "output"): "AO",
                 ("multistate", "value"): "MSV"}
 
 
+CASED = {"ai": "AI", "ao": "AO", "av": "AV", "bi": "BI", "bo": "BO", "bv": "BV",
+         "mi": "MI", "mo": "MO", "mv": "MV", "msi": "MSI", "mso": "MSO", "msv": "MSV",
+         "nc": "NC", "tl": "TL", "ee": "EE", "so": "SO", "co": "CO", "dev": "Dev",
+         "sv": "SV", "lav": "LAV"}
+
+
 def parse_objid(raw):
     """오브젝트 ID 문자열 → (타입, 인스턴스). 표기 세 가지를 모두 받는다."""
     m = OBJID.match(raw)
     if m:
-        return m.group(1), int(m.group(2))
+        return CASED.get(m.group(1).lower(), m.group(1).upper()), int(m.group(2))
     m = SPELLED.match(raw)
     if m:
         fam = m.group(1).lower().replace("-", "").replace("multistate", "multistate")
@@ -56,6 +66,26 @@ UNIT_HINT = {"Temperature": "℃", "Pressure": "kPa", "Percent": "%", "Time": "h
 
 def _c(x):
     return re.sub(r"\s+", " ", str(x or "")).strip()
+
+
+# 열 이름은 벤더·언어마다 다르다. 여기 한 곳에만 모아 둔다.
+# 새 벤더에서 표를 못 읽으면 대개 여기에 별칭 하나를 더하면 된다.
+COL = {
+    "id": ["object identifier", "identifier", "object id", "obj id", "id",
+           "objekt-id", "objektkennung"],
+    "name": ["object name", "point name", "diagnostic name",
+             "objektname", "nom de l'objet", "nombre del objeto"],
+    "unit": ["unit", "units", "einheit", "unité", "unidad"],
+    "desc": ["description", "beschreibung", "descripción"],
+    "range": ["valid range", "range", "bereich"],
+    "rw": ["read/write", "read", "r/w", "zugriff"],
+    "dep": ["configuration", "dependency", "abhängigkeit"],
+    "states": ["object states", "states", "zustände"],
+    # 'register' 단독도 받는다 — Danfoss Modbus 모듈 문서가 이렇게 쓴다.
+    # BACnet 문서에도 'Register Type' 열이 있지만 그쪽은 ID 열을 먼저 찾으므로
+    # 이 별칭까지 오지 않는다.
+    "modbus": ["modbus register", "register address", "modbus-register", "register"],
+}
 
 
 def _mk_idx(hdr):
@@ -93,20 +123,23 @@ def extract_tables(pdf, default_type=None):
                 continue
             hdr = [_c(c).lower() for c in data[0]]
             idx = _mk_idx(hdr)
-            i_id = idx("object identifier", "identifier")
+            i_id = idx(*COL["id"])
             # 진단 알람도 BACnet 오브젝트다 — Ascend 문서는 이름 열을 'Diagnostic Name'
             # 으로 쓰는데, 이걸 못 알아봐서 알람 BI 488점을 통째로 놓쳤었다.
-            i_nm = idx("object name", "point name", "diagnostic name")
-            # Modbus 레지스터 표는 ID 열 이름이 다르고 인스턴스가 레지스터 주소다
-            i_mb = idx("modbus register")
+            i_nm = idx(*COL["name"])
+            # Modbus 레지스터 표는 ID 열 이름이 다르고 인스턴스가 레지스터 주소다.
+            # 이름 열도 'Object Name' 이 아니라 'Description' 인 경우가 많다.
+            i_mb = idx(*COL["modbus"])
             mb_mode = i_id < 0 and i_mb >= 0
             if mb_mode:
                 i_id = i_mb
+                if i_nm < 0:
+                    i_nm = idx(*COL["desc"])
             if i_id < 0 or i_nm < 0:
                 continue
-            i_ds, i_un = idx("description"), idx("unit")
-            i_rg, i_rw = idx("valid range", "range"), idx("read")
-            i_dp, i_st = idx("configuration", "dependency"), idx("object states", "states")
+            i_ds, i_un = idx(*COL["desc"]), idx(*COL["unit"])
+            i_rg, i_rw = idx(*COL["range"]), idx(*COL["rw"])
+            i_dp, i_st = idx(*COL["dep"]), idx(*COL["states"])
             i_ra = idx("register\naddres", "register address", "address")
             i_rt = idx("register\ntype", "register type")
             i_rd = idx("relinquish")

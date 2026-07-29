@@ -13,8 +13,11 @@ JSON 한 벌로 모은다. 파이썬 파일은 더 이상 데이터 저장소가
 import re
 
 # ── BACnet 오브젝트 타입 canonical 코드
+# 입출력·값 오브젝트 외에 BACnet 표준이 정한 것들도 통신 맵에 실려 온다.
+#   NC 알림클래스 · TL 추세기록 · EE 이벤트등록 · SO 스케줄 · CO 달력
 BACNET_TYPES = {"AI", "AO", "AV", "BI", "BO", "BV", "MSI", "MSO", "MSV",
-                "MI", "MO", "MV", "Dev", "NC", "SV", "LAV", "TL", "Sched", "Cal", "Loop"}
+                "MI", "MO", "MV", "Dev", "NC", "SV", "LAV", "TL", "Sched", "Cal", "Loop",
+                "EE", "SO", "CO"}
 # ── LonTalk 네트워크 변수 — BACnet 오브젝트는 아니지만 같은 '통신 맵' 자리에 들어간다
 #    NV  = nvi(입력)·nvo(출력) 네트워크 변수 — 실시간 데이터
 #    NCI = nci 설정 네트워크 변수 — 커미셔닝 시 쓰는 구성값

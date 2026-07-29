@@ -126,6 +126,25 @@ def raw_bare(pdf):
     return _drop_sparse(out)
 
 
+def raw_modbus(pdf):
+    """Modbus 레지스터 표 — 레지스터 번호 줄 → 바로 다음 이름 줄.
+
+    BACnet 오브젝트 ID 가 없는 문서는 이 경로로 대조한다. 없으면 교차 대조가
+    아예 안 돼 '확인할 방법 없음' 상태로 남는다.
+    """
+    out, pending = [], None
+    for pi, t in _lines(pdf):
+        if re.match(r"^[1-4]?\d{4,5}$", t):
+            pending = (pi, int(t))
+            continue
+        if pending is None:
+            continue
+        if E.nameish(t) and len(t) >= 3:
+            out.append({"page": pending[0], "type": "MB", "inst": pending[1], "name": t})
+        pending = None
+    return _drop_sparse(out)
+
+
 def _segmap(rows):
     """문서 순서 목록 → [ {(타입,인스턴스): 이름}, ... ] 구간별.
 
@@ -150,7 +169,8 @@ def compare(pdf, table_rows=None):
     # 골라야 한다. 줄 수로 고르다가 냉동기 문서에서 엉뚱한 경로가 뽑혀 겹침 1건이 됐다.
     A = _segmap(table_rows)
     flat = {k for seg in A for k in seg}
-    cands = [raw_lontalk(pdf)] if fam == "lontalk" else [raw_bacnet(pdf), raw_bare(pdf)]
+    cands = ([raw_lontalk(pdf)] if fam == "lontalk"
+             else [raw_bacnet(pdf), raw_bare(pdf), raw_modbus(pdf)])
     raw = max(cands, key=lambda rs: sum(1 for r in rs if (r["type"], r["inst"]) in flat))
     if len(A) == 1:
         # 표가 '장치 1대'라고 했으면 줄 경로도 쪼갤 이유가 없다. 부록이 본문 번호를
@@ -167,6 +187,10 @@ def compare(pdf, table_rows=None):
         # 잡히면 구간이 하나 더 생겨 순번이 밀린다 — 그때도 옳은 짝을 찾아야 한다.
         b = max(B, key=lambda s: len(set(a) & set(s))) if B else {}
         for k in sorted(set(a) & set(b)):
+            # 이름이 오브젝트 ID 를 되풀이한 것뿐이면 대조할 정보가 없다.
+            # (Danfoss 알림 오브젝트는 이름 칸이 'NC 100' 처럼 ID 그대로다)
+            if re.fullmatch(r"%s[\s:_-]*%d" % (k[0], k[1]), a[k].strip(), re.I):
+                continue
             both += 1
             # 비교 전 공백을 고른다 — 'Circuit 1  Available'(이중 공백) 같은
             # 표기 차이는 추출 오류가 아니다.

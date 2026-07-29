@@ -89,6 +89,12 @@ def check_model(m, eq, kg):
     if junk:
         add("W", "name-junk", "이름이 비정상 %d건 예: %r" % (len(junk), junk[0].get("name")))
 
+    # 5b) 이름이 오브젝트 ID 를 되풀이한 것뿐 — 문서가 이름을 안 준 경우다
+    idonly = [p for p in pts if re.fullmatch(
+        r"%s[\s:_-]*%s" % (p["type"], p.get("inst")), (p.get("name") or "").strip(), re.I)]
+    if idonly:
+        add("I", "name-is-id", "%d점은 이름이 ID 반복 — 문서가 이름을 주지 않았다" % len(idonly))
+
     # 6) 이름 중복 과다 — 같은 이름이 여러 인스턴스에 (열 밀림의 징후)
     nm = collections.Counter(p.get("name", "").strip().lower() for p in pts if p.get("name"))
     rep = [(n, c) for n, c in nm.most_common(3) if c >= 3]
@@ -104,7 +110,10 @@ def check_model(m, eq, kg):
         if n < len(pts) * 0.5:
             add("W", "crosscheck-thin", "교차 대조가 %d/%d점만 덮음 — 나머지는 한 경로로만 읽었다"
                 % (n, len(pts)))
-        if rate < 0.98:
+        if n == 0:
+            # 대조된 포인트가 0건이면 '틀렸다'가 아니라 '확인 못 했다'이다.
+            add("W", "crosscheck-none", "교차 대조가 한 점도 못 덮었다 — 다른 경로로 읽히지 않는 문서")
+        elif rate < 0.98:
             add("E", "crosscheck", "교차 대조 일치율 %.1f%% (%d점 불일치) — 예: %s"
                 % (rate * 100, len(xc.get("diff", [])),
                    (xc.get("diff") or [["", "", "", ""]])[0][-2:]))

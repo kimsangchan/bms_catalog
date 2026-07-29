@@ -40,8 +40,23 @@ def _plain(pat):
     return re.sub(r"[\\^$?*+()\[\]{}|]", "", s).strip()
 
 
-def classify_equip(points):
-    """포인트 이름을 증거로 장비 계열을 판정한다 → (계열, 분류, 태그, 근거설명)"""
+# 표지에 제품군이 그대로 적혀 있는 경우 — 포인트 이름만으로는 안 잡히는 장비를 구한다.
+# 예: 인버터 문서의 포인트는 '아날로그입력 53' 처럼 범용 이름이라 증거가 없다.
+TITLE_RULES = [
+    ("e15", "HVAC.AUX.VFD", "vfd",
+     r"\bVLT\b|frequency converter|frequenzumrichter|variable speed drive|\bVFD\b|soft starter"),
+    ("e14", "HVAC.PLANT.PUMP", "pump", r"\bpump\b|pumpe\b|grundfos"),
+    ("e8", "HVAC.AIR.TERMINAL.VRF", "vrf", r"\bVRV\b|\bVRF\b|intelligent touch manager"),
+    ("e9", "HVAC.PLANT.CHILLER", "chiller", r"\bchiller\b"),
+]
+
+
+def classify_equip(points, doctext=""):
+    """장비 계열을 판정한다 → (계열, 분류, 태그, 근거설명).
+
+    1순위는 포인트 이름의 부속 증거다 — 실제로 그 장비에 달린 것을 보기 때문에 가장 믿을 만하다.
+    포인트 이름이 범용이라 증거가 안 나오면 표지 제품명으로 내려간다.
+    """
     blob = " ".join((p.get("name") or "") + " " + (p.get("note") or "")
                     for p in points).lower()
     best = None
@@ -51,9 +66,13 @@ def classify_equip(points):
             best = (len(hits), eq, cat, tag,
                     "포인트 이름 증거 %d종: %s" % (len(hits),
                                             ", ".join(_plain(h) for h in hits[:4])))
-    if not best:
-        return None, None, None, "판정 근거 부족 — 사람이 정해야 한다"
-    return best[1], best[2], best[3], best[4]
+    if best:
+        return best[1], best[2], best[3], best[4]
+    for eq, cat, tag, pat in TITLE_RULES:
+        m = re.search(pat, doctext or "", re.I)
+        if m:
+            return eq, cat, tag, "표지 제품명 근거: %r" % m.group(0)
+    return None, None, None, "판정 근거 부족 — 사람이 정해야 한다"
 
 
 # 목차 표제에서 프로파일·장치 이름을 딴다.
@@ -95,18 +114,46 @@ def segment_names(pdf):
 
 
 TITLE_NOISE = re.compile(r"^(date|firmware|reference|bas-pts)", re.I)
+# 표지에 있지만 제품명이 아닌 줄 — 표어·문서종류·주소·법적 문구
+NOT_PRODUCT = re.compile(
+    r"^(engineering tomorrow|design guide|installation guide|operating guide|"
+    r"programming guide|programmierhandbuch|betriebsanleitung|fact sheet|"
+    r"user manual|quick guide|application guide|www\.|https?:|\S+\.(com|net|org)|"
+    r"contents?|table of contents|copyright|all rights reserved|"
+    r"bacnet|lontalk|modbus|convenient .*)$", re.I)
+# 제품명다움 — 상표기호·모델코드(영문+숫자 조합)가 있으면 제품명일 가능성이 높다
+PRODUCTISH = re.compile(r"[™®]|\b[A-Z]{2,}[\s-]?\d{2,}\b|\b(model|series|type)\b", re.I)
 
 
 def title_info(pdf):
-    """표지에서 컨트롤러·제품·프로토콜을 읽는다."""
+    """표지에서 제품·컨트롤러·펌웨어를 읽는다.
+
+    줄 순서가 벤더마다 다르다 — Trane 은 '컨트롤러 / 프로토콜 / 제품' 이고
+    Danfoss 는 표어가 첫 줄에 온다. 그래서 위치가 아니라 **제품명다움**으로 고른다.
+    """
     import fitz
     d = fitz.open(pdf)
-    lines = [re.sub(r"\s+", " ", x).strip() for x in d[0].get_text().split("\n")]
-    lines = [x for x in lines if len(x) > 2 and not TITLE_NOISE.match(x)]
-    ctl = re.sub(r"Integration Poin[st]*s? List", "", lines[0]).strip() if lines else ""
-    proto = lines[1].strip("® ") if len(lines) > 1 else ""
-    prod = lines[2] if len(lines) > 2 else ""
+    raw = [re.sub(r"\s+", " ", x).strip() for x in d[0].get_text().split("\n")]
+    lines = [x for x in raw if 2 < len(x) < 70 and not TITLE_NOISE.match(x)]
+    # 상표기호를 떼고 걸러야 한다 — 'BACnet®' 이 기호 때문에 제품명으로 뽑혔었다
+    def bare(x):
+        return re.sub(r"[™®©]", "", x).strip()
+    usable = [x for x in lines if not NOT_PRODUCT.match(bare(x))]
+
+    # Trane 계열은 첫 줄이 '<컨트롤러> Integration Points List' 로 고정이다
+    ctl = ""
+    if lines and re.search(r"Integration Poin[st]*s? List", lines[0], re.I):
+        ctl = re.sub(r"Integration Poin[st]*s? List", "", lines[0], flags=re.I).strip()
+        usable = [x for x in usable if x != lines[0]]
+
+    picked = [x for x in usable if PRODUCTISH.search(x)] or usable
+    prod = picked[0] if picked else (lines[0] if lines else "")
+    if not ctl and len(picked) > 1:
+        # 제품명 후보가 여럿이면 두 번째를 컨트롤러·모듈 이름으로 본다
+        ctl = picked[1] if len(picked[1]) < len(prod) else ""
+
+    proto = next((x for x in lines if re.match(r"^(BACnet|LonTalk|Modbus)", x, re.I)), "")
     fw = next((x.split(":", 1)[1].strip() for x in
                re.sub(r"\s+", " ", d[0].get_text()).split("Firmware Release:")[1:2]), "")
-    return {"controller": ctl, "protocol": proto, "product": prod,
+    return {"controller": ctl, "protocol": proto.strip("® "), "product": prod,
             "firmware": fw.split("Reference")[0].strip()[:40]}

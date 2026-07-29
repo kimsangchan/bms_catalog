@@ -32,6 +32,10 @@ import crosscheck as C  # noqa: E402
 import extract as E  # noqa: E402
 import schema as S  # noqa: E402
 
+# 모델로 받아들일 최소 기준. 이보다 적으면 '오브젝트 목록이 있는 문서'가 아니라
+# 추출이 표 조각을 몇 개 주운 것이다 — 152쪽짜리 설계 가이드에서 9점이 나온 적이 있다.
+MIN_POINTS = 12
+
 # 자동 판정이 틀리거나 부족한 문서만 여기 적는다.
 OVERRIDE = {
     # 지붕형 패키지·스플릿은 포인트 구성이 공조기와 같아 e5 로 잡히는데,
@@ -59,32 +63,41 @@ def read(pdf):
     return rows, C.compare(pdf, table_rows=rows), fam
 
 
-def plan_one(fname):
+def plan_one(fname, vendor="Trane"):
     """문서 1건 → 만들 모델 목록 (아직 기록하지 않는다)"""
     pdf = os.path.join(RAW, fname)
     rows, xc, fam = read(pdf)
     segs = E.split_profiles(rows)
     ti = CL.title_info(pdf)
-    eq, cat, tag, why = CL.classify_equip(rows)
+    doctext = " ".join(str(v) for v in ti.values())
+    eq, cat, tag, why = CL.classify_equip(rows, doctext)
     ov = OVERRIDE.get(fname, {})
     eq, cat, tag = ov.get("equipId", eq), ov.get("cat", cat), ov.get("tag", tag)
 
     names = CL.segment_names(pdf)
     labels = names if len(names) == len(segs) else []
-    proto_name = "LonTalk" if fam == "lontalk" else "BACnet"
-    base_model = "%s — %s (%s)" % (ti["controller"], ti["product"], proto_name)
+    # 프로토콜 이름은 실제 오브젝트 타입에서 딴다 — Modbus 전용 문서를 'BACnet'
+    # 이라고 부르면 안 된다.
+    allproto = collections.Counter(S.protocol_of(p["type"]) for p in rows)
+    proto_name = "·".join(k for k, _ in allproto.most_common()) or "미상"
+    prod = ti["product"] or os.path.splitext(fname)[0]
+    ctl = ti["controller"]
+    # 컨트롤러가 없으면 제품명만 쓴다. 벤더를 채워 넣으면 모델 ID 가
+    # 'danfoss-danfoss-…' 처럼 벤더를 두 번 달게 된다.
+    base_model = ("%s — %s (%s)" % (ctl, prod, proto_name)
+                  if ctl and ctl != prod else "%s (%s)" % (prod, proto_name))
 
     out = []
     for i, pts in enumerate(segs):
         lab = labels[i] if labels else None
         sub = SEGWORD.get((lab or "").lower(), lab)
-        mid = S.model_id("Trane", base_model) + ("-" + lab.lower() if lab else "")
+        mid = S.model_id(vendor, base_model) + ("-" + lab.lower() if lab else "")
         proto = collections.Counter(S.protocol_of(p["type"]) for p in pts)
         out.append({
-            "id": mid, "equipId": eq, "vendor": "Trane",
+            "id": mid, "equipId": eq, "vendor": vendor,
             "model": base_model + (" · " + sub if sub else ""),
-            "name": "%s %s%s" % (ti["controller"], ti["product"],
-                                 " · " + sub if sub else ""),
+            "name": ("%s %s" % (ctl, prod) if ctl else prod)
+                    + (" · " + sub if sub else ""),
             "cat": cat, "tag": tag, "status": "active",
             "summary": "공개 통합 포인트 리스트에서 자동 추출했다. "
                        + " · ".join("%s %d점" % (k, v) for k, v in proto.most_common())
@@ -94,7 +107,7 @@ def plan_one(fname):
             "comm": [[k, "통합 포인트 리스트 공개", "—", "Points List"] for k in proto],
             "points": [{k: p.get(k) for k in
                         ("type", "inst", "name", "unitRaw", "unit", "note")} for p in pts],
-            "gap": "정격 성능(용량·COP·소비전력)과 냉각 방식은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+            "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
             "extractor": "table", "sourceDoc": fname,
             "classifiedBy": why,
             "crosscheck": {"rate": xc["rate"], "both": xc["both"],
@@ -112,6 +125,7 @@ def main(argv):
             known.setdefault(m["sourceDoc"], []).append(m["id"])
     led = json.load(open(os.path.join(DATA, "collected.json"), encoding="utf-8"))
     url_by_file = {v.get("file"): u for u, v in led.items() if v.get("file")}
+    vendor_by_file = {v.get("file"): v.get("vendor", "?") for v in led.values() if v.get("file")}
     docs = json.load(open(os.path.join(DATA, "docs.json"), encoding="utf-8"))
     have = {d.get("docNo") for d in docs}
 
@@ -126,8 +140,14 @@ def main(argv):
         if fname in known and not show_all:
             skipped += 1
             continue
-        models, xc, ti = plan_one(fname)
-        if not models or not models[0]["equipId"]:
+        vendor = vendor_by_file.get(fname, "?")
+        models, xc, ti = plan_one(fname, vendor)
+        npts = sum(len(m["points"]) for m in models)
+        if npts < MIN_POINTS:
+            print("  · %-42s 포인트 %d건 — 오브젝트 목록 문서가 아니다 (건너뜀)"
+                  % (fname, npts))
+            continue
+        if not models[0]["equipId"]:
             print("  ⚠ %s — 장비 판정 실패, OVERRIDE 에 적어야 한다" % fname)
             continue
         for m in models:
@@ -139,11 +159,11 @@ def main(argv):
                 json.dump(m, open(os.path.join(DATA, "models", m["id"] + ".json"), "w",
                                   encoding="utf-8"), ensure_ascii=False, indent=1)
                 made += 1
-        docno = fname.rsplit("-EN", 1)[0]
+        docno = fname.rsplit("-EN", 1)[0] if "-EN" in fname else os.path.splitext(fname)[0]
         if run and docno not in have:
             docs.append({"modelId": models[0]["id"], "kind": "포인트리스트",
                          "title": "%s %s" % (ti["controller"], ti["product"]),
-                         "publisher": "Trane", "docNo": docno, "issued": "2024",
+                         "publisher": vendor, "docNo": docno, "issued": "2024",
                          "url": url_by_file.get(fname, ""), "status": "취입 완료"})
             have.add(docno)
             newdocs += 1
