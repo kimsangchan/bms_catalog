@@ -116,6 +116,24 @@ thead th{position:sticky;top:0;background:var(--bg);z-index:2}
 .lgd{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:0 18px 8px;
  font-size:11px;color:var(--faint)}
 .lgd .sim{margin-left:6px}
+/* 중요도는 **색**으로 가른다. 별표를 달면 표가 어수선해지고 눈에 덜 띈다 */
+.lbl{cursor:help;border-bottom:1px dotted var(--line);display:inline-block}
+.lbl i{display:block;font-style:normal;font-size:10.5px;color:var(--faint);
+ font-family:var(--mono);margin-top:1px}
+.lbl.k3{color:var(--accent);font-weight:650}
+.lbl.k2{color:var(--ink)}
+.lbl.k1{color:var(--faint)}
+.val.k3{color:var(--accent);font-weight:650;font-family:var(--mono)}
+.val.k2{font-family:var(--mono)}
+.val.k1{color:var(--dim);font-family:var(--mono)}
+th .lbl{border-bottom:0}
+th .lbl.k3{color:var(--accent)}
+/* 마우스를 올렸을 때만 뜨는 설명 — 늘 펼쳐 두면 값이 안 보인다 */
+#tip{position:fixed;z-index:99;max-width:320px;padding:8px 11px;border-radius:7px;
+ background:var(--ink);color:var(--bg);font-size:11.5px;line-height:1.6;
+ box-shadow:0 6px 22px rgba(0,0,0,.22);pointer-events:none;opacity:0;
+ transition:opacity .09s;white-space:pre-line}
+#tip.on{opacity:1}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));
  gap:1px;background:var(--line2);border-top:1px solid var(--line2);
  border-bottom:1px solid var(--line2);margin-bottom:4px}
@@ -209,6 +227,7 @@ nav .sm{color:var(--accent)}
    <span>모델 <b>64</b></span><span>모델 포인트 <b>10510</b></span>
    <span>정격 사양 <b>62</b><small>모델</small></span></div>
 </div>
+<div id="tip"></div>
 <div class="app">
   <aside id="nav"></aside>
   <main id="main"></main>
@@ -573,13 +592,14 @@ function renderModels(models, l3){
        + '사양은 같은 제품의 <b>'+esc(m.specFromName)+'</b> 문서에서 가져왔어요 — '
        + '프로토콜만 다르고 기기는 같아요.</p></div>';
     h += sec('형번 비교 — 핵심 정격', vs.length)
-         + '<div class="lgd">'
-         + '<span class="sim s3">★ 핵심</span> 시뮬레이터 계산에 직접 들어가요'
-         + '<span class="sim s2">· 조건</span> 한계·조건으로 쓰여요'
-         + '<span class="sim s1">· 참고</span> 선정에만 쓰여요</div>'
+         + '<div class="lgd">항목 이름에 마우스를 올리면 뜻이 나와요 · '
+         + '<span class="lbl k3">진한 색</span> 계산에 직접 · '
+         + '<span class="lbl k2">보통</span> 한계·조건 · '
+         + '<span class="lbl k1">흐린 색</span> 선정에만</div>'
          + table({header:['형번'].concat(used.map(function(k){
                     var t = termOf(k[2] || k[0]);
-                    return k[0] + (t ? ' ' + simTag(t.sim) : '');
+                    return t ? '<span class="lbl '+simCls(t.sim)+'"'+tipAttr(t)+'>'
+                               + esc(k[0])+'</span>' : esc(k[0]);
                   })), rows:crows, key:'vcmp'+m.id, raw:true});
     }
     h += sec('형번별 상세', vs.length)
@@ -622,12 +642,13 @@ function renderModels(models, l3){
        + matrixTiles(t)
        + table({header:t.orientation==='row' ? t.header : t.header.map(function(hh){
                   var tt = termOf(hh);
-                  return esc(hh) + (tt && tt.sim===3 ? ' '+simTag(3) : '');
+                  return tt ? '<span class="lbl '+simCls(tt.sim)+'"'+tipAttr(tt)+'>'
+                              + esc(hh)+'</span>' : esc(hh);
                 }),
                 rows:(t.orientation==='row' ? t.rows.map(function(r){
                         var tt = termOf(r[0]);
-                        return [tt ? esc(r[0])+'<i class="tdesc"><b>'+esc(tt.ko)+'</b> '
-                                     +esc(tt.desc)+'</i>'+(tt.sim===3?' '+simTag(3):'')
+                        return [tt ? '<span class="lbl '+simCls(tt.sim)+'"'+tipAttr(tt)+'>'
+                                     + esc(tt.ko)+'<i>'+esc(r[0])+'</i></span>'
                                    : esc(r[0])].concat(r.slice(1).map(esc));
                       }) : t.rows.map(function(r){ return r.map(esc); })),
                 key:'st'+si+(t.source||''), raw:true});
@@ -680,12 +701,15 @@ function termOf(label){
   for(var i=0;i<TERMS.length;i++) if(TERMS[i].re.test(s)) return TERMS[i];
   return null;
 }
-var SIMLBL = {3:'계산에 직접', 2:'조건·한계', 1:'참고'};
-function simTag(n){
-  if(!n) return '';
-  return '<span class="sim s'+n+'" title="시뮬레이터에서 '+SIMLBL[n]+' 쓰여요">'
-       + (n===3?'★ 핵심':(n===2?'· 조건':'· 참고'))+'</span>';
+var SIMLBL = {3:'시뮬레이터 계산에 직접 들어가요', 2:'한계·조건으로 쓰여요',
+              1:'선정에만 쓰여요 — 계산에는 안 써요'};
+// 별표 대신 **색**으로 가른다. 뜻은 마우스를 올렸을 때만 띄운다 —
+// 설명을 늘 펼쳐 두면 줄이 길어져 값이 눈에 안 들어온다.
+function tipAttr(term, orig){
+  if(!term) return ' data-tip="' + esc('사전에 없는 항목이라 원문 그대로 둡니다') + '"';
+  return ' data-tip="' + esc(term.ko + ' — ' + term.desc + '\n' + SIMLBL[term.sim]) + '"';
 }
+function simCls(n){ return n===3 ? 'k3' : (n===2 ? 'k2' : 'k1'); }
 
 // 제품 데이터시트의 관례 구성으로 낸다: **핵심 요약 → 분류별 상세 → 참고는 접기**.
 // 앞서는 수십 줄을 한 표에 그냥 늘어놓아 무엇부터 봐야 할지 알 수 없었다.
@@ -768,11 +792,12 @@ function renderSpecSheet(spec, key){
   CATORD.forEach(function(c){
     if(!byCat[c]) return;
     h += '<div class="cath">'+esc(c)+'<b>'+byCat[c].length+'</b></div>'
-       + table({header:['항목','뜻','값','단위','쓰임새'],
+       + table({header:['항목','값','단위'],
                 rows:byCat[c].map(function(x){
-                  return [x.r[0],
-                          '<b>'+esc(x.t.ko)+'</b><i class="tdesc">'+esc(x.t.desc)+'</i>',
-                          x.r[1], x.r[2], simTag(x.t.sim)];
+                  return ['<span class="lbl '+simCls(x.t.sim)+'"'+tipAttr(x.t)+'>'
+                          + esc(x.t.ko)+'<i>'+esc(x.r[0])+'</i></span>',
+                          '<span class="val '+simCls(x.t.sim)+'">'+esc(x.r[1])+'</span>',
+                          esc(x.r[2])];
                 }), key:key+c, raw:true, nopage:true});
   });
 
@@ -780,12 +805,12 @@ function renderSpecSheet(spec, key){
   if(rest.length){
     h += '<details class="more"><summary>설치·인증 등 참고 항목 '
        + rest.length + '개 <i>(시뮬레이터 계산에는 쓰지 않아요)</i></summary>'
-       + table({header:['항목','뜻','값','단위'],
+       + table({header:['항목','값','단위'],
                 rows:rest.map(function(x){
-                  return [x.r[0],
-                          x.t ? '<b>'+esc(x.t.ko)+'</b><i class="tdesc">'+esc(x.t.desc)+'</i>'
-                              : '<i class="tdesc">사전에 없는 항목이라 원문 그대로 둡니다</i>',
-                          x.r[1], x.r[2]];
+                  return ['<span class="lbl k1"'+tipAttr(x.t)+'>'
+                          + esc(x.t ? x.t.ko : x.r[0]) + (x.t?'<i>'+esc(x.r[0])+'</i>':'')
+                          + '</span>',
+                          '<span class="val k1">'+esc(x.r[1])+'</span>', esc(x.r[2])];
                 }), key:key+'rest', raw:true, nopage:true})
        + '</details>';
   }
@@ -854,6 +879,28 @@ function wire(){
     c.textContent = (t ? t.querySelectorAll('tbody tr').length : 0) + '행';
   }
 }
+
+// 툴팁 — data-tip 이 있는 요소에 올리면 뜬다. 브라우저 기본 title 은 느리고
+// 줄바꿈·서식을 못 준다.
+var tipEl = document.getElementById('tip');
+document.addEventListener('mouseover', function(ev){
+  var el = ev.target.closest && ev.target.closest('[data-tip]');
+  if(!el){ tipEl.classList.remove('on'); return; }
+  tipEl.textContent = el.dataset.tip;
+  tipEl.classList.add('on');
+  // position:fixed 는 화면 좌표를 쓴다. getBoundingClientRect 도 화면 기준이라
+  // 그대로 쓰면 되지만, 아래로 넘치면 위로 뒤집고 화면 밖으로 나가지 않게 가둔다.
+  var r = el.getBoundingClientRect(), th = tipEl.offsetHeight, tw = tipEl.offsetWidth;
+  var top = r.bottom + 8;
+  if(top + th > innerHeight - 8) top = Math.max(8, r.top - th - 8);
+  var left = Math.max(8, Math.min(r.left, innerWidth - tw - 8));
+  tipEl.style.top = Math.round(top) + 'px';
+  tipEl.style.left = Math.round(left) + 'px';
+});
+document.addEventListener('mouseout', function(ev){
+  if(!ev.relatedTarget || !ev.relatedTarget.closest || !ev.relatedTarget.closest('[data-tip]'))
+    tipEl.classList.remove('on');
+});
 
 var t0;
 q.addEventListener('input', function(){
