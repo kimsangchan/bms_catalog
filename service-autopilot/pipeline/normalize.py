@@ -15,12 +15,17 @@ DATA = os.path.join(HERE, "data")
 sys.path.insert(0, HERE)
 import schema as S  # noqa: E402
 
-# 포인트가 아니라 표 구조물인 행
+# 포인트가 아니라 표 구조물인 행.
+# **줄 전체가 그 머리글일 때만** 지운다. 접두 일치로 두었더니 'Unit Average Line
+# Current'·'Unit Power Consumption'이 머리글 'Units'로 오인돼 지워졌다. 실제 포인트
+# 이름에는 Description·Configuration 같은 단어가 얼마든지 들어갈 수 있다.
 JUNK = re.compile(
-    r"^\s*(\(continued\)|object\s*name\b|objectname\b|description\b|register\s*type\b|"
-    r"register\s*value\b|valid\s*range\b|object\s*identifier\b|configuration\b|"
-    r"analog\s+(inputs?|outputs?|values?)\b|binary\s+(inputs?|outputs?|values?)\b|"
-    r"multi-?state\s+\w+\b|holding\s+registers?\b|modbus\b|units?\b)", re.I)
+    r"^\s*(\(continued\)|object\s*name|objectname|description|register\s*type|"
+    r"register\s*(value|address)|valid\s*range|object\s*(identifier|states)|configuration|"
+    r"dependency|analog\s+(inputs?|outputs?|values?)|binary\s+(inputs?|outputs?|values?)|"
+    r"multi-?state\s+\w+|holding\s+registers?|modbus|units?|point\s*name|"
+    r"network\s+variable\s+\w+|snvt\w*|nv\s*#|diagnostic\s+name)"
+    r"(\s*\(continued\))?\s*$", re.I)
 SPLITMARK = re.compile(r"^──|^─{2,}|이하 실외기|이하 ODU", re.U)
 
 
@@ -32,6 +37,12 @@ def clean_points(pts):
             dropped.append(p)
             continue
         p = dict(p, name=n)
+        # 상태 설명이 단위 자리에 들어온 경우 — 비고로 옮기고 단위는 비운다
+        if S.is_state_text(p.get("unitRaw")):
+            note = p.get("note") or ""
+            st = str(p["unitRaw"]).strip()
+            p["note"] = (note if st in note else (note + " · " + st if note else st))[:240]
+            p["unitRaw"], p["unit"] = None, None
         out.append(p)
     return out, dropped
 
@@ -87,16 +98,20 @@ def run():
             changed.append(m["id"])
             continue
         pts, dropped = clean_points(m.get("points", []))
-        if len(pts) != before:
-            m["points"] = pts
-            m.pop("_rawPoints", None)
-            json.dump(m, open(f, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-            report.append("정리  %-42s %d점 → %d점 (표 구조물 %d행 제거)"
-                          % (m["id"], before, len(pts), len(dropped)))
+        moved = sum(1 for a, b in zip(m.get("points", []), pts)
+                    if a.get("unitRaw") != b.get("unitRaw"))
+        m["points"] = pts
+        m.pop("_rawPoints", None)
+        json.dump(m, open(f, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        if len(pts) != before or moved:
+            bits = []
+            if dropped:
+                bits.append("표 구조물 %d행 제거" % len(dropped))
+            if moved:
+                bits.append("상태 설명 %d건을 단위→비고로" % moved)
+            report.append("정리  %-42s %d점 → %d점 (%s)"
+                          % (m["id"], before, len(pts), ", ".join(bits)))
             changed.append(m["id"])
-        else:
-            m.pop("_rawPoints", None)
-            json.dump(m, open(f, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     return report
 
 

@@ -391,8 +391,15 @@ function render(){
       if(b.dataset.kind!==undefined) kindF = (kindF===b.dataset.kind)?'':b.dataset.kind;
       if(b.dataset.grade!==undefined) gradeF = (gradeF===b.dataset.grade)?'':b.dataset.grade;
       render();});});
+  // 행 수는 **필터 칩 바로 다음 표**만 센다. main 전체를 세다가 통신표·근거문서표
+  // 행까지 더해져 550점이 553행으로 보였다.
   var c = main.querySelector('#cnt');
-  if(c) c.textContent = main.querySelectorAll('tbody tr').length + '행';
+  if(c){
+    var bar = c.closest('.chips') || c.parentNode;
+    var t = bar.nextElementSibling;
+    while(t && t.tagName !== 'TABLE') t = t.querySelector ? t.querySelector('table') : null;
+    c.textContent = (t ? t.querySelectorAll('tbody tr').length : 0) + '행';
+  }
 }
 
 var t0;

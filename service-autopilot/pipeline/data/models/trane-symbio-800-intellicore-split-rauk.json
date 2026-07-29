@@ -38,34 +38,10 @@
  ],
  "comm": [
   [
-   "BACnet MS/TP",
-   "내장",
-   "RS-485",
-   "통합가이드"
-  ],
-  [
-   "BACnet IP",
-   "내장",
-   "Ethernet · Wi-Fi",
-   "통합가이드"
-  ],
-  [
-   "BACnet Zigbee (Air-Fi)",
-   "내장",
-   "무선",
-   "통합가이드"
-  ],
-  [
-   "Modbus RTU / TCP",
-   "내장",
-   "RS-485 / Ethernet",
-   "통합가이드"
-  ],
-  [
-   "LonTalk",
-   "별도 가이드",
+   "BACnet",
+   "통합 포인트 리스트 공개",
    "—",
-   "통합가이드"
+   "Points List"
   ]
  ],
  "io": [],
@@ -617,6 +593,14 @@
   },
   {
    "type": "AI",
+   "inst": 10401,
+   "name": "Unit Design Capacity",
+   "unitRaw": "kWh",
+   "unit": "kWh",
+   "note": "Indicates design capacity for the Unit. · 범위 Display up to 9 digits · Modbus Input 30363"
+  },
+  {
+   "type": "AI",
    "inst": 10402,
    "name": "Ctrl Box Ventilation Fan Run Time",
    "unitRaw": "Hours",
@@ -1121,6 +1105,14 @@
   },
   {
    "type": "MSI",
+   "inst": 10140,
+   "name": "Unit Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the unit is off, waiting for a need to cool, or cooling is running. · 1 = Off 2 = Waiting 3 = Running · Modbus Input 32029"
+  },
+  {
+   "type": "MSI",
    "inst": 10144,
    "name": "Economizer System Status",
    "unitRaw": null,
@@ -1146,5 +1138,10 @@
  ],
  "gap": "정격 성능(풍량·정압·코일 용량)은 포인트 문서에 없다 → 제품 카탈로그 필요. 문서가 명시하듯 **노출 포인트는 유닛 구성에 따라 달라진다** — 프로파일을 '모델'이 아니라 '변형(옵션 조합)' 단위로 둬야 하는 이유의 실증 사례다.",
  "extractor": "table",
- "sourceDoc": "BAS-PTS036A-EN_RAUK.pdf"
+ "sourceDoc": "BAS-PTS036A-EN_RAUK.pdf",
+ "crosscheck": {
+  "rate": 1.0,
+  "both": 134,
+  "diff": []
+ }
 }

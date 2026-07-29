@@ -4,11 +4,11 @@
 **사람은 검증이 걸러낸 것만** 본다.
 
 ```
-sources.py ──► collect.py ──► extract.py ──► normalize.py ──► validate.py ──► build.py
- 소스 규칙      열거·수집       문서→포인트      다듬기          게이트          HTML
-                   │                                              │
-              data/raw/                                     검수 큐(경고)
-              data/collected.json                           적재 차단(오류)
+sources.py ─► collect.py ─► extract.py ─► register.py ─► normalize.py ─► validate.py ─► build.py
+ 소스 규칙     열거·수집      문서→포인트     모델 등록      다듬기          게이트         HTML
+                  │              ▲                                          │
+             data/raw/           └── crosscheck.py 교차 대조 ────────────────┘
+             data/collected.json     (다른 경로로 재독해)             검수 큐(경고)·적재 차단(오류)
 ```
 
 ## 실행
@@ -17,7 +17,10 @@ sources.py ──► collect.py ──► extract.py ──► normalize.py ─�
 python collect.py --list                     # 소스 목록
 python collect.py --probe trane-points-list  # 열거만 (내려받지 않음)
 python collect.py --run   trane-points-list --limit 400
-python extract.py data/raw/<파일>.pdf --out data/tmp.json
+python register.py --plan                    # 수집 문서 → 모델 등록 계획
+python register.py --run
+python crosscheck.py --all                   # 교차 대조 (표 인식 vs 줄 읽기)
+python rebuild.py --run                      # 추출 규칙을 고쳤을 때 기존 모델 재추출
 python normalize.py && python validate.py && python build.py
 ```
 
@@ -46,15 +49,33 @@ data/
 |---|---|---|
 | `dup-instance` | 오류 | 같은 (타입,인스턴스) 중복 — 실내기·실외기가 한 모델에 섞인 경우 |
 | `bad-type` | 오류 | 표준 밖 오브젝트 타입 |
-| **`known-good`** | **오류** | **원문에서 확인한 정답과 불일치 — 열 밀림을 잡는 최후 방어선** |
+| **`crosscheck`** | **오류** | **다른 경로로 읽은 결과와 불일치 — 자동, 모델 수와 무관하게 작동** |
+| **`known-good`** | **오류** | **사람이 원문에서 확인한 정답과 불일치** |
 | `name-bleed` | 오류/경고 | 이름에 설명·머리글 조각이 섞임 |
 | `unit-unknown` | 경고 | 단위 정규화 실패 |
+| `crosscheck-thin` | 경고 | 교차 대조가 절반도 못 덮음 — 나머지는 한 경로로만 읽었다 |
+| `no-crosscheck` | 경고 | 원문이 없어 교차 대조 불가 |
 | `name-repeat` | 경고 | 같은 이름이 여러 인스턴스에 (열 밀림 징후) |
-| `no-known-good` | 경고 | 정답 대조셋이 없음 = 정확도를 확인할 방법이 없음 |
+| `unit-group` | 정보 | 문서가 단위 그룹명만 적음 — 실제 단위 미상 (지어내지 않는다) |
 
 **오류가 있으면 적재하지 않는다.**
 
-## 실제로 잡아낸 것 (2026-07-27 전환 시점)
+## 교차 대조 — 사람이 못 따라갈 때의 방어선
+
+정답 대조셋은 사람이 원문을 보고 넣는다. 실제로 틀린 추출을 잡았지만 모델이 수백 건이
+되면 따라갈 수 없다. 그래서 기계가 **완전히 다른 경로로 한 번 더 읽는다**.
+
+| | 경로 A (`extract.py`) | 경로 B (`crosscheck.py`) |
+|---|---|---|
+| 방법 | PyMuPDF `find_tables()` — 셀 경계 인식 | 페이지 텍스트를 줄 순서로 읽기 |
+| 열 밀림 | 일어날 수 있다 | **구조상 일어날 수 없다** |
+
+두 경로가 같은 (타입, 인스턴스, 이름)에 도달하면 신뢰하고, 어긋나면 검수 큐로 보낸다.
+현재 수집 문서 12건 **전부 100% 일치**.
+
+## 실제로 잡아낸 것
+
+**2026-07-27 파이프라인 전환**
 
 | 발견 | 내용 |
 |---|---|
@@ -64,6 +85,18 @@ data/
 | 표 구조물 혼입 | `(continued)`·머리글 행이 포인트로 섞여 있었다 |
 | 프로토콜 오판 | BAS-PTS 시리즈에 **LonTalk 문서가 섞여 있다** — BACnet 추출기는 0점을 냈고(옳음), LonTalk 추출기를 따로 붙였다 |
 
+**2026-07-29 교차 대조 도입 · 신규 문서 등록**
+
+| 발견 | 내용 |
+|---|---|
+| 헤더 표기 흔들림 | 같은 문서 안에서 `NV #` / `NV#` 가 섞여 IntelliPak **Send 표 10개(150여 행)를 통째로 놓쳤다** → 헤더 비교에서 공백 무시 |
+| 진단 알람 누락 | Ascend 문서가 이름 열을 `Diagnostic Name` 으로 써서 **알람 BI 488점이 빠졌다** |
+| 정규화가 진짜 포인트를 삭제 | 잡음 제거가 접두 일치라 `Unit Average Line Current`·`UNIT-CAP` 이 머리글 `Units` 로 오인돼 **지워졌다** → 줄 전체 일치로 변경, 12점 복구 |
+| 상태 텍스트가 단위 자리에 | `0 = Normal 1 = In Alarm` 이 단위로 들어와 '정규화 실패'를 부풀렸다 → 비고로 이동 |
+| 단위 그룹명 | `Pressure, Fluidic` 은 kPa인지 psi인지 문서만으로 알 수 없다 → **지어내지 않고** '그룹만 알려짐'으로 표시 |
+| 프로파일 경계 | LonTalk 문서는 NV 번호가 프로파일마다 0부터 다시 시작 → 번호 재사용을 보고 자동 분할 (SCC/DAC) |
+| HTML 행 수 오표시 | 카운터가 통신표·근거문서표 행까지 세어 550점이 553행으로 보였다 |
+
 ## 소스 추가 방법
 
 `sources.py`에 항목 하나를 넣는다. 열거 방식 3가지:
@@ -72,8 +105,19 @@ data/
 - `list` — URL 직접 나열
 - `page` — 웹페이지 링크 수집 (Belimo·BTL. 봇 차단이 있으면 브라우저 필요)
 
+## 현재 상태 (2026-07-29)
+
+```
+장비 19계열 · 공통 포인트 236 · 사양 216 · 모델 20건 · 모델 포인트 2,852점
+검증: 오류 0 · 경고 11 · 정보 22       교차 대조: 12문서 전부 100%
+```
+
 ## 아직 안 한 것
 
 - `page` 방식 자동화 (Belimo·BTL은 봇 차단 — 브라우저 자동화 필요)
-- 수집한 LonTalk 문서 5건(655점)을 모델로 등록 — 장비 종류 판정이 필요
+- **JCI VRF 재수집** — 원문이 JS로 그려지는 페이지라 받지 못했다. 옛 정규화 규칙이
+  지운 `AI-4 UNIT-CAP` 을 복구할 수 없어 `known-good-missing` 경고가 남아 있다.
+  브라우저 자동화로 원문을 받으면 해소된다.
+- Belimo·Daikin·Grundfos 모델은 원문 미보관이라 교차 대조 불가 (`no-crosscheck` 경고)
+- Trane 시리즈 전수 수집 — 지금은 60번까지 중 일부만 훑었다
 - PostgreSQL 적재 (`07-api-contract.md`의 `bes_*` 스키마) — 스키마 개정 12건 반영 후

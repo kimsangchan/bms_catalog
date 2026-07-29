@@ -20,12 +20,6 @@
    "통합 포인트 리스트 공개",
    "—",
    "Points List"
-  ],
-  [
-   "Modbus RTU",
-   "별도 문서",
-   "—",
-   "BAS-SVP022"
   ]
  ],
  "io": [],
@@ -75,6 +69,14 @@
    "type": "AI",
    "inst": 6,
    "name": "Front Panel Demand Limit Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 7,
+   "name": "Unit Power Consumption",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -2762,5 +2764,10 @@
  ],
  "gap": "정격 스펙(냉동능력·COP·유량 등) 값 미확보 → 제품 카탈로그/성능표 필요. 포인트 이름·인스턴스·단위는 PDF에서 자동 추출한 것이라 일부 표기가 원문과 다를 수 있다.",
  "extractor": "table",
- "sourceDoc": "BAS-PTS026A-EN_ACSA.pdf"
+ "sourceDoc": "BAS-PTS026A-EN_ACSA.pdf",
+ "crosscheck": {
+  "rate": 1.0,
+  "both": 342,
+  "diff": []
+ }
 }

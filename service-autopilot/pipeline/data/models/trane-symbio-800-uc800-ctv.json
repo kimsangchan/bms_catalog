@@ -27,6 +27,14 @@
  "points": [
   {
    "type": "AI",
+   "inst": 1,
+   "name": "Unit Average Line Current",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
    "inst": 2,
    "name": "Active Current Limit Setpoint",
    "unitRaw": null,
@@ -37,6 +45,14 @@
    "type": "AI",
    "inst": 3,
    "name": "Active Base Loading Setpt",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 4,
+   "name": "Unit Power Consumption",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -4220,5 +4236,10 @@
  ],
  "gap": "정격 스펙 미확보. (CGAM 리스트는 pdftotext 재추출로 확보 — 아래 모델 참조)",
  "extractor": "table",
- "sourceDoc": "BAS-PTS029A-EN_CTV.pdf"
+ "sourceDoc": "BAS-PTS029A-EN_CTV.pdf",
+ "crosscheck": {
+  "rate": 1.0,
+  "both": 526,
+  "diff": []
+ }
 }

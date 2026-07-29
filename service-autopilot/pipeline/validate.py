@@ -19,10 +19,12 @@ DATA = os.path.join(HERE, "data")
 sys.path.insert(0, HERE)
 import schema as S  # noqa: E402
 
-# 이름에 섞이면 안 되는 조각 — 표 옆 칸이 흘러들어온 흔적
+# 이름에 섞이면 안 되는 조각 — 표 옆 칸이 흘러들어온 흔적.
+# 'Present' 단독은 뺐다. 'Alarm Present'·'Diagnostic Present'는 진짜 포인트 이름이라
+# 가짜 경보만 만들었다. 옆 칸이 흘러들면 이름 안에 **문장**이 생기므로 그쪽을 본다.
 BLEED = re.compile(
-    r"\b(Indicates|Read/?W?r?i?t?e?|All RAUK Units|Standard|Type Address|Present|"
-    r"Configuration Dependency|Object Name|Description|mandatory|optional)\b", re.I)
+    r"\b(Indicates|Read/Write|All RAUK Units|Type Address|"
+    r"Configuration Dependency|Object Name|Object Identifier|mandatory|optional)\b", re.I)
 # 이름이 아니라 값·단위만 남은 경우
 VALUEONLY = re.compile(r"^[\d\.\-\*/,%°\s]+$")
 
@@ -71,6 +73,9 @@ def check_model(m, eq, kg):
     if unk:
         add("W", "unit-unknown", "정규화 안 된 단위 %d종: %s"
             % (len(unk), ", ".join("%s×%d" % (u, n) for u, n in unk.most_common(5))))
+    grp = sum(1 for p in pts if S.unit_state(p.get("unitRaw")) == "group")
+    if grp:
+        add("I", "unit-group", "%d점은 문서가 단위 그룹명만 적었다 — 실제 단위는 미상" % grp)
 
     # 4) 이름에 옆 칸이 흘러든 흔적 (추출 오류의 대표 징후)
     bleed = [p for p in pts if BLEED.search(p.get("name", ""))]
@@ -91,7 +96,24 @@ def check_model(m, eq, kg):
         add("W", "name-repeat", "같은 이름이 여러 인스턴스에: %s"
             % ", ".join("%r×%d" % (n[:28], c) for n, c in rep))
 
-    # 7) 알려진 정답 대조 ★ 핵심
+    # 7) 교차 대조 ★ 정답셋을 사람이 못 따라갈 때의 자동 방어선
+    #    표 인식과 다른 경로(줄 읽기)로 원문을 한 번 더 읽어 비교한 결과를 쓴다.
+    xc = m.get("crosscheck")
+    if xc:
+        rate, n = xc.get("rate", 0), xc.get("both", 0)
+        if n < len(pts) * 0.5:
+            add("W", "crosscheck-thin", "교차 대조가 %d/%d점만 덮음 — 나머지는 한 경로로만 읽었다"
+                % (n, len(pts)))
+        if rate < 0.98:
+            add("E", "crosscheck", "교차 대조 일치율 %.1f%% (%d점 불일치) — 예: %s"
+                % (rate * 100, len(xc.get("diff", [])),
+                   (xc.get("diff") or [["", "", "", ""]])[0][-2:]))
+        elif n:
+            add("I", "crosscheck-ok", "교차 대조 %d점 일치율 %.1f%%" % (n, rate * 100))
+    elif pts and m.get("extractor") != "manual":
+        add("W", "no-crosscheck", "교차 대조 없음 — 원문을 한 경로로만 읽었다")
+
+    # 8) 알려진 정답 대조 ★ 사람이 확인한 표본
     exp = kg.get(m["id"])
     if exp:
         idx = {(p["type"], p.get("inst")): p.get("name", "") for p in pts}
@@ -109,10 +131,10 @@ def check_model(m, eq, kg):
             add("W", "known-good-missing", "정답에 있는 포인트 없음: %s" % ", ".join(miss[:4]))
         if not wrong and not miss:
             add("I", "known-good-ok", "정답 대조 %d건 전부 일치" % len(exp))
-    else:
-        add("W", "no-known-good", "정답 대조셋 없음 — 추출 정확도를 확인할 방법이 없다")
+    elif not xc:
+        add("W", "no-known-good", "정답 대조셋도 교차 대조도 없음 — 정확도를 확인할 방법이 없다")
 
-    # 8) 근거 문서
+    # 9) 근거 문서
     if not m.get("gap") and not m.get("has", {}).get("spec"):
         add("I", "no-gap-note", "미확보 항목 설명(gap) 없음")
     if pts and m.get("extractor") == "manual":

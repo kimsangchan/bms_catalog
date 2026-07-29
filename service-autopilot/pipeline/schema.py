@@ -52,7 +52,7 @@ UNIT_CANON = {
     "kcal/h": "kcalh", "N㎥/h": "Nm3h", "mg/L": "mgL", "µS/cm": "uScm", "W/㎡": "Wm2",
     "m/s": "ms", "PSI": "psi", "Hours": "h", "Hour": "h", "Minutes": "min",
     "Seconds": "s", "Amps": "A", "Volts": "V", "Percent": "percent",
-    "Temperature": None, "Pressure": None, "Real": None, "No Units": None,
+    "Percentage": "percent", "No Units": None,
     "인": "person", "회": "count", "층": "floor", "—": None, "": None,
 }
 
@@ -83,10 +83,37 @@ def canon_unit(u):
     return UNIT_CANON.get(t, None)
 
 
+# 문서가 단위 대신 **단위 그룹명**만 적은 경우. BACnet 표준의 단위 분류 이름이다.
+# 'Percentage' 는 percent 로 확정되지만 'Pressure, Fluidic' 은 kPa 인지 psi 인지
+# 문서만으로 알 수 없다 → 없는 값을 지어내지 않고 '그룹만 알려짐'으로 남긴다.
+UNIT_GROUP = {"pressure, fluidic", "power, electrical", "current", "voltage",
+              "temperature", "time", "frequency", "energy", "flow", "velocity",
+              "enthalpy", "electrical", "power", "pressure", "humidity",
+              "area", "volume", "mass", "force", "other", "real", "enumerated",
+              "power, cooling", "power, heating", "power, thermal"}
+
+
+def unit_group(u):
+    return str(u or "").strip().lower() in UNIT_GROUP
+
+
+def is_state_text(u):
+    """단위가 아니라 상태 설명인가 — '0 = Normal 1 = In Alarm', 'Inactive = Off …'.
+
+    문서에 따라 상태 열이 단위 열 자리에 들어온다. 단위 기호에는 '='가 없으므로
+    이것만으로 갈린다. 상태 텍스트를 '정규화 실패'로 세면 진짜 실패가 묻힌다.
+    """
+    return "=" in str(u or "")
+
+
 def unit_state(u):
     if u is None or str(u).strip() in NO_UNIT:
         return "unitless"
-    return "ok" if UNIT_CANON.get(str(u).strip()) else "unknown"
+    if is_state_text(u):
+        return "states"
+    if UNIT_CANON.get(str(u).strip()):
+        return "ok"
+    return "group" if unit_group(u) else "unknown"
 
 
 def point_key(p):
