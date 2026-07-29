@@ -63,13 +63,24 @@ def read(pdf):
     return rows, C.compare(pdf, table_rows=rows), fam
 
 
+def unreliable_reason(fname):
+    """이 문서는 교차 대조로 검증할 수 없다고 소스가 밝혔는가 → 사유"""
+    import re as _re
+    from sources import SOURCES
+    for src in SOURCES:
+        pat = src.get("crosscheck_unreliable")
+        if pat and _re.search(pat, fname):
+            return "%s 소스가 교차 대조 불가로 표시 — 개요표와 상세표가 서로 다른 열이다"                    % src["vendor"]
+    return None
+
+
 def plan_one(fname, vendor="Trane"):
     """문서 1건 → 만들 모델 목록 (아직 기록하지 않는다)"""
     pdf = os.path.join(RAW, fname)
     rows, xc, fam = read(pdf)
     segs = E.split_profiles(rows)
     ti = CL.title_info(pdf)
-    doctext = " ".join(str(v) for v in ti.values())
+    doctext = " ".join(str(v) for v in ti.values()) + " " + CL.front_text(pdf)
     eq, cat, tag, why = CL.classify_equip(rows, doctext)
     ov = OVERRIDE.get(fname, {})
     eq, cat, tag = ov.get("equipId", eq), ov.get("cat", cat), ov.get("tag", tag)
@@ -110,8 +121,11 @@ def plan_one(fname, vendor="Trane"):
             "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
             "extractor": "table", "sourceDoc": fname,
             "classifiedBy": why,
-            "crosscheck": {"rate": xc["rate"], "both": xc["both"],
-                           "diff": [[str(k[0]), k[1], a, b] for _, k, a, b in xc["diff"][:20]]},
+            "crosscheck": ({"unverifiable": unreliable_reason(fname)}
+                           if unreliable_reason(fname) else
+                           {"rate": xc["rate"], "both": xc["both"],
+                            "diff": [[str(k[0]), k[1], a, b]
+                                     for _, k, a, b in xc["diff"][:20]]}),
         })
     return out, xc, ti
 

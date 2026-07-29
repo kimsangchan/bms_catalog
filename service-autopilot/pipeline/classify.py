@@ -48,6 +48,17 @@ TITLE_RULES = [
     ("e14", "HVAC.PLANT.PUMP", "pump", r"\bpump\b|pumpe\b|grundfos"),
     ("e8", "HVAC.AIR.TERMINAL.VRF", "vrf", r"\bVRV\b|\bVRF\b|intelligent touch manager"),
     ("e9", "HVAC.PLANT.CHILLER", "chiller", r"\bchiller\b"),
+    # 터미널 유닛이 액추에이터보다 먼저다 — VAV 박스에도 구동기가 달려 있어
+    # 아래 구동기 규칙에 먼저 걸리면 안 된다.
+    ("e6", "HVAC.AIR.TERMINAL.VAV", "vav", r"\bVAV\b|volumetric flow"),
+    # 밸브·댐퍼 구동기, 계량·계측기 — 장비가 아니라 장비에 붙는 현장 기기다.
+    # 계열 e16(계량·계측·제어기)에 넣는다.
+    ("e16", "HVAC.FIELD.METER", "meter",
+     r"thermal energy meter|energy meter|heat meter|\bTEM\b"),
+    ("e16", "HVAC.FIELD.ACTUATOR", "actuator",
+     r"\bactuator\b|butterfly valve|characterised control valve|\bEPIV\b|"
+     r"energy valve|rotary actuator|\bvalve\b"),
+    ("e16", "HVAC.FIELD.SENSOR", "sensor", r"\bsensors?\b|transmitter"),
 ]
 
 
@@ -113,14 +124,40 @@ def segment_names(pdf):
     return out
 
 
+def front_text(pdf, pages=2, per=1500):
+    """앞쪽 몇 장의 본문 — 장비 판정의 보조 근거.
+
+    표지 몇 줄만으로는 부족하다. Belimo 댐퍼 구동기 문서는 표지에 모델코드
+    ('P..-BAC-..')만 있고 'Damper Actuator' 는 두 번째 장에 나온다.
+    """
+    import fitz
+    d = fitz.open(pdf)
+    return " ".join(d[i].get_text()[:per] for i in range(min(pages, d.page_count)))
+
+
 TITLE_NOISE = re.compile(r"^(date|firmware|reference|bas-pts)", re.I)
 # 표지에 있지만 제품명이 아닌 줄 — 표어·문서종류·주소·법적 문구
 NOT_PRODUCT = re.compile(
-    r"^(engineering tomorrow|design guide|installation guide|operating guide|"
+    r"^("
+    # 문서 종류·표제
+    r"(engineering tomorrow|design guide|installation guide|operating guide|"
     r"programming guide|programmierhandbuch|betriebsanleitung|fact sheet|"
-    r"user manual|quick guide|application guide|www\.|https?:|\S+\.(com|net|org)|"
-    r"contents?|table of contents|copyright|all rights reserved|"
-    r"bacnet|lontalk|modbus|convenient .*)$", re.I)
+    r"user manual|quick guide|application guide|technical documentation)|"
+    # 프로토콜 표제 — 'BACnet PICS', 'Modbus Register', 'BACnet Interface Description'
+    r"(bacnet|lontalk|modbus|m-bus|knx)([\s-]*(pics|register.*|interface.*|"
+    r"object.*|protocol.*))?|"
+    r"(protocol implementation|interface description|object description|"
+    r"points? list|register list)\b.*|"
+    # 판·버전·목차·고지
+    r"edition\b.*|version\b\s*[\d.]+|v\s*\d+[\d.]*|contents?|table of contents|"
+    r"copyright|all rights reserved|"
+    # 주소
+    r"www\.|https?:|\S+\.(com|net|org)|"
+    r"convenient .*"
+    r")$", re.I)
+# 꼬리말 — '제품 PICS • en-gb • 2019-03 • Subject to changes' 처럼 가운뎃점과
+# 날짜·고지가 붙는다. 제품명이 들어 있어도 그대로 쓰면 모델 이름이 망가진다.
+FOOTERISH = re.compile(r"[•·].*\d{4}|subject to change|all rights", re.I)
 # 제품명다움 — 상표기호·모델코드(영문+숫자 조합)가 있으면 제품명일 가능성이 높다
 PRODUCTISH = re.compile(r"[™®]|\b[A-Z]{2,}[\s-]?\d{2,}\b|\b(model|series|type)\b", re.I)
 
@@ -138,7 +175,8 @@ def title_info(pdf):
     # 상표기호를 떼고 걸러야 한다 — 'BACnet®' 이 기호 때문에 제품명으로 뽑혔었다
     def bare(x):
         return re.sub(r"[™®©]", "", x).strip()
-    usable = [x for x in lines if not NOT_PRODUCT.match(bare(x))]
+    usable = [x for x in lines
+              if not NOT_PRODUCT.match(bare(x)) and not FOOTERISH.search(x)]
 
     # Trane 계열은 첫 줄이 '<컨트롤러> Integration Points List' 로 고정이다
     ctl = ""
@@ -147,6 +185,12 @@ def title_info(pdf):
         usable = [x for x in usable if x != lines[0]]
 
     picked = [x for x in usable if PRODUCTISH.search(x)] or usable
+    if not picked and d.page_count > 1:
+        # 표지가 온통 꼬리말·목차인 문서가 있다 (Belimo). 두 번째 장 머리에
+        # 제품명과 한 줄 설명이 나온다.
+        nxt = [re.sub(r"\s+", " ", x).strip() for x in d[1].get_text().split("\n")]
+        picked = [x for x in nxt if 2 < len(x) < 60
+                  and not NOT_PRODUCT.match(bare(x)) and not FOOTERISH.search(x)][:2]
     prod = picked[0] if picked else (lines[0] if lines else "")
     if not ctl and len(picked) > 1:
         # 제품명 후보가 여럿이면 두 번째를 컨트롤러·모듈 이름으로 본다

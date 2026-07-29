@@ -45,8 +45,21 @@ def candidates(src):
     return []  # page 방식은 브라우저가 필요 — probe에서 안내만
 
 
-def head(url, timeout=12):
-    req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": UA})
+def _hdr(src, extra=None):
+    """소스가 요구하는 헤더를 얹는다.
+
+    Belimo 처럼 봇 차단(Akamai)이 걸린 사이트는 UA 만으로는 403 이고,
+    Referer 와 Sec-Fetch-* 를 함께 보내야 통과한다 — 브라우저가 보내는 것과
+    같은 헤더다. 우회 기법이 아니라 정상 방문 형태를 갖추는 것이다.
+    """
+    h = {"User-Agent": UA}
+    h.update((src or {}).get("headers") or {})
+    h.update(extra or {})
+    return h
+
+
+def head(url, timeout=12, src=None):
+    req = urllib.request.Request(url, method="HEAD", headers=_hdr(src))
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return r.status, int(r.headers.get("Content-Length") or 0)
@@ -56,8 +69,8 @@ def head(url, timeout=12):
         return 0, 0
 
 
-def fetch(url, dest, timeout=90):
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
+def fetch(url, dest, timeout=90, src=None):
+    req = urllib.request.Request(url, headers=_hdr(src, {"Accept": "*/*"}))
     with urllib.request.urlopen(req, timeout=timeout) as r:
         body = r.read()
     open(dest, "wb").write(body)
@@ -93,7 +106,7 @@ def probe(src, limit=None, verbose=True, workers=12):
     def first_alive(key):
         """이 번호의 후보를 차례로 두드려 처음 살아 있는 것을 돌려준다."""
         for u in groups[key]:
-            code, size = head(u)
+            code, size = head(u, src=src)
             if code == 200 and size > 20000:
                 return {"url": u, "size": size, "key": key}
             if code == 403:
@@ -127,7 +140,7 @@ def run(src, limit=None):
         name = os.path.basename(u).split("?")[0]
         dest = os.path.join(RAW, name)
         try:
-            sha, size = fetch(u, dest)
+            sha, size = fetch(u, dest, src=src)
             led[u] = {"source": src["id"], "vendor": src["vendor"], "kind": src["kind"],
                       "file": name, "sha256": sha, "bytes": size,
                       "extractor": src["extractor"], "at": time.strftime("%Y-%m-%d %H:%M")}

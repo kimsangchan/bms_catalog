@@ -1,0 +1,724 @@
+{
+ "id": "belimo-energy-valve-dn-15-50-version-4-modbus",
+ "equipId": "e16",
+ "vendor": "Belimo",
+ "model": "Energy Valve DN 15...50 (Version 4) (Modbus)",
+ "name": "Energy Valve DN 15...50 (Version 4)",
+ "cat": "HVAC.FIELD.ACTUATOR",
+ "tag": "actuator",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. Modbus 86점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "Modbus",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "MB",
+   "inst": 0,
+   "name": "Setpoint [%]",
+   "unitRaw": "[%]",
+   "unit": null,
+   "note": "Setpoint [%] · 범위 0…10’000 Default: 0 · Modbus reg 0"
+  },
+  {
+   "type": "MB",
+   "inst": 1,
+   "name": "Override control Overrides setpoint with defined values.",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Override control Overrides setpoint with defined values. · 범위 0: None 1: Open Valve 2: Close Valve 3: Minimum Flow 4: - 5: Maximum Flow 6: Nominal Flow 7: - 8: - 9: - 10: Motor Stop Default: 0 · Modbus reg 1"
+  },
+  {
+   "type": "MB",
+   "inst": 2,
+   "name": "Command",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Command · 범위 0: None 1: - 2: Sync Default: 0 · Modbus reg 2"
+  },
+  {
+   "type": "MB",
+   "inst": 3,
+   "name": "Actuator type",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Actuator type · 범위 0: Device not connected 1: Air/Water 2: VAV / EPIV 3: Fire 4: Energy Valve / Flow Meter 5: 6-way EPIV · Modbus reg 3"
+  },
+  {
+   "type": "MB",
+   "inst": 4,
+   "name": "Relative position [%]",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Relative position [%] · 범위 0…10’000 · Modbus reg 4"
+  },
+  {
+   "type": "MB",
+   "inst": 5,
+   "name": "Absolute position [°] [mm]",
+   "unitRaw": "°",
+   "unit": "deg",
+   "note": "Absolute position [°] [mm] · 범위 0…max angle · Modbus reg 5"
+  },
+  {
+   "type": "MB",
+   "inst": 6,
+   "name": "Relative volumetric flow [%] relates to Vnom",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Relative volumetric flow [%] relates to Vnom · 범위 0…15’000 · Modbus reg 6"
+  },
+  {
+   "type": "MB",
+   "inst": 7,
+   "name": "Absolute volumetric flow [l/s]",
+   "unitRaw": "l/s",
+   "unit": "Lps",
+   "note": "Absolute volumetric flow [l/s] · 범위 0...1.5*Vnom · Modbus reg 7"
+  },
+  {
+   "type": "MB",
+   "inst": 8,
+   "name": "Absolute volumetric flow [gpm]",
+   "unitRaw": "gpm",
+   "unit": "gpm",
+   "note": "Absolute volumetric flow [gpm] · 범위 0…16‘000 · Modbus reg 8"
+  },
+  {
+   "type": "MB",
+   "inst": 9,
+   "name": "Absolute volumetric flow [selected units] Unit can be selected in Register No. 148",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Absolute volumetric flow [selected units] Unit can be selected in Register No. 148 · 범위 0…360‘000‘000 · Modbus reg 9"
+  },
+  {
+   "type": "MB",
+   "inst": 11,
+   "name": "Setpoint Analog [%]",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Setpoint Analog [%] · 범위 0...10‘000 · Modbus reg 11"
+  },
+  {
+   "type": "MB",
+   "inst": 12,
+   "name": "Sensor value 1 [mV] [Ω] [-] For Resistance values scaling as follows applies PT1000 / Ni1000 -> 1 NTC10K -> 10",
+   "unitRaw": "mV Ω",
+   "unit": null,
+   "note": "Sensor value 1 [mV] [Ω] [-] For Resistance values scaling as follows applies PT1000 / Ni1000 -> 1 NTC10K -> 10 · 범위 0...65‘535 · Modbus reg 12"
+  },
+  {
+   "type": "MB",
+   "inst": 13,
+   "name": "Sensor 1 as analog value [°C]",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Sensor 1 as analog value [°C] · 범위 -2‘000…12‘000 · Modbus reg 13"
+  },
+  {
+   "type": "MB",
+   "inst": 14,
+   "name": "Sensor 1 as analog value [°F]",
+   "unitRaw": "℉",
+   "unit": "degF",
+   "note": "Sensor 1 as analog value [°F] · 범위 -400…24‘800 · Modbus reg 14"
+  },
+  {
+   "type": "MB",
+   "inst": 15,
+   "name": "SpAbsFlow [l/s]",
+   "unitRaw": "[l/s]",
+   "unit": null,
+   "note": "SpAbsFlow [l/s] · 범위 0…10'000 · Modbus reg 15"
+  },
+  {
+   "type": "MB",
+   "inst": 16,
+   "name": "SpAbsFlow [gpm]",
+   "unitRaw": "gpm",
+   "unit": "gpm",
+   "note": "SpAbsFlow [gpm] · 범위 0…16‘000 · Modbus reg 16"
+  },
+  {
+   "type": "MB",
+   "inst": 17,
+   "name": "SpAbsFlow [selected units] Unit can be selected in Register No. 148",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "SpAbsFlow [selected units] Unit can be selected in Register No. 148 · 범위 0…360‘000‘000 · Modbus reg 17"
+  },
+  {
+   "type": "MB",
+   "inst": 19,
+   "name": "Temperature 1 (external) [°C]",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature 1 (external) [°C] · 범위 -2‘000…12‘0000 · Modbus reg 19"
+  },
+  {
+   "type": "MB",
+   "inst": 20,
+   "name": "Temperature 1 (external) [°F]",
+   "unitRaw": "℉",
+   "unit": "degF",
+   "note": "Temperature 1 (external) [°F] · 범위 -400…24‘800 · Modbus reg 20"
+  },
+  {
+   "type": "MB",
+   "inst": 21,
+   "name": "Temperature 2 (integrated) [°C]",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature 2 (integrated) [°C] · 범위 -2‘000…12‘0000 · Modbus reg 21"
+  },
+  {
+   "type": "MB",
+   "inst": 22,
+   "name": "Temperature 2 (integrated) [°F]",
+   "unitRaw": "℉",
+   "unit": "degF",
+   "note": "Temperature 2 (integrated) [°F] · 범위 -400…24'800 · Modbus reg 22"
+  },
+  {
+   "type": "MB",
+   "inst": 23,
+   "name": "DeltaT K _",
+   "unitRaw": "K",
+   "unit": "K",
+   "note": "DeltaT K _ · 범위 0…14‘000 · Modbus reg 23"
+  },
+  {
+   "type": "MB",
+   "inst": 24,
+   "name": "DeltaT F _",
+   "unitRaw": "℉",
+   "unit": "degF",
+   "note": "DeltaT F _ · 범위 0…25‘200 · Modbus reg 24"
+  },
+  {
+   "type": "MB",
+   "inst": 25,
+   "name": "Glycol concentration",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Glycol concentration · 범위 0…10‘000 · Modbus reg 25"
+  },
+  {
+   "type": "MB",
+   "inst": 26,
+   "name": "Relative Power",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Relative Power · 범위 0…30‘000 · Modbus reg 26"
+  },
+  {
+   "type": "MB",
+   "inst": 27,
+   "name": "Absolute Power cooling [kW]",
+   "unitRaw": "kW",
+   "unit": "kW",
+   "note": "Absolute Power cooling [kW] · 범위 0…21‘500‘000 · Modbus reg 27"
+  },
+  {
+   "type": "MB",
+   "inst": 29,
+   "name": "Absolute Power cooling [kBTU/h]",
+   "unitRaw": "kBTU/h",
+   "unit": null,
+   "note": "Absolute Power cooling [kBTU/h] · 범위 0…74‘150‘000 · Modbus reg 29"
+  },
+  {
+   "type": "MB",
+   "inst": 31,
+   "name": "Absolute Power cooling [selected units] Unit can be selected in Register No. 149",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Absolute Power cooling [selected units] Unit can be selected in Register No. 149 · 범위 0…741‘500‘000 · Modbus reg 31"
+  },
+  {
+   "type": "MB",
+   "inst": 33,
+   "name": "Absolute Power Heating [kW]",
+   "unitRaw": "kW",
+   "unit": "kW",
+   "note": "Absolute Power Heating [kW] · 범위 0…21‘500‘000 · Modbus reg 33"
+  },
+  {
+   "type": "MB",
+   "inst": 35,
+   "name": "Absolute Power Heating [kBTU/h]",
+   "unitRaw": "kBTU/h",
+   "unit": null,
+   "note": "Absolute Power Heating [kBTU/h] · 범위 0…74‘150‘000 · Modbus reg 35"
+  },
+  {
+   "type": "MB",
+   "inst": 37,
+   "name": "Absolute Power Heating [selected units] Unit can be selected in Register No. 149",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Absolute Power Heating [selected units] Unit can be selected in Register No. 149 · 범위 0…741‘500‘000 · Modbus reg 37"
+  },
+  {
+   "type": "MB",
+   "inst": 39,
+   "name": "Setpoint DeltaT [K]",
+   "unitRaw": "K",
+   "unit": "K",
+   "note": "Setpoint DeltaT [K] · 범위 100…5‘500 · Modbus reg 39"
+  },
+  {
+   "type": "MB",
+   "inst": 40,
+   "name": "Setpoint DeltaT [°F",
+   "unitRaw": "℉",
+   "unit": "degF",
+   "note": "Setpoint DeltaT [°F · 범위 180…9‘900 · Modbus reg 40"
+  },
+  {
+   "type": "MB",
+   "inst": 41,
+   "name": "Setpoint Absolute Flow DeltaT [l/s]",
+   "unitRaw": "l/s",
+   "unit": "Lps",
+   "note": "Setpoint Absolute Flow DeltaT [l/s] · 범위 0...100‘000 · Modbus reg 41"
+  },
+  {
+   "type": "MB",
+   "inst": 43,
+   "name": "Setpoint Absolute Flow DeltaT [gpm]",
+   "unitRaw": "gpm",
+   "unit": "gpm",
+   "note": "Setpoint Absolute Flow DeltaT [gpm] · 범위 0...160‘000 · Modbus reg 43"
+  },
+  {
+   "type": "MB",
+   "inst": 45,
+   "name": "Setpoint Absolute Flow DeltaT [selected units] Unit can be selected in Register No. 148",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Setpoint Absolute Flow DeltaT [selected units] Unit can be selected in Register No. 148 · 범위 0…360‘000‘000 · Modbus reg 45"
+  },
+  {
+   "type": "MB",
+   "inst": 59,
+   "name": "Total Volume [m3]",
+   "unitRaw": "m3",
+   "unit": "m3",
+   "note": "Total Volume [m3] · 범위 0…2’147’483’600 · Modbus reg 59"
+  },
+  {
+   "type": "MB",
+   "inst": 61,
+   "name": "Total Volume [gal]",
+   "unitRaw": "gal",
+   "unit": null,
+   "note": "Total Volume [gal] · 범위 0…2’147’483’647 · Modbus reg 61"
+  },
+  {
+   "type": "MB",
+   "inst": 63,
+   "name": "Total Volume [selected units] Unit can be selected in Register No. 150",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Total Volume [selected units] Unit can be selected in Register No. 150 · 범위 0…2’147’483’647 · Modbus reg 63"
+  },
+  {
+   "type": "MB",
+   "inst": 65,
+   "name": "Cooling Energy [kWh]",
+   "unitRaw": "kWh",
+   "unit": "kWh",
+   "note": "Cooling Energy [kWh] · 범위 0…2’147’483’647 · Modbus reg 65"
+  },
+  {
+   "type": "MB",
+   "inst": 67,
+   "name": "Cooling Energy [kBTU]",
+   "unitRaw": "kBTU",
+   "unit": null,
+   "note": "Cooling Energy [kBTU] · 범위 0…2’147’483’647 · Modbus reg 67"
+  },
+  {
+   "type": "MB",
+   "inst": 69,
+   "name": "Cooling Energy [selected units] Unit can be selected in Register No. 151",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Cooling Energy [selected units] Unit can be selected in Register No. 151 · 범위 0…2’147’483’647 · Modbus reg 69"
+  },
+  {
+   "type": "MB",
+   "inst": 71,
+   "name": "Heating Energy [kWh]",
+   "unitRaw": "kWh",
+   "unit": "kWh",
+   "note": "Heating Energy [kWh] · 범위 0…2’147’483’647 · Modbus reg 71"
+  },
+  {
+   "type": "MB",
+   "inst": 73,
+   "name": "Heating Energy [kBTU]",
+   "unitRaw": "kBTU",
+   "unit": null,
+   "note": "Heating Energy [kBTU] · 범위 0…2’147’483’647 · Modbus reg 73"
+  },
+  {
+   "type": "MB",
+   "inst": 75,
+   "name": "Heating Energy [selected units] Unit can be selected in Register No. 151",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Heating Energy [selected units] Unit can be selected in Register No. 151 · 범위 0…2’147’483’647 · Modbus reg 75"
+  },
+  {
+   "type": "MB",
+   "inst": 99,
+   "name": "Bus Termination Indicates if bus termination (120 Ω) is enabled. Bus termination can be set with configuration tools.",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Bus Termination Indicates if bus termination (120 Ω) is enabled. Bus termination can be set with configuration tools. · 범위 0: disabled 1: enabled Default: 0 · Modbus reg 99"
+  },
+  {
+   "type": "MB",
+   "inst": 100,
+   "name": "Series Number 1st part Each device has an unambiguous series number, which is either impressed on or glued to the housing. The series number consists of 4 segments, although only parts 1, 2 and 4 are displayed on Modbus. Example: 00839-31324-064-008 1st part: 00839 2nd part: 31324 4th part: 008",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Series Number 1st part Each device has an unambiguous series number, which is either impressed on or glued to the housing. The series number consists of 4 segments, although only parts 1, 2 and 4 are displayed on Modbus. Example: 00839-3132"
+  },
+  {
+   "type": "MB",
+   "inst": 101,
+   "name": "Series Number 2nd part",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Series Number 2nd part · 범위 - · Modbus reg 101"
+  },
+  {
+   "type": "MB",
+   "inst": 102,
+   "name": "Series Number 4th part",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Series Number 4th part · 범위 - · Modbus reg 102"
+  },
+  {
+   "type": "MB",
+   "inst": 103,
+   "name": "Firmware Version Firmware version of communication module Example: 400, Version 4.00 for details see Firmware history",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Firmware Version Firmware version of communication module Example: 400, Version 4.00 for details see Firmware history · 범위 - · Modbus reg 103"
+  },
+  {
+   "type": "MB",
+   "inst": 104,
+   "name": "Malfunction and Service Information No communication to actuator: Communication with actuator not possible. Gear disengagement: Gear disengaged button is pressed. Actuator cannot move: Mechanical overload due to blocked valve, etc. (only available for EV..R+KBAC) Reverse flow: Reverse flow is detected. Flow setpoint not reached: Setpoint cannot be reached within 15 min during flow control. Actual flow exceeds nominal flow: Actual flow exceeds the designed nominal flow. Flow measurement error: Air in the system, error occurred during flow measurement. External temperature sensor not OK: No connection to the external temperature sensor Integrated temperature sensor not OK: Error with embedded temperature sensor. Communication to sensor interrupted: Internal communication to flow sensor interrupted. Freeze warning: Measured temperature & glycol concentration indicate that grease ice can build up. Glycol detected: Glycol was detected in a MID application. Power setpoint not reached: Setpoint cannot be reached within 15 min during power control.",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Malfunction and Service Information No communication to actuator: Communication with actuator not possible. Gear disengagement: Gear disengaged button is pressed. Actuator cannot move: Mechanical overload due to blocked valve, etc. (only av"
+  },
+  {
+   "type": "MB",
+   "inst": 105,
+   "name": "Vmin",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Vmin · 범위 0…Vmax Default: 0 · Modbus reg 105"
+  },
+  {
+   "type": "MB",
+   "inst": 106,
+   "name": "Vmax Vmax cannot be set lower than Vmin or 25%.",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Vmax Vmax cannot be set lower than Vmin or 25%. · 범위 2‘500...10‘000 Default: 10‘000 · Modbus reg 106"
+  },
+  {
+   "type": "MB",
+   "inst": 108,
+   "name": "Bus Fail Setpoint Modbus communication is not monitored as standard. In the event of a breakdown in communication, the actuator retains the current setpoint. The bus monitoring controls the Modbus communication. If neither the Setpoint (Register1) nor the Override Control (Register 2) is renewed before the Timeout for Bus Watchdog (Register 110; default:120 s), the actuator controls to the Bus Fail position. Triggered bus monitoring is indicated in the Malfunction and Service Information (Register 105).",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Bus Fail Setpoint Modbus communication is not monitored as standard. In the event of a breakdown in communication, the actuator retains the current setpoint. The bus monitoring controls the Modbus communication. If neither the Setpoint (Reg"
+  },
+  {
+   "type": "MB",
+   "inst": 109,
+   "name": "Communication Watchdog Time until Bus Fail will be detected. If Bus Watchdog = 0 then deactivated. If Bus Fail setpoint (Register 110) different from 0 then Timeout for Bus Watchdog is by default 120s (parameterizable). Not functional --> reserved for future",
+   "unitRaw": "s",
+   "unit": "s",
+   "note": "Communication Watchdog Time until Bus Fail will be detected. If Bus Watchdog = 0 then deactivated. If Bus Fail setpoint (Register 110) different from 0 then Timeout for Bus Watchdog is by default 120s (parameterizable). Not functional --> r"
+  },
+  {
+   "type": "MB",
+   "inst": 110,
+   "name": "Nominal volumetric flow [l/s] (Vnom)",
+   "unitRaw": "l/s",
+   "unit": "Lps",
+   "note": "Nominal volumetric flow [l/s] (Vnom) · 범위 0…10‘000 · Modbus reg 110"
+  },
+  {
+   "type": "MB",
+   "inst": 111,
+   "name": "Nominal volumetric flow [gpm] (Vnom)",
+   "unitRaw": "gpm",
+   "unit": "gpm",
+   "note": "Nominal volumetric flow [gpm] (Vnom) · 범위 0…16‘000 · Modbus reg 111"
+  },
+  {
+   "type": "MB",
+   "inst": 112,
+   "name": "Nominal volumetric flow (qp) [selected units] (Vnom) Unit can be selected in Register No. 148",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Nominal volumetric flow (qp) [selected units] (Vnom) Unit can be selected in Register No. 148 · 범위 0…360'000'000 · Modbus reg 112"
+  },
+  {
+   "type": "MB",
+   "inst": 116,
+   "name": "Control Mode",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Control Mode · 범위 0: Position control 1: Flow control 2: Power control Default: 1 · Modbus reg 116"
+  },
+  {
+   "type": "MB",
+   "inst": 118,
+   "name": "Setpoint Source Analog: Setpoint from analog signal 0.5...10V on wire 3 Bus: Setpoint from Modbus (Register 1)",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Setpoint Source Analog: Setpoint from analog signal 0.5...10V on wire 3 Bus: Setpoint from Modbus (Register 1) · 범위 0: Analog 1: Bus Default: 1 · Modbus reg 118"
+  },
+  {
+   "type": "MB",
+   "inst": 120,
+   "name": "Sensor 1 Type Additional sensor input Only selectable if SpSource (Register No. 119) is set to bus.",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Sensor 1 Type Additional sensor input Only selectable if SpSource (Register No. 119) is set to bus. · 범위 0: None 1: Active 2: - 3: Passive 4: Switch Default: 0 · Modbus reg 120"
+  },
+  {
+   "type": "MB",
+   "inst": 121,
+   "name": "Sensor 1 passive sensor Type",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Sensor 1 passive sensor Type · 범위 0: Resistance Measurement 1: PT1000 2: Ni1000 3: - 4: - 5: - 6: - 7: NTC10k2 8: NTC10k3 Default: 0 · Modbus reg 121"
+  },
+  {
+   "type": "MB",
+   "inst": 124,
+   "name": "Sensor 1 as analog value [°C]",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Sensor 1 as analog value [°C] · 범위 -10° C to 120° C · Modbus reg 124"
+  },
+  {
+   "type": "MB",
+   "inst": 125,
+   "name": "Sensor 1 as analog value [°F]",
+   "unitRaw": "℉",
+   "unit": "degF",
+   "note": "Sensor 1 as analog value [°F] · 범위 14° F to 248° F · Modbus reg 125"
+  },
+  {
+   "type": "MB",
+   "inst": 129,
+   "name": "Vmin [l/s]",
+   "unitRaw": "l/s",
+   "unit": "Lps",
+   "note": "Vmin [l/s] · 범위 0…Vmax · Modbus reg 129"
+  },
+  {
+   "type": "MB",
+   "inst": 130,
+   "name": "Vmin [gpm]",
+   "unitRaw": "gpm",
+   "unit": "gpm",
+   "note": "Vmin [gpm] · 범위 0…Vmax · Modbus reg 130"
+  },
+  {
+   "type": "MB",
+   "inst": 131,
+   "name": "Minimal volumetric flow [selected units] Unit can be selected in Register No. 148",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Minimal volumetric flow [selected units] Unit can be selected in Register No. 148 · 범위 0…Vmax · Modbus reg 131"
+  },
+  {
+   "type": "MB",
+   "inst": 133,
+   "name": "Vmax [l/s]",
+   "unitRaw": "l/s",
+   "unit": "Lps",
+   "note": "Vmax [l/s] · 범위 25% of Vnom…Vnom · Modbus reg 133"
+  },
+  {
+   "type": "MB",
+   "inst": 134,
+   "name": "Vmax [gpm]",
+   "unitRaw": "gpm",
+   "unit": "gpm",
+   "note": "Vmax [gpm] · 범위 25% of Vnom…Vnom · Modbus reg 134"
+  },
+  {
+   "type": "MB",
+   "inst": 135,
+   "name": "Maximal volumetric flow [selected units] Unit can be selected in Register No. 148",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Maximal volumetric flow [selected units] Unit can be selected in Register No. 148 · 범위 25% of Vnom…Vnom · Modbus reg 135"
+  },
+  {
+   "type": "MB",
+   "inst": 147,
+   "name": "Unit Selection Flow",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Unit Selection Flow · 범위 0: m3/s 1: m3/h 2: l/s 3: l/min 4: l/h 5: gpm 6: cfm Default: 4 · Modbus reg 147"
+  },
+  {
+   "type": "MB",
+   "inst": 148,
+   "name": "Unit Selection Power",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Unit Selection Power · 범위 0: W 1: kW 2: MW 3: BTU/h 4: kBTU/h 5: ton Default: 1 · Modbus reg 148"
+  },
+  {
+   "type": "MB",
+   "inst": 149,
+   "name": "Unit Selection Volume",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Unit Selection Volume · 범위 0: m3 1: Litre 2: Gallon 3: cf Default: 0 · Modbus reg 149"
+  },
+  {
+   "type": "MB",
+   "inst": 150,
+   "name": "Unit Selection Energy",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Unit Selection Energy · 범위 0: J 1: kJ 2: MJ 3: GJ 4: Wh 5: kWh 6: MWh 7: BTU 8: kBTU 9: ton Default: 5 · Modbus reg 150"
+  },
+  {
+   "type": "MB",
+   "inst": 159,
+   "name": "Nominal Power [kW]",
+   "unitRaw": "kW",
+   "unit": "kW",
+   "note": "Nominal Power [kW] · 범위 0…21‘500‘000 · Modbus reg 159"
+  },
+  {
+   "type": "MB",
+   "inst": 161,
+   "name": "Nominal Power [kBTU/h]",
+   "unitRaw": "kBTU/h",
+   "unit": null,
+   "note": "Nominal Power [kBTU/h] · 범위 0…74‘150‘000 · Modbus reg 161"
+  },
+  {
+   "type": "MB",
+   "inst": 163,
+   "name": "Nominal Power [selected units] Unit can be selected in Register No. 149",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Nominal Power [selected units] Unit can be selected in Register No. 149 · 범위 0…741‘500‘000 · Modbus reg 163"
+  },
+  {
+   "type": "MB",
+   "inst": 165,
+   "name": "Max Power [%]",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Max Power [%] · 범위 0.5…100 % · Modbus reg 165"
+  },
+  {
+   "type": "MB",
+   "inst": 166,
+   "name": "Absolute Pmax [kW]",
+   "unitRaw": "kW",
+   "unit": "kW",
+   "note": "Absolute Pmax [kW] · 범위 0.5 % of Pnom…Pnom · Modbus reg 166"
+  },
+  {
+   "type": "MB",
+   "inst": 168,
+   "name": "Absolute Pmax [kBTU/h]",
+   "unitRaw": "kBTU/h",
+   "unit": null,
+   "note": "Absolute Pmax [kBTU/h] · 범위 0.5 % of Pnom…Pnom · Modbus reg 168"
+  },
+  {
+   "type": "MB",
+   "inst": 170,
+   "name": "Absolute Pmax [selected units] Unit can be selected in Register No. 149",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Absolute Pmax [selected units] Unit can be selected in Register No. 149 · 범위 0.5 % of Pnom…Pnom · Modbus reg 170"
+  },
+  {
+   "type": "MB",
+   "inst": 179,
+   "name": "DeltaT Limitation _",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "DeltaT Limitation _ · 범위 0: Disabled 1: dT-Manager 2: dT-Manager scaling Default: 0 · Modbus reg 179"
+  },
+  {
+   "type": "MB",
+   "inst": 180,
+   "name": "DeltaT Manager Status",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "DeltaT Manager Status · 범위 0: Not selected 1: Standby 2: Active 3: Scaling standby 4: Scaling active · Modbus reg 180"
+  },
+  {
+   "type": "MB",
+   "inst": 200,
+   "name": "Sensor Serial Number First Part ProductionOrderNumber",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Sensor Serial Number First Part ProductionOrderNumber · 범위 - · Modbus reg 200"
+  },
+  {
+   "type": "MB",
+   "inst": 202,
+   "name": "Sensor Serial Number Second Part ProductionSequenceNumber",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Sensor Serial Number Second Part ProductionSequenceNumber · 범위 - · Modbus reg 202"
+  },
+  {
+   "type": "MB",
+   "inst": 204,
+   "name": "Select Meter Register Value 0 only available for models with MID certification: EV..R2+MID. For non MID certified models value 1 is defined as default. Select between certified meter register and lifetime register. The certified meter register will be reset when the sensor module is replaced. The lifetime register is compensated for glycol (if applicable). Avoid toggling between the two registers as this will affect data logging. Following registers depend on the selected meter register: Register No. 60/61 Register No. 62/63 Register No. 64/65 Register No. 66/67 Register No. 68/69 Register No. 70/71 Register No. 72/73 Register No. 74/75 Register No. 76/77",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Select Meter Register Value 0 only available for models with MID certification: EV..R2+MID. For non MID certified models value 1 is defined as default. Select between certified meter register and lifetime register. The certified meter regis"
+  }
+ ],
+ "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "extractor": "table",
+ "sourceDoc": "belimo_Modbus-Register_Energy-Valve_V4_1_en-gb.pdf",
+ "classifiedBy": "표지 제품명 근거: 'Energy Valve'",
+ "crosscheck": {
+  "unverifiable": "Belimo 소스가 교차 대조 불가로 표시 — 개요표와 상세표가 서로 다른 열이다"
+ }
+}

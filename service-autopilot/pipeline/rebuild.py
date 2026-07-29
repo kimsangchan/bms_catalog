@@ -22,6 +22,7 @@ DATA = os.path.join(HERE, "data")
 RAW = os.path.join(DATA, "raw")
 sys.path.insert(0, HERE)
 import crosscheck as C  # noqa: E402
+import register as R  # noqa: E402
 import extract as E  # noqa: E402
 import schema as S  # noqa: E402
 
@@ -65,8 +66,13 @@ def main(argv):
         if run:
             m["points"] = [{k: p.get(k) for k in
                             ("type", "inst", "name", "unitRaw", "unit", "note")} for p in pts]
-            m["crosscheck"] = {"rate": xc["rate"], "both": xc["both"],
-                               "diff": [[str(k[0]), k[1], a, b] for _, k, a, b in xc["diff"][:20]]}
+            # 소스가 '교차 대조 불가'로 표시한 문서는 그 표시를 유지한다 —
+            # 등록기와 같은 규칙을 써야 재추출이 표시를 지우지 않는다.
+            why = R.unreliable_reason(src)
+            m["crosscheck"] = ({"unverifiable": why} if why else
+                               {"rate": xc["rate"], "both": xc["both"],
+                                "diff": [[str(k[0]), k[1], a, b]
+                                         for _, k, a, b in xc["diff"][:20]]})
             proto = collections.Counter(S.protocol_of(p["type"]) for p in pts)
             m["comm"] = [[k, "통합 포인트 리스트 공개", "—", "Points List"] for k in proto]
             json.dump(m, open(f, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

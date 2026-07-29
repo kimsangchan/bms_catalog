@@ -33,14 +33,59 @@ SOURCES = [
     {
         "id": "belimo-system-integration",
         "vendor": "Belimo",
-        "kind": "인터페이스·EDE",
-        "note": "BACnet 인터페이스 설명서 23종 + Modbus 레지스터 21종 + **EDE 파일(zip)**. "
-                "URL 패턴이 규칙적. ⚠ curl 403(봇 차단) — 브라우저로만 내려받힌다.",
-        "enumerate": "page",
+        "kind": "인터페이스·레지스터",
+        "note": "BACnet 인터페이스 설명서 + Modbus 레지스터 표. 밸브·댐퍼 액추에이터·VAV·"
+                "에너지밸브·센서 등 Belimo 전 제품군. 목록은 File Archive 페이지에서 한 번 "
+                "긁어 왔고(아래 page), 같은 제품의 옛 판은 걸러 최신판만 남겼다. "
+                "Akamai 봇 차단이 있어 Referer·Sec-Fetch 헤더가 필요하다 (headers 참고).",
+        "enumerate": "list",
         "page": "https://www.belimo.com/ch/en_GB/support-eu/support-services/file-history",
-        "link_pattern": r"/mam/general-documents/system_integration/(BACnet|Modbus)/[^\"']+\.(pdf|zip|csv)",
-        "extractor": "ede",
-        "access": "브라우저 필요",
+        "headers": {
+            "Referer": "https://www.belimo.com/ch/en_GB/support-eu/support-services/file-history",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-GB,en;q=0.9",
+            "Sec-Fetch-Dest": "document", "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-Site": "same-origin", "Upgrade-Insecure-Requests": "1",
+        },
+        "urls": [
+            "https://www.belimo.com/mam/general-documents/system_integration/BACnet/"
+            + n for n in [
+                "belimo_BACnet_Interface-description_AirWater_V3_4_en-gb.pdf",
+                "belimo_BACnet_Interface-description_Damper_actuator_V3_4_en-gb.pdf",
+                "belimo_BACnet_Interface-description_VAV_V3_4_en-gb.pdf",
+                "belimo_BACnet_Interface-description_VRU_V1_4_en-gb.pdf",
+                "belimo_BACnet_Interface-description_Energy-Valve_V4_1_en-gb.pdf",
+                "belimo_BACnet_Interface-description_2way-EPIV_V4_0_en-gb.pdf",
+                "belimo_BACnet_Interface-description_6way-EPIV_en-gb.pdf",
+                "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+                "belimo_BACnet_Interface-description_CQ24A-BAC_en-gb.pdf",
+                "belimo_BACnet_Interface-description_IoT_product_range_en-gb.pdf",
+                "belimo_BACnet_Interface-description_22PF_V4_0_en-gb.pdf",
+                "belimo_BACnet_Interface-description_Sensors_V4_1_en-gb.pdf",
+                "belimo_BACnet_Interface-description_TEM_V4_1_en-gb.pdf",
+            ]] + [
+            "https://www.belimo.com/mam/general-documents/system_integration/Modbus/"
+            + n for n in [
+                "belimo_Modbus-Register_AirWater_V3_4_en-gb.pdf",
+                "belimo_Modbus-Register_Damper_actuator_V3_4_en-gb.pdf",
+                "belimo_Modbus-Register_VAV_V3_4_en-gb.pdf",
+                "belimo_Modbus-Register_VRU_V1_4_en-gb.pdf",
+                "belimo_Modbus-Register_Energy-Valve_V4_1_en-gb.pdf",
+                "belimo_Modbus-Register_2way-EPIV_V4_0_en-gb.pdf",
+                "belimo_Modbus-Register_6way-EPIV_en-gb.pdf",
+                "belimo_Modbus-Register_PR_V3_4_en-gb.pdf",
+                "belimo_Modbus-Register_CQ24A-BAC_en-gb.pdf",
+                "belimo_Modbus-Register_IoT_Product_Range_en-gb.pdf",
+                "belimo_Modbus-Register_22PF_V4_0_en-gb.pdf",
+                "belimo_Modbus-Register_Sensors_V4_2_en-gb.pdf",
+                "belimo_Modbus-Register_TEM_V4_1_en-gb.pdf",
+            ]],
+        "extractor": "auto",
+        "access": "헤더 필요",
+        # Modbus 문서는 '개요표(주소→짧은 이름)'와 '상세표(주소→설명)'가 따로 있어
+        # 표 인식은 상세표를, 줄 읽기는 개요표를 읽는다. 둘 다 원문 그대로지만
+        # 서로 다른 열이라 교차 대조로는 검증할 수 없다 — 사람 표본이 필요하다.
+        "crosscheck_unreliable": r"Modbus-Register",
     },
     {
         "id": "btl-pics",
@@ -69,6 +114,10 @@ SOURCES = [
         ],
         "extractor": "layout",
         "access": "무로그인",
+        # MG17N102 는 레지스터 한 칸 안에 비트 구간별 하위 행이 들어 있어
+        # (40001 Command / 비트 0–7 / 비트 8–14 Reserved …) 줄 읽기가 번호와 이름을
+        # 어긋나게 짝짓는다. 표 인식 결과가 맞고 줄 경로가 틀리므로 대조 대상에서 뺀다.
+        "crosscheck_unreliable": r"MG17N102",
     },
     {
         "id": "grundfos-literature",

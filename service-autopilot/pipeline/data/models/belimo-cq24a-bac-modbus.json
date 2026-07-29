@@ -1,0 +1,148 @@
+{
+ "id": "belimo-cq24a-bac-modbus",
+ "equipId": "e16",
+ "vendor": "Belimo",
+ "model": "CQ24A-BAC (Modbus)",
+ "name": "CQ24A-BAC",
+ "cat": "HVAC.FIELD.ACTUATOR",
+ "tag": "actuator",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. Modbus 14점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "Modbus",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "MB",
+   "inst": 0,
+   "name": "Setpoint Setpoint for actuator between 0 and Max (No. 107)",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Setpoint Setpoint for actuator between 0 and Max (No. 107) · 범위 0…10‘000 Default: 0 · Modbus reg 0"
+  },
+  {
+   "type": "MB",
+   "inst": 1,
+   "name": "Override Control Override setpoint with defined values",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Override Control Override setpoint with defined values · 범위 0: None 1: Open 2: Close 3: - 4: - 5: Max Default: None(0) · Modbus reg 1"
+  },
+  {
+   "type": "MB",
+   "inst": 2,
+   "name": "Command Initiation of actuator functions for service and test After command is sent, register returns to None(0)",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Command Initiation of actuator functions for service and test After command is sent, register returns to None(0) · 범위 0: None 1: Adaption 2: - 3: Sync Default: None(0) · Modbus reg 2"
+  },
+  {
+   "type": "MB",
+   "inst": 3,
+   "name": "Actuator Type",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Actuator Type · 범위 0: Actuator not connected 1: Air / Water 2: VAV / EPIV 3: Fire 4: Energy Valve 5: 6way EPIV · Modbus reg 3"
+  },
+  {
+   "type": "MB",
+   "inst": 4,
+   "name": "Relative Position",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Relative Position · 범위 0...10‘000 · Modbus reg 4"
+  },
+  {
+   "type": "MB",
+   "inst": 5,
+   "name": "Absolute Position",
+   "unitRaw": "°",
+   "unit": "deg",
+   "note": "Absolute Position · 범위 0...max angle · Modbus reg 5"
+  },
+  {
+   "type": "MB",
+   "inst": 100,
+   "name": "Series Number 1st part Each device has an unambiguous series number, which is either impressed on or glued to the housing The series number consists of 4 segments, although only parts 1, 2 and 4 are displayed on Modus Example: 00839-31324-064-008 1st part: 00839 2nd part: 31324 4th part: 008",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Series Number 1st part Each device has an unambiguous series number, which is either impressed on or glued to the housing The series number consists of 4 segments, although only parts 1, 2 and 4 are displayed on Modus Example: 00839-31324-0"
+  },
+  {
+   "type": "MB",
+   "inst": 101,
+   "name": "Series Number 2nd part",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Series Number 2nd part · 범위 – · Modbus reg 101"
+  },
+  {
+   "type": "MB",
+   "inst": 102,
+   "name": "Series Number 4th part",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Series Number 4th part · 범위 – · Modbus reg 102"
+  },
+  {
+   "type": "MB",
+   "inst": 103,
+   "name": "Firmware Version Firmware version of communication module Example: 302, Version 3.02",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Firmware Version Firmware version of communication module Example: 302, Version 3.02 · 범위 – · Modbus reg 103"
+  },
+  {
+   "type": "MB",
+   "inst": 104,
+   "name": "Malfunction and Service Information Value is bit-coded. More than one bit can be set to 1 All bits not montioned in the enumeration are not used for this actuator range Internal activity: Actuator performs a test run, adaption, etc. Bus Watchdog triggered: Timeout for the Bus Watchdog expired",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Malfunction and Service Information Value is bit-coded. More than one bit can be set to 1 All bits not montioned in the enumeration are not used for this actuator range Internal activity: Actuator performs a test run, adaption, etc. Bus Wat"
+  },
+  {
+   "type": "MB",
+   "inst": 106,
+   "name": "Max Max has to be ≥ 30%",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Max Max has to be ≥ 30% · 범위 3‘000 ...10‘000 Default: 10`000 · Modbus reg 106"
+  },
+  {
+   "type": "MB",
+   "inst": 108,
+   "name": "Bus Fail Position Modbus communication is not monitored as standard. In the event of a breakdown in communication, the actuator retains the current setpoint The bus implementation tracks the Modbus communication. If neither the Setpoint (Register No. 1) nor the Override Control (Register No. 2) is renewed before the Timeout for Bus Watchdog (Register No. 110) expires, the actuator controls to the Bus Fail Position Triggered bus watchdog is indicated in the Malfunction and Service Information (Register No. 105)",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Bus Fail Position Modbus communication is not monitored as standard. In the event of a breakdown in communication, the actuator retains the current setpoint The bus implementation tracks the Modbus communication. If neither the Setpoint (Re"
+  },
+  {
+   "type": "MB",
+   "inst": 109,
+   "name": "Timeout for Bus Watchdog in s Time until Bus Fail will be detected. If Bus Watchdog = 0 then deactivated If Bus Fail Position (Register No. 109) different from 0, the Bus Fail Position becomes active after the Timeout for Bus Watchdog is expired Recomended timeout value with activated watchdog is 120 s.",
+   "unitRaw": "s",
+   "unit": "s",
+   "note": "Timeout for Bus Watchdog in s Time until Bus Fail will be detected. If Bus Watchdog = 0 then deactivated If Bus Fail Position (Register No. 109) different from 0, the Bus Fail Position becomes active after the Timeout for Bus Watchdog is ex"
+  }
+ ],
+ "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "extractor": "table",
+ "sourceDoc": "belimo_Modbus-Register_CQ24A-BAC_en-gb.pdf",
+ "classifiedBy": "표지 제품명 근거: 'Rotary Actuator'",
+ "crosscheck": {
+  "unverifiable": "Belimo 소스가 교차 대조 불가로 표시 — 개요표와 상세표가 서로 다른 열이다"
+ }
+}

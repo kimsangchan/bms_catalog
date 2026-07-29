@@ -1,0 +1,206 @@
+{
+ "id": "belimo-damper-actuator-bacnet",
+ "equipId": "e16",
+ "vendor": "Belimo",
+ "model": "Damper Actuator (BACnet)",
+ "name": "Damper Actuator",
+ "cat": "HVAC.FIELD.ACTUATOR",
+ "tag": "actuator",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 21점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "AI",
+   "inst": 1,
+   "name": "RelPos",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Relative Position in % Overridden = true, if the gear is disengaged"
+  },
+  {
+   "type": "AI",
+   "inst": 2,
+   "name": "AbsPos",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Absolute Position in degree or mm The unit depends on the device: [°] for actuators with rotary movement [mm] for actuators with linear movement Overridden = true, if the gear is disengaged"
+  },
+  {
+   "type": "AI",
+   "inst": 6,
+   "name": "SpAnalog",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Analog Setpoint in % Shows the setpoint in % if actuator is control by analog signal (SpSource MV[122] is analog(1)) If SpSource MV[122] is Bus(2) then Out Of Service is TRUE _ _"
+  },
+  {
+   "type": "AI",
+   "inst": 20,
+   "name": "Sens1Analog",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Sensor 1 as analog value in V / Ω / – / °C / °F Current value of sensor 1 in case Sensor1Type MV[220] is Active If Sens1Type MV[220] is not Active(2) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+  },
+  {
+   "type": "AI",
+   "inst": 21,
+   "name": "Sens2Analog",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Sensor 2 as analog value in V / Ω / – / °C / °F Current value of sensor 2 in case Sensor2 Type MV[221] is Active(2) If Sens2 Type MV[221] is not Active(2) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+  },
+  {
+   "type": "AO",
+   "inst": 1,
+   "name": "SpRel",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Relative Setpoint in % Setpoint for actuator between 0 and Max AV[98] if controlled via bus If SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+  },
+  {
+   "type": "AV",
+   "inst": 97,
+   "name": "Min",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Min Setpoint in % Min has to be ≤ Max -30%"
+  },
+  {
+   "type": "AV",
+   "inst": 98,
+   "name": "Max",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Max Setpoint in % Max has to be ≥ Min +30%"
+  },
+  {
+   "type": "AV",
+   "inst": 130,
+   "name": "Bus Watchdog",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Timeout for Bus Watchdog in s 0 = watchdog deactivated If the Present Value is not ZERO, the implementation tracks write _ procedures to Present Value of AO[1] and MO[1] _ If the Present Value of AO[1] or MO[1] is written, the timer is rese"
+  },
+  {
+   "type": "BI",
+   "inst": 20,
+   "name": "Sens1Switch",
+   "unitRaw": null,
+   "unit": null,
+   "note": "_ Sensor 1 as Switch Indicates value on sensor 1 in case Sensor1Type MV[220] is Switch(5) If Sens1Type MV[220] is not Switch(5) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+  },
+  {
+   "type": "BI",
+   "inst": 21,
+   "name": "Sens2Switch",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Sensor 2 as Switch Indicates value on sensor 1 in case Sensor2Type MV[221] is Switch(5) If Sens2Type MV[221] is not Switch(5) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+  },
+  {
+   "type": "BI",
+   "inst": 99,
+   "name": "BusTermination",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Bus Termination Indicates if bus termination (120 Ω) is enabled. Bus termination can be set with the configuration tools."
+  },
+  {
+   "type": "BI",
+   "inst": 101,
+   "name": "SummaryStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Summary Status Summary of all Status (MI[106], MI[110])"
+  },
+  {
+   "type": "MSI",
+   "inst": 100,
+   "name": "InternalActivity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "_ Internal Activity Test: Internal test running, activated by bus"
+  },
+  {
+   "type": "MSI",
+   "inst": 106,
+   "name": "StatusActuator",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status Actuator Actuator cannot move: Mechanical overload e.g. blocked actuator, etc. Gear disengaged: Button is pressed Mechanical travel increased: The actuator has been moved outside the adapted working range"
+  },
+  {
+   "type": "MSI",
+   "inst": 110,
+   "name": "StatusDevice",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status Device Indicates general status about the device Bus Watchdog triggered: Timeout for Bus Watchdog expired"
+  },
+  {
+   "type": "MSO",
+   "inst": 1,
+   "name": "Override",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Override Control Override the setpoint (SpRel AO[1] or analog signal) with defined values"
+  },
+  {
+   "type": "MSV",
+   "inst": 120,
+   "name": "Command",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Initiate Function Initiation of actuator functions for service and test. After command is sent, value returns to None(1). With Reset(4) all status in StatusActuator MI[106] can be reset"
+  },
+  {
+   "type": "MSV",
+   "inst": 122,
+   "name": "SpSource",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Setpoint Source If Analog(1) then actuator is controlled by analog signal 0...10 V on wire 3. If Bus(2) then setpoint via bus SpRel AO[1]"
+  },
+  {
+   "type": "MSV",
+   "inst": 220,
+   "name": "Sens1Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Sensor 1 Type If SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+  },
+  {
+   "type": "MSV",
+   "inst": 221,
+   "name": "Sens2Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Sensor 2 Type If SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+  }
+ ],
+ "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "extractor": "table",
+ "sourceDoc": "belimo_BACnet_Interface-description_Damper_actuator_V3_4_en-gb.pdf",
+ "classifiedBy": "표지 제품명 근거: 'Actuator'",
+ "crosscheck": {
+  "rate": 1.0,
+  "both": 19,
+  "diff": []
+ }
+}

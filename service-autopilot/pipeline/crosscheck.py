@@ -108,6 +108,24 @@ def raw_bacnet(pdf):
     return _drop_sparse(out)
 
 
+def raw_bacnet_rev(pdf):
+    """이름이 ID보다 **앞에** 오는 문서 — Belimo 는 'RelPos' 다음 줄이 'AI[1]' 이다.
+
+    같은 줄 읽기지만 짝짓는 방향이 반대다. 방향을 잘못 잡으면 겹침이 거의 0이 되므로
+    두 방향을 모두 만들어 두고 겹침이 큰 쪽을 쓴다.
+    """
+    out, prev = [], None
+    for pi, t in _lines(pdf):
+        pid = E.parse_objid(t)
+        if pid and prev and E.nameish(prev):
+            out.append({"page": pi, "type": S.canon_type(pid[0]),
+                        "inst": pid[1], "name": prev})
+            prev = None
+            continue
+        prev = t
+    return _drop_sparse(out)
+
+
 def raw_bare(pdf):
     """ID가 숫자만인 문서 — 타입은 페이지 섹션 제목에서 온다 (extract.py와 같은 근거)."""
     types = E.section_types(pdf)
@@ -126,15 +144,37 @@ def raw_bare(pdf):
     return _drop_sparse(out)
 
 
+def raw_modbus_wide(pdf):
+    """주소가 작은 레지스터 표(0·1·2…) — 오름차순 성질로 잡음을 거른다."""
+    out, pending, last, page = [], None, -1, -1
+    for pi, t in _lines(pdf):
+        if pi != page:
+            page, last = pi, -1
+        if re.match(r"^\d{1,5}$", t):
+            v = int(t)
+            pending = (pi, v) if v > last else None
+            continue
+        if pending is None:
+            continue
+        if E.nameish(t) and len(t) >= 3:
+            out.append({"page": pending[0], "type": "MB", "inst": pending[1], "name": t})
+            last = pending[1]
+        pending = None
+    return _drop_sparse(out)
+
+
 def raw_modbus(pdf):
     """Modbus 레지스터 표 — 레지스터 번호 줄 → 바로 다음 이름 줄.
 
     BACnet 오브젝트 ID 가 없는 문서는 이 경로로 대조한다. 없으면 교차 대조가
     아예 안 돼 '확인할 방법 없음' 상태로 남는다.
+
+    레지스터 주소는 0·1·2 처럼 작을 수 있어 '숫자 줄'만으로는 쪽번호·표 안 값과
+    구분되지 않는다. **표 안에서 주소는 오름차순**이라는 성질을 함께 써서 거른다.
     """
     out, pending = [], None
     for pi, t in _lines(pdf):
-        if re.match(r"^[1-4]?\d{4,5}$", t):
+        if re.match(r"^[1-4]\d{4}$", t):
             pending = (pi, int(t))
             continue
         if pending is None:
@@ -143,6 +183,18 @@ def raw_modbus(pdf):
             out.append({"page": pending[0], "type": "MB", "inst": pending[1], "name": t})
         pending = None
     return _drop_sparse(out)
+
+
+def drop_repeats(rows, limit=3):
+    """줄 경로에서 같은 이름이 여러 인스턴스에 반복되면 그건 포인트 이름이 아니다.
+
+    쪽 제목·표 제목이 숫자 줄 뒤에 와서 이름으로 잡히는 일이 있다
+    ('VAV-Compact', 'Modbus Register Overview'). 이걸 그대로 두면 표가 맞는데도
+    불일치로 세어 진짜 오류가 묻힌다. 대조 대상에서 빼면 그 포인트는
+    '확인 못 함'으로 남고, 검증이 커버리지 부족으로 알려 준다.
+    """
+    n = collections.Counter(r["name"] for r in rows)
+    return [r for r in rows if n[r["name"]] < limit]
 
 
 def _segmap(rows):
@@ -160,6 +212,27 @@ def _segmap(rows):
     return out
 
 
+def _key(s):
+    """비교용 정규화 — 공백·밑줄·하이픈을 지우고 소문자로.
+
+    셀 안에서 줄바꿈된 이름을 표 인식이 흩뜨리는 일이 있다
+    ('Sens1Active_Volt' → 'Sens1Active Volt _'). 구분자 차이는 추출 오류가 아니다.
+    """
+    return re.sub(r"[\s_\-]+", "", s).lower()
+
+
+def _same(a, b):
+    """두 읽기가 같은 이름을 가리키는가.
+
+    한쪽이 줄바꿈에서 잘려 머리나 꼬리만 남는 경우가 있어 포함 관계도 인정한다.
+    열이 통째로 밀리면 글자가 전혀 겹치지 않으므로, 이 완화로 진짜 오류를 놓치지 않는다.
+    """
+    x, y = _key(a), _key(b)
+    if not x or not y:
+        return False
+    return x == y or (len(min(x, y, key=len)) >= 4 and (x in y or y in x))
+
+
 def compare(pdf, table_rows=None):
     fam = E.classify(pdf)
     if table_rows is None:
@@ -170,8 +243,31 @@ def compare(pdf, table_rows=None):
     A = _segmap(table_rows)
     flat = {k for seg in A for k in seg}
     cands = ([raw_lontalk(pdf)] if fam == "lontalk"
-             else [raw_bacnet(pdf), raw_bare(pdf), raw_modbus(pdf)])
-    raw = max(cands, key=lambda rs: sum(1 for r in rs if (r["type"], r["inst"]) in flat))
+             else [raw_bacnet(pdf), raw_bacnet_rev(pdf), raw_bare(pdf),
+                   raw_modbus(pdf), raw_modbus_wide(pdf)])
+    tbl = {}
+    for seg in A:
+        tbl.update(seg)
+
+    def agree(rs):
+        """표와 겹치는 지점에서 **맞은 수 − 틀린 수**.
+
+        맞은 수만 세면 잡음이 많아도 덩치가 큰 경로가 이긴다 — 실제로 Modbus 완화
+        경로가 그래서 뽑혀 일치율이 100%에서 79%로 떨어졌다. 틀린 것을 빼야
+        '이 문서를 가장 바르게 읽는 경로'가 뽑힌다.
+        """
+        ok = bad = 0
+        for r in rs:
+            t = tbl.get((r["type"], r["inst"]))
+            if not t:
+                continue
+            if _same(t, r["name"]):
+                ok += 1
+            else:
+                bad += 1
+        return ok - bad
+    raw = drop_repeats(max(cands, key=lambda rs: (
+        agree(rs), sum(1 for r in rs if (r["type"], r["inst"]) in flat))))
     if len(A) == 1:
         # 표가 '장치 1대'라고 했으면 줄 경로도 쪼갤 이유가 없다. 부록이 본문 번호를
         # 되풀이해 줄 경로가 4조각으로 갈라지고 그 조각과 짝지어져 가짜 불일치가 났다.
@@ -191,13 +287,16 @@ def compare(pdf, table_rows=None):
             # (Danfoss 알림 오브젝트는 이름 칸이 'NC 100' 처럼 ID 그대로다)
             if re.fullmatch(r"%s[\s:_-]*%d" % (k[0], k[1]), a[k].strip(), re.I):
                 continue
+            # 한쪽이 줄바꿈에서 꼬리만 남아 서너 글자뿐이면 대조 근거가 못 된다
+            # ('Sens1Passive_Ohm' 이 'Ohm' 으로 잘린 경우). 틀렸다고 세는 대신
+            # 확인 못 한 것으로 두고, 커버리지 경고가 알려 준다.
+            if min(len(_key(a[k])), len(_key(b[k]))) < 4:
+                continue
             both += 1
             # 비교 전 공백을 고른다 — 'Circuit 1  Available'(이중 공백) 같은
             # 표기 차이는 추출 오류가 아니다.
             na, nb = re.sub(r"\s+", " ", a[k]), re.sub(r"\s+", " ", b[k])
-            # 줄 읽기는 셀 안에서 줄바꿈된 이름의 앞부분만 잡을 수 있다 → 접두 일치도 인정
-            (same if na == nb or na.startswith(nb) or nb.startswith(na) else diff)\
-                .append((i, k, na, nb))
+            (same if _same(na, nb) else diff).append((i, k, na, nb))
     return {"fam": fam, "segments": len(A), "table": len(table_rows), "raw": len(raw),
             "both": both, "same": len(same), "diff": diff,
             "rate": (len(same) / both) if both else 0.0,

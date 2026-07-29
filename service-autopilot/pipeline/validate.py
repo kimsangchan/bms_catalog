@@ -105,7 +105,9 @@ def check_model(m, eq, kg):
     # 7) 교차 대조 ★ 정답셋을 사람이 못 따라갈 때의 자동 방어선
     #    표 인식과 다른 경로(줄 읽기)로 원문을 한 번 더 읽어 비교한 결과를 쓴다.
     xc = m.get("crosscheck")
-    if xc:
+    if xc and xc.get("unverifiable"):
+        add("W", "crosscheck-unverifiable", xc["unverifiable"])
+    elif xc:
         rate, n = xc.get("rate", 0), xc.get("both", 0)
         if n < len(pts) * 0.5:
             add("W", "crosscheck-thin", "교차 대조가 %d/%d점만 덮음 — 나머지는 한 경로로만 읽었다"

@@ -19,9 +19,10 @@ import schema as S  # noqa: E402
 
 # 구분자로 '-', 공백, ':' 을 모두 받는다 — Danfoss 는 'AI: 0' 처럼 콜론을 쓴다.
 # NC(알림)·TL(추세)·EE(이벤트)·SO(스케줄)·CO(달력) 도 BACnet 표준 오브젝트다.
+# 인스턴스를 대괄호로 감싸는 표기도 받는다 — Belimo 는 'AI[1]' 처럼 쓴다.
 OBJID = re.compile(
     r"^(AI|AO|AV|BI|BO|BV|MI|MO|MV|MSI|MSO|MSV|NC|TL|EE|SO|CO|Dev|SV|LAV)"
-    r"[\s:-]*(\d{1,6})$", re.I)
+    r"[\s:-]*\[?\s*(\d{1,6})\s*\]?$", re.I)
 BARE_ID = re.compile(r"^(\d{1,6})$")
 # 'Analog Input, 1' / 'Binary Value 3' 처럼 타입을 풀어 쓴 형식 — CH530 문서가 이렇게 쓴다.
 # 이걸 못 읽어 RTHD(CH530) 문서에서 0점이 나왔다.
@@ -71,9 +72,13 @@ def _c(x):
 # 열 이름은 벤더·언어마다 다르다. 여기 한 곳에만 모아 둔다.
 # 새 벤더에서 표를 못 읽으면 대개 여기에 별칭 하나를 더하면 된다.
 COL = {
+    # 'object type' 은 마지막에 둔다 — Belimo 는 ID 열 이름이 'Object Type [Instance]'
+    # 이지만, 두 열이 다 있는 문서에서는 'object identifier' 가 먼저 잡혀야 한다.
     "id": ["object identifier", "identifier", "object id", "obj id", "id",
-           "objekt-id", "objektkennung"],
-    "name": ["object name", "point name", "diagnostic name",
+           "objekt-id", "objektkennung", "object type"],
+    # 'object nmae' 는 오타가 아니라 원문 그대로다 — Trane RTHD 문서가 그렇게 썼고,
+    # 이걸 못 알아봐서 설명 열이 이름 자리로 들어와 81행이 오염됐다.
+    "name": ["object name", "object nmae", "point name", "diagnostic name",
              "objektname", "nom de l'objet", "nombre del objeto"],
     "unit": ["unit", "units", "einheit", "unité", "unidad"],
     "desc": ["description", "beschreibung", "descripción"],
@@ -84,7 +89,8 @@ COL = {
     # 'register' 단독도 받는다 — Danfoss Modbus 모듈 문서가 이렇게 쓴다.
     # BACnet 문서에도 'Register Type' 열이 있지만 그쪽은 ID 열을 먼저 찾으므로
     # 이 별칭까지 오지 않는다.
-    "modbus": ["modbus register", "register address", "modbus-register", "register"],
+    "modbus": ["modbus register", "register address", "modbus-register",
+               "address", "register"],
 }
 
 

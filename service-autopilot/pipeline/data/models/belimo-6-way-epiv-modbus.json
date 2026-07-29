@@ -1,0 +1,292 @@
+{
+ "id": "belimo-6-way-epiv-modbus",
+ "equipId": "e16",
+ "vendor": "Belimo",
+ "model": "6-way EPIV (Modbus)",
+ "name": "6-way EPIV",
+ "cat": "HVAC.FIELD.ACTUATOR",
+ "tag": "actuator",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. Modbus 32점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "Modbus",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "MB",
+   "inst": 0,
+   "name": "Setpoint Setpoint for actuator between Min (Register No. 106) and Max (No. 107) Position Control Setpoint 0...100% refers to relative position 0...100% Flow Control Setpoint 0...33% refers to range Vmax1...0 l/h i.e. Setpoint 0% = Vmax1 / Setpoint 33% = 0 l/h Setpoint 67...100% refers to 0 l/h...Vmax2 i.e. Setpoint 67% = 0 l/h / Setpoint 100% = Vmax2",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Setpoint Setpoint for actuator between Min (Register No. 106) and Max (No. 107) Position Control Setpoint 0...100% refers to relative position 0...100% Flow Control Setpoint 0...33% refers to range Vmax1...0 l/h i.e. Setpoint 0% = Vmax1 / S"
+  },
+  {
+   "type": "MB",
+   "inst": 1,
+   "name": "Override Control Override setpoint with defined values",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Override Control Override setpoint with defined values · 범위 0: None 1: Open Sequence 1 (0%) 2: Open Sequence 2 (100%) 3: Close (50%) 4: Vmax Sequence 1 5: Vmax Sequence 2 Default: None(0) · Modbus reg 1"
+  },
+  {
+   "type": "MB",
+   "inst": 3,
+   "name": "Actuator Type",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Actuator Type · 범위 0: Actuator not connected 1: Air / Water 2: VAV / EPIV 3: Fire 4: Energy Valve 5: 6way EPIV · Modbus reg 3"
+  },
+  {
+   "type": "MB",
+   "inst": 4,
+   "name": "Relative Position",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Relative Position · 범위 0...10’000 · Modbus reg 4"
+  },
+  {
+   "type": "MB",
+   "inst": 5,
+   "name": "Absolute Position",
+   "unitRaw": "°",
+   "unit": "deg",
+   "note": "Absolute Position · 범위 0...max angle · Modbus reg 5"
+  },
+  {
+   "type": "MB",
+   "inst": 6,
+   "name": "Relative volumetric flow Relative volumetric flow of active Vmax (Vmax1 or Vmax2)",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Relative volumetric flow Relative volumetric flow of active Vmax (Vmax1 or Vmax2) · 범위 0...10’000 · Modbus reg 6"
+  },
+  {
+   "type": "MB",
+   "inst": 7,
+   "name": "Absolute volumetric flow Absolute flow in unit selected (Register No. 118) LowWord Lower 16 bit of 32 bit value",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Absolute volumetric flow Absolute flow in unit selected (Register No. 118) LowWord Lower 16 bit of 32 bit value · 범위 - · Modbus reg 7"
+  },
+  {
+   "type": "MB",
+   "inst": 8,
+   "name": "Absolute volumetric flow Absolute flow in unit selected (Register No. 118) HighWord Upper 16 bit of 32 bit value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Absolute volumetric flow Absolute flow in unit selected (Register No. 118) HighWord Upper 16 bit of 32 bit value · Modbus reg 8"
+  },
+  {
+   "type": "MB",
+   "inst": 9,
+   "name": "Absolute volumetric flow Absolute flow in l/h LowWord Lower 16 bit of 32 bit value",
+   "unitRaw": "l/h",
+   "unit": "Lph",
+   "note": "Absolute volumetric flow Absolute flow in l/h LowWord Lower 16 bit of 32 bit value · 범위 - · Modbus reg 9"
+  },
+  {
+   "type": "MB",
+   "inst": 10,
+   "name": "Absolute volumetric flow Absolute flow in l/h HighWord Upper 16 bit of 32 bit value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Absolute volumetric flow Absolute flow in l/h HighWord Upper 16 bit of 32 bit value · Modbus reg 10"
+  },
+  {
+   "type": "MB",
+   "inst": 11,
+   "name": "Absolute volumetric flow Absolute flow in gpm LowWord Lower 16 bit of 32 bit value",
+   "unitRaw": "gpm",
+   "unit": "gpm",
+   "note": "Absolute volumetric flow Absolute flow in gpm LowWord Lower 16 bit of 32 bit value · 범위 - · Modbus reg 11"
+  },
+  {
+   "type": "MB",
+   "inst": 12,
+   "name": "Absolute volumetric flow Absolute flow in gpm HighWord Upper 16 bit of 32 bit value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Absolute volumetric flow Absolute flow in gpm HighWord Upper 16 bit of 32 bit value · Modbus reg 12"
+  },
+  {
+   "type": "MB",
+   "inst": 13,
+   "name": "Setpoint absolute volumetric flow Absolute flow in unit selected (Register No. 118) LowWord Lower 16 bit of 32 bit value",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Setpoint absolute volumetric flow Absolute flow in unit selected (Register No. 118) LowWord Lower 16 bit of 32 bit value · 범위 - · Modbus reg 13"
+  },
+  {
+   "type": "MB",
+   "inst": 14,
+   "name": "Setpoint absolute volumetric flow Absolute flow in unit selected (Register No. 118) HighWord Upper 16 bit of 32 bit value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Setpoint absolute volumetric flow Absolute flow in unit selected (Register No. 118) HighWord Upper 16 bit of 32 bit value · Modbus reg 14"
+  },
+  {
+   "type": "MB",
+   "inst": 15,
+   "name": "Setpoint Analog Shows the setpoint in V if actuator is controlled by analog signal (Setpoint Source (Register No. 119) is Analog(0))",
+   "unitRaw": "V",
+   "unit": "V",
+   "note": "Setpoint Analog Shows the setpoint in V if actuator is controlled by analog signal (Setpoint Source (Register No. 119) is Analog(0)) · 범위 0...1’000 · Modbus reg 15"
+  },
+  {
+   "type": "MB",
+   "inst": 16,
+   "name": "Active Sequence Indicates active sequence",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Active Sequence Indicates active sequence · 범위 0: Sequence 1 (0…33%) 1: Sequence 2 (67…100%) 2: Dead Band (34…66%) · Modbus reg 16"
+  },
+  {
+   "type": "MB",
+   "inst": 100,
+   "name": "Series Number 1st part Each device has an unambiguous series number, which is either impressed on or glued to the housing The series number consists of 4 segments, although only parts 1, 2 and 4 are displayed on Modus Example: 00839-31324-064-008 1st part: 00839 2nd part: 31324 4th part: 008",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Series Number 1st part Each device has an unambiguous series number, which is either impressed on or glued to the housing The series number consists of 4 segments, although only parts 1, 2 and 4 are displayed on Modus Example: 00839-31324-0"
+  },
+  {
+   "type": "MB",
+   "inst": 101,
+   "name": "Series Number 2nd part",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Series Number 2nd part · 범위 - · Modbus reg 101"
+  },
+  {
+   "type": "MB",
+   "inst": 102,
+   "name": "Series Number 4th part",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Series Number 4th part · 범위 - · Modbus reg 102"
+  },
+  {
+   "type": "MB",
+   "inst": 103,
+   "name": "Firmware Version Firmware version of communication module Example: 302, Version 3.02",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Firmware Version Firmware version of communication module Example: 302, Version 3.02 · 범위 - · Modbus reg 103"
+  },
+  {
+   "type": "MB",
+   "inst": 104,
+   "name": "Malfunction and Service Information Value is bit-coded. More than one bit can be set to 1 All bits not mentioned in the enumeration are not used for this actuator range Error flow sensor: Error with the flow sensor Actuator can’t move: Mechanical overload due to blocked valve, etc. Flow with closed valve: Flow is measured but position of valve is closed (Dead Band) Airbubbles: Airbubbles in the hydronic system. As long as there are airbubbles in the system, position control mode is active, regardless off control mode setting (Register No. 117). Flow not reached: Setpoint cannot be reached within 3min during flow control Gear disengaged active: Gear disengaged button is pressed",
+   "unitRaw": "-",
+   "unit": null,
+   "note": "Malfunction and Service Information Value is bit-coded. More than one bit can be set to 1 All bits not mentioned in the enumeration are not used for this actuator range Error flow sensor: Error with the flow sensor Actuator can’t move: Mech"
+  },
+  {
+   "type": "MB",
+   "inst": 105,
+   "name": "Vmax Sequence 1",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Vmax Sequence 1 · 범위 500...10’000 Default: 10’000 · Modbus reg 105"
+  },
+  {
+   "type": "MB",
+   "inst": 106,
+   "name": "Vmax Sequence 2",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Vmax Sequence 2 · 범위 500...10’000 Default: 10’000 · Modbus reg 106"
+  },
+  {
+   "type": "MB",
+   "inst": 110,
+   "name": "Nominal volumetric flow Vnom in unit selected (Register No. 118) LowWord Lower 16 bit of 32 bit value",
+   "unitRaw": "UnitSel",
+   "unit": null,
+   "note": "Nominal volumetric flow Vnom in unit selected (Register No. 118) LowWord Lower 16 bit of 32 bit value · 범위 - · Modbus reg 110"
+  },
+  {
+   "type": "MB",
+   "inst": 111,
+   "name": "Nominal volumetric flow Vnom in unit selected (Register No. 118) HighWord Upper 16 bit of 32 bit value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Nominal volumetric flow Vnom in unit selected (Register No. 118) HighWord Upper 16 bit of 32 bit value · Modbus reg 111"
+  },
+  {
+   "type": "MB",
+   "inst": 112,
+   "name": "Nominal volumetric flow Vnom in l/h LowWord Lower 16 bit of 32 bit value",
+   "unitRaw": "l/h",
+   "unit": "Lph",
+   "note": "Nominal volumetric flow Vnom in l/h LowWord Lower 16 bit of 32 bit value · 범위 - · Modbus reg 112"
+  },
+  {
+   "type": "MB",
+   "inst": 113,
+   "name": "Nominal volumetric flow Vnom in l/h HighWord Upper 16 bit of 32 bit value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Nominal volumetric flow Vnom in l/h HighWord Upper 16 bit of 32 bit value · Modbus reg 113"
+  },
+  {
+   "type": "MB",
+   "inst": 114,
+   "name": "Nominal volumetric flow Vnom in gpm LowWord Lower 16 bit of 32 bit value",
+   "unitRaw": "gpm",
+   "unit": "gpm",
+   "note": "Nominal volumetric flow Vnom in gpm LowWord Lower 16 bit of 32 bit value · 범위 - · Modbus reg 114"
+  },
+  {
+   "type": "MB",
+   "inst": 115,
+   "name": "Nominal volumetric flow Vnom in gpm HighWord Upper 16 bit of 32 bit value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Nominal volumetric flow Vnom in gpm HighWord Upper 16 bit of 32 bit value · Modbus reg 115"
+  },
+  {
+   "type": "MB",
+   "inst": 116,
+   "name": "Control Mode",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Control Mode · 범위 0: Position control 1: Flow control Default: Flow control(1) · Modbus reg 116"
+  },
+  {
+   "type": "MB",
+   "inst": 117,
+   "name": "Unit Selection Flow",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Unit Selection Flow · 범위 0: m3/s 1: m3/h 2: l/s 3: l/min 4: l/h 5: gpm 6: cfm Default: l/h(4) · Modbus reg 117"
+  },
+  {
+   "type": "MB",
+   "inst": 118,
+   "name": "Setpoint Source Analog: Setpoint from analog signal 0...10 V on wire 3 Bus: Setpoint from Modbus (Register 1)",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Setpoint Source Analog: Setpoint from analog signal 0...10 V on wire 3 Bus: Setpoint from Modbus (Register 1) · 범위 0: Analog 1: Bus Default: Analog(0) · Modbus reg 118"
+  }
+ ],
+ "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "extractor": "table",
+ "sourceDoc": "belimo_Modbus-Register_6way-EPIV_en-gb.pdf",
+ "classifiedBy": "표지 제품명 근거: 'EPIV'",
+ "crosscheck": {
+  "unverifiable": "Belimo 소스가 교차 대조 불가로 표시 — 개요표와 상세표가 서로 다른 열이다"
+ }
+}

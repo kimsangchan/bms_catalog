@@ -1,0 +1,212 @@
+{
+ "id": "belimo-damper-actuator-modbus",
+ "equipId": "e16",
+ "vendor": "Belimo",
+ "model": "Damper Actuator (Modbus)",
+ "name": "Damper Actuator",
+ "cat": "HVAC.FIELD.ACTUATOR",
+ "tag": "actuator",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. Modbus 22점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "Modbus",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "MB",
+   "inst": 0,
+   "name": "Setpoint Setpoint for actuator between 0 and Max (No. 107)",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Setpoint Setpoint for actuator between 0 and Max (No. 107) · 범위 0…10‘000 Default: 0 · Modbus reg 0"
+  },
+  {
+   "type": "MB",
+   "inst": 1,
+   "name": "Override Control Override setpoint with defined values",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Override Control Override setpoint with defined values · 범위 0: None 1: Open 2: Close 3: Min 4: Mid 5: Max Default: None(0) · Modbus reg 1"
+  },
+  {
+   "type": "MB",
+   "inst": 2,
+   "name": "Command Initiation of actuator functions for service and test After command is sent, register returns to None(0) With Reset(4) all Malfunction and Service Information (Register No. 105) Information can be reset.",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Command Initiation of actuator functions for service and test After command is sent, register returns to None(0) With Reset(4) all Malfunction and Service Information (Register No. 105) Information can be reset. · 범위 0: None 1: - 2: Test 3:"
+  },
+  {
+   "type": "MB",
+   "inst": 3,
+   "name": "Actuator Type",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Actuator Type · 범위 0: Actuator not connected 1: Air / Water 2: VAV / EPIV 3: Fire 4: Energy Valve 5: 6way EPIV · Modbus reg 3"
+  },
+  {
+   "type": "MB",
+   "inst": 4,
+   "name": "Relative Position",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Relative Position · 범위 0...10‘000 · Modbus reg 4"
+  },
+  {
+   "type": "MB",
+   "inst": 5,
+   "name": "Absolute Position The unit depends on the device: [°] for actuators with rotary movement [mm] for actuators with linear movement",
+   "unitRaw": "° mm",
+   "unit": null,
+   "note": "Absolute Position The unit depends on the device: [°] for actuators with rotary movement [mm] for actuators with linear movement · 범위 0...max angle / stroke · Modbus reg 5"
+  },
+  {
+   "type": "MB",
+   "inst": 8,
+   "name": "Sensor 1 Value Current value of sensor 1, depending on the setting of the Sensor 1 Type (Register No. 108) [mV] if Sensor 1 Type (Register No. 108) is Active(1) [Ω] if Sensor 1 Type (Register No. 108) is Passive 1K(2) or Passive 20K(3) _ _ [0 / 1] if Sensor 1 Type (Register No. 108) is Switch(4) [°C] if Sensor 1 Type (Register No. 108) is PT1000 C(5) or NI1000 C(6) or _ _ NTC10K C(7) _ [°F] if Sensor 1 Type (Register No. 108) is PT1000 F(8) or NI1000 F(9) or _ _ NTC10K F(10) _",
+   "unitRaw": "mV Ω 0 / 1 °C °F",
+   "unit": null,
+   "note": "Sensor 1 Value Current value of sensor 1, depending on the setting of the Sensor 1 Type (Register No. 108) [mV] if Sensor 1 Type (Register No. 108) is Active(1) [Ω] if Sensor 1 Type (Register No. 108) is Passive 1K(2) or Passive 20K(3) _ _ "
+  },
+  {
+   "type": "MB",
+   "inst": 9,
+   "name": "Sensor 2 Value Current value of sensor 2, depending on the setting of the Sensor 2 Type (Register No. 108) [mV] if Sensor 2 Type (Register No. 108) is Active(1) [Ω] if Sensor 2 Type (Register No. 108) is Passive 1K(2) or Passive 20K(3) _ _ [0 / 1] if Sensor 2 Type (Register No. 108) is Switch(4) [°C] if Sensor 2 Type (Register No. 108) is PT1000 C(5) or NI1000 C(6) or _ _ NTC10K C(7) _ [°F] if Sensor 2 Type (Register No. 108) is PT1000 F(8) or NI1000 F(9) or _ _ NTC10K F(10) _",
+   "unitRaw": "mV Ω 0 / 1 °C °F",
+   "unit": null,
+   "note": "Sensor 2 Value Current value of sensor 2, depending on the setting of the Sensor 2 Type (Register No. 108) [mV] if Sensor 2 Type (Register No. 108) is Active(1) [Ω] if Sensor 2 Type (Register No. 108) is Passive 1K(2) or Passive 20K(3) _ _ "
+  },
+  {
+   "type": "MB",
+   "inst": 12,
+   "name": "Setpoint Analog Shows the setoint in % if actuator is control by analog signal",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Setpoint Analog Shows the setoint in % if actuator is control by analog signal · 범위 0...10‘000 · Modbus reg 12"
+  },
+  {
+   "type": "MB",
+   "inst": 99,
+   "name": "Bus Termination Indicates if bus termination (120 Ω) is enabled Bus termination can be set with the configuration tools",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Bus Termination Indicates if bus termination (120 Ω) is enabled Bus termination can be set with the configuration tools · 범위 0: inactive 1: active Default: inactive(0) · Modbus reg 99"
+  },
+  {
+   "type": "MB",
+   "inst": 100,
+   "name": "Series Number 1st part Each device has an unambiguous series number, which is either impressed on or glued to the housing The series number consists of 4 segments, although only parts 1, 2 and 4 are displayed on Modus Example: 00839-31324-064-008 1st part: 00839 2nd part: 31324 4th part: 008",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Series Number 1st part Each device has an unambiguous series number, which is either impressed on or glued to the housing The series number consists of 4 segments, although only parts 1, 2 and 4 are displayed on Modus Example: 00839-31324-0"
+  },
+  {
+   "type": "MB",
+   "inst": 101,
+   "name": "Series Number 2nd part",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Series Number 2nd part · 범위 – · Modbus reg 101"
+  },
+  {
+   "type": "MB",
+   "inst": 102,
+   "name": "Series Number 4th part",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Series Number 4th part · 범위 – · Modbus reg 102"
+  },
+  {
+   "type": "MB",
+   "inst": 103,
+   "name": "Firmware Version Firmware version of communication module Example: 302, Version 3.02",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Firmware Version Firmware version of communication module Example: 302, Version 3.02 · 범위 – · Modbus reg 103"
+  },
+  {
+   "type": "MB",
+   "inst": 104,
+   "name": "Malfunction and Service Information Value is bit-coded. More than one bit can be set to 1 All bits not montioned in the enumeration are not used for this actuator range Mechanical travel increased: The actuator has been moved outside the adapted working range Actuator cannot move: Mechanical overload e.g. blocked actuator, etc. Internal activity: Actuator performs a test run, adaption, etc. Gear disengaged: The gear disengaged button is pressed Bus Watchdog triggered: Timeout for the Bus Watchdog expired",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Malfunction and Service Information Value is bit-coded. More than one bit can be set to 1 All bits not montioned in the enumeration are not used for this actuator range Mechanical travel increased: The actuator has been moved outside the ad"
+  },
+  {
+   "type": "MB",
+   "inst": 105,
+   "name": "Min Min has to be ≤ Max -30%",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Min Min has to be ≤ Max -30% · 범위 0...Max - 3‘000 · Modbus reg 105"
+  },
+  {
+   "type": "MB",
+   "inst": 106,
+   "name": "Max Max has to be ≥ Min +30%",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Max Max has to be ≥ Min +30% · 범위 Min + 3‘000...10‘000 Default: 10‘000 · Modbus reg 106"
+  },
+  {
+   "type": "MB",
+   "inst": 107,
+   "name": "Sensor 1 Type",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Sensor 1 Type · 범위 0: None 1: Active 2: Passive 1K _ 3: Passive 20K _ 4: Switch 5: PT1000 C _ 6: NI1000 C _ 7: NTC10K C _ 8: PT1000 F _ 9: NI1000 F _ 10: NTC10K F _ · Modbus reg 107"
+  },
+  {
+   "type": "MB",
+   "inst": 108,
+   "name": "Bus Fail Position Modbus communication is not monitored as standard. In the event of a breakdown in communication, the actuator retains the current setpoint The bus implementation tracks the Modbus communication. If neither the Setpoint (Register No. 1) nor the Override Control (Register No. 2) is renewed before the Timeout for Bus Watchdog (Register No. 110) expires, the actuator controls to the Bus Fail Position Triggered bus watchdog is indicated in the Malfunction and Service Information (Register No. 105)",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Bus Fail Position Modbus communication is not monitored as standard. In the event of a breakdown in communication, the actuator retains the current setpoint The bus implementation tracks the Modbus communication. If neither the Setpoint (Re"
+  },
+  {
+   "type": "MB",
+   "inst": 109,
+   "name": "Timeout for Bus Watchdog in s Time until Bus Fail will be detected. If Bus Watchdog = 0 then deactivated If Bus Fail Position (Register No. 109) different from 0, the Bus Fail Position becomes active after the Timeout for Bus Watchdog is expired",
+   "unitRaw": "s",
+   "unit": "s",
+   "note": "Timeout for Bus Watchdog in s Time until Bus Fail will be detected. If Bus Watchdog = 0 then deactivated If Bus Fail Position (Register No. 109) different from 0, the Bus Fail Position becomes active after the Timeout for Bus Watchdog is ex"
+  },
+  {
+   "type": "MB",
+   "inst": 114,
+   "name": "Sensor 2 Type",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Sensor 2 Type · 범위 0: None 1: Active 2: Passive 1K _ 3: Passive 20K _ 4: Switch 5: PT1000 C _ 6: NI1000 C _ 7: NTC10K C _ 8: PT1000 F _ 9: NI1000 F _ 10: NTC10K F _ · Modbus reg 114"
+  },
+  {
+   "type": "MB",
+   "inst": 118,
+   "name": "Setpoint Source Analog: Setpoint from analog signal 0...10 V on wire 3 Bus: Setpoint from Modbus (Register 1)",
+   "unitRaw": "–",
+   "unit": null,
+   "note": "Setpoint Source Analog: Setpoint from analog signal 0...10 V on wire 3 Bus: Setpoint from Modbus (Register 1) · 범위 0: Analog 1: Bus Default: Bus(1) · Modbus reg 118"
+  }
+ ],
+ "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "extractor": "table",
+ "sourceDoc": "belimo_Modbus-Register_Damper_actuator_V3_4_en-gb.pdf",
+ "classifiedBy": "표지 제품명 근거: 'Actuator'",
+ "crosscheck": {
+  "unverifiable": "Belimo 소스가 교차 대조 불가로 표시 — 개요표와 상세표가 서로 다른 열이다"
+ }
+}
