@@ -571,7 +571,10 @@ function renderModels(models, l3){
           return val + (u && u!=='—' && !dup ? ' '+u : '');
         }));
       });
-      h += sec('형번 비교 — 핵심 정격', vs.length)
+      if(m.specFromName) h += '<div class="msg" style="margin:0 18px 8px"><p>'
+       + '사양은 같은 제품의 <b>'+esc(m.specFromName)+'</b> 문서에서 가져왔어요 — '
+       + '프로토콜만 다르고 기기는 같아요.</p></div>';
+    h += sec('형번 비교 — 핵심 정격', vs.length)
          + table({header:['형번'].concat(used.map(function(k){return k[0];})),
                   rows:crows, key:'vcmp'+m.id});
     }

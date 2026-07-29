@@ -115,6 +115,9 @@ SOURCES = [
             "https://files.danfoss.com/download/Drives/MG92L103.pdf",
             "https://files.danfoss.com/download/Drives/DKDDPFP100A402_HVAC_Basic.pdf",
             "https://assets.danfoss.com/documents/latest/514925/AJ275648114271en-001201.pdf",
+            # 소프트스타터 MCD 500 — 형번별 정격전류·기동 특성
+            "https://files.danfoss.com/download/Drives/DKDDPFP550A228_MCD500_Lores.pdf",
+            "https://files.danfoss.com/download/Drives/MG17K802.pdf",
         ],
         "extractor": "layout",
         "access": "무로그인",
@@ -199,6 +202,9 @@ SOURCES = [
             "equipment/chillers/air-cooled/ascend/AC-PRC001G-EN_01302022.pdf",
             "https://www.trane.com/content/dam/Trane/Commercial/global/products-systems/"
             "equipment/chillers/water-cooled/helical-rotary/RLC-PRC040F-EN_08302021.pdf",
+            # Agility(HDWA) 는 elibrary 에 없고 trane.com 에만 있다 (실측: elibrary 404)
+            "https://www.trane.com/content/dam/Trane/Commercial/global/products-systems/"
+            "equipment/chillers/water-cooled/Agility/HDWA-PRC004A-EN_05132021.pdf",
         ] + [
             # 나머지 계열 — elibrary 직링크. 문서번호는 <계열>-PRC###<개정>-EN_<날짜>
             ELIB_CATALOG + n for n in [
@@ -208,7 +214,7 @@ SOURCES = [
                 "AC-PRC002K-EN_05162025.pdf",     # Ascend ACS/ACX 공랭
                 "AC-PRC002G-EN_06022023.pdf",     # Ascend ACS/ACX (구판)
                 "AC-PRC005C-EN_12132024.pdf",     # Ascend ACR
-                "HDWA-PRC004D-EN_05262025.pdf",   # Agility 마그네틱 원심 (HDWA)
+                "RLC-PRC049K-EN_04022022.pdf",    # Sintesis RTAF 공랭 스크류
             ]],
         "extractor": "spec",
         "access": "무로그인",

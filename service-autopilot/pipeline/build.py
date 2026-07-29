@@ -41,7 +41,7 @@ def load():
         m = json.load(open(f, encoding="utf-8"))
         base = m["id"].rsplit("-idu", 1)[0].rsplit("-odu", 1)[0]
         models.setdefault(m["equipId"], []).append({
-            "vendor": m["vendor"], "model": m["model"], "name": m["name"],
+            "id": m["id"], "vendor": m["vendor"], "model": m["model"], "name": m["name"],
             "cat": m["cat"], "tag": m["tag"], "status": m.get("status", "active"),
             "summary": m.get("summary", ""), "has": m.get("has", {}),
             "spec": m.get("spec", []), "comm": m.get("comm", []), "io": m.get("io", []),
@@ -49,11 +49,23 @@ def load():
             "specTables": m.get("specTables", []),
             "variants": m.get("variants", []),
             "photo": m.get("photo"), "photoSource": m.get("photoSource"),
+            "specFrom": m.get("specFrom"),
             "docs": docs_by_model.get(m["id"]) or docs_by_model.get(base) or [],
             "points": [{"inst": p["inst"], "type": p["type"],
                         "unitDisp": p.get("unitRaw") or "—", "name": p["name"],
                         "note": p.get("note", "")} for p in m.get("points", [])],
         })
+    # 사양 참조 풀기 — 같은 제품의 다른 프로토콜 판은 사양을 공유한다.
+    # 데이터에는 참조만 두고(중복 방지), 화면에 낼 때 실제 값을 채운다.
+    by_id = {m["id"]: m for v in models.values() for m in v}
+    for v in models.values():
+        for m in v:
+            src = by_id.get(m.pop("specFrom", None) or "")
+            if src:
+                m["variants"] = src.get("variants", [])
+                m["specTables"] = src.get("specTables", [])
+                m["photo"] = m.get("photo") or src.get("photo")
+                m["specFromName"] = src["name"]
     for v in models.values():
         v.sort(key=lambda x: (x["vendor"], x["model"]))
     l3 = json.load(open(os.path.join(DATA, "l3-status.json"), encoding="utf-8"))
