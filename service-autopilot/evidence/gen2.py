@@ -128,6 +128,9 @@ td.n{color:var(--dim);white-space:nowrap;font-size:11.5px}
 .mlist button{display:inline-flex;align-items:center;gap:6px}
 .mpre{padding:9px 18px 0;font-size:11px;letter-spacing:.05em;color:var(--faint);font-weight:700}
 .mpr{font-size:10px;letter-spacing:.04em;color:var(--faint);font-weight:700}
+.ms{font-size:10px;letter-spacing:.03em;padding:1px 5px;border-radius:3px;
+ background:var(--sel);color:var(--accent);font-weight:700}
+nav .sm{color:var(--accent)}
 .vlist{display:flex;gap:5px;flex-wrap:wrap;padding:0 18px 10px}
 .vlist button{padding:4px 10px;border:1px solid var(--line);border-radius:6px;
  font-family:var(--mono);font-size:11.5px}
@@ -177,7 +180,8 @@ td.n{color:var(--dim);white-space:nowrap;font-size:11.5px}
   <div class="brand">BMS 장비 카탈로그<span>Haystack 4 기준 · 2026-07-27</span></div>
   <input id="q" placeholder="장비 · 포인트 · 태그 · 모델 검색" autocomplete="off">
   <div class="tot"><span>장비 <b>__NEQ__</b></span><span>포인트 <b>__TOTP__</b></span>
-   <span>모델 <b>__NMODEL__</b></span><span>모델 포인트 <b>__NMPTS__</b></span></div>
+   <span>모델 <b>__NMODEL__</b></span><span>모델 포인트 <b>__NMPTS__</b></span>
+   <span>정격 사양 <b>__NSPEC__</b><small>모델</small></span></div>
 </div>
 <div class="app">
   <aside id="nav"></aside>
@@ -214,7 +218,10 @@ function buildNav(){
     else h += '<div class="gh" style="height:6px"></div>';
     list.forEach(function(e){
       var nm = (D.models[e.id]||[]).length;
-      h += '<button data-id="'+e.id+'">'+esc(e.title)+'<i>'+e.np+(nm?' · M'+nm:'')+'</i></button>';
+      // 사양이 있는 모델 수까지 보여 준다 — 없으면 어느 계열을 눌러야 할지 알 수 없다
+      var ns = (D.models[e.id]||[]).filter(hasSpec).length;
+      h += '<button data-id="'+e.id+'">'+esc(e.title)+'<i>'+e.np+(nm?' · M'+nm:'')
+         + (ns?' · <b class="sm">S'+ns+'</b>':'')+'</i></button>';
     });
   });
   nav.innerHTML = h;
@@ -358,9 +365,10 @@ function renderModels(models, l3){
                  .replace(/\s*\((BACnet|LonTalk|Modbus)\)\s*$/i,'') || x.model;
       var pr = (x.comm||[]).map(function(c){return c[0];});
       var tail = pr.length ? '<span class="mpr">'+esc(pr.join('·'))+'</span>' : '';
-      var n = (x.points||[]).length;
+      var n = (x.points||[]).length, sn = specCount(x);
       return '<button data-mi="'+i+'" aria-pressed="'+(i===mi)+'">'+esc(lbl)+tail
-           + (n ? '<span class="mn">'+n+'</span>' : '') + '</button>';
+           + (n ? '<span class="mn">'+n+'</span>' : '')
+           + (sn ? '<span class="ms">사양 '+sn+'</span>' : '') + '</button>';
     }).join('') + '</div>';
   }
   h += '<div class="mtop"><div class="vd">'+esc(m.vendor)+'</div><h2>'+esc(m.name)+'</h2>'
@@ -439,6 +447,11 @@ var QLABEL = {power:'전력', current:'전류', voltage:'전압', frequency:'주
   speed:'회전수', torque:'토크', temperature:'온도', weight:'중량',
   dimension:'치수', noise:'소음', protection:'보호등급'};
 
+function specCount(m){
+  return (m.specTables||[]).length + (m.variants||[]).length + ((m.spec||[]).length?1:0);
+}
+function hasSpec(m){ return specCount(m) > 0; }
+
 function sec(t,n){ return '<div class="sec">'+esc(t)+(n?' <b>'+n+'</b>':'')+'</div>'; }
 
 function render(){
@@ -480,7 +493,8 @@ buildNav(); render();
 
 out = (HTML.replace("__DATA__", json.dumps(DATA, ensure_ascii=False).replace("</", "<\\/"))
            .replace("__NEQ__", str(len(equips))).replace("__TOTP__", str(TOTP))
-           .replace("__NMODEL__", str(NMODEL)).replace("__NMPTS__", str(NMPTS)))
+           .replace("__NMODEL__", str(NMODEL)).replace("__NMPTS__", str(NMPTS))
+           .replace("__NSPEC__", str(NSPEC)))
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 open(OUT, "w", encoding="utf-8").write(out)
 print("생성:", OUT, "%.0f KB" % (len(out.encode("utf-8")) / 1024))

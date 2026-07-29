@@ -68,14 +68,18 @@ def main():
     tots = sum(e["ns"] for e in equips)
     nmodel = sum(len(v) for v in models.values())
     nmpts = sum(len(m["points"]) for v in models.values() for m in v)
+    # 사양이 있는 모델 수 — 어느 모델을 눌러야 정격이 나오는지 화면에서 알려면 필요하다
+    nspec = sum(1 for v in models.values() for m in v
+                if m.get("specTables") or m.get("variants") or m.get("spec"))
     out = (html.replace("__DATA__", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
                .replace("__NEQ__", str(len(equips))).replace("__TOTP__", str(totp))
-               .replace("__NMODEL__", str(nmodel)).replace("__NMPTS__", str(nmpts)))
+               .replace("__NMODEL__", str(nmodel)).replace("__NMPTS__", str(nmpts))
+               .replace("__NSPEC__", str(nspec)))
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     open(OUT, "w", encoding="utf-8").write(out)
     print("빌드 완료 → %s  (%.0f KB)" % (os.path.relpath(OUT, ROOT), len(out.encode()) / 1024))
-    print("  장비 %d계열 · 공통 포인트 %d · 사양 %d · 모델 %d건 · 모델 포인트 %d점"
-          % (len(equips), totp, tots, nmodel, nmpts))
+    print("  장비 %d계열 · 공통 포인트 %d · 모델 %d건 · 모델 포인트 %d점 · 정격 사양 %d모델"
+          % (len(equips), totp, nmodel, nmpts, nspec))
 
 
 if __name__ == "__main__":
