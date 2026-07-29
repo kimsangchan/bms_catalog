@@ -162,6 +162,76 @@ SOURCES = [
         "access": "무로그인",
     },
     {
+        "id": "ebmpapst-modbus",
+        "vendor": "ebm-papst",
+        "kind": "Modbus 파라미터 명세",
+        "note": "EC 팬 전 시리즈의 Modbus 홀딩 레지스터 명세. 송풍기 계열(e13)을 채운다. "
+                "회전수는 D010(상대값 0~64000)×D119(최대 rpm)로 계산한다.",
+        "enumerate": "list",
+        "urls": [
+            "https://www.ebmpapst.com/content/dam/ebm-papst/loc/europe/gb/"
+            "modbus-parameter-specifications/MODBUS%20Lite%20Basic%20Functionality%20V5_01.pdf",
+            "https://www.ebmpapst.com/content/dam/ebm-papst/loc/europe/gb/"
+            "modbus-parameter-specifications/MODBUS_ACE_RadiCal%20in%20Scroll%20V1_0.pdf",
+            "https://ebmpapst.se/sv/dat/site_common/upload/"
+            "MODBUS_parameter_specifications_V5.00.pdf",
+            "https://stepimassets.blob.core.windows.net/dsassetsprod/MODBUS_6_4_EXCERPT_EN.PDF",
+        ],
+        "extractor": "auto",
+        "access": "무로그인",
+    },
+    {
+        "id": "vertiv-liebert",
+        "vendor": "Vertiv",
+        "kind": "프로토콜 레퍼런스",
+        "note": "IntelliSlot 통신카드의 Modbus·BACnet 데이터포인트. 항온항습기(CRAC)·"
+                "UPS가 붙는다 — 계열 e7(FCU·CRAC)·e19(전력)를 채운다.",
+        "enumerate": "list",
+        "urls": [
+            "https://www.vertiv.com/4a1e3e/globalassets/shared/"
+            "vertiv-liebert-intellislot-modbus-and-bacnet-protocols-reference-guide-sl-28170.pdf",
+            "https://www.ccontrols.com/support/dp/LiebertIntelliSlot.pdf",
+            "https://www.vertiv.com/48eb8d/globalassets/products/"
+            "monitoring-control-and-management/software/"
+            "liebert-sitescan-web-centralized-monitoring-and-control/"
+            "liebert-sitescan-web-modbus-and-bacnet-protocols-user-guide-sl-27431.pdf",
+        ],
+        "extractor": "auto",
+        "access": "무로그인",
+    },
+    {
+        "id": "wilo-if-module",
+        "vendor": "Wilo",
+        "kind": "IF-모듈 데이터포인트",
+        "note": "펌프용 Modbus·BACnet IF-모듈의 데이터포인트 목록. 계열 e14(펌프)를 채운다.",
+        "enumerate": "list",
+        "urls": [
+            "https://cms.media.wilo.com/cdndoc/wilo110050/794169/wilo110050.pdf",
+            "https://cms.media.wilo.com/cdndoc/"
+            "wilo_f_020000290002833f00010092/871915/"
+            "wilo_f_020000290002833f00010092.pdf",
+            "https://wilo.cdn.mediamid.com/cdndoc/wilo54872/350003/wilo54872.pdf",
+        ],
+        "extractor": "auto",
+        "access": "무로그인",
+    },
+    {
+        "id": "schneider-powerlogic",
+        "vendor": "Schneider Electric",
+        "kind": "전력계측기 매뉴얼",
+        "note": "PowerLogic PM5000 계열 전력 계측기. 계열 e19(전력 설비)를 채운다. "
+                "⚠ 레지스터 목록 정본은 xls/xlsx 라 별도 취입이 필요하고, 여기 URL 은 "
+                "사용자 매뉴얼(레지스터 표 일부 포함)이다.",
+        "enumerate": "list",
+        "urls": [
+            "https://productinfo.se.com/pm5300/5be97f3b347bdf0001d99c87/"
+            "PM5300%20User%20Manual/English/EAV15107-EN11.pdf",
+            "https://docs.rs-online.com/fd45/0900766b815685bf.pdf",
+        ],
+        "extractor": "auto",
+        "access": "무로그인",
+    },
+    {
         "id": "jci-york-datamap",
         "vendor": "Johnson Controls / York",
         "kind": "데이터맵 (HTML)",

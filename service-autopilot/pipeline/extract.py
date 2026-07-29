@@ -24,6 +24,9 @@ OBJID = re.compile(
     r"^(AI|AO|AV|BI|BO|BV|MI|MO|MV|MSI|MSO|MSV|NC|TL|EE|SO|CO|Dev|SV|LAV)"
     r"[\s:-]*\[?\s*(\d{1,6})\s*\]?$", re.I)
 BARE_ID = re.compile(r"^(\d{1,6})$")
+# ebm-papst 는 레지스터를 'D000'·'D14A' 처럼 문자+16진으로 쓴다. 값은 16진이다
+# (문서에 D149·D14A 가 이어진다). 원표기는 비고에 남긴다.
+HEX_REG = re.compile(r"^([A-Z])([0-9A-F]{3})$")
 # 'Analog Input, 1' / 'Binary Value 3' 처럼 타입을 풀어 쓴 형식 — CH530 문서가 이렇게 쓴다.
 # 이걸 못 읽어 RTHD(CH530) 문서에서 0점이 나왔다.
 SPELLED = re.compile(
@@ -79,6 +82,7 @@ COL = {
     # 'object nmae' 는 오타가 아니라 원문 그대로다 — Trane RTHD 문서가 그렇게 썼고,
     # 이걸 못 알아봐서 설명 열이 이름 자리로 들어와 81행이 오염됐다.
     "name": ["object name", "object nmae", "point name", "diagnostic name",
+             "designation",
              "objektname", "nom de l'objet", "nombre del objeto"],
     "unit": ["unit", "units", "einheit", "unité", "unidad"],
     "desc": ["description", "beschreibung", "descripción"],
@@ -89,8 +93,8 @@ COL = {
     # 'register' 단독도 받는다 — Danfoss Modbus 모듈 문서가 이렇게 쓴다.
     # BACnet 문서에도 'Register Type' 열이 있지만 그쪽은 ID 열을 먼저 찾으므로
     # 이 별칭까지 오지 않는다.
-    "modbus": ["modbus register", "register address", "modbus-register",
-               "address", "register"],
+    "modbus": ["modbus register", "modbus address", "register address",
+               "modbus-register", "address", "register"],
 }
 
 
@@ -159,6 +163,8 @@ def extract_tables(pdf, default_type=None):
                     typ, inst = pid
                 elif mb_mode and BARE_ID.match(raw_id):
                     typ, inst = "MB", int(raw_id)
+                elif mb_mode and HEX_REG.match(raw_id):
+                    typ, inst = "MB", int(HEX_REG.match(raw_id).group(2), 16)
                 elif BARE_ID.match(raw_id) and default_type:
                     typ, inst = default_type, int(raw_id)
                 else:

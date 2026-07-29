@@ -16,6 +16,10 @@
   python register.py            등록 계획만 (기존 모델은 건너뜀)
   python register.py --run      실제로 기록
   python register.py --all      이미 등록된 문서도 다시 계산해 보여준다
+  python register.py --only ebm --run   파일 이름에 'ebm' 이 든 문서만
+
+큰 문서(10MB 이상)는 표 인식이 느려 전체 훑기가 몇 분 걸린다. 그럴 때 --only 로
+필요한 것만 돌린다.
 """
 import collections
 import glob
@@ -132,6 +136,7 @@ def plan_one(fname, vendor="Trane"):
 
 def main(argv):
     run, show_all = "--run" in argv, "--all" in argv
+    only = argv[argv.index("--only") + 1].lower() if "--only" in argv else None
     known = {}
     for f in glob.glob(os.path.join(DATA, "models", "*.json")):
         m = json.load(open(f, encoding="utf-8"))
@@ -148,6 +153,8 @@ def main(argv):
     print("─" * 92)
     for pdf in sorted(glob.glob(os.path.join(RAW, "*.pdf"))):
         fname = os.path.basename(pdf)
+        if only and only not in fname.lower():
+            continue
         # 이미 이 문서로 만든 모델이 있으면 건너뛴다. --run 일 때도 마찬가지다 —
         # 예전에 --run 에서만 이 검사를 빼놨다가 같은 문서가 옛 이름·새 이름으로
         # 두 번 등록돼 모델 11건이 중복됐다.

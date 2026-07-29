@@ -185,6 +185,22 @@ def raw_modbus(pdf):
     return _drop_sparse(out)
 
 
+def raw_hexreg(pdf):
+    """'D000' 형식 레지스터 — ebm-papst 가 문자+16진으로 쓴다. 번호 줄 → 다음 이름 줄."""
+    out, pending = [], None
+    for pi, t in _lines(pdf):
+        m = E.HEX_REG.match(t)
+        if m:
+            pending = (pi, int(m.group(2), 16))
+            continue
+        if pending is None:
+            continue
+        if E.nameish(t) and len(t) >= 3:
+            out.append({"page": pending[0], "type": "MB", "inst": pending[1], "name": t})
+        pending = None
+    return _drop_sparse(out)
+
+
 def drop_repeats(rows, limit=3):
     """줄 경로에서 같은 이름이 여러 인스턴스에 반복되면 그건 포인트 이름이 아니다.
 
@@ -244,7 +260,7 @@ def compare(pdf, table_rows=None):
     flat = {k for seg in A for k in seg}
     cands = ([raw_lontalk(pdf)] if fam == "lontalk"
              else [raw_bacnet(pdf), raw_bacnet_rev(pdf), raw_bare(pdf),
-                   raw_modbus(pdf), raw_modbus_wide(pdf)])
+                   raw_modbus(pdf), raw_modbus_wide(pdf), raw_hexreg(pdf)])
     tbl = {}
     for seg in A:
         tbl.update(seg)

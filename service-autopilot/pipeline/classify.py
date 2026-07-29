@@ -51,6 +51,16 @@ TITLE_RULES = [
     # 터미널 유닛이 액추에이터보다 먼저다 — VAV 박스에도 구동기가 달려 있어
     # 아래 구동기 규칙에 먼저 걸리면 안 된다.
     ("e6", "HVAC.AIR.TERMINAL.VAV", "vav", r"\bVAV\b|volumetric flow"),
+    # 송풍기 — EC 팬 문서의 포인트 이름은 'Reset'·'Setpoint' 처럼 범용이라
+    # 부속 증거가 안 나온다. 표지의 제품군으로 판정한다.
+    ("e13", "HVAC.AIR.FAN", "fan",
+     r"\bEC[- ]?fan\b|ebm-?papst|axial fan|centrifugal fan|\bRadiCal\b|\bRadiPac\b"),
+    # 항온항습기 — 데이터센터 정밀공조
+    ("e7", "HVAC.AIR.CRAC", "crac",
+     r"\bCRAC\b|\bCRAH\b|precision cooling|computer room air|\biCOM\b|thermal management"),
+    # 전력 계측기
+    ("e19", "ELEC.METER", "elecMeter",
+     r"power meter|energy meter\b.*electric|powerlogic|\bPM5\d{3}\b|power quality"),
     # 밸브·댐퍼 구동기, 계량·계측기 — 장비가 아니라 장비에 붙는 현장 기기다.
     # 계열 e16(계량·계측·제어기)에 넣는다.
     ("e16", "HVAC.FIELD.METER", "meter",
@@ -150,7 +160,7 @@ NOT_PRODUCT = re.compile(
     r"points? list|register list)\b.*|"
     # 판·버전·목차·고지
     r"edition\b.*|version\b\s*[\d.]+|v\s*\d+[\d.]*|contents?|table of contents|"
-    r"copyright|all rights reserved|"
+    r"copyright|all rights reserved|document:.*|excerpt|based on .*|"
     # 주소
     r"www\.|https?:|\S+\.(com|net|org)|"
     r"convenient .*"
@@ -184,7 +194,19 @@ def title_info(pdf):
         ctl = re.sub(r"Integration Poin[st]*s? List", "", lines[0], flags=re.I).strip()
         usable = [x for x in usable if x != lines[0]]
 
-    picked = [x for x in usable if PRODUCTISH.search(x)] or usable
+    # ebm-papst 표지는 '<문서종류> / for / <제품군>' 3줄 구성이다. 따옴표를 두르기도
+    # 하고 안 두르기도 한다 — 'for' 바로 다음 줄을 제품군으로 본다.
+    named = []
+    for i, x in enumerate(raw):
+        if x.strip().lower() == "for" and i + 1 < len(raw):
+            nxt = re.sub(r'^["""\'“”]|["""\'“”]$', "",
+                         re.sub(r"\s+", " ", raw[i + 1]).strip())
+            if 2 < len(nxt) < 60 and not NOT_PRODUCT.match(bare(nxt)):
+                named.append(nxt)
+    if named:
+        picked = named
+    else:
+        picked = [x for x in usable if PRODUCTISH.search(x)] or usable
     if not picked and d.page_count > 1:
         # 표지가 온통 꼬리말·목차인 문서가 있다 (Belimo). 두 번째 장 머리에
         # 제품명과 한 줄 설명이 나온다.
