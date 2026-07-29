@@ -1,13 +1,13 @@
 {
- "id": "trane-symbio-700-precedent-axiom-rooftop-wshp-lontalk-dac",
+ "id": "trane-symbio-700-odyssey-lontalk-scc",
  "equipId": "e5",
  "vendor": "Trane",
- "model": "Symbio™ 700 — Precedent/Axiom Rooftop WSHP (LonTalk) · DAC 프로파일 (급기 제어)",
- "name": "Symbio™ 700 지붕형 수열원 히트펌프 — LonTalk · DAC 프로파일 (급기 제어)",
- "cat": "HVAC.AIR.RTU.WSHP",
+ "model": "Symbio™ 700 — Odyssey™ (LonTalk) · SCC 프로파일 (실내 쾌적 제어)",
+ "name": "Symbio™ 700 Odyssey™ · SCC 프로파일 (실내 쾌적 제어)",
+ "cat": "HVAC.AIR.RTU",
  "tag": "rooftop",
  "status": "active",
- "summary": "공개 통합 포인트 리스트에서 자동 추출했다. LonTalk 144점 · DAC 프로파일 (급기 제어)",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. LonTalk 137점",
  "has": {
   "spec": false,
   "points": true
@@ -27,79 +27,87 @@
  "points": [
   {
    "type": "NCI",
-   "inst": 4,
-   "name": "nciCoolResetEn",
+   "inst": 0,
+   "name": "nciBldgStaticSP",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT switch _ · Cooling Reset Type Status"
+   "note": "SNVT press p · Space Static Pressure Setpoint"
+  },
+  {
+   "type": "NCI",
+   "inst": 1,
+   "name": "nciBypassTime",
+   "unitRaw": null,
+   "unit": null,
+   "note": "_ _ SNVT time min _ _ · Occupied Bypass Time"
+  },
+  {
+   "type": "NCI",
+   "inst": 2,
+   "name": "nciCabinetStyle",
+   "unitRaw": null,
+   "unit": null,
+   "note": "UCPT cabinet style _ _ · Cabinet Style*"
+  },
+  {
+   "type": "NCI",
+   "inst": 3,
+   "name": "nciCool",
+   "unitRaw": null,
+   "unit": null,
+   "note": "UCPT cool type _ _ · Cool Type*"
+  },
+  {
+   "type": "NCI",
+   "inst": 4,
+   "name": "nciCRC",
+   "unitRaw": null,
+   "unit": null,
+   "note": "UCPT crc _ · Manufacturer-defined*"
   },
   {
    "type": "NCI",
    "inst": 5,
-   "name": "nciCRC",
+   "name": "nciDAClSP",
    "unitRaw": null,
    "unit": null,
-   "note": "UCPT crc _ · Manufacturer-defined(a)"
+   "note": "SNVT temp p · Discharge Air Cooling Setpoint"
   },
   {
    "type": "NCI",
    "inst": 6,
-   "name": "nciDAClSP",
+   "name": "nciDAHtSP",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Discharge Air Cooling Setpoint"
+   "note": "_ _ SNVT temp p · Discharge Air Heating Setpoint"
   },
   {
    "type": "NCI",
    "inst": 7,
-   "name": "nciDADewpointSP",
+   "name": "nciDAReheatSP",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Discharge Air Dewpoint Setpoint"
+   "note": "_ _ SNVT temp p · Discharge Air Reheat Setpoint"
   },
   {
    "type": "NCI",
    "inst": 8,
-   "name": "nciDAHtSP",
+   "name": "nciDevBuildNum",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Discharge Air Heating Setpoint"
+   "note": "_ _ U16 · Device Build Number"
   },
   {
    "type": "NCI",
    "inst": 9,
-   "name": "nciDAReheatSP",
+   "name": "nciDeviceConfig",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Discharge Air Reheat Setpoint"
+   "note": "UCPTdeviceConfig · Manufacturer-defined*"
   },
   {
    "type": "NCI",
    "inst": 10,
-   "name": "nciDaytime",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT temp p _ _ · Daytime Warmup Initiation Setpoint"
-  },
-  {
-   "type": "NCI",
-   "inst": 11,
-   "name": "nciDevBuildNum",
-   "unitRaw": null,
-   "unit": null,
-   "note": "U16 · Device Build Number"
-  },
-  {
-   "type": "NCI",
-   "inst": 12,
-   "name": "nciDeviceConfig",
-   "unitRaw": null,
-   "unit": null,
-   "note": "UCPTdeviceConfig · Manufacturer-defined(a)"
-  },
-  {
-   "type": "NCI",
-   "inst": 13,
    "name": "nciDevMajVer",
    "unitRaw": null,
    "unit": null,
@@ -107,7 +115,7 @@
   },
   {
    "type": "NCI",
-   "inst": 14,
+   "inst": 11,
    "name": "nciDevMinVer",
    "unitRaw": null,
    "unit": null,
@@ -115,63 +123,55 @@
   },
   {
    "type": "NCI",
-   "inst": 15,
-   "name": "nciDuctStatSP",
+   "inst": 12,
+   "name": "nciEconConfigTyp",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT press p _ _ · Duct Static Pressure Setpoint"
+   "note": "UCPT econo config type · Economizer Decision Method*"
+  },
+  {
+   "type": "NCI",
+   "inst": 13,
+   "name": "nciEconVent",
+   "unitRaw": null,
+   "unit": null,
+   "note": "_ _ _ UCPT OA type _ _ · Economizer Type Identifier*"
+  },
+  {
+   "type": "NCI",
+   "inst": 14,
+   "name": "nciERFrostAvodSP",
+   "unitRaw": null,
+   "unit": null,
+   "note": "UCPT ERFrostAvoidSP · Energy Recovery Frost Avoidance Temp Setpoint*"
+  },
+  {
+   "type": "NCI",
+   "inst": 15,
+   "name": "nciExhaustConfig",
+   "unitRaw": null,
+   "unit": null,
+   "note": "_ UCPT exhaust cfg · Exhaust Enable Position Setpoint*"
   },
   {
    "type": "NCI",
    "inst": 16,
-   "name": "nciEconConfigTyp",
+   "name": "nciExhRet",
    "unitRaw": null,
    "unit": null,
-   "note": "UCPT econo config type _ _ _ · Economizer Decision Method(a)"
+   "note": "_ _ UCPT ER type · Exhaust Or Return Fan Type*"
   },
   {
    "type": "NCI",
    "inst": 17,
-   "name": "nciEconVent",
+   "name": "nciFanOperation",
    "unitRaw": null,
    "unit": null,
-   "note": "UCPT OA type _ _ · Economizer Type Identifier(a)"
+   "note": "_ _ SCPTfanOperation · Supply Fan Configuration Command"
   },
   {
    "type": "NCI",
    "inst": 18,
-   "name": "nciERFrostAvodSP",
-   "unitRaw": null,
-   "unit": null,
-   "note": "UCPT ERFrostAvoidSP _ · Energy Recovery Frost Avoidance Temp Setpoint(a)"
-  },
-  {
-   "type": "NCI",
-   "inst": 19,
-   "name": "nciExhRet",
-   "unitRaw": null,
-   "unit": null,
-   "note": "UCPT ER type _ _ · Exhaust Or Return Fan Type(a)"
-  },
-  {
-   "type": "NCI",
-   "inst": 20,
-   "name": "nciExhStartPos",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT lev percent _ _ · Exhaust Enable Position Setpoint"
-  },
-  {
-   "type": "NCI",
-   "inst": 21,
-   "name": "nciHeatResetEn",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT switch _ · Heating Reset Type Status"
-  },
-  {
-   "type": "NCI",
-   "inst": 22,
    "name": "nciHvacType",
    "unitRaw": null,
    "unit": null,
@@ -179,7 +179,7 @@
   },
   {
    "type": "NCI",
-   "inst": 23,
+   "inst": 19,
    "name": "nciLocation",
    "unitRaw": null,
    "unit": null,
@@ -187,55 +187,47 @@
   },
   {
    "type": "NCI",
-   "inst": 24,
+   "inst": 20,
    "name": "nciMinOAFlowSP",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT flow _ · Outdoor Air Minimum Flow Setpoint"
+   "note": "SNVT flow · Outdoor Air Minimum Flow Setpoint BAS"
+  },
+  {
+   "type": "NCI",
+   "inst": 21,
+   "name": "nciMinOutTm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "_ SNVT time sec _ _ · Minimum Send Time"
+  },
+  {
+   "type": "NCI",
+   "inst": 22,
+   "name": "nciOAEnthSP",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT enthalpy · Economizer Outdoor Air Enthalpy Enable Setpoint BAS"
+  },
+  {
+   "type": "NCI",
+   "inst": 23,
+   "name": "nciOAMinPos",
+   "unitRaw": null,
+   "unit": null,
+   "note": "_ SNVT lev percent · Outdoor Air Damper Minimum Position"
+  },
+  {
+   "type": "NCI",
+   "inst": 24,
+   "name": "nciPreheat",
+   "unitRaw": null,
+   "unit": null,
+   "note": "_ _ UCPT heat type _ _ · Preheat Type Identifier*"
   },
   {
    "type": "NCI",
    "inst": 25,
-   "name": "nciMinOutTm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT time sec _ _ · Minimum Send Time"
-  },
-  {
-   "type": "NCI",
-   "inst": 26,
-   "name": "nciOAEnthSP",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT enthalpy _ · Economizer Outdoor Air Enthalpy Enable Setpoint"
-  },
-  {
-   "type": "NCI",
-   "inst": 27,
-   "name": "nciOAMinPos",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT lev percent _ _ · Outdoor Air Damper Minimum Position"
-  },
-  {
-   "type": "NCI",
-   "inst": 28,
-   "name": "nciOATSP",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT temp p _ _ · Economizer Enable Minimum Outdoor Air Temperature Setpoint"
-  },
-  {
-   "type": "NCI",
-   "inst": 29,
-   "name": "nciPreheat",
-   "unitRaw": null,
-   "unit": null,
-   "note": "UCPT heat type _ _ · Preheat Type Identifier(a)"
-  },
-  {
-   "type": "NCI",
-   "inst": 30,
    "name": "nciRcvHrtBt",
    "unitRaw": null,
    "unit": null,
@@ -243,39 +235,39 @@
   },
   {
    "type": "NCI",
-   "inst": 31,
-   "name": "nciReheat",
-   "unitRaw": null,
-   "unit": null,
-   "note": "UCPT heat type _ _ · Reheat Type Identifier(a)"
-  },
-  {
-   "type": "NCI",
-   "inst": 32,
-   "name": "nciRetFanPressSP",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT press p _ _ · Return Fan Air Pressure Setpoint"
-  },
-  {
-   "type": "NCI",
-   "inst": 33,
+   "inst": 26,
    "name": "nciRefrigType",
    "unitRaw": null,
    "unit": null,
-   "note": "UCPT refrig type _ _ · Refrigeration Type Identifier(a)"
+   "note": "UCPT refrig type _ _ · Refrigeration Type Identifier*"
   },
   {
    "type": "NCI",
-   "inst": 34,
+   "inst": 27,
+   "name": "nciReheat",
+   "unitRaw": null,
+   "unit": null,
+   "note": "UCPT heat type _ _ · Reheat Type Identifier*"
+  },
+  {
+   "type": "NCI",
+   "inst": 28,
+   "name": "nciRetFanPressSP",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT press p · Return Fan Air Pressure Setpoint"
+  },
+  {
+   "type": "NCI",
+   "inst": 29,
    "name": "nciSetpoints",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp setpt _ _ · Occupancy Temperature Setpoints Occupied Cool Setpoint Occupied Standby Cooling Setpoint Unoccuiped Cooling Setpoint Occupied Heating Setpoint Occupied Standby Heating Setpoint Unoccupied Heating Setpoint"
+   "note": "SNVT temp setpt _ _ · Occupancy Temperature Setpoints"
   },
   {
    "type": "NCI",
-   "inst": 35,
+   "inst": 30,
    "name": "nciSndHrtBt",
    "unitRaw": null,
    "unit": null,
@@ -283,55 +275,55 @@
   },
   {
    "type": "NCI",
-   "inst": 36,
+   "inst": 31,
    "name": "nciSpaceCO2Lim",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT ppm Space _ · CO2 High Limit"
+   "note": "SNVT ppm · Space CO2 High Limit"
   },
   {
    "type": "NCI",
-   "inst": 37,
+   "inst": 32,
    "name": "nciSpaceCO2LowLm",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT ppm _ · Space CO2 Low Limit(a)"
+   "note": "_ SNVT ppm · Space CO2 Low Limit*"
   },
   {
    "type": "NCI",
-   "inst": 38,
-   "name": "nciSpaceDehumSP",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT lev percent _ _ · Space Dehumidification Setpoint"
-  },
-  {
-   "type": "NCI",
-   "inst": 39,
+   "inst": 33,
    "name": "nciSpaceHumSP",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT lev percent _ _ · Space Humidification Setpoint"
+   "note": "_ SNVT lev percent _ _ · Space Humidification Setpoint"
   },
   {
    "type": "NCI",
-   "inst": 40,
+   "inst": 34,
    "name": "nciSupplyFan",
    "unitRaw": null,
    "unit": null,
-   "note": "UCPT fan type _ _ · Supply Fan Type Identifier(a)"
+   "note": "UCPT fan type _ _ · Supply Fan Type Identifier*"
   },
   {
    "type": "NCI",
-   "inst": 41,
+   "inst": 35,
    "name": "nciUntryType",
    "unitRaw": null,
    "unit": null,
-   "note": "UCPT large equip type _ _ _ · Unitary Type Identifier(a) Model Information Cooling Source Size Heating Source Size Number of Circuits Number of Compressors, Circuit 1 Number of Compressors, Circuit 2"
+   "note": "UCPT large equip type _ _ _ · Unitary Type Identifier*"
+  },
+  {
+   "type": "NCI",
+   "inst": 36,
+   "name": "nciOATSP",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT temp p _ _ · Economizer Outdoor Air Enable Setpoint BAS"
   },
   {
    "type": "NV",
-   "inst": 42,
+   "inst": 37,
    "name": "nviApplicMode",
    "unitRaw": null,
    "unit": null,
@@ -339,151 +331,143 @@
   },
   {
    "type": "NV",
-   "inst": 43,
+   "inst": 38,
+   "name": "nviAuxHeatEnable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT switch _ · Heat Auxiliary Enable · 입력(Recv)"
+  },
+  {
+   "type": "NV",
+   "inst": 39,
    "name": "nviBldgStaticSP",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT press p _ _ · Space Static Pressure Setpoint BAS · 입력(Recv)"
+   "note": "SNVT press p _ _ · Building Static Pressure Setpoint · 입력(Recv) · HrtBt ♥"
+  },
+  {
+   "type": "NV",
+   "inst": 40,
+   "name": "nviBldgStatPress",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT press p _ _ · Building Static Pressure · 입력(Recv)"
+  },
+  {
+   "type": "NV",
+   "inst": 41,
+   "name": "nviComprEnable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT switch _ · Compressor Cooling Enable BAS · 입력(Recv) · HrtBt ♥"
+  },
+  {
+   "type": "NV",
+   "inst": 42,
+   "name": "nviCWFlow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT switch _ · Condenser Water Flow BAS · 입력(Recv)"
+  },
+  {
+   "type": "NV",
+   "inst": 43,
+   "name": "nviDAClSP",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT temp p _ _ · Discharge Air Cooling Setpoint BAS · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
    "inst": 44,
-   "name": "nviBldgStatPress",
+   "name": "nviDAHtSP",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT press p _ _ · Space Static Pressure BAS · 입력(Recv) · HrtBt ♥"
+   "note": "SNVT temp p _ _ · Discharge Air Heating Setpoint BAS · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
    "inst": 45,
-   "name": "nviCWFlow",
+   "name": "nviDAReheatSP",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT switch _ · Condenser Water Flow BAS · 입력(Recv) · HrtBt ♥"
+   "note": "SNVT temp p _ _ · Discharge Air Reheat Setpoint BAS · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
    "inst": 46,
-   "name": "viDAClSP",
+   "name": "nviDehumEnable",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Discharge Air Cooling Setpoint BAS · 입력(Recv)"
+   "note": "UNVT switch binary _ _ · Dehumidification System Enable BAS · 입력(Recv)"
   },
   {
    "type": "NV",
    "inst": 47,
-   "name": "nviDADewPointSP",
+   "name": "nviEconEnable",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Discharge Air Dewpoint Setpoint · 입력(Recv)"
+   "note": "UNVT switch multistate _ _ · Economizer Enable BAS · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
    "inst": 48,
-   "name": "nviDAHtSP",
+   "name": "nviEmergOverride",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Discharge Air Heating Setpoint BAS · 입력(Recv)"
+   "note": "SNVT hvac emerg _ _ · Emergency Override BAS · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
    "inst": 49,
-   "name": "nviDAReheatSP",
+   "name": "nviHumEnable",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Discharge Air Reheat Setpoint BAS · 입력(Recv)"
+   "note": "UNVT switch binary _ _ · Humidification Enable BAS · 입력(Recv)"
   },
   {
    "type": "NV",
    "inst": 50,
-   "name": "nviDehumEnable",
+   "name": "nviOAMinPos",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT switch _ · Dehumidification Enable Command · 입력(Recv) · HrtBt ♥"
+   "note": "SNVT lev percent _ _ · Economizer Minimum Position Setpoint · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
    "inst": 51,
-   "name": "nviDuctStaticSP",
+   "name": "nviOccManCmd",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT press p _ _ · Duct Static Pressure Setpoint BAS · 입력(Recv)"
+   "note": "SNVT lev percent _ _ · Occupancy Request · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
    "inst": 52,
-   "name": "nviDuctStatPress",
+   "name": "nviOccSchedule",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT press p _ _ · Duct Static Pressure BAS · 입력(Recv) · HrtBt ♥"
+   "note": "SNVT lev percent _ _ · Occupancy Request · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
    "inst": 53,
-   "name": "nviEconEnable",
+   "name": "nviOccSensor",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT switch _ · Economizer Airside Enable BAS · 입력(Recv) · HrtBt ♥"
+   "note": "SNVT occupancy _ · Occupancy Input BAS · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
    "inst": 54,
-   "name": "nviEmergOverride",
+   "name": "nviOutdoorRH",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT hvac emerg _ _ · Emergency Override BAS · 입력(Recv)"
+   "note": "SNVT lev percent _ _ · Outdoor Air Relative Humidity BAS · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
    "inst": 55,
-   "name": "nviHumEnable",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT switch _ · Humidification Command · 입력(Recv) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 56,
-   "name": "nviMinOAFlowSP",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT flow _ · Outdoor Air Minimum Flow Setpoint BAS · 입력(Recv)"
-  },
-  {
-   "type": "NV",
-   "inst": 57,
-   "name": "nviOAMinPos",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT lev percent _ _ · Economizer Minimum Position Setpoint BAS · 입력(Recv)"
-  },
-  {
-   "type": "NV",
-   "inst": 58,
-   "name": "nviOccManCmd",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT occupancy _ · Occupancy Input · 입력(Recv)"
-  },
-  {
-   "type": "NV",
-   "inst": 59,
-   "name": "nviOccSchedule",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT tod event _ _ · Occupancy Request · 입력(Recv) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 60,
-   "name": "nviOutdoorRH",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT lev percent _ _ · Outdoor Air Humidity BAS · 입력(Recv) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 61,
    "name": "nviOutdoorTemp",
    "unitRaw": null,
    "unit": null,
@@ -491,23 +475,7 @@
   },
   {
    "type": "NV",
-   "inst": 62,
-   "name": "nviPriCoolEnable",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT switch _ · Cooling Capacity Enable · 입력(Recv) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 63,
-   "name": "nviPriHeatEnable",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT switch _ · Heat Primary Enable BAS · 입력(Recv) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 64,
+   "inst": 56,
    "name": "nviRTUConfig",
    "unitRaw": null,
    "unit": null,
@@ -515,7 +483,7 @@
   },
   {
    "type": "NV",
-   "inst": 65,
+   "inst": 57,
    "name": "nviRequest",
    "unitRaw": null,
    "unit": null,
@@ -523,7 +491,31 @@
   },
   {
    "type": "NV",
-   "inst": 66,
+   "inst": 58,
+   "name": "nviSetpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT temp p _ _ · Space Temperature Setpoint BAS · 입력(Recv) · HrtBt ♥"
+  },
+  {
+   "type": "NV",
+   "inst": 59,
+   "name": "nviSetptOffset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT temp p _ _ · Space Setpoint Offset BAS · 입력(Recv) · HrtBt ♥"
+  },
+  {
+   "type": "NV",
+   "inst": 60,
+   "name": "nviSetptShift",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT temp setpt _ _ · Space Setpoint Shift BAS · 입력(Recv) · HrtBt ♥"
+  },
+  {
+   "type": "NV",
+   "inst": 61,
    "name": "nviSpaceCO2",
    "unitRaw": null,
    "unit": null,
@@ -531,31 +523,31 @@
   },
   {
    "type": "NV",
-   "inst": 67,
+   "inst": 62,
    "name": "nviSpaceDehumSP",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT lev percent _ _ · Space Dehumidification Setpoint BAS · 입력(Recv)"
+   "note": "SNVT lev percent _ _ · Space Dehumidification Setpoint BAS · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
-   "inst": 68,
+   "inst": 63,
    "name": "nviSpaceHumSP",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT lev percent _ _ · Space Humidification Setpoint BAS · 입력(Recv)"
+   "note": "SNVT lev percent _ _ · Space Humidity Setpoint BAS · 입력(Recv)"
   },
   {
    "type": "NV",
-   "inst": 69,
+   "inst": 64,
    "name": "nviSpaceRH",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT lev percent _ _ · Space Humidity BAS · 입력(Recv) · HrtBt ♥"
+   "note": "SNVT lev percent _ _ · Space Relative Humidity BAS · 입력(Recv) · HrtBt ♥"
   },
   {
    "type": "NV",
-   "inst": 70,
+   "inst": 65,
    "name": "nviSpaceTemp",
    "unitRaw": null,
    "unit": null,
@@ -563,7 +555,7 @@
   },
   {
    "type": "NV",
-   "inst": 71,
+   "inst": 66,
    "name": "nviTraneVar2",
    "unitRaw": null,
    "unit": null,
@@ -571,7 +563,7 @@
   },
   {
    "type": "NV",
-   "inst": 72,
+   "inst": 67,
    "name": "nvoAlarmMessage",
    "unitRaw": null,
    "unit": null,
@@ -579,15 +571,7 @@
   },
   {
    "type": "NV",
-   "inst": 73,
-   "name": "nvoApplicMode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT hvac mode _ _ · Application Mode Output · 출력(Send) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 74,
+   "inst": 68,
    "name": "nvoBldgStatPress",
    "unitRaw": null,
    "unit": null,
@@ -595,7 +579,7 @@
   },
   {
    "type": "NV",
-   "inst": 75,
+   "inst": 69,
    "name": "nvoCondCap",
    "unitRaw": null,
    "unit": null,
@@ -603,15 +587,15 @@
   },
   {
    "type": "NV",
-   "inst": 76,
+   "inst": 70,
    "name": "nvoCoolPrimary",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT lev percent _ _ · Cooling Capacity Status · 출력(Send) · HrtBt ♥"
+   "note": "UNVT switch binary _ _ · Cooling Capacity Status · 출력(Send) · HrtBt ♥"
   },
   {
    "type": "NV",
-   "inst": 77,
+   "inst": 71,
    "name": "nvoCprsrsRunning",
    "unitRaw": null,
    "unit": null,
@@ -619,7 +603,7 @@
   },
   {
    "type": "NV",
-   "inst": 78,
+   "inst": 72,
    "name": "nvoCWFlow",
    "unitRaw": null,
    "unit": null,
@@ -627,7 +611,7 @@
   },
   {
    "type": "NV",
-   "inst": 79,
+   "inst": 73,
    "name": "nvoCWPump",
    "unitRaw": null,
    "unit": null,
@@ -635,7 +619,7 @@
   },
   {
    "type": "NV",
-   "inst": 80,
+   "inst": 74,
    "name": "nvoCWTemp",
    "unitRaw": null,
    "unit": null,
@@ -643,7 +627,7 @@
   },
   {
    "type": "NV",
-   "inst": 81,
+   "inst": 75,
    "name": "nvoDAReheatSP",
    "unitRaw": null,
    "unit": null,
@@ -651,7 +635,7 @@
   },
   {
    "type": "NV",
-   "inst": 82,
+   "inst": 76,
    "name": "nvoDehumidifier",
    "unitRaw": null,
    "unit": null,
@@ -659,7 +643,7 @@
   },
   {
    "type": "NV",
-   "inst": 83,
+   "inst": 77,
    "name": "nvoDischAirTemp",
    "unitRaw": null,
    "unit": null,
@@ -667,47 +651,7 @@
   },
   {
    "type": "NV",
-   "inst": 84,
-   "name": "nvoDuctStatPress",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT press p _ _ · Duct Static Pressure Active · 출력(Send) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 85,
-   "name": "nvoEconEnabled",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT switch _ · Economizer Entering Water Temperature Active · 출력(Send) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 86,
-   "name": "nvoEffDADewPtSP",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT temp p _ _ · Discharge Air Dewpoint Temperature Setpoint Active · 출력(Send) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 87,
-   "name": "nvoEffDATempSP",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT temp p _ _ · Discharge Air Temperature Setpoint Active · 출력(Send) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 88,
-   "name": "nvoEffDuctStatSP",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT press p _ _ · Duct Static Pressure Setpoint Active · 출력(Send) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 89,
+   "inst": 78,
    "name": "nvoEffectOccup",
    "unitRaw": null,
    "unit": null,
@@ -715,7 +659,15 @@
   },
   {
    "type": "NV",
-   "inst": 90,
+   "inst": 79,
+   "name": "nvoEffectSetpt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT temp p _ _ · Space Temperature Setpoint Active · 출력(Send) · HrtBt ♥"
+  },
+  {
+   "type": "NV",
+   "inst": 80,
    "name": "nvoEffSpaceHumSP",
    "unitRaw": null,
    "unit": null,
@@ -723,7 +675,7 @@
   },
   {
    "type": "NV",
-   "inst": 91,
+   "inst": 81,
    "name": "nvoEREABPDamper",
    "unitRaw": null,
    "unit": null,
@@ -731,7 +683,15 @@
   },
   {
    "type": "NV",
-   "inst": 92,
+   "inst": 82,
+   "name": "nvoERFrostAvoid",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT switch _ · Energy Recovery Frost Avoidance Status · 출력(Send) · HrtBt ♥"
+  },
+  {
+   "type": "NV",
+   "inst": 83,
    "name": "nvoERLvgExhTemp",
    "unitRaw": null,
    "unit": null,
@@ -739,7 +699,7 @@
   },
   {
    "type": "NV",
-   "inst": 93,
+   "inst": 84,
    "name": "nvoEROABPDamper",
    "unitRaw": null,
    "unit": null,
@@ -747,7 +707,7 @@
   },
   {
    "type": "NV",
-   "inst": 94,
+   "inst": 85,
    "name": "nvoERPreheat",
    "unitRaw": null,
    "unit": null,
@@ -755,7 +715,7 @@
   },
   {
    "type": "NV",
-   "inst": 95,
+   "inst": 86,
    "name": "nvoERStatus",
    "unitRaw": null,
    "unit": null,
@@ -763,7 +723,7 @@
   },
   {
    "type": "NV",
-   "inst": 96,
+   "inst": 87,
    "name": "nvoExhDamper",
    "unitRaw": null,
    "unit": null,
@@ -771,7 +731,7 @@
   },
   {
    "type": "NV",
-   "inst": 97,
+   "inst": 88,
    "name": "nvoExhFanOnOff",
    "unitRaw": null,
    "unit": null,
@@ -779,7 +739,7 @@
   },
   {
    "type": "NV",
-   "inst": 98,
+   "inst": 89,
    "name": "nvoExhFanStatus",
    "unitRaw": null,
    "unit": null,
@@ -787,7 +747,15 @@
   },
   {
    "type": "NV",
-   "inst": 99,
+   "inst": 90,
+   "name": "nvoFanSpeed",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT switch _ · Fan Speed Status · 출력(Send) · HrtBt ♥"
+  },
+  {
+   "type": "NV",
+   "inst": 91,
    "name": "nvoFDD",
    "unitRaw": null,
    "unit": null,
@@ -795,7 +763,7 @@
   },
   {
    "type": "NV",
-   "inst": 100,
+   "inst": 92,
    "name": "nvoHeatCool",
    "unitRaw": null,
    "unit": null,
@@ -803,7 +771,7 @@
   },
   {
    "type": "NV",
-   "inst": 101,
+   "inst": 93,
    "name": "nvoHeatPrimary",
    "unitRaw": null,
    "unit": null,
@@ -811,7 +779,7 @@
   },
   {
    "type": "NV",
-   "inst": 102,
+   "inst": 94,
    "name": "nvoHeatSecondary",
    "unitRaw": null,
    "unit": null,
@@ -819,7 +787,7 @@
   },
   {
    "type": "NV",
-   "inst": 103,
+   "inst": 95,
    "name": "nvoHumidifier",
    "unitRaw": null,
    "unit": null,
@@ -827,7 +795,7 @@
   },
   {
    "type": "NV",
-   "inst": 104,
+   "inst": 96,
    "name": "nvoLocalCWTemp",
    "unitRaw": null,
    "unit": null,
@@ -835,39 +803,23 @@
   },
   {
    "type": "NV",
-   "inst": 105,
-   "name": "nvoLocalDSPress",
+   "inst": 97,
+   "name": "nvoLocalSpaceTmp",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT press p _ _ · Duct Static Pressure Local · 출력(Send) · HrtBt ♥"
+   "note": "SNVT temp p _ _ · Space Temperature Local · 출력(Send) · HrtBt ♥"
   },
   {
    "type": "NV",
-   "inst": 106,
-   "name": "nvoLocalOARH",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT lev percent _ _ · Outdoor Air Relative Humidity Local · 출력(Send) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 107,
-   "name": "nvoLocalOATemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT temp p _ _ · Outdoor Air Temperature Local · 출력(Send) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 108,
-   "name": "nvoMATemp",
+   "inst": 98,
+   "name": "nvoMixedAirTemp",
    "unitRaw": null,
    "unit": null,
    "note": "SNVT temp p _ _ · Mixed Air Temperature Local · 출력(Send) · HrtBt ♥"
   },
   {
    "type": "NV",
-   "inst": 109,
+   "inst": 99,
    "name": "nvoOADamper",
    "unitRaw": null,
    "unit": null,
@@ -875,15 +827,7 @@
   },
   {
    "type": "NV",
-   "inst": 110,
-   "name": "nvoOADewpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT temp p _ _ · Outdoor Air Dewpoint · 출력(Send) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 111,
+   "inst": 100,
    "name": "nvoOAEnthalpy",
    "unitRaw": null,
    "unit": null,
@@ -891,15 +835,15 @@
   },
   {
    "type": "NV",
-   "inst": 112,
+   "inst": 101,
    "name": "nvoOAFlow",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT flow _ · Outdoor Air Flow Active · 출력(Send) · HrtBt ♥"
+   "note": "FNVT flow _ · Outdoor Air Flow Active · 출력(Send) · HrtBt ♥"
   },
   {
    "type": "NV",
-   "inst": 113,
+   "inst": 102,
    "name": "nvoOutdoorRH",
    "unitRaw": null,
    "unit": null,
@@ -907,7 +851,7 @@
   },
   {
    "type": "NV",
-   "inst": 114,
+   "inst": 103,
    "name": "nvoOutdoorTemp",
    "unitRaw": null,
    "unit": null,
@@ -915,7 +859,7 @@
   },
   {
    "type": "NV",
-   "inst": 115,
+   "inst": 104,
    "name": "nvoRATemp",
    "unitRaw": null,
    "unit": null,
@@ -923,7 +867,7 @@
   },
   {
    "type": "NV",
-   "inst": 116,
+   "inst": 105,
    "name": "nvoRetFanOnOff",
    "unitRaw": null,
    "unit": null,
@@ -931,7 +875,7 @@
   },
   {
    "type": "NV",
-   "inst": 117,
+   "inst": 106,
    "name": "nvoRetFanPress",
    "unitRaw": null,
    "unit": null,
@@ -939,7 +883,7 @@
   },
   {
    "type": "NV",
-   "inst": 118,
+   "inst": 107,
    "name": "nvoRetFanStatus",
    "unitRaw": null,
    "unit": null,
@@ -947,7 +891,7 @@
   },
   {
    "type": "NV",
-   "inst": 119,
+   "inst": 108,
    "name": "nvoRTUStatus",
    "unitRaw": null,
    "unit": null,
@@ -955,7 +899,15 @@
   },
   {
    "type": "NV",
-   "inst": 120,
+   "inst": 109,
+   "name": "nvoSetpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SNVT temp p _ _ · Space Temperature Setpoint Local · 출력(Send) · HrtBt ♥"
+  },
+  {
+   "type": "NV",
+   "inst": 110,
    "name": "nvoSpaceCO2",
    "unitRaw": null,
    "unit": null,
@@ -963,7 +915,7 @@
   },
   {
    "type": "NV",
-   "inst": 121,
+   "inst": 111,
    "name": "nvoSpaceEnthalpy",
    "unitRaw": null,
    "unit": null,
@@ -971,7 +923,7 @@
   },
   {
    "type": "NV",
-   "inst": 122,
+   "inst": 112,
    "name": "nvoSpaceRH",
    "unitRaw": null,
    "unit": null,
@@ -979,7 +931,7 @@
   },
   {
    "type": "NV",
-   "inst": 123,
+   "inst": 113,
    "name": "nvoSpaceTemp",
    "unitRaw": null,
    "unit": null,
@@ -987,7 +939,7 @@
   },
   {
    "type": "NV",
-   "inst": 124,
+   "inst": 114,
    "name": "nvoStartsRunTmA",
    "unitRaw": null,
    "unit": null,
@@ -995,7 +947,7 @@
   },
   {
    "type": "NV",
-   "inst": 125,
+   "inst": 115,
    "name": "nvoStartsRunTmB",
    "unitRaw": null,
    "unit": null,
@@ -1003,7 +955,7 @@
   },
   {
    "type": "NV",
-   "inst": 126,
+   "inst": 116,
    "name": "nvoStartsRunTmC",
    "unitRaw": null,
    "unit": null,
@@ -1011,7 +963,7 @@
   },
   {
    "type": "NV",
-   "inst": 127,
+   "inst": 117,
    "name": "nvoStartsRunTmD",
    "unitRaw": null,
    "unit": null,
@@ -1019,7 +971,7 @@
   },
   {
    "type": "NV",
-   "inst": 128,
+   "inst": 118,
    "name": "nvoStartsRunTmE",
    "unitRaw": null,
    "unit": null,
@@ -1027,7 +979,7 @@
   },
   {
    "type": "NV",
-   "inst": 129,
+   "inst": 119,
    "name": "nvoStartsRunTmF",
    "unitRaw": null,
    "unit": null,
@@ -1035,7 +987,7 @@
   },
   {
    "type": "NV",
-   "inst": 130,
+   "inst": 120,
    "name": "nvoStatus",
    "unitRaw": null,
    "unit": null,
@@ -1043,7 +995,7 @@
   },
   {
    "type": "NV",
-   "inst": 131,
+   "inst": 121,
    "name": "nvoSucRfgtPrsC1",
    "unitRaw": null,
    "unit": null,
@@ -1051,7 +1003,7 @@
   },
   {
    "type": "NV",
-   "inst": 132,
+   "inst": 122,
    "name": "nvoSucRfgtPrsC2",
    "unitRaw": null,
    "unit": null,
@@ -1059,7 +1011,7 @@
   },
   {
    "type": "NV",
-   "inst": 133,
+   "inst": 123,
    "name": "nvoSucRfgtTmpC1",
    "unitRaw": null,
    "unit": null,
@@ -1067,7 +1019,7 @@
   },
   {
    "type": "NV",
-   "inst": 134,
+   "inst": 124,
    "name": "nvoSucRfgtTmpC2",
    "unitRaw": null,
    "unit": null,
@@ -1075,7 +1027,7 @@
   },
   {
    "type": "NV",
-   "inst": 135,
+   "inst": 125,
    "name": "nvoDschRfgtPrsC1",
    "unitRaw": null,
    "unit": null,
@@ -1083,7 +1035,7 @@
   },
   {
    "type": "NV",
-   "inst": 136,
+   "inst": 126,
    "name": "nvoDschRfgtPrsC2",
    "unitRaw": null,
    "unit": null,
@@ -1091,7 +1043,7 @@
   },
   {
    "type": "NV",
-   "inst": 137,
+   "inst": 127,
    "name": "nvoDisSatRfgTmp1",
    "unitRaw": null,
    "unit": null,
@@ -1099,7 +1051,7 @@
   },
   {
    "type": "NV",
-   "inst": 138,
+   "inst": 128,
    "name": "nvoDisSatRfgTmp2",
    "unitRaw": null,
    "unit": null,
@@ -1107,7 +1059,7 @@
   },
   {
    "type": "NV",
-   "inst": 139,
+   "inst": 129,
    "name": "nvoAirFlowPctC1",
    "unitRaw": null,
    "unit": null,
@@ -1115,7 +1067,7 @@
   },
   {
    "type": "NV",
-   "inst": 140,
+   "inst": 130,
    "name": "nvoAirFlowPctC2",
    "unitRaw": null,
    "unit": null,
@@ -1123,23 +1075,15 @@
   },
   {
    "type": "NV",
-   "inst": 141,
-   "name": "nvoSupFanOnOff",
+   "inst": 131,
+   "name": "nvoTerminalLoad",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT switch _ · Supply Fan Output Status · 출력(Send) · HrtBt ♥"
+   "note": "SNVT lev percent _ _ · Unit Energy Demand · 출력(Send) · HrtBt ♥"
   },
   {
    "type": "NV",
-   "inst": 142,
-   "name": "nvoSupFanStatus",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT switch _ · Supply Fan Speed Status · 출력(Send) · HrtBt ♥"
-  },
-  {
-   "type": "NV",
-   "inst": 143,
+   "inst": 132,
    "name": "nvoTraneVar9",
    "unitRaw": null,
    "unit": null,
@@ -1147,7 +1091,7 @@
   },
   {
    "type": "NV",
-   "inst": 144,
+   "inst": 133,
    "name": "nvoUnitCurrent",
    "unitRaw": null,
    "unit": null,
@@ -1155,7 +1099,7 @@
   },
   {
    "type": "NV",
-   "inst": 145,
+   "inst": 134,
    "name": "nvoUnitPower",
    "unitRaw": null,
    "unit": null,
@@ -1163,7 +1107,7 @@
   },
   {
    "type": "NV",
-   "inst": 146,
+   "inst": 135,
    "name": "nvoUnitStatus",
    "unitRaw": null,
    "unit": null,
@@ -1171,19 +1115,20 @@
   },
   {
    "type": "NV",
-   "inst": 147,
+   "inst": 136,
    "name": "nvoUnitVoltage",
    "unitRaw": null,
    "unit": null,
    "note": "UNVT 3Phase volt _ _ · Unit Voltage · 출력(Send) · HrtBt ♥"
   }
  ],
- "gap": "정격 성능(용량·COP·소비전력)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다. LonTalk 프로파일이라 BACnet 오브젝트 번호는 별도 문서를 봐야 한다.",
+ "gap": "정격 성능(용량·COP·소비전력)과 냉각 방식은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
  "extractor": "table",
- "sourceDoc": "BAS-PTS002A-EN_11082024.pdf",
+ "sourceDoc": "BAS-PTS006A-EN_11152024.pdf",
+ "classifiedBy": "포인트 이름 증거 7종: economizer, outdoor air damper, supply air, discharge air",
  "crosscheck": {
   "rate": 1.0,
-  "both": 281,
+  "both": 131,
   "diff": []
  }
 }

@@ -38,12 +38,14 @@ SKIP = re.compile(r"^(♥|\(a\)|\(b\)|—|-|\*|\d+)$")
 NOISE = re.compile(r"^(Symbio|LonTalk|BACnet|Date:|Firmware|Reference|Object Naming|"
                    r"Note:|Table|Page|BAS-PTS)", re.I)
 # 표 머리글 자체 — 줄 읽기에서는 이름 자리에 들어와 가짜 불일치를 만든다
-HDRWORD = re.compile(r"^(Object (Identifier|Name|States)|Register (Address|Type|Value)|"
+HDRWORD = re.compile(r"^(Object (Identifier|Name|States|Status|Data Points.*)|Property Values|"
+                     r"Register (Address|Type|Value)|"
                      r"Description|Units?|Configuration|Dependency|Valid Range|"
                      r"Relinquish Default|Read/?Write|Network Variable \w+|NV ?#|"
                      r"nv Index|Profile Index|SNVT\w*|Variable (Type|Description)|"
                      r"Point Name|Diagnostic (Name|Code.*)|Byte Order|Invalid Values|"
-                     r"Delta to Send.*|Send HrtBt|Recv HrtBt|Suffix)$", re.I)
+                     r"Delta to Send.*|Send HrtBt|Recv HrtBt|Suffix|"
+                     r"(Analog|Binary|Multi-?State) (Input|Output|Value)s?( \w+)?)$", re.I)
 
 
 def _lines(pdf, head_pt=80):
@@ -95,9 +97,9 @@ def raw_bacnet(pdf):
     """줄 순서: 'AI-10101' 같은 ID 줄 → 바로 다음의 이름 줄."""
     out, pending = [], None
     for pi, t in _lines(pdf):
-        m = BAC_ID.match(t)
-        if m:
-            pending = (pi, S.canon_type(m.group(1)), int(m.group(2)))
+        pid = E.parse_objid(t)
+        if pid:
+            pending = (pi, S.canon_type(pid[0]), pid[1])
             continue
         if pending and E.nameish(t):
             out.append({"page": pending[0], "type": pending[1],
@@ -166,7 +168,9 @@ def compare(pdf, table_rows=None):
         b = max(B, key=lambda s: len(set(a) & set(s))) if B else {}
         for k in sorted(set(a) & set(b)):
             both += 1
-            na, nb = a[k], b[k]
+            # 비교 전 공백을 고른다 — 'Circuit 1  Available'(이중 공백) 같은
+            # 표기 차이는 추출 오류가 아니다.
+            na, nb = re.sub(r"\s+", " ", a[k]), re.sub(r"\s+", " ", b[k])
             # 줄 읽기는 셀 안에서 줄바꿈된 이름의 앞부분만 잡을 수 있다 → 접두 일치도 인정
             (same if na == nb or na.startswith(nb) or nb.startswith(na) else diff)\
                 .append((i, k, na, nb))

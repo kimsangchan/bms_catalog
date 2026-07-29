@@ -1,19 +1,21 @@
 {
- "id": "trane-symbio-800-uc800",
+ "id": "trane-symbio-800-rtac-uc800-bacnet",
  "equipId": "e9",
  "vendor": "Trane",
- "model": "Symbio™ 800 (UC800)",
- "name": "Symbio™ 800 냉동기 컨트롤러 — BACnet ACSA",
+ "model": "Symbio™ 800 — RTAC (UC800) (BACnet)",
+ "name": "Symbio™ 800 RTAC (UC800)",
  "cat": "HVAC.PLANT.CHILLER",
  "tag": "chiller",
  "status": "active",
- "summary": "흡수식 냉동기(ACSA) + UC800 컨트롤러의 BACnet 통합 포인트. 기종(CGAM·CTV 등)이 바뀌면 포인트 리스트가 별도로 존재한다.",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 335점",
  "has": {
   "spec": false,
   "points": true
  },
  "ede": false,
  "spec": [],
+ "io": [],
+ "elec": null,
  "comm": [
   [
    "BACnet",
@@ -22,13 +24,11 @@
    "Points List"
   ]
  ],
- "io": [],
- "elec": null,
  "points": [
   {
    "type": "AI",
    "inst": 1,
-   "name": "Active Cool/Heat Water Setpoint Temperature",
+   "name": "Active Chilled Water Setpoint",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -36,23 +36,7 @@
   {
    "type": "AI",
    "inst": 2,
-   "name": "Front Panel Chilled Water Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 3,
-   "name": "Evaporator Entering Water Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 4,
-   "name": "Evaporator Leaving Water Temperature",
+   "name": "Active Current Limit Setpoint",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -60,134 +44,6 @@
   {
    "type": "AI",
    "inst": 5,
-   "name": "Active Demand Limit Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 6,
-   "name": "Front Panel Demand Limit Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 7,
-   "name": "Unit Power Consumption",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 8,
-   "name": "Outdoor Air Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 9,
-   "name": "External Chilled/Hot Water Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 10,
-   "name": "External Demand Limit Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 11,
-   "name": "Evaporator Refrigerant Pressure Ckt1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 12,
-   "name": "Condenser Refrigerant Pressure Ckt1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 13,
-   "name": "Differential Refrigerant Pressure Ckt1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 14,
-   "name": "Suction(Evaporator) Saturated Rfgt Temp Ckt1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 15,
-   "name": "Condenser Saturated Rfgt Temp Ckt1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 16,
-   "name": "Evaporator Refrigerant Pressure Ckt2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 17,
-   "name": "Condenser Refrigerant Pressure Ckt2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 18,
-   "name": "Differential Refrigerant Pressure Ckt2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 19,
-   "name": "Suction(Evaporator) Saturated Rfgt Temp Ckt2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 20,
-   "name": "Condenser Saturated Rfgt Temp Ckt2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 21,
    "name": "Actual Running Capacity",
    "unitRaw": null,
    "unit": null,
@@ -195,24 +51,64 @@
   },
   {
    "type": "AI",
+   "inst": 6,
+   "name": "Evaporator Refrigerant Pressure - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 9,
+   "name": "Evaporator Refrigerant Pressure - Ckt 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 12,
+   "name": "Evaporator Saturated Refrigerant Temperature- Ckt 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 14,
+   "name": "Evaporator Saturated Refrigerant Temperature- Ckt 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 16,
+   "name": "Condenser Refrigerant Pressure - Ckt 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 18,
+   "name": "Condenser Refrigerant Pressure - Ckt 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 20,
+   "name": "Condenser Saturated Refrigerant Temperature - Ckt 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
    "inst": 22,
-   "name": "Active Heat Recovery Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 23,
-   "name": "Front Panel Hot Water Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 24,
-   "name": "Active Hot Water Setpoint",
+   "name": "Condenser Saturated Refrigerant Temperature - Ckt 2",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -220,7 +116,7 @@
   {
    "type": "AI",
    "inst": 25,
-   "name": "Liquid Line Temperature Ckt1",
+   "name": "Local Atmospheric Pressure",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -228,7 +124,7 @@
   {
    "type": "AI",
    "inst": 26,
-   "name": "Liquid Line Temperature Ckt2",
+   "name": "Starts- Compressor 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -236,7 +132,7 @@
   {
    "type": "AI",
    "inst": 27,
-   "name": "Liquid Line Pressure Ckt1",
+   "name": "Starts- Compressor 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -244,23 +140,23 @@
   {
    "type": "AI",
    "inst": 28,
-   "name": "Liquid Line Pressure Ckt2",
+   "name": "Starts- Compressor 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 30,
-   "name": "Air Flow Ckt1",
+   "inst": 29,
+   "name": "Starts- Compressor 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 31,
-   "name": "Air Flow Ckt2",
+   "inst": 34,
+   "name": "Run Time- Compressor 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -268,7 +164,7 @@
   {
    "type": "AI",
    "inst": 35,
-   "name": "Starts Cprsr1A",
+   "name": "Run Time- Compressor 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -276,7 +172,71 @@
   {
    "type": "AI",
    "inst": 36,
-   "name": "Run Time Cprsr1A",
+   "name": "Run Time- Compressor 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 37,
+   "name": "Run Time- Compressor 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 42,
+   "name": "Airflow Percentage- Circuit 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 43,
+   "name": "Airflow Percentage- Circuit 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 44,
+   "name": "Evaporator Entering Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 45,
+   "name": "Evaporator Leaving Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 48,
+   "name": "High Side Oil Pressure - Compressor 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 49,
+   "name": "High Side Oil Pressure - Compressor 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 50,
+   "name": "High Side Oil Pressure - Compressor 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -284,7 +244,7 @@
   {
    "type": "AI",
    "inst": 51,
-   "name": "Starts Cprsr2A",
+   "name": "High Side Oil Pressure - Compressor 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -292,23 +252,63 @@
   {
    "type": "AI",
    "inst": 52,
-   "name": "Run Time Cprsr2A",
+   "name": "Oil Temp - Compressor 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 69,
-   "name": "Heat Recovery Entering Water Temp",
+   "inst": 53,
+   "name": "Oil Temp - Compressor 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 70,
-   "name": "Heat Recovery Leaving Water Temp",
+   "inst": 54,
+   "name": "Oil Temp - Compressor 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 55,
+   "name": "Oil Temp - Compressor 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 57,
+   "name": "Outdoor Air Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 59,
+   "name": "Motor Voltage AB Starter 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 60,
+   "name": "Motor Voltage AB Starter 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 61,
+   "name": "Motor Voltage AB Starter 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -316,46 +316,198 @@
   {
    "type": "AI",
    "inst": 71,
-   "name": "Chiller Design Capacity",
+   "name": "Motor Current L1 Starter 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 128,
-   "name": "Starts Cprsr1B",
+   "inst": 72,
+   "name": "Motor Current L2 Starter 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 129,
-   "name": "Run Time Cprsr1B",
+   "inst": 73,
+   "name": "Motor Current L3 Starter 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 130,
-   "name": "Starts Cprsr2B",
+   "inst": 74,
+   "name": "Motor Current L1 Starter 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 131,
-   "name": "Run Time Cprsr2B",
+   "inst": 75,
+   "name": "Motor Current L2 Starter 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 132,
+   "inst": 76,
+   "name": "Motor Current L3 Starter 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 77,
+   "name": "Motor Current L1 Starter 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 78,
+   "name": "Motor Current L2 Starter 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 79,
+   "name": "Motor Current L3 Starter 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 80,
+   "name": "Motor Current L1 Starter 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 81,
+   "name": "Motor Current L2 Starter 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 82,
+   "name": "Motor Current L3 Starter 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 83,
+   "name": "Motor Current L1 % RLA Starter 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 84,
+   "name": "Motor Current L2 % RLA Starter 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 85,
+   "name": "Motor Current L3 % RLA Starter 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 86,
+   "name": "Motor Current L1 % RLA Starter 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 87,
+   "name": "Motor Current L2 % RLA Starter 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 88,
+   "name": "Motor Current L3 % RLA Starter 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 89,
+   "name": "Motor Current L1 % RLA Starter 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 90,
+   "name": "Motor Current L2 % RLA Starter 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 91,
+   "name": "Motor Current L3 % RLA Starter 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 92,
+   "name": "Motor Current L1 % RLA Starter 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 93,
+   "name": "Motor Current L2 % RLA Starter 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 94,
+   "name": "Motor Current L3 % RLA Starter 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 95,
    "name": "Number of Circuits",
    "unitRaw": null,
    "unit": null,
@@ -363,128 +515,88 @@
   },
   {
    "type": "AI",
-   "inst": 133,
-   "name": "Number of Compressors, Circuit 1",
+   "inst": 96,
+   "name": "Number of Compressors, Ckt 1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 134,
-   "name": "Number of Compressors, Circuit 2",
+   "inst": 97,
+   "name": "Number of Compressors, Ckt 2",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 136,
-   "name": "Free Cooling Capacity",
+   "inst": 98,
+   "name": "Chiller Design Capacity",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 137,
-   "name": "Free Cooling Entering Water Temperature",
+   "inst": 100,
+   "name": "Output Power AFD 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 138,
-   "name": "Free Cooling Entering Glycol Temperature",
+   "inst": 101,
+   "name": "Output Power AFD 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 139,
-   "name": "Free Cooling Leaving Glycol Temperature",
+   "inst": 102,
+   "name": "Discharge Temperature Cprsr 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 141,
-   "name": "Energy Consumption NonReset",
+   "inst": 103,
+   "name": "Discharge Temperature Cprsr 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 142,
-   "name": "Energy Consumption Resettable",
+   "inst": 106,
+   "name": "Frequency Command Cprsr 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 143,
-   "name": "Starts Cprsr1C",
+   "inst": 107,
+   "name": "Frequency Command Cprsr 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 144,
-   "name": "Run Time Cprsr1C",
+   "inst": 108,
+   "name": "Average Motor Current % RLA AFD 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "AI",
-   "inst": 145,
-   "name": "Starts Cprsr2C",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 146,
-   "name": "Run Time Cprsr2C",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 147,
-   "name": "Discharge Temperature Ckt1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 148,
-   "name": "Discharge Temperature Ckt2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 149,
-   "name": "Compressor Discharge Temperature Ckt1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 150,
-   "name": "Compressor Discharge Temperature Ckt2",
+   "inst": 109,
+   "name": "Average Motor Current % RLA AFD 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -492,39 +604,23 @@
   {
    "type": "AV",
    "inst": 1,
-   "name": "Chilled Water Setpoint",
+   "name": "BAS Chilled Water Setpoint",
    "unitRaw": null,
    "unit": null,
-   "note": ""
+   "note": "범위 –12.22°C to 18.3°C (a)"
   },
   {
    "type": "AV",
    "inst": 2,
-   "name": "Hot Water Setpoint",
+   "name": "BAS Current Limit Setpoint",
    "unitRaw": null,
    "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AV",
-   "inst": 3,
-   "name": "Demand Limit Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AV",
-   "inst": 4,
-   "name": "BAS Heat Recovery Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
+   "note": "범위 0% to 120%"
   },
   {
    "type": "BI",
    "inst": 1,
-   "name": "Run Enable",
+   "name": "Run Enabled",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -540,7 +636,7 @@
   {
    "type": "BI",
    "inst": 3,
-   "name": "Limit Mode Relay Status",
+   "name": "Chiller Limit Mode Indicator",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -548,15 +644,7 @@
   {
    "type": "BI",
    "inst": 4,
-   "name": "Chiller Running State",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 5,
-   "name": "Maximum Capacity Relay",
+   "name": "Chiller Running Indicator",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -564,23 +652,7 @@
   {
    "type": "BI",
    "inst": 6,
-   "name": "Evaporator Water Pump Command",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 7,
-   "name": "Evaporator Water Flow Status",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 8,
-   "name": "Manual Override Exists",
+   "name": "Maximum Capacity",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -588,7 +660,7 @@
   {
    "type": "BI",
    "inst": 9,
-   "name": "Emergency Stop Input",
+   "name": "Compressor 1A Running",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -596,7 +668,7 @@
   {
    "type": "BI",
    "inst": 10,
-   "name": "Alarm Present",
+   "name": "Compressor 1B Running",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -604,7 +676,7 @@
   {
    "type": "BI",
    "inst": 11,
-   "name": "Running Status Cprsr1A",
+   "name": "Compressor 2A Running",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -612,39 +684,7 @@
   {
    "type": "BI",
    "inst": 12,
-   "name": "Running Status Cprsr2A",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 13,
-   "name": "Running Status Cprsr1B",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 14,
-   "name": "Running Status Cprsr2B",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 15,
-   "name": "Free Cooling Active",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 16,
-   "name": "Heat Recovery Active",
+   "name": "Compressor 2B Running",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -652,39 +692,7 @@
   {
    "type": "BI",
    "inst": 17,
-   "name": "Active Heat Recovery Command",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 18,
-   "name": "Latching Alarm Present, Circuit 1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 19,
-   "name": "Latching Alarm Present, Circuit 2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 20,
-   "name": "Non-Latching Alarm Present, Circuit 1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 21,
-   "name": "Non-Latching Alarm Present, Circuit 2",
+   "name": "Evaporator Water Pump Command",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -692,7 +700,7 @@
   {
    "type": "BI",
    "inst": 22,
-   "name": "Running Status Cprsr1C",
+   "name": "Evaporator Water Flow Status",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -700,7 +708,7 @@
   {
    "type": "BI",
    "inst": 23,
-   "name": "Running Status Cprsr2C",
+   "name": "Alarm Present",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -708,23 +716,31 @@
   {
    "type": "BI",
    "inst": 24,
-   "name": "Emergency Stop Unit Status",
+   "name": "Shutdown Alarm Present",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 25,
-   "name": "Noise Reduction Active",
+   "inst": 500,
+   "name": "AFD Fault – 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 26,
-   "name": "No assignment - reserved as obsolete",
+   "inst": 502,
+   "name": "AFD Fault–2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 504,
+   "name": "AFD Motor Current Overload – 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -732,15 +748,7 @@
   {
    "type": "BI",
    "inst": 506,
-   "name": "Comm Loss: Evaporator Anti-Freeze Heater",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 507,
-   "name": "Comm Loss: Auxiliary Setpoint Command",
+   "name": "AFD Motor Current Overload – 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -748,15 +756,7 @@
   {
    "type": "BI",
    "inst": 508,
-   "name": "Comm Loss: Evaporator Water Flow Switch",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 509,
-   "name": "Comm Loss: Compressor Fault Input",
+   "name": "AFD Interrupt Failure – 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -764,15 +764,7 @@
   {
    "type": "BI",
    "inst": 510,
-   "name": "Comm Loss: Compressor Fault Input",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 511,
-   "name": "Comm Loss: Compressor Fault Input",
+   "name": "AFD Interrupt Failure – 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -780,7 +772,7 @@
   {
    "type": "BI",
    "inst": 512,
-   "name": "Comm Loss: Compressor Fault Input",
+   "name": "Starter Did Not Transition - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -788,7 +780,7 @@
   {
    "type": "BI",
    "inst": 513,
-   "name": "Comm Loss: Compressor Fault Input",
+   "name": "Starter Did Not Transition - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -796,7 +788,31 @@
   {
    "type": "BI",
    "inst": 514,
-   "name": "Comm Loss: Compressor Fault Input",
+   "name": "Starter Did Not Transition - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 515,
+   "name": "Starter Did Not Transition - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 516,
+   "name": "Phase Reversal - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 517,
+   "name": "Phase Reversal - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -804,7 +820,15 @@
   {
    "type": "BI",
    "inst": 518,
-   "name": "Comm Loss: Cond Fan Enbl Shared Ckt 1&2",
+   "name": "Phase Reversal - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 519,
+   "name": "Phase Reversal - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -812,7 +836,7 @@
   {
    "type": "BI",
    "inst": 520,
-   "name": "Comm Loss: Condenser Fan Enable",
+   "name": "Starter Dry Run Test - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -820,7 +844,95 @@
   {
    "type": "BI",
    "inst": 521,
-   "name": "Comm Loss: Condenser Fan Enable",
+   "name": "Starter Dry Run Test- 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 522,
+   "name": "Starter Dry Run Test - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 523,
+   "name": "Starter Dry Run Test - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 524,
+   "name": "Phase Loss - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 525,
+   "name": "Phase Loss - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 526,
+   "name": "Phase Loss-2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 527,
+   "name": "Phase Loss-2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 528,
+   "name": "Power Loss - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 529,
+   "name": "Power Loss - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 530,
+   "name": "Power Loss - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 531,
+   "name": "Power Loss - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 532,
+   "name": "Severe CurrentPhase UnbalanceImbalance - Cprsr 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -828,7 +940,7 @@
   {
    "type": "BI",
    "inst": 533,
-   "name": "Comm Loss: Discharge Temperature Sensor",
+   "name": "Severe CurrentPhase UnbalanceImbalance - Cprsr 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -836,7 +948,7 @@
   {
    "type": "BI",
    "inst": 534,
-   "name": "Comm Loss: Discharge Temperature Sensor",
+   "name": "Severe CurrentPhase UnbalanceImbalance - Cprsr 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -844,7 +956,7 @@
   {
    "type": "BI",
    "inst": 535,
-   "name": "Comm Loss: Discharge Pressure Transducer",
+   "name": "Severe CurrentPhase UnbalanceImbalance - Cprsr 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -852,7 +964,7 @@
   {
    "type": "BI",
    "inst": 536,
-   "name": "Comm Loss: Discharge Pressure Transducer",
+   "name": "Starter Fault Type I – 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -860,7 +972,7 @@
   {
    "type": "BI",
    "inst": 537,
-   "name": "Comm Loss: Electronic Expansion Valve",
+   "name": "Starter Fault Type I – 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -868,7 +980,7 @@
   {
    "type": "BI",
    "inst": 538,
-   "name": "Comm Loss: Electronic Expansion Valve",
+   "name": "Starter Fault Type I – 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -876,7 +988,15 @@
   {
    "type": "BI",
    "inst": 539,
-   "name": "Comm Loss: Emergency Stop Feedback Input",
+   "name": "Starter Fault Type I –2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 540,
+   "name": "Starter Fault Type II – 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -884,7 +1004,15 @@
   {
    "type": "BI",
    "inst": 541,
-   "name": "Comm Loss: Evap Entering Water Temp",
+   "name": "Starter Fault Type II –1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 542,
+   "name": "Starter Fault Type II –2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -892,7 +1020,15 @@
   {
    "type": "BI",
    "inst": 543,
-   "name": "Comm Loss: Evap Leaving Water Temp",
+   "name": "Starter Fault Type II – 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 544,
+   "name": "Starter Fault Type III – 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -900,7 +1036,7 @@
   {
    "type": "BI",
    "inst": 545,
-   "name": "Comm Loss: Evap Pump Inv1 Fault Input",
+   "name": "Starter Fault Type III –1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -908,7 +1044,7 @@
   {
    "type": "BI",
    "inst": 546,
-   "name": "Comm Loss: Evap Pump Inv1 Freq Feedback",
+   "name": "Starter Fault Type III –2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -916,7 +1052,23 @@
   {
    "type": "BI",
    "inst": 547,
-   "name": "Comm Loss: Evap Pump Inv1 Run Command",
+   "name": "Starter Fault Type III –2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 548,
+   "name": "Transition Complete Input Shorted –1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 549,
+   "name": "Transition Complete Input Shorted –1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -924,7 +1076,7 @@
   {
    "type": "BI",
    "inst": 550,
-   "name": "Comm Loss: Evaporator Water Pump 1 Relay",
+   "name": "Transition Complete Input Shorted –2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -932,7 +1084,39 @@
   {
    "type": "BI",
    "inst": 551,
-   "name": "Comm Loss: Evaporator Water Pump 2 Relay",
+   "name": "Transition Complete Input Shorted –2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 552,
+   "name": "Transition Complete Input Opened –1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 553,
+   "name": "Transition Complete Input Opened –1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 554,
+   "name": "Transition Complete Input Opened –2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 555,
+   "name": "Transition Complete Input Opened –2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -940,7 +1124,7 @@
   {
    "type": "BI",
    "inst": 556,
-   "name": "Comm Loss: Ext Chilled Water Setpoint",
+   "name": "Motor Current Overload Trip - Cprsr 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -948,7 +1132,7 @@
   {
    "type": "BI",
    "inst": 557,
-   "name": "External Demand Limit Setpoint",
+   "name": "Motor Current Overload Trip - Cprsr 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -956,7 +1140,7 @@
   {
    "type": "BI",
    "inst": 558,
-   "name": "Comm Loss: Ext Noise Reduction Request",
+   "name": "Motor Current Overload Trip - Cprsr 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -964,7 +1148,7 @@
   {
    "type": "BI",
    "inst": 559,
-   "name": "Comm Loss: External Auto/Stop",
+   "name": "Motor Current Overload Trip - Cprsr 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -972,7 +1156,7 @@
   {
    "type": "BI",
    "inst": 560,
-   "name": "Comm Loss: External Ckt Lockout",
+   "name": "Starter Contactor Interrupt Failure - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -980,7 +1164,7 @@
   {
    "type": "BI",
    "inst": 561,
-   "name": "Comm Loss: External Ckt Lockout",
+   "name": "Starter Contactor Interrupt Failure - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -988,7 +1172,7 @@
   {
    "type": "BI",
    "inst": 562,
-   "name": "Comm Loss: External Heat Recovery Command",
+   "name": "Starter Contactor Interrupt Failure - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -996,7 +1180,7 @@
   {
    "type": "BI",
    "inst": 563,
-   "name": "Comm Loss: External Ice Building Command",
+   "name": "Starter Contactor Interrupt Failure - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -1004,7 +1188,7 @@
   {
    "type": "BI",
    "inst": 564,
-   "name": "Comm Loss: Fan Board 1 Relay 1",
+   "name": "Over Voltage",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -1012,7 +1196,7 @@
   {
    "type": "BI",
    "inst": 565,
-   "name": "Comm Loss: Fan Board 1 Relay 1",
+   "name": "Under Voltage",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -1020,774 +1204,6 @@
   {
    "type": "BI",
    "inst": 566,
-   "name": "Comm Loss: Fan Board 1 Relay 2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 567,
-   "name": "Comm Loss: Fan Board 1 Relay 2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 568,
-   "name": "Comm Loss: Fan Board 1 Relay 3",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 569,
-   "name": "Comm Loss: Fan Board 1 Relay 3",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 570,
-   "name": "Comm Loss: Fan Board 1 Relay 4",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 571,
-   "name": "Comm Loss: Fan Board 1 Relay 4",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 572,
-   "name": "Comm Loss: Fan Speed Select Board Relay 1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 574,
-   "name": "Comm Loss: Fan Speed Select Board Relay 2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 577,
-   "name": "Comm Loss: Fan Speed Select Board Relay 3",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 579,
-   "name": "Comm Loss: Fan Speed Select Board Relay 4",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 582,
-   "name": "Comm Loss: Fan Inv Spd Cmd, Shrd Ckt1&2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 585,
-   "name": "Comm Loss: Fan Inverter Speed Command",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 586,
-   "name": "Comm Loss: Fan Inverter Speed Command",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 590,
-   "name": "Comm Loss: High Pressure Cutout Switch",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 591,
-   "name": "Comm Loss: High Pressure Cutout Switch",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 596,
-   "name": "Comm Loss: HR Entering Water Temp Sensor",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 597,
-   "name": "Comm Loss: HR Leaving Water Temp Sensor",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 598,
-   "name": "Comm Loss: HR Three Way Valve",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 600,
-   "name": "Comm Loss: Local BAS Interface",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 602,
-   "name": "Comm Loss: Programmable Relay Board 1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 603,
-   "name": "Comm Loss: Outdoor Air Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 604,
-   "name": "Comm Loss: Percent Capacity Output",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 605,
-   "name": "Comm Loss: Phase Protection Fault Input",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 606,
-   "name": "Comm Loss: Programmable Relay Board 2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 617,
-   "name": "Comm Loss: Run Command Compressor A",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 618,
-   "name": "Comm Loss: Run Command Compressor A",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 619,
-   "name": "Comm Loss: Run Command Compressor B",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 620,
-   "name": "Comm Loss: Run Command Compressor B",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 621,
-   "name": "Comm Loss: Run Command Compressor C",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 622,
-   "name": "Comm Loss: Run Command Compressor C",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 628,
-   "name": "Comm Loss: Suction Rfgt Pressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 629,
-   "name": "Comm Loss: Suction Rfgt Pressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 630,
-   "name": "Comm Loss: Suction Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 631,
-   "name": "Comm Loss: Suction Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 636,
-   "name": "Compressor A Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 637,
-   "name": "Compressor A Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 638,
-   "name": "Compressor B Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 639,
-   "name": "Compressor B Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 640,
-   "name": "Compressor C Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 641,
-   "name": "Compressor C Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 642,
-   "name": "Compressor Fault Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 643,
-   "name": "Compressor Fault Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 644,
-   "name": "Compressor Fault Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 645,
-   "name": "Compressor Fault Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 646,
-   "name": "Compressor Fault Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 647,
-   "name": "Compressor Fault Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 650,
-   "name": "Discharge Pressure Transducer",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 651,
-   "name": "Discharge Pressure Transducer",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 669,
-   "name": "Emergency Stop",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 691,
-   "name": "Evap Pump 1 Starts/Hours Modified",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 692,
-   "name": "Evap Pump 2 Starts/Hours Modified",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 694,
-   "name": "Evaporator Entering Water Temp Sensor",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 696,
-   "name": "Evaporator Leaving Water Temp Sensor",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 698,
-   "name": "Evaporator Pump 1 Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 699,
-   "name": "Evaporator Pump 2 Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 700,
-   "name": "Evaporator Water Flow Lost",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 701,
-   "name": "Evaporator Water Flow Lost Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 702,
-   "name": "Evaporator Water Flow Lost - Pump1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 703,
-   "name": "Evaporator Water Flow Lost - Pump2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 704,
-   "name": "Evaporator Water Flow Overdue",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 705,
-   "name": "Evaporator Water Flow Overdue - Pump1",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 706,
-   "name": "Evaporator Water Flow Overdue - Pump2",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 707,
-   "name": "Evaporator Water Flow Too Low",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 708,
-   "name": "External Chilled/Hot Water Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 711,
-   "name": "Heat Recovery Entering Water Temp Sensor",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 712,
-   "name": "Heat Recovery Leaving Water Temp Sensor",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 713,
-   "name": "High Compressor Pressure Differential",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 714,
-   "name": "High Compressor Pressure Differential",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 715,
-   "name": "High Discharge Refrigerant Pressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 716,
-   "name": "High Discharge Refrigerant Pressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 717,
-   "name": "High Discharge Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 718,
-   "name": "High Discharge Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 731,
-   "name": "High Discharge Temperature Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 732,
-   "name": "High Discharge Temperature Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 733,
-   "name": "High Evaporator Water Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 746,
-   "name": "High Pressure Cutout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 747,
-   "name": "High Pressure Cutout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 748,
-   "name": "High Suction Rfgt Pressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 768,
-   "name": "Inverted Evaporator Water Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 769,
-   "name": "Inverted Water Temp (Heating)",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 770,
-   "name": "LCI-C Software Mismatch: Use BAS Tool",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 771,
-   "name": "Loss of Charge",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 772,
-   "name": "Loss of Charge",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 775,
-   "name": "Low Discharge Saturated Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 776,
-   "name": "Low Discharge Saturated Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 777,
-   "name": "Low Evaporator Water Temp (Unit Off)",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 778,
-   "name": "Low Evaporator Water Temp (Unit On)",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 779,
-   "name": "Low Suction Refrigerant Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 780,
-   "name": "Low Suction Refrigerant Temperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 782,
-   "name": "Low Suction Refrigerant Pressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 783,
-   "name": "Low Refrigerant Pressure Ratio",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 784,
-   "name": "Low Refrigerant Pressure Ratio",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 785,
-   "name": "Low Suction Refrigerant Pressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 786,
-   "name": "Low Suction Superheat",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 787,
-   "name": "Low Suction Superheat",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 827,
-   "name": "MP: Invalid Configuration",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BI",
-   "inst": 829,
    "name": "MP: Reset Has Occurred",
    "unitRaw": null,
    "unit": null,
@@ -1795,15 +1211,551 @@
   },
   {
    "type": "BI",
-   "inst": 832,
-   "name": "Pumpdown Terminated By Time",
+   "inst": 567,
+   "name": "Low Evaporator Rfgt Temperature - Ckt1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 833,
+   "inst": 568,
+   "name": "Low Evaporator Rfgt Temperature - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 569,
+   "name": "Low Oil Flow - Cprsr 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 570,
+   "name": "Low Oil Flow - Cprsr 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 571,
+   "name": "Low Oil Flow- Cprsr 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 572,
+   "name": "Low Oil Flow - Cprsr 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 573,
+   "name": "Low Differential Rfgt Pressure - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 574,
+   "name": "Low Differential Rfgt Pressure - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 575,
+   "name": "High Differential Rfgt Pressure - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 576,
+   "name": "High Differential Rfgt Pressure - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 577,
+   "name": "High Oil Temperature – 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 578,
+   "name": "High Oil Temperature –1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 579,
+   "name": "High Oil Temperature –2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 580,
+   "name": "High Oil Temperature – 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 581,
+   "name": "Oil Temperature Sensor – 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 582,
+   "name": "Oil Temperature Sensor – 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 583,
+   "name": "Oil Temperature Sensor–2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 584,
+   "name": "Oil Temperature Sensor–2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 585,
+   "name": "Evaporator Liquid Level Sensor– Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 586,
+   "name": "Evaporator Liquid Level Sensor– Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 587,
+   "name": "Condenser Fan VFD Fault - Ckt 1 Dr 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 588,
+   "name": "Condenser Fan VFD Fault - Ckt1 Dr 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 589,
+   "name": "Condenser Fan VFD Fault - Ckt2 Dr 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 590,
+   "name": "Condenser Fan VFD Fault - Ckt2 Dr 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 593,
+   "name": "Low Evaporator Liquid Level – Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 594,
+   "name": "Low Evaporator Liquid Level – Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 595,
+   "name": "High Evaporator Liquid Level – Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 596,
+   "name": "High Evaporator Liquid Level – Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 597,
+   "name": "Evaporator Rfgt Drain – Circuit 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 598,
+   "name": "Evaporator Rfgt Drain – Circuit 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 599,
+   "name": "External Chilled Water Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 600,
+   "name": "External Current Limit Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 601,
+   "name": "Evap Water Flow (Entering Water Temp)",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 602,
+   "name": "Evaporator Entering Water Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 603,
+   "name": "Evaporator Leaving Water Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 604,
+   "name": "Condenser Rfgt Pressure Transducer - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 605,
+   "name": "Condenser Rfgt Pressure Transducer - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 606,
+   "name": "Suction Refrigerant Pressure Sensor- 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 607,
+   "name": "Suction Refrigerant Pressure Sensor - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 608,
+   "name": "Suction Refrigerant Pressure Sensor - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 609,
+   "name": "Suction Refrigerant Pressure Sensor - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 610,
+   "name": "Intermediate Oil Press Xdcr - Cprsr 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 611,
+   "name": "Intermediate Oil Press Xdcr - Cprsr 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 612,
+   "name": "Intermediate Oil Press Xdcr - Cprsr 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 613,
+   "name": "Intermediate Oil Press Xdcr - Cprsr 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 614,
+   "name": "Oil Flow Protection Fault - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 615,
+   "name": "Oil Flow Protection Fault - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 616,
+   "name": "Oil Flow Protection Fault - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 617,
+   "name": "Oil Flow Protection Fault - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 618,
+   "name": "Low Suction Rfgt Pressure – Ckt 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 620,
+   "name": "Low Suction Rfgt Pressure – Ckt 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 622,
+   "name": "Very Low Evaporator Rfgt Pressure - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 623,
+   "name": "Very Low Evaporator Rfgt Pressure - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 624,
+   "name": "Pumpdown Terminated - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 625,
+   "name": "Pumpdown Terminated - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 626,
+   "name": "Low Evaporator Water Temp (Unit Off)",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 627,
+   "name": "Low Evaporator Temp (Unit Off) - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 628,
+   "name": "Low Evaporator Temp (Unit Off) - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 629,
+   "name": "Low Evap Leaving Water Temp: Unit On",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 630,
+   "name": "Evaporator Water Flow Overdue",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 631,
+   "name": "Evaporator Water Flow Lost",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 632,
+   "name": "High Evaporator Refrigerant Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 633,
+   "name": "High Evaporator Water Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 634,
+   "name": "High Pressure Cutout - Cprsr 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 635,
+   "name": "High Pressure Cutout - Cprsr 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 636,
+   "name": "High Pressure Cutout - Cprsr 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 637,
+   "name": "High Pressure Cutout - Cprsr 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 638,
+   "name": "Emergency Stop",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 639,
    "name": "Outdoor Air Temperature Sensor",
    "unitRaw": null,
    "unit": null,
@@ -1811,792 +1763,872 @@
   },
   {
    "type": "BI",
-   "inst": 834,
-   "name": "Phase Protection Fault",
+   "inst": 640,
+   "name": "Starter Panel Thermostat Cutout - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 835,
-   "name": "No Total Heat Recovery",
+   "inst": 641,
+   "name": "Starter Panel Thermostat Cutout - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 838,
-   "name": "Restart Inhibit Invoked - 1A",
+   "inst": 642,
+   "name": "Starter Panel Thermostat Cutout - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 839,
-   "name": "Restart Inhibit Invoked - 2A",
+   "inst": 643,
+   "name": "Starter Module Memory Error Type 1 - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 840,
-   "name": "Restart Inhibit Invoked - 1B",
+   "inst": 644,
+   "name": "Starter Module Memory Error Type 1 - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 841,
-   "name": "Restart Inhibit Invoked - 2B",
+   "inst": 645,
+   "name": "Starter Module Memory Error Type 1 - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 842,
-   "name": "Restart Inhibit Invoked - 1C",
+   "inst": 646,
+   "name": "Starter Module Memory Error Type 1 - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 843,
-   "name": "Restart Inhibit Invoked - 2C",
+   "inst": 647,
+   "name": "Starter Module Memory Error Type 2 - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 848,
-   "name": "Starts/Hours Modified 1C",
+   "inst": 648,
+   "name": "Starter Module Memory Error Type 2 - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 849,
-   "name": "Starts/Hours Modified 2A",
+   "inst": 649,
+   "name": "Starter Module Memory Error Type 2 - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 850,
-   "name": "Starts/Hours Modified 1B",
+   "inst": 650,
+   "name": "Starter Module Memory Error Type 2 - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 851,
-   "name": "Starts/Hours Modified 1A",
+   "inst": 651,
+   "name": "MP: Invalid Configuration",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 852,
-   "name": "Starts/Hours Modified 2B",
+   "inst": 652,
+   "name": "MP Application Memory CRC Error",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 853,
-   "name": "Starts/Hours Modified 2C",
+   "inst": 653,
+   "name": "MP: Non-Volatile Memory Reformatted",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 856,
-   "name": "Suction Pressure Transducer",
+   "inst": 654,
+   "name": "Check Clock",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 857,
-   "name": "Suction Pressure Transducer",
+   "inst": 655,
+   "name": "MP: Could not Store Starts and Hours",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 858,
-   "name": "Suction Temperature Sensor",
+   "inst": 656,
+   "name": "MP: Non-Volatile Block Test Error",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 859,
-   "name": "Suction Temperature Sensor",
+   "inst": 657,
+   "name": "Starter Failed to Arm/Start - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 860,
-   "name": "Suction Temperature Too High",
+   "inst": 658,
+   "name": "Starter Failed to Arm/Start - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 861,
-   "name": "Suction Temperature Too High",
+   "inst": 659,
+   "name": "Starter Failed to Arm/Start - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 862,
-   "name": "Very Low Suction Pressure - Circuit 1",
+   "inst": 660,
+   "name": "Starter Failed to Arm/Start - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 863,
-   "name": "Very Low Suction Pressure - Circuit 2",
+   "inst": 661,
+   "name": "Software Error 1001: Call Trane Service",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 864,
-   "name": "Chiller Service Recommended",
+   "inst": 662,
+   "name": "Software Error 1002: Call Trane Service",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 865,
-   "name": "Pumpdown Terminated By Time",
+   "inst": 663,
+   "name": "Software Error 1003: Call Trane Service",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 866,
-   "name": "Comm Loss: Energy Meter Pulse Input",
+   "inst": 664,
+   "name": "Excessive IPC Comm Loss",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 867,
-   "name": "Comm Loss: Evap Pump Inverter 1 Speed",
+   "inst": 665,
+   "name": "Comm Loss: Slide Valve Unload - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 868,
-   "name": "Comm Loss: Ext Demand Limit Stpt",
+   "inst": 666,
+   "name": "Comm Loss: Slide Valve Load - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 869,
-   "name": "Comm Loss: Heat Recovery Anti-Freeze Heater",
+   "inst": 667,
+   "name": "Comm Loss: Slide Valve Unload - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 871,
-   "name": "Comm Loss: Evaporator Pump 1 Fault Input",
+   "inst": 668,
+   "name": "Comm Loss: Slide Valve Load - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 872,
-   "name": "Comm Loss: Evaporator Pump 2 Fault Input",
+   "inst": 669,
+   "name": "Comm Loss: Slide Valve Unload - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 873,
-   "name": "Evap Water Pump 1 Svc Recommended",
+   "inst": 670,
+   "name": "Comm Loss: Slide Valve Load - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 874,
-   "name": "Evap Water Pump 2 Svc Recommended",
+   "inst": 671,
+   "name": "Comm Loss: Slide Valve Unload - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 875,
-   "name": "Mfr Maintenance Recommended - 1A",
+   "inst": 672,
+   "name": "Comm Loss: Slide Valve Load - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 876,
-   "name": "Mfr Maintenance Recommended - 1B",
+   "inst": 673,
+   "name": "Comm Loss: Step Load - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 877,
-   "name": "Mfr Maintenance Recommended - 1C",
+   "inst": 674,
+   "name": "Comm Loss: Step Load - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 878,
-   "name": "Mfr Maintenance Recommended - 2A",
+   "inst": 675,
+   "name": "Comm Loss: Step Load - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 879,
-   "name": "Mfr Maintenance Recommended - 2B",
+   "inst": 676,
+   "name": "Comm Loss: Step Load - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 880,
-   "name": "Mfr Maintenance Recommended - 2C",
+   "inst": 677,
+   "name": "Comm Loss: External Auto/Stop",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 881,
-   "name": "BAS Communication Lost",
+   "inst": 678,
+   "name": "Comm Loss: Emergency Stop",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 882,
-   "name": "BAS Failed to Establish Communication",
+   "inst": 679,
+   "name": "Comm Loss: External Ckt Lockout - Ckt1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 883,
-   "name": "Comm Loss: FC Entering Glycol Temp",
+   "inst": 680,
+   "name": "Comm Loss: External Ckt Lockout - Ckt2",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 884,
-   "name": "Comm Loss: FC Entering Water Temp",
+   "inst": 681,
+   "name": "Comm Loss: External Ice Building Command",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 885,
-   "name": "Comm Loss: FC Leaving Glycol Temp",
+   "inst": 682,
+   "name": "Comm Loss: Outdoor Air Temperature",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 886,
-   "name": "Comm Loss: Free Cooling Pump",
+   "inst": 683,
+   "name": "Comm Loss: Evap Leaving Water Temp",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 887,
-   "name": "Comm Loss: Free Cooling Valve",
+   "inst": 684,
+   "name": "Comm Loss: Evap Entering Water Temp",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 888,
-   "name": "Free Cooling Entering Glycol Temperature",
+   "inst": 685,
+   "name": "Comm Loss: Oil Temperature – 1A’",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 889,
-   "name": "Free Cooling Entering Water Temperature",
+   "inst": 686,
+   "name": "Comm Loss: Oil Temperature – 1B’",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 890,
-   "name": "Free Cooling Glycol Temp Equalization Overdue",
+   "inst": 687,
+   "name": "Comm Loss: Oil Temperature – 2A’",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 891,
-   "name": "Free Cooling Leaving Glycol Temperature",
+   "inst": 688,
+   "name": "Comm Loss: Oil Temperature – 2B’",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 892,
-   "name": "Low Glycol Temperature Free Cooling",
+   "inst": 689,
+   "name": "Comm Loss: Ext Chilled Water Setpoint",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 893,
-   "name": "Comm Loss: External Heat Recovery Setpoint",
+   "inst": 690,
+   "name": "Comm Loss: Ext Current Limit Setpoint",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 894,
-   "name": "Comm Loss: Fan Board 2 Relay 1",
+   "inst": 691,
+   "name": "Comm Loss: High Pressure Cutout Sw - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 895,
-   "name": "Comm Loss: Fan Board 2 Relay 1",
+   "inst": 692,
+   "name": "Comm Loss: High Pressure Cutout Sw - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 896,
-   "name": "Comm Loss: Fan Board 2 Relay 2",
+   "inst": 693,
+   "name": "Comm Loss: High Pressure Cutout Sw - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 897,
-   "name": "Comm Loss: Fan Board 2 Relay 2",
+   "inst": 694,
+   "name": "Comm Loss: High Pressure Cutout Sw - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 898,
-   "name": "Comm Loss: Fan Board 2 Relay 3",
+   "inst": 695,
+   "name": "Comm Loss: Evaporator Water Flow Switch",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 899,
-   "name": "Comm Loss: Fan Board 2 Relay 3",
+   "inst": 696,
+   "name": "Comm Loss: Condenser Rfgt Pressure - Ckt1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 900,
-   "name": "Comm Loss: Fan Board 2 Relay 4",
+   "inst": 697,
+   "name": "Comm Loss: Condenser Rfgt Pressure - Ckt2",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 901,
-   "name": "Comm Loss: Fan Board 2 Relay 4",
+   "inst": 698,
+   "name": "Comm Loss: Intermediate Oil Pressure - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 902,
-   "name": "External Heat Recovery Setpoint",
+   "inst": 699,
+   "name": "Comm Loss: Intermediate Oil Pressure - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 903,
-   "name": "Comm Loss: HR Refrigerant Bypass Valve",
+   "inst": 700,
+   "name": "Comm Loss: Intermediate Oil Pressure - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 904,
-   "name": "Comm Loss: HR Refrigerant Bypass Valve",
+   "inst": 701,
+   "name": "Comm Loss: Intermediate Oil Pressure - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 905,
-   "name": "Comm Loss: Reversing Valve",
+   "inst": 702,
+   "name": "Comm Loss: Evaporator Water Pump Relay",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 906,
-   "name": "Comm Loss: Reversing Valve",
+   "inst": 703,
+   "name": "Comm Loss: Ice Building Status Relay",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 907,
-   "name": "Comm Loss: Hot Gas Bypass Valve",
+   "inst": 704,
+   "name": "Comm Loss: Suction Rfgt Pressure - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 908,
-   "name": "Comm Loss: Dynamic Receiver Fill Valve",
+   "inst": 705,
+   "name": "Comm Loss: Suction Rfgt Pressure - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 909,
-   "name": "Comm Loss: Hot Gas Bypass Valve",
+   "inst": 706,
+   "name": "Comm Loss: Suction Rfgt Pressure - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 910,
-   "name": "Comm Loss: Dynamic Receiver Fill Valve",
+   "inst": 707,
+   "name": "Comm Loss: Suction Rfgt Pressure - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 912,
-   "name": "Comm Loss: External Hot Water Command",
+   "inst": 708,
+   "name": "Comm Loss: Fan Control Ckt1, Stage 1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 913,
-   "name": "Comm Loss: Supplemental Heater Relay 1",
+   "inst": 709,
+   "name": "Comm Loss: Fan Control Ckt1, Stage 2",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 915,
-   "name": "Comm Loss: Supplemental Heater Relay 2",
+   "inst": 710,
+   "name": "Comm Loss: Fan Control Ckt1, Stage 3",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 916,
-   "name": "Comm Loss: Supplemental Heater Relay 3",
+   "inst": 711,
+   "name": "Comm Loss: Fan Control Ckt1, Stage 4",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 917,
-   "name": "Comm Loss: Supplemental Heater Relay 4",
+   "inst": 712,
+   "name": "Comm Loss: Fan Control Ckt2, Stage 1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 918,
-   "name": "Comm Loss: Liquid Line Temperature",
+   "inst": 713,
+   "name": "Comm Loss: Fan Control Ckt2, Stage 2",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 919,
-   "name": "Comm Loss: Liquid Line Pressure",
+   "inst": 714,
+   "name": "Comm Loss: Fan Control Ckt2, Stage 3",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 920,
-   "name": "Liquid Line Temp Sensor",
+   "inst": 715,
+   "name": "Comm Loss: Fan Control Ckt2, Stage 4",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 921,
-   "name": "Liquid Line Pressure Transducer",
+   "inst": 716,
+   "name": "Comm Loss: Evap Rfgt Liquid Level - Ckt1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 922,
-   "name": "Comm Loss: Liquid Line Temperature",
+   "inst": 717,
+   "name": "Comm Loss: Evap Rfgt Liquid Level - Ckt2",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 923,
-   "name": "Comm Loss: Liquid Line Pressure",
+   "inst": 718,
+   "name": "Comm Loss: Fan Inverter Power- Ckt1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 924,
-   "name": "Liquid Line Temp Sensor",
+   "inst": 719,
+   "name": "Comm Loss: Fan Inverter Speed Cmd - Ckt1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 925,
-   "name": "Liquid Line Pressure Transducer",
+   "inst": 720,
+   "name": "Comm Loss: Fan Inv Fault, Ckt1, Dr 1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 926,
-   "name": "Comm Loss: Shared V Coil Isolation Valve",
+   "inst": 721,
+   "name": "Comm Loss: Fan Inv Fault, Ckt1, Dr 2",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 927,
-   "name": "Comm Loss: Shared V Coil Isolation Valve",
+   "inst": 722,
+   "name": "Comm Loss: Oil Return Solenoid Valve - 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 928,
-   "name": "Free Cooling Glycol Flow Overdue",
+   "inst": 723,
+   "name": "Comm Loss: Oil Return Solenoid Valve - 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 929,
-   "name": "Comm Loss: Free Cooling Glycol Flow Switch",
+   "inst": 724,
+   "name": "Comm Loss: Oil Return Solenoid Valve - 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 930,
-   "name": "Comm Loss: Free Cooling Glycol Pressure",
+   "inst": 725,
+   "name": "Comm Loss: Oil Return Solenoid Valve - 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 931,
-   "name": "Free Cooling Glycol Pressure",
+   "inst": 726,
+   "name": "Comm Loss: Starter 1A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 932,
-   "name": "Low Glycol Pressure Free Cooling",
+   "inst": 727,
+   "name": "Comm Loss: Starter 1B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 933,
-   "name": "Comm Loss: Free Cooling Glycol Pump Fault",
+   "inst": 728,
+   "name": "Comm Loss: Starter 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 934,
-   "name": "Free Cooling Glycol Pump Fault",
+   "inst": 729,
+   "name": "Comm Loss: Starter 2B",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 935,
-   "name": "Free Cooling Glycol Flow Lost",
+   "inst": 730,
+   "name": "Comm Loss: Electronic Expansion Valve 1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 936,
-   "name": "SLHX Entering Temp Sensor - Ckt1",
+   "inst": 731,
+   "name": "Comm Loss: Electronic Expansion Valve 2",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 937,
-   "name": "Comm Loss: SLHX Valve - Ckt1",
+   "inst": 734,
+   "name": "Comm Loss: Fan Inverter Power - Ckt2",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 938,
-   "name": "Comm Loss: SLHX Entering Refrigerant Temp - Ckt1",
+   "inst": 735,
+   "name": "Comm Loss: Fan Inverter Speed Cmd - Ckt2",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 939,
-   "name": "SLHX Entering Temp Sensor - Ckt2",
+   "inst": 736,
+   "name": "Comm Loss: Fan Inv Fault, Ckt 2, Dr 1",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 940,
-   "name": "Comm Loss: SLHX Valve - Ckt2",
+   "inst": 737,
+   "name": "Comm Loss: Fan Inv Fault, Ckt 2, Dr 2",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 941,
-   "name": "Comm Loss: SLHX Entering Refrigerant Temp - Ckt2",
+   "inst": 738,
+   "name": "Starter 1A Loss of Comm with MP",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 942,
-   "name": "Comm Loss: Sump Heater - Ckt1",
+   "inst": 739,
+   "name": "Starter 1B Loss of Comm with MP",
    "unitRaw": null,
    "unit": null,
    "note": ""
   },
   {
    "type": "BI",
-   "inst": 943,
-   "name": "Comm Loss: Sump Heater - Ckt2",
+   "inst": 740,
+   "name": "Starter 2A Loss of Comm with MP",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 741,
+   "name": "Starter 2B Loss of Comm with MP",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 742,
+   "name": "Comm Loss: Local BAS Interface",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 743,
+   "name": "Comm Loss: Programmable Relay Board 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 744,
+   "name": "Starter Panel Thermostat Comm Loss 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 745,
+   "name": "Starter Panel Thermostat Comm Loss 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 746,
+   "name": "Starter Panel Thermostat Comm Loss 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 747,
+   "name": "Comm Loss: Evap Rfgt Drain Valve - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 748,
+   "name": "Comm Loss: Evap Rfgt Drain Valve - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 749,
+   "name": "Comm Loss: AFD 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BI",
+   "inst": 750,
+   "name": "Comm Loss: AFD 2A",
    "unitRaw": null,
    "unit": null,
    "note": ""
@@ -2604,50 +2636,10 @@
   {
    "type": "BV",
    "inst": 2,
-   "name": "Reset Diagnostic",
+   "name": "BAS Diagnostic Reset",
    "unitRaw": null,
    "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BV",
-   "inst": 3,
-   "name": "BAS Noise Reduction Command",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BV",
-   "inst": 4,
-   "name": "BAS Heat Recovery Command",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BV",
-   "inst": 5,
-   "name": "Clear Energy Consumption",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BV",
-   "inst": 6,
-   "name": "BAS Circuit 1 Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BV",
-   "inst": 7,
-   "name": "BAS Circuit 2 Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
+   "note": "범위 0 or 1"
   },
   {
    "type": "MSI",
@@ -2655,7 +2647,7 @@
    "name": "Chiller Running Status",
    "unitRaw": null,
    "unit": null,
-   "note": "1=not running; 2=starting; 3= running; 4= stopping"
+   "note": "1 = Chiller off 2 = Chiller in start mode 3 = Chiller in run mode 4 = Chiller in pre- shutdown mode"
   },
   {
    "type": "MSI",
@@ -2663,79 +2655,39 @@
    "name": "Operating Mode",
    "unitRaw": null,
    "unit": null,
-   "note": "1=cool; 2= heat; 3=ice; 4=free cooling"
-  },
-  {
-   "type": "MSI",
-   "inst": 3,
-   "name": "Front Panel Chiller Mode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1=cool; 2= heat; 3=ice; 4=free cooling"
+   "note": "1 = Cool 3 = Ice"
   },
   {
    "type": "MSI",
    "inst": 4,
-   "name": "Setpoint Source",
+   "name": "Refrigerant Type",
    "unitRaw": null,
    "unit": null,
-   "note": "1=BAS/Ext/ FP; 2=Ext/FP; 3=front panel"
+   "note": "5 = R134a 15 = R514A"
   },
   {
    "type": "MSI",
    "inst": 5,
-   "name": "Active Chilled Water Setpoint Source",
+   "name": "Model Information",
    "unitRaw": null,
    "unit": null,
-   "note": "1=front panel; 2=external; 3= ice machine; 4=BAS"
+   "note": "1 = RTA"
   },
   {
    "type": "MSI",
    "inst": 6,
-   "name": "Active Demand Limit Setpoint Source",
+   "name": "Cooling Type",
    "unitRaw": null,
    "unit": null,
-   "note": "1=front panel; 2=external; 3= ice machine; 4=BAS"
+   "note": "2 = Air cooled"
   },
   {
    "type": "MSI",
    "inst": 7,
-   "name": "External Auto Stop",
+   "name": "Manufacturing Location",
    "unitRaw": null,
    "unit": null,
-   "note": "1=stop; 2= auto"
-  },
-  {
-   "type": "MSI",
-   "inst": 8,
-   "name": "Front Panel Auto/Stop",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1=stop; 2= auto"
-  },
-  {
-   "type": "MSI",
-   "inst": 9,
-   "name": "Active Hot Water Setpoint Source",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1=front panel; 2=external; 3= BAS"
-  },
-  {
-   "type": "MSI",
-   "inst": 10,
-   "name": "Capacity Control Mode Status Ckt1",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1=available; 3=cooling; 4=heating; 5=defrost; 6=not"
-  },
-  {
-   "type": "MSI",
-   "inst": 11,
-   "name": "Capacity Control Mode Status Ckt2",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1=availaavbaleil;a 3b=lecooling; 4=heating; 5=defrost; 6=not"
+   "note": "1 = Field Applied 3 = Pueblo 4 = Charmes 14 = Curitiba 15 = Taicang 17 = Epinal 18 = Golbey"
   },
   {
    "type": "MSV",
@@ -2743,7 +2695,7 @@
    "name": "BAS Chiller Auto Stop Command",
    "unitRaw": null,
    "unit": null,
-   "note": ""
+   "note": "범위 1 or 2"
   },
   {
    "type": "MSV",
@@ -2751,23 +2703,16 @@
    "name": "BAS Chiller Mode Command",
    "unitRaw": null,
    "unit": null,
-   "note": ""
-  },
-  {
-   "type": "MSV",
-   "inst": 3,
-   "name": "BAS Free Cooling Auto Stop Command",
-   "unitRaw": null,
-   "unit": null,
-   "note": ""
+   "note": "범위 1 to 3"
   }
  ],
- "gap": "정격 스펙(냉동능력·COP·유량 등) 값 미확보 → 제품 카탈로그/성능표 필요. 포인트 이름·인스턴스·단위는 PDF에서 자동 추출한 것이라 일부 표기가 원문과 다를 수 있다.",
+ "gap": "정격 성능(용량·COP·소비전력)과 냉각 방식은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
  "extractor": "table",
- "sourceDoc": "BAS-PTS026A-EN_ACSA.pdf",
+ "sourceDoc": "BAS-PTS032A-EN_12062024.pdf",
+ "classifiedBy": "포인트 이름 증거 6종: evaporator, condenser, chilled water, chiller",
  "crosscheck": {
   "rate": 1.0,
-  "both": 342,
+  "both": 332,
   "diff": []
  }
 }

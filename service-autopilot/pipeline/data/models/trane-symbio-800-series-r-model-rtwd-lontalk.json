@@ -1,13 +1,13 @@
 {
- "id": "trane-symbio-800-sintesis-rtaf-lontalk",
+ "id": "trane-symbio-800-series-r-model-rtwd-lontalk",
  "equipId": "e9",
  "vendor": "Trane",
- "model": "Symbio™ 800 — Sintesis RTAF (LonTalk)",
- "name": "Symbio™ 800 Sintesis RTAF 공랭 스크류 냉동기 — LonTalk",
+ "model": "Symbio™ 800 — Series R® Model RTWD (LonTalk)",
+ "name": "Symbio™ 800 Series R® Model RTWD",
  "cat": "HVAC.PLANT.CHILLER",
  "tag": "chiller",
  "status": "active",
- "summary": "공개 통합 포인트 리스트에서 자동 추출했다. LonTalk 79점",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. LonTalk 82점",
  "has": {
   "spec": false,
   "points": true
@@ -27,35 +27,11 @@
  "points": [
   {
    "type": "NCI",
-   "inst": 2,
-   "name": "nciChillerType",
-   "unitRaw": null,
-   "unit": null,
-   "note": "UCPT chiller type _ _"
-  },
-  {
-   "type": "NCI",
-   "inst": 3,
-   "name": "nciHtRcvyReq",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT switch _ · Relinquished Default for Heat Recovery Auto/On Request"
-  },
-  {
-   "type": "NCI",
-   "inst": 4,
-   "name": "nciHtRcvySetpt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT temp p _ _ · Relinquished Default for Heat Recovery Setpoint Input"
-  },
-  {
-   "type": "NCI",
    "inst": 5,
    "name": "nciMfgLocation",
    "unitRaw": null,
    "unit": null,
-   "note": "UCPT manufacturing location _ _ · Chiller Manufacturing Location"
+   "note": "Chiller Manufacturing Location"
   },
   {
    "type": "NCI",
@@ -63,7 +39,7 @@
    "name": "nciNoiseRdcnReq",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT switch _ · Relinquished Default for Noise Reduction Auto/On Request"
+   "note": "Default for Noise Reduction Auto/On Request"
   },
   {
    "type": "NCI",
@@ -71,7 +47,7 @@
    "name": "nciRefrigerant",
    "unitRaw": null,
    "unit": null,
-   "note": "UCPT refrig type _ _ · Chiller Refrigerant Type"
+   "note": "Chiller Refrigerant Type"
   },
   {
    "type": "NCI",
@@ -79,7 +55,7 @@
    "name": "nciCapacityLim",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTCapacityLimit · Capacity Limit"
+   "note": "Capacity Limit"
   },
   {
    "type": "NCI",
@@ -87,7 +63,7 @@
    "name": "nciChillerEnable",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTChillerEnable · Relinquished Default Value for nviChillerEnable"
+   "note": "Default Value for nviChillerEnable"
   },
   {
    "type": "NCI",
@@ -95,7 +71,7 @@
    "name": "nciCoolsetpt",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTCoolSetpoint · Relinquished Default Value for nviCoolSetpt"
+   "note": "Relinquished Default Value for nviCoolSetpt"
   },
   {
    "type": "NCI",
@@ -103,7 +79,7 @@
    "name": "nciDefaults",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTDefaultBehavior · Default Values / Used to decide if configuration defaults should be used"
+   "note": "Default Values / Used to decide if configuration defaults should be used"
   },
   {
    "type": "NCI",
@@ -111,7 +87,7 @@
    "name": "nciDevMajVer",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTdevMajVer · The major version number for the device"
+   "note": "The major version number for the device"
   },
   {
    "type": "NCI",
@@ -119,7 +95,15 @@
    "name": "nciDevMinVer",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTdevMinVer · The minor version number for the device"
+   "note": "The minor version number for the device"
+  },
+  {
+   "type": "NCI",
+   "inst": 14,
+   "name": "nciHeatSetpt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Default Value for nviHeatSetpt"
   },
   {
    "type": "NCI",
@@ -127,7 +111,7 @@
    "name": "nciLocation",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTlocation · Location Label"
+   "note": "Location Label"
   },
   {
    "type": "NCI",
@@ -135,7 +119,7 @@
    "name": "nciMinOutTm",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTminSendTime · Minimum Send Time"
+   "note": "Minimum Send Time"
   },
   {
    "type": "NCI",
@@ -143,7 +127,7 @@
    "name": "nciMode",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTHVACmode · Relinquished Default Value for nviMode"
+   "note": "Default Value for nviMode"
   },
   {
    "type": "NCI",
@@ -151,7 +135,7 @@
    "name": "nciPwrup",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTpwrUpDelay · Power Up Delay"
+   "note": ""
   },
   {
    "type": "NCI",
@@ -159,7 +143,7 @@
    "name": "nciRcvHrtBt",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTmaxRcvTime · Receive Heartbeat Time"
+   "note": "Receive Heartbeat Time"
   },
   {
    "type": "NCI",
@@ -167,7 +151,7 @@
    "name": "nciSndHrtBt",
    "unitRaw": null,
    "unit": null,
-   "note": "SCPTmaxSendTime · Send Heartbeat Time (nciMAXSendTime)"
+   "note": "Send Heartbeat Time (nciMAXSendTime)"
   },
   {
    "type": "NCI",
@@ -175,7 +159,7 @@
    "name": "nciBuildNum",
    "unitRaw": null,
    "unit": null,
-   "note": "U16 · Device Build Number"
+   "note": ""
   },
   {
    "type": "NCI",
@@ -183,7 +167,7 @@
    "name": "nciCRC",
    "unitRaw": null,
    "unit": null,
-   "note": "UCPT crc _ · CRC calculation result"
+   "note": "CRC Calculation Result"
   },
   {
    "type": "NCI",
@@ -191,7 +175,7 @@
    "name": "nciDeviceConfig",
    "unitRaw": null,
    "unit": null,
-   "note": "U16 · Device Configuration Choices"
+   "note": ""
   },
   {
    "type": "NV",
@@ -199,7 +183,7 @@
    "name": "nviChillerEnable",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT switch _ · Request Start/Stop Chiller · 입력(Recv) · HrtBt X"
+   "note": "Request Start/Stop Chiller · 입력(Recv) · HrtBt X"
   },
   {
    "type": "NV",
@@ -207,7 +191,7 @@
    "name": "nviCoolSetpt",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Desired Temp of Lvg Chilled Wtr · 입력(Recv) · HrtBt X"
+   "note": "Desired Temp of Lvg Chilled Wtr · 입력(Recv) · HrtBt X"
   },
   {
    "type": "NV",
@@ -215,7 +199,7 @@
    "name": "nviCapacityLim",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT lev percent _ _ · Capacity Limit of Chiller · 입력(Recv) · HrtBt X"
+   "note": "Capacity Limit of Chiller · 입력(Recv) · HrtBt X"
   },
   {
    "type": "NV",
@@ -223,7 +207,15 @@
    "name": "nviMode",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT Hvac mode _ _ · Chiller Modes · 입력(Recv) · HrtBt X"
+   "note": "Chiller Modes · 입력(Recv) · HrtBt X"
+  },
+  {
+   "type": "NV",
+   "inst": 29,
+   "name": "nviHeatSetpt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Heating Setpoint · 입력(Recv) · HrtBt X"
   },
   {
    "type": "NV",
@@ -231,23 +223,7 @@
    "name": "nviNoiseRdcnReq",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT switch (2-state) _ · Noise Reduction Auto/On Request · 입력(Recv) · HrtBt X"
-  },
-  {
-   "type": "NV",
-   "inst": 33,
-   "name": "nviHtRcvySetpt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT temp p _ _ · Heat Recovery Setpoint Input · 입력(Recv)"
-  },
-  {
-   "type": "NV",
-   "inst": 34,
-   "name": "nviHtRcvyReq",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT switch (2-state) _ · Heat Recovery Auto/On Request · 입력(Recv)"
+   "note": "Noise Reduction Auto/On Request · 입력(Recv) · HrtBt X"
   },
   {
    "type": "NV",
@@ -255,7 +231,7 @@
    "name": "nviRequest",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT obj request _ _ · Status Request · 입력(Recv)"
+   "note": "Status Request · 입력(Recv)"
   },
   {
    "type": "NV",
@@ -263,7 +239,7 @@
    "name": "nviTraneVar2",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT c5c _ · Comm5 Status · 입력(Recv)"
+   "note": "Comm5 Status · 입력(Recv)"
   },
   {
    "type": "NV",
@@ -271,7 +247,7 @@
    "name": "nvoOnOff",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT switch _ · Chiller On / Off run state · 출력(Send)"
+   "note": "Chiller On / Off run state · 출력(Send)"
   },
   {
    "type": "NV",
@@ -279,7 +255,7 @@
    "name": "nvoActiveSetpt",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Active Cool or Heat Setpt · 출력(Send)"
+   "note": "Active Cool or Heat Setpt · 출력(Send)"
   },
   {
    "type": "NV",
@@ -287,7 +263,7 @@
    "name": "nvoActualCapacity",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT lev percent _ _ · Actual Running Capacity of Unit · 출력(Send)"
+   "note": "Actual Running Capacity of Unit · 출력(Send)"
   },
   {
    "type": "NV",
@@ -295,7 +271,7 @@
    "name": "nvoCapacityLim",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT lev percent _ _ · Current Capacity Limit Setting of Chiller · 출력(Send)"
+   "note": "Current Capacity Limit Setting of Chiller · 출력(Send)"
   },
   {
    "type": "NV",
@@ -303,7 +279,7 @@
    "name": "nvoLvgCHWTemp",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Leaving Chilled Water Temp · 출력(Send)"
+   "note": "Leaving Chilled Water Temp · 출력(Send)"
   },
   {
    "type": "NV",
@@ -311,7 +287,23 @@
    "name": "nvoEntCHWTemp",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Entering Chilled Water Temp · 출력(Send)"
+   "note": "Entering Chilled Water Temp · 출력(Send)"
+  },
+  {
+   "type": "NV",
+   "inst": 43,
+   "name": "nvoEntCndWTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Entering Condenser Water Temp · 출력(Send)"
+  },
+  {
+   "type": "NV",
+   "inst": 44,
+   "name": "nvoLvgCndWTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Leaving Condenser Water Temp · 출력(Send)"
   },
   {
    "type": "NV",
@@ -319,7 +311,7 @@
    "name": "nvoAlarmDescr",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT str asc _ _ · Alarm annunciation text · 출력(Send)"
+   "note": "Alarm annunciation text · 출력(Send)"
   },
   {
    "type": "NV",
@@ -327,7 +319,7 @@
    "name": "nvoChillerstat",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT chlr stat _ _ · Chiller States , modes · 출력(Send)"
+   "note": "Chiller States , modes · 출력(Send)"
   },
   {
    "type": "NV",
@@ -335,7 +327,7 @@
    "name": "nvoStatusOutputs",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT state _ · Status Outputs · 출력(Send)"
+   "note": "Status Outputs · 출력(Send)"
   },
   {
    "type": "NV",
@@ -343,7 +335,7 @@
    "name": "nvoCprsrsRunning",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT state _ · Compressor Running Outputs · 출력(Send)"
+   "note": "Compressor Running Outputs · 출력(Send)"
   },
   {
    "type": "NV",
@@ -351,7 +343,7 @@
    "name": "nvoEvapWtrPump",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT switch _ · Evaporator Water Pump Request · 출력(Send)"
+   "note": "Evaporator Water Pump Request · 출력(Send)"
   },
   {
    "type": "NV",
@@ -359,7 +351,23 @@
    "name": "nvoEvapWtrFlow",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT switch _ · Evaporator Water Flow Status5 · 출력(Send)"
+   "note": "Evaporator Water Flow Status · 출력(Send)"
+  },
+  {
+   "type": "NV",
+   "inst": 51,
+   "name": "nvoCondWtrPump",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Condenser Water Pump Request · 출력(Send)"
+  },
+  {
+   "type": "NV",
+   "inst": 52,
+   "name": "nvoCondWtrFlow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Condenser Water Flow Status · 출력(Send)"
   },
   {
    "type": "NV",
@@ -367,7 +375,15 @@
    "name": "nvoOutdoorTemp",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Outdoor Air Temperature · 출력(Send)"
+   "note": "Outdoor Air Temperature · 출력(Send)"
+  },
+  {
+   "type": "NV",
+   "inst": 57,
+   "name": "nvoCondControl",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Condenser Control Output · 출력(Send)"
   },
   {
    "type": "NV",
@@ -375,23 +391,15 @@
    "name": "nvoEvapAprchTmp",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp diff p _ _ _ · Evaporator Approach Temperature · 출력(Send)"
+   "note": "Evaporator Approach Temperature · 출력(Send)"
   },
   {
    "type": "NV",
-   "inst": 60,
-   "name": "nvoSecCndEntWTmp",
+   "inst": 59,
+   "name": "nvoCondAprchTmp",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Second Condenser Entering Water Temperature · 출력(Send)"
-  },
-  {
-   "type": "NV",
-   "inst": 61,
-   "name": "nvoSecCndLvgWTmp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT temp p _ _ · Second Condenser Leaving Water Temperature · 출력(Send)"
+   "note": "Condenser Approach Temperature · 출력(Send)"
   },
   {
    "type": "NV",
@@ -399,7 +407,7 @@
    "name": "nvoEvapRfgtPrsC1",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT press f _ _ · Evaporator Refrigerant Pressure - Circuit 1 · 출력(Send)"
+   "note": "Evaporator Refrigerant Pressure - Circuit 1 · 출력(Send)"
   },
   {
    "type": "NV",
@@ -407,7 +415,7 @@
    "name": "nvoEvapRfgtPrsC2",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT press f _ _ · Evaporator Refrigerant Pressure - Circuit 2 · 출력(Send)"
+   "note": "Evaporator Refrigerant Pressure - Circuit 2 · 출력(Send)"
   },
   {
    "type": "NV",
@@ -415,7 +423,7 @@
    "name": "nvoEvapRfgtTmpC1",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Evaporator Refrigerant Temperature - Circuit 1 · 출력(Send)"
+   "note": "Evaporator Refrigerant Temperature - Circuit 1 · 출력(Send)"
   },
   {
    "type": "NV",
@@ -423,7 +431,7 @@
    "name": "nvoEvapRfgtTmpC2",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Evaporator Refrigerant Temperature - Circuit 2 · 출력(Send)"
+   "note": "Evaporator Refrigerant Temperature - Circuit 2 · 출력(Send)"
   },
   {
    "type": "NV",
@@ -431,7 +439,7 @@
    "name": "nvoCondRfgtPrsC1",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT press f _ _ · Condenser Refrigerant Pressure - Circuit 1 · 출력(Send)"
+   "note": "Condenser Refrigerant Pressure - Circuit 1 · 출력(Send)"
   },
   {
    "type": "NV",
@@ -439,7 +447,7 @@
    "name": "nvoCondRfgtPrsC2",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT press f _ _ · Condenser Refrigerant Pressure - Circuit 2 · 출력(Send)"
+   "note": "Condenser Refrigerant Pressure - Circuit 2 · 출력(Send)"
   },
   {
    "type": "NV",
@@ -447,7 +455,7 @@
    "name": "nvoCondRfgtTmpC1",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Condenser Refrigerant Temperature - Circuit 1 · 출력(Send)"
+   "note": "Condenser Refrigerant Temperature - Circuit 1 · 출력(Send)"
   },
   {
    "type": "NV",
@@ -455,7 +463,7 @@
    "name": "nvoCondRfgtTmpC2",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Condenser Refrigerant Temperature - Circuit 2 · 출력(Send)"
+   "note": "Condenser Refrigerant Temperature - Circuit 2 · 출력(Send)"
   },
   {
    "type": "NV",
@@ -463,7 +471,7 @@
    "name": "nvoAirFlowPctC1",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT lev percent _ _ · Air Flow Percent – Circuit 1 · 출력(Send)"
+   "note": "Air Flow Percent – Circuit 1 · 출력(Send)"
   },
   {
    "type": "NV",
@@ -471,7 +479,39 @@
    "name": "nvoAirFlowPctC2",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT lev percent _ _ · Air Flow Percent – Circuit 2 · 출력(Send)"
+   "note": "Air Flow Percent – Circuit 2 · 출력(Send)"
+  },
+  {
+   "type": "NV",
+   "inst": 76,
+   "name": "nvoHiSideOilPrsA",
+   "unitRaw": null,
+   "unit": null,
+   "note": "High Side Oil Pressure - Compressor 1A · 출력(Send)"
+  },
+  {
+   "type": "NV",
+   "inst": 77,
+   "name": "nvoHiSideOilPrsB",
+   "unitRaw": null,
+   "unit": null,
+   "note": "High Side Oil Pressure - Compressor 1B · 출력(Send)"
+  },
+  {
+   "type": "NV",
+   "inst": 79,
+   "name": "nvoHiSideOilPrsD",
+   "unitRaw": null,
+   "unit": null,
+   "note": "High Side Oil Pressure - Compressor 2A · 출력(Send)"
+  },
+  {
+   "type": "NV",
+   "inst": 80,
+   "name": "nvoHiSideOilPrsE",
+   "unitRaw": null,
+   "unit": null,
+   "note": "High Side Oil Pressure - Compressor 2B · 출력(Send)"
   },
   {
    "type": "NV",
@@ -479,15 +519,7 @@
    "name": "nvoOilTempA",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Oil Temperature - Compressor A · 출력(Send)"
-  },
-  {
-   "type": "NV",
-   "inst": 89,
-   "name": "nvoOilTempB",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT temp p _ _ · Oil Temperature - Compressor B · 출력(Send)"
+   "note": "Oil Temperature - Compressor 1A · 출력(Send)"
   },
   {
    "type": "NV",
@@ -495,15 +527,7 @@
    "name": "nvoOilTempD",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Oil Temperature - Compressor D · 출력(Send)"
-  },
-  {
-   "type": "NV",
-   "inst": 92,
-   "name": "nvoOilTempE",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SNVT temp p _ _ · Oil Temperature - Compressor E · 출력(Send)"
+   "note": "Oil Temperature - Compressor 2A · 출력(Send)"
   },
   {
    "type": "NV",
@@ -511,15 +535,15 @@
    "name": "nvoRfgtDischTmpA",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Refrigerant Discharge Temperature - Compressor A · 출력(Send)"
+   "note": "Refrigerant Discharge Temperature - Compressor 1A · 출력(Send)"
   },
   {
    "type": "NV",
    "inst": 95,
-   "name": "nvoRfgtDischTmpA",
+   "name": "nvoRfgtDischTmpB",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Refrigerant Discharge Temperature - Compressor B · 출력(Send)"
+   "note": "Refrigerant Discharge Temperature - Compressor 1B · 출력(Send)"
   },
   {
    "type": "NV",
@@ -527,7 +551,7 @@
    "name": "nvoRfgtDischTmpD",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Refrigerant Discharge Temperature - Compressor D · 출력(Send)"
+   "note": "Refrigerant Discharge Temperature - Compressor 2A · 출력(Send)"
   },
   {
    "type": "NV",
@@ -535,7 +559,7 @@
    "name": "nvoRfgtDischTmpE",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT temp p _ _ · Refrigerant Discharge Temperature - Compressor E · 출력(Send)"
+   "note": "Refrigerant Discharge Temperature - Compressor 2B · 출력(Send)"
   },
   {
    "type": "NV",
@@ -543,7 +567,7 @@
    "name": "nvoVoltageA",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT 3phase volt _ _ · Voltage Per Phase – Compressor A · 출력(Send)"
+   "note": "Voltage Per Phase – Compressor 1A · 출력(Send)"
   },
   {
    "type": "NV",
@@ -551,23 +575,23 @@
    "name": "nvoVoltageB",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT 3phase volt _ _ · Voltage Per Phase – Compressor B · 출력(Send)"
+   "note": "Voltage Per Phase – Compressor 1B · 출력(Send)"
+  },
+  {
+   "type": "NV",
+   "inst": 102,
+   "name": "nvoVoltageD",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Voltage Per Phase – Compressor 2A · 출력(Send)"
   },
   {
    "type": "NV",
    "inst": 103,
-   "name": "nvoVoltageD",
-   "unitRaw": null,
-   "unit": null,
-   "note": "UNVT 3phase volt _ _ · Voltage Per Phase – Compressor D · 출력(Send)"
-  },
-  {
-   "type": "NV",
-   "inst": 104,
    "name": "nvoVoltageE",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT 3phase volt _ _ · Voltage Per Phase – Compressor E · 출력(Send)"
+   "note": "Voltage Per Phase – Compressor 2B · 출력(Send)"
   },
   {
    "type": "NV",
@@ -575,7 +599,7 @@
    "name": "nvoCurrentA",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT 3phase current _ _ · Current Per Line – Compressor A · 출력(Send)"
+   "note": "Current Per Line – Compressor 1A · 출력(Send)"
   },
   {
    "type": "NV",
@@ -583,7 +607,7 @@
    "name": "nvoCurrentB",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT 3phase current _ _ · Current Per Line – Compressor B · 출력(Send)"
+   "note": "Current Per Line – Compressor 1B · 출력(Send)"
   },
   {
    "type": "NV",
@@ -591,7 +615,7 @@
    "name": "nvoCurrentD",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT 3phase current _ _ · Current Per Line – Compressor D · 출력(Send)"
+   "note": "Current Per Line – Compressor 2A · 출력(Send)"
   },
   {
    "type": "NV",
@@ -599,7 +623,7 @@
    "name": "nvoCurrentE",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT 3phase current _ _ · Current Per Line – Compressor E · 출력(Send)"
+   "note": "Current Per Line – Compressor 2B · 출력(Send)"
   },
   {
    "type": "NV",
@@ -607,7 +631,7 @@
    "name": "nvoStartsRunTmA",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT starts runtime _ _ · Starts and Run Time – Compressor A · 출력(Send)"
+   "note": "Starts and Run Time – Compressor 1A · 출력(Send)"
   },
   {
    "type": "NV",
@@ -615,7 +639,7 @@
    "name": "nvoStartsRunTmB",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT starts runtime _ _ · Starts and Run Time – Compressor B · 출력(Send)"
+   "note": "Starts and Run Time – Compressor 1B · 출력(Send)"
   },
   {
    "type": "NV",
@@ -623,7 +647,7 @@
    "name": "nvoStartsRunTmD",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT starts runtime _ _ · Starts and Run Time – Compressor D · 출력(Send)"
+   "note": "Starts and Run Time – Compressor 2A · 출력(Send)"
   },
   {
    "type": "NV",
@@ -631,7 +655,7 @@
    "name": "nvoStartsRunTmE",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT starts runtime _ _ · Starts and Run Time – Compressor E · 출력(Send)"
+   "note": "Starts and Run Time – Compressor 2B · 출력(Send)"
   },
   {
    "type": "NV",
@@ -639,7 +663,7 @@
    "name": "nvoUnitPower",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT power f _ _ · Unit Power Consumption · 출력(Send)"
+   "note": "Unit Power Consumption · 출력(Send)"
   },
   {
    "type": "NV",
@@ -647,7 +671,7 @@
    "name": "nvoStatus",
    "unitRaw": null,
    "unit": null,
-   "note": "SNVT obj status _ _ · Status Response · 출력(Send)"
+   "note": "Status Response · 출력(Send)"
   },
   {
    "type": "NV",
@@ -655,15 +679,16 @@
    "name": "nvoTraneVar9",
    "unitRaw": null,
    "unit": null,
-   "note": "UNVT c5s _ · Trane Comm 5 Status (obsolete) · 출력(Send)"
+   "note": "Comm5 Status · 출력(Send)"
   }
  ],
- "gap": "정격 성능(용량·COP·소비전력)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다. LonTalk 프로파일이라 BACnet 오브젝트 번호는 별도 문서를 봐야 한다.",
+ "gap": "정격 성능(용량·COP·소비전력)과 냉각 방식은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
  "extractor": "table",
- "sourceDoc": "BAS-PTS014A-EN_11152024.pdf",
+ "sourceDoc": "BAS-PTS018A-EN_11152024.pdf",
+ "classifiedBy": "포인트 이름 증거 6종: evaporator, condenser, chilled water, chiller",
  "crosscheck": {
   "rate": 1.0,
-  "both": 79,
+  "both": 81,
   "diff": []
  }
 }

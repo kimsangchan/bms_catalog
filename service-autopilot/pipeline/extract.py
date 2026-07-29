@@ -19,6 +19,29 @@ import schema as S  # noqa: E402
 
 OBJID = re.compile(r"^(AI|AO|AV|BI|BO|BV|MI|MO|MV|MSI|MSO|MSV)[\s-]*(\d{1,6})$")
 BARE_ID = re.compile(r"^(\d{1,6})$")
+# 'Analog Input, 1' / 'Binary Value 3' 처럼 타입을 풀어 쓴 형식 — CH530 문서가 이렇게 쓴다.
+# 이걸 못 읽어 RTHD(CH530) 문서에서 0점이 나왔다.
+SPELLED = re.compile(
+    r"^(analog|binary|multi-?state)\s+(input|output|value)s?\s*,?\s*(\d{1,6})$", re.I)
+SPELLED_TYPE = {("analog", "input"): "AI", ("analog", "output"): "AO",
+                ("analog", "value"): "AV", ("binary", "input"): "BI",
+                ("binary", "output"): "BO", ("binary", "value"): "BV",
+                ("multistate", "input"): "MSI", ("multistate", "output"): "MSO",
+                ("multistate", "value"): "MSV"}
+
+
+def parse_objid(raw):
+    """오브젝트 ID 문자열 → (타입, 인스턴스). 표기 세 가지를 모두 받는다."""
+    m = OBJID.match(raw)
+    if m:
+        return m.group(1), int(m.group(2))
+    m = SPELLED.match(raw)
+    if m:
+        fam = m.group(1).lower().replace("-", "").replace("multistate", "multistate")
+        t = SPELLED_TYPE.get((fam, m.group(2).lower()))
+        if t:
+            return t, int(m.group(3))
+    return None
 ALPHA = re.compile(r"[A-Za-z]")
 
 
@@ -92,9 +115,9 @@ def extract_tables(pdf, default_type=None):
                 if not r or len(r) <= max(i_id, i_nm):
                     continue
                 raw_id = _c(r[i_id])
-                m = OBJID.match(raw_id)
-                if m:
-                    typ, inst = m.group(1), int(m.group(2))
+                pid = parse_objid(raw_id)
+                if pid:
+                    typ, inst = pid
                 elif mb_mode and BARE_ID.match(raw_id):
                     typ, inst = "MB", int(raw_id)
                 elif BARE_ID.match(raw_id) and default_type:
@@ -178,13 +201,13 @@ def extract_by_section(pdf):
                 if len(r) <= max(i_id, i_nm):
                     continue
                 rid = _c(r[i_id])
-                if not BARE_ID.match(rid):
-                    m = OBJID.match(rid)
-                    if not m:
-                        continue
-                    typ, inst = m.group(1), int(m.group(2))
-                else:
+                if BARE_ID.match(rid):
                     typ, inst = dt, int(rid)
+                else:
+                    pid = parse_objid(rid)
+                    if not pid:
+                        continue
+                    typ, inst = pid
                 name = _c(r[i_nm])
                 if len(name) < 3:
                     continue
@@ -314,7 +337,7 @@ def count_data_rows(pdf):
                 continue
             for r in data[1:]:
                 a, b = _c(r[0]), _c(r[1]) if len(r) > 1 else ""
-                if (BARE_ID.match(a) or OBJID.match(a)) and nameish(b):
+                if (BARE_ID.match(a) or parse_objid(a)) and nameish(b):
                     seen.add((a, b))
     return len(seen)
 

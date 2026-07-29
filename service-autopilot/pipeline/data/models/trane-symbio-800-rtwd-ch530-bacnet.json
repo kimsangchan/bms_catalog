@@ -1,0 +1,414 @@
+{
+ "id": "trane-symbio-800-rtwd-ch530-bacnet",
+ "equipId": "e9",
+ "vendor": "Trane",
+ "model": "Symbio™ 800 — RTWD (CH530) (BACnet)",
+ "name": "Symbio™ 800 RTWD (CH530)",
+ "cat": "HVAC.PLANT.CHILLER",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 47점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "AI",
+   "inst": 1,
+   "name": "Active Cool/Heat Setpoint Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Active chiller water or hot water setpoint."
+  },
+  {
+   "type": "AI",
+   "inst": 2,
+   "name": "Active Current Limit Setpoint",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Active capacity current limit setpoint."
+  },
+  {
+   "type": "AI",
+   "inst": 5,
+   "name": "Actual Running Capacity",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Level of capacity that the chiller is currently running at."
+  },
+  {
+   "type": "AI",
+   "inst": 7,
+   "name": "Suction Pressure- Ckt 1",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Circuit 1 suction pressure."
+  },
+  {
+   "type": "AI",
+   "inst": 10,
+   "name": "Suction Pressure- Ckt 2",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Circuit 2 suction pressure."
+  },
+  {
+   "type": "AI",
+   "inst": 12,
+   "name": "Evaporator Saturated Refrigerant Temperature- Ckt 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Circuit 2 evaporator refrigerant temperature."
+  },
+  {
+   "type": "AI",
+   "inst": 14,
+   "name": "Evaporator Saturated Refrigerant Temperature- Ckt 2",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Circuit 2 evaporator refrigerant temperature."
+  },
+  {
+   "type": "AI",
+   "inst": 16,
+   "name": "Condenser Refrigerant Pressure- Ckt 1",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Circuit 1 condenser refrigerant pressure."
+  },
+  {
+   "type": "AI",
+   "inst": 18,
+   "name": "Condenser Refrigerant Pressure- Ckt 2",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Circuit 2 condenser refrigerant pressure."
+  },
+  {
+   "type": "AI",
+   "inst": 20,
+   "name": "Condenser Saturated Refrigerant Temperature- Ckt 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Circuit 1 condenser refrigerant temperature."
+  },
+  {
+   "type": "AI",
+   "inst": 22,
+   "name": "Condenser Saturated Refrigerant Temperature- Ckt 2",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Circuit 2 condenser refrigerant temperature."
+  },
+  {
+   "type": "AI",
+   "inst": 24,
+   "name": "Unit Power Consumption",
+   "unitRaw": "kW",
+   "unit": "kW",
+   "note": "The power being consumed by the chiller."
+  },
+  {
+   "type": "AI",
+   "inst": 25,
+   "name": "Local Atmospheric Pressure",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Local atmospheric pressure."
+  },
+  {
+   "type": "AI",
+   "inst": 26,
+   "name": "Starts- Compressor 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Number of starts for compressor 1A."
+  },
+  {
+   "type": "AI",
+   "inst": 28,
+   "name": "Starts- Compressor 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Number of starts for compressor 2A."
+  },
+  {
+   "type": "AI",
+   "inst": 34,
+   "name": "Run Time- Compressor 1A",
+   "unitRaw": "h",
+   "unit": "h",
+   "note": "Total run time of compressor 1A."
+  },
+  {
+   "type": "AI",
+   "inst": 36,
+   "name": "Run Time- Compressor 2A",
+   "unitRaw": "h",
+   "unit": "h",
+   "note": "Total run time of compressor 2A."
+  },
+  {
+   "type": "AI",
+   "inst": 44,
+   "name": "Evaporator Entering Water Temp",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature of the water entering the evaporator."
+  },
+  {
+   "type": "AI",
+   "inst": 45,
+   "name": "Evaporator Leaving Water Temp",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature of the water leaving the evaporator."
+  },
+  {
+   "type": "AI",
+   "inst": 46,
+   "name": "Condenser Entering Water Temp",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature of the water entering the condenser."
+  },
+  {
+   "type": "AI",
+   "inst": 47,
+   "name": "Condenser Leaving Water Temp",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature of the water leaving the condenser."
+  },
+  {
+   "type": "AI",
+   "inst": 48,
+   "name": "High Side Oil Pressure- Compressor 1A",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Pressure of the oil at the high side of compressor 1A."
+  },
+  {
+   "type": "AI",
+   "inst": 50,
+   "name": "High Side Oil Pressure- Compressor 2A",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Pressure of the oil at the high side of compressor 2A."
+  },
+  {
+   "type": "AI",
+   "inst": 57,
+   "name": "Outdoor Air Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Outdoor air temperature."
+  },
+  {
+   "type": "AI",
+   "inst": 58,
+   "name": "Condenser Control Output",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Percentage of condenser water flow being requested by the chiller."
+  },
+  {
+   "type": "AI",
+   "inst": 59,
+   "name": "Phase AB Voltage- Compressor 1A",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Phase AB voltage, compressor 1A."
+  },
+  {
+   "type": "AI",
+   "inst": 60,
+   "name": "Phase BC Voltage- Compressor 1A",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Phase BC voltage, compressor 1A."
+  },
+  {
+   "type": "AI",
+   "inst": 61,
+   "name": "Phase CA Voltage- Compressor 1A",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Phase CA voltage, compressor 1A."
+  },
+  {
+   "type": "AI",
+   "inst": 65,
+   "name": "Phase AB Voltage- Compressor 2A",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Phase AB voltage, compressor 2A."
+  },
+  {
+   "type": "AI",
+   "inst": 66,
+   "name": "Phase BC Voltage- Compressor 2A",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Phase BC voltage, compressor 2A."
+  },
+  {
+   "type": "AI",
+   "inst": 67,
+   "name": "Phase CA Voltage- Compressor 2A",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Phase CA voltage, compressor 2A."
+  },
+  {
+   "type": "AI",
+   "inst": 71,
+   "name": "Line 1 Current (in Amps)- Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 1 Current (in Amps)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 72,
+   "name": "Line 2 Current (in Amps)- Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 2 Current (in Amps)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 73,
+   "name": "Line 3 Current (in Amps)- Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 3 Current (in Amps)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 77,
+   "name": "Line 1 Current (in Amps)- Compressor 2A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 1 Current (in Amps)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 78,
+   "name": "Line 2 Current (in Amps)- Compressor 2A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 2 Current (in Amps)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 79,
+   "name": "Line 3 Current (in Amps)- Compressor 2A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 3 Current (in Amps)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 83,
+   "name": "Line 1 Current (%RLA)- Compressor 1A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 1 Current (%RLA)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 84,
+   "name": "Line 2 Current (%RLA)- Compressor 1A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 2 Current (%RLA)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 85,
+   "name": "Line 3 Current (%RLA)- Compressor 1A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 3 Current (%RLA)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 89,
+   "name": "Line 1 Current (%RLA)- Compressor 2A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 1 Current (%RLA)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 90,
+   "name": "Line 2 Current (%RLA)- Compressor 2A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 2 Current (%RLA)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 91,
+   "name": "Line 3 Current (%RLA)- Compressor 2A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 3 Current (%RLA)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 95,
+   "name": "Number of Circuits",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Number of Circuits"
+  },
+  {
+   "type": "AI",
+   "inst": 96,
+   "name": "Number of Compressors, Ckt 1",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Number of Compressors, Ckt 1"
+  },
+  {
+   "type": "AI",
+   "inst": 97,
+   "name": "Number of Compressors, Ckt 2",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Number of Compressors, Ckt 2"
+  },
+  {
+   "type": "AI",
+   "inst": 98,
+   "name": "Chiller Design Capacity",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Design Capacity of the Chiller"
+  }
+ ],
+ "gap": "정격 성능(용량·COP·소비전력)과 냉각 방식은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "extractor": "table",
+ "sourceDoc": "BAS-PTS035A-EN_12062024.pdf",
+ "classifiedBy": "포인트 이름 증거 5종: evaporator, condenser, chiller, refrigerant",
+ "crosscheck": {
+  "rate": 1.0,
+  "both": 47,
+  "diff": []
+ }
+}

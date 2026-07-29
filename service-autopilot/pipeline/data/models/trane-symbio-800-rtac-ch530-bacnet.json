@@ -1,19 +1,21 @@
 {
- "id": "trane-symbio-800-ch530-cgam",
+ "id": "trane-symbio-800-rtac-ch530-bacnet",
  "equipId": "e9",
  "vendor": "Trane",
- "model": "Symbio™ 800 (CH530) — CGAM",
- "name": "Symbio™ 800 공랭 스크류 냉동기 — BACnet CGAM",
+ "model": "Symbio™ 800 — RTAC (CH530) (BACnet)",
+ "name": "Symbio™ 800 RTAC (CH530)",
  "cat": "HVAC.PLANT.CHILLER",
  "tag": "chiller",
  "status": "active",
- "summary": "앞서 자동 추출에 실패했던 문서를 **pdftotext로 재추출해 확보**했다. 회로 2개(Ckt1/Ckt2)·압축기 6대(1A~2C)의 시동 횟수·운전시간이 개별 포인트로 나온다.",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 85점",
  "has": {
   "spec": false,
   "points": true
  },
  "ede": false,
  "spec": [],
+ "io": [],
+ "elec": null,
  "comm": [
   [
    "BACnet",
@@ -22,8 +24,6 @@
    "Points List"
   ]
  ],
- "io": [],
- "elec": null,
  "points": [
   {
    "type": "AI",
@@ -35,11 +35,11 @@
   },
   {
    "type": "AI",
-   "inst": 3,
-   "name": "Active Demand Limit Setpoint",
+   "inst": 2,
+   "name": "Active Current Limit Setpoint",
    "unitRaw": "%",
    "unit": "percent",
-   "note": "Active demand limit setpoint."
+   "note": "Active capacity current limit setpoint."
   },
   {
    "type": "AI",
@@ -51,67 +51,67 @@
   },
   {
    "type": "AI",
-   "inst": 8,
-   "name": "Suction Pressure- Ckt 1",
+   "inst": 6,
+   "name": "Evaporator Refrigerant Pressure- Ckt1",
    "unitRaw": "kPa",
    "unit": "kPa",
-   "note": "Circuit 1 suction pressure."
+   "note": "Circuit 1 evaporator refrigerant pressure."
   },
   {
    "type": "AI",
-   "inst": 11,
-   "name": "Suction Pressure- Ckt 2",
+   "inst": 9,
+   "name": "Evaporator Refrigerant Pressure- Ckt 2",
    "unitRaw": "kPa",
    "unit": "kPa",
-   "note": "Circuit 2 suction pressure."
+   "note": "Circuit 2 evaporator refrigerant pressure."
   },
   {
    "type": "AI",
-   "inst": 13,
-   "name": "Suction Saturated Refrigerant Temperature- Ckt 1",
+   "inst": 12,
+   "name": "Evaporator Saturated Refrigerant Temperature- Ckt 1",
    "unitRaw": "℃",
    "unit": "degC",
-   "note": "Circuit 1 suction refrigerant temperature."
+   "note": "Circuit 2 evaporator refrigerant temperature."
   },
   {
    "type": "AI",
-   "inst": 15,
-   "name": "Suction Saturated Refrigerant Temperature- Ckt 2",
+   "inst": 14,
+   "name": "Evaporator Saturated Refrigerant Temperature- Ckt 2",
    "unitRaw": "℃",
    "unit": "degC",
-   "note": "Circuit 2 suction refrigerant temperature."
+   "note": "Circuit 2 evaporator refrigerant temperature."
   },
   {
    "type": "AI",
-   "inst": 17,
-   "name": "Discharge Pressure- Ckt 1",
+   "inst": 16,
+   "name": "Condenser Refrigerant Pressure- Ckt 1",
    "unitRaw": "kPa",
    "unit": "kPa",
-   "note": "Circuit 1 discharge pressure."
+   "note": "Circuit 1 condenser refrigerant pressure."
   },
   {
    "type": "AI",
-   "inst": 19,
-   "name": "Discharge Pressure- Ckt 2",
+   "inst": 18,
+   "name": "Condenser Refrigerant Pressure- Ckt 2",
    "unitRaw": "kPa",
    "unit": "kPa",
-   "note": "Circuit 2 discharge pressure."
+   "note": "Circuit 2 condenser refrigerant pressure."
   },
   {
    "type": "AI",
-   "inst": 21,
-   "name": "Discharge Saturated Refrigerant Temperature- Ckt 1",
+   "inst": 20,
+   "name": "Condenser Saturated Refrigerant Temperature- Ckt 1",
    "unitRaw": "℃",
    "unit": "degC",
-   "note": "Circuit 1 discharge refrigerant temperature."
+   "note": "Circuit 1 condenser refrigerant temperature."
   },
   {
    "type": "AI",
-   "inst": 23,
-   "name": "Discharge Saturated Refrigerant Temperature- Ckt 2",
+   "inst": 22,
+   "name": "Condenser Saturated Refrigerant Temperature- Ckt 2",
    "unitRaw": "℃",
    "unit": "degC",
-   "note": "Circuit 2 discharge refrigerant temperature."
+   "note": "Circuit 2 condenser refrigerant temperature."
   },
   {
    "type": "AI",
@@ -139,15 +139,7 @@
   },
   {
    "type": "AI",
-   "inst": 30,
-   "name": "Starts- Compressor 1C",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Number of starts for compressor 1C."
-  },
-  {
-   "type": "AI",
-   "inst": 31,
+   "inst": 28,
    "name": "Starts- Compressor 2A",
    "unitRaw": null,
    "unit": null,
@@ -155,19 +147,11 @@
   },
   {
    "type": "AI",
-   "inst": 32,
+   "inst": 29,
    "name": "Starts- Compressor 2B",
    "unitRaw": null,
    "unit": null,
    "note": "Number of starts for compressor 2B."
-  },
-  {
-   "type": "AI",
-   "inst": 33,
-   "name": "Starts- Compressor 2C",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Number of starts for compressor 2C."
   },
   {
    "type": "AI",
@@ -187,35 +171,11 @@
   },
   {
    "type": "AI",
-   "inst": 38,
-   "name": "Run Time- Compressor 1C",
-   "unitRaw": "h",
-   "unit": "h",
-   "note": "Total run time of compressor 1C."
-  },
-  {
-   "type": "AI",
-   "inst": 39,
+   "inst": 36,
    "name": "Run Time- Compressor 2A",
    "unitRaw": "h",
    "unit": "h",
    "note": "Total run time of compressor 2A."
-  },
-  {
-   "type": "AI",
-   "inst": 40,
-   "name": "Run Time- Compressor 2B",
-   "unitRaw": "h",
-   "unit": "h",
-   "note": "Total run time of compressor 2B."
-  },
-  {
-   "type": "AI",
-   "inst": 41,
-   "name": "Run Time- Compressor 2C",
-   "unitRaw": "h",
-   "unit": "h",
-   "note": "Total run time of compressor 2C."
   },
   {
    "type": "AI",
@@ -251,11 +211,267 @@
   },
   {
    "type": "AI",
+   "inst": 48,
+   "name": "High Side Oil Pressure- Compressor 1A",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Pressure of the oil at the high side of compressor 1A."
+  },
+  {
+   "type": "AI",
+   "inst": 49,
+   "name": "High Side Oil Pressure- Compressor 1B",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Pressure of the oil at the high side of compressor 1B."
+  },
+  {
+   "type": "AI",
+   "inst": 50,
+   "name": "High Side Oil Pressure- Compressor 2A",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Pressure of the oil at the high side of compressor 2A."
+  },
+  {
+   "type": "AI",
+   "inst": 51,
+   "name": "High Side Oil Pressure- Compressor 2B",
+   "unitRaw": "kPa",
+   "unit": "kPa",
+   "note": "Pressure of the oil at the high side of compressor 2B."
+  },
+  {
+   "type": "AI",
+   "inst": 52,
+   "name": "Oil Temp- Compressor 1A",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature of the oil in compressor 1A."
+  },
+  {
+   "type": "AI",
+   "inst": 54,
+   "name": "Oil Temp- Compressor 2A",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature of the oil in compressor 2A."
+  },
+  {
+   "type": "AI",
+   "inst": 55,
+   "name": "Oil Temp- Compressor 2B",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Temperature of the oil in compressor 2B."
+  },
+  {
+   "type": "AI",
    "inst": 57,
    "name": "Outdoor Air Temperature",
    "unitRaw": "℃",
    "unit": "degC",
    "note": "Outdoor air temperature."
+  },
+  {
+   "type": "AI",
+   "inst": 59,
+   "name": "Phase AB Voltage- Compressor 1A",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Phase AB voltage, compressor 1A."
+  },
+  {
+   "type": "AI",
+   "inst": 71,
+   "name": "Line 1 Current (in Amps)- Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 1 Current (in Amps)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 72,
+   "name": "Line 2 Current (in Amps)- Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 2 Current (in Amps)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 73,
+   "name": "Line 3 Current (in Amps)- Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 3 Current (in Amps)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 74,
+   "name": "Line 1 Current (in Amps)- Compressor 1B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 1 Current (in Amps)- Compressor 1B"
+  },
+  {
+   "type": "AI",
+   "inst": 75,
+   "name": "Line 2 Current (in Amps)- Compressor 1B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 2 Current (in Amps)- Compressor 1B"
+  },
+  {
+   "type": "AI",
+   "inst": 76,
+   "name": "Line 3 Current (in Amps)- Compressor 1B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 3 Current (in Amps)- Compressor 1B"
+  },
+  {
+   "type": "AI",
+   "inst": 77,
+   "name": "Line 1 Current (in Amps)- Compressor 2A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 1 Current (in Amps)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 78,
+   "name": "Line 2 Current (in Amps)- Compressor 2A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 2 Current (in Amps)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 79,
+   "name": "Line 3 Current (in Amps)- Compressor 2A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 3 Current (in Amps)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 80,
+   "name": "Line 1 Current (in Amps)- Compressor 2B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 1 Current (in Amps)- Compressor 2B"
+  },
+  {
+   "type": "AI",
+   "inst": 81,
+   "name": "Line 2 Current (in Amps)- Compressor 2B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 2 Current (in Amps)- Compressor 2B"
+  },
+  {
+   "type": "AI",
+   "inst": 82,
+   "name": "Line 3 Current (in Amps)- Compressor 2B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Line 3 Current (in Amps)- Compressor 2B"
+  },
+  {
+   "type": "AI",
+   "inst": 83,
+   "name": "Line 1 Current (%RLA)- Compressor 1A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 1 Current (%RLA)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 84,
+   "name": "Line 2 Current (%RLA)- Compressor 1A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 2 Current (%RLA)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 85,
+   "name": "Line 3 Current (%RLA)- Compressor 1A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 3 Current (%RLA)- Compressor 1A"
+  },
+  {
+   "type": "AI",
+   "inst": 86,
+   "name": "Line 1 Current (%RLA)- Compressor 1B",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 1 Current (%RLA)- Compressor 1B"
+  },
+  {
+   "type": "AI",
+   "inst": 87,
+   "name": "Line 2 Current (%RLA)- Compressor 1B",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 2 Current (%RLA)- Compressor 1B"
+  },
+  {
+   "type": "AI",
+   "inst": 88,
+   "name": "Line 3 Current (%RLA)- Compressor 1B",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 3 Current (%RLA)- Compressor 1B"
+  },
+  {
+   "type": "AI",
+   "inst": 89,
+   "name": "Line 1 Current (%RLA)- Compressor 2A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 1 Current (%RLA)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 90,
+   "name": "Line 2 Current (%RLA)- Compressor 2A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 2 Current (%RLA)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 91,
+   "name": "Line 3 Current (%RLA)- Compressor 2A",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 3 Current (%RLA)- Compressor 2A"
+  },
+  {
+   "type": "AI",
+   "inst": 92,
+   "name": "Line 1 Current (%RLA)- Compressor 2B",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 1 Current (%RLA)- Compressor 2B"
+  },
+  {
+   "type": "AI",
+   "inst": 93,
+   "name": "Line 2 Current (%RLA)- Compressor 2B",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 2 Current (%RLA)- Compressor 2B"
+  },
+  {
+   "type": "AI",
+   "inst": 94,
+   "name": "Line 3 Current (%RLA)- Compressor 2B",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Line 3 Current (%RLA)- Compressor 2B"
   },
   {
    "type": "AI",
@@ -290,38 +506,6 @@
    "note": "Design Capacity of the Chiller"
   },
   {
-   "type": "AI",
-   "inst": 99,
-   "name": "Heat Recovery Entering Water Temperature",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "Temperature of the water entering the auxiliary heat exchanger"
-  },
-  {
-   "type": "AI",
-   "inst": 100,
-   "name": "Heat Recovery Leaving Water Temperature",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "Temperature of the water leaving the auxiliary heat exchanger"
-  },
-  {
-   "type": "AI",
-   "inst": 101,
-   "name": "Heat Recovery Control Status",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "Active Command Percent of the Heat Recovery Analog Output for heat exchanger water flow rate adjustment"
-  },
-  {
-   "type": "AI",
-   "inst": 102,
-   "name": "Supplemental Heat Status",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "Supplemental Heat Control output status which is expressed as a percentage"
-  },
-  {
    "type": "AO",
    "inst": 1,
    "name": "Chilled Water Setpoint",
@@ -331,27 +515,11 @@
   },
   {
    "type": "AO",
-   "inst": 3,
-   "name": "Demand Limit Setpoint",
+   "inst": 2,
+   "name": "Current Limit Setpoint",
    "unitRaw": null,
    "unit": null,
    "note": "Sets the maximum capacity that the chiller can use. · 범위 0% to 120%"
-  },
-  {
-   "type": "AO",
-   "inst": 4,
-   "name": "Hot Water Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Desired leaving water temperature if chiller is in heating mode. Leaving condenser water temperature control. · 범위 80°F to 140°F (26.7°C to 60°C)"
-  },
-  {
-   "type": "AO",
-   "inst": 6,
-   "name": "Heat Recovery Leaving Water Temperature Setpoint BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Preferred Heat Recovery Leaving Water Temperature if chiller is in Heat Recovery mode · 범위 80°F to 140°F (26.7°C to 60°C)"
   },
   {
    "type": "BI",
@@ -411,15 +579,7 @@
   },
   {
    "type": "BI",
-   "inst": 13,
-   "name": "Compressor 1C Running",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates if compressor 1C is running. · Inactive = Off Active = Running"
-  },
-  {
-   "type": "BI",
-   "inst": 14,
+   "inst": 11,
    "name": "Compressor 2A Running",
    "unitRaw": null,
    "unit": null,
@@ -427,7 +587,7 @@
   },
   {
    "type": "BI",
-   "inst": 15,
+   "inst": 12,
    "name": "Compressor 2B Running",
    "unitRaw": null,
    "unit": null,
@@ -435,35 +595,11 @@
   },
   {
    "type": "BI",
-   "inst": 16,
-   "name": "Compressor 2C Running",
+   "inst": 17,
+   "name": "Evaporator Water Pump Request",
    "unitRaw": null,
    "unit": null,
-   "note": "Indicates if compressor 2C is running. · Inactive = Off Active = Running"
-  },
-  {
-   "type": "BI",
-   "inst": 18,
-   "name": "Water Pump Request",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates a request from the chiller to turn on the water pump. · Inactive = Off Active = On"
-  },
-  {
-   "type": "BI",
-   "inst": 20,
-   "name": "Noise Reduction Active",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates if the chiller is in a state where noise is being reduced. · Inactive = Off Active = On"
-  },
-  {
-   "type": "BI",
-   "inst": 21,
-   "name": "Defrost Mode (or in Defrost)",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates if one or more circuits are in a defrost mode. · Inactive = Not in Defrost Active = Defrost"
+   "note": "Indicates a request from the chiller to turn on the evaporator water pump. · Inactive = Off Active = On"
   },
   {
    "type": "BI",
@@ -498,14 +634,6 @@
    "note": "Indicates last diagnostic for the chiller. · Inactive = Off Active = On"
   },
   {
-   "type": "BI",
-   "inst": 26,
-   "name": "Heat Recovery Control Active Status",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates if the chiller is changing behavior to get heat recovery · Inactive = Off Active = On"
-  },
-  {
    "type": "BO",
    "inst": 1,
    "name": "Chiller Auto Stop Command",
@@ -520,22 +648,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "Resets remotely diagnostics that can be reset. · False"
-  },
-  {
-   "type": "BO",
-   "inst": 4,
-   "name": "Noise Reduction Request",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Requests chiller to enter mode to reduce noise. · False"
-  },
-  {
-   "type": "BO",
-   "inst": 5,
-   "name": "Heat Recovery Enable BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Request chiller to enter in Heat Recovery control mode, which enables the heat recovery control feature on a chiller. · False"
   },
   {
    "type": "MSI",
@@ -592,22 +704,15 @@
    "unitRaw": null,
    "unit": null,
    "note": "Location where chiller was manufactured. · 1 = Field Applied 2 = La Crosse 3 = Pueblo 4 = Charmes 5 = Rushville 6 = Macon 7 = Waco 8 = Lexington 9 = Forsyth 10 = Clarksville 11 = Ft. Smith 12 = Penang 13 = Colchester 14 = Curitiba 15 = Tai"
-  },
-  {
-   "type": "MSO",
-   "inst": 1,
-   "name": "Chiller Mode Command",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Mode of operation of the chiller. · 1 = Cool"
   }
  ],
- "gap": "레이아웃 추출이라 설명·단위 열이 한 행씩 밀려 붙은 경우가 있다 — **단위 열은 참고값**으로 보고 확정 전 원문 대조 필요. 정격 성능표는 별도 카탈로그 필요.",
+ "gap": "정격 성능(용량·COP·소비전력)과 냉각 방식은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
  "extractor": "table",
- "sourceDoc": "BAS-PTS027A-EN_CGAM.pdf",
+ "sourceDoc": "BAS-PTS031A-EN_12062024.pdf",
+ "classifiedBy": "포인트 이름 증거 6종: evaporator, condenser, chilled water, chiller",
  "crosscheck": {
   "rate": 1.0,
-  "both": 69,
+  "both": 81,
   "diff": []
  }
 }

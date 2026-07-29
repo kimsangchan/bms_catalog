@@ -9,8 +9,10 @@
   python collect.py --list                    소스 목록
   python collect.py --probe trane-points-list 열거만 (내려받지 않음)
   python collect.py --run   trane-points-list 실제 수집
+
+--limit N 은 '문서번호 N개까지'라는 뜻이다 (조회 횟수가 아니다).
 """
-import json, os, sys, hashlib, time, urllib.request, urllib.error
+import collections, json, os, sys, hashlib, time, urllib.request, urllib.error
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
@@ -62,31 +64,54 @@ def fetch(url, dest, timeout=90):
     return hashlib.sha256(body).hexdigest(), len(body)
 
 
-def probe(src, limit=None, verbose=True):
-    """열거만 — 어떤 URL이 살아 있는지 센다. 시리즈는 번호당 첫 성공에서 멈춘다."""
+def series_key(src, url):
+    """시리즈에서 '같은 문서의 다른 판'을 묶는 키 — 번호+개정만 보고 날짜는 뺀다."""
+    if src["enumerate"] != "series" or "BAS-PTS" not in url:
+        return url
+    return url.split("BAS-PTS")[1][:4]
+
+
+def probe(src, limit=None, verbose=True, workers=12):
+    """열거만 — 어떤 URL이 살아 있는지 센다.
+
+    문서번호×개정×날짜 조합이라 후보가 1,000개를 넘는다. 순차로 돌면 20분이 넘어
+    **번호별로 묶어 병렬**로 두드린다. 한 번호에서 하나만 살아 있으면 되므로
+    번호 안에서는 순차, 번호끼리는 동시에 간다.
+    """
+    from concurrent.futures import ThreadPoolExecutor
     urls = candidates(src)
     if not urls:
         print("  · %s 은 페이지 스크레이핑 방식 — 브라우저가 필요하다 (%s)"
               % (src["id"], src.get("page", "")))
         return []
-    found, tried, seen_num = [], 0, set()
+
+    groups = collections.OrderedDict()
     for u in urls:
-        if src["enumerate"] == "series":
-            key = u.split("BAS-PTS")[1][:4] if "BAS-PTS" in u else u
-            if key in seen_num:
+        groups.setdefault(series_key(src, u), []).append(u)
+    keys = list(groups)[:limit] if limit else list(groups)
+
+    def first_alive(key):
+        """이 번호의 후보를 차례로 두드려 처음 살아 있는 것을 돌려준다."""
+        for u in groups[key]:
+            code, size = head(u)
+            if code == 200 and size > 20000:
+                return {"url": u, "size": size, "key": key}
+            if code == 403:
+                return {"url": u, "size": 0, "key": key, "blocked": True}
+        return None
+
+    found = []
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        for r in ex.map(first_alive, keys):
+            if not r:
                 continue
-        tried += 1
-        if limit and tried > limit:
-            break
-        code, size = head(u)
-        if code == 200 and size > 20000:
-            found.append({"url": u, "size": size})
-            if src["enumerate"] == "series":
-                seen_num.add(u.split("BAS-PTS")[1][:4])
+            if r.get("blocked"):
+                if verbose:
+                    print("  △ 403 봇차단 — 브라우저 필요: %s" % os.path.basename(r["url"]))
+                continue
+            found.append(r)
             if verbose:
-                print("  ✓ %7d B  %s" % (size, os.path.basename(u)))
-        elif code == 403 and verbose:
-            print("  △ 403 봇차단 — 브라우저 필요: %s" % os.path.basename(u))
+                print("  ✓ %7d B  %s" % (r["size"], os.path.basename(r["url"])))
     return found
 
 

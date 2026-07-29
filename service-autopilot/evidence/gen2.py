@@ -125,6 +125,10 @@ td.n{color:var(--dim);white-space:nowrap;font-size:11.5px}
 .mlist{display:flex;gap:5px;flex-wrap:wrap;padding:9px 18px;border-bottom:1px solid var(--line2)}
 .mlist button{padding:5px 11px;border:1px solid var(--line);border-radius:6px;font-size:12px}
 .mlist button[aria-pressed="true"]{background:var(--sel);border-color:var(--accent);font-weight:650}
+.mlist button{display:inline-flex;align-items:center;gap:6px}
+.mpre{padding:9px 18px 0;font-size:11px;letter-spacing:.05em;color:var(--faint);font-weight:700}
+.mpr{font-size:10px;letter-spacing:.04em;color:var(--faint);font-weight:700}
+.mn{font-family:var(--mono);font-size:10.5px;color:var(--dim);border-left:1px solid var(--line2);padding-left:6px}
 .mtop{padding:14px 18px 0}
 .mtop h2{font-size:15.5px;font-weight:650;letter-spacing:-.01em}
 .mtop .vd{font-size:11px;letter-spacing:.06em;color:var(--faint);font-weight:700}
@@ -334,8 +338,19 @@ function renderModels(models, l3){
   var m = models[Math.min(mi, models.length-1)];
   var h = '';
   if(models.length>1){
-    h += '<div class="mlist">' + models.map(function(x,i){
-      return '<button data-mi="'+i+'" aria-pressed="'+(i===mi)+'">'+esc(x.model)+'</button>';
+    // 모델이 20건을 넘으면 이름 전체가 길어 고르기 어렵다.
+    // 공통 앞머리(제조사·컨트롤러)를 떼고 **다른 부분만** 보이게 한다.
+    var pre = models.length > 1 ? commonPrefix(models.map(function(x){return x.model;})) : '';
+    h += (pre ? '<div class="mpre">'+esc(pre.replace(/[\s—·-]+$/,''))+'</div>' : '')
+       + '<div class="mlist">' + models.map(function(x,i){
+      // 프로토콜은 오른쪽 배지로 따로 보여주므로 이름에서는 뺀다 (중복 표기 방지)
+      var lbl = x.model.slice(pre.length).replace(/^[\s—·-]+/,'')
+                 .replace(/\s*\((BACnet|LonTalk|Modbus)\)\s*$/i,'') || x.model;
+      var pr = (x.comm||[]).map(function(c){return c[0];});
+      var tail = pr.length ? '<span class="mpr">'+esc(pr.join('·'))+'</span>' : '';
+      var n = (x.points||[]).length;
+      return '<button data-mi="'+i+'" aria-pressed="'+(i===mi)+'">'+esc(lbl)+tail
+           + (n ? '<span class="mn">'+n+'</span>' : '') + '</button>';
     }).join('') + '</div>';
   }
   h += '<div class="mtop"><div class="vd">'+esc(m.vendor)+'</div><h2>'+esc(m.name)+'</h2>'
@@ -375,6 +390,17 @@ function renderModels(models, l3){
   return h;
 }
 function badge(ok){ return ok ? '<span class="ok">있어요</span>' : '<span class="no">아직 없어요</span>'; }
+function commonPrefix(a){
+  if(a.length<2) return '';
+  var p = a[0];
+  for(var i=1;i<a.length;i++){
+    var j=0; while(j<p.length && j<a[i].length && p[j]===a[i][j]) j++;
+    p = p.slice(0,j);
+    if(!p) return '';
+  }
+  return p;
+}
+
 function sec(t,n){ return '<div class="sec">'+esc(t)+(n?' <b>'+n+'</b>':'')+'</div>'; }
 
 function render(){

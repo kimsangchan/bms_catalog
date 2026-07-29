@@ -1,0 +1,3286 @@
+{
+ "id": "trane-symbio-800-rtac-bacnet",
+ "equipId": "e9",
+ "vendor": "Trane",
+ "model": "Symbio™ 800 — RTAC (BACnet)",
+ "name": "Symbio™ 800 RTAC",
+ "cat": "HVAC.PLANT.CHILLER",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 406점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "AI",
+   "inst": 10100,
+   "name": "Active Chilled Water Setpoint",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Standard · Modbus reg 30011"
+  },
+  {
+   "type": "AI",
+   "inst": 10101,
+   "name": "Active Demand Limit Setpoint",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: Standard · Modbus reg 30013"
+  },
+  {
+   "type": "AI",
+   "inst": 10102,
+   "name": "Actual Running Capacity",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: Standard · Modbus reg 30015"
+  },
+  {
+   "type": "AI",
+   "inst": 10103,
+   "name": "Evaporator Refrigerant Pressure Circuit 1",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30017"
+  },
+  {
+   "type": "AI",
+   "inst": 10104,
+   "name": "Evaporator Refrigerant Pressure Circuit 2",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30019"
+  },
+  {
+   "type": "AI",
+   "inst": 10105,
+   "name": "Evaporator Saturated Refrigerant Temperature Circuit 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Standard · Modbus reg 30021"
+  },
+  {
+   "type": "AI",
+   "inst": 10106,
+   "name": "Evaporator Saturated Refrigerant Temperature Circuit 2",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Standard · Modbus reg 30023"
+  },
+  {
+   "type": "AI",
+   "inst": 10107,
+   "name": "Condenser Refrigerant Pressure Circuit 1",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30025"
+  },
+  {
+   "type": "AI",
+   "inst": 10108,
+   "name": "Condenser Refrigerant Pressure Circuit 2",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30027"
+  },
+  {
+   "type": "AI",
+   "inst": 10109,
+   "name": "Condenser Saturated Refrigerant Temperature Circuit 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Standard · Modbus reg 30029"
+  },
+  {
+   "type": "AI",
+   "inst": 10110,
+   "name": "Condenser Saturated Refrigerant Temperature Circuit 2",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Standard · Modbus reg 30031"
+  },
+  {
+   "type": "AI",
+   "inst": 10111,
+   "name": "Local Atmospheric Pressure",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30033"
+  },
+  {
+   "type": "AI",
+   "inst": 10112,
+   "name": "Starts - Compressor 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30035"
+  },
+  {
+   "type": "AI",
+   "inst": 10113,
+   "name": "Run Time- Compressor 1A (in seconds)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30037"
+  },
+  {
+   "type": "AI",
+   "inst": 10114,
+   "name": "Starts- Compressor 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Compressor 1B · Modbus reg 30039"
+  },
+  {
+   "type": "AI",
+   "inst": 10115,
+   "name": "Run Time- Compressor 1B (in seconds)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Compressor 1B · Modbus reg 30041"
+  },
+  {
+   "type": "AI",
+   "inst": 10116,
+   "name": "Starts- Compressor 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30043"
+  },
+  {
+   "type": "AI",
+   "inst": 10117,
+   "name": "Run Time- Compressor 2A (in seconds)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30045"
+  },
+  {
+   "type": "AI",
+   "inst": 10118,
+   "name": "Starts - Compressor 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Compressor 2B · Modbus reg 30047"
+  },
+  {
+   "type": "AI",
+   "inst": 10119,
+   "name": "Run Time- Compressor 2B (in seconds)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Compressor 2B · Modbus reg 30049"
+  },
+  {
+   "type": "AI",
+   "inst": 10120,
+   "name": "Air Flow Percentage Circuit 1",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: Standard · Modbus reg 30051"
+  },
+  {
+   "type": "AI",
+   "inst": 10121,
+   "name": "Air Flow Percentage Circuit 2",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: Standard · Modbus reg 30053"
+  },
+  {
+   "type": "AI",
+   "inst": 10122,
+   "name": "Evaporator Entering Water Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Standard · Modbus reg 30055"
+  },
+  {
+   "type": "AI",
+   "inst": 10123,
+   "name": "Evaporator Leaving Water Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Standard · Modbus reg 30057"
+  },
+  {
+   "type": "AI",
+   "inst": 10124,
+   "name": "Oil Pressure - Compressor 1A",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30059"
+  },
+  {
+   "type": "AI",
+   "inst": 10125,
+   "name": "Oil Pressure - Compressor 1B",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Compressor 1B · Modbus reg 30061"
+  },
+  {
+   "type": "AI",
+   "inst": 10126,
+   "name": "Oil Pressure - Compressor 2A",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30063"
+  },
+  {
+   "type": "AI",
+   "inst": 10127,
+   "name": "Oil Pressure - Compressor 2B",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Compressor 2B · Modbus reg 30065"
+  },
+  {
+   "type": "AI",
+   "inst": 10128,
+   "name": "Oil Temperature - Compressor 1A",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Common · Modbus reg 30067"
+  },
+  {
+   "type": "AI",
+   "inst": 10129,
+   "name": "Oil Temperature - Compressor 1B",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Compressor 1B · Modbus reg 30069"
+  },
+  {
+   "type": "AI",
+   "inst": 10130,
+   "name": "Oil Temperature - Compressor 2A",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Standard · Modbus reg 30071"
+  },
+  {
+   "type": "AI",
+   "inst": 10131,
+   "name": "Oil Temperature - Compressor 2B",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Compressor 2B · Modbus reg 30073"
+  },
+  {
+   "type": "AI",
+   "inst": 10132,
+   "name": "Outdoor Air Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Standard · Modbus reg 30075"
+  },
+  {
+   "type": "AI",
+   "inst": 10133,
+   "name": "Phase AB Voltage - Compressor 1A",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: EM Starter 1A · Modbus reg 30077"
+  },
+  {
+   "type": "AI",
+   "inst": 10134,
+   "name": "Phase AB Voltage - Compressor 1B",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: TR200 Modbus AFD 1A and Number of Compressors = 3 or 4 · Modbus reg 30079"
+  },
+  {
+   "type": "AI",
+   "inst": 10135,
+   "name": "Phase AB Voltage - Compressor 2A",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: TR200 Modbus AFD 1A, EM Starter 2A and Number of Compressors = 2 · Modbus reg 30081"
+  },
+  {
+   "type": "AI",
+   "inst": 10136,
+   "name": "Line 1 Current - Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 1A · Modbus reg 30083"
+  },
+  {
+   "type": "AI",
+   "inst": 10137,
+   "name": "Line 2 Current - Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 1A · Modbus reg 30085"
+  },
+  {
+   "type": "AI",
+   "inst": 10138,
+   "name": "Line 3 Current - Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 1A · Modbus reg 30087"
+  },
+  {
+   "type": "AI",
+   "inst": 10139,
+   "name": "Line 1 Current - Compressor 1B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 1B · Modbus reg 30089"
+  },
+  {
+   "type": "AI",
+   "inst": 10140,
+   "name": "Line 2 Current - Compressor 1B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 1B · Modbus reg 30091"
+  },
+  {
+   "type": "AI",
+   "inst": 10141,
+   "name": "Line 3 Current - Compressor 1B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 1B · Modbus reg 30093"
+  },
+  {
+   "type": "AI",
+   "inst": 10142,
+   "name": "Line 1 Current - Compressor 2A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 2A · Modbus reg 30095"
+  },
+  {
+   "type": "AI",
+   "inst": 10143,
+   "name": "Line 2 Current - Compressor 2A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 2A · Modbus reg 30097"
+  },
+  {
+   "type": "AI",
+   "inst": 10144,
+   "name": "Line 3 Current - Compressor 2A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 2A · Modbus reg 30099"
+  },
+  {
+   "type": "AI",
+   "inst": 10145,
+   "name": "Line 1 Current - Compressor 2B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 2B · Modbus reg 30101"
+  },
+  {
+   "type": "AI",
+   "inst": 10146,
+   "name": "Line 2 Current - Compressor 2B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 2B · Modbus reg 30103"
+  },
+  {
+   "type": "AI",
+   "inst": 10147,
+   "name": "Line 3 Current - Compressor 2B",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: EM Starter 2B · Modbus reg 30105"
+  },
+  {
+   "type": "AI",
+   "inst": 10148,
+   "name": "Line 1 Current RLA - Compressor 1A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 1A · Modbus reg 30107"
+  },
+  {
+   "type": "AI",
+   "inst": 10149,
+   "name": "Line 2 Current RLA - Compressor 1A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 1A · Modbus reg 30109"
+  },
+  {
+   "type": "AI",
+   "inst": 10150,
+   "name": "Line 3 Current RLA - Compressor 1A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 1A · Modbus reg 30111"
+  },
+  {
+   "type": "AI",
+   "inst": 10151,
+   "name": "Line 1 Current RLA - Compressor 1B",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 1B · Modbus reg 30113"
+  },
+  {
+   "type": "AI",
+   "inst": 10152,
+   "name": "Line 2 Current RLA - Compressor 1B",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 1B · Modbus reg 30115"
+  },
+  {
+   "type": "AI",
+   "inst": 10153,
+   "name": "Line 3 Current RLA - Compressor 1B",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 1B · Modbus reg 30117"
+  },
+  {
+   "type": "AI",
+   "inst": 10154,
+   "name": "Line 1 Current RLA - Compressor 2A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 2A · Modbus reg 30119"
+  },
+  {
+   "type": "AI",
+   "inst": 10155,
+   "name": "Line 2 Current RLA - Compressor 2A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 2A · Modbus reg 30121"
+  },
+  {
+   "type": "AI",
+   "inst": 10156,
+   "name": "Line 3 Current RLA - Compressor 2A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 2A · Modbus reg 30123"
+  },
+  {
+   "type": "AI",
+   "inst": 10157,
+   "name": "Line 1 Current RLA - Compressor 2B",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 2B · Modbus reg 30125"
+  },
+  {
+   "type": "AI",
+   "inst": 10158,
+   "name": "Line 2 Current RLA - Compressor 2B",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 2B · Modbus reg 30127"
+  },
+  {
+   "type": "AI",
+   "inst": 10159,
+   "name": "Line 3 Current RLA - Compressor 2B",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: EM Starter 2B · Modbus reg 30129"
+  },
+  {
+   "type": "AI",
+   "inst": 10160,
+   "name": "Number of Circuits",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Common · Modbus reg 30131"
+  },
+  {
+   "type": "AI",
+   "inst": 10161,
+   "name": "Number of Compressors Circuit 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Common · Modbus reg 30133"
+  },
+  {
+   "type": "AI",
+   "inst": 10162,
+   "name": "Number of Compressors Circuit 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Common · Modbus reg 30135"
+  },
+  {
+   "type": "AI",
+   "inst": 10163,
+   "name": "Chiller Design Capacity",
+   "unitRaw": "Power, Cooling",
+   "unit": null,
+   "note": "조건: Common · Modbus reg 30137"
+  },
+  {
+   "type": "AI",
+   "inst": 10164,
+   "name": "Drive Output Power Circuit 1",
+   "unitRaw": "Power, Electrical",
+   "unit": null,
+   "note": "조건: TR200 Modbus AFD 1A · Modbus reg 30139"
+  },
+  {
+   "type": "AI",
+   "inst": 10165,
+   "name": "Drive Output Power Circuit 2",
+   "unitRaw": "Power, Electrical",
+   "unit": null,
+   "note": "조건: TR200 Modbus AFD 2A · Modbus reg 30141"
+  },
+  {
+   "type": "AI",
+   "inst": 10166,
+   "name": "Refrigerant Discharge Temperature - Compressor 1A",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: TR200 Modbus AFD 1A · Modbus reg 30143"
+  },
+  {
+   "type": "AI",
+   "inst": 10167,
+   "name": "Refrigerant Discharge Temperature - Compressor 2A",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: TR200 Modbus AFD 1A · Modbus reg 30145"
+  },
+  {
+   "type": "AI",
+   "inst": 10168,
+   "name": "AFD Frequency Circuit 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: TR200 Modbus AFD 1A · Modbus reg 30147"
+  },
+  {
+   "type": "AI",
+   "inst": 10169,
+   "name": "AFD Frequency Circuit 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: TR200 Modbus AFD 2A · Modbus reg 30149"
+  },
+  {
+   "type": "AI",
+   "inst": 10170,
+   "name": "Drive Motor Average Current RLA Circuit 1",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: TR200 Modbus AFD 1A · Modbus reg 30151"
+  },
+  {
+   "type": "AI",
+   "inst": 10171,
+   "name": "Drive Motor Average Current RLA Circuit 2",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: TR200 Modbus AFD 2A · Modbus reg 30153"
+  },
+  {
+   "type": "AI",
+   "inst": 10172,
+   "name": "Evaporator Refrigerant Absolute Pressure Circuit 1",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30155"
+  },
+  {
+   "type": "AI",
+   "inst": 10173,
+   "name": "Evaporator Refrigerant Absolute Pressure Circuit 2",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30157"
+  },
+  {
+   "type": "AI",
+   "inst": 10174,
+   "name": "Condenser Refrigerant Absolute Pressure Circuit 1",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30159"
+  },
+  {
+   "type": "AI",
+   "inst": 10175,
+   "name": "Condenser Refrigerant Absolute Pressure Circuit 2",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30161"
+  },
+  {
+   "type": "AI",
+   "inst": 10176,
+   "name": "Oil Absolute Pressure - Compressor 1A",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30163"
+  },
+  {
+   "type": "AI",
+   "inst": 10177,
+   "name": "Oil Absolute Pressure - Compressor 1B",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Compressor 1B · Modbus reg 30165"
+  },
+  {
+   "type": "AI",
+   "inst": 10178,
+   "name": "Oil Absolute Pressure - Compressor 2A",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30167"
+  },
+  {
+   "type": "AI",
+   "inst": 10179,
+   "name": "Oil Absolute Pressure - Compressor 2B",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "조건: Compressor 2B · Modbus reg 30169"
+  },
+  {
+   "type": "AI",
+   "inst": 10180,
+   "name": "Average Line Current Circuit 1",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30171"
+  },
+  {
+   "type": "AI",
+   "inst": 10181,
+   "name": "Average Line Current Circuit 2",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30173"
+  },
+  {
+   "type": "AI",
+   "inst": 10182,
+   "name": "Average Line Voltage Circuit 1",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30175"
+  },
+  {
+   "type": "AI",
+   "inst": 10183,
+   "name": "Average Line Voltage Circuit 2",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30177"
+  },
+  {
+   "type": "AI",
+   "inst": 10184,
+   "name": "Line Current L1 Circuit 1",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30179"
+  },
+  {
+   "type": "AI",
+   "inst": 10185,
+   "name": "Line Current L2 Circuit 1",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30181"
+  },
+  {
+   "type": "AI",
+   "inst": 10186,
+   "name": "Line Current L3 Circuit 1",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30183"
+  },
+  {
+   "type": "AI",
+   "inst": 10187,
+   "name": "Line Current L1 Circuit 2",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30185"
+  },
+  {
+   "type": "AI",
+   "inst": 10188,
+   "name": "Line Current L2 Circuit 2",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30187"
+  },
+  {
+   "type": "AI",
+   "inst": 10189,
+   "name": "Line Current L3 Circuit 2",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30189"
+  },
+  {
+   "type": "AI",
+   "inst": 10190,
+   "name": "Voltage L1-L2 Circuit 1",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30191"
+  },
+  {
+   "type": "AI",
+   "inst": 10191,
+   "name": "Voltage L2-L3 Circuit 1",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30193"
+  },
+  {
+   "type": "AI",
+   "inst": 10192,
+   "name": "Voltage L1-L3 Circuit 1",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30195"
+  },
+  {
+   "type": "AI",
+   "inst": 10193,
+   "name": "Voltage L1-L2 Circuit 2",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30197"
+  },
+  {
+   "type": "AI",
+   "inst": 10194,
+   "name": "Voltage L2-L1 Circuit 2",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30199"
+  },
+  {
+   "type": "AI",
+   "inst": 10195,
+   "name": "Voltage L1-L3 Circuit 2",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30201"
+  },
+  {
+   "type": "AI",
+   "inst": 10196,
+   "name": "Line Frequency Circuit 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30203"
+  },
+  {
+   "type": "AI",
+   "inst": 10197,
+   "name": "Line Frequency Circuit 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30205"
+  },
+  {
+   "type": "AI",
+   "inst": 10198,
+   "name": "Power Factor Circuit 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30207"
+  },
+  {
+   "type": "AI",
+   "inst": 10199,
+   "name": "Power Factor Circuit 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30209"
+  },
+  {
+   "type": "AI",
+   "inst": 10200,
+   "name": "Power Demand Circuit 1",
+   "unitRaw": "Power, Electrical",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30211"
+  },
+  {
+   "type": "AI",
+   "inst": 10201,
+   "name": "Power Demand Circuit 2",
+   "unitRaw": "Power, Electrical",
+   "unit": null,
+   "note": "조건: Two Energy Meters · Modbus reg 30213"
+  },
+  {
+   "type": "AI",
+   "inst": 10202,
+   "name": "Power Factor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: One Energy Meter · Modbus reg 30215"
+  },
+  {
+   "type": "AI",
+   "inst": 10203,
+   "name": "Current L1",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: One Energy Meter · Modbus reg 30217"
+  },
+  {
+   "type": "AI",
+   "inst": 10204,
+   "name": "Current L2",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: One Energy Meter · Modbus reg 30219"
+  },
+  {
+   "type": "AI",
+   "inst": 10205,
+   "name": "Current L3",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: One Energy Meter · Modbus reg 30221"
+  },
+  {
+   "type": "AI",
+   "inst": 10206,
+   "name": "Average Current",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "조건: One Energy Meter · Modbus reg 30223"
+  },
+  {
+   "type": "AI",
+   "inst": 10207,
+   "name": "Voltage L1-L2",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: One Energy Meter · Modbus reg 30225"
+  },
+  {
+   "type": "AI",
+   "inst": 10208,
+   "name": "Voltage L2-L3",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: One Energy Meter · Modbus reg 30227"
+  },
+  {
+   "type": "AI",
+   "inst": 10209,
+   "name": "Voltage L1-L3",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: One Energy Meter · Modbus reg 30229"
+  },
+  {
+   "type": "AI",
+   "inst": 10210,
+   "name": "Average Voltage L-L",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "조건: One Energy Meter · Modbus reg 30231"
+  },
+  {
+   "type": "AI",
+   "inst": 10211,
+   "name": "Line Frequency",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: One Energy Meter · Modbus reg 30233"
+  },
+  {
+   "type": "AI",
+   "inst": 10212,
+   "name": "Unit Power Demand",
+   "unitRaw": "Power, Electrical",
+   "unit": null,
+   "note": "조건: Energy Meter · Modbus reg 30235"
+  },
+  {
+   "type": "AI",
+   "inst": 10213,
+   "name": "Unit Source ID",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30237"
+  },
+  {
+   "type": "AI",
+   "inst": 10214,
+   "name": "Unit Power Consumption",
+   "unitRaw": "Power, Electrical",
+   "unit": null,
+   "note": "조건: Energy Meter · Modbus reg 30239"
+  },
+  {
+   "type": "AI",
+   "inst": 10215,
+   "name": "Evaporator Approach Temperature Circuit 1",
+   "unitRaw": "Temperature, Delta",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30241"
+  },
+  {
+   "type": "AI",
+   "inst": 10216,
+   "name": "Evaporator Approach Temperature Circuit 2",
+   "unitRaw": "Temperature, Delta",
+   "unit": null,
+   "note": "조건: Standard · Modbus reg 30243"
+  },
+  {
+   "type": "AI",
+   "inst": 10217,
+   "name": "Active Cool/Heat Setpoint Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Standard · Modbus reg 30245"
+  },
+  {
+   "type": "AV",
+   "inst": 10100,
+   "name": "Chilled Water Setpoint",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "조건: Standard · Modbus reg 40011"
+  },
+  {
+   "type": "AV",
+   "inst": 10101,
+   "name": "Demand Limit Setpoint",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "조건: Standard · Modbus reg 40013"
+  },
+  {
+   "type": "BI",
+   "inst": 10100,
+   "name": "Run Enabled",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Run Not Enabled 1 = Run Enabled · 조건: Standard · Modbus reg 33011"
+  },
+  {
+   "type": "BI",
+   "inst": 10101,
+   "name": "Local Setpoint Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Remote Control 1 = Local Control · 조건: Standard · Modbus reg 33012"
+  },
+  {
+   "type": "BI",
+   "inst": 10102,
+   "name": "Capacity Limited",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Not Limited 1 = Limited · 조건: Standard · Modbus reg 33013"
+  },
+  {
+   "type": "BI",
+   "inst": 10103,
+   "name": "Chiller Running State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Off 1 = On · 조건: Standard · Modbus reg 33014"
+  },
+  {
+   "type": "BI",
+   "inst": 10104,
+   "name": "Maximum Capacity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Off 1 = On · 조건: Standard · Modbus reg 33015"
+  },
+  {
+   "type": "BI",
+   "inst": 10105,
+   "name": "Manual Override Exists",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Off 1 = On · 조건: Standard · Modbus reg 33016"
+  },
+  {
+   "type": "BI",
+   "inst": 10106,
+   "name": "Emergency Stop",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Auto 1 = Emergency Stop - Manual Reset Required · 조건: Standard · Modbus reg 33017"
+  },
+  {
+   "type": "BI",
+   "inst": 10107,
+   "name": "Compressor 1A Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Off 1 = Running · 조건: Standard · Modbus reg 33018"
+  },
+  {
+   "type": "BI",
+   "inst": 10108,
+   "name": "Compressor 1B Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Off 1 = Running · 조건: Standard · Modbus reg 33019"
+  },
+  {
+   "type": "BI",
+   "inst": 10109,
+   "name": "Compressor 2A Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Off 1 = Running · 조건: Standard · Modbus reg 33020"
+  },
+  {
+   "type": "BI",
+   "inst": 10110,
+   "name": "Compressor 2B Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Off 1 = Running · 조건: Standard · Modbus reg 33021"
+  },
+  {
+   "type": "BI",
+   "inst": 10111,
+   "name": "Evaporator Water Pump Request",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Off 1 = On · 조건: Standard · Modbus reg 33022"
+  },
+  {
+   "type": "BI",
+   "inst": 10112,
+   "name": "Evaporator Water Flow Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = No Flow 1 = Flow · 조건: Standard · Modbus reg 33023"
+  },
+  {
+   "type": "BI",
+   "inst": 10113,
+   "name": "Diagnostic Present",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · 조건: Standard · Modbus reg 33024"
+  },
+  {
+   "type": "BI",
+   "inst": 10114,
+   "name": "Diagnostic Shutdown Present",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · 조건: Standard · Modbus reg 33025"
+  },
+  {
+   "type": "BI",
+   "inst": 10115,
+   "name": "Diagnostic: Manual Reset Required",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · 조건: Standard · Modbus reg 33026"
+  },
+  {
+   "type": "BI",
+   "inst": 10116,
+   "name": "Diagnostic: Local Manual Reset Required",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · 조건: Standard · Modbus reg 33027"
+  },
+  {
+   "type": "BI",
+   "inst": 10117,
+   "name": "Diagnostic Present: Information",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · 조건: Standard · Modbus reg 33028"
+  },
+  {
+   "type": "BI",
+   "inst": 10118,
+   "name": "Diagnostic Present: Advisory",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · 조건: Standard · Modbus reg 33029"
+  },
+  {
+   "type": "BI",
+   "inst": 10119,
+   "name": "Diagnostic Present: Critical",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · 조건: Standard · Modbus reg 33030"
+  },
+  {
+   "type": "BI",
+   "inst": 10120,
+   "name": "Diagnostic Present: Service Required",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · 조건: Standard · Modbus reg 33031"
+  },
+  {
+   "type": "BI",
+   "inst": 10121,
+   "name": "External Auto Stop Input Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Stop 1 = Auto · 조건: Standard · Modbus reg 33032"
+  },
+  {
+   "type": "BI",
+   "inst": 10122,
+   "name": "Front Panel Auto Stop Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Stop 1 = Auto · 조건: Standard · Modbus reg 33033"
+  },
+  {
+   "type": "BI",
+   "inst": 10123,
+   "name": "Limit Mode Relay Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Off 1 = On · 조건: Standard · Modbus reg 33034"
+  },
+  {
+   "type": "BI",
+   "inst": 11000,
+   "name": "Diagnostic:MP: Invalid Configuration",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34001"
+  },
+  {
+   "type": "BI",
+   "inst": 11001,
+   "name": "Diagnostic:MP: Non-Volatile Memory Reformatted",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34002"
+  },
+  {
+   "type": "BI",
+   "inst": 11002,
+   "name": "Diagnostic:Check Clock",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34003"
+  },
+  {
+   "type": "BI",
+   "inst": 11003,
+   "name": "Diagnostic:MP: Could not Store Starts and Hours",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34004"
+  },
+  {
+   "type": "BI",
+   "inst": 11004,
+   "name": "Diagnostic:MP: Non-Volatile Block Test Error",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34005"
+  },
+  {
+   "type": "BI",
+   "inst": 11005,
+   "name": "Diagnostic:MP: Reset Has Occurred",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34006"
+  },
+  {
+   "type": "BI",
+   "inst": 11006,
+   "name": "Comm Loss: Electronic Expansion Valve 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34007"
+  },
+  {
+   "type": "BI",
+   "inst": 11007,
+   "name": "Comm Loss: Electronic Expansion Valve 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34008"
+  },
+  {
+   "type": "BI",
+   "inst": 11008,
+   "name": "Diagnostic:Low Evaporator Rfgt Temperature - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34009"
+  },
+  {
+   "type": "BI",
+   "inst": 11009,
+   "name": "Diagnostic:Low Evaporator Liquid Level - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34010"
+  },
+  {
+   "type": "BI",
+   "inst": 11010,
+   "name": "Diagnostic:Low Suction Rfgt Pressure - Ckt 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34011"
+  },
+  {
+   "type": "BI",
+   "inst": 11011,
+   "name": "Diagnostic:High Evaporator Liquid Level - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34012"
+  },
+  {
+   "type": "BI",
+   "inst": 11012,
+   "name": "Diagnostic:Evaporator Liquid Level Sensor - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34013"
+  },
+  {
+   "type": "BI",
+   "inst": 11013,
+   "name": "Comm Loss: Evap Rfgt Liquid Level - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34014"
+  },
+  {
+   "type": "BI",
+   "inst": 11014,
+   "name": "Diagnostic:Low Evaporator Temp (Unit Off) - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34015"
+  },
+  {
+   "type": "BI",
+   "inst": 11015,
+   "name": "Diagnostic:Very Low Evaporator Rfgt Pressure - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34016"
+  },
+  {
+   "type": "BI",
+   "inst": 11016,
+   "name": "Evaporator Water Flow (High Approach Temperature) - Circuit 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34017"
+  },
+  {
+   "type": "BI",
+   "inst": 11017,
+   "name": "Diagnostic:Low Evaporator Rfgt Temperature - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34018"
+  },
+  {
+   "type": "BI",
+   "inst": 11018,
+   "name": "Diagnostic:Low Evaporator Liquid Level - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34019"
+  },
+  {
+   "type": "BI",
+   "inst": 11019,
+   "name": "Diagnostic:Low Suction Rfgt Pressure - Ckt 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34020"
+  },
+  {
+   "type": "BI",
+   "inst": 11020,
+   "name": "Diagnostic:High Evaporator Liquid Level - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34021"
+  },
+  {
+   "type": "BI",
+   "inst": 11021,
+   "name": "Diagnostic:Evaporator Liquid Level Sensor - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34022"
+  },
+  {
+   "type": "BI",
+   "inst": 11022,
+   "name": "Comm Loss: Evap Rfgt Liquid Level - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34023"
+  },
+  {
+   "type": "BI",
+   "inst": 11023,
+   "name": "Diagnostic:Low Evaporator Temp (Unit Off) - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34024"
+  },
+  {
+   "type": "BI",
+   "inst": 11024,
+   "name": "Diagnostic:Very Low Evaporator Rfgt Pressure - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34025"
+  },
+  {
+   "type": "BI",
+   "inst": 11025,
+   "name": "Evaporator Water Flow (High Approach Temperature) - Circuit 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34026"
+  },
+  {
+   "type": "BI",
+   "inst": 11026,
+   "name": "Comm Loss: Slide Valve Unload - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34027"
+  },
+  {
+   "type": "BI",
+   "inst": 11027,
+   "name": "Comm Loss: Step Load - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34028"
+  },
+  {
+   "type": "BI",
+   "inst": 11028,
+   "name": "Comm Loss: Slide Valve Load - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34029"
+  },
+  {
+   "type": "BI",
+   "inst": 11029,
+   "name": "Comm Loss: Suction Rfgt Pressure - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34030"
+  },
+  {
+   "type": "BI",
+   "inst": 11030,
+   "name": "Diagnostic:Suction Refrigerant Pressure Sensor - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34031"
+  },
+  {
+   "type": "BI",
+   "inst": 11031,
+   "name": "Diagnostic:AFD Fault - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34032"
+  },
+  {
+   "type": "BI",
+   "inst": 11032,
+   "name": "Diagnostic:AFD Motor Current Overload - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34033"
+  },
+  {
+   "type": "BI",
+   "inst": 11033,
+   "name": "Comm Loss: Slide Valve Unload - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34034"
+  },
+  {
+   "type": "BI",
+   "inst": 11034,
+   "name": "Comm Loss: Step Load - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34035"
+  },
+  {
+   "type": "BI",
+   "inst": 11035,
+   "name": "Comm Loss: Slide Valve Load - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34036"
+  },
+  {
+   "type": "BI",
+   "inst": 11036,
+   "name": "Comm Loss: Suction Rfgt Pressure - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34037"
+  },
+  {
+   "type": "BI",
+   "inst": 11037,
+   "name": "Diagnostic:Suction Refrigerant Pressure Sensor - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34038"
+  },
+  {
+   "type": "BI",
+   "inst": 11038,
+   "name": "Diagnostic:AFD Fault - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34039"
+  },
+  {
+   "type": "BI",
+   "inst": 11039,
+   "name": "Diagnostic:AFD Motor Current Overload - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34040"
+  },
+  {
+   "type": "BI",
+   "inst": 11040,
+   "name": "Comm Loss: Slide Valve Unload - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34041"
+  },
+  {
+   "type": "BI",
+   "inst": 11041,
+   "name": "Comm Loss: Step Load - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34042"
+  },
+  {
+   "type": "BI",
+   "inst": 11042,
+   "name": "Comm Loss: Slide Valve Load - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34043"
+  },
+  {
+   "type": "BI",
+   "inst": 11043,
+   "name": "Comm Loss: Suction Rfgt Pressure - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34044"
+  },
+  {
+   "type": "BI",
+   "inst": 11044,
+   "name": "Diagnostic:Suction Refrigerant Pressure Sensor - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34045"
+  },
+  {
+   "type": "BI",
+   "inst": 11045,
+   "name": "Comm Loss: Slide Valve Unload - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34046"
+  },
+  {
+   "type": "BI",
+   "inst": 11046,
+   "name": "Comm Loss: Step Load - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34047"
+  },
+  {
+   "type": "BI",
+   "inst": 11047,
+   "name": "Comm Loss: Slide Valve Load - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34048"
+  },
+  {
+   "type": "BI",
+   "inst": 11048,
+   "name": "Comm Loss: Suction Rfgt Pressure - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34049"
+  },
+  {
+   "type": "BI",
+   "inst": 11049,
+   "name": "Diagnostic:Suction Refrigerant Pressure Sensor - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34050"
+  },
+  {
+   "type": "BI",
+   "inst": 11050,
+   "name": "Diagnostic:Emergency Stop",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34051"
+  },
+  {
+   "type": "BI",
+   "inst": 11051,
+   "name": "Comm Loss: External Auto/Stop",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34052"
+  },
+  {
+   "type": "BI",
+   "inst": 11052,
+   "name": "Comm Loss: Emergency Stop",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34053"
+  },
+  {
+   "type": "BI",
+   "inst": 11053,
+   "name": "Comm Loss: Ext Chilled Water Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34054"
+  },
+  {
+   "type": "BI",
+   "inst": 11054,
+   "name": "Comm Loss: Ext Demand Limit Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34055"
+  },
+  {
+   "type": "BI",
+   "inst": 11055,
+   "name": "Diagnostic:External Chilled Water Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34056"
+  },
+  {
+   "type": "BI",
+   "inst": 11056,
+   "name": "Diagnostic:External Demand Limit Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34057"
+  },
+  {
+   "type": "BI",
+   "inst": 11057,
+   "name": "Comm Loss: Programmable Relay Board 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34058"
+  },
+  {
+   "type": "BI",
+   "inst": 11058,
+   "name": "Diagnostic:Condenser Fan VFD Fault - Ckt1 Drive 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34059"
+  },
+  {
+   "type": "BI",
+   "inst": 11059,
+   "name": "Diagnostic:Condenser Fan VFD Fault - Ckt1 Drive 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34060"
+  },
+  {
+   "type": "BI",
+   "inst": 11060,
+   "name": "Comm Loss: Fan Control Ckt1, Stage 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34061"
+  },
+  {
+   "type": "BI",
+   "inst": 11061,
+   "name": "Comm Loss: Fan Control Ckt1, Stage 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34062"
+  },
+  {
+   "type": "BI",
+   "inst": 11062,
+   "name": "Comm Loss: Fan Control Ckt1, Stage 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34063"
+  },
+  {
+   "type": "BI",
+   "inst": 11063,
+   "name": "Comm Loss: Fan Control Ckt1, Stage 4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34064"
+  },
+  {
+   "type": "BI",
+   "inst": 11064,
+   "name": "Comm Loss: Fan Inverter Power - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34065"
+  },
+  {
+   "type": "BI",
+   "inst": 11065,
+   "name": "Comm Loss: Fan Inverter Speed Cmd - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34066"
+  },
+  {
+   "type": "BI",
+   "inst": 11066,
+   "name": "Comm Loss: Fan Inv Fault, Ckt1, Dr 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34067"
+  },
+  {
+   "type": "BI",
+   "inst": 11067,
+   "name": "Comm Loss: Fan Inv Fault, Ckt1, Dr 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34068"
+  },
+  {
+   "type": "BI",
+   "inst": 11068,
+   "name": "Diagnostic:Condenser Fan VFD Fault - Ckt2 Drive 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34069"
+  },
+  {
+   "type": "BI",
+   "inst": 11069,
+   "name": "Diagnostic:Condenser Fan VFD Fault - Ckt2 Drive 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34070"
+  },
+  {
+   "type": "BI",
+   "inst": 11070,
+   "name": "Comm Loss: Fan Control Ckt2, Stage 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34071"
+  },
+  {
+   "type": "BI",
+   "inst": 11071,
+   "name": "Comm Loss: Fan Control Ckt2, Stage 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34072"
+  },
+  {
+   "type": "BI",
+   "inst": 11072,
+   "name": "Comm Loss: Fan Control Ckt2, Stage 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34073"
+  },
+  {
+   "type": "BI",
+   "inst": 11073,
+   "name": "Comm Loss: Fan Control Ckt2, Stage 4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34074"
+  },
+  {
+   "type": "BI",
+   "inst": 11074,
+   "name": "Comm Loss: Fan Inverter Power - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34075"
+  },
+  {
+   "type": "BI",
+   "inst": 11075,
+   "name": "Comm Loss: Fan Inverter Speed Cmd - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34076"
+  },
+  {
+   "type": "BI",
+   "inst": 11076,
+   "name": "Comm Loss: Fan Inv Fault, Ckt2, Dr 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34077"
+  },
+  {
+   "type": "BI",
+   "inst": 11077,
+   "name": "Comm Loss: Fan Inv Fault, Ckt2, Dr 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34078"
+  },
+  {
+   "type": "BI",
+   "inst": 11078,
+   "name": "Comm Loss: Evap Leaving Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34079"
+  },
+  {
+   "type": "BI",
+   "inst": 11079,
+   "name": "Comm Loss: Evap Entering Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34080"
+  },
+  {
+   "type": "BI",
+   "inst": 11080,
+   "name": "Comm Loss: Outdoor Air Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34081"
+  },
+  {
+   "type": "BI",
+   "inst": 11081,
+   "name": "Diagnostic:Excessive IPC Comm Loss",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34082"
+  },
+  {
+   "type": "BI",
+   "inst": 11082,
+   "name": "Comm Loss: External Ckt Lockout - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34083"
+  },
+  {
+   "type": "BI",
+   "inst": 11083,
+   "name": "Comm Loss: External Ckt Lockout - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34084"
+  },
+  {
+   "type": "BI",
+   "inst": 11084,
+   "name": "Diagnostic:Low Evap Leaving Water Temp: Unit On",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34085"
+  },
+  {
+   "type": "BI",
+   "inst": 11085,
+   "name": "Diagnostic:Evaporator Entering Water Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34086"
+  },
+  {
+   "type": "BI",
+   "inst": 11086,
+   "name": "Diagnostic:Evaporator Leaving Water Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34087"
+  },
+  {
+   "type": "BI",
+   "inst": 11087,
+   "name": "Diagnostic:Outdoor Air Temperature Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34088"
+  },
+  {
+   "type": "BI",
+   "inst": 11088,
+   "name": "Diagnostic:Low Evaporator Water Temp (Unit Off)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34089"
+  },
+  {
+   "type": "BI",
+   "inst": 11089,
+   "name": "Diagnostic:Evap Water Flow (Entering Water Temp)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34090"
+  },
+  {
+   "type": "BI",
+   "inst": 11090,
+   "name": "Diagnostic:High Pressure Cutout - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34091"
+  },
+  {
+   "type": "BI",
+   "inst": 11091,
+   "name": "Diagnostic:Low Oil Flow - Cprsr 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34092"
+  },
+  {
+   "type": "BI",
+   "inst": 11092,
+   "name": "Diagnostic:Intermediate Oil Press Xdcr - Cprsr 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34093"
+  },
+  {
+   "type": "BI",
+   "inst": 11093,
+   "name": "Diagnostic:High Oil Temperature - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34094"
+  },
+  {
+   "type": "BI",
+   "inst": 11094,
+   "name": "Diagnostic:Oil Temperature Sensor - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34095"
+  },
+  {
+   "type": "BI",
+   "inst": 11095,
+   "name": "Comm Loss: High Pressure Cutout Sw - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34096"
+  },
+  {
+   "type": "BI",
+   "inst": 11096,
+   "name": "Comm Loss: Intermediate Oil Pressure - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34097"
+  },
+  {
+   "type": "BI",
+   "inst": 11097,
+   "name": "Comm Loss: Oil Temperature - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34098"
+  },
+  {
+   "type": "BI",
+   "inst": 11098,
+   "name": "Comm Loss: Oil Return Solenoid Valve - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34099"
+  },
+  {
+   "type": "BI",
+   "inst": 11099,
+   "name": "Diagnostic:Oil Flow Protection Fault - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34100"
+  },
+  {
+   "type": "BI",
+   "inst": 11100,
+   "name": "Comm Loss: Cprsr Disch Rfgt Temp - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34101"
+  },
+  {
+   "type": "BI",
+   "inst": 11101,
+   "name": "Diagnostic:Cprsr Disch Rfgt Temp Sensor -1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34102"
+  },
+  {
+   "type": "BI",
+   "inst": 11102,
+   "name": "Diagnostic: Low Discharge Superheat - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34103"
+  },
+  {
+   "type": "BI",
+   "inst": 11103,
+   "name": "Diagnostic:High Pressure Cutout - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34104"
+  },
+  {
+   "type": "BI",
+   "inst": 11104,
+   "name": "Diagnostic:Low Oil Flow - Cprsr 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34105"
+  },
+  {
+   "type": "BI",
+   "inst": 11105,
+   "name": "Diagnostic:Intermediate Oil Press Xdcr - Cprsr 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34106"
+  },
+  {
+   "type": "BI",
+   "inst": 11106,
+   "name": "Diagnostic:High Oil Temperature - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34107"
+  },
+  {
+   "type": "BI",
+   "inst": 11107,
+   "name": "Diagnostic:Oil Temperature Sensor - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34108"
+  },
+  {
+   "type": "BI",
+   "inst": 11108,
+   "name": "Comm Loss: High Pressure Cutout Sw - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34109"
+  },
+  {
+   "type": "BI",
+   "inst": 11109,
+   "name": "Comm Loss: Intermediate Oil Pressure - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34110"
+  },
+  {
+   "type": "BI",
+   "inst": 11110,
+   "name": "Comm Loss: Oil Temperature - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34111"
+  },
+  {
+   "type": "BI",
+   "inst": 11111,
+   "name": "Comm Loss: Oil Return Solenoid Valve - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34112"
+  },
+  {
+   "type": "BI",
+   "inst": 11112,
+   "name": "Diagnostic:Oil Flow Protection Fault - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34113"
+  },
+  {
+   "type": "BI",
+   "inst": 11113,
+   "name": "Comm Loss: Cprsr Disch Rfgt Temp - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34114"
+  },
+  {
+   "type": "BI",
+   "inst": 11114,
+   "name": "Diagnostic:Cprsr Disch Rfgt Temp Sensor -2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34115"
+  },
+  {
+   "type": "BI",
+   "inst": 11115,
+   "name": "Diagnostic: Low Discharge Superheat - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34116"
+  },
+  {
+   "type": "BI",
+   "inst": 11116,
+   "name": "Diagnostic:High Pressure Cutout - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34117"
+  },
+  {
+   "type": "BI",
+   "inst": 11117,
+   "name": "Diagnostic:Low Oil Flow - Cprsr 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34118"
+  },
+  {
+   "type": "BI",
+   "inst": 11118,
+   "name": "Diagnostic:Intermediate Oil Press Xdcr - Cprsr 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34119"
+  },
+  {
+   "type": "BI",
+   "inst": 11119,
+   "name": "Diagnostic:High Oil Temperature - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34120"
+  },
+  {
+   "type": "BI",
+   "inst": 11120,
+   "name": "Diagnostic:Oil Temperature Sensor - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34121"
+  },
+  {
+   "type": "BI",
+   "inst": 11121,
+   "name": "Comm Loss: High Pressure Cutout Sw - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34122"
+  },
+  {
+   "type": "BI",
+   "inst": 11122,
+   "name": "Comm Loss: Intermediate Oil Pressure - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34123"
+  },
+  {
+   "type": "BI",
+   "inst": 11123,
+   "name": "Comm Loss: Oil Temperature - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34124"
+  },
+  {
+   "type": "BI",
+   "inst": 11124,
+   "name": "Comm Loss: Oil Return Solenoid Valve - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34125"
+  },
+  {
+   "type": "BI",
+   "inst": 11125,
+   "name": "Diagnostic:Oil Flow Protection Fault - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34126"
+  },
+  {
+   "type": "BI",
+   "inst": 11126,
+   "name": "Diagnostic:High Pressure Cutout - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34127"
+  },
+  {
+   "type": "BI",
+   "inst": 11127,
+   "name": "Diagnostic:Low Oil Flow - Cprsr 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34128"
+  },
+  {
+   "type": "BI",
+   "inst": 11128,
+   "name": "Diagnostic:Intermediate Oil Press Xdcr - Cprsr 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34129"
+  },
+  {
+   "type": "BI",
+   "inst": 11129,
+   "name": "Diagnostic:High Oil Temperature - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34130"
+  },
+  {
+   "type": "BI",
+   "inst": 11130,
+   "name": "Diagnostic:Oil Temperature Sensor - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34131"
+  },
+  {
+   "type": "BI",
+   "inst": 11131,
+   "name": "Comm Loss: High Pressure Cutout Sw - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34132"
+  },
+  {
+   "type": "BI",
+   "inst": 11132,
+   "name": "Comm Loss: Intermediate Oil Pressure - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34133"
+  },
+  {
+   "type": "BI",
+   "inst": 11133,
+   "name": "Comm Loss: Oil Temperature - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34134"
+  },
+  {
+   "type": "BI",
+   "inst": 11134,
+   "name": "Comm Loss: Oil Return Solenoid Valve - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34135"
+  },
+  {
+   "type": "BI",
+   "inst": 11135,
+   "name": "Diagnostic:Oil Flow Protection Fault - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34136"
+  },
+  {
+   "type": "BI",
+   "inst": 11136,
+   "name": "Comm Loss: Condenser Rfgt Pressure - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34137"
+  },
+  {
+   "type": "BI",
+   "inst": 11137,
+   "name": "Diagnostic:Condenser Rfgt Pressure Transducer - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34138"
+  },
+  {
+   "type": "BI",
+   "inst": 11138,
+   "name": "Comm Loss: Condenser Rfgt Pressure - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34139"
+  },
+  {
+   "type": "BI",
+   "inst": 11139,
+   "name": "Diagnostic:Condenser Rfgt Pressure Transducer - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34140"
+  },
+  {
+   "type": "BI",
+   "inst": 11140,
+   "name": "Comm Loss: Starter 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34141"
+  },
+  {
+   "type": "BI",
+   "inst": 11141,
+   "name": "Diagnostic:Starter Failed to Arm/Start - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34142"
+  },
+  {
+   "type": "BI",
+   "inst": 11142,
+   "name": "Diagnostic:AFD Interrupt Failure - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34143"
+  },
+  {
+   "type": "BI",
+   "inst": 11143,
+   "name": "Comm Loss: AFD 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34144"
+  },
+  {
+   "type": "BI",
+   "inst": 11144,
+   "name": "Comm Loss: Starter 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34145"
+  },
+  {
+   "type": "BI",
+   "inst": 11145,
+   "name": "Diagnostic:Starter Failed to Arm/Start - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34146"
+  },
+  {
+   "type": "BI",
+   "inst": 11146,
+   "name": "Diagnostic:AFD Interrupt Failure - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34147"
+  },
+  {
+   "type": "BI",
+   "inst": 11147,
+   "name": "Comm Loss: AFD 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34148"
+  },
+  {
+   "type": "BI",
+   "inst": 11148,
+   "name": "Comm Loss: Starter 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34149"
+  },
+  {
+   "type": "BI",
+   "inst": 11149,
+   "name": "Diagnostic:Starter Failed to Arm/Start - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34150"
+  },
+  {
+   "type": "BI",
+   "inst": 11150,
+   "name": "Comm Loss: Starter 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34151"
+  },
+  {
+   "type": "BI",
+   "inst": 11151,
+   "name": "Diagnostic:Starter Failed to Arm/Start - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34152"
+  },
+  {
+   "type": "BI",
+   "inst": 11152,
+   "name": "Diagnostic:Starter 1A Loss of Comm with MP",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34153"
+  },
+  {
+   "type": "BI",
+   "inst": 11153,
+   "name": "Diagnostic:Starter Fault Type I - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34154"
+  },
+  {
+   "type": "BI",
+   "inst": 11154,
+   "name": "Diagnostic:Starter Fault Type II - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34155"
+  },
+  {
+   "type": "BI",
+   "inst": 11155,
+   "name": "Diagnostic:Starter Fault Type III - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34156"
+  },
+  {
+   "type": "BI",
+   "inst": 11156,
+   "name": "Diagnostic:Starter Contactor Interrupt Failure - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34157"
+  },
+  {
+   "type": "BI",
+   "inst": 11157,
+   "name": "Diagnostic:Starter Did Not Transition - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34158"
+  },
+  {
+   "type": "BI",
+   "inst": 11158,
+   "name": "Diagnostic:Transition Complete Input Shorted - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34159"
+  },
+  {
+   "type": "BI",
+   "inst": 11159,
+   "name": "Diagnostic:Phase Loss - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34160"
+  },
+  {
+   "type": "BI",
+   "inst": 11160,
+   "name": "Diagnostic:Phase Reversal - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34161"
+  },
+  {
+   "type": "BI",
+   "inst": 11161,
+   "name": "Diagnostic:Severe Current Imbalance - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34162"
+  },
+  {
+   "type": "BI",
+   "inst": 11162,
+   "name": "Diagnostic:Power Loss - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34163"
+  },
+  {
+   "type": "BI",
+   "inst": 11163,
+   "name": "Diagnostic:Motor Current Overload - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34164"
+  },
+  {
+   "type": "BI",
+   "inst": 11164,
+   "name": "Cprsr Did Not Accel: Shutdown - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34165"
+  },
+  {
+   "type": "BI",
+   "inst": 11165,
+   "name": "Cprsr Did Not Accel: Transition - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34166"
+  },
+  {
+   "type": "BI",
+   "inst": 11166,
+   "name": "Diagnostic:Transition Complete Input Opened - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34167"
+  },
+  {
+   "type": "BI",
+   "inst": 11167,
+   "name": "Diagnostic:Starter Module Memory Error Type 1 - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34168"
+  },
+  {
+   "type": "BI",
+   "inst": 11168,
+   "name": "Diagnostic:Starter Module Memory Error Type 2 - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34169"
+  },
+  {
+   "type": "BI",
+   "inst": 11169,
+   "name": "Diagnostic:Starter Dry Run Test - 1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34170"
+  },
+  {
+   "type": "BI",
+   "inst": 11170,
+   "name": "Diagnostic:Over Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34171"
+  },
+  {
+   "type": "BI",
+   "inst": 11171,
+   "name": "Diagnostic:Under Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34172"
+  },
+  {
+   "type": "BI",
+   "inst": 11172,
+   "name": "Diagnostic:Starter 2A Loss of Comm with MP",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34173"
+  },
+  {
+   "type": "BI",
+   "inst": 11173,
+   "name": "Diagnostic:Starter Fault Type I - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34174"
+  },
+  {
+   "type": "BI",
+   "inst": 11174,
+   "name": "Diagnostic:Starter Fault Type II - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34175"
+  },
+  {
+   "type": "BI",
+   "inst": 11175,
+   "name": "Diagnostic:Starter Fault Type III - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34176"
+  },
+  {
+   "type": "BI",
+   "inst": 11176,
+   "name": "Diagnostic:Starter Contactor Interrupt Failure - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34177"
+  },
+  {
+   "type": "BI",
+   "inst": 11177,
+   "name": "Diagnostic:Starter Did Not Transition - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34178"
+  },
+  {
+   "type": "BI",
+   "inst": 11178,
+   "name": "Diagnostic:Transition Complete Input Shorted - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34179"
+  },
+  {
+   "type": "BI",
+   "inst": 11179,
+   "name": "Diagnostic:Phase Loss - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34180"
+  },
+  {
+   "type": "BI",
+   "inst": 11180,
+   "name": "Diagnostic:Phase Reversal - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34181"
+  },
+  {
+   "type": "BI",
+   "inst": 11181,
+   "name": "Diagnostic:Severe Current Imbalance - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34182"
+  },
+  {
+   "type": "BI",
+   "inst": 11182,
+   "name": "Diagnostic:Power Loss - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34183"
+  },
+  {
+   "type": "BI",
+   "inst": 11183,
+   "name": "Diagnostic:Motor Current Overload - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34184"
+  },
+  {
+   "type": "BI",
+   "inst": 11184,
+   "name": "Cprsr Did Not Accel: Shutdown - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34185"
+  },
+  {
+   "type": "BI",
+   "inst": 11185,
+   "name": "Cprsr Did Not Accel: Transition - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34186"
+  },
+  {
+   "type": "BI",
+   "inst": 11186,
+   "name": "Diagnostic:Transition Complete Input Opened - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34187"
+  },
+  {
+   "type": "BI",
+   "inst": 11187,
+   "name": "Diagnostic:Starter Module Memory Error Type 1 - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34188"
+  },
+  {
+   "type": "BI",
+   "inst": 11188,
+   "name": "Diagnostic:Starter Module Memory Error Type 2 - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34189"
+  },
+  {
+   "type": "BI",
+   "inst": 11189,
+   "name": "Diagnostic:Starter Dry Run Test - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34190"
+  },
+  {
+   "type": "BI",
+   "inst": 11190,
+   "name": "Diagnostic:Starter Panel Thermostat Cutout - 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34191"
+  },
+  {
+   "type": "BI",
+   "inst": 11191,
+   "name": "Diagnostic:Starter Panel Thermostat Comm Loss 2A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34192"
+  },
+  {
+   "type": "BI",
+   "inst": 11192,
+   "name": "Diagnostic:Starter 1B Loss of Comm with MP",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34193"
+  },
+  {
+   "type": "BI",
+   "inst": 11193,
+   "name": "Diagnostic:Starter Fault Type I - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34194"
+  },
+  {
+   "type": "BI",
+   "inst": 11194,
+   "name": "Diagnostic:Starter Fault Type II - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34195"
+  },
+  {
+   "type": "BI",
+   "inst": 11195,
+   "name": "Diagnostic:Starter Fault Type III - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34196"
+  },
+  {
+   "type": "BI",
+   "inst": 11196,
+   "name": "Diagnostic:Starter Contactor Interrupt Failure - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34197"
+  },
+  {
+   "type": "BI",
+   "inst": 11197,
+   "name": "Diagnostic:Starter Did Not Transition - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34198"
+  },
+  {
+   "type": "BI",
+   "inst": 11198,
+   "name": "Diagnostic:Transition Complete Input Shorted - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34199"
+  },
+  {
+   "type": "BI",
+   "inst": 11199,
+   "name": "Diagnostic:Transition Complete Input Shorted - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34200"
+  },
+  {
+   "type": "BI",
+   "inst": 11200,
+   "name": "Diagnostic:Phase Loss - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34201"
+  },
+  {
+   "type": "BI",
+   "inst": 11201,
+   "name": "Diagnostic:Phase Reversal - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34202"
+  },
+  {
+   "type": "BI",
+   "inst": 11202,
+   "name": "Diagnostic:Severe Current Imbalance - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34203"
+  },
+  {
+   "type": "BI",
+   "inst": 11203,
+   "name": "Diagnostic:Power Loss - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34204"
+  },
+  {
+   "type": "BI",
+   "inst": 11204,
+   "name": "Diagnostic:Motor Current Overload - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34205"
+  },
+  {
+   "type": "BI",
+   "inst": 11205,
+   "name": "Cprsr Did Not Accel: Shutdown - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34206"
+  },
+  {
+   "type": "BI",
+   "inst": 11206,
+   "name": "Cprsr Did Not Accel: Transition - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34207"
+  },
+  {
+   "type": "BI",
+   "inst": 11207,
+   "name": "Diagnostic:Transition Complete Input Opened - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34208"
+  },
+  {
+   "type": "BI",
+   "inst": 11208,
+   "name": "Diagnostic:Starter Module Memory Error Type 1 - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34209"
+  },
+  {
+   "type": "BI",
+   "inst": 11209,
+   "name": "Diagnostic:Starter Module Memory Error Type 2 - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34210"
+  },
+  {
+   "type": "BI",
+   "inst": 11210,
+   "name": "Diagnostic:Starter Dry Run Test - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34211"
+  },
+  {
+   "type": "BI",
+   "inst": 11211,
+   "name": "Diagnostic:Starter Panel Thermostat Cutout - 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34212"
+  },
+  {
+   "type": "BI",
+   "inst": 11212,
+   "name": "Diagnostic:Starter Panel Thermostat Comm Loss 1B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34213"
+  },
+  {
+   "type": "BI",
+   "inst": 11213,
+   "name": "Diagnostic:Starter 2B Loss of Comm with MP",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34214"
+  },
+  {
+   "type": "BI",
+   "inst": 11214,
+   "name": "Diagnostic:Starter Fault Type I - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34215"
+  },
+  {
+   "type": "BI",
+   "inst": 11215,
+   "name": "Diagnostic:Starter Fault Type II - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34216"
+  },
+  {
+   "type": "BI",
+   "inst": 11216,
+   "name": "Diagnostic:Starter Fault Type III - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34217"
+  },
+  {
+   "type": "BI",
+   "inst": 11217,
+   "name": "Diagnostic:Starter Contactor Interrupt Failure - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34218"
+  },
+  {
+   "type": "BI",
+   "inst": 11218,
+   "name": "Diagnostic:Starter Did Not Transition - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34219"
+  },
+  {
+   "type": "BI",
+   "inst": 11219,
+   "name": "Diagnostic:Phase Loss - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34220"
+  },
+  {
+   "type": "BI",
+   "inst": 11220,
+   "name": "Diagnostic:Phase Reversal - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34221"
+  },
+  {
+   "type": "BI",
+   "inst": 11221,
+   "name": "Diagnostic:Severe Current Imbalance - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34222"
+  },
+  {
+   "type": "BI",
+   "inst": 11222,
+   "name": "Diagnostic:Power Loss - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34223"
+  },
+  {
+   "type": "BI",
+   "inst": 11223,
+   "name": "Diagnostic:Motor Current Overload - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34224"
+  },
+  {
+   "type": "BI",
+   "inst": 11224,
+   "name": "Cprsr Did Not Accel: Shutdown - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34225"
+  },
+  {
+   "type": "BI",
+   "inst": 11225,
+   "name": "Cprsr Did Not Accel: Transition - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34226"
+  },
+  {
+   "type": "BI",
+   "inst": 11226,
+   "name": "Diagnostic:Transition Complete Input Opened - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34227"
+  },
+  {
+   "type": "BI",
+   "inst": 11227,
+   "name": "Diagnostic:Starter Module Memory Error Type 1 - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34228"
+  },
+  {
+   "type": "BI",
+   "inst": 11228,
+   "name": "Diagnostic:Starter Module Memory Error Type 2 - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34229"
+  },
+  {
+   "type": "BI",
+   "inst": 11229,
+   "name": "Diagnostic:Starter Dry Run Test - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34230"
+  },
+  {
+   "type": "BI",
+   "inst": 11230,
+   "name": "Diagnostic:Starter Panel Thermostat Cutout - 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34231"
+  },
+  {
+   "type": "BI",
+   "inst": 11231,
+   "name": "Diagnostic:Starter Panel Thermostat Comm Loss 2B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34232"
+  },
+  {
+   "type": "BI",
+   "inst": 11232,
+   "name": "Diagnostic:Low Differential Rfgt Pressure - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34233"
+  },
+  {
+   "type": "BI",
+   "inst": 11233,
+   "name": "Diagnostic:High Differential Rfgt Pressure - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34234"
+  },
+  {
+   "type": "BI",
+   "inst": 11234,
+   "name": "Diagnostic:Pumpdown Terminated - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34235"
+  },
+  {
+   "type": "BI",
+   "inst": 11235,
+   "name": "Comm Loss: Evap Rfgt Drain Valve - Ckt1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34236"
+  },
+  {
+   "type": "BI",
+   "inst": 11236,
+   "name": "Diagnostic:Evaporator Rfgt Drain - Circuit 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34237"
+  },
+  {
+   "type": "BI",
+   "inst": 11237,
+   "name": "Diagnostic:Low Differential Rfgt Pressure - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34238"
+  },
+  {
+   "type": "BI",
+   "inst": 11238,
+   "name": "Diagnostic:High Differential Rfgt Pressure - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34239"
+  },
+  {
+   "type": "BI",
+   "inst": 11239,
+   "name": "Diagnostic:Pumpdown Terminated - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34240"
+  },
+  {
+   "type": "BI",
+   "inst": 11240,
+   "name": "Comm Loss: Evap Rfgt Drain Valve - Ckt2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34241"
+  },
+  {
+   "type": "BI",
+   "inst": 11241,
+   "name": "Diagnostic:Evaporator Rfgt Drain - Circuit 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34242"
+  },
+  {
+   "type": "BI",
+   "inst": 11242,
+   "name": "Comm Loss: Evaporator Water Pump Relay",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34243"
+  },
+  {
+   "type": "BI",
+   "inst": 11243,
+   "name": "Comm Loss: Evaporator Water Flow Switch",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34244"
+  },
+  {
+   "type": "BI",
+   "inst": 11244,
+   "name": "Diagnostic:Evaporator Water Flow Overdue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34245"
+  },
+  {
+   "type": "BI",
+   "inst": 11245,
+   "name": "Diagnostic:Evaporator Water Flow Lost",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34246"
+  },
+  {
+   "type": "BI",
+   "inst": 11246,
+   "name": "Diagnostic:High Evaporator Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34247"
+  },
+  {
+   "type": "BI",
+   "inst": 11247,
+   "name": "Diagnostic:High Evaporator Water Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34248"
+  },
+  {
+   "type": "BI",
+   "inst": 11248,
+   "name": "Diagnostic:Software Error 1001: Call Trane Service",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34249"
+  },
+  {
+   "type": "BI",
+   "inst": 11249,
+   "name": "Diagnostic:Software Error 1002: Call Trane Service",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34250"
+  },
+  {
+   "type": "BI",
+   "inst": 11250,
+   "name": "Diagnostic:Software Error 1003: Call Trane Service",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34251"
+  },
+  {
+   "type": "BI",
+   "inst": 11251,
+   "name": "Comm Loss: External Ice Building Command",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34252"
+  },
+  {
+   "type": "BI",
+   "inst": 11252,
+   "name": "Comm Loss: Ice Building Status Relay",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34253"
+  },
+  {
+   "type": "BI",
+   "inst": 11253,
+   "name": "Comm Loss: Local BAS Interface",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = In Alarm · Modbus reg 34254"
+  },
+  {
+   "type": "BV",
+   "inst": 10100,
+   "name": "Reset Diagnostic",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = Reset · 조건: Standard · Modbus reg 43011"
+  },
+  {
+   "type": "BV",
+   "inst": 10101,
+   "name": "Chiller Auto Stop Command BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Stop 1 = Auto · 조건: Standard · Modbus reg 43012"
+  },
+  {
+   "type": "BV",
+   "inst": 10102,
+   "name": "Circuit 1 Lockout BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = Locked Out · 조건: Standard · Modbus reg 43013"
+  },
+  {
+   "type": "BV",
+   "inst": 10103,
+   "name": "Circuit 2 Lockout BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Normal 1 = Locked Out · 조건: Standard · Modbus reg 43014"
+  },
+  {
+   "type": "BV",
+   "inst": 10104,
+   "name": "Energy Consumption Reset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Accumulating 1 = Reset · 조건: Power Monitor · Modbus reg 43015"
+  },
+  {
+   "type": "MSI",
+   "inst": 10100,
+   "name": "Running Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Chiller Off 2 = Chiller In Start Mode 3 = Chiller In Run Mode 4 = Chiller In Pre-Shutdown Mode 5 = Chiller In Service Mode · 조건: Standard · Modbus reg 32011"
+  },
+  {
+   "type": "MSI",
+   "inst": 10101,
+   "name": "Operating Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard · Modbus reg 32012"
+  },
+  {
+   "type": "MSV",
+   "inst": 10100,
+   "name": "Chiller Mode Command BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1= Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard · Modbus reg 42011"
+  }
+ ],
+ "gap": "정격 성능(용량·COP·소비전력)과 냉각 방식은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "extractor": "table",
+ "sourceDoc": "BAS-PTS023A-EN_11082024.pdf",
+ "classifiedBy": "포인트 이름 증거 6종: evaporator, condenser, chilled water, chiller",
+ "crosscheck": {
+  "rate": 1.0,
+  "both": 401,
+  "diff": []
+ }
+}

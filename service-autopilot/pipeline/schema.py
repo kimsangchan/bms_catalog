@@ -53,6 +53,8 @@ UNIT_CANON = {
     "m/s": "ms", "PSI": "psi", "Hours": "h", "Hour": "h", "Minutes": "min",
     "Seconds": "s", "Amps": "A", "Volts": "V", "Percent": "percent",
     "Percentage": "percent", "No Units": None,
+    "lpm": "Lpm", "LPM": "Lpm", "gpm": "gpm", "Secs": "s", "Sec": "s",
+    "Mins": "min", "Hrs": "h", "Deg F": "degF", "Deg C": "degC",
     "인": "person", "회": "count", "층": "floor", "—": None, "": None,
 }
 
@@ -73,28 +75,45 @@ def canon_type(t):
 NO_UNIT = {"", "—", "-", "None", "N/A", "*", "none"}
 
 
+# 대소문자만 다른 표기('PERCENTAGE' vs 'Percentage')를 따로 적지 않기 위한 색인.
+# 단, 'C'(섭씨) 와 'c' 처럼 대소문자가 뜻을 가르는 기호는 원표기 조회가 먼저다.
+_UNIT_CI = {k.lower(): v for k, v in UNIT_CANON.items()}
+
+
 def canon_unit(u):
-    """정규 단위 코드를 돌려준다. (코드, 상태) — 상태: ok | unitless | unknown"""
+    """정규 단위 코드를 돌려준다. 못 찾으면 None (unit_state 로 상태를 본다)."""
     if u is None:
         return None
     t = str(u).strip()
     if t in NO_UNIT:
         return None
-    return UNIT_CANON.get(t, None)
+    if t in UNIT_CANON:
+        return UNIT_CANON[t]
+    return _UNIT_CI.get(t.lower())
 
 
 # 문서가 단위 대신 **단위 그룹명**만 적은 경우. BACnet 표준의 단위 분류 이름이다.
 # 'Percentage' 는 percent 로 확정되지만 'Pressure, Fluidic' 은 kPa 인지 psi 인지
 # 문서만으로 알 수 없다 → 없는 값을 지어내지 않고 '그룹만 알려짐'으로 남긴다.
-UNIT_GROUP = {"pressure, fluidic", "power, electrical", "current", "voltage",
-              "temperature", "time", "frequency", "energy", "flow", "velocity",
-              "enthalpy", "electrical", "power", "pressure", "humidity",
-              "area", "volume", "mass", "force", "other", "real", "enumerated",
-              "power, cooling", "power, heating", "power, thermal"}
+#   BACnet 단위 분류는 '주분류, 세부' 꼴이다 — 주분류만 적어두고 표기 변형은
+#   비교 전에 정리한다. 같은 값이 'Pressure, Fluidic'·'PRESSURE FLUIDIC _' 등으로
+#   문서마다 다르게 찍혀 나온다.
+UNIT_GROUP = {"pressure", "power", "current", "voltage", "temperature", "time",
+              "frequency", "energy", "flow", "velocity", "enthalpy", "electrical",
+              "humidity", "area", "volume", "mass", "force", "other", "real",
+              "enumerated", "boolean", "state", "not applicable", "none"}
+
+
+def _group_key(u):
+    """'PRESSURE FLUIDIC _' → 'pressure' — 표기 변형을 걷어내고 주분류만 남긴다."""
+    t = re.sub(r"[_\-]+", " ", str(u or "")).strip().lower()
+    t = re.sub(r"\s+", " ", t)
+    return re.split(r"[,\s]", t, 1)[0] if t else ""
 
 
 def unit_group(u):
-    return str(u or "").strip().lower() in UNIT_GROUP
+    t = re.sub(r"[_\-\s]+", " ", str(u or "")).strip().lower()
+    return t in UNIT_GROUP or _group_key(u) in UNIT_GROUP
 
 
 def is_state_text(u):
@@ -111,7 +130,7 @@ def unit_state(u):
         return "unitless"
     if is_state_text(u):
         return "states"
-    if UNIT_CANON.get(str(u).strip()):
+    if canon_unit(u):
         return "ok"
     return "group" if unit_group(u) else "unknown"
 

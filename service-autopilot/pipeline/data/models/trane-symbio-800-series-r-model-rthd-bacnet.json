@@ -1,0 +1,2238 @@
+{
+ "id": "trane-symbio-800-series-r-model-rthd-bacnet",
+ "equipId": "e9",
+ "vendor": "Trane",
+ "model": "Symbio™ 800 — Series R® Model RTHD (BACnet)",
+ "name": "Symbio™ 800 Series R® Model RTHD",
+ "cat": "HVAC.PLANT.CHILLER",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 275점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "AI",
+   "inst": 10100,
+   "name": "Active Cool/Heat Setpoint Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the value of the active Cool/Heat Setpoint actively being used by the chiller · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10101,
+   "name": "Active Demand Limit Setpoint",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the demand limit setpoint value actively being used by the chiller · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10102,
+   "name": "Active Base Loading Setpoint",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the \"active\" Base Loading Setpoint resulting from arbitration. · 조건: Base Loading"
+  },
+  {
+   "type": "AI",
+   "inst": 10103,
+   "name": "Evaporator Entering Water Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the Evaporator Entering or Return water temperature · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10104,
+   "name": "Evaporator Leaving Water Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the temperature of the water leaving the evaporator, which is the primary control point for normal cooling mode of operation. · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10105,
+   "name": "Number of Circuits",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Indicates the number of refrigeration circuits in the chiller · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10106,
+   "name": "Number of Compressors Circuit 1",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Indicates the number of compressors on circuit 1 of the chiller · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10107,
+   "name": "Number of Compressors Circuit 2",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Indicates the number of compressors on circuit 2 of the chiller · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10108,
+   "name": "Actual Running Capacity",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the measurement of the power being consumed by the Chiller · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10109,
+   "name": "Evaporator Refrigerant Absolute Pressure Circuit 1",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "Indicates the current absolute pressure of the refrigerant in the evaporator on circuit 1 · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10110,
+   "name": "Condenser Refrigerant Absolute Pressure Circuit 1",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "Indicates the current absolute pressure of the refrigerant in the condenser on circuit 1 · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10111,
+   "name": "Evaporator Saturated Refrigerant Temperature Circuit 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the saturated refrigerant temperature of the evaporator on circuit 1 · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10112,
+   "name": "Condenser Saturated Refrigerant Temperature Circuit 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the saturated refrigerant temperature of the condenser on circuit 1 · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10113,
+   "name": "Refrigerant Discharge Temperature - Compressor 1A",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the current temperature of the refrigerant being discharged from Compressor 1A · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10114,
+   "name": "High Side Oil Absolute Pressure - Compressor 1A",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "Indicates the absolute pressure of the oil on the high pressure side of Compressor 1A · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10115,
+   "name": "Starts - Compressor 1A",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Indicates the number of starts of Compressor 1A · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10116,
+   "name": "Run Time - Compressor 1A",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Indicates the run time of Compressor 1A, in seconds · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10117,
+   "name": "Motor Winding Temperature 1 Circuit 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the first temperaure sensor of the windings on motor 1A · 조건: Motor Winding Temp"
+  },
+  {
+   "type": "AI",
+   "inst": 10118,
+   "name": "Motor Winding Temperature 2 Circuit 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the second temperaure sensor of the windings on motor 1A · 조건: Motor Winding Temp"
+  },
+  {
+   "type": "AI",
+   "inst": 10119,
+   "name": "Condenser Entering Water Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the current temperature of the water entering the condenser · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10120,
+   "name": "Condenser Leaving Water Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the current temperature of the water leaving the condenser · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10121,
+   "name": "Starter Voltage Phase AB",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Indicates the measurement of voltage in Phase AB · 조건: Line Voltage Sensing"
+  },
+  {
+   "type": "AI",
+   "inst": 10122,
+   "name": "Starter Voltage Phase BC",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Indicates the measurement of voltage in Phase BC · 조건: Line Voltage Sensing"
+  },
+  {
+   "type": "AI",
+   "inst": 10123,
+   "name": "Starter Voltage Phase CA",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Indicates the measurement of voltage in Phase CA · 조건: Line Voltage Sensing"
+  },
+  {
+   "type": "AI",
+   "inst": 10124,
+   "name": "Line 1 Current - Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Indicates the current L1 on Compressor 1A · 조건: Starter, Non Comm AFD, TR200 Modbus AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10125,
+   "name": "Line 2 Current - Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Indicates the current L2 on Compressor 1A · 조건: Starter, Non Comm AFD, TR200 Modbus AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10126,
+   "name": "Line 3 Current - Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Indicates the current L3 on Compressor 1A · 조건: Starter, Non Comm AFD, TR200 Modbus AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10127,
+   "name": "Line 1 Current - Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Indicates the current L1 on Compressor 1A · 조건: Local Comm AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10128,
+   "name": "Line 2 Current - Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Indicates the current L2 on Compressor 1A · 조건: Local Comm AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10129,
+   "name": "Line 3 Current - Compressor 1A",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Indicates the current L3 on Compressor 1A · 조건: Local Comm AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10130,
+   "name": "Line 1 Current RLA - Compressor 1A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the line 1 starter current phase A in % RLA for the Compressor 1A · 조건: Starter, Non Comm AFD, TR200 Modbus AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10131,
+   "name": "Line 2 Current RLA - Compressor 1A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the line 2 starter current phase A in % RLA for the Compressor 1A · 조건: Starter, Non Comm AFD, TR200 Modbus AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10132,
+   "name": "Line 3 Current RLA - Compressor 1A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the line 3 starter current phase A in % RLA for the Compressor 1A · 조건: Starter, Non Comm AFD, TR200 Modbus AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10133,
+   "name": "Line 1 Current RLA - Compressor 1A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the line 1 starter current phase A in % RLA for the Compressor 1A · 조건: Local Comm AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10134,
+   "name": "Line 2 Current RLA - Compressor 1A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the line 2 starter current phase A in % RLA for the Compressor 1A · 조건: Local Comm AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10135,
+   "name": "Line 3 Current RLA - Compressor 1A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the line 3 starter current phase A in % RLA for the Compressor 1A · 조건: Local Comm AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10136,
+   "name": "Expansion Valve Position - Compressor 1A",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the percent open of the exv valve · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10137,
+   "name": "Drive Output Power Circuit 1",
+   "unitRaw": "Power, Electrical",
+   "unit": null,
+   "note": "Indicates the power output from the AFD · 조건: Non Comm AFD, TR200 Modbus AFD, Local Comm AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10138,
+   "name": "Chiller Design Capacity",
+   "unitRaw": "Power, Cooling",
+   "unit": null,
+   "note": "Indicates the design capacity of chilller · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10139,
+   "name": "Active Chilled Water Setpoint",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the value of the active Chilled Water Setpoint actively being used by the chiller · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10140,
+   "name": "Active Hot Water Setpoint",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the value of the active Hot Water Setpoint actively being used by the chiller · 조건: Hot Water Control"
+  },
+  {
+   "type": "AI",
+   "inst": 10141,
+   "name": "Evaporator Water Flow Rate",
+   "unitRaw": "Flow, Fluidic",
+   "unit": null,
+   "note": "Indicates the flow of water through the evaporator · 조건: Evap Differential Water Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 10142,
+   "name": "Condenser Water Flow Rate",
+   "unitRaw": "Flow, Fluidic",
+   "unit": null,
+   "note": "Indicates the flow of water through the condenser · 조건: Cond Differential Water Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 10143,
+   "name": "Condenser Differential Water Pressure",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "Indicates the water pressure differential of the condenser · 조건: Cond Differential Water Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 10144,
+   "name": "Evaporator Differential Water Pressure",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "Indicates the water pressure differential of the evaporator · 조건: Evap Differential Water Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 10145,
+   "name": "Evaporator Refrigerant Pressure Circuit 1",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "Indicates the current gauge pressure of the refrigerant in the evaporator on circuit 1 · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10146,
+   "name": "Condenser Refrigerant Pressure Circuit 1",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "Indicates the current gauge pressure of the refrigerant in the condenser on circuit 1 · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10147,
+   "name": "Condenser Control Output",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the Head Pressure Control Output on the Condenser · 조건: Head Pressure Control"
+  },
+  {
+   "type": "AI",
+   "inst": 10148,
+   "name": "High Side Oil Pressure - Compressor 1A",
+   "unitRaw": "Pressure, Fluidic",
+   "unit": null,
+   "note": "Indicates the gauge pressure of the oil on the high pressure side of Compressor 1A · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10150,
+   "name": "Evaporator Approach Temperature Circuit 1",
+   "unitRaw": "Temperature, Delta",
+   "unit": null,
+   "note": "Indicates the Evaporator Approach Temperature on circuit 1 · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10151,
+   "name": "Condenser Approach Temperature Circuit 1",
+   "unitRaw": "Temperature, Delta",
+   "unit": null,
+   "note": "Indicates the Condenser Approach Temperature on circuit 1 · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10152,
+   "name": "Line Frequency Circuit 1",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Indicates the estimated input frequency at the AFD · 조건: Non Comm AFD, TR200 Modbus AFD, Local Comm AFD"
+  },
+  {
+   "type": "AI",
+   "inst": 10153,
+   "name": "Heat Recovery Entering Water Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicated the Entering Water Temp in Heat Recovery · 조건: Heat Recovery"
+  },
+  {
+   "type": "AI",
+   "inst": 10154,
+   "name": "Heat Recovery Leaving Water Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicated the Leaving Water Temp in Heat Recovery · 조건: Heat Recovery"
+  },
+  {
+   "type": "AI",
+   "inst": 10155,
+   "name": "Heat Recovery Tank Water Temp",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the Water Temp in the Heat Recovery Tank · 조건: Heat Recovery"
+  },
+  {
+   "type": "AI",
+   "inst": 10156,
+   "name": "Heat Recovery Water Tank Temperature Setpoint Active",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the active temperature setpoint for the heat recovery tank · 조건: Heat Recovery"
+  },
+  {
+   "type": "AI",
+   "inst": 10157,
+   "name": "Chilled Water Setpoint Status",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "Indicates the Chilled Water Setpoint after arbitration and limiting · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10158,
+   "name": "Demand Limit Setpoint Status",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "Indicates the presently in use or \"active\" setting of the Demand Limit. This includes the effects of any ice building demand limiting. · 조건: Ice Building"
+  },
+  {
+   "type": "AI",
+   "inst": 10159,
+   "name": "Unit Source ID (Last Diagnostic Code)",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Indicates the last diagnostic of the chiller Separately, individual diagnostics are reported with dedicated points, variables, registers · 조건: Standard"
+  },
+  {
+   "type": "AI",
+   "inst": 10160,
+   "name": "Current L1",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Current phase A in amps for the chiller · 조건: Energy Meter"
+  },
+  {
+   "type": "AI",
+   "inst": 10161,
+   "name": "Current L2",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Current phase B in amps for the chiller · 조건: Energy Meter"
+  },
+  {
+   "type": "AI",
+   "inst": 10162,
+   "name": "Current L3",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Current phase C in amps for the chiller · 조건: Energy Meter"
+  },
+  {
+   "type": "AI",
+   "inst": 10163,
+   "name": "Average Current",
+   "unitRaw": "Current",
+   "unit": null,
+   "note": "Average current in amps for the chiller · 조건: Energy Meter"
+  },
+  {
+   "type": "AI",
+   "inst": 10164,
+   "name": "Voltage L1-L2",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Current phase A in amps for the chiller · 조건: Energy Meter"
+  },
+  {
+   "type": "AI",
+   "inst": 10165,
+   "name": "Voltage L2-L3",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Line voltage Vab for the respective unit · 조건: Energy Meter"
+  },
+  {
+   "type": "AI",
+   "inst": 10166,
+   "name": "Voltage L1-L3",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Line voltage Vbc for the respective unit · 조건: Energy Meter"
+  },
+  {
+   "type": "AI",
+   "inst": 10167,
+   "name": "Average Voltage L-L",
+   "unitRaw": "Voltage",
+   "unit": null,
+   "note": "Line voltage Vca for the respective unit · 조건: Energy Meter"
+  },
+  {
+   "type": "AI",
+   "inst": 10168,
+   "name": "Line Frequency",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Average line voltage for the respective unit · 조건: Energy Meter"
+  },
+  {
+   "type": "AI",
+   "inst": 10169,
+   "name": "Power Factor",
+   "unitRaw": "None",
+   "unit": null,
+   "note": "Indicates the unit power factor · 조건: Energy Meter"
+  },
+  {
+   "type": "AV",
+   "inst": 10100,
+   "name": "Chilled Water Setpoint",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "The value is normally provided by the BAS to send the Chilled Water Setpoint. The value is subject to arbitration logic in the controller, in which case it may or may not be used for control purposes · 조건: Standard"
+  },
+  {
+   "type": "AV",
+   "inst": 10101,
+   "name": "Demand Limit Setpoint",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "The value is normally provided by the BAS to send the Demand Limit Setpoint. The value is subject to arbitration logic in the controller, in which case it may or may not be used for control purposes · 조건: Standard"
+  },
+  {
+   "type": "AV",
+   "inst": 10102,
+   "name": "Hot Water Setpoint",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "The value is normally provided by the BAS to send the Hot Water Setpoint. The value is subject to arbitration logic in the controller, in which case it may or may not be used for control purposes · 조건: Hot Water Control"
+  },
+  {
+   "type": "AV",
+   "inst": 10103,
+   "name": "Base Loading Setpoint",
+   "unitRaw": "Percentage",
+   "unit": "percent",
+   "note": "The value is normally provided by the BAS to send the Base Loading Setpoint. The value is subject to arbitration logic in the controller, in which case it may or may not be used for control purposes · 조건: Base Loading"
+  },
+  {
+   "type": "AV",
+   "inst": 10104,
+   "name": "Heat Recovery Water Tank Temperature Setpoint BAS",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "The value is normally provided by the BAS to send the Heat Recovery Leaving Water Temperature Setpoint. The value is subject to arbitration logic in the controller, in which case it may or may not be used for control purposes · 조건: Heat Rec"
+  },
+  {
+   "type": "BI",
+   "inst": 10100,
+   "name": "Run Enabled",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates that chiller is available to run or is currently running · 조건: Standard · 0 = Run Not Enabled 1 = Run Enabled"
+  },
+  {
+   "type": "BI",
+   "inst": 10101,
+   "name": "Local Setpoint Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the which setpoint is used for control purposes, Remote (BAS) or Local · 조건: Standard · 0 = Remote control 1 = Local control"
+  },
+  {
+   "type": "BI",
+   "inst": 10102,
+   "name": "Limit Mode Relay Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the chiller limit relay · 조건: Standard · 0 = Off 1 = On"
+  },
+  {
+   "type": "BI",
+   "inst": 10103,
+   "name": "Chiller Running State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the chiller is on (currently doing either cooling) or is considered off(not currently doing cooling) · 조건: Standard · 0 = Off 1 = On"
+  },
+  {
+   "type": "BI",
+   "inst": 10104,
+   "name": "Base Loading Request Active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the \"active\" Base Loading Request resulting from arbitration. · 조건: Base Loading · 0 = Off 1 = On"
+  },
+  {
+   "type": "BI",
+   "inst": 10105,
+   "name": "Evaporator Water Flow Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the flow of water through evaporator · 조건: Standard · 0 = No Flow 1 = Flow"
+  },
+  {
+   "type": "BI",
+   "inst": 10106,
+   "name": "Diagnostic Present",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether diagnostic present · 조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 10107,
+   "name": "Diagnostic Shutdown Present",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates chiller is shut down due to diagnostics · 조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 10108,
+   "name": "Diagnostic: Manual Reset Required",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates when a diagnostic exists that requires manual reset · 조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 10109,
+   "name": "Diagnostic: Local Manual Reset Required",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates when a diagnostic exists that requires manual reset [Local only] · 조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 10110,
+   "name": "Diagnostic Present: Information",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether diagnostic present with Information Category · 조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 10111,
+   "name": "Diagnostic Present: Advisory",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether diagnostic present with Warning Category · 조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 10112,
+   "name": "Diagnostic Present: Critical",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether diagnostic present with Critical Category · 조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 10113,
+   "name": "Diagnostic Present: Service Required",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether diagnostic present with Service Required Category · 조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 10114,
+   "name": "Compressor 1A Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates running state fo Compressor 1A · 조건: Standard · 0 = Off 1 = Running"
+  },
+  {
+   "type": "BI",
+   "inst": 10115,
+   "name": "Condenser Water Pump Request",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This provides a status of the Chillers Condenser Water Pump output. · 조건: Standard · 0= Normal 1= In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 10116,
+   "name": "Evaporator Water Pump Request",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This provides a status of the Chillers Evaporator Water Pump output. · 조건: Standard · 0= Normal 1= In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 10117,
+   "name": "Condenser Water Flow Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indication of water flow through the condenser · 조건: Standard · 0= Normal 1= In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 10118,
+   "name": "Heat Recovery Water Flow Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Heat Recovery Water Flow Status · 조건: Heat Recovery · 0= Off 1= Running"
+  },
+  {
+   "type": "BI",
+   "inst": 10119,
+   "name": "Heat Recovery Control Active Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Heat Recovery Active · 조건: Heat Recovery · 0= Off 1= Running"
+  },
+  {
+   "type": "BI",
+   "inst": 10120,
+   "name": "Heat Recovery Request Active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active Heat Recovery Command · 조건: Heat Recovery · 0= Off 1= Running"
+  },
+  {
+   "type": "BI",
+   "inst": 10121,
+   "name": "Front Panel Auto Stop",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the auto/stop status of the Front Panel · 조건: Standard · 0 = Stop 1 = Auto"
+  },
+  {
+   "type": "BI",
+   "inst": 10122,
+   "name": "External Auto Stop Input Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the externally-wired auto/stop input · 조건: Standard · 0 = Stop 1 = Auto"
+  },
+  {
+   "type": "BI",
+   "inst": 10123,
+   "name": "Head Relief Request",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Head Relief Request Relay · 조건: Standard · 0= Inactive 1= Active"
+  },
+  {
+   "type": "BI",
+   "inst": 10124,
+   "name": "Base Loading Active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Base Loading Active · 조건: Base Loading · 0= Off 1= On"
+  },
+  {
+   "type": "BI",
+   "inst": 11000,
+   "name": "Comm Loss: Ext Base Loading Command",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Base Loading · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11001,
+   "name": "Comm Loss: Ext Base Loading Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Base Loading · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11002,
+   "name": "Diagnostic: External Base Loading Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Base Loading · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11003,
+   "name": "Comm Loss: Evap Entering Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11004,
+   "name": "Comm Loss: Evap Leaving Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11005,
+   "name": "Comm Loss: Outdoor Air Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Outdoor Air Temperature · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11006,
+   "name": "Diagnostic: Outdoor Air Temperature Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Outdoor Air Temperature · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11007,
+   "name": "Diagnostic: Software Error 1001: Call Trane Service",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11008,
+   "name": "Diagnostic: AFD Drive Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Non Comm AFD TR200 Modbus AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11009,
+   "name": "Comm Loss: Cprsr Discharge Rfgt Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11010,
+   "name": "Comm Loss: Cond High Pressure Cutout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD TR200 Modbus Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11011,
+   "name": "Comm Loss: Primary Oil Line Solenoid Valve",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Solid State Starter Non Comm AFD TR200 Modbus AFD Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11012,
+   "name": "Comm Loss: Oil Loss Level Sensor Input",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11013,
+   "name": "Comm Loss: Oil Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11014,
+   "name": "Comm Loss: Oil Return Gas Pump Drain",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11015,
+   "name": "Comm Loss: Oil Return Gas Pump Fill",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11016,
+   "name": "Comm Loss: SSS/AFD Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Non Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11017,
+   "name": "Diagnostic: Cprsr Discharge Refrigerant Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11018,
+   "name": "Diagnostic: High Cprsr Rfgt Discharge Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11019,
+   "name": "Diagnostic: High Differential Refrigerant Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11020,
+   "name": "Diagnostic: High Pressure Cutout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11021,
+   "name": "Diagnostic: High Refrigerant Pressure Ratio",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11022,
+   "name": "Diagnostic: Loss of Oil at Compressor (Running)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11023,
+   "name": "Diagnostic: Loss of Oil at Compressor (Stopped)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11024,
+   "name": "Diagnostic: Low Differential Refrigerant Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11025,
+   "name": "Diagnostic: Low Discharge Superheat",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11026,
+   "name": "Diagnostic: Low Oil Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11027,
+   "name": "Diagnostic: No Differential Refrigerant Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11028,
+   "name": "Diagnostic: Oil Flow Protection Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11029,
+   "name": "Diagnostic: Oil Pressure Transducer",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11030,
+   "name": "Diagnostic: AFD Output Power Input",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Non Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11031,
+   "name": "Comm Loss: AFD Output Power Input",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Non Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11032,
+   "name": "Comm Loss: AFD Speed Signal Output",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Non Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11033,
+   "name": "Comm Loss: Adaptive Frequency Drive",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: TR200 Modbus AFD Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11034,
+   "name": "Comm Loss: Economizer Bypass Valve",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Economizer · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11035,
+   "name": "Comm Loss: Economizer Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Economizer · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11036,
+   "name": "Comm Loss: Economizer Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Economizer · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11037,
+   "name": "Comm Loss: Economizer Valve",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Economizer · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11038,
+   "name": "Comm Loss: Hot Gas Bypass Valve",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Variable Vi · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11039,
+   "name": "Comm Loss: Liquid Line Bypass Valve",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Liquid Line Bypass · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11040,
+   "name": "Comm Loss: Oil Return Purge Valve",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Variable Vi · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11041,
+   "name": "Comm Loss: Slide Valve Load",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11042,
+   "name": "Comm Loss: Slide Valve Unload",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11043,
+   "name": "Diagnostic: Economizer Pressure Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Economizer · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11044,
+   "name": "Diagnostic: Economizer Temperature Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Economizer · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11045,
+   "name": "Diagnostic: Restart Inhibit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11046,
+   "name": "Comm Loss: Cond Refrigerant Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11047,
+   "name": "Diagnostic: Condenser Refrigerant Pressure Xdcr",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11048,
+   "name": "Diagnostic: Excessive Condenser Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11049,
+   "name": "Comm Loss: Condenser Water Flow Switch",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11050,
+   "name": "Comm Loss: Condenser Water Pump Relay",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11051,
+   "name": "Comm Loss: Cond Diff Water Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Cond Differential Water Pressure · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11052,
+   "name": "Diagnostic: Condenser Diff Water Pressure Xdcr",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Cond Differential Water Pressure · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11053,
+   "name": "Diagnostic: Condenser Water Flow Lost",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11054,
+   "name": "Diagnostic: Condenser Water Flow Overdue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11055,
+   "name": "Comm Loss: Condenser Entering Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11056,
+   "name": "Comm Loss: Condenser Leaving Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11057,
+   "name": "Diagnostic: Condenser Entering Water Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11058,
+   "name": "Diagnostic: Condenser Leaving Water Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11059,
+   "name": "Comm Loss: Evaporator Rfgt Liquid Level",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11060,
+   "name": "Diagnostic: Evaporator Liquid Level Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11061,
+   "name": "Diagnostic: High Evaporator Liquid Level",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11062,
+   "name": "Diagnostic: Low Evaporator Liquid Level",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11063,
+   "name": "Diagnostic: Low Evaporator Refrigerant Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11064,
+   "name": "Diagnostic: Low Evaporator Refrigerant Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11065,
+   "name": "Diagnostic: Low Evaporator Temp: Unit Off",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11066,
+   "name": "Comm Loss: Evaporator Water Flow Switch",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11067,
+   "name": "Comm Loss: Evaporator Water Pump Relay",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11068,
+   "name": "Comm Loss: Evap Diff Water Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Evap Differential Water Pressure · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11069,
+   "name": "Diagnostic: Evaporator Diff Water Pressure Xdcr",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Evap Differential Water Pressure · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11070,
+   "name": "Diagnostic: Evaporator Water Flow Lost",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11071,
+   "name": "Diagnostic: Evaporator Water Flow Overdue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11072,
+   "name": "Diagnostic: High Evaporator Refrigerant Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11073,
+   "name": "Diagnostic: High Evaporator Water Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11074,
+   "name": "Diagnostic: Low Evaporator Water Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11075,
+   "name": "Diagnostic: Evap Water Flow (Entering Water Temp)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11076,
+   "name": "Diagnostic: Evaporator Entering Water Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11077,
+   "name": "Diagnostic: Evaporator Leaving Water Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11078,
+   "name": "Diagnostic: Low Evaporator Water Temp (Unit On)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11079,
+   "name": "Diagnostic: Low Evaporator Water Temp (Unit Off)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11080,
+   "name": "Comm Loss: Electronic Expansion Valve 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11081,
+   "name": "Comm Loss: Electronic Expansion Valve 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Dual Expansion Valve · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11082,
+   "name": "Comm Loss: Evaporator Rfgt Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11083,
+   "name": "Diagnostic: Evaporator Rfgt Pressure Transducer",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11084,
+   "name": "Comm Loss: Compressor % RLA Output",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Motor Current Analog Output · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11085,
+   "name": "Comm Loss: Cond Head Press Cntrl Output",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Head Pressure Control · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11086,
+   "name": "Comm Loss: Cond Rfgt Pressure Output",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Delta P, HPC Setting · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11087,
+   "name": "Comm Loss: Emergency Stop",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11088,
+   "name": "Comm Loss: Ext Chilled/Hot Water Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Ext Chilled Water Setpoint · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11089,
+   "name": "Comm Loss: External Auto/Stop",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11090,
+   "name": "Comm Loss: External Demand Limit Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Ext Demand Limit Setpoint · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11091,
+   "name": "Comm Loss: External Hot Water Command",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Hot Water Control · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11092,
+   "name": "Comm Loss: Op Status Programmable Relays",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Programmable Status Relay · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11093,
+   "name": "Comm Loss: Refrigerant Monitor Input",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Refrigerant Monitor · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11094,
+   "name": "Diagnostic: Emergency Stop",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11095,
+   "name": "Diagnostic: External Chilled/Hot Water Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Ext Chilled Water Setpoint · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11096,
+   "name": "Diagnostic: External Demand Limit Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Ext Demand Limit Setpoint · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11097,
+   "name": "Diagnostic: Refrigerant Monitor Input",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Refrigerant Monitor · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11098,
+   "name": "Comm Loss: External Heat Recovery Command",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Ext Heat Recovery Setpoint · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11099,
+   "name": "Comm Loss: External Heat Recovery Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Ext Heat Recovery Setpoint · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11100,
+   "name": "Comm Loss: HR Entering Water Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11101,
+   "name": "Comm Loss: HR Leaving Water Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11102,
+   "name": "Comm Loss: Heat Recovery Tank Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11103,
+   "name": "Comm Loss: Heat Recovery Water Flow Switch",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11104,
+   "name": "Comm Loss: Heat Recovery Water Pump Relay",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11105,
+   "name": "Diagnostic: Ext Heat Recovery Temp Setpoint Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Ext Heat Recovery Setpoint · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11106,
+   "name": "Diagnostic: Heat Recovery Entering Water Temperature Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11107,
+   "name": "Diagnostic: Heat Recovery Leaving Water Temperature Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11108,
+   "name": "Diagnostic: Heat Recovery Tank Water Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11109,
+   "name": "Diagnostic: Heat Recovery Water Flow Lost",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11110,
+   "name": "Diagnostic: Heat Recovery Water Flow Overdue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11111,
+   "name": "Diagnostic: Unexpected Heat Recovery Water Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11112,
+   "name": "Diagnostic: Unexpected Condenser Water Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Heat Recovery · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11113,
+   "name": "Comm Loss: External Ice Building Command",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Ice Building · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11114,
+   "name": "Comm Loss: Ice Building Relay",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Ice Building · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11115,
+   "name": "Comm Loss: SSS/AFD Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Solid State Starter · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11116,
+   "name": "Comm Loss: Starter",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Solid State Starter Non-Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11117,
+   "name": "Diagnostic: Solid State Starter Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Solid State Starter · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11118,
+   "name": "Diagnostic: Starter Failed to Arm/Start",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11119,
+   "name": "Diagnostic: Unexpected Starter Shutdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11120,
+   "name": "Diagnostic: AFD Bus Over Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11121,
+   "name": "Diagnostic: AFD Bus Under Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11122,
+   "name": "Diagnostic: AFD Comm Loss: Main Processor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11123,
+   "name": "Diagnostic: AFD Emergency Stop Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11124,
+   "name": "Diagnostic: AFD General Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11125,
+   "name": "Diagnostic: AFD Ground Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11126,
+   "name": "Diagnostic: AFD Instantaneous Current Overload",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11127,
+   "name": "Diagnostic: AFD Interrupt Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11128,
+   "name": "Diagnostic: AFD Inverter Heatsink Over Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11129,
+   "name": "Diagnostic: AFD Motor Current Overload",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11130,
+   "name": "Diagnostic: AFD Output Phase Loss",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11131,
+   "name": "Diagnostic: AFD Rated Current Out of Range",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11132,
+   "name": "Diagnostic: At Speed Input Opened",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11133,
+   "name": "Diagnostic: At Speed Input Shorted",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11134,
+   "name": "Comm Loss: Motor Winding Temperature 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Motor Winding Temp · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11135,
+   "name": "Comm Loss: Motor Winding Temperature 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Motor Winding Temp · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11136,
+   "name": "Diagnostic: Cprsr Did Not Accelerate: Transition",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11137,
+   "name": "Diagnostic: Compressor Did Not Accelerate Fully",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11138,
+   "name": "Diagnostic: Compressor Did Not Accelerate: Shutdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11139,
+   "name": "Diagnostic: High Motor Winding Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Motor Winding Temp · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11140,
+   "name": "Diagnostic: High Pressure Cutout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Local Comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11141,
+   "name": "Diagnostic: Momentary Power Loss",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Line Voltage Sensing · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11142,
+   "name": "Diagnostic: Motor Current Overload",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11143,
+   "name": "Diagnostic: Motor Winding Temp Sensor - Cprsr1A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Motor Winding Temp · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11144,
+   "name": "Diagnostic: Over Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Line Voltage Sensing · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11145,
+   "name": "Diagnostic: Phase Loss",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11146,
+   "name": "Diagnostic: Phase Reversal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11147,
+   "name": "Diagnostic: Power Loss",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11148,
+   "name": "Diagnostic: Severe Current Unbalance",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11149,
+   "name": "Starter Comm Loss: Main Processor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11150,
+   "name": "Diagnostic: Starter Contactor Interrupt Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11151,
+   "name": "Diagnostic: Starter Did Not Transition",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11152,
+   "name": "Diagnostic: Starter Dry Run Test",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11153,
+   "name": "Diagnostic: Starter Fault Type I",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11154,
+   "name": "Diagnostic: Starter Fault Type II",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11155,
+   "name": "Diagnostic: Starter Fault Type III",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11156,
+   "name": "Diagnostic: Starter Module Memory Error Type 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11157,
+   "name": "Diagnostic: Starter Module Memory Error Type 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter Solid State Starter Non-comm AFD · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11158,
+   "name": "Diagnostic: Transition Complete Input Opened",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11159,
+   "name": "Diagnostic: Transition Complete Input Shorted",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Wye-Delta Starter · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11160,
+   "name": "Diagnostic: Under Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Line Voltage Sensing · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11161,
+   "name": "Diagnostic: MP: Invalid Configuration",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11162,
+   "name": "Diagnostic: MP: Reset Has Occurred",
+   "unitRaw": null,
+   "unit": null,
+   "note": "조건: Standard · 0 = Normal 1 = In Alarm"
+  },
+  {
+   "type": "BV",
+   "inst": 10100,
+   "name": "Chiller Auto Stop Command BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Normally used by the BMS to command the chiller to start running if operating conditions are satisfied, or to stop the chiller from running. · 조건: Standard · 0 = Stop 1 = Auto"
+  },
+  {
+   "type": "BV",
+   "inst": 10101,
+   "name": "Reset Diagnostic",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Normally used by the BMS to initiate a request to reset any controller diagnostics · 조건: Standard · 0 = Normal 1 = Reset"
+  },
+  {
+   "type": "BV",
+   "inst": 10102,
+   "name": "Base Loading Request",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Normally used by the BMS to command the chiller to enter a mode of operation where the · 조건: Base Loading · 0 = Normal 1 = Reduce Noise"
+  },
+  {
+   "type": "BV",
+   "inst": 10103,
+   "name": "Heat Recovery Enable BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Normally used by the BMS to command the heat recovery to start running if operating conditions are satisfied, or to stop the heat recovery from running. · 조건: Heat Recovery · 0 = Off 1 = On"
+  },
+  {
+   "type": "BV",
+   "inst": 10104,
+   "name": "Evaporator Water Pump Request BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Normally used by the BMS to lockout the Evaporator Water Pump · 조건: Standard · 0 = Normal 1 = Locked Out"
+  },
+  {
+   "type": "BV",
+   "inst": 10105,
+   "name": "Condenser Water Pump Request BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Normally used by the BMS to lockout the Condenser Water Pump · 조건: Standard · 0 = Normal 1 = Locked Out"
+  },
+  {
+   "type": "MSI",
+   "inst": 10100,
+   "name": "Running Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the running state of the chiller · 조건: Standard · 1 = Chiller Off 2 = Chiller In Start Mode 3= Chiller In Run Mode 4= Chiller In Pre- Shutdown Mode 5 = Chiller In Service Mode"
+  },
+  {
+   "type": "MSI",
+   "inst": 10101,
+   "name": "Operating Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the operating mode of the chiller · 조건: Standard · 1 = Cool 2 = Heat 3= Ice Making 4= Free Cooling"
+  },
+  {
+   "type": "MSI",
+   "inst": 10102,
+   "name": "Refrigerant Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the chiller refrigerant type · 조건: Standard · 1 = R-11 2 = R-12 3= R-22 4= R-123 5 = R-134a 6 = R-407C 7 = R-410A 8 = R-113 9 = R-114 10 = R-500 11 = R-502 12 = R-404A 13 = R-513A 14 = R-1233zd(E) 15 = R-514A 16 = R-1234ze(E)"
+  },
+  {
+   "type": "MSI",
+   "inst": 10103,
+   "name": "Manufacture Location",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the location that the chiller was manufactured · 조건: Standard · 1 = Field Applied 2 = La Crosse 3= Pueblo 4= Charmes 5 = Rushville 6 = Macon 7 = Waco 8 = Lexington 9 = Forsyth 10 = Clarksville 11 = Ft. Smith 12 = Penang 13 = Colch"
+  },
+  {
+   "type": "MSI",
+   "inst": 10104,
+   "name": "Cooling Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the cooling Type of chiller · 조건: Standard · 1 = Water Cooled 2 = Air Cooled"
+  },
+  {
+   "type": "MSI",
+   "inst": 10105,
+   "name": "Model Information [GEN2]",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the model information of chiller · 조건: Standard · 1 = CVHF 2 = CVGF 3= CVHS 4= RTAE 5 = RTAF 6 = RTHA 7 = RTHB 8 = RTHC 9 = RTHD 10 = RTWE 11 = CTVD 12 = CVR 13 = CVHH 14 = CDHH 15 = VMAX 16 = GVAF 17 = RTWF 18 = RTHF 19 = RTAC 20"
+  },
+  {
+   "type": "MSV",
+   "inst": 10100,
+   "name": "Chiller Mode Command BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Normally used by the BMS to command the chiller Mode · 조건: Standard · 1 = Cool 2 = Heat 3= Ice Making 4= Free Cooling"
+  }
+ ],
+ "gap": "정격 성능(용량·COP·소비전력)과 냉각 방식은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "extractor": "table",
+ "sourceDoc": "BAS-PTS015A-EN_11152024.pdf",
+ "classifiedBy": "포인트 이름 증거 6종: evaporator, condenser, chilled water, chiller",
+ "crosscheck": {
+  "rate": 1.0,
+  "both": 271,
+  "diff": []
+ }
+}
