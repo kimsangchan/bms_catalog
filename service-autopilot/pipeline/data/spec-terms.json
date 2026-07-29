@@ -1,473 +1,551 @@
 {
- "_설명": "정격 사양 용어 사전. 카탈로그는 영문 약어로 적혀 있어 개발자가 뜻을 알기 어렵다. 실제 데이터에 나온 용어만 넣는다 — 안 나오는 용어를 미리 채우지 않는다. sim 은 시뮬레이터(전력 소모·온도 계산)에서의 쓰임새다: 3=계산에 직접 들어감, 2=조건·한계로 쓰임, 1=참고. 못 알아본 용어는 그대로 두고 표시하지 않는다 — 지어내지 않는다.",
+ "_설명": "정격 사양 용어 사전. 카탈로그는 영문 약어로 적혀 있어 개발자가 뜻을 알기 어렵다. 실제 데이터에 나온 용어만 넣는다 — 안 나오는 용어를 미리 채우지 않는다. sim 은 시뮬레이터(전력 소모·온도 계산)에서의 쓰임새다: 3=계산에 직접 들어감, 2=조건·한계로 쓰임, 1=참고. 못 알아본 용어는 그대로 두고 표시하지 않는다 — 지어내지 않는다. 5번째 값은 분류다 (전기·성능·제어·동작·물리·설치·환경) — 제품 데이터시트의 관례 구성을 따른다.",
  "terms": [
   [
    "^nominal voltage$",
    "정격 전압",
    "이 값으로 전원을 넣는다. 전력 = 전압 × 전류 계산의 기준이다.",
-   3
+   3,
+   "전기"
   ],
   [
    "^nominal voltage range",
    "전압 허용 범위",
    "이 범위를 벗어나면 동작을 보장하지 않는다.",
-   2
+   2,
+   "전기"
   ],
   [
    "^nominal voltage frequency",
    "정격 주파수",
    "50/60 Hz. 유도전동기는 주파수가 회전수를 정한다.",
-   2
+   2,
+   "전기"
   ],
   [
    "^rated voltage",
    "정격 전압",
    "장비가 설계된 전원 전압. 전압이 다르면 전류도 달라진다.",
-   3
+   3,
+   "전기"
   ],
   [
    "^(volts|voltage)$",
    "전압",
    "전원 전압.",
-   3
+   3,
+   "전기"
   ],
   [
    "^phase$",
    "상수",
    "단상/3상. 3상이면 전력 = √3 × 전압 × 전류 × 역률.",
-   3
+   3,
+   "전기"
   ],
   [
    "power consumption in operation",
    "운전 소비전력",
    "돌고 있을 때 쓰는 전력. **소비량 계산의 핵심값**이다.",
-   3
+   3,
+   "전기"
   ],
   [
    "power consumption in rest position|power consumption.*(rest|holding)",
    "유지 소비전력",
    "멈춰서 자세만 유지할 때 쓰는 전력. 구동기는 대기 시간이 길어 총량에 크게 영향을 준다.",
-   3
+   3,
+   "전기"
   ],
   [
    "^power consumption (ac|dc)",
    "소비전력",
    "교류/직류 각각의 소비전력.",
-   3
+   3,
+   "전기"
   ],
   [
    "^transformer sizing",
    "변압기 용량",
    "이 기기 하나에 필요한 변압기 용량(VA). 여러 대를 물릴 때 합산한다.",
-   2
+   2,
+   "전기"
   ],
   [
    "^inrush current",
    "돌입 전류",
    "켜는 순간 흐르는 큰 전류. 짧지만 변압기·차단기 선정을 좌우한다.",
-   2
+   2,
+   "전기"
   ],
   [
    "^max kW$|^max\\.? kw",
    "최대 소비전력",
    "그 형번이 낼 수 있는 최대 전력.",
-   3
+   3,
+   "전기"
   ],
   [
    "^kW$",
    "전력",
    "소비 또는 출력 전력.",
-   3
+   3,
+   "전기"
   ],
   [
    "^rla|rla @|running load amp",
    "정격 운전 전류 (RLA)",
    "정상 운전 중 흐르는 전류. **Running Load Amps** — 전력 계산과 케이블 선정에 쓴다.",
-   3
+   3,
+   "전기"
   ],
   [
    "^lra|locked rotor amp",
    "구속 전류 (LRA)",
    "기동 순간 전동기가 아직 안 돌 때 흐르는 최대 전류. **Locked Rotor Amps** — 보통 정격의 5~7배다.",
-   2
+   2,
+   "전기"
   ],
   [
    "^fla|full load amp",
    "전부하 전류 (FLA)",
    "정격 부하에서의 전류. **Full Load Amps**.",
-   3
+   3,
+   "전기"
   ],
   [
    "^mca|minimum circuit amp",
    "최소 회선 용량 (MCA)",
    "이 기기에 넣을 전선 굵기를 정하는 값. **Minimum Circuit Ampacity**.",
-   2
+   2,
+   "기타"
   ],
   [
    "^mop|maximum overcurrent",
    "최대 차단기 용량 (MOP)",
    "과전류 보호장치 상한. **Maximum Overcurrent Protection**.",
-   2
+   2,
+   "전기"
   ],
   [
    "drive input current|input current",
    "입력 전류",
    "기기가 전원에서 끌어가는 전류.",
-   3
+   3,
+   "전기"
   ],
   [
    "^(current|amps?)$|output current",
    "전류",
    "흐르는 전류.",
-   3
+   3,
+   "전기"
   ],
   [
    "^tons?$|nominal tons|unit size \\(tons\\)",
    "냉동 능력 (톤)",
    "1톤 = 3.517 kW. **열 계산의 기준 용량**이다.",
-   3
+   3,
+   "성능"
   ],
   [
    "^cap |capacity|^mbh$",
    "능력",
    "냉방·난방 능력. MBh = 1,000 Btu/h ≈ 0.293 kW.",
-   3
+   3,
+   "성능"
   ],
   [
    "^shc$|sensible heat",
    "현열 능력",
    "온도를 낮추는 데 쓰는 능력. 습기 제거(잠열)와 구분한다.",
-   3
+   3,
+   "성능"
   ],
   [
    "unit capacity steps",
    "용량 단계",
    "몇 단으로 능력을 줄일 수 있는가. **부분부하 계산에 직접 쓴다** (예: 100/75/50/25%).",
-   3
+   3,
+   "성능"
   ],
   [
    "^kw/ton|^eer$|^iplv|^seer|^cop$|efficiency",
    "효율",
    "kW/ton·COP·EER 은 같은 능력을 내는 데 드는 전력을 나타낸다. IPLV 는 부분부하까지 반영한 연간 효율이다.",
-   3
+   3,
+   "전기"
   ],
   [
    "^air ?flow|^cfm$|^scfm",
    "풍량",
    "단위 시간당 보내는 공기량. CFM×1.699 = ㎥/h. **반송동력 계산의 기준**이다.",
-   3
+   3,
+   "성능"
   ],
   [
    "^face area",
    "면풍속 면적",
    "코일 정면 면적. 풍량 ÷ 면적 = 면풍속.",
-   2
+   2,
+   "성능"
   ],
   [
    "rows/fpi|fins per inch",
    "코일 열수·핀 간격",
    "열교환 성능과 압력손실을 좌우한다.",
-   2
+   2,
+   "성능"
   ],
   [
    "^speed|rpm",
    "회전수",
    "분당 회전수. 팬은 회전수의 세제곱에 비례해 동력이 는다.",
-   3
+   3,
+   "성능"
   ],
   [
    "^(static )?pressure|^esp$",
    "정압",
    "송풍기가 이겨야 할 저항. 정압이 높을수록 동력이 는다.",
-   3
+   3,
+   "성능"
   ],
   [
    "torque motor|^torque",
    "토크",
    "구동기가 낼 수 있는 힘. 댐퍼·밸브 크기를 정한다.",
-   2
+   2,
+   "제어·동작"
   ],
   [
    "running time \\(motor\\)|^running time",
    "구동 시간",
    "끝에서 끝까지 움직이는 데 걸리는 시간. **제어 응답 속도**를 좌우한다.",
-   3
+   3,
+   "제어·동작"
   ],
   [
    "angle of rotation|^operating range y",
    "동작 범위",
    "구동기가 움직이는 각도 또는 제어 신호 범위.",
-   2
+   2,
+   "제어·동작"
   ],
   [
    "position feedback",
    "위치 피드백",
    "현재 열림도를 알려 주는 신호.",
-   2
+   2,
+   "제어·동작"
   ],
   [
    "^ambient temperature",
    "주위 온도 범위",
    "이 범위 밖에서는 동작을 보장하지 않는다.",
-   2
+   2,
+   "설치·환경"
   ],
   [
    "^storage temperature",
    "보관 온도 범위",
    "운전이 아니라 보관 조건이다.",
-   1
+   1,
+   "설치·환경"
   ],
   [
    "^fluid temperature|water temperature",
    "유체 온도 범위",
    "다루는 물·냉매의 허용 온도.",
-   2
+   2,
+   "성능"
   ],
   [
    "entering water|leaving water|ewt|lwt",
    "입·출구 수온",
    "열교환 계산의 입력값이다.",
-   3
+   3,
+   "성능"
   ],
   [
    "^temperature",
    "온도",
    "온도 값.",
-   2
+   2,
+   "기타"
   ],
   [
    "min\\.? flow|minimum water flow",
    "최소 유량",
    "이보다 적게 흘리면 동결·성능 저하가 생긴다.",
-   2
+   2,
+   "성능"
   ],
   [
    "^flow|유량",
    "유량",
    "흐르는 양.",
-   3
+   3,
+   "성능"
   ],
   [
    "^weight|shipping|operating weight",
    "중량",
    "운반·설치 하중. 시뮬레이션에는 쓰지 않는다.",
-   1
+   1,
+   "물리"
   ],
   [
    "^(height|width|depth|length)|dimension|clearance",
    "치수",
    "설치 공간. 시뮬레이션에는 쓰지 않는다.",
-   1
+   1,
+   "물리"
   ],
   [
    "sound power level|sound pressure|^noise",
    "소음",
    "소음도(dB(A)). 장비 선정에 쓰지만 열·전력 계산에는 안 쓴다.",
-   1
+   1,
+   "전기"
   ],
   [
    "degree of protection|^ip\\d|enclosure protection",
    "보호 등급",
    "먼지·물 침입 보호 수준(IP). 설치 환경 판단용.",
-   1
+   1,
+   "전기"
   ],
   [
    "agency listing|^listing|certification",
    "인증",
    "UL·CE 등 안전 인증.",
-   1
+   1,
+   "설치·환경"
   ],
   [
    "housing material|^materials?$",
    "재질",
    "케이스 재질.",
-   1
+   1,
+   "물리"
   ],
   [
    "electrical connection|wire colors|terminal",
    "배선",
    "결선 방식·단자.",
-   1
+   1,
+   "전기"
   ],
   [
    "pollution degree|impulse voltage",
    "절연 조건",
    "설치 환경의 오염도·서지 내량.",
-   1
+   1,
+   "전기"
   ],
   [
    "^refrigerant|refrigerant charge",
    "냉매",
    "냉매 종류와 충전량. 종류가 성능 곡선을 바꾼다.",
-   2
+   2,
+   "성능"
   ],
   [
    "^oil (type|charge)",
    "오일",
    "압축기 윤활유 종류·양.",
-   1
+   1,
+   "성능"
   ],
   [
    "^compressor|comp size|number/size",
    "압축기 구성",
    "대수와 크기. 대수 제어 단계와 직결된다.",
-   3
+   3,
+   "성능"
   ],
   [
    "^(no\\.? of )?circuits",
    "냉매 회로 수",
    "회로가 나뉘면 부분부하 운전 방식이 달라진다.",
-   2
+   2,
+   "성능"
   ],
   [
    "^unit (model number|size)$",
    "형번·크기",
    "제품 식별.",
-   1
+   1,
+   "설치·환경"
   ],
   [
    "^type$|^model$",
    "형식",
    "제품 형식 구분.",
-   1
+   1,
+   "설치·환경"
   ],
   [
    "^quantity|^units$|^number$",
    "수량",
    "개수.",
-   1
+   1,
+   "설치·환경"
   ],
   [
    "power consumption for wire sizing",
    "전선 산정용 소비전력",
    "전선 굵기를 정할 때 쓰는 값. 실제 소비보다 여유를 준 수치다.",
-   2
+   2,
+   "전기"
   ],
   [
    "^measuring accuracy|accuracy",
    "측정 정확도",
    "계측기가 보장하는 오차. 시뮬레이션 결과를 실측과 견줄 때 이 폭을 감안한다.",
-   2
+   2,
+   "제어·동작"
   ],
   [
    "v'?max adjustable|^v'?max|maximum flow",
    "최대 유량 설정",
    "유량 상한. 이 값이 밸브·VAV 의 능력 상한을 정한다.",
-   3
+   3,
+   "성능"
   ],
   [
    "v'?min|minimum flow set",
    "최소 유량 설정",
    "유량 하한. 최소 환기량 확보에 쓴다.",
-   3
+   3,
+   "성능"
   ],
   [
    "^input impedance",
    "입력 임피던스",
    "제어 신호를 받는 쪽의 저항. 신호원 용량 판단용.",
-   1
+   1,
+   "전기"
   ],
   [
    "^electrical protection|^protection class",
    "전기 보호 등급",
    "감전 보호 등급(Class II 등).",
-   1
+   1,
+   "전기"
   ],
   [
    "suitable for use in air plenums",
    "플리넘 설치 가부",
    "천장 급기 공간에 넣어도 되는지. 설치 조건이다.",
-   1
+   1,
+   "설치·환경"
   ],
   [
    "^electrical installation",
    "전기 설치 방식",
    "결선·설치 요건.",
-   1
+   1,
+   "설치·환경"
   ],
   [
    "conductors, cables|^cable",
    "케이블",
    "동봉 케이블 규격.",
-   1
+   1,
+   "설치·환경"
   ],
   [
    "calculator \\+ temperature probe|temperature probe",
    "온도 센서",
    "열량계의 온도 센서 사양. 열량 = 유량 × 온도차 계산에 쓴다.",
-   3
+   3,
+   "성능"
   ],
   [
    "^glycol|^media|^fluid$",
    "유체",
    "다루는 유체 종류(물·글리콜). 물성이 열량 계산에 들어간다.",
-   2
+   2,
+   "성능"
   ],
   [
    "^nominal (diameter|size)|^dn$",
    "호칭 지름",
    "배관 구경(DN). 유량·압력손실과 직결된다.",
-   2
+   2,
+   "성능"
   ],
   [
    "^kvs|^cv$|flow coefficient",
    "유량 계수 (Kvs·Cv)",
    "밸브가 얼마나 흘리는지를 나타내는 계수. **유량 계산의 핵심**이다.",
-   3
+   3,
+   "성능"
   ],
   [
    "close-?off pressure|differential pressure",
    "차압",
    "밸브가 이겨야 할 압력차. 구동기 토크 선정 기준이다.",
-   2
+   2,
+   "성능"
   ],
   [
    "^leakage rate|^leakage",
    "누설률",
    "닫았을 때 새는 양.",
-   2
+   2,
+   "성능"
   ],
   [
    "^service life|^life",
    "수명",
    "설계 수명·동작 횟수.",
-   1
+   1,
+   "설치·환경"
   ],
   [
    "^mounting|^installation position",
    "설치 방향",
    "설치 자세 제약.",
-   1
+   1,
+   "설치·환경"
   ],
   [
    "^maintenance",
    "유지보수",
    "정비 요건.",
-   1
+   1,
+   "설치·환경"
   ],
   [
    "^humidity|relative humidity",
    "습도 범위",
    "허용 습도. 습공기 계산의 조건이 된다.",
-   2
+   2,
+   "설치·환경"
   ],
   [
    "^communication|^bus|bacnet|modbus|mp-bus",
    "통신",
    "지원 프로토콜.",
-   1
+   1,
+   "제어·동작"
   ],
   [
    "^resolution",
    "분해능",
    "표시·측정 최소 단위.",
-   1
+   1,
+   "제어·동작"
   ],
   [
    "^response time|^time constant",
    "응답 시간",
    "센서가 변화를 따라오는 데 걸리는 시간. 제어 안정성에 영향을 준다.",
-   2
+   2,
+   "제어·동작"
   ]
  ]
 }

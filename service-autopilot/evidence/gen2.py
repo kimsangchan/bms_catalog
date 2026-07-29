@@ -151,6 +151,21 @@ thead th{position:sticky;top:0;background:var(--bg);z-index:2}
 .lgd{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:0 18px 8px;
  font-size:11px;color:var(--faint)}
 .lgd .sim{margin-left:6px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));
+ gap:1px;background:var(--line2);border-top:1px solid var(--line2);
+ border-bottom:1px solid var(--line2);margin-bottom:4px}
+.tile{background:var(--bg);padding:9px 14px}
+.tk{font-size:10.5px;font-weight:700;letter-spacing:.03em;color:var(--accent)}
+.tv{font-family:var(--mono);font-size:17px;font-weight:650;letter-spacing:-.02em;margin-top:2px}
+.tv small{font-size:11px;font-weight:400;color:var(--dim);margin-left:3px}
+.tn{font-size:10px;color:var(--faint);margin-top:2px;overflow:hidden;text-overflow:ellipsis;
+ white-space:nowrap}
+.cath{padding:16px 18px 4px;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--dim)}
+.cath b{font-family:var(--mono);color:var(--faint);margin-left:5px;font-weight:700}
+.more{margin:14px 18px 0;border-top:1px solid var(--line2);padding-top:8px}
+.more summary{cursor:pointer;font-size:11.5px;color:var(--dim);padding:4px 0}
+.more summary i{font-style:normal;color:var(--faint);font-size:11px}
+.more[open] summary{color:var(--ink);font-weight:600}
 .tdesc{display:block;font-style:normal;font-size:11px;color:var(--dim);margin-top:2px;
  line-height:1.5;max-width:46ch}
 .sim{font-size:10px;font-weight:700;letter-spacing:.03em;padding:1px 6px;border-radius:3px;
@@ -608,13 +623,7 @@ function renderModels(models, l3){
                 + (v.photo ? '<img class="vth" src="'+v.photo+'" alt="">' : '')
                 + esc(v.code)+'</button>';
          }).join('') + '</div>'
-       + table({header:['항목','한글 이름 · 뜻','값','단위','시뮬레이터'],
-                rows:vs[vi].spec.map(function(r){
-                  var t = termOf(r[0]);
-                  return [r[0],
-                          t ? '<b>'+esc(t.ko)+'</b><i class="tdesc">'+esc(t.desc)+'</i>' : '—',
-                          r[1], r[2], t ? simTag(t.sim) : ''];
-                }), key:'vspec'+vi+m.id, raw:true});
+       + renderSpecSheet(vs[vi].spec, 'v'+vi+m.id);
   }
   // 카탈로그·설계 가이드에서 뽑은 정격 사양 행렬. 한 줄이 형번 하나이고
   // 열이 속성이라 포인트 표와 구조가 다르다 — 표마다 따로 그린다.
@@ -642,7 +651,14 @@ function renderModels(models, l3){
        + (t.orientation==='row' ? '<span class="qtag alt">행=항목 · 열=형번</span>' : '')
        + uq.map(function(x){ return '<span class="qtag">'+esc(QLABEL[x]||x)+'</span>'; }).join('')
        + '<span class="qsrc">' + esc(t.source||'') + ' p'+t.page+'</span></div>'
-       + table({header:t.header, rows:t.rows, key:'st'+si+(t.source||'')});
+       + table({header:t.header,
+                rows:(t.orientation==='row' ? t.rows.map(function(r){
+                        var tt = termOf(r[0]);
+                        return [tt ? esc(r[0])+'<i class="tdesc"><b>'+esc(tt.ko)+'</b> '
+                                     +esc(tt.desc)+'</i>'+(tt.sim===3?' '+simTag(3):'')
+                                   : esc(r[0])].concat(r.slice(1).map(esc));
+                      }) : t.rows),
+                key:'st'+si+(t.source||''), raw:t.orientation==='row'});
   }
   if(m.points.length){
     var pts = m.points.filter(function(p){return p.inst;});
@@ -685,7 +701,7 @@ var QLABEL = {power:'전력', current:'전류', voltage:'전압', frequency:'주
 // 영문 사양 이름 → {한글, 설명, 시뮬레이터 쓰임새}. 못 알아본 것은 null 을 준다
 // (지어내지 않는다). 사전은 data/spec-terms.json 에 있다.
 var TERMS = (D.terms||[]).map(function(t){
-  return {re:new RegExp(t[0],'i'), ko:t[1], desc:t[2], sim:t[3]};
+  return {re:new RegExp(t[0],'i'), ko:t[1], desc:t[2], sim:t[3], cat:t[4]||'기타'};
 });
 function termOf(label){
   var s = String(label||'').trim();
@@ -697,6 +713,68 @@ function simTag(n){
   if(!n) return '';
   return '<span class="sim s'+n+'" title="시뮬레이터에서 '+SIMLBL[n]+' 쓰여요">'
        + (n===3?'★ 핵심':(n===2?'· 조건':'· 참고'))+'</span>';
+}
+
+// 제품 데이터시트의 관례 구성으로 낸다: **핵심 요약 → 분류별 상세 → 참고는 접기**.
+// 앞서는 수십 줄을 한 표에 그냥 늘어놓아 무엇부터 봐야 할지 알 수 없었다.
+var CATORD = ['전기','성능','제어·동작','물리','설치·환경','기타'];
+
+function renderSpecSheet(spec, key){
+  var rows = spec.map(function(r){ return {r:r, t:termOf(r[0])}; });
+  var core = rows.filter(function(x){ return x.t && x.t.sim===3; });
+  var h = '';
+
+  // 1) 핵심 요약 — 시뮬레이터가 바로 쓰는 값만 큰 글씨로
+  if(core.length){
+    // 같은 뜻이 여러 항목으로 잡히면 첫 것만 (구동 시간이 두 줄로 나왔다)
+    var seen = {}, pick = [];
+    core.forEach(function(x){
+      if(seen[x.t.ko]) return;
+      seen[x.t.ko] = 1; pick.push(x);
+    });
+    h += '<div class="tiles">' + pick.slice(0,8).map(function(x){
+      // 괄호 환산값·조건은 잘라 큰 글씨를 짧게. 값에 이미 단위가 있으면 또 붙이지 않는다
+      var val = String(x.r[1]).replace(/\s*\[[^\]]*\]/g,'')
+                  .replace(/\s*@.*$/,'').replace(/\s*,.*$/,'').trim();
+      var u = (x.r[2]==='—'||!x.r[2]) ? ''
+            : (val.toLowerCase().indexOf(String(x.r[2]).toLowerCase())>=0 ? '' : x.r[2]);
+      return '<div class="tile" title="'+esc(x.r[0]+' — '+x.t.desc)+'">'
+           + '<div class="tk">'+esc(x.t.ko)+'</div>'
+           + '<div class="tv">'+esc(val)+(u?'<small>'+esc(u)+'</small>':'')+'</div>'
+           + '<div class="tn">'+esc(x.r[0])+'</div></div>';
+    }).join('') + '</div>';
+  }
+
+  // 2) 분류별 상세 — 참고(sim=1)와 사전에 없는 항목은 아래로 내린다
+  var main = rows.filter(function(x){ return x.t && x.t.sim>=2; });
+  var rest = rows.filter(function(x){ return !x.t || x.t.sim<2; });
+  var byCat = {};
+  main.forEach(function(x){ (byCat[x.t.cat] = byCat[x.t.cat]||[]).push(x); });
+  CATORD.forEach(function(c){
+    if(!byCat[c]) return;
+    h += '<div class="cath">'+esc(c)+'<b>'+byCat[c].length+'</b></div>'
+       + table({header:['항목','뜻','값','단위','쓰임새'],
+                rows:byCat[c].map(function(x){
+                  return [x.r[0],
+                          '<b>'+esc(x.t.ko)+'</b><i class="tdesc">'+esc(x.t.desc)+'</i>',
+                          x.r[1], x.r[2], simTag(x.t.sim)];
+                }), key:key+c, raw:true, nopage:true});
+  });
+
+  // 3) 참고·미등록 — 접어 둔다. 필요할 때만 편다
+  if(rest.length){
+    h += '<details class="more"><summary>설치·인증 등 참고 항목 '
+       + rest.length + '개 <i>(시뮬레이터 계산에는 쓰지 않아요)</i></summary>'
+       + table({header:['항목','뜻','값','단위'],
+                rows:rest.map(function(x){
+                  return [x.r[0],
+                          x.t ? '<b>'+esc(x.t.ko)+'</b><i class="tdesc">'+esc(x.t.desc)+'</i>'
+                              : '<i class="tdesc">사전에 없는 항목이라 원문 그대로 둡니다</i>',
+                          x.r[1], x.r[2]];
+                }), key:key+'rest', raw:true, nopage:true})
+       + '</details>';
+  }
+  return h;
 }
 
 function specCount(m){
