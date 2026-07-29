@@ -104,7 +104,10 @@ main{min-width:0;display:flex;flex-direction:column}
 .bar .sp{margin-left:auto;font-size:11.5px;color:var(--faint);font-family:var(--mono)}
 
 /* 표 — 카드 없이 선으로만 */
-.wrap{padding:0 0 60px;overflow-x:auto}
+.wrap{padding:0 0 60px;min-width:0}
+/* 표는 **자기 안에서만** 가로로 넘긴다. 바깥이 넘치면 화면 전체가 밀린다 */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{min-width:max-content}
 table{width:100%;border-collapse:collapse;font-size:12.3px}
 th{position:sticky;top:45px;background:var(--bg);text-align:left;padding:7px 10px;
  font-size:10.5px;font-weight:700;letter-spacing:.04em;color:var(--faint);
@@ -132,6 +135,9 @@ td.n{color:var(--dim);white-space:nowrap;font-size:11.5px}
 .slist button{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;
  border:1px solid var(--line);border-radius:6px;font-size:11.5px}
 .slist button[aria-pressed="true"]{background:var(--sel);border-color:var(--accent);font-weight:650}
+th.srt{cursor:pointer;user-select:none}
+th.srt:hover{color:var(--accent)}
+.sa{font-style:normal;font-size:9px;color:var(--accent)}
 .pg{display:flex;gap:6px;align-items:center;padding:6px 18px;font-size:11.5px}
 .pgb{padding:3px 9px;border:1px solid var(--line);border-radius:5px;font-size:11px}
 .pgb[disabled]{opacity:.35;cursor:default}
@@ -150,7 +156,14 @@ nav .sm{color:var(--accent)}
 .qtag.alt{border-color:var(--accent);color:var(--ink)}
 .qsrc{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--faint)}
 .mn{font-family:var(--mono);font-size:10.5px;color:var(--dim);border-left:1px solid var(--line2);padding-left:6px}
-.mtop{padding:14px 18px 0}
+.mtop{display:flex;gap:16px;align-items:flex-start;padding:14px 18px 0}
+.mtxt{min-width:0;flex:1}
+.mpic{width:132px;height:132px;object-fit:contain;background:var(--sel);
+ border:1px solid var(--line2);border-radius:8px;padding:6px;flex:none}
+.psrc{margin-top:6px;font-family:var(--mono);font-size:10.5px;color:var(--faint)}
+.mth{width:22px;height:22px;object-fit:contain;border-radius:3px;background:var(--sel)}
+.vth{width:20px;height:20px;object-fit:contain;border-radius:3px;background:var(--sel)}
+@media(max-width:640px){.mtop{flex-direction:column}.mpic{width:108px;height:108px}}
 .mtop h2{font-size:15.5px;font-weight:650;letter-spacing:-.01em}
 .mtop .vd{font-size:11px;letter-spacing:.06em;color:var(--faint);font-weight:700}
 .mtop p{font-size:12.3px;color:var(--dim);margin-top:5px;max-width:74ch}
@@ -175,7 +188,13 @@ nav .sm{color:var(--accent)}
 .rows .v p{font-size:12.2px;color:var(--dim);margin-top:2px}
 .rows .r{text-align:right;font-size:11.5px;color:var(--faint);font-family:var(--mono)}
 @media(max-width:860px){
- .app{grid-template-columns:1fr}
+ /* 상단이 3열 고정이라 좁은 화면에서 지표가 밀려 화면 전체가 가로로 넘쳤다 → 2줄로 */
+ .top{grid-template-columns:1fr auto;gap:8px;padding:8px 12px}
+ #q{grid-column:1/-1;max-width:none;order:3}
+ .tot{flex-wrap:wrap;gap:8px;justify-content:flex-end}
+ .app{grid-template-columns:1fr;min-width:0}
+ main,.wrap{min-width:0;max-width:100vw}
+ .mlist button,.slist button{max-width:100%}
  aside{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line);
   display:flex;overflow-x:auto;gap:2px;padding:6px}
  aside .gh{display:none}
@@ -246,6 +265,21 @@ function markNav(){ nav.querySelectorAll('button').forEach(function(b){
 // 표가 길면 나눠 그린다. 1,537행짜리 오브젝트 목록을 한 번에 그리면
 // 화면이 끝없이 늘어나고 원하는 줄을 찾을 수 없다 (밀러의 법칙 — 덩어리로 끊는다).
 var PAGE = 60;
+var sortOf = {};        // 표 키 → {col, dir}
+// 맨 앞의 수를 값으로 본다. '13 W' 와 '2 W' 는 단위가 붙어 있어도 13 > 2 다 —
+// 문자열로 견주면 '13' 이 '2' 보다 앞서 정렬이 뒤집힌다.
+function numOf(x){
+  var m = String(x).replace(/,/g,'').match(/-?\d+(\.\d+)?/);
+  return m ? parseFloat(m[0]) : NaN;
+}
+function cmpCell(a,b){
+  var na = numOf(a), nb = numOf(b);
+  var ae = String(a).trim(), be = String(b).trim();
+  var empty = function(v){ return !v || v === '—' || v === '-'; };
+  if(empty(ae) !== empty(be)) return empty(ae) ? 1 : -1;   // 빈 칸은 항상 뒤로
+  if(!isNaN(na) && !isNaN(nb) && na !== nb) return na - nb;
+  return ae.localeCompare(be, 'ko');
+}
 var pageOf = {};        // 표 키 → 현재 쪽
 function pageKey(t){ return (t.key || (t.header||[]).join('|')).slice(0,80); }
 
@@ -274,14 +308,23 @@ function table(t, opts){
   if(!rows.length) return '';
   // 긴 표만 쪽으로 나눈다. 짧은 표까지 나누면 오히려 손이 더 간다.
   var key = pageKey(t), total = rows.length, pages = 1, page = 0, ctrl = '';
+  var rowsAll = rows;
   if(!opts.nopage && total > PAGE){
     pages = Math.ceil(total/PAGE);
     page = Math.min(pageOf[key]||0, pages-1);
     ctrl = pager(key, total, page, pages);
     rows = rows.slice(page*PAGE, (page+1)*PAGE);
   }
-  var h = ctrl + '<table><thead><tr>';
-  t.header.forEach(function(c){ h += '<th>'+fmt(c)+'</th>'; });
+  var so = sortOf[key];
+  if(so){
+    rowsAll.sort(function(x,y){ return cmpCell(x[so.col], y[so.col]) * so.dir; });
+    rows = (!opts.nopage && total > PAGE) ? rowsAll.slice(page*PAGE,(page+1)*PAGE) : rowsAll;
+  }
+  var h = ctrl + '<div class="tw"><table data-tk="'+esc(key)+'"><thead><tr>';
+  t.header.forEach(function(c,i){
+    var mark = so && so.col===i ? (so.dir>0?' ▲':' ▼') : '';
+    h += '<th class="srt" data-col="'+i+'">'+fmt(c)+'<i class="sa">'+mark+'</i></th>';
+  });
   h += '</tr></thead><tbody>';
   rows.forEach(function(r){
     h += '<tr>';
@@ -291,7 +334,7 @@ function table(t, opts){
     });
     h += '</tr>';
   });
-  return h + '</tbody></table>' + (pages>1 ? ctrl : '');
+  return h + '</tbody></table></div>' + (pages>1 ? ctrl : '');
 }
 function counted(tabs){ return tabs.reduce(function(a,t){return a+t.rows.length;},0); }
 
@@ -402,13 +445,22 @@ function renderModels(models, l3){
       var pr = (x.comm||[]).map(function(c){return c[0];});
       var tail = pr.length ? '<span class="mpr">'+esc(pr.join('·'))+'</span>' : '';
       var n = (x.points||[]).length, sn = specCount(x);
-      return '<button data-mi="'+i+'" aria-pressed="'+(i===mi)+'">'+esc(lbl)+tail
+      var th = x.photo ? '<img class="mth" src="'+x.photo+'" alt="">' : '';
+      return '<button data-mi="'+i+'" aria-pressed="'+(i===mi)+'">'+th+esc(lbl)+tail
            + (n ? '<span class="mn">'+n+'</span>' : '')
            + (sn ? '<span class="ms">사양 '+sn+'</span>' : '') + '</button>';
     }).join('') + '</div>';
   }
-  h += '<div class="mtop"><div class="vd">'+esc(m.vendor)+'</div><h2>'+esc(m.name)+'</h2>'
-     + '<p>'+fmt(m.summary)+'</p></div>';
+  // 형번을 골랐으면 그 형번 사진을, 아니면 제품군 사진을 보여 준다.
+  var vphoto = (m.variants||[])[Math.min(vsel,(m.variants||[]).length-1)];
+  var photo = (vphoto && vphoto.photo) || m.photo;
+  var psrc  = (vphoto && vphoto.photo) ? (vphoto.source+' p'+(vphoto.photoPage||1)) : m.photoSource;
+  h += '<div class="mtop">'
+     + (photo ? '<img class="mpic" src="'+photo+'" alt="" title="'+esc(psrc||'')+'">' : '')
+     + '<div class="mtxt"><div class="vd">'+esc(m.vendor)+'</div><h2>'+esc(m.name)+'</h2>'
+     + '<p>'+fmt(m.summary)+'</p>'
+     + (psrc ? '<div class="psrc">사진 출처 '+esc(psrc)+'</div>' : '')
+     + '</div></div>';
   h += '<div class="meta"><span>모델 <code>'+esc(m.model)+'</code></span>'
      + '<span>분류 <code>'+esc(m.cat)+'</code></span><span>태그 <code>'+esc(m.tag)+'</code></span>'
      + '<span>사양값 '+badge(m.has.spec)+'</span><span>오브젝트 목록 '+badge(m.has.points)+'</span></div>';
@@ -426,9 +478,37 @@ function renderModels(models, l3){
   // 그 형번의 정격이 나온다. 시뮬레이터가 쓰는 값이 여기 있다.
   if((m.variants||[]).length){
     var vs = m.variants, vi = Math.min(vsel, vs.length-1);
-    h += sec('형번별 정격 사양', vs.length)
+    // 형번을 고르기 전에 **나란히 비교**할 수 있어야 한다. 하나씩 눌러 보며
+    // 외우게 하면 안 된다 (테슬러 — 복잡함은 도구가 떠안는다).
+    var KEYS = [['정격전압', /nominal voltage$/i], ['운전 전력', /power consumption in operation/i],
+                ['유지 전력', /power consumption.*(rest|holding)/i], ['토크', /torque motor/i],
+                ['구동시간', /running time/i], ['소음', /sound power/i], ['중량', /^weight$/i]];
+    var used = KEYS.filter(function(k){
+      return vs.some(function(v){ return (v.spec||[]).some(function(r){ return k[1].test(r[0]); }); });
+    });
+    if(used.length){
+      var crows = vs.map(function(v){
+        return [v.code].concat(used.map(function(k){
+          var r = (v.spec||[]).find(function(x){ return k[1].test(x[0]); });
+          if(!r) return '—';
+          // 값에 이미 단위가 붙어 있으면 또 붙이지 않는다 ('180 in-lb [20 Nm] in-lb')
+          var val = String(r[1]), u = r[2];
+          var dup = u && u!=='—' && val.toLowerCase().indexOf(String(u).toLowerCase()) >= 0;
+          // 비교표는 한눈에 봐야 하므로 괄호 안 환산값·부연은 잘라낸다
+          val = val.replace(/\s*\[[^\]]*\]/g,'').replace(/,\s*(end stop|.*fuse).*$/i,'')
+                   .replace(/\s*@.*$/,'').trim();
+          return val + (u && u!=='—' && !dup ? ' '+u : '');
+        }));
+      });
+      h += sec('형번 비교 — 핵심 정격', vs.length)
+         + table({header:['형번'].concat(used.map(function(k){return k[0];})),
+                  rows:crows, key:'vcmp'+m.id});
+    }
+    h += sec('형번별 상세', vs.length)
        + '<div class="vlist">' + vs.map(function(v,i){
-           return '<button data-vi="'+i+'" aria-pressed="'+(i===vi)+'">'+esc(v.code)+'</button>';
+           return '<button data-vi="'+i+'" aria-pressed="'+(i===vi)+'">'
+                + (v.photo ? '<img class="vth" src="'+v.photo+'" alt="">' : '')
+                + esc(v.code)+'</button>';
          }).join('') + '</div>'
        + table({header:['항목','값','단위','구역','근거'], rows:vs[vi].spec});
   }
@@ -443,6 +523,9 @@ function renderModels(models, l3){
        + '<div class="slist">' + sts.map(function(x,i){
            var qq = (x.quantities||[]).filter(Boolean);
            var lbl = (x.title||'표 '+(i+1)).replace(/^Table\s*\d+\.\s*/,'');
+           // 같은 제목이 여러 개면 쪽수로 가른다 — 'General Information' 이 세 개다
+           if(sts.filter(function(z){return (z.title||'')===(x.title||'');}).length>1)
+             lbl += ' (p'+x.page+')';
            return '<button data-si="'+i+'" aria-pressed="'+(i===si)+'">'
                 + esc(lbl.slice(0,34))
                 + '<span class="mn">'+x.rows.length+'</span>'
@@ -515,6 +598,13 @@ function render(){
     b.addEventListener('click',function(){ vsel=+b.dataset.vi; render(); });});
   main.querySelectorAll('.slist button').forEach(function(b){
     b.addEventListener('click',function(){ ssel=+b.dataset.si; pageOf={}; render(); });});
+  main.querySelectorAll('th.srt').forEach(function(th){
+    th.addEventListener('click',function(){
+      var k = th.closest('table').dataset.tk, c = +th.dataset.col;
+      var cur = sortOf[k];
+      sortOf[k] = (cur && cur.col===c) ? {col:c, dir:-cur.dir} : {col:c, dir:1};
+      var y = window.scrollY; render(); window.scrollTo(0,y);
+    });});
   main.querySelectorAll('.pgb').forEach(function(b){
     b.addEventListener('click',function(){
       if(b.disabled) return;

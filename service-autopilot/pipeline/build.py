@@ -48,6 +48,7 @@ def load():
             "elec": m.get("elec"), "gap": m.get("gap", ""),
             "specTables": m.get("specTables", []),
             "variants": m.get("variants", []),
+            "photo": m.get("photo"), "photoSource": m.get("photoSource"),
             "docs": docs_by_model.get(m["id"]) or docs_by_model.get(base) or [],
             "points": [{"inst": p["inst"], "type": p["type"],
                         "unitDisp": p.get("unitRaw") or "—", "name": p["name"],
