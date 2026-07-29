@@ -9,7 +9,7 @@
  "status": "active",
  "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 24점",
  "has": {
-  "spec": false,
+  "spec": true,
   "points": true
  },
  "ede": false,
@@ -226,5 +226,654 @@
   "rate": 1.0,
   "both": 24,
   "diff": []
- }
+ },
+ "variants": [
+  {
+   "code": "AFRB24-SR",
+   "source": "belimo_AFRB24-SR_datasheet_en-us.pdf",
+   "spec": [
+    [
+     "AFRB24-SR • en-us • 2025-12-23 • Subject to change",
+     "Modulating, Spring return, 24",
+     "V",
+     "—",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage",
+     "AC/DC 24",
+     "V",
+     "Electrical data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage frequency",
+     "50/60",
+     "Hz",
+     "Electrical data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage range",
+     "AC 19.2...28.8 V / DC 21.6...28.8",
+     "V",
+     "Electrical data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in operation",
+     "5.5",
+     "W",
+     "Electrical data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in rest position",
+     "3",
+     "W",
+     "Electrical data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Transformer sizing",
+     "8.5",
+     "VA",
+     "Electrical data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Electrical Connection",
+     "18 AWG appliance cable, 1 m, with 1/2\" NPT",
+     "—",
+     "Electrical data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Operating range Y",
+     "2...10",
+     "V",
+     "Functional data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Operating range Y note",
+     "4...20 mA w/ ZG-R01 (500 Ω, 1/4 W resistor)",
+     "mA",
+     "Functional data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Input impedance",
+     "100 kΩ for 2...10 V (0.1 mA), 500 Ω for 4...20",
+     "V",
+     "Functional data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Position feedback U",
+     "2...10",
+     "V",
+     "Functional data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Position feedback U note",
+     "Max. 0.5",
+     "mA",
+     "Functional data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Manual override",
+     "5 mm hex crank (3/16\" Allen), supplied",
+     "mm",
+     "Functional data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Angle of rotation",
+     "90°",
+     "—",
+     "Functional data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Running Time (Motor)",
+     "95 s / 90°",
+     "s",
+     "Functional data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Running time fail-safe",
+     "<20",
+     "s",
+     "Functional data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Sound power level, motor",
+     "45 dB(A)",
+     "dB",
+     "Functional data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Sound power level, fail-safe",
+     "62 dB(A)",
+     "dB",
+     "Functional data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Agency Listing",
+     "cULus acc. to UL60730-1A/-2-14, CAN/CSA",
+     "—",
+     "Safety data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Suitable for use in air plenums per Section",
+     "300.22(C) of the NEC and Section 602 of the",
+     "—",
+     "Safety data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Ambient temperature",
+     "-22...122°F [-30...50°C]",
+     "—",
+     "Safety data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Storage temperature",
+     "-40...176°F [-40...80°C]",
+     "—",
+     "Safety data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Weight",
+     "5.4 lb [2.4 kg]",
+     "lb",
+     "Safety data",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Wire colors:",
+     "1 = black",
+     "—",
+     "Materials",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Electrical installation",
+     "AC/DC 24 V, modulating",
+     "V",
+     "Materials",
+     "belimo_AFRB24-SR_datasheet_en-us.pdf p2"
+    ]
+   ]
+  },
+  {
+   "code": "ARB24-3",
+   "source": "belimo_ARB24-3_datasheet_en-us.pdf",
+   "spec": [
+    [
+     "ARB24-3 • en-us • 2025-12-23 • Subject to change",
+     "On/Off, Floating point, Non fail-safe, 24",
+     "V",
+     "—",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage",
+     "AC/DC 24",
+     "V",
+     "Electrical data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage frequency",
+     "50/60",
+     "Hz",
+     "Electrical data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage range",
+     "AC 19.2...28.8 V / DC 21.6...28.8",
+     "V",
+     "Electrical data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in operation",
+     "2.5",
+     "W",
+     "Electrical data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in rest position",
+     "0.5",
+     "W",
+     "Electrical data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Transformer sizing",
+     "5.5",
+     "VA",
+     "Electrical data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Electrical Connection",
+     "18 AWG plenum cable, 1 m, with 1/2\" NPT",
+     "—",
+     "Electrical data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Angle of rotation",
+     "90°",
+     "—",
+     "Functional data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Running Time (Motor)",
+     "90 s / 90°",
+     "s",
+     "Functional data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Sound power level, motor",
+     "45 dB(A)",
+     "dB",
+     "Functional data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Agency Listing",
+     "cULus acc. to UL60730-1A/-2-14, CAN/CSA",
+     "—",
+     "Safety data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Suitable for use in air plenums per Section",
+     "300.22(C) of the NEC and Section 602 of the",
+     "—",
+     "Safety data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Ambient temperature",
+     "-22...122°F [-30...50°C]",
+     "—",
+     "Safety data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Storage temperature",
+     "-40...176°F [-40...80°C]",
+     "—",
+     "Safety data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Weight",
+     "2.2 lb [1 kg]",
+     "lb",
+     "Safety data",
+     "belimo_ARB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Wire colors:",
+     "1 = black",
+     "—",
+     "Materials",
+     "belimo_ARB24-3_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Electrical installation",
+     "AC/DC 24 V, on/off",
+     "V",
+     "Materials",
+     "belimo_ARB24-3_datasheet_en-us.pdf p2"
+    ]
+   ]
+  },
+  {
+   "code": "LRB24-3",
+   "source": "belimo_LRB24-3_datasheet_en-us.pdf",
+   "spec": [
+    [
+     "LRB24-3 • en-us • 2025-12-23 • Subject to change",
+     "On/Off, Floating point, Non fail-safe, 24",
+     "V",
+     "—",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage",
+     "AC/DC 24",
+     "V",
+     "Electrical data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage frequency",
+     "50/60",
+     "Hz",
+     "Electrical data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage range",
+     "AC 19.2...28.8 V / DC 21.6...28.8",
+     "V",
+     "Electrical data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in operation",
+     "1.5",
+     "W",
+     "Electrical data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in rest position",
+     "0.2",
+     "W",
+     "Electrical data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Transformer sizing",
+     "2.5",
+     "VA",
+     "Electrical data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Electrical Connection",
+     "18 AWG plenum cable, 1 m, with 1/2\" NPT",
+     "—",
+     "Electrical data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Electrical Protection",
+     "actuators are double insulated",
+     "—",
+     "Electrical data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Angle of rotation",
+     "90°",
+     "—",
+     "Functional data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Running Time (Motor)",
+     "90 s / 90°",
+     "s",
+     "Functional data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Sound power level, motor",
+     "35 dB(A)",
+     "dB",
+     "Functional data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Agency Listing",
+     "cULus acc. to UL60730-1A/-2-14, CAN/CSA",
+     "—",
+     "Safety data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Suitable for use in air plenums per Section",
+     "300.22(C) of the NEC and Section 602 of the",
+     "—",
+     "Safety data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Ambient temperature",
+     "-22...122°F [-30...50°C]",
+     "—",
+     "Safety data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Storage temperature",
+     "-40...176°F [-40...80°C]",
+     "—",
+     "Safety data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Weight",
+     "1.3 lb [0.59 kg]",
+     "lb",
+     "Safety data",
+     "belimo_LRB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "LRB24-3 • en-us • 2025-12-23 • Subject to change",
+     "Accessories",
+     "—",
+     "Materials",
+     "belimo_LRB24-3_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Wire colors:",
+     "1 = black",
+     "—",
+     "Materials",
+     "belimo_LRB24-3_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Electrical installation",
+     "AC/DC 24 V, on/off",
+     "V",
+     "Materials",
+     "belimo_LRB24-3_datasheet_en-us.pdf p2"
+    ]
+   ]
+  },
+  {
+   "code": "LVKB24-3",
+   "source": "belimo_LVKB24-3_datasheet_en-us.pdf",
+   "spec": [
+    [
+     "LVKB24-3 • en-us • 2025-12-24 • Subject to change",
+     "On/Off, Floating point, Electronic fail-safe, 24",
+     "V",
+     "—",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage",
+     "AC 24",
+     "V",
+     "Electrical data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage frequency",
+     "50/60",
+     "Hz",
+     "Electrical data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage range",
+     "AC 19.2...28.8",
+     "V",
+     "Electrical data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in operation",
+     "2.5",
+     "W",
+     "Electrical data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in rest position",
+     "1.5",
+     "W",
+     "Electrical data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Transformer sizing",
+     "6",
+     "VA",
+     "Electrical data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Electrical Connection",
+     "18 AWG plenum cable, 1 m, with 1/2\" NPT",
+     "—",
+     "Electrical data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "conduit connector, degree of protection NEMA",
+     "2 / IP54",
+     "—",
+     "Electrical data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Electrical Protection",
+     "actuators are double insulated",
+     "—",
+     "Electrical data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Bridging time (PF)",
+     "2",
+     "s",
+     "Functional data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Pre-charging time",
+     "5...20",
+     "s",
+     "Functional data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Manual override",
+     "4 mm hex crank (shipped w/actuator)",
+     "mm",
+     "Functional data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Stroke",
+     "0.75\" [19 mm]",
+     "mm",
+     "Functional data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Running Time (Motor)",
+     "90 s /",
+     "s",
+     "Functional data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Running time fail-safe",
+     "<35",
+     "s",
+     "Functional data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Sound power level, motor",
+     "55 dB(A)",
+     "dB",
+     "Functional data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Sound power level, fail-safe",
+     "60 dB(A)",
+     "dB",
+     "Functional data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Agency Listing",
+     "cULus acc. to UL60730-1A/-2-14, CAN/CSA",
+     "—",
+     "Safety data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "E60730-1:02, CE acc. to 2014/30/EU and",
+     "2014/35/EU",
+     "—",
+     "Safety data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Ambient temperature",
+     "-22...122°F [-30...50°C]",
+     "—",
+     "Safety data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Storage temperature",
+     "-40...176°F [-40...80°C]",
+     "—",
+     "Safety data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Weight",
+     "3.2 lb [1.5 kg]",
+     "lb",
+     "Technical data",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Wire colors:",
+     "1 = blue",
+     "—",
+     "Materials",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Electrical installation",
+     "AC 24 V, floating point",
+     "V",
+     "Materials",
+     "belimo_LVKB24-3_datasheet_en-us.pdf p2"
+    ]
+   ]
+  }
+ ]
 }

@@ -9,7 +9,7 @@
  "status": "active",
  "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 23점",
  "has": {
-  "spec": false,
+  "spec": true,
   "points": true
  },
  "ede": false,
@@ -218,5 +218,523 @@
   "rate": 1.0,
   "both": 21,
   "diff": []
- }
+ },
+ "variants": [
+  {
+   "code": "LMV-D3-MOD",
+   "source": "belimo_LMV-D3-MOD_datasheet_en-us.pdf",
+   "spec": [
+    [
+     "inch WC [0...500 Pa]",
+     "(0/2...10 V)",
+     "V",
+     "—",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage",
+     "AC/DC 24",
+     "V",
+     "Electrical data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage frequency",
+     "50/60",
+     "Hz",
+     "Electrical data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage range",
+     "AC 19.2...28.8 V / DC 21.6...28.8",
+     "V",
+     "Electrical data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in operation",
+     "2",
+     "W",
+     "Electrical data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in rest position",
+     "1",
+     "W",
+     "Electrical data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Transformer sizing",
+     "4",
+     "VA",
+     "Electrical data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Inrush current",
+     "8.0 A @ 5 ms",
+     "A",
+     "Electrical data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Torque motor",
+     "45 in-lb [5 Nm]",
+     "in-lb",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Operating range Y",
+     "2...10",
+     "V",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Input impedance",
+     "100 kΩ",
+     "—",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Operating range Y variable",
+     "0...10",
+     "V",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Position feedback U",
+     "2...10",
+     "V",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Position feedback U note",
+     "Max. 1",
+     "mA",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Position feedback U variable",
+     "Start point 0...8",
+     "V",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "V'max adjustable",
+     "20...100% of V'nom",
+     "—",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "V'mid adjustable",
+     ">V'min...<V'max",
+     "—",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "V'min adjustable",
+     "0...100% of V'nom (<V'max)",
+     "—",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Angle of rotation",
+     "95°",
+     "—",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Mechanical interface",
+     "Universal shaft clamp 6...20",
+     "mm",
+     "Functional data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Functional Range Differential Pressure",
+     "0...2.0 inch WC [0...500 Pa]",
+     "Pa",
+     "Measuring data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Maximum system pressure",
+     "6 inch WC [1500 Pa]",
+     "Pa",
+     "Measuring data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Burst pressure",
+     "±5",
+     "kPa",
+     "Measuring data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Condition Measuring Air",
+     "32...122°F [0...50°C] / 5...95% RH, non-",
+     "°F",
+     "Measuring data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Pressure tube connection",
+     "Nipple diameter 0.2\" [5.3 mm]",
+     "mm",
+     "Measuring data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Degree of protection IEC/EN",
+     "IP54",
+     "—",
+     "Safety data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Rated impulse voltage supply / control",
+     "0.8 kV",
+     "—",
+     "Safety data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Pollution degree",
+     "3",
+     "—",
+     "Safety data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Ambient temperature",
+     "32...122°F [0...50°C ]",
+     "°F",
+     "Safety data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Storage temperature",
+     "-4...176°F [-20...80°C]",
+     "—",
+     "Safety data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Weight",
+     "1.2 lb [0.55 kg]",
+     "lb",
+     "Safety data",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "remotely via MP connection.",
+     "Accessories",
+     "—",
+     "Safety notes",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p4"
+    ],
+    [
+     "Wire colors:",
+     "1 = black",
+     "—",
+     "Safety notes",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p4"
+    ],
+    [
+     "The switching contact must be",
+     "able to switch a current of 16",
+     "mA",
+     "Safety notes",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p5"
+    ],
+    [
+     "at 24 V accurately.",
+     "Connection with active sensor, e.g. 0...10 V @ 0...50°C",
+     "V",
+     "Safety notes",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p5"
+    ],
+    [
+     "The local override control works",
+     "only with AC 24 V supply.",
+     "V",
+     "Safety notes",
+     "belimo_LMV-D3-MOD_datasheet_en-us.pdf p6"
+    ]
+   ]
+  },
+  {
+   "code": "NMV-D3-MOD",
+   "source": "belimo_NMV-D3-MOD_datasheet_en-us.pdf",
+   "spec": [
+    [
+     "inch WC [0...500 Pa]",
+     "(0/2...10 V)",
+     "V",
+     "—",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage",
+     "AC/DC 24",
+     "V",
+     "Electrical data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage frequency",
+     "50/60",
+     "Hz",
+     "Electrical data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Nominal voltage range",
+     "AC 19.2...28.8 V / DC 21.6...28.8",
+     "V",
+     "Electrical data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in operation",
+     "3",
+     "W",
+     "Electrical data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Power consumption in rest position",
+     "1.5",
+     "W",
+     "Electrical data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Transformer sizing",
+     "5",
+     "VA",
+     "Electrical data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Inrush current",
+     "8.0 A @ 5 ms",
+     "A",
+     "Electrical data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Torque motor",
+     "90 in-lb [10 Nm]",
+     "in-lb",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Operating range Y",
+     "2...10",
+     "V",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Input impedance",
+     "100 kΩ",
+     "—",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Operating range Y variable",
+     "0...10",
+     "V",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Position feedback U",
+     "2...10",
+     "V",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Position feedback U note",
+     "Max. 1",
+     "mA",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Position feedback U variable",
+     "Start point 0...8",
+     "V",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "V'max adjustable",
+     "20...100% of V'nom",
+     "—",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "V'mid adjustable",
+     ">V'min...<V'max",
+     "—",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "V'min adjustable",
+     "0...100% of V'nom (<V'max)",
+     "—",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Angle of rotation",
+     "95°",
+     "—",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Mechanical interface",
+     "Universal shaft clamp 8...26.7",
+     "mm",
+     "Functional data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Functional Range Differential Pressure",
+     "0...2.0 inch WC [0...500 Pa]",
+     "Pa",
+     "Measuring data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Maximum system pressure",
+     "6 inch WC [1500 Pa]",
+     "Pa",
+     "Measuring data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Burst pressure",
+     "±5",
+     "kPa",
+     "Measuring data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Condition Measuring Air",
+     "32...122°F [0...50°C] / 5...95% RH, non-",
+     "°F",
+     "Measuring data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p1"
+    ],
+    [
+     "Pressure tube connection",
+     "Nipple diameter 0.2\" [5.3 mm]",
+     "mm",
+     "Measuring data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Degree of protection IEC/EN",
+     "IP54",
+     "—",
+     "Safety data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Rated impulse voltage supply / control",
+     "0.8 kV",
+     "—",
+     "Safety data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Pollution degree",
+     "3",
+     "—",
+     "Safety data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Ambient temperature",
+     "32...122°F [0...50°C ]",
+     "°F",
+     "Safety data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Storage temperature",
+     "-4...176°F [-20...80°C]",
+     "—",
+     "Safety data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "Weight",
+     "1.8 lb [0.83 kg]",
+     "lb",
+     "Safety data",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p2"
+    ],
+    [
+     "the end stop is reached.",
+     "Accessories",
+     "—",
+     "Safety notes",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p4"
+    ],
+    [
+     "Wire colors:",
+     "1 = black",
+     "—",
+     "Safety notes",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p4"
+    ],
+    [
+     "The switching contact must be",
+     "able to switch a current of 16",
+     "mA",
+     "Safety notes",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p5"
+    ],
+    [
+     "at 24 V accurately.",
+     "Connection with active sensor, e.g. 0...10 V @ 0...50°C",
+     "V",
+     "Safety notes",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p5"
+    ],
+    [
+     "The local override control works",
+     "only with AC 24 V supply.",
+     "V",
+     "Safety notes",
+     "belimo_NMV-D3-MOD_datasheet_en-us.pdf p6"
+    ]
+   ]
+  }
+ ]
 }

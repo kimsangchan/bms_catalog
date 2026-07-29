@@ -13,6 +13,10 @@ enumerate 방식
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 
+# Trane 공개 문서 저장소 — 포인트 리스트와 제품 카탈로그가 같은 곳에 있다.
+ELIB = "https://elibrary.tranetechnologies.com/public/commercial-hvac/Literature/"
+ELIB_CATALOG = ELIB + "Product%20Catalog/"
+
 SOURCES = [
     {
         "id": "trane-points-list",
@@ -191,7 +195,21 @@ SOURCES = [
             "https://www.trane.com/content/dam/Trane/Commercial/lar/literatura/products/"
             "chillers/air-cooled-chillers/sintesis-air-cooled-chiller/english/brochure/"
             "PROD-SLB038-EN_06162020.pdf",
-        ],
+            "https://www.trane.com/content/dam/Trane/Commercial/global/products-systems/"
+            "equipment/chillers/air-cooled/ascend/AC-PRC001G-EN_01302022.pdf",
+            "https://www.trane.com/content/dam/Trane/Commercial/global/products-systems/"
+            "equipment/chillers/water-cooled/helical-rotary/RLC-PRC040F-EN_08302021.pdf",
+        ] + [
+            # 나머지 계열 — elibrary 직링크. 문서번호는 <계열>-PRC###<개정>-EN_<날짜>
+            ELIB_CATALOG + n for n in [
+                "RLC-PRC029P-EN_10312025.pdf",    # Series R RTWD 수랭 스크류
+                "RLC-PRC020M-EN_06012025.pdf",    # Series R 수랭 (RTHD 최신판)
+                "CG-PRC017AA-EN_04302026.pdf",    # CGAM 공랭 스크롤
+                "AC-PRC002K-EN_05162025.pdf",     # Ascend ACS/ACX 공랭
+                "AC-PRC002G-EN_06022023.pdf",     # Ascend ACS/ACX (구판)
+                "AC-PRC005C-EN_12132024.pdf",     # Ascend ACR
+                "HDWA-PRC004D-EN_05262025.pdf",   # Agility 마그네틱 원심 (HDWA)
+            ]],
         "extractor": "spec",
         "access": "무로그인",
     },
@@ -231,8 +249,19 @@ SOURCES = [
         "urls": [
             "https://www.belimo.com/mam/general-documents/datasheets/en-us/"
             "belimo_%s_datasheet_en-us.pdf" % n
-            for n in ["LMB24-3", "LMB24-SR", "LMB24-3-T", "NMQB24-MFT", "TFB24-S",
-                      "FSAF24A", "LF24-S_US", "GMB24-3", "AMB24-3", "NMB24-3"]
+            for n in [
+                # 댐퍼 구동기 (비스프링)
+                "LMB24-3", "LMB24-SR", "LMB24-3-T", "NMQB24-MFT", "GMB24-3",
+                "AMB24-3", "NMB24-3", "GMX24-MFT", "AMX24-MFT", "NMX24-MFT",
+                "LMX24-MFT",
+                # 스프링리턴 (방화·비상 복귀)
+                "TFB24-S", "FSAF24A", "LF24-S_US", "AFB24-SR", "NFB24-SR",
+                "AFX24-MFT", "NFX24-MFT",
+                # 밸브 구동기
+                "LRB24-3", "ARB24-3", "AFRB24-SR", "LVKB24-3",
+                # VAV 컴팩트 — 통신형 유량제어
+                "LMV-D3-MOD", "NMV-D3-MOD",
+            ]
         ],
         "extractor": "spec",
         "access": "헤더 필요",

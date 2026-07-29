@@ -1,0 +1,2471 @@
+{
+ "id": "schneider-powerlogic-pm5300",
+ "equipId": "e19",
+ "vendor": "Schneider Electric",
+ "model": "PowerLogic PM5300",
+ "name": "PowerLogic™ PM5300 전력 계측기",
+ "cat": "ELEC.METER",
+ "tag": "elecMeter",
+ "status": "active",
+ "summary": "사용자 매뉴얼에서 정격 사양을 취입했다. **통신 맵(레지스터 목록)은 아직 없다** — 정본이 xls/xlsx 라 별도 취입이 필요하다.",
+ "has": {
+  "spec": true,
+  "points": false
+ },
+ "ede": false,
+ "spec": [],
+ "comm": [
+  [
+   "Modbus",
+   "레지스터 목록 공개 (xls)",
+   "RS-485 · TCP",
+   "se.com FA234017"
+  ],
+  [
+   "BACnet",
+   "MS/TP 옵션",
+   "RS-485",
+   "User manual"
+  ]
+ ],
+ "io": [],
+ "elec": null,
+ "points": [],
+ "gap": "레지스터 목록 정본이 xls 라 통신 맵이 비어 있다 — 표 계열 취입기가 필요하다.",
+ "extractor": "spec",
+ "sourceDoc": null,
+ "classifiedBy": "표지 제품명 근거: 'PowerLogic'",
+ "specTables": [
+  {
+   "title": "The PowerLogic™PM5300 power and energy meters offer value for the demanding needs of your ",
+   "page": 13,
+   "orientation": "row",
+   "header": [
+    "Fast installation, panel mount with integrated display",
+    "PM5310 ✔",
+    "PM5320 ✔",
+    "PM5330 PM5331 ✔",
+    "PM5340 PM5341 ✔"
+   ],
+   "quantities": [
+    null,
+    "pressure",
+    "power",
+    null,
+    "power",
+    "power",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Accuracy IEC 61557-12: 2021, BS/ EN 61557-12",
+     "Cl 0.5S",
+     "Cl 0.5S",
+     "Cl 0.5S",
+     "Cl 0.5S"
+    ],
+    [
+     "Display Backlit LCD, multilingual, bar graphs, 6 lines, 4 concurrent values",
+     "✔",
+     "✔",
+     "✔",
+     "✔"
+    ],
+    [
+     "Power and energy metering: 3-phase voltage, current, power, demand, energy, frequency, power factor",
+     "✔",
+     "✔",
+     "✔",
+     "✔"
+    ],
+    [
+     "Multi-tariff",
+     "4",
+     "4",
+     "4",
+     "4"
+    ],
+    [
+     "Power quality analysis: THD, thd, TDD",
+     "✔",
+     "✔",
+     "✔",
+     "✔"
+    ],
+    [
+     "Power quality analysis: Harmonics, individual (odd) up to",
+     "31st",
+     "31st",
+     "31st",
+     "31st"
+    ],
+    [
+     "I/O",
+     "2SI/2DO",
+     "2SI/2DO",
+     "2SI/2DO",
+     "2SI/2DO"
+    ],
+    [
+     "Relays",
+     "—",
+     "—",
+     "2",
+     "2"
+    ],
+    [
+     "Alarms",
+     "35",
+     "35",
+     "35",
+     "35"
+    ],
+    [
+     "Setpoint response time, seconds",
+     "1",
+     "1",
+     "1",
+     "1"
+    ],
+    [
+     "Single and multi-condition alarms",
+     "✔",
+     "✔",
+     "✔",
+     "✔"
+    ],
+    [
+     "Communications: Serial ports with Modbus protocol",
+     "1",
+     "—",
+     "1",
+     "—"
+    ],
+    [
+     "Communications: Ethernet port with Modbus TCP and BACnet/IP",
+     "—",
+     "1",
+     "—",
+     "1"
+    ],
+    [
+     "MID/MIR-ready compliance",
+     "—",
+     "—",
+     "PM5331",
+     "PM5341"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Demand values",
+   "page": 14,
+   "orientation": "column",
+   "header": [
+    "Current average1",
+    "Present, Last, Predicted, Peak, and Peak Date Time"
+   ],
+   "quantities": [
+    "current",
+    null
+   ],
+   "rows": [
+    [
+     "Active power1",
+     "Present, Last, Predicted, Peak, and Peak Date Time"
+    ],
+    [
+     "Reactive power1",
+     "Present, Last, Predicted, Peak, and Peak Date Time"
+    ],
+    [
+     "Apparent power1",
+     "Present, Last, Predicted, Peak, and Peak Date Time"
+    ],
+    [
+     "Demand calculation (Sliding, fixed and rolling block, thermal methods)",
+     "✔"
+    ],
+    [
+     "Synchronization of the measurement window to input, communication command or internal clock",
+     "✔"
+    ],
+    [
+     "Configurable demand intervals",
+     "✔"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Meter description",
+   "page": 17,
+   "orientation": "column",
+   "header": [
+    "A Relay outputs (Relay1, Relay2) (Only in PM5330 / PM5331 / PM5340 / PM5341) B Voltage inputs (V1, V2, V3, VN) C Control power (auxiliary power) (L1, L2) D Current inputs (I1+, I1-, I2+, I2-, I3+, I3-) E Status inputs/Digital outputs (D1+, D2+, S1+, S2+, -/C, +) F Communication port: RS-485 (+, -, , C) (Only in PM5310 / PM5330 / PM5331) Ethernet (Only in PM5320 / PM5340 / PM5341) G Gasket H Alarm / energy pulsing LED I Heartbeat / serial communications LED J Navigation / menu selection buttons H I J",
+    "A B",
+    "Relay outputs (Relay1, Relay2) (Only in PM5330 / PM5331 / PM5340 / PM5341) Voltage inputs (V1, V2, V3, VN)"
+   ],
+   "quantities": [
+    "power",
+    "current",
+    "voltage"
+   ],
+   "rows": [
+    [
+     "",
+     "C",
+     "Control power (auxiliary power) (L1, L2)"
+    ],
+    [
+     "",
+     "D",
+     "Current inputs (I1+, I1-, I2+, I2-, I3+, I3-)"
+    ],
+    [
+     "",
+     "E",
+     "Status inputs/Digital outputs (D1+, D2+, S1+, S2+, -/C, +)"
+    ],
+    [
+     "",
+     "F",
+     "Communication port: RS-485 (+, -, , C) (Only in PM5310 / PM5330 / PM5331) Ethernet (Only in PM5320 / PM5340 / PM5341)"
+    ],
+    [
+     "",
+     "G",
+     "Gasket"
+    ],
+    [
+     "",
+     "H",
+     "Alarm / energy pulsing LED"
+    ],
+    [
+     "",
+     "I",
+     "Heartbeat / serial communications LED"
+    ],
+    [
+     "",
+     "J",
+     "Navigation / menu selection buttons"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "If your system voltage is greater than the specified direct connect maximum voltage, you m",
+   "page": 19,
+   "orientation": "column",
+   "header": [
+    "Power system description",
+    "Meter setting",
+    "Symbol",
+    "Direct connect maximum (UL)",
+    "Direct connect maximum (IEC)",
+    "# of VTs (if required)"
+   ],
+   "quantities": [
+    "power",
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Single-phase 2-wire line-to-neutral",
+     "1PH2W LN",
+     "",
+     "347 V L-N",
+     "400 V L-N",
+     "1 VT"
+    ],
+    [
+     "Single-phase 2-wire line-to-line",
+     "1PH2W LL",
+     "",
+     "600 V L-L",
+     "690 V L-L",
+     "1 VT"
+    ],
+    [
+     "Single-phase 3-wire line-to-line with neutral",
+     "1PH3W LL with N",
+     "",
+     "347 V L-N / 600 V L-L",
+     "400 V L-N / 690 V L-L",
+     "2 VT"
+    ],
+    [
+     "3-phase 3-wire Delta ungrounded",
+     "3PH3W Dlt Ungnd",
+     "",
+     "600 V L-L",
+     "600 V L-L",
+     "2 VT"
+    ],
+    [
+     "3-phase 3-wire Delta corner grounded",
+     "3PH3W Dlt Crnr Gnd",
+     "",
+     "600 V L-L",
+     "600 V L-L",
+     "2 VT"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "PowerLogic™PM5300 series Hardware reference",
+   "page": 20,
+   "orientation": "column",
+   "header": [
+    "Power system description",
+    "Meter setting",
+    "Symbol",
+    "Direct connect maximum (UL)",
+    "Direct connect maximum (IEC)",
+    "# of VTs (if required)"
+   ],
+   "quantities": [
+    "power",
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "3-phase 3-wire Wye ungrounded",
+     "3PH3W Wye Ungnd",
+     "",
+     "347 V L-N / 600 V L-L",
+     "400 V L-N / 690 V L-L",
+     "2 VT"
+    ],
+    [
+     "3-phase 3-wire Wye grounded",
+     "3PH3W Wye Gnd",
+     "",
+     "347 V L-N / 600 V L-L",
+     "400 V L-N / 690 V L-L",
+     "2 VT"
+    ],
+    [
+     "3-phase 3-wire Wye resistance-grounded",
+     "3PH3W Wye Res Gnd",
+     "",
+     "347 V L-N / 600 V L-L",
+     "400 V L-N / 690 V L-L",
+     "2 VT"
+    ],
+    [
+     "3-phase 4-wire open Delta center-tapped",
+     "3PH4W Opn Dlt Ctr Tp",
+     "N",
+     "347 V L-N / 600 V L-L",
+     "400 V L-N / 690 V L-L",
+     "3 VT"
+    ],
+    [
+     "3-phase 4-wire Delta center-tapped",
+     "3PH4W Dlt Ctr Tp",
+     "N",
+     "347 V L-N / 600 V L-L",
+     "400 V L-N / 690 V L-L",
+     "3 VT"
+    ],
+    [
+     "3-phase 4-wire ungrounded Wye",
+     "3PH4W Wye Ungnd",
+     "",
+     "347 V L-N / 600 V L-L",
+     "400 V L-N / 690 V L-L",
+     "3 VTor 2 VT"
+    ],
+    [
+     "3-phase 4-wire grounded Wye",
+     "3PH4W Wye Gnd",
+     "N",
+     "347 V L-N / 600 V L-L",
+     "400 V L-N / 690 V L-L",
+     "3 VTor 2 VT"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Hardware reference PowerLogic™PM5300 series",
+   "page": 21,
+   "orientation": "column",
+   "header": [
+    "Power system description",
+    "Meter setting",
+    "Symbol",
+    "Direct connect maximum (UL)",
+    "Direct connect maximum (IEC)",
+    "# of VTs (if required)"
+   ],
+   "quantities": [
+    "power",
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "3-phase 4-wire resistance-grounded Wye",
+     "3PH4W Wye Res Gnd",
+     "N",
+     "347 V L-N / 600 V L-L",
+     "400 V L-N / 690 V L-L",
+     "3 VTor 2 VT"
+    ],
+    [
+     "NOTE: • Use a 500 mA fuse or a circuit breaker for the meter voltage input terminals. • Use a shorting block between the current transformer (CT) and the meter current input terminals. • Use primary fuses and disconnect switch to protect the potential transformer (PT).",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Harm",
+   "page": 29,
+   "orientation": "column",
+   "header": [
+    "V L-L [U] • 3-11, 13-21, 23-31",
+    "Line-to-line voltage harmonics data: Numeric magnitude and angle for the fundamental harmonic, and graphical representation of harmonics for the 3rd to 11th, 13th to 21st, and 23rd to 31st odd harmonics for each line-to-line phase voltage."
+   ],
+   "quantities": [
+    "voltage",
+    "voltage"
+   ],
+   "rows": [
+    [
+     "V L-N [V] • 3-11, 13-21, 23-31",
+     "Line-to-neutral voltage harmonics data: Numeric magnitude and angle for the fundamental harmonic, and graphical representation of harmonics for the 3rd to 11th, 13th to 21st, and 23rd to 31st odd harmonics for each line-to-neutral phase voltage."
+    ],
+    [
+     "Amps [I] • 3-11, 13-21, 23-31",
+     "Current harmonics data: Numeric magnitude and angle for the fundamental harmonics, and graphical representation of harmonics for the 3rd to 11th, 13th to 21st, and 23rd to 31st odd harmonics for each phase current."
+    ],
+    [
+     "TDD",
+     "Total demand distortion each phase voltage."
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Basic setup parameters available using the display",
+   "page": 34,
+   "orientation": "column",
+   "header": [
+    "Values Power System Select the power system type (power transformer) the meter is wired to.",
+    "Description"
+   ],
+   "quantities": [
+    "power",
+    null
+   ],
+   "rows": [
+    [
+     "1PH2W LN",
+     "Single-phase 2-wire line-to-neutral"
+    ],
+    [
+     "1PH2W LL",
+     "Single-phase 2-wire line-to-line"
+    ],
+    [
+     "1PH3W LL with N",
+     "Single-phase 3-wire line-to-line with neutral"
+    ],
+    [
+     "3PH3W Dlt Ungnd",
+     "3-phase 3-wire ungrounded delta"
+    ],
+    [
+     "3PH3W Dlt Crnr Gnd",
+     "3-phase 3-wire corner grounded delta"
+    ],
+    [
+     "3PH3W Wye Ungnd",
+     "3-phase 3-wire ungrounded wye"
+    ],
+    [
+     "3PH3W Wye Gnd",
+     "3-phase 3-wire grounded wye"
+    ],
+    [
+     "3PH3W Wye Res Gnd",
+     "3-phase 3-wire resistance-grounded wye"
+    ],
+    [
+     "3PH4W Opn Dlt Ctr Tp",
+     "3-phase 4-wire center-tapped open delta"
+    ],
+    [
+     "3PH4W Dlt Ctr Tp",
+     "3-phase 4-wire center-tapped delta"
+    ],
+    [
+     "3PH4W Wye Ungnd",
+     "3-phase 4-wire ungrounded wye"
+    ],
+    [
+     "3PH4W Wye Gnd",
+     "3-phase 4-wire grounded wye"
+    ],
+    [
+     "3PH4W Wye Res Gnd",
+     "3-phase 4-wire resistance-grounded wye"
+    ],
+    [
+     "VT Connect Select how many voltage transformers (VT) are connected to the electrical power system.",
+     ""
+    ],
+    [
+     "Direct Con",
+     "Direct connect; no VTs used"
+    ],
+    [
+     "2VT",
+     "2 voltage transformers"
+    ],
+    [
+     "3VT",
+     "3 voltage transformers"
+    ],
+    [
+     "VT Primary (V)",
+     ""
+    ],
+    [
+     "1 to 1,000,000",
+     "Enter the size of the VT primary, in Volts."
+    ],
+    [
+     "VT Secondary (V)",
+     ""
+    ],
+    [
+     "100, 110, 115, 120",
+     "Select the size of the VT secondary, in Volts."
+    ],
+    [
+     "CT on Terminal Define how many current transformers (CT) are connected to the meter, and which terminals they are connected to.",
+     ""
+    ],
+    [
+     "I1",
+     "1 CTconnected to I1 terminal"
+    ],
+    [
+     "I2",
+     "1 CTconnected to I2 terminal"
+    ],
+    [
+     "I3",
+     "1 CTconnected to I3 terminal"
+    ],
+    [
+     "I1 I2",
+     "2 CTconnected to I1, I2 terminals"
+    ],
+    [
+     "I1 I3",
+     "2 CTconnected to I1, I3 terminals"
+    ],
+    [
+     "I2 I3",
+     "2 CTconnected to I2, I3 terminals"
+    ],
+    [
+     "I1 I2 I3",
+     "3 CTconnected to I1, I2, I3 terminals"
+    ],
+    [
+     "CT Primary (A)",
+     ""
+    ],
+    [
+     "1 to 32767",
+     "Enter the size of the CT primary, in Amps."
+    ],
+    [
+     "CT Secondary (A)",
+     ""
+    ],
+    [
+     "1, 5",
+     "Select the size of the CTsecondary, in Amps."
+    ],
+    [
+     "Sys Frequency (Hz)",
+     ""
+    ],
+    [
+     "50, 60",
+     "Select the frequency of the electrical power system, in Hz."
+    ],
+    [
+     "Phase Rotation",
+     ""
+    ],
+    [
+     "ABC, CBA",
+     "Select the phase rotation of the 3-phase system."
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Advanced setup parameters available using the display",
+   "page": 35,
+   "orientation": "column",
+   "header": [
+    "Parameter Label",
+    "Values —",
+    "Description This label identifies the device, e.g., “Power Meter”. You cannot use the display to edit this parameter. Use ION Setup to change the device label."
+   ],
+   "quantities": [
+    null,
+    null,
+    "power"
+   ],
+   "rows": [
+    [
+     "Load Timer Setpt (A)",
+     "0 - 18",
+     "Specifies the minimum average current at the load before the timer starts. The meter begins counting the number of seconds the load timer is on (i.e., whenever the readings are equal to or above this average current threshold."
+    ],
+    [
+     "Pk I dmd for TDD (A)",
+     "0 - 18",
+     "Specifies the minimum peak current demand at the load for inclusion in total demand distortion (TDD) calculations. If the load current is below the minimum peak current demand threshold, the meter does not use the readings to calculate TDD. Set this to “0” (zero) if you want the power meter to use the metered peak current demand for this calculation."
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "8. Press Yes to save your changes.",
+   "page": 38,
+   "orientation": "column",
+   "header": [
+    "Parameter Date",
+    "Values DD/MM/YY MM/DD/YY YY/MM/DD",
+    "Description Set the current date using the format displayed on screen, where DD = day, MM = month and YY = year."
+   ],
+   "quantities": [
+    null,
+    "dimension",
+    "current"
+   ],
+   "rows": [
+    [
+     "Time",
+     "HH:MM:SS (24 hour format) HH:MM:SS AM or PM",
+     "Use the 24-hour format to set the current time in UTC (GMT)."
+    ],
+    [
+     "Meter Time",
+     "GMT, Local",
+     "Select GMT if you set the current time to Greenwich Mean Time zone. Otherwise, select Local."
+    ],
+    [
+     "GMT Offset (h) 1",
+     "± HH.0",
+     "Available only when Meter Time is set to Local. Set the GMT Offset between ± 00.0 and ± 12.0"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "7. Press the up arrow to exit. Press Yes to save your changes.",
+   "page": 45,
+   "orientation": "column",
+   "header": [
+    "Parameter Protocol",
+    "Values Modbus",
+    "Description Select the communications format used to transmit data. The protocol must be the same for all devices in a communications loop."
+   ],
+   "quantities": [
+    null,
+    null,
+    "current"
+   ],
+   "rows": [
+    [
+     "Address",
+     "1 to 247",
+     "Set the address for this device. The address must be unique for each device in a communications loop. For Jbus protocol, set the device ID to 255."
+    ],
+    [
+     "Baud Rate",
+     "9600, 19200, 38400",
+     "Select the speed for data transmission. The baud rate must be the same for all devices in a communications loop"
+    ],
+    [
+     "Parity",
+     "Even, Odd, None",
+     "Select None if the parity bit is not used. The parity setting must be the same for all devices in a communications loop."
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Foreign device settings available using the display",
+   "page": 50,
+   "orientation": "column",
+   "header": [
+    "Parameter BBMD Status",
+    "Values Enabled, Disabled",
+    "Description Enable or disabled registration of the meter as a foreign device."
+   ],
+   "quantities": [
+    null,
+    null,
+    "current"
+   ],
+   "rows": [
+    [
+     "BBMD IP",
+     "Contact your local network administrator for parameter values.",
+     "Enter the IP address of the BACnet/IP Broadcast Management Device (BBMD), if you use a BBMD on your network."
+    ],
+    [
+     "BBMD Port",
+     "1024 – 65535",
+     "Enter the port number that is used for communications with the BBMD. The default is the standard BACnet/IP port (47808)"
+    ],
+    [
+     "BBMD TTL (sec)",
+     "0 – 65535",
+     "The length of time (in seconds) the BBMD keeps an entry for this device in its foreign device table."
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Real-time measurements",
+   "page": 52,
+   "orientation": "column",
+   "header": [
+    "Object ID 3000",
+    "Object name Current - Ph A",
+    "Units A",
+    "Default COV 50",
+    "Description Current phase A"
+   ],
+   "quantities": [
+    null,
+    "current",
+    "current",
+    null,
+    "current"
+   ],
+   "rows": [
+    [
+     "3002",
+     "Current - Ph B",
+     "A",
+     "50",
+     "Current phase B"
+    ],
+    [
+     "3004",
+     "Current - Ph C",
+     "A",
+     "50",
+     "Current phase C"
+    ],
+    [
+     "3006",
+     "Current - Neutral",
+     "A",
+     "50",
+     "Neutral current"
+    ],
+    [
+     "3008",
+     "Current - Ground",
+     "A",
+     "50",
+     "Ground current"
+    ],
+    [
+     "3010",
+     "Current - Avg",
+     "A",
+     "50",
+     "Current average"
+    ],
+    [
+     "3012",
+     "Current Unb - Ph A",
+     "%",
+     "20",
+     "Current unbalance phase A"
+    ],
+    [
+     "3014",
+     "Current Unb - Ph B",
+     "%",
+     "20",
+     "Current unbalance phase B"
+    ],
+    [
+     "3016",
+     "Current Unb - Ph C",
+     "%",
+     "20",
+     "Current unbalance phase C"
+    ],
+    [
+     "3018",
+     "Current Unb - Worst",
+     "%",
+     "20",
+     "Current unbalance worst"
+    ],
+    [
+     "3020",
+     "Voltage - A-B",
+     "V",
+     "10",
+     "Voltage A-B"
+    ],
+    [
+     "3022",
+     "Voltage - B-C",
+     "V",
+     "10",
+     "Voltage B-C"
+    ],
+    [
+     "3024",
+     "Voltage - C-A",
+     "V",
+     "10",
+     "Voltage C-A"
+    ],
+    [
+     "3026",
+     "Voltage - Avg L-L",
+     "V",
+     "10",
+     "Voltage L-L Avg"
+    ],
+    [
+     "3028",
+     "Voltage - A-N",
+     "V",
+     "10",
+     "Voltage A-N"
+    ],
+    [
+     "3030",
+     "Voltage - B-N",
+     "V",
+     "10",
+     "Voltage B-N"
+    ],
+    [
+     "3032",
+     "Voltage - C-N",
+     "V",
+     "10",
+     "Voltage C-N"
+    ],
+    [
+     "3036",
+     "Voltage - Avg L-N",
+     "V",
+     "10",
+     "Voltage L-N Avg"
+    ],
+    [
+     "3038",
+     "Voltage Unb - A-B",
+     "%",
+     "20",
+     "Voltage unbalance A-B"
+    ],
+    [
+     "3040",
+     "Voltage Unb - B-C",
+     "%",
+     "20",
+     "Voltage unbalance B-C"
+    ],
+    [
+     "3042",
+     "Voltage Unb - C-A",
+     "%",
+     "20",
+     "Voltage unbalance C-A"
+    ],
+    [
+     "3044",
+     "Voltage Unb - Worst L-L",
+     "%",
+     "20",
+     "Voltage unbalance L-L worst"
+    ],
+    [
+     "3046",
+     "Voltage Unb - A-N",
+     "%",
+     "20",
+     "Voltage unbalance A-N"
+    ],
+    [
+     "3048",
+     "Voltage Unb - B-N",
+     "%",
+     "20",
+     "Voltage unbalance B-N"
+    ],
+    [
+     "3050",
+     "Voltage Unb - C-N",
+     "%",
+     "20",
+     "Voltage unbalance C-N"
+    ],
+    [
+     "3052",
+     "Voltage Unb - Worst L-N",
+     "%",
+     "20",
+     "Voltage unbalance L-N worst"
+    ],
+    [
+     "3110",
+     "Frequency",
+     "Hz",
+     "10",
+     "Frequency"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Power and power factor",
+   "page": 52,
+   "orientation": "column",
+   "header": [
+    "Object ID 3054",
+    "Object name Active Power - Ph A",
+    "Units kW",
+    "Default COV 10",
+    "Description Active power phase A"
+   ],
+   "quantities": [
+    null,
+    "power",
+    "power",
+    null,
+    "power"
+   ],
+   "rows": [
+    [
+     "3056",
+     "Active Power - Ph B",
+     "kW",
+     "10",
+     "Active power phase B"
+    ],
+    [
+     "3058",
+     "Active Power - Ph C",
+     "kW",
+     "10",
+     "Active power phase C"
+    ],
+    [
+     "3060",
+     "Active Power - Total",
+     "kW",
+     "10",
+     "Active power total"
+    ],
+    [
+     "3062",
+     "Reactive Power - Ph A",
+     "kVAR",
+     "10",
+     "Reactive power phase A"
+    ],
+    [
+     "3064",
+     "Reactive Power - Ph B",
+     "kVAR",
+     "10",
+     "Reactive power phase B"
+    ],
+    [
+     "3066",
+     "Reactive Power - Ph C",
+     "kVAR",
+     "10",
+     "Reactive power phase C"
+    ],
+    [
+     "3068",
+     "Reactive Power - Total",
+     "kVAR",
+     "10",
+     "Reactive power total"
+    ],
+    [
+     "3070",
+     "Apparent Power - Ph A",
+     "kVA",
+     "10",
+     "Apparent power phase A"
+    ],
+    [
+     "3072",
+     "Apparent Power - Ph B",
+     "kVA",
+     "10",
+     "Apparent power phase B"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Communications PowerLogic™PM5300 series",
+   "page": 53,
+   "orientation": "column",
+   "header": [
+    "Object ID 3074",
+    "Object name Apparent Power - Ph C",
+    "Units kVA",
+    "Default COV 10",
+    "Description Apparent power phase C"
+   ],
+   "quantities": [
+    null,
+    "power",
+    null,
+    null,
+    "power"
+   ],
+   "rows": [
+    [
+     "3076",
+     "Apparent Power - Total",
+     "kVA",
+     "10",
+     "Apparent power total"
+    ],
+    [
+     "3078",
+     "Power Factor - Ph A",
+     "—",
+     "0.2",
+     "Power factor phase A"
+    ],
+    [
+     "3080",
+     "Power Factor - Ph B",
+     "—",
+     "0.2",
+     "Power factor phase B"
+    ],
+    [
+     "3082",
+     "Power Factor - Ph C",
+     "—",
+     "0.2",
+     "Power factor phase C"
+    ],
+    [
+     "3084",
+     "Power Factor - Total",
+     "—",
+     "0.2",
+     "Power Factor Total"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Power demand",
+   "page": 53,
+   "orientation": "column",
+   "header": [
+    "Object ID 3764",
+    "Object name Dmd - Active Power Last",
+    "Units kW",
+    "Default COV 10",
+    "Description Demand - Active power last"
+   ],
+   "quantities": [
+    null,
+    "power",
+    "power",
+    null,
+    "power"
+   ],
+   "rows": [
+    [
+     "3766",
+     "Dmd - Active Power Present",
+     "kW",
+     "10",
+     "Demand - Active power present"
+    ],
+    [
+     "3768",
+     "Dmd - Active Power Pred",
+     "kW",
+     "10",
+     "Demand - Active power predicted"
+    ],
+    [
+     "3770",
+     "Dmd - Active Power Peak",
+     "kW",
+     "10",
+     "Demand - Active power peak"
+    ],
+    [
+     "3780",
+     "Dmd - Reactive Power Last",
+     "kVAR",
+     "10",
+     "Demand - Reactive power last"
+    ],
+    [
+     "3782",
+     "Dmd - Reactive Power Present",
+     "kVAR",
+     "10",
+     "Demand - Reactive power present"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "PowerLogic™PM5300 series Communications",
+   "page": 54,
+   "orientation": "column",
+   "header": [
+    "Object ID 3784",
+    "Object name Dmd - Reactive Power Pred",
+    "Units kVAR",
+    "Default COV 10",
+    "Description Demand - Reactive power predicted"
+   ],
+   "quantities": [
+    null,
+    "power",
+    null,
+    null,
+    "power"
+   ],
+   "rows": [
+    [
+     "3786",
+     "Dmd - Reactive Power Peak",
+     "kVAR",
+     "10",
+     "Demand - Reactive power peak"
+    ],
+    [
+     "3796",
+     "Dmd - Apparent Power Last",
+     "kVA",
+     "10",
+     "Demand - Apparent power last"
+    ],
+    [
+     "3798",
+     "Dmd - Apparent Power Present",
+     "kVA",
+     "10",
+     "Demand - Apparent power present"
+    ],
+    [
+     "3800",
+     "Dmd - Apparent Power Pred",
+     "kVA",
+     "10",
+     "Demand - Apparent power predicted"
+    ],
+    [
+     "3802",
+     "Dmd - Apparent Power Peak",
+     "kVA",
+     "10",
+     "Demand - Apparent power peak"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Current demand",
+   "page": 54,
+   "orientation": "column",
+   "header": [
+    "Object ID 3876",
+    "Object name Dmd - Average Current Last",
+    "Units A",
+    "Default COV 10",
+    "Description Demand - Average current last"
+   ],
+   "quantities": [
+    null,
+    "current",
+    "current",
+    null,
+    "current"
+   ],
+   "rows": [
+    [
+     "3878",
+     "Dmd - Avg Current Present",
+     "A",
+     "10",
+     "Demand - Average current present"
+    ],
+    [
+     "3880",
+     "Dmd - Average Current Pred",
+     "A",
+     "10",
+     "Demand - Average current predicted"
+    ],
+    [
+     "3882",
+     "Dmd - Average Current Peak",
+     "A",
+     "10",
+     "Demand - Average current peak"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Power quality",
+   "page": 54,
+   "orientation": "column",
+   "header": [
+    "Object ID 21300",
+    "Object name THD Current - Ph A",
+    "Units %",
+    "Default COV 20",
+    "Description THD Current A"
+   ],
+   "quantities": [
+    null,
+    "current",
+    null,
+    null,
+    "current"
+   ],
+   "rows": [
+    [
+     "21302",
+     "THD Current - Ph B",
+     "%",
+     "20",
+     "THD Current B"
+    ],
+    [
+     "21304",
+     "THD Current - Ph C",
+     "%",
+     "20",
+     "THD Current C"
+    ],
+    [
+     "21306",
+     "THD Current - Ph N",
+     "%",
+     "20",
+     "THD Current N"
+    ],
+    [
+     "21308",
+     "THD Current - Ph G",
+     "%",
+     "20",
+     "THD Current G"
+    ],
+    [
+     "21310",
+     "thd Current - Ph A",
+     "%",
+     "20",
+     "thd Current A"
+    ],
+    [
+     "21312",
+     "thd Current - Ph B",
+     "%",
+     "20",
+     "thd Current B"
+    ],
+    [
+     "21314",
+     "thd Current - Ph C",
+     "%",
+     "20",
+     "thd Current C"
+    ],
+    [
+     "21316",
+     "thd Current - Ph N",
+     "%",
+     "20",
+     "thd Current N"
+    ],
+    [
+     "21318",
+     "thd Current - Ph G",
+     "%",
+     "20",
+     "thd Current G"
+    ],
+    [
+     "21320",
+     "Total Dmd Distortion",
+     "%",
+     "20",
+     "Total Demand Distortion"
+    ],
+    [
+     "21322",
+     "THD Voltage - A-B",
+     "%",
+     "20",
+     "THD Voltage A-B"
+    ],
+    [
+     "21324",
+     "THD Voltage - B-C",
+     "%",
+     "20",
+     "THD Voltage B-C"
+    ],
+    [
+     "21326",
+     "THD Voltage - C-A",
+     "%",
+     "20",
+     "THD Voltage C-A"
+    ],
+    [
+     "21328",
+     "THD Voltage - Avg L-L",
+     "%",
+     "20",
+     "THD Voltage L-L"
+    ],
+    [
+     "21330",
+     "THD Voltage - A-N",
+     "%",
+     "20",
+     "THD Voltage A-N"
+    ],
+    [
+     "21332",
+     "THD Voltage - B–N",
+     "%",
+     "20",
+     "THD Voltage B-N"
+    ],
+    [
+     "21334",
+     "THD Voltage - C-N",
+     "%",
+     "20",
+     "THD Voltage C-N"
+    ],
+    [
+     "21338",
+     "THD Voltage - Avg L-N",
+     "%",
+     "20",
+     "THD Voltage L-N"
+    ],
+    [
+     "21340",
+     "thd Voltage - A-B",
+     "%",
+     "20",
+     "thd Voltage A-B"
+    ],
+    [
+     "21342",
+     "thd Voltage - B-C",
+     "%",
+     "20",
+     "thd Voltage B-C"
+    ],
+    [
+     "21344",
+     "thd Voltage - C-A",
+     "%",
+     "20",
+     "thd Voltage C-A"
+    ],
+    [
+     "21346",
+     "thd Voltage - Avg L-L",
+     "%",
+     "20",
+     "thd Voltage L-L"
+    ],
+    [
+     "21348",
+     "thd Voltage - A-N",
+     "%",
+     "20",
+     "thd Voltage A-N"
+    ],
+    [
+     "21350",
+     "thd Voltage - B-N",
+     "%",
+     "20",
+     "thd Voltage B-N"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "NOTE: You can access the meter’s configuration information over BACnet communications. How",
+   "page": 55,
+   "orientation": "column",
+   "header": [
+    "Object ID 2000",
+    "Object name Time since last meter power up",
+    "Units Seconds",
+    "Default COV 604800",
+    "Description Time since the meter was last powered up"
+   ],
+   "quantities": [
+    null,
+    "power",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "2004",
+     "Meter operation timer",
+     "Seconds",
+     "604800",
+     "Total meter operation time"
+    ],
+    [
+     "2014",
+     "Number of phases",
+     "—",
+     "1",
+     "Number of phases 1, 3"
+    ],
+    [
+     "2015",
+     "Number of wires",
+     "—",
+     "1",
+     "Number of wires 2, 3, 4"
+    ],
+    [
+     "2017",
+     "Nominal frequency",
+     "Hz",
+     "1",
+     "Nominal frequency 50, 60"
+    ],
+    [
+     "2025",
+     "Number of VTs",
+     "—",
+     "1",
+     "Number of VTs 0, 2, 3"
+    ],
+    [
+     "2026",
+     "VT primary",
+     "V",
+     "1",
+     "VT Primary"
+    ],
+    [
+     "2028",
+     "VTsecondary",
+     "V",
+     "1",
+     "VT Secondary"
+    ],
+    [
+     "2029",
+     "Number of CTs",
+     "—",
+     "1",
+     "Number of CTs 1, 2, 3"
+    ],
+    [
+     "2030",
+     "CT primary",
+     "A",
+     "1",
+     "CT Primary"
+    ],
+    [
+     "2031",
+     "CTsecondary",
+     "A",
+     "1",
+     "CT Secondary"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "EV1 EV2",
+   "page": 72,
+   "orientation": "column",
+   "header": [
+    "A",
+    "Pickup setpoint (1 = ON)",
+    "ΔT2",
+    "Dropout time delay (in seconds)"
+   ],
+   "quantities": [
+    "current",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "B",
+     "Dropout setpoint (0 = OFF)",
+     "EV2",
+     "End of alarm condition"
+    ],
+    [
+     "ΔT1",
+     "Pickup time delay (in seconds)",
+     "ΔT3",
+     "Alarm duration (in seconds)"
+    ],
+    [
+     "EV1",
+     "Start of alarm condition",
+     "",
+     ""
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "When the value rises above the pickup setpoint setting and remains there long enough to sa",
+   "page": 73,
+   "orientation": "column",
+   "header": [
+    "A Pickup setpoint B Dropout setpoint Max2 Max1 ΔT1 Pickup time delay period (in seconds) EV1 Start of alarm condition ∆T1 ∆T2 ΔT2 Dropout time delay (in seconds) EV2 End of alarm condition ∆T3 ΔT3 Alarm duration (in seconds) EV1 EV2 Max1 Maximum value recorded during pickup period Max2 Maximum value recorded during alarm period",
+    "A B",
+    "Pickup setpoint Dropout setpoint"
+   ],
+   "quantities": [
+    "current",
+    "current",
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "ΔT1",
+     "Pickup time delay period (in seconds)"
+    ],
+    [
+     "",
+     "EV1",
+     "Start of alarm condition"
+    ],
+    [
+     "",
+     "ΔT2",
+     "Dropout time delay (in seconds)"
+    ],
+    [
+     "",
+     "EV2",
+     "End of alarm condition"
+    ],
+    [
+     "",
+     "ΔT3",
+     "Alarm duration (in seconds)"
+    ],
+    [
+     "",
+     "Max1",
+     "Maximum value recorded during pickup period"
+    ],
+    [
+     "",
+     "Max2",
+     "Maximum value recorded during alarm period"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "When the value falls below the pickup setpoint setting and remains there long enough to sa",
+   "page": 73,
+   "orientation": "column",
+   "header": [
+    "A Pickup setpoint ∆T3 B Dropout setpoint ΔT1 Pickup time delay period (in seconds) ∆T2 EV1 Start of alarm condition ∆T1 ΔT2 Dropout time delay (in seconds) Min1 EV2 End of alarm condition Min2 ΔT3 Alarm duration (in seconds) EV1 EV2 Min1 Minimum value recorded during pickup period Min2 Minimum value recorded during alarm period",
+    "A B",
+    "Pickup setpoint Dropout setpoint"
+   ],
+   "quantities": [
+    "current",
+    "current",
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "ΔT1",
+     "Pickup time delay period (in seconds)"
+    ],
+    [
+     "",
+     "EV1",
+     "Start of alarm condition"
+    ],
+    [
+     "",
+     "ΔT2",
+     "Dropout time delay (in seconds)"
+    ],
+    [
+     "",
+     "EV2",
+     "End of alarm condition"
+    ],
+    [
+     "",
+     "ΔT3",
+     "Alarm duration (in seconds)"
+    ],
+    [
+     "",
+     "Min1",
+     "Minimum value recorded during pickup period"
+    ],
+    [
+     "",
+     "Min2",
+     "Minimum value recorded during alarm period"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Alarms PowerLogic™PM5300 series",
+   "page": 75,
+   "orientation": "row",
+   "header": [
+    "Alarm label ION Setup",
+    "Display",
+    "Valid range and resolution ION Setup",
+    "Display",
+    "Units"
+   ],
+   "quantities": [
+    "current",
+    "current",
+    "voltage",
+    "voltage",
+    "voltage",
+    "voltage",
+    "power",
+    "power",
+    "power",
+    null,
+    null,
+    null,
+    null,
+    "power",
+    "power",
+    "power",
+    "power",
+    "power",
+    "power",
+    "power",
+    "power",
+    "power",
+    "frequency",
+    "frequency",
+    "voltage",
+    "voltage",
+    "loss"
+   ],
+   "rows": [
+    [
+     "Over Neutral Current",
+     "Over Current, N",
+     "0.000 to 99999.000",
+     "0 to 99999",
+     "A"
+    ],
+    [
+     "Over Ground Current",
+     "Over Current, Gnd",
+     "0.000 to 99999.000",
+     "0 to 99999",
+     "A"
+    ],
+    [
+     "Over Voltage L-L",
+     "Over Voltage, L-L",
+     "0.00 to 999999.00",
+     "0 to 999999",
+     "V"
+    ],
+    [
+     "Under Voltage L-L",
+     "Under Voltage, L-L",
+     "0.00 to 999999.00",
+     "0 to 999999",
+     "V"
+    ],
+    [
+     "Over Voltage L-N",
+     "Over Voltage, L-N",
+     "0.00 to 999999.00",
+     "0 to 999999",
+     "V"
+    ],
+    [
+     "Under Voltage L-N",
+     "Under Voltage L-N",
+     "0.00 to 999999.00",
+     "0 to 999999",
+     "V"
+    ],
+    [
+     "Over Active Power",
+     "Over kW",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kW"
+    ],
+    [
+     "Over Reactive Power",
+     "Over kVAR",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kVAR"
+    ],
+    [
+     "Over Apparent Power",
+     "Over kVA",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kVA"
+    ],
+    [
+     "Leading True PF",
+     "Lead PF, True",
+     "-1.00 to -0.01 and 0.01 to 1.00",
+     "",
+     "—"
+    ],
+    [
+     "Lagging True PF",
+     "Lag PF, True",
+     "-1.00 to -0.01 and 0.01 to 1.00",
+     "",
+     "—"
+    ],
+    [
+     "Leading Disp PF",
+     "Lead PF, Disp",
+     "-1.00 to -0.01 and 0.01 to 1.00",
+     "",
+     "—"
+    ],
+    [
+     "Lagging Disp PF",
+     "Lag PF, Disp",
+     "-1.00 to -0.01 and 0.01 to 1.00",
+     "",
+     "—"
+    ],
+    [
+     "Over Present Active Power Demand",
+     "Over kW Dmd, Pres",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kW"
+    ],
+    [
+     "Over Last Active Power Demand",
+     "Over kW Dmd, Last",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kW"
+    ],
+    [
+     "Over Predicted Active Power Demand",
+     "Over kW Dmd, Pred",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kW"
+    ],
+    [
+     "Over Present Reactive Power Demand",
+     "Over kVAR Dmd, Pres",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kVAR"
+    ],
+    [
+     "Over Last Reactive Power Demand",
+     "Over kVAR Dmd, Last",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kVAR"
+    ],
+    [
+     "Over Predicted Reactive Power Demand",
+     "Over kVAR Dmd, Pred",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kVAR"
+    ],
+    [
+     "Over Present Apparent Power Demand",
+     "Over kVA Dmd, Pres",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kVA"
+    ],
+    [
+     "Over Last Apparent Power Demand",
+     "Over kVA Dmd, Last",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kVA"
+    ],
+    [
+     "Over Predicted Apparent Power Demand",
+     "Over kVA Dmd, Pred",
+     "0.0 to 9999999.0",
+     "0 to 9999999",
+     "kVA"
+    ],
+    [
+     "Over Frequency",
+     "Over Frequency",
+     "0.000 to 99.000",
+     "",
+     "Hz"
+    ],
+    [
+     "Under Frequency",
+     "Under Frequency",
+     "0.000 to 99.000",
+     "",
+     "Hz"
+    ],
+    [
+     "Over Voltage Unbalance",
+     "Over Voltage Unbal",
+     "0 to 99",
+     "",
+     "%"
+    ],
+    [
+     "Over Voltage THD",
+     "Over Voltage THD",
+     "0 to 99",
+     "",
+     "%"
+    ],
+    [
+     "Phase Loss",
+     "Phase Loss",
+     "0.00 too 999999.00",
+     "0 to 999999",
+     "—"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "EV1 EV2",
+   "page": 76,
+   "orientation": "column",
+   "header": [
+    "A B",
+    "Pickup setpoint Dropout setpoint",
+    "ΔT2 EV2",
+    "Dropout time delay (in seconds) End of alarm condition"
+   ],
+   "quantities": [
+    "current",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "ΔT1",
+     "Pickup delay period (in seconds)",
+     "ΔT3",
+     "Alarm duration (in seconds)"
+    ],
+    [
+     "EV1",
+     "Start of alarm condition",
+     "",
+     ""
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "6. Move the cursor to point to the tariff (Tariff 1 to Tariff 4) you want to modify, then ",
+   "page": 101,
+   "orientation": "column",
+   "header": [
+    "Parameter Day Type",
+    "Values Everyday, Weekday, Weekend, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday",
+    "Description Select which day the tariff is active. Only tariffs that are Everyday can have a tariff that includes midnight (for instance, from 11pm to 2am)."
+   ],
+   "quantities": [
+    null,
+    null,
+    "current"
+   ],
+   "rows": [
+    [
+     "Start Time",
+     "0000 to 2359",
+     "Set the time when the tariff period starts, using the 24 hour clock format (00:00 to 23:59). The Start Time cannot equal the End Time."
+    ],
+    [
+     "End Time",
+     "0000 to 2359",
+     "Set the time when the tariff period ends, using the 24 hour clock format (00:00 to 23:59). The End Time cannot equal the Start Time."
+    ],
+    [
+     "Start Month",
+     "1 to 12",
+     "Set the month that the tariff period starts, where 1 = January, 2 = February, 3 = March, 4 = April, 5 = May, 6 = June, 7 = July, 8 = August, 9 = September, 10 = October, 11 = November, 12 = December."
+    ],
+    [
+     "Start Day",
+     "1 to 31",
+     "Set the day of the Start Month that the tariff period starts. The Start Day must be earlier than End Day if Start Month equals End Month."
+    ],
+    [
+     "End Month",
+     "1 to 12",
+     "The month that the tariff period ends, where 1 = January, 2 = February, 3 = March, 4 = April, 5 = May, 6 = June, 7 = July, 8 = August, 9 = September, 10 = October, 11 = November, 12 = December."
+    ],
+    [
+     "End Day",
+     "1 to 31",
+     "The day of the End Month that the tariff period ends."
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Mechanical characteristics",
+   "page": 123,
+   "orientation": "column",
+   "header": [
+    "IP degree of protection (IEC 60529) Mounting position",
+    "Display: IP54 (Upgrade to IP65 with optional accessory kit METSEIP65OP96X96FF) Meter body: IP30 Vertical"
+   ],
+   "quantities": [
+    null,
+    "protection"
+   ],
+   "rows": [
+    [
+     "Display type",
+     "Monochrome graphics LCD, 128 x 128 resolution"
+    ],
+    [
+     "Display backlight",
+     "White LED"
+    ],
+    [
+     "Viewable area",
+     "67 x 62.5 mm (2.64 x 2.46 in)"
+    ],
+    [
+     "Weight",
+     "430 g"
+    ],
+    [
+     "Dimensions W x H x D [protrusion from cabinet]",
+     "96 x 96 x 72 mm (depth of meter from housing mounting flange) [13 mm]"
+    ],
+    [
+     "Panel thickness",
+     "6 mm maximum"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "• IEC 61557-12: 2021, BS/ EN 61557-12: PMD/[SD|SS]/K70/0.5 (for firmware version 1.1.1 and",
+   "page": 123,
+   "orientation": "row",
+   "header": [
+    "Measurement type",
+    "Class of accuracy as per IEC 61557-12: 2021, BS/ EN 61557-12 (for firmware version 1.1.1 and higher)",
+    "Error"
+   ],
+   "quantities": [
+    null,
+    null,
+    null,
+    "power",
+    "power",
+    "power",
+    "current",
+    "voltage",
+    "frequency",
+    "power"
+   ],
+   "rows": [
+    [
+     "Active energy",
+     "Class 0.5S (Class 0.5S as per IEC 62053-22: 2020, BS/ EN 62053-22 at 5 A Inominal (for 1 A Inominal when I > 0.15 A))",
+     "±0.5%"
+    ],
+    [
+     "Reactive energy",
+     "Class 2 (Class 2 as per IEC 62053-23: 2020, BS/ EN 62053-23 at 5 A Inominal (for 1 A Inominal when I > 0.15 A))",
+     "±2%"
+    ],
+    [
+     "Apparent energy",
+     "Class 0.5",
+     "±0.5%"
+    ],
+    [
+     "Active power",
+     "Class 0.5",
+     "±0.5%"
+    ],
+    [
+     "Reactive power",
+     "Class 2",
+     "±2%"
+    ],
+    [
+     "Apparent power",
+     "Class 0.5",
+     "±0.5%"
+    ],
+    [
+     "Current",
+     "Class 0.5",
+     "±0.5%"
+    ],
+    [
+     "Voltage (L-N)",
+     "Class 0.5",
+     "±0.5%"
+    ],
+    [
+     "Frequency",
+     "Class 0.05",
+     "±0.05%"
+    ],
+    [
+     "Power factor",
+     "Class 0.5",
+     "±0.005 Count"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Power quality accuracy",
+   "page": 123,
+   "orientation": "row",
+   "header": [
+    "Measurement type",
+    "Class of accuracy as per IEC 61557-12: 2021, BS/ EN 61557-12 (for firmware version 1.1.1 and higher)",
+    "Error"
+   ],
+   "quantities": [
+    "voltage",
+    "voltage",
+    "current",
+    "current"
+   ],
+   "rows": [
+    [
+     "Voltage harmonics",
+     "Class 5",
+     "±5%"
+    ],
+    [
+     "Voltage THD/thd",
+     "Class 5",
+     "±5%"
+    ],
+    [
+     "Current harmonics",
+     "Class 5",
+     "±5%"
+    ],
+    [
+     "Current THD",
+     "Class 5",
+     "±5%"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Voltage inputs (Continued)",
+   "page": 124,
+   "orientation": "column",
+   "header": [
+    "",
+    "(absolute range 35 V L-L...760 V L-L)"
+   ],
+   "quantities": [
+    null,
+    "voltage"
+   ],
+   "rows": [
+    [
+     "Overload",
+     "460 V L-N / 800 V L-L"
+    ],
+    [
+     "Impedance",
+     "5 MΩ"
+    ],
+    [
+     "Rated impulse voltage",
+     "6 kV for 1.2 μs"
+    ],
+    [
+     "Frequency",
+     "Measured: 45...65 Hz Nominal: 50 / 60 Hz"
+    ],
+    [
+     "Burden",
+     "< 0.2 VA at 240 V AC L-N"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Current inputs",
+   "page": 124,
+   "orientation": "column",
+   "header": [
+    "CTsecondary",
+    "Nominal: 5 A or 1 A"
+   ],
+   "quantities": [
+    null,
+    "current"
+   ],
+   "rows": [
+    [
+     "Measured current",
+     "5 mA...8.5 A"
+    ],
+    [
+     "Starting current",
+     "5 mA"
+    ],
+    [
+     "Withstand",
+     "20 A continuous 50 A at 10 sec/hr 500 A at 1 sec/hr"
+    ],
+    [
+     "Impedance",
+     "< 0.3 mΩ"
+    ],
+    [
+     "Frequency",
+     "Measured: 45...65 Hz Nominal: 50 / 60 Hz"
+    ],
+    [
+     "Burden",
+     "< 0.026 VA at 8.5 A"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "AC control power",
+   "page": 124,
+   "orientation": "column",
+   "header": [
+    "Nominal AC voltage",
+    "277 V L-N (Range: 100...277 V L-N ± 10%) 415 V L-L (Range: 100...415 V L-L ± 10%)"
+   ],
+   "quantities": [
+    "voltage",
+    "voltage"
+   ],
+   "rows": [
+    [
+     "Burden",
+     "5 W / 11 VA max at 415 V AC"
+    ],
+    [
+     "Installation category",
+     "CAT III 300 V L-N class per BS/ EN/ IEC/ UL 61010-1: 2010 + A1: 2019"
+    ],
+    [
+     "Nominal frequency",
+     "50/60 Hz (Range: 45...65 Hz)"
+    ],
+    [
+     "Ride-through time",
+     "80 ms typical at 120 V AC and maximum burden 100 ms typical at 230 V AC and maximum burden 100 ms typical at 415 V AC and maximum burden"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Digital outputs",
+   "page": 125,
+   "orientation": "row",
+   "header": [
+    "Number",
+    "2"
+   ],
+   "quantities": [
+    "voltage",
+    "current",
+    null,
+    "frequency",
+    null,
+    "dimension",
+    "current",
+    null
+   ],
+   "rows": [
+    [
+     "Maximum load voltage",
+     "40 V DC"
+    ],
+    [
+     "Maximum load current",
+     "20 mA"
+    ],
+    [
+     "ON resistance",
+     "50 Ω maximum"
+    ],
+    [
+     "Pulse frequency",
+     "≤25 Hz"
+    ],
+    [
+     "Meter constant",
+     "from 1 to 9,999,999 pulses per k h (k h = kWh, kVARh or kVAh depending on the energy _ _ parameter selected)"
+    ],
+    [
+     "Pulse width",
+     "50% duty cycle"
+    ],
+    [
+     "Leakage current",
+     "0.3 micro Amps"
+    ],
+    [
+     "Isolation",
+     "5 kV rms"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Status inputs",
+   "page": 125,
+   "orientation": "row",
+   "header": [
+    "Number",
+    "2"
+   ],
+   "quantities": [
+    "voltage",
+    "voltage",
+    "frequency",
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Voltage OFF",
+     "0...4 V DC"
+    ],
+    [
+     "Voltage ON",
+     "18.5...36 V DC"
+    ],
+    [
+     "Frequency",
+     "2 Hz (T ON min = T OFF min = 250 ms)"
+    ],
+    [
+     "Input resistance",
+     "110 kΩ"
+    ],
+    [
+     "Isolation",
+     "5 kV rms"
+    ],
+    [
+     "Response time",
+     "20 ms"
+    ],
+    [
+     "Whetting output",
+     "24 V DC/ 8mA max"
+    ],
+    [
+     "Input burden",
+     "2 mA @ 24 V DC"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Environmental characteristics",
+   "page": 125,
+   "orientation": "column",
+   "header": [
+    "Operating temperature",
+    "Meter: -25...70 °C (-13...158 °F) Display: -20...70 °C (-4...158 °F) Display functions to -25 ºC (-13 °F) with reduced performance"
+   ],
+   "quantities": [
+    "temperature",
+    "temperature"
+   ],
+   "rows": [
+    [
+     "Storage temperature",
+     "-40...85 °C (-40...185 °F)"
+    ],
+    [
+     "Humidity rating",
+     "Operating: 5...95% RH non-condensing at 50 °C (122 °F) Storage: 5% to 80% RH non-condensing Maximum dew point 37 °C (99 °F)"
+    ],
+    [
+     "Pollution degree",
+     "2"
+    ],
+    [
+     "Altitude",
+     "2000 m CAT III / 3000 m CAT II"
+    ],
+    [
+     "Location",
+     "For indoor use in a stationary panel Must be permanently connected and fixed"
+    ],
+    [
+     "Product life",
+     "> 15 years, 45 °C (113 °F) 60% RH"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  },
+  {
+   "title": "Device specifications PowerLogic™PM5300 series",
+   "page": 127,
+   "orientation": "row",
+   "header": [
+    "Mechanical environment",
+    "M1"
+   ],
+   "quantities": [
+    null,
+    null,
+    "voltage",
+    "current",
+    "frequency",
+    "voltage",
+    "voltage"
+   ],
+   "rows": [
+    [
+     "Electromagnetic (EMC) environment",
+     "E2"
+    ],
+    [
+     "Applicable measurements",
+     "C(kWh)"
+    ],
+    [
+     "Voltage at voltage terminals",
+     "• 3-phase 4-wire Wye grounded: 3 x 63.5(110)...3 x 277(480) V AC • 3-phase 3-wire Delta ungrounded: 3 x 110...3 x 480 V L-L"
+    ],
+    [
+     "Current Rating (Imin – Iref (Imax))",
+     "0.05...5(6) A"
+    ],
+    [
+     "Electrical network frequency",
+     "50 Hz"
+    ],
+    [
+     "Impulse voltage rating",
+     "6 kV"
+    ],
+    [
+     "AC voltage rating",
+     "4 kV"
+    ]
+   ],
+   "source": "EAV15107-EN11.pdf"
+  }
+ ]
+}
