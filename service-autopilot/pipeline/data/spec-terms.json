@@ -2,6 +2,13 @@
  "_설명": "정격 사양 용어 사전. 카탈로그는 영문 약어로 적혀 있어 개발자가 뜻을 알기 어렵다. 실제 데이터에 나온 용어만 넣는다 — 안 나오는 용어를 미리 채우지 않는다. sim 은 시뮬레이터(전력 소모·온도 계산)에서의 쓰임새다: 3=계산에 직접 들어감, 2=조건·한계로 쓰임, 1=참고. 못 알아본 용어는 그대로 두고 표시하지 않는다 — 지어내지 않는다. 5번째 값은 분류다 (전기·성능·제어·동작·물리·설치·환경) — 제품 데이터시트의 관례 구성을 따른다.",
  "terms": [
   [
+   "^compressor code|^unit configuration|^article number|^code number",
+   "형번 코드",
+   "제품 식별 코드. 계산에 쓰지 않는다.",
+   1,
+   "설치·환경"
+  ],
+  [
    "^nominal voltage$",
    "정격 전압",
    "이 값으로 전원을 넣는다. 전력 = 전압 × 전류 계산의 기준이다.",
@@ -93,14 +100,14 @@
    "전기"
   ],
   [
-   "^rla|rla @|running load amp",
+   "^rla\b|rla @|running load amp",
    "정격 운전 전류 (RLA)",
    "정상 운전 중 흐르는 전류. **Running Load Amps** — 전력 계산과 케이블 선정에 쓴다.",
    3,
    "전기"
   ],
   [
-   "^lra|locked rotor amp",
+   "^lra\b|\blra \\(|locked rotor amp",
    "구속 전류 (LRA)",
    "기동 순간 전동기가 아직 안 돌 때 흐르는 최대 전류. **Locked Rotor Amps** — 보통 정격의 5~7배다.",
    2,
@@ -359,7 +366,7 @@
    "성능"
   ],
   [
-   "^compressor|comp size|number/size",
+   "^compressor (data|configuration)|comp size|^number/size",
    "압축기 구성",
    "대수와 크기. 대수 제어 단계와 직결된다.",
    3,

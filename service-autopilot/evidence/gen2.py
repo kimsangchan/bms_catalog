@@ -629,8 +629,11 @@ function renderModels(models, l3){
   // 열이 속성이라 포인트 표와 구조가 다르다 — 표마다 따로 그린다.
   // 사양 표는 모델 하나에 수십 개까지 붙는다(Ascend 38개). 전부 펼치면 스크롤이
   // 끝나지 않아 원하는 표를 못 찾는다 → **목록에서 골라 하나씩** 본다 (힉의 법칙).
-  var sts = m.specTables || [];
+  var sts = (m.specTables || []).slice();
   if(sts.length){
+    // 시뮬레이터가 쓰는 열이 많은 표를 앞에 둔다 — 'General Data 1' 부터 보여 주면
+    // 정작 필요한 전기 데이터 표를 한참 찾아야 한다
+    sts.sort(function(a,b){ return summarizeMatrix(b).length - summarizeMatrix(a).length; });
     var si = Math.min(ssel, sts.length-1), t = sts[si];
     h += sec('정격 사양', sts.length)
        + '<div class="slist">' + sts.map(function(x,i){
@@ -651,14 +654,18 @@ function renderModels(models, l3){
        + (t.orientation==='row' ? '<span class="qtag alt">행=항목 · 열=형번</span>' : '')
        + uq.map(function(x){ return '<span class="qtag">'+esc(QLABEL[x]||x)+'</span>'; }).join('')
        + '<span class="qsrc">' + esc(t.source||'') + ' p'+t.page+'</span></div>'
-       + table({header:t.header,
+       + matrixTiles(t)
+       + table({header:t.orientation==='row' ? t.header : t.header.map(function(hh){
+                  var tt = termOf(hh);
+                  return esc(hh) + (tt && tt.sim===3 ? ' '+simTag(3) : '');
+                }),
                 rows:(t.orientation==='row' ? t.rows.map(function(r){
                         var tt = termOf(r[0]);
                         return [tt ? esc(r[0])+'<i class="tdesc"><b>'+esc(tt.ko)+'</b> '
                                      +esc(tt.desc)+'</i>'+(tt.sim===3?' '+simTag(3):'')
                                    : esc(r[0])].concat(r.slice(1).map(esc));
-                      }) : t.rows),
-                key:'st'+si+(t.source||''), raw:t.orientation==='row'});
+                      }) : t.rows.map(function(r){ return r.map(esc); })),
+                key:'st'+si+(t.source||''), raw:true});
   }
   if(m.points.length){
     var pts = m.points.filter(function(p){return p.inst;});
@@ -718,6 +725,49 @@ function simTag(n){
 // 제품 데이터시트의 관례 구성으로 낸다: **핵심 요약 → 분류별 상세 → 참고는 접기**.
 // 앞서는 수십 줄을 한 표에 그냥 늘어놓아 무엇부터 봐야 할지 알 수 없었다.
 var CATORD = ['전기','성능','제어·동작','물리','설치·환경','기타'];
+
+// 행렬형 사양 표(행=형번, 열=속성)는 값이 여러 줄이라 타일 하나로 못 줄인다.
+// 대신 **열마다 숫자 범위**를 뽑아 '이 표가 무엇을 담고 있는지'를 한 줄로 보여 준다.
+function numsIn(list){
+  var out = [];
+  list.forEach(function(v){
+    var m = String(v).replace(/,/g,'').match(/-?\d+(\.\d+)?/g);
+    if(m) m.forEach(function(x){ var n=parseFloat(x); if(isFinite(n)) out.push(n); });
+  });
+  return out;
+}
+function fmtNum(n){
+  return (Math.abs(n)>=100 || n===Math.round(n)) ? String(Math.round(n)) : String(n);
+}
+function summarizeMatrix(t){
+  var out = [];
+  var isRow = t.orientation === 'row';
+  var n = isRow ? t.rows.length : t.header.length;
+  for(var i=0;i<n;i++){
+    var label = isRow ? (t.rows[i]||[])[0] : t.header[i];
+    var term = termOf(label);
+    if(!term || term.sim !== 3) continue;
+    var vals = isRow ? (t.rows[i]||[]).slice(1)
+                     : t.rows.map(function(r){ return r[i]; });
+    var ns = numsIn(vals.filter(Boolean));
+    if(!ns.length) continue;
+    var lo = Math.min.apply(null, ns), hi = Math.max.apply(null, ns);
+    out.push({ko:term.ko, orig:label, desc:term.desc,
+              val: lo===hi ? fmtNum(lo) : fmtNum(lo)+' – '+fmtNum(hi)});
+    if(out.length >= 8) break;
+  }
+  return out;
+}
+function matrixTiles(t){
+  var sum = summarizeMatrix(t);
+  if(!sum.length) return '';
+  return '<div class="tiles">' + sum.map(function(x){
+    return '<div class="tile" title="'+esc(x.orig+' — '+x.desc)+'">'
+         + '<div class="tk">'+esc(x.ko)+'</div>'
+         + '<div class="tv">'+esc(x.val)+'</div>'
+         + '<div class="tn">'+esc(x.orig)+'</div></div>';
+  }).join('') + '</div>';
+}
 
 function renderSpecSheet(spec, key){
   var rows = spec.map(function(r){ return {r:r, t:termOf(r[0])}; });
