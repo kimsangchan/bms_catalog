@@ -4,14 +4,35 @@
 **사람은 검증이 걸러낸 것만** 본다.
 
 ```
-sources.py ─► collect.py ─► extract.py ─► register.py ─► normalize.py ─► validate.py ─► build.py
- 소스 규칙     열거·수집      문서→포인트     모델 등록      다듬기          게이트         HTML
-                  │              ▲             ▲                            │
-             data/raw/           │        classify.py                       │
-             data/collected.json │        장비·구간 판정                      │
-                                 └── crosscheck.py 교차 대조 ────────────────┘
-                                     (다른 경로로 재독해)          검수 큐(경고)·적재 차단(오류)
+sources.py ─► collect.py ─┬─► extract.py ─► register.py ─► normalize.py ─► validate.py ─► build.py
+ 소스 규칙     열거·수집    │   문서→포인트     모델 등록      다듬기          게이트         HTML
+                  │        │       ▲             ▲                            │
+             data/raw/     │       │        classify.py                       │
+             collected.json│       │        장비·구간 판정                      │
+                           │       └── crosscheck.py 교차 대조 ────────────────┘
+                           │           (다른 경로로 재독해)
+                           └─► specs.py ─────────────────────────────────────► 정격 사양
+                               문서→사양                                        형번별 값
 ```
+
+## 문서가 두 종류다
+
+| | 통합 포인트 리스트 | 카탈로그·데이터시트 |
+|---|---|---|
+| 담는 것 | **통신 맵** — BMS 에 만들 오브젝트 | **정격 사양** — 전압·전류·소비전력·용량 |
+| 한 줄 = | 포인트 하나 | 형번 하나 (표) / 항목 하나 (데이터시트) |
+| 읽는 것 | `extract.py` | `specs.py` |
+
+**포인트 리스트에는 정격이 실리지 않는다.** 시뮬레이터가 쓸 값(전력 소모·온도)은
+카탈로그에만 있어 따로 모은다. 각 모델의 `gap` 에 그 사실을 적어 두었다.
+
+`specs.py` 는 두 가지 구조를 읽는다.
+
+- **행렬** — 행=형번, 열=속성 (Danfoss 설계 가이드: 형번별 kW·A·kg·mm)
+- **항목/값 두 줄** — 라벨 줄 다음이 값 줄 (Belimo 데이터시트:
+  `Power consumption in operation` → `1.5 W`). 표가 아니라서 표 인식은 0개를 냈다.
+
+형번별 사양은 `variants` 로 붙는다 — 제품군을 고르고 형번을 고르면 그 정격이 나온다.
 
 **사람이 손대는 곳은 두 군데뿐이다** — 소스 규칙(`sources.py`)과 자동 판정이 틀린
 문서의 예외(`register.py` 의 `OVERRIDE`). 나머지는 문서에서 나온다.

@@ -351,5 +351,3707 @@
  },
  "points": [],
  "gap": "**전기 데이터 확보 완료**(아래 표). 남은 것: ⑴ EN 50598-2 부분부하 8운전점 손실 — Danfoss MyDrive Energy 계산기에서 추출 필요 ⑵ Modbus 레지스터 표(Design Guide §10.8.8 Coil/Register) ⑶ 과부하 내량 ⑷ 주위온도·스위칭주파수 디레이팅 곡선(§6.3.1).",
- "extractor": "manual"
+ "extractor": "manual",
+ "specTables": [
+  {
+   "title": "Table 8: The Laws of Proportionality",
+   "page": 21,
+   "header": [
+    "Q = Flow",
+    "P = Power"
+   ],
+   "quantities": [
+    null,
+    "power"
+   ],
+   "rows": [
+    [
+     "Q = Rated flow 1",
+     "P = Rated power 1"
+    ],
+    [
+     "Q = Reduced flow 2",
+     "P = Reduced power 2"
+    ],
+    [
+     "H = Pressure",
+     "n = Speed control"
+    ],
+    [
+     "H = Rated pressure 1",
+     "n = Rated speed 1"
+    ],
+    [
+     "H = Reduced pressure 2",
+     "n = Reduced speed 2"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 9: Result",
+   "page": 24,
+   "header": [
+    "m3/h",
+    "Distribution %",
+    "Hours",
+    "Valve regulation Power",
+    "Consumption",
+    "Drive control Power",
+    "Consumption"
+   ],
+   "quantities": [
+    "airflow",
+    null,
+    null,
+    "power",
+    null,
+    "power",
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "",
+     "",
+     "A - B 1 1",
+     "kWh",
+     "A - C 1 1",
+     "kWh"
+    ],
+    [
+     "350",
+     "5",
+     "438",
+     "42.5",
+     "18.615",
+     "42.5",
+     "18.615"
+    ],
+    [
+     "300",
+     "15",
+     "1314",
+     "38.5",
+     "50.589",
+     "29.0",
+     "38.106"
+    ],
+    [
+     "250",
+     "20",
+     "1752",
+     "35.0",
+     "61.320",
+     "18.5",
+     "32.412"
+    ],
+    [
+     "200",
+     "20",
+     "1752",
+     "31.5",
+     "55.188",
+     "11.5",
+     "20.148"
+    ],
+    [
+     "150",
+     "20",
+     "1752",
+     "28.0",
+     "49.056",
+     "6.5",
+     "11.388"
+    ],
+    [
+     "100",
+     "20",
+     "1752",
+     "23.0",
+     "40.296",
+     "3.5",
+     "6.132"
+    ],
+    [
+     "Σ",
+     "100",
+     "8760",
+     "–",
+     "275.064",
+     "–",
+     "26.801"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 11: Mains Supply 3x200–240 V AC and 3x200Y/115–240Y/139 V AC, 11–45 kW (15–60 hp), E",
+   "page": 28,
+   "header": [
+    "Drive Output current 40 °C (104 °F) ambient temperature",
+    "P11K",
+    "P15K",
+    "P18K",
+    "P22K",
+    "P30K",
+    "P37K",
+    "P45K"
+   ],
+   "quantities": [
+    "current",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Continuous (3x200–240 V) [A]",
+     "42",
+     "59.4",
+     "74.8",
+     "88",
+     "115",
+     "143",
+     "170"
+    ],
+    [
+     "Intermittent (3x200–240 V) [A]",
+     "46.2",
+     "65.3",
+     "82.3",
+     "96.8",
+     "126.5",
+     "157.3",
+     "187"
+    ],
+    [
+     "Maximum input current",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "Continuous 3x200–240 V) [A]",
+     "41/38.2",
+     "52.7",
+     "65",
+     "76",
+     "103.7",
+     "127.9",
+     "153"
+    ],
+    [
+     "Intermittent (3x200–240 V) [A]",
+     "45.1/42",
+     "58",
+     "71.5",
+     "83.7",
+     "114.1",
+     "140.7",
+     "168.3"
+    ],
+    [
+     "Maximum mains fuses",
+     "See 7.5.5 Recommendation of Fuses and Circuit Breakers.",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "Estimated power loss [W], Best case/typical(1)",
+     "369/386",
+     "512",
+     "697",
+     "879",
+     "1149",
+     "1390",
+     "1500"
+    ],
+    [
+     "Weight enclosure protection rat- ing IP20/Open type [kg (lb)]",
+     "9.5 (20.9)",
+     "24.5 (54)",
+     "24.5 (54)",
+     "36 (79.4)",
+     "36 (79.4)",
+     "51 (112.4)",
+     "51 (112.4)"
+    ],
+    [
+     "Efficiency [%], best case/typical(2)",
+     "97.2/97.1",
+     "97",
+     "97.1",
+     "96.8",
+     "97.1",
+     "97.1",
+     "97.3"
+    ],
+    [
+     "Output current 50 °C (122 °F) ambient temperature",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "Continuous (3x200–240 V) [A]",
+     "33",
+     "41.6",
+     "52.4",
+     "61.6",
+     "80.5",
+     "100.1",
+     "119"
+    ],
+    [
+     "Intermittent (3x200–240 V) [A]",
+     "36.3",
+     "45.8",
+     "57.6",
+     "67.8",
+     "88.6",
+     "110.1",
+     "130.9"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "5.2.2 Mains Supply (L1, L2, L3)",
+   "page": 34,
+   "header": [
+    "Supply voltage",
+    "200–240 V ±10%"
+   ],
+   "quantities": [
+    "voltage",
+    "voltage"
+   ],
+   "rows": [
+    [
+     "Supply voltage",
+     "380–480 V ±10%"
+    ],
+    [
+     "Supply voltage",
+     "525–600 V ±10%"
+    ],
+    [
+     "Supply frequency",
+     "50/60 Hz ±5%"
+    ],
+    [
+     "Maximum imbalance temporary between mains phases",
+     "3.0% of rated supply voltage"
+    ],
+    [
+     "True power factor (λ)",
+     "≥0.9 nominal at rated load"
+    ],
+    [
+     "Displacement power factor (cosφ) near unity",
+     "(>0.98)"
+    ],
+    [
+     "Switching on the input supply L1, L2, L3 (power-ups) enclosure sizes H1–H5, I2, I3, I4",
+     "Maximum 1 time/30 s"
+    ],
+    [
+     "Switching on the input supply L1, L2, L3 (power-ups) enclosure sizes H6–H10, I6–I8",
+     "Maximum 1 time/minute"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "5.2.13 Ambient Conditions",
+   "page": 38,
+   "header": [
+    "Enclosure protection rating",
+    "IP20/Open type, IP54"
+   ],
+   "quantities": [
+    "protection",
+    "protection"
+   ],
+   "rows": [
+    [
+     "Enclosure kit available",
+     "IP21, TYPE 1"
+    ],
+    [
+     "Vibration test",
+     "1.0 g"
+    ],
+    [
+     "Maximum relative humidity",
+     "5–95% (IEC 60721-3-3; Class 3K3 (non-condensing)) during opera- tion"
+    ],
+    [
+     "Aggressive environment (IEC 60721-3-3), coated (standard) enclo- sure sizes H1–H5",
+     "Class 3C3"
+    ],
+    [
+     "Aggressive environment (IEC 60721-3-3), non-coated enclosure sizes H6–H10",
+     "Class 3C2"
+    ],
+    [
+     "Aggressive environment (IEC 60721-3-3), coated (optional) enclo- sure sizes H6–H10",
+     "Class 3C3"
+    ],
+    [
+     "Aggressive environment (IEC 60721-3-3), non-coated enclosure sizes I2–I8",
+     "Class 3C2"
+    ],
+    [
+     "Test method according to IEC 60068-2-43 H2S (10 days)",
+     ""
+    ],
+    [
+     "Ambient temperature",
+     "See maximum output current at 40/50 °C (104/122 °F) in chapter Electrical Data."
+    ],
+    [
+     "Minimum ambient temperature during full-scale operation",
+     "0 °C (32 °F)"
+    ],
+    [
+     "Minimum ambient temperature at reduced performance, enclo- sure sizes H1–H5 and I2–I4",
+     "-20 °C (-4 °F)"
+    ],
+    [
+     "Minimum ambient temperature at reduced performance, enclo- sure sizes H6–H10 and I6–I8",
+     "-10 °C (14 °F)"
+    ],
+    [
+     "Temperature during storage/transport",
+     "-30 to +65/70 °C (-22 to +149/158°F)"
+    ],
+    [
+     "Maximum altitude above sea level without derating",
+     "1000 m (3281 ft)"
+    ],
+    [
+     "Maximum altitude above sea level with derating",
+     "3000 m (9843 ft)"
+    ],
+    [
+     "Energy efficiency class (1)",
+     "IE2"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 18: Shipping Dimensions",
+   "page": 39,
+   "header": [
+    "Enclosure size",
+    "Power [kW (hp)] 3x200–240 V",
+    "3x380–480 V",
+    "3x525–600 V",
+    "Protection rating",
+    "Maximum weight [kg (lb)]",
+    "Height [mm (in)]",
+    "Width [mm (in)]",
+    "Depth [mm (in)]"
+   ],
+   "quantities": [
+    null,
+    "power",
+    "voltage",
+    "voltage",
+    "protection",
+    "weight",
+    "dimension",
+    "dimension",
+    "dimension"
+   ],
+   "rows": [
+    [
+     "H1",
+     "0.25–1.5 (0.33–2.0)",
+     "0.37–1.5 (0.5–2.0)",
+     "–",
+     "IP20/Open type",
+     "2.1 (4.6)",
+     "265 (10.4)",
+     "230 (9.1)",
+     "135 (5.3)"
+    ],
+    [
+     "H2",
+     "2.2 (3.0)",
+     "2.2–4.0 (3.0–5.5)",
+     "–",
+     "IP20/Open type",
+     "3.4 (7.5)",
+     "300 (11.8)",
+     "265 (10.4)",
+     "155 (6.1)"
+    ],
+    [
+     "H3",
+     "3.7 (5.0)",
+     "5.5–7.5 (7.5–10)",
+     "–",
+     "IP20/Open type",
+     "4.5 (9.9)",
+     "280 (11)",
+     "155 (6.1)",
+     "320 (12.6)"
+    ],
+    [
+     "H4",
+     "5.5–7.5 (7.5–10)",
+     "11–15 (15–20)",
+     "–",
+     "IP20/Open type",
+     "7.9 (17.4)",
+     "380 (15)",
+     "200 (7.9)",
+     "315 (12.4)"
+    ],
+    [
+     "H5",
+     "11 (15)",
+     "18.5–22 (25–30)",
+     "–",
+     "IP20/Open type",
+     "9.5 (20.9)",
+     "395 (15.6)",
+     "233 (9.2)",
+     "380 (15)"
+    ],
+    [
+     "H6",
+     "15–18.5 (20–25)",
+     "30–45 (40–60)",
+     "18.5–30 (25–40)",
+     "IP20/Open type",
+     "24.5 (54)",
+     "850 (33.5)",
+     "370 (15.6)",
+     "460 (18.1)"
+    ],
+    [
+     "H7",
+     "22–30 (30–40)",
+     "55–75 (75–100)",
+     "37–55 (50–75)",
+     "IP20/Open type",
+     "36 (79.4)",
+     "850 (33.5)",
+     "410 (16.1)",
+     "540 (21.3)"
+    ],
+    [
+     "H8",
+     "37–45 (50–60)",
+     "90 (125)",
+     "75–90 (100–125)",
+     "IP20/Open type",
+     "51 (112.4)",
+     "850 (33.5)",
+     "490 (19.3)",
+     "490 (19.3)"
+    ],
+    [
+     "H9",
+     "–",
+     "–",
+     "2.2–7.5 (3.0–10)",
+     "IP20/Open type",
+     "6.6 (14.6)",
+     "380 (15)",
+     "290 (11.4)",
+     "200 (7.9)"
+    ],
+    [
+     "H10",
+     "–",
+     "–",
+     "11–15 (15–20)",
+     "IP20/Open type",
+     "11.5 (25.4)",
+     "500 (19.7)",
+     "330 (13)",
+     "350 (13.8)"
+    ],
+    [
+     "I2",
+     "–",
+     "0.75–4.0 (1.0–5.0)",
+     "–",
+     "IP54",
+     "6.1 (13.4)",
+     "310 (12.2)",
+     "205 (8.1)",
+     "435 (17.1)"
+    ],
+    [
+     "I3",
+     "–",
+     "5.5–7.5 (7.5–10)",
+     "–",
+     "IP54",
+     "7.8 (17.2)",
+     "325 (12.8)",
+     "230 (9.1)",
+     "480 (18.9)"
+    ],
+    [
+     "I4",
+     "–",
+     "11–18.5 (15–25)",
+     "–",
+     "IP54",
+     "13.8 (30.4)",
+     "390 (15.4)",
+     "295 (11.6)",
+     "635 (25)"
+    ],
+    [
+     "I6",
+     "–",
+     "22–37 (30–50)",
+     "–",
+     "IP54",
+     "28.3 (62.4)",
+     "850 (33.5)",
+     "370 (15.6)",
+     "460 (18.1)"
+    ],
+    [
+     "I7",
+     "–",
+     "45–55 (60–70)",
+     "–",
+     "IP54",
+     "41.5 (91.5)",
+     "850 (33.5)",
+     "410 (16.1)",
+     "540 (21.3)"
+    ],
+    [
+     "I8",
+     "–",
+     "75–90 (100–125)",
+     "–",
+     "IP54",
+     "60.5 (133.4)",
+     "950 (37.4)",
+     "490 (19.3)",
+     "490 (19.3)"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 19: Clearance Required for Cooling",
+   "page": 40,
+   "header": [
+    "Enclosure size",
+    "Protection rating",
+    "Power [kW (hp)]",
+    "",
+    "",
+    "Clearance above/below [mm (in)](1)"
+   ],
+   "quantities": [
+    null,
+    "protection",
+    "power",
+    null,
+    null,
+    "dimension"
+   ],
+   "rows": [
+    [
+     "",
+     "",
+     "3x200–240 V",
+     "3x380–480 V",
+     "3x525–600 V",
+     ""
+    ],
+    [
+     "H1",
+     "IP20/Open type",
+     "0.25–1.5 (0.33–2.0)",
+     "0.37–1.5 (0.5–2.0)",
+     "–",
+     "100 (4)"
+    ],
+    [
+     "H2",
+     "IP20/Open type",
+     "2.2 (3.0)",
+     "2.2–4.0 (3.0–5.0)",
+     "–",
+     "100 (4)"
+    ],
+    [
+     "H3",
+     "IP20/Open type",
+     "3.7 (5.0)",
+     "5.5–7.5 (7.5–10)",
+     "–",
+     "100 (4)"
+    ],
+    [
+     "H4",
+     "IP20/Open type",
+     "5.5–7.5 (7.5–10)",
+     "11–15 (15–20)",
+     "–",
+     "100 (4)"
+    ],
+    [
+     "H5",
+     "IP20/Open type",
+     "11 (15)",
+     "18.5–22 (25–30)",
+     "–",
+     "100 (4)"
+    ],
+    [
+     "H6",
+     "IP20/Open type",
+     "15–18.5 (20–25)",
+     "30–45 (40–60)",
+     "18.5–30 (25–40)",
+     "200 (7.9)"
+    ],
+    [
+     "H7",
+     "IP20/Open type",
+     "22–30 (30–40)",
+     "55–75 (70–100)",
+     "37–55 (50–70)",
+     "200 (7.9)"
+    ],
+    [
+     "H8",
+     "IP20/Open type",
+     "37–45 (50–60)",
+     "90 (125)",
+     "75–90 (100–125)",
+     "225 (8.9)"
+    ],
+    [
+     "H9",
+     "IP20/Open type",
+     "–",
+     "–",
+     "2.2–7.5 (3.0–10)",
+     "100 (4)"
+    ],
+    [
+     "H10",
+     "IP20/Open type",
+     "–",
+     "–",
+     "11–15 (15–20)",
+     "200 (7.9)"
+    ],
+    [
+     "I2",
+     "IP54",
+     "–",
+     "0.75–4.0 (1.0–5.0)",
+     "–",
+     "100 (4)"
+    ],
+    [
+     "I3",
+     "IP54",
+     "–",
+     "5.5–7.5 (7.5–10)",
+     "–",
+     "100 (4)"
+    ],
+    [
+     "I4",
+     "IP54",
+     "–",
+     "11–18.5 (15–25)",
+     "–",
+     "100 (4)"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 19: Clearance Required for Cooling - (continued)",
+   "page": 41,
+   "header": [
+    "Enclosure size",
+    "Protection rating",
+    "Power [kW (hp)]",
+    "",
+    "",
+    "Clearance above/below [mm (in)](1)"
+   ],
+   "quantities": [
+    null,
+    "protection",
+    "power",
+    null,
+    null,
+    "dimension"
+   ],
+   "rows": [
+    [
+     "",
+     "",
+     "3x200–240 V",
+     "3x380–480 V",
+     "3x525–600 V",
+     ""
+    ],
+    [
+     "I6",
+     "IP54",
+     "–",
+     "22–37 (30–50)",
+     "–",
+     "200 (7.9)"
+    ],
+    [
+     "I7",
+     "IP54",
+     "–",
+     "45–55 (60–70)",
+     "–",
+     "200 (7.9)"
+    ],
+    [
+     "I8",
+     "IP54",
+     "–",
+     "75–90 (100–125)",
+     "–",
+     "225 (8.9)"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 20: Tightening Torques for Enclosure Sizes H1–H8, 3x200–240 V and 3x380–480 V",
+   "page": 51,
+   "header": [
+    "Power [kW (hp)] Enclosure size",
+    "Protection rating",
+    "3x200–240 V",
+    "3x380–480 V",
+    "Torque [Nm (in-lb)] Mains",
+    "Motor",
+    "DC connection",
+    "Control terminals",
+    "Ground",
+    "Relay"
+   ],
+   "quantities": [
+    "power",
+    "protection",
+    "voltage",
+    "voltage",
+    "torque",
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "H1",
+     "IP20/Open type",
+     "0.25–1.5 (0.33–2.0)",
+     "0.37–1.5 (0.5–2.0)",
+     "0.8 (7)",
+     "0.8 (7)",
+     "0.8 (7)",
+     "0.5 (4)",
+     "0.8 (7)",
+     "0.5 (4)"
+    ],
+    [
+     "H2",
+     "IP20/Open type",
+     "2.2 (3.0)",
+     "2.2–4.0 (3.0–5.0)",
+     "0.8 (7)",
+     "0.8 (7)",
+     "0.8 (7)",
+     "0.5 (4)",
+     "0.8 (7)",
+     "0.5 (4)"
+    ],
+    [
+     "H3",
+     "IP20/Open type",
+     "3.7 (5.0)",
+     "5.5–7.5 (7.5–10)",
+     "0.8 (7)",
+     "0.8 (7)",
+     "0.8 (7)",
+     "0.5 (4)",
+     "0.8 (7)",
+     "0.5 (4)"
+    ],
+    [
+     "H4",
+     "IP20/Open type",
+     "5.5–7.5 (7.5–10)",
+     "11–15 (15–20)",
+     "1.2 (11)",
+     "1.2 (11)",
+     "1.2 (11)",
+     "0.5 (4)",
+     "0.8 (7)",
+     "0.5 (4)"
+    ],
+    [
+     "H5",
+     "IP20/Open type",
+     "11 (15)",
+     "18.5–22 (25–30)",
+     "1.2 (11)",
+     "1.2 (11)",
+     "1.2 (11)",
+     "0.5 (4)",
+     "0.8 (7)",
+     "0.5 (4)"
+    ],
+    [
+     "H6",
+     "IP20/Open type",
+     "15–18.5 (20–25)",
+     "30–45 (40–60)",
+     "4.5 (40)",
+     "4.5 (40)",
+     "–",
+     "0.5 (4)",
+     "3 (27)",
+     "0.5 (4)"
+    ],
+    [
+     "H7",
+     "IP20/Open type",
+     "22–30 (30–40)",
+     "55 (70)",
+     "10 (89)",
+     "10 (89)",
+     "–",
+     "0.5 (4)",
+     "3 (27)",
+     "0.5 (4)"
+    ],
+    [
+     "H7",
+     "IP20/Open type",
+     "–",
+     "75 (100)",
+     "14 (124)",
+     "14 (124)",
+     "–",
+     "0.5 (4)",
+     "3 (27)",
+     "0.5 (4)"
+    ],
+    [
+     "H8",
+     "IP20/Open type",
+     "37–45 (50–60)",
+     "90 (125)",
+     "24 (212)(1)",
+     "24 (212)(1)",
+     "–",
+     "0.5 (4)",
+     "3 (27)",
+     "0.5 (4)"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 21: Tightening Torques for Enclosure Sizes I2–I8",
+   "page": 51,
+   "header": [
+    "Power [kW (hp)] Enclosure size",
+    "Protection rating",
+    "3x380–480 V",
+    "Torque [Nm (in-lb)] Mains",
+    "Motor",
+    "DC connection",
+    "Control terminals",
+    "Ground",
+    "Relay"
+   ],
+   "quantities": [
+    "power",
+    "protection",
+    "voltage",
+    "torque",
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "I2",
+     "IP54",
+     "0.75–4.0 (1.0–5.0)",
+     "0.8 (7)",
+     "0.8 (7)",
+     "0.8 (7)",
+     "0.5 (4)",
+     "0.8 (7)",
+     "0.5 (4)"
+    ],
+    [
+     "I3",
+     "IP54",
+     "5.5–7.5 (7.5–10)",
+     "0.8 (7)",
+     "0.8 (7)",
+     "0.8 (7)",
+     "0.5 (4)",
+     "0.8 (7)",
+     "0.5 (4)"
+    ],
+    [
+     "I4",
+     "IP54",
+     "11–18.5 (15–25)",
+     "1.2 (11)",
+     "1.2 (11)",
+     "0.8 (7)",
+     "0.5 (4)",
+     "0.8 (7)",
+     "0.5 (4)"
+    ],
+    [
+     "I6",
+     "IP54",
+     "22–37 (30–50)",
+     "4.5 (40)",
+     "4.5 (40)",
+     "–",
+     "0.5 (4)",
+     "3 (27)",
+     "0.6 (5)"
+    ],
+    [
+     "I7",
+     "IP54",
+     "45–55 (60–70)",
+     "10 (89)",
+     "10 (89)",
+     "–",
+     "0.5 (4)",
+     "3 (27)",
+     "0.6 (5)"
+    ],
+    [
+     "I8",
+     "IP54",
+     "75–90 (100–125)",
+     "14 (124)/24 (212)(1)",
+     "14 (124)/24 (212)(1)",
+     "–",
+     "0.5 (4)",
+     "3 (27)",
+     "0.6 (5)"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 22: Tightening Torques for Enclosure Sizes H6–H10, 3x525–600 V",
+   "page": 52,
+   "header": [
+    "Power [kW (hp)] Enclosure size",
+    "Protection rating",
+    "3x525–600 V",
+    "Torque [Nm (in-lb)] Mains",
+    "Motor",
+    "DC connection",
+    "Control terminals",
+    "Ground",
+    "Relay"
+   ],
+   "quantities": [
+    "power",
+    "protection",
+    "voltage",
+    "torque",
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "H9",
+     "IP20/Open type",
+     "2.2–7.5 (3.0–10)",
+     "1.8 (16)",
+     "1.8 (16)",
+     "Not recom- mended",
+     "0.5 (4)",
+     "3 (27)",
+     "0.6 (5)"
+    ],
+    [
+     "H10",
+     "IP20/Open type",
+     "11–15 (15–20)",
+     "1.8 (16)",
+     "1.8 (16)",
+     "Not recom- mended",
+     "0.5 (4)",
+     "3 (27)",
+     "0.6 (5)"
+    ],
+    [
+     "H6",
+     "IP20/Open type",
+     "18.5–30 (25–40)",
+     "4.5 (40)",
+     "4.5 (40)",
+     "–",
+     "0.5 (4)",
+     "3 (27)",
+     "0.5 (4)"
+    ],
+    [
+     "H7",
+     "IP20/Open type",
+     "37–55 (50–70)",
+     "10 (89)",
+     "10 (89)",
+     "–",
+     "0.5 (4)",
+     "3 (27)",
+     "0.5 (4)"
+    ],
+    [
+     "H8",
+     "IP20/Open type",
+     "75–90 (100–125)",
+     "14 (124)/24 (212)(1)",
+     "14 (124)/24 (212)(1)",
+     "–",
+     "0.5 (4)",
+     "3 (27)",
+     "0.5 (4)"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 23: Recommended Fuses and Circuit Breakers for UL508C Types",
+   "page": 65,
+   "header": [
+    "Enclosure size",
+    "Power rating [kW (hp)]",
+    "Circuit breaker UL",
+    "Non-UL",
+    "Fuse UL",
+    "",
+    "",
+    "",
+    "Non-UL"
+   ],
+   "quantities": [
+    null,
+    "power",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "",
+     "",
+     "",
+     "Bussmann",
+     "Bussmann",
+     "Bussmann",
+     "Bussmann",
+     "Maximum fuse"
+    ],
+    [
+     "",
+     "",
+     "",
+     "",
+     "Type RK5",
+     "Type RK1",
+     "Type J",
+     "Type T",
+     "Type G"
+    ],
+    [
+     "3x200–240 V IP20/Open type",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "H1",
+     "0.25–1.5 (0.33–2.0)",
+     "–",
+     "–",
+     "FRS-R-10",
+     "KTN-R10",
+     "JKS-10",
+     "JJN-10",
+     "10"
+    ],
+    [
+     "H2",
+     "2.2 (3.0)",
+     "–",
+     "–",
+     "FRS-R-15",
+     "KTN-R15",
+     "JKS-15",
+     "JJN-15",
+     "16"
+    ],
+    [
+     "H3",
+     "3.7 (5.0)",
+     "–",
+     "–",
+     "FRS-R-25",
+     "KTN-R25",
+     "JKS-25",
+     "JJN-25",
+     "25"
+    ],
+    [
+     "H4",
+     "5.5–7.5 (7.5–10)",
+     "–",
+     "–",
+     "FRS-R-50",
+     "KTN-R50",
+     "JKS-50",
+     "JJN-50",
+     "50"
+    ],
+    [
+     "H5",
+     "11 (15)",
+     "–",
+     "–",
+     "FRS-R-80",
+     "KTN-R80",
+     "JKS-80",
+     "JJN-80",
+     "65"
+    ],
+    [
+     "H6",
+     "15–18.5 (20–25)",
+     "Cutler-Hammer EGE3100FFG",
+     "Moeller NZMB1- A125",
+     "FRS-R-100",
+     "KTN-R100",
+     "JKS-100",
+     "JJN-100",
+     "125"
+    ],
+    [
+     "H7",
+     "22–30 (30–40)",
+     "Cutler-Hammer JGE3150FFG",
+     "Moeller NZMB1- A160",
+     "FRS-R-150",
+     "KTN-R150",
+     "JKS-150",
+     "JJN-150",
+     "160"
+    ],
+    [
+     "H8",
+     "37–45 (50–60)",
+     "Cutler-Hammer JGE3200FFG",
+     "Moeller NZMB1- A200",
+     "FRS-R-200",
+     "KTN-R200",
+     "JKS-200",
+     "JJN-200",
+     "200"
+    ],
+    [
+     "3x380–480 V IP20/Open type",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "H1",
+     "0.37–1.5 (0.5–2.0)",
+     "–",
+     "–",
+     "FRS-R-10",
+     "KTS-R10",
+     "JKS-10",
+     "JJS-10",
+     "10"
+    ],
+    [
+     "H2",
+     "2.2–4.0 (3.0–5.0)",
+     "–",
+     "–",
+     "FRS-R-15",
+     "KTS-R15",
+     "JKS-15",
+     "JJS-15",
+     "16"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 23: Recommended Fuses and Circuit Breakers for UL508C Types - (continued)",
+   "page": 66,
+   "header": [
+    "Enclosure size",
+    "Power rating [kW (hp)]",
+    "Circuit breaker UL",
+    "Non-UL",
+    "Fuse UL",
+    "",
+    "",
+    "",
+    "Non-UL"
+   ],
+   "quantities": [
+    null,
+    "power",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "",
+     "",
+     "",
+     "Bussmann",
+     "Bussmann",
+     "Bussmann",
+     "Bussmann",
+     "Maximum fuse"
+    ],
+    [
+     "",
+     "",
+     "",
+     "",
+     "Type RK5",
+     "Type RK1",
+     "Type J",
+     "Type T",
+     "Type G"
+    ],
+    [
+     "H3",
+     "5.5–7.5 (7.5–10)",
+     "–",
+     "–",
+     "FRS-R-25",
+     "KTS-R25",
+     "JKS-25",
+     "JJS-25",
+     "25"
+    ],
+    [
+     "H4",
+     "11–15 (15–20)",
+     "–",
+     "–",
+     "FRS-R-50",
+     "KTS-R50",
+     "JKS-50",
+     "JJS-50",
+     "50"
+    ],
+    [
+     "H5",
+     "18.5–22 (25–30)",
+     "–",
+     "–",
+     "FRS-R-80",
+     "KTS-R80",
+     "JKS-80",
+     "JJS-80",
+     "65"
+    ],
+    [
+     "H6",
+     "30 (40)",
+     "Cutler-Hammer EGE3125FFG",
+     "Moeller NZMB1- A125",
+     "FRS-R-125",
+     "KTS-R125",
+     "JKS-R125",
+     "JJS-R125",
+     "80"
+    ],
+    [
+     "",
+     "37 (50)",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "100"
+    ],
+    [
+     "",
+     "45 (60)",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "125"
+    ],
+    [
+     "H7",
+     "55 (70)",
+     "Cutler-Hammer JGE3200FFG",
+     "Moeller NZMB1- A200",
+     "FRS-R-200",
+     "KTS-R200",
+     "JKS-R200",
+     "JJS-R200",
+     "150"
+    ],
+    [
+     "",
+     "75 (100)",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "200"
+    ],
+    [
+     "H8",
+     "90 (125)",
+     "Cutler-Hammer JGE3250FFG",
+     "Moeller NZMB2- A250",
+     "FRS-R-250",
+     "KTS-R250",
+     "JKS-R250",
+     "JJS-R250",
+     "250"
+    ],
+    [
+     "3x525–600 V IP20/Open type",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "H9",
+     "2.2–7.5 (3.0–10)",
+     "–",
+     "–",
+     "FRS-R-20",
+     "KTS-R20",
+     "JKS-20",
+     "JJS-20",
+     "20"
+    ],
+    [
+     "H10",
+     "11–15 (15–20)",
+     "–",
+     "–",
+     "FRS-R-30",
+     "KTS-R30",
+     "JKS-30",
+     "JJS-30",
+     "35"
+    ],
+    [
+     "H6",
+     "18.5–30 (25–40)",
+     "Cutler-Hammer EGE3080FFG",
+     "Cutler-Hammer EGE3080FFG",
+     "FRS-R-80",
+     "KTS-R80",
+     "JKS-80",
+     "JJS-80",
+     "80"
+    ],
+    [
+     "H7",
+     "37–55 (50–70)",
+     "Cutler-Hammer JGE3125FFG",
+     "Cutler-Hammer JGE3125FFG",
+     "FRS-R-125",
+     "KTS-R125",
+     "JKS-125",
+     "JJS-125",
+     "125"
+    ],
+    [
+     "H8",
+     "75–90 (100–125)",
+     "Cutler-Hammer JGE3200FAG",
+     "Cutler-Hammer JGE3200FAG",
+     "FRS-R-200",
+     "KTS-R200",
+     "JKS-200",
+     "JJS-200",
+     "200"
+    ],
+    [
+     "3x380–480 V IP54",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "I2",
+     "0.75–4.0 (1.0–5.0)",
+     "–",
+     "PKZM0-16",
+     "–",
+     "–",
+     "–",
+     "–",
+     "16"
+    ],
+    [
+     "I3",
+     "5.5–7.5 (7.5–10)",
+     "–",
+     "PKZM0-25",
+     "–",
+     "–",
+     "–",
+     "–",
+     "25"
+    ],
+    [
+     "I4",
+     "11–18.5 (15–25)",
+     "–",
+     "PKZM4-63",
+     "–",
+     "–",
+     "–",
+     "–",
+     "63"
+    ],
+    [
+     "I6",
+     "22–37 (30–50)",
+     "–",
+     "–",
+     "–",
+     "–",
+     "–",
+     "–",
+     "125"
+    ],
+    [
+     "I7",
+     "45–55 (60–70)",
+     "–",
+     "–",
+     "–",
+     "–",
+     "–",
+     "–",
+     "160"
+    ],
+    [
+     "I8",
+     "75–90 (100–125)",
+     "–",
+     "–",
+     "–",
+     "–",
+     "–",
+     "–",
+     "200"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 24: Recommended Fuses for UL61800-5-1 Types",
+   "page": 67,
+   "header": [
+    "FC 101 Enclosure size",
+    "Power rating [kW (hp)]",
+    "UL Compliance (UL61800-5-1) Short Circuit Current Ratings (SCCR) 5kA and 100kA: 0–37 kW (0–50 hp) 10kA and 100kA: 45–90 kW (60–125 hp) Listed fuse RK5/RK1(2)/J/T/CC Amperes ratings (A)",
+    "Test cabinet size(3), (4) [Height x Width x Depth] [mm (in)]",
+    "Minimum cabinet volume [L]",
+    "CE Compliance 5 kA and 10 kA(1) gG Amperes ratings (A)"
+   ],
+   "quantities": [
+    null,
+    "power",
+    "power",
+    "dimension",
+    null,
+    "current"
+   ],
+   "rows": [
+    [
+     "3x200Y/115-240Y/139 V",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "H1",
+     "0.25–1.5 (0.33–2.0)",
+     "10",
+     "500 x 400 x 260 (19.7 x 15.7 x 10.2)",
+     "52",
+     "gG-10"
+    ],
+    [
+     "H2",
+     "2.2 (3.0)",
+     "15",
+     "",
+     "",
+     "gG-16"
+    ],
+    [
+     "H3",
+     "3.7 (5.0)",
+     "25",
+     "",
+     "",
+     "gG-25"
+    ],
+    [
+     "H4",
+     "5.5–7.5 (7.5–10)",
+     "50",
+     "800 x 400 x 300 (31.5 x 15.7 x 11.8)",
+     "96",
+     "gG-50"
+    ],
+    [
+     "H5",
+     "11 (15)",
+     "80",
+     "",
+     "",
+     "gG-65"
+    ],
+    [
+     "H6",
+     "15–18.5 (20–25)",
+     "100",
+     "–",
+     "–",
+     "gG-125"
+    ],
+    [
+     "H7",
+     "22–30 (30–40)",
+     "150",
+     "800 x 600 x 400 (31.5 x 23.6 x 15.7)",
+     "192",
+     "gG-160"
+    ],
+    [
+     "H8",
+     "37–45 (50–60)",
+     "200",
+     "1200 x 600 x 500 (47.2 x 23.6 x 19.7)",
+     "360",
+     "gG-200"
+    ],
+    [
+     "3x380Y/220-480Y/277 V",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "H1",
+     "0.37–1.5 (0.5–2.0)",
+     "10",
+     "500 x 400 x 260 (19.7 x 15.7 x 10.2)",
+     "52",
+     "gG-10"
+    ],
+    [
+     "H2",
+     "2.2–4.0 (3.0–5.0)",
+     "15",
+     "",
+     "",
+     "gG-16"
+    ],
+    [
+     "H3",
+     "5.5–7.5 (7.5–10)",
+     "25",
+     "",
+     "",
+     "gG-25"
+    ],
+    [
+     "H4",
+     "11–15 (15–20)",
+     "50",
+     "800 x 400 x 300 (31.5 x 15.7 x 11.8)",
+     "96",
+     "gG-50"
+    ],
+    [
+     "H5",
+     "18.5–22 (25–30)",
+     "80",
+     "",
+     "",
+     "gG-65"
+    ],
+    [
+     "H6",
+     "30 (40)",
+     "125",
+     "–",
+     "–",
+     "gG-80"
+    ],
+    [
+     "",
+     "37 (50)",
+     "",
+     "",
+     "",
+     "gG-100"
+    ],
+    [
+     "",
+     "45 (60)",
+     "",
+     "",
+     "",
+     "gG-125"
+    ],
+    [
+     "H7",
+     "55 (75)",
+     "200",
+     "800 x 600 x 400 (31.5 x 23.6 x 15.7)",
+     "192",
+     "gG-150"
+    ],
+    [
+     "",
+     "75 (100)",
+     "",
+     "",
+     "",
+     "gG-200"
+    ],
+    [
+     "H8",
+     "90 (125)",
+     "250",
+     "1200 x 600 x 500 (47.2 x 23.6 x 19.7)",
+     "360",
+     "gG-250"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Design Guide | VLT® HVAC Basic Drive FC 101 Electrical Installation Considerations",
+   "page": 70,
+   "header": [
+    "CS U V W",
+    "",
+    "V",
+    "I1",
+    "",
+    "",
+    "",
+    "CS"
+   ],
+   "quantities": [
+    "voltage",
+    null,
+    "voltage",
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "W",
+     "W",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "",
+     "",
+     "I2",
+     "",
+     "",
+     "CS 1",
+     ""
+    ],
+    [
+     "",
+     "",
+     "",
+     "I3",
+     "",
+     "",
+     "2",
+     ""
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 27: EMC Emission Test Results",
+   "page": 71,
+   "header": [
+    "RFI filter type",
+    "Conduct emission. Maximum shielded cable length [m (ft)] Industrial environment",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Radiated emission",
+    "",
+    "",
+    ""
+   ],
+   "quantities": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "EN 55011",
+     "Class A Group 2 Industrial environ- ment",
+     "",
+     "Class A Group 1 Industrial environ- ment",
+     "",
+     "Class B Housing, trades and light industries",
+     "",
+     "Class A Group 1 Industrial environ- ment",
+     "",
+     "Class B Housing, trades and light industries",
+     ""
+    ],
+    [
+     "EN/IEC 61800-3",
+     "Category C3 Second environ- ment Industrial",
+     "",
+     "Category C2 First environment Home and office",
+     "",
+     "Category C1 First environment Home and office",
+     "",
+     "Category C2 First environment Home and office",
+     "",
+     "Category C1 First environment Home and office",
+     ""
+    ],
+    [
+     "",
+     "Without external filter",
+     "With ex- ternal fil- ter",
+     "Without external filter",
+     "With ex- ternal fil- ter",
+     "Without external filter",
+     "With ex- ternal fil- ter",
+     "Without external filter",
+     "With ex- ternal fil- ter",
+     "Without external filter",
+     "With ex- ternal fil- ter"
+    ],
+    [
+     "H4 RFI filter (EN55011 A1, EN/IEC61800-3 C2)",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "0.25–11 kW (0.34–15 hp) 3x200–240 V IP20/Open type",
+     "–",
+     "–",
+     "25 (82)",
+     "50 (164)",
+     "–",
+     "20 (66)",
+     "Yes",
+     "Yes",
+     "–",
+     "No"
+    ],
+    [
+     "0.37–22 kW (0.5–30 hp) 3x380–480 V IP20/Open type",
+     "–",
+     "–",
+     "25 (82)",
+     "50 (164)",
+     "–",
+     "20 (66)",
+     "Yes",
+     "Yes",
+     "–",
+     "No"
+    ],
+    [
+     "H2 RFI filter (EN 55011 A2, EN/IEC 61800-3 C3)",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 30: Harmonic Current 0.25–11 kW (0.34–15 hp), 200 V",
+   "page": 73,
+   "header": [
+    "",
+    "Individual harmonic current I /I (%) n 1",
+    "",
+    "",
+    ""
+   ],
+   "quantities": [
+    null,
+    "current",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "I 5",
+     "I 7",
+     "I 11",
+     "I 13"
+    ],
+    [
+     "Actual 0.25–11 kW (0.34–15 hp), IP20/Open type, 200 V (typical)",
+     "32.6",
+     "16.6",
+     "8.0",
+     "6.0"
+    ],
+    [
+     "Limit for R ≥120 sce",
+     "40",
+     "25",
+     "15",
+     "10"
+    ],
+    [
+     "",
+     "Harmonic current distortion factor (%)",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "THDi",
+     "",
+     "PWHD",
+     ""
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 31: Harmonic Current 0.37–22 kW (0.5–30 hp), 380–480 V",
+   "page": 74,
+   "header": [
+    "",
+    "Individual harmonic current I /I (%) n 1",
+    "",
+    "",
+    ""
+   ],
+   "quantities": [
+    null,
+    "current",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "I 5",
+     "I 7",
+     "I 11",
+     "I 13"
+    ],
+    [
+     "Actual 0.37–22 kW (0.5–30 hp), IP20/Open type, 380–480 V (typ- ical)",
+     "36.7",
+     "20.8",
+     "7.6",
+     "6.4"
+    ],
+    [
+     "Limit for R ≥120 sce",
+     "40",
+     "25",
+     "15",
+     "10"
+    ],
+    [
+     "",
+     "Harmonic current distortion factor (%)",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "THDi",
+     "",
+     "PWHD",
+     ""
+    ],
+    [
+     "Actual 0.37–22 kW (0.5–30 hp), 380–480 V (typical)",
+     "44.4",
+     "",
+     "40.8",
+     ""
+    ],
+    [
+     "Limit for R ≥120 sce",
+     "48",
+     "",
+     "46",
+     ""
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 34: Harmonic Current 18.5–90 kW (25–120 hp), 525–600 V",
+   "page": 74,
+   "header": [
+    "",
+    "Individual harmonic current I /I (%) n 1",
+    "",
+    "",
+    ""
+   ],
+   "quantities": [
+    null,
+    "current",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "I 5",
+     "I 7",
+     "I 11",
+     "I 13"
+    ],
+    [
+     "Actual 18.5–90 kW (25–120 hp), IP20/Open type, 525–600 V (typical)",
+     "48.8",
+     "24.7",
+     "6.3",
+     "5"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Figure 77: Galvanic Isolation 30–90 kW (40–125 hp)",
+   "page": 78,
+   "header": [
+    "1",
+    "Supply (SMPS) including signal isolation of UDC, indicating the intermediate current voltage",
+    "2",
+    "Gate drive that runs the IGBTs (trigger transformers/ optocouplers)"
+   ],
+   "quantities": [
+    null,
+    "current",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "3",
+     "Current transducers",
+     "4",
+     "Internal soft-charge, RFI, and temperature measurement circuits"
+    ],
+    [
+     "5",
+     "Custom relays",
+     "a",
+     "Control card terminals"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 38: Supply Voltage",
+   "page": 86,
+   "header": [
+    "Input",
+    "Supply voltage [V]",
+    "Threshold cutout values [Ω]"
+   ],
+   "quantities": [
+    null,
+    "voltage",
+    null
+   ],
+   "rows": [
+    [
+     "Digital",
+     "10",
+     "<800⇒2.9 k"
+    ],
+    [
+     "Analog",
+     "10",
+     "<800⇒2.9 k"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 39: Typical Values Measured at a Distance of 1 m (3.28 ft) from the Unit",
+   "page": 87,
+   "header": [
+    "Enclosure size",
+    "Level [dBA](1)"
+   ],
+   "quantities": [
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "H1",
+     "43.6"
+    ],
+    [
+     "H2",
+     "50.2"
+    ],
+    [
+     "H3",
+     "53.8"
+    ],
+    [
+     "H4",
+     "64"
+    ],
+    [
+     "H5",
+     "63.7"
+    ],
+    [
+     "H6",
+     "71.5"
+    ],
+    [
+     "H7",
+     "67.5 (75 kW (100 hp) 71.5 dB)"
+    ],
+    [
+     "H8",
+     "73.5"
+    ],
+    [
+     "H9",
+     "60"
+    ],
+    [
+     "H10",
+     "62.9"
+    ],
+    [
+     "I2",
+     "50.2"
+    ],
+    [
+     "I3",
+     "54"
+    ],
+    [
+     "I4",
+     "67.4"
+    ],
+    [
+     "I6",
+     "70"
+    ],
+    [
+     "I7",
+     "65"
+    ],
+    [
+     "I8",
+     "65.6"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 40: dU/dt Data",
+   "page": 87,
+   "header": [
+    "",
+    "Cable length [m (ft)]",
+    "AC line voltage [V]",
+    "Rise time [μsec]",
+    "V [kV] peak",
+    "dU/dt [kV/μsec]"
+   ],
+   "quantities": [
+    null,
+    null,
+    "voltage",
+    null,
+    "voltage",
+    null
+   ],
+   "rows": [
+    [
+     "200 V 0.25 kW (0.34 hp)",
+     "5 (16)",
+     "240",
+     "0.121",
+     "0.498",
+     "3.256"
+    ],
+    [
+     "",
+     "25 (82)",
+     "240",
+     "0.182",
+     "0.615",
+     "2.706"
+    ],
+    [
+     "",
+     "50 (164)",
+     "240",
+     "0.258",
+     "0.540",
+     "1.666"
+    ],
+    [
+     "200 V 0.37 kW (0.5 hp)",
+     "5 (16)",
+     "240",
+     "0.121",
+     "0.498",
+     "3.256"
+    ],
+    [
+     "",
+     "25 (82)",
+     "240",
+     "0.182",
+     "0.615",
+     "2.706"
+    ],
+    [
+     "",
+     "50 (164)",
+     "240",
+     "0.258",
+     "0.540",
+     "1.666"
+    ],
+    [
+     "200 V 0.75 kW (1.0 hp)",
+     "5 (16)",
+     "240",
+     "0.121",
+     "0.498",
+     "3.256"
+    ],
+    [
+     "",
+     "25 (82)",
+     "240",
+     "0.182",
+     "0.615",
+     "2.706"
+    ],
+    [
+     "",
+     "50 (164)",
+     "240",
+     "0.258",
+     "0.540",
+     "1.666"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 40: dU/dt Data - (continued)",
+   "page": 88,
+   "header": [
+    "",
+    "Cable length [m (ft)]",
+    "AC line voltage [V]",
+    "Rise time [μsec]",
+    "V [kV] peak",
+    "dU/dt [kV/μsec]"
+   ],
+   "quantities": [
+    null,
+    null,
+    "voltage",
+    null,
+    "voltage",
+    null
+   ],
+   "rows": [
+    [
+     "200 V 1.5 kW (2.0 hp)",
+     "5 (16)",
+     "240",
+     "0.121",
+     "0.498",
+     "3.256"
+    ],
+    [
+     "",
+     "25 (82)",
+     "240",
+     "0.182",
+     "0.615",
+     "2.706"
+    ],
+    [
+     "",
+     "50 (164)",
+     "240",
+     "0.258",
+     "0.540",
+     "1.666"
+    ],
+    [
+     "200 V 2.2 kW (3.0 hp)",
+     "5 (16)",
+     "240",
+     "0.18",
+     "0.476",
+     "2.115"
+    ],
+    [
+     "",
+     "25 (82)",
+     "240",
+     "0.230",
+     "0.615",
+     "2.141"
+    ],
+    [
+     "",
+     "50 (164)",
+     "240",
+     "0.292",
+     "0.566",
+     "1.550"
+    ],
+    [
+     "200 V 3.7 kW (5.0 hp)",
+     "5 (16)",
+     "240",
+     "0.168",
+     "0.570",
+     "2.714"
+    ],
+    [
+     "",
+     "25 (82)",
+     "240",
+     "0.205",
+     "0.615",
+     "2.402"
+    ],
+    [
+     "",
+     "50 (164)",
+     "240",
+     "0.252",
+     "0.620",
+     "1.968"
+    ],
+    [
+     "200 V 5.5 kW (7.5 hp)",
+     "5 (16)",
+     "240",
+     "0.128",
+     "0.445",
+     "2.781"
+    ],
+    [
+     "",
+     "25 (82)",
+     "240",
+     "0.224",
+     "0.594",
+     "2.121"
+    ],
+    [
+     "",
+     "50 (164)",
+     "240",
+     "0.328",
+     "0.596",
+     "1.454"
+    ],
+    [
+     "200 V 7.5 kW (10 hp)",
+     "5 (16)",
+     "240",
+     "0.18",
+     "0.502",
+     "2.244"
+    ],
+    [
+     "",
+     "25 (82)",
+     "240",
+     "0.22",
+     "0.598",
+     "2.175"
+    ],
+    [
+     "",
+     "50 (164)",
+     "240",
+     "0.292",
+     "0.615",
+     "1.678"
+    ],
+    [
+     "200 V 11 kW (15 hp)",
+     "36 (118)",
+     "240",
+     "0.176",
+     "0.56",
+     "2.545"
+    ],
+    [
+     "",
+     "50 (164)",
+     "240",
+     "0.216",
+     "0.599",
+     "2.204"
+    ],
+    [
+     "400 V 0.37 kW (0.5 hp)",
+     "5 (16)",
+     "400",
+     "0.160",
+     "0.808",
+     "4.050"
+    ],
+    [
+     "",
+     "25 (82)",
+     "400",
+     "0.240",
+     "1.026",
+     "3.420"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.340",
+     "1.056",
+     "2.517"
+    ],
+    [
+     "400 V 0.75 kW (1.0 hp)",
+     "5 (16)",
+     "400",
+     "0.160",
+     "0.808",
+     "4.050"
+    ],
+    [
+     "",
+     "25 (82)",
+     "400",
+     "0.240",
+     "1.026",
+     "3.420"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.340",
+     "1.056",
+     "2.517"
+    ],
+    [
+     "400 V 1.5 kW (2.0 hp)",
+     "5 (16)",
+     "400",
+     "0.160",
+     "0.808",
+     "4.050"
+    ],
+    [
+     "",
+     "25 (82)",
+     "400",
+     "0.240",
+     "1.026",
+     "3.420"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.340",
+     "1.056",
+     "2.517"
+    ],
+    [
+     "400 V 2.2 kW (3.0 hp)",
+     "5 (16)",
+     "400",
+     "0.190",
+     "0.760",
+     "3.200"
+    ],
+    [
+     "",
+     "25 (82)",
+     "400",
+     "0.293",
+     "1.026",
+     "2.801"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.422",
+     "1.040",
+     "1.971"
+    ],
+    [
+     "400 V 3.0 kW (4.0 hp)",
+     "5 (16)",
+     "400",
+     "0.190",
+     "0.760",
+     "3.200"
+    ],
+    [
+     "",
+     "25 (82)",
+     "400",
+     "0.293",
+     "1.026",
+     "2.801"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.422",
+     "1.040",
+     "1.971"
+    ],
+    [
+     "400 V 4.0 kW (5.5 hp)",
+     "5 (16)",
+     "400",
+     "0.190",
+     "0.760",
+     "3.200"
+    ],
+    [
+     "",
+     "25 (82)",
+     "400",
+     "0.293",
+     "1.026",
+     "2.801"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.422",
+     "1.040",
+     "1.971"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 40: dU/dt Data - (continued)",
+   "page": 89,
+   "header": [
+    "",
+    "Cable length [m (ft)]",
+    "AC line voltage [V]",
+    "Rise time [μsec]",
+    "V [kV] peak",
+    "dU/dt [kV/μsec]"
+   ],
+   "quantities": [
+    null,
+    null,
+    "voltage",
+    null,
+    "voltage",
+    null
+   ],
+   "rows": [
+    [
+     "400 V 5.5 kW (7.5 hp)",
+     "5 (16)",
+     "400",
+     "0.168",
+     "0.81",
+     "3.857"
+    ],
+    [
+     "",
+     "25 (82)",
+     "400",
+     "0.239",
+     "1.026",
+     "3.434"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.328",
+     "1.05",
+     "2.560"
+    ],
+    [
+     "400 V 7.5 kW (10 hp)",
+     "5 (16)",
+     "400",
+     "0.168",
+     "0.81",
+     "3.857"
+    ],
+    [
+     "",
+     "25 (82)",
+     "400",
+     "0.239",
+     "1.026",
+     "3.434"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.328",
+     "1.05",
+     "2.560"
+    ],
+    [
+     "400 V 11 kW (15 hp)",
+     "5 (16)",
+     "400",
+     "0.116",
+     "0.69",
+     "4.871"
+    ],
+    [
+     "",
+     "25 (82)",
+     "400",
+     "0.204",
+     "0.985",
+     "3.799"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.316",
+     "1.01",
+     "2.563"
+    ],
+    [
+     "400 V 15 kW (20 hp)",
+     "5 (16)",
+     "400",
+     "0.139",
+     "0.864",
+     "4.955"
+    ],
+    [
+     "",
+     "50 (82)",
+     "400",
+     "0.338",
+     "1.008",
+     "2.365"
+    ],
+    [
+     "400 V 18.5 kW (25 hp)",
+     "5 (16)",
+     "400",
+     "0.132",
+     "0.88",
+     "5.220"
+    ],
+    [
+     "",
+     "25 (82)",
+     "400",
+     "0.172",
+     "1.026",
+     "4.772"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.222",
+     "1.00",
+     "3.603"
+    ],
+    [
+     "400 V 22 kW (30 hp)",
+     "5 (16)",
+     "400",
+     "0.132",
+     "0.88",
+     "5.220"
+    ],
+    [
+     "",
+     "25 (82)",
+     "400",
+     "0.172",
+     "1.026",
+     "4.772"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.222",
+     "1.00",
+     "3.603"
+    ],
+    [
+     "400 V 30 kW (40 hp)",
+     "10 (33)",
+     "400",
+     "0.376",
+     "0.92",
+     "1.957"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.536",
+     "0.97",
+     "1.448"
+    ],
+    [
+     "",
+     "100 (328)",
+     "400",
+     "0.696",
+     "0.95",
+     "1.092"
+    ],
+    [
+     "",
+     "150 (492)",
+     "400",
+     "0.8",
+     "0.965",
+     "0.965"
+    ],
+    [
+     "",
+     "10 (33)",
+     "480",
+     "0.384",
+     "1.2",
+     "2.5"
+    ],
+    [
+     "",
+     "50 (164)",
+     "480",
+     "0.632",
+     "1.18",
+     "1.494"
+    ],
+    [
+     "",
+     "100 (328)",
+     "480",
+     "0.712",
+     "1.2",
+     "1.348"
+    ],
+    [
+     "",
+     "150 (492)",
+     "480",
+     "0.832",
+     "1.17",
+     "1.125"
+    ],
+    [
+     "",
+     "10 (33)",
+     "500",
+     "0.408",
+     "1.24",
+     "2.431"
+    ],
+    [
+     "",
+     "50 (164)",
+     "500",
+     "0.592",
+     "1.29",
+     "1.743"
+    ],
+    [
+     "",
+     "100 (328)",
+     "500",
+     "0.656",
+     "1.28",
+     "1.561"
+    ],
+    [
+     "",
+     "150 (492)",
+     "500",
+     "0.84",
+     "1.26",
+     "1.2"
+    ],
+    [
+     "400 V 37 kW (50 hp)",
+     "10 (33)",
+     "400",
+     "0.276",
+     "0.928",
+     "2.69"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.432",
+     "1.02",
+     "1.889"
+    ],
+    [
+     "",
+     "10 (33)",
+     "480",
+     "0.272",
+     "1.17",
+     "3.441"
+    ],
+    [
+     "",
+     "50 (164)",
+     "480",
+     "0.384",
+     "1.21",
+     "2.521"
+    ],
+    [
+     "",
+     "10 (33)",
+     "500",
+     "0.288",
+     "1.2",
+     "3.333"
+    ],
+    [
+     "",
+     "50 (164)",
+     "500",
+     "0.384",
+     "1.27",
+     "2.646"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 40: dU/dt Data - (continued)",
+   "page": 90,
+   "header": [
+    "",
+    "Cable length [m (ft)]",
+    "AC line voltage [V]",
+    "Rise time [μsec]",
+    "V [kV] peak",
+    "dU/dt [kV/μsec]"
+   ],
+   "quantities": [
+    null,
+    null,
+    "voltage",
+    null,
+    "voltage",
+    null
+   ],
+   "rows": [
+    [
+     "400 V 45 kW (60 hp)",
+     "10 (33)",
+     "400",
+     "0.3",
+     "0.936",
+     "2.496"
+    ],
+    [
+     "",
+     "50 (164)",
+     "400",
+     "0.44",
+     "0.924",
+     "1.68"
+    ],
+    [
+     "",
+     "100 (328)",
+     "400",
+     "0.56",
+     "0.92",
+     "1.314"
+    ],
+    [
+     "",
+     "150 (492)",
+     "400",
+     "0.8",
+     "0.92",
+     "0.92"
+    ],
+    [
+     "",
+     "10 (33)",
+     "480",
+     "0.3",
+     "1.19",
+     "3.173"
+    ],
+    [
+     "",
+     "50 (164)",
+     "480",
+     "0.4",
+     "1.15",
+     "2.3"
+    ],
+    [
+     "",
+     "100 (328)",
+     "480",
+     "0.48",
+     "1.14",
+     "1.9"
+    ],
+    [
+     "",
+     "150 (492)",
+     "480",
+     "0.72",
+     "1.14",
+     "1.267"
+    ],
+    [
+     "",
+     "10 (33)",
+     "500",
+     "0.3",
+     "1.22",
+     "3.253"
+    ],
+    [
+     "",
+     "50 (164)",
+     "500",
+     "0.38",
+     "1.2",
+     "2.526"
+    ],
+    [
+     "",
+     "100 (328)",
+     "500",
+     "0.56",
+     "1.16",
+     "1.657"
+    ],
+    [
+     "",
+     "150 (492)",
+     "500",
+     "0.74",
+     "1.16",
+     "1.254"
+    ],
+    [
+     "400 V 55 kW (75 hp)",
+     "10 (33)",
+     "400",
+     "0.46",
+     "1.12",
+     "1.948"
+    ],
+    [
+     "",
+     "",
+     "480",
+     "0.468",
+     "1.3",
+     "2.222"
+    ],
+    [
+     "400 V 75 kW (100 hp)",
+     "10 (33)",
+     "400",
+     "0.502",
+     "1.048",
+     "1.673"
+    ],
+    [
+     "",
+     "",
+     "480",
+     "0.52",
+     "1.212",
+     "1.869"
+    ],
+    [
+     "",
+     "",
+     "500",
+     "0.51",
+     "1.272",
+     "1.992"
+    ],
+    [
+     "400 V 90 kW (120 hp)",
+     "10 (33)",
+     "400",
+     "0.402",
+     "1.108",
+     "2.155"
+    ],
+    [
+     "",
+     "",
+     "400",
+     "0.408",
+     "1.288",
+     "2.529"
+    ],
+    [
+     "",
+     "",
+     "400",
+     "0.424",
+     "1.368",
+     "2.585"
+    ],
+    [
+     "600 V 7.5 kW (10 hp)",
+     "5 (16)",
+     "525",
+     "0.192",
+     "0.972",
+     "4.083"
+    ],
+    [
+     "",
+     "50 (164)",
+     "525",
+     "0.356",
+     "1.32",
+     "2.949"
+    ],
+    [
+     "",
+     "5 (16)",
+     "600",
+     "0.184",
+     "1.06",
+     "4.609"
+    ],
+    [
+     "",
+     "50 (164)",
+     "600",
+     "0.42",
+     "1.49",
+     "2.976"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 61: Modbus Exception Codes",
+   "page": 120,
+   "header": [
+    "Code 1",
+    "Name Illegal function",
+    "Meaning The function code received in the query is not an allowable action for the server (or follower). This may be because the function code is only applicable to newer devices and was not implemented in the unit selected. It could also indicate that the server (or follower) is in the wrong state to process a request of this type, for example, because it is not configured and is being asked to return register values."
+   ],
+   "quantities": [
+    null,
+    null,
+    "current"
+   ],
+   "rows": [
+    [
+     "2",
+     "Illegal data ad- dress",
+     "The data address received in the query is not an allowable address for the server (or follower). More specifically, the combination of reference number and transfer length is invalid. For a controller with 100 registers, a request with offset 96 and length 4 succeeds, while a request with offset 96 and length 5 generates exception 02."
+    ],
+    [
+     "3",
+     "Illegal data value",
+     "A value contained in the query data field is not an allowable value for server (or follower). This indi- cates a fault in the structure of the remainder of a complex request, such as that the implied length is incorrect. It does NOT mean that a data item submitted for storage in a register has a value out- side the expectation of the application program, since the Modbus protocol is unaware of the signifi- cance of any value of any register."
+    ],
+    [
+     "4",
+     "Follower de- vice failure",
+     "An unrecoverable error occurred while the server (or follower) was attempting to perform the re- quested action."
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 83: Code Number of IP21/NEMA Type 1 Enclosure Kit",
+   "page": 139,
+   "header": [
+    "Enclosure size",
+    "Protection rating",
+    "Power [kW (hp)] 3x200-240 V [kW (hp)]",
+    "3x380-480 V [kW (hp)]",
+    "3x525-600 V [kW (hp)]",
+    "Height [mm (in)] A",
+    "Width [mm (in)] B",
+    "Depth [mm (in)] C",
+    "IP21 conversion kit code number",
+    "NEMA Type 1 kit code number"
+   ],
+   "quantities": [
+    null,
+    "protection",
+    "power",
+    "power",
+    "power",
+    "current",
+    "dimension",
+    "dimension",
+    "protection",
+    null
+   ],
+   "rows": [
+    [
+     "H1",
+     "IP20/Open type",
+     "0.25–1.5 (0.34–2.0)",
+     "0.37–1.5 (0.5–2.0)",
+     "–",
+     "293 (11.5)",
+     "81 (3.2)",
+     "173 (6.8)",
+     "132B0212",
+     "132B0222"
+    ],
+    [
+     "H2",
+     "IP20/Open type",
+     "2.2 (3.0)",
+     "2.2–4.0 (3.0–5.5)",
+     "–",
+     "322 (12.7)",
+     "96 (3.8)",
+     "195 (7.7)",
+     "132B0213",
+     "132B0223"
+    ],
+    [
+     "H3",
+     "IP20/Open type",
+     "3.7 (5.0)",
+     "5.5–7.5 (7.5–10)",
+     "–",
+     "346 (13.6)",
+     "106 (4.2)",
+     "210 (8.3)",
+     "132B0214",
+     "132B0224"
+    ],
+    [
+     "H4",
+     "IP20/Open type",
+     "5.5–7.5 (7.5–10)",
+     "11–15 (15– 20)",
+     "–",
+     "374 (14.7)",
+     "141 (5.6)",
+     "245 (9.6)",
+     "132B0215",
+     "132B0225"
+    ],
+    [
+     "H5",
+     "IP20/Open type",
+     "11 (15)",
+     "18.5–22 (25–30)",
+     "–",
+     "418 (16.5)",
+     "161 (6.3)",
+     "260 (10.2)",
+     "132B0216",
+     "132B0226"
+    ],
+    [
+     "H6",
+     "IP20/Open type",
+     "15–18.5 (20–25)",
+     "30–45 (40– 60)",
+     "18.5–30 (25–40)",
+     "663 (26.1)",
+     "260 (10.2)",
+     "242 (9.5)",
+     "132B0217",
+     "132B0217"
+    ],
+    [
+     "H7",
+     "IP20/Open type",
+     "22–30 (30– 40)",
+     "55–75 (74– 100)",
+     "37–55 (50– 74)",
+     "807 (31.8)",
+     "329 (13.0)",
+     "335 (13.2)",
+     "132B0218",
+     "132B0218"
+    ],
+    [
+     "H8",
+     "IP20/Open type",
+     "37–45 (50– 60)",
+     "90 (120)",
+     "75–90 (100–120)",
+     "943 (37.1)",
+     "390 (15.3)",
+     "335 (13.2)",
+     "132B0219",
+     "132B0219"
+    ],
+    [
+     "H9",
+     "IP20/Open type",
+     "–",
+     "–",
+     "2.2–7.5 (3.0–10)",
+     "372 (14.6)",
+     "130 (5.1)",
+     "205 (8.1)",
+     "132B0220",
+     "132B0220"
+    ],
+    [
+     "H10",
+     "IP20/Open type",
+     "–",
+     "–",
+     "11–15 (15– 20)",
+     "475 (18.7)",
+     "165 (6.5)",
+     "249 (9.8)",
+     "132B0221",
+     "132B0221"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 84: Code Numbers of Decoupling Plate",
+   "page": 140,
+   "header": [
+    "Enclosure size Pr",
+    "otection rating",
+    "Power [kW(hp)]",
+    "",
+    "",
+    "Decoupling plate code numbers"
+   ],
+   "quantities": [
+    null,
+    null,
+    "power",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "",
+     "3x200–240 V",
+     "3x380–480 V",
+     "3x525–600 V",
+     ""
+    ],
+    [
+     "H1 IP",
+     "20/Open type",
+     "0.25–1.5 (0.33–2.0)",
+     "0.37–1.5 (0.5–2.0)",
+     "–",
+     "132B0202"
+    ],
+    [
+     "H2 IP",
+     "20/Open type",
+     "2.2 (3.0)",
+     "2.2–4.0 (3.0–5.5)",
+     "–",
+     "132B0202"
+    ],
+    [
+     "H3 IP",
+     "20/Open type",
+     "3.7 (5.0)",
+     "5.5–7.5 (7.5–10)",
+     "–",
+     "132B0204"
+    ],
+    [
+     "H4 IP",
+     "20/Open type",
+     "5.5–7.5 (7.5–10)",
+     "11–15 (15–20)",
+     "–",
+     "132B0205"
+    ],
+    [
+     "H5 IP",
+     "20/Open type",
+     "11 (15)",
+     "18.5–22 (25–30)",
+     "–",
+     "132B0205"
+    ],
+    [
+     "H6 IP",
+     "20/Open type",
+     "15–18.5 (20–25)",
+     "30 (40)",
+     "18.5–30 (25–40)",
+     "132B0207"
+    ],
+    [
+     "H6 IP",
+     "20/Open type",
+     "–",
+     "37–45 (50–60)",
+     "–",
+     "132B0242"
+    ],
+    [
+     "H7 IP",
+     "20/Open type",
+     "22–30 (30–40)",
+     "55 (75)",
+     "37–55 (50–75)",
+     "132B0208"
+    ],
+    [
+     "H7 IP",
+     "20/Open type",
+     "–",
+     "75 (100)",
+     "–",
+     "132B0243"
+    ],
+    [
+     "H8 IP",
+     "20/Open type",
+     "37–45 (50–60)",
+     "90 (125)",
+     "75–90 (100–125)",
+     "132B0209"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 85: AHF Filters (10% Current Distortion), 3x380–480 V 50 Hz",
+   "page": 141,
+   "header": [
+    "Power [kW (hp)]",
+    "Drive input current continuous [A]",
+    "Default switching frequency [kHz]",
+    "THDi level [%]",
+    "Code number filter IP00",
+    "Code number filter IP20/Open type"
+   ],
+   "quantities": [
+    "power",
+    "current",
+    "frequency",
+    null,
+    "protection",
+    "protection"
+   ],
+   "rows": [
+    [
+     "22 (30)",
+     "41.5",
+     "4",
+     "6",
+     "130B1274",
+     "130B1111"
+    ],
+    [
+     "30 (40)",
+     "57",
+     "4",
+     "6",
+     "130B1275",
+     "130B1176"
+    ],
+    [
+     "37 (50)",
+     "70",
+     "4",
+     "9",
+     "130B1291",
+     "130B1201"
+    ],
+    [
+     "45 (60)",
+     "84",
+     "3",
+     "9",
+     "130B1291",
+     "130B1201"
+    ],
+    [
+     "55 (74)",
+     "103",
+     "3",
+     "9",
+     "130B1292",
+     "130B1204"
+    ],
+    [
+     "75 (100)",
+     "140",
+     "3",
+     "8",
+     "130B1294",
+     "130B1213"
+    ],
+    [
+     "90 (120)",
+     "176",
+     "3",
+     "8",
+     "130B1294",
+     "130B1213"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 87: Code Numbers of RFI Filters",
+   "page": 141,
+   "header": [
+    "Power [kW (hp)] 380–480 V",
+    "0.37–2.2 (0.5–3.0)",
+    "3.0–7.5 (4.0–10)",
+    "11–15 (15–20)",
+    "18.5–22 (25–30)"
+   ],
+   "quantities": [
+    "power",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Type",
+     "FN3258-7-45",
+     "FN3258-16-45",
+     "FN3258-30-47",
+     "FN3258-42-47"
+    ],
+    [
+     "A [mm (in)]",
+     "190 (7.5)",
+     "250 (9.8)",
+     "270 (10.6)",
+     "310 (12.2)"
+    ],
+    [
+     "B [mm (in)]",
+     "40 (1.57)",
+     "45 (1.77)",
+     "50 (1.97)",
+     "50 (1.97)"
+    ],
+    [
+     "C [mm (in)]",
+     "70 (2.76)",
+     "70 (2.76)",
+     "85 (3.35)",
+     "85 (3.35)"
+    ],
+    [
+     "D [mm (in)]",
+     "160 (6.3)",
+     "220 (8.7)",
+     "240 (9.5)",
+     "280 (11)"
+    ],
+    [
+     "E [mm (in)]",
+     "180 (7.1)",
+     "235 (9.3)",
+     "255 (10)",
+     "295 (11.6)"
+    ],
+    [
+     "F [mm (in)]",
+     "20 (0.79)",
+     "25 (0.98)",
+     "30 (1.18)",
+     "30 (1.18)"
+    ],
+    [
+     "G [mm (in)]",
+     "4.5 (0.18)",
+     "4.5 (0.18)",
+     "5.4 (0.21)",
+     "5.4 (0.21)"
+    ],
+    [
+     "H [mm (in)]",
+     "1 (0.04)",
+     "1 (0.04)",
+     "1 (0.04)",
+     "1 (0.04)"
+    ],
+    [
+     "I [mm (in)]",
+     "10.6 (0.42)",
+     "10.6 (0.42)",
+     "10.6 (0.42)",
+     "10.6 (0.42)"
+    ],
+    [
+     "J",
+     "M5",
+     "M5",
+     "M5",
+     "M5"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  },
+  {
+   "title": "Table 87: Code Numbers of RFI Filters - (continued)",
+   "page": 142,
+   "header": [
+    "K [mm (in)]",
+    "20 (0.79)",
+    "22.5 (0.89)",
+    "25 (0.98)",
+    "25 (0.98)"
+   ],
+   "quantities": [
+    "dimension",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "L1 [mm (in)]",
+     "31 (1.22)",
+     "31 (1.22)",
+     "40 (1.57)",
+     "40 (1.57)"
+    ],
+    [
+     "Torque [Nm (in-lb)]",
+     "0.7–0.8 (6.2–7.1)",
+     "0.7–0.8 (6.2–7.1)",
+     "1.9–2.2 (16.8–19.5)",
+     "1.9–2.2 (16.8–19.5)"
+    ],
+    [
+     "Weight [kg (lb)]",
+     "0.5 (1.1)",
+     "0.8 (1.8)",
+     "1.2 (2.6)",
+     "1.4 (3.1)"
+    ],
+    [
+     "Code number",
+     "132B0244",
+     "132B0245",
+     "132B0246",
+     "132B0247"
+    ]
+   ],
+   "source": "AJ275648114271en-001201.pdf"
+  }
+ ]
 }

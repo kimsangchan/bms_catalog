@@ -145,7 +145,30 @@ def check_model(m, eq, kg):
     elif not xc:
         add("W", "no-known-good", "정답 대조셋도 교차 대조도 없음 — 정확도를 확인할 방법이 없다")
 
-    # 9) 근거 문서
+    # 9) 정격 사양 — 시뮬레이터가 쓰려면 통신 맵만으로는 부족하다
+    st = m.get("specTables") or []
+    vr = m.get("variants") or []
+    if st or vr:
+        qs = sorted({q for t in st for q in (t.get("quantities") or []) if q})
+        if vr:
+            # 형번별 사양은 항목/값 목록이라 물리량을 단위에서 읽는다
+            units = {r[2] for v in vr for r in v.get("spec", []) if r[2] and r[2] != "—"}
+            qs = sorted(set(qs) | {S.quantity_of_unit(u) for u in units} - {None})
+            add("I", "spec-variants", "형번 %d개 · 항목 %d건"
+                % (len(vr), sum(len(v.get("spec", [])) for v in vr)))
+        if st:
+            add("I", "spec-ok", "사양 표 %d개 (%d행)"
+                % (len(st), sum(len(t.get("rows", [])) for t in st)))
+        core = {"power", "current", "voltage", "capacity"}
+        if not (core & set(qs)):
+            add("W", "spec-nocore", "전력·전류·전압·용량이 없다 — 시뮬레이터에 쓸 값이 아니다")
+        else:
+            add("I", "spec-core", "시뮬레이터용 물리량 확보: %s"
+                % ", ".join(sorted(core & set(qs))))
+    elif pts:
+        add("W", "no-spec", "정격 사양 없음 — 통신 맵만 있다 (카탈로그·데이터시트 필요)")
+
+    # 10) 근거 문서
     if not m.get("gap") and not m.get("has", {}).get("spec"):
         add("I", "no-gap-note", "미확보 항목 설명(gap) 없음")
     if pts and m.get("extractor") == "manual":

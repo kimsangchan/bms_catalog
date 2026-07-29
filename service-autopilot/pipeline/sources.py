@@ -161,6 +161,51 @@ SOURCES = [
         "extractor": "auto",
         "access": "무로그인",
     },
+    # ── 사양 문서 (kind="카탈로그·데이터시트") ─────────────────────────────
+    # 통합 포인트 리스트에는 정격이 실리지 않는다. 시뮬레이터가 쓸 전압·전류·
+    # 소비전력·용량은 카탈로그와 데이터시트에만 있어 따로 모은다.
+    {
+        "id": "ebmpapst-catalog",
+        "vendor": "ebm-papst",
+        "kind": "카탈로그·데이터시트",
+        "note": "EC 원심팬 제품 카탈로그. 형번별 정격전압·입력전류·소비전력·회전수·"
+                "풍량·정압이 표로 실린다 — 송풍기 시뮬레이션의 근거값이다.",
+        "enumerate": "list",
+        "urls": [
+            "https://www.ebmpapst.com/content/dam/ebm-papst/media/catalogs/products/"
+            "Product_Catalog_EC_centrifugal_fans_RadiPac_2_RadiFit_Edition_2023_10_.pdf",
+            "https://www.ebmpapst.com/content/dam/ebm-papst/media/catalogs/products/"
+            "Catalog_Centrifugalfans_EC-RadiCal_EN.pdf",
+            "https://www.ebmpapst.com/content/dam/ebm-papst/loc/apac/singapur/brochures/"
+            "RadiPac-630-1000-EC-centrifugal-fan-ebmpapst.pdf",
+        ],
+        "extractor": "spec",
+        "access": "무로그인",
+    },
+    {
+        "id": "belimo-datasheets",
+        "vendor": "Belimo",
+        "kind": "카탈로그·데이터시트",
+        "note": "액추에이터 형번별 기술 데이터시트. 전원·운전/유지 소비전력·토크·"
+                "구동시간이 실린다. URL 패턴이 규칙적이라 형번만 넣으면 열거된다. "
+                "봇 차단이 있어 belimo-system-integration 과 같은 headers 가 필요하다.",
+        "enumerate": "list",
+        "headers": {
+            "Referer": "https://www.belimo.com/",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Sec-Fetch-Dest": "document", "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-Site": "same-origin", "Upgrade-Insecure-Requests": "1",
+        },
+        "urls": [
+            "https://www.belimo.com/mam/general-documents/datasheets/en-us/"
+            "belimo_%s_datasheet_en-us.pdf" % n
+            for n in ["LMB24-3", "LMB24-SR", "LMB24-3-T", "NMQB24-MFT", "TFB24-S",
+                      "FSAF24A", "LF24-S_US", "GMB24-3", "AMB24-3", "NMB24-3"]
+        ],
+        "extractor": "spec",
+        "access": "헤더 필요",
+    },
     {
         "id": "ebmpapst-modbus",
         "vendor": "ebm-papst",

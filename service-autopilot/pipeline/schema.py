@@ -138,6 +138,24 @@ def unit_state(u):
     return "group" if unit_group(u) else "unknown"
 
 
+# 단위 → 물리량. 사양 항목은 열 이름이 없어 단위로 무엇인지 가린다.
+UNIT_QUANTITY = {
+    "W": "power", "kW": "power", "VA": "power", "kVA": "power", "hp": "power",
+    "A": "current", "mA": "current", "V": "voltage", "mV": "voltage", "kV": "voltage",
+    "Hz": "frequency", "rpm": "speed", "Nm": "torque", "in-lb": "torque",
+    "degC": "temperature", "degF": "temperature", "K": "temperature",
+    "percent": "ratio", "kg": "weight", "lb": "weight",
+    "mm": "dimension", "in": "dimension", "m3h": "airflow", "Lps": "airflow",
+    "Pa": "pressure", "kPa": "pressure", "bar": "pressure", "psi": "pressure",
+    "dBA": "noise", "s": "time", "min": "time", "h": "time", "kWh": "energy",
+}
+
+
+def quantity_of_unit(u):
+    """단위 표기 → 물리량. 정규 단위로 바꾼 뒤 찾는다."""
+    return UNIT_QUANTITY.get(canon_unit(u) or str(u or "").strip())
+
+
 def point_key(p):
     """모델 안에서 포인트를 유일하게 식별하는 키"""
     return (canon_type(p.get("type")), p.get("inst"))

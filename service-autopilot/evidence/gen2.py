@@ -128,6 +128,14 @@ td.n{color:var(--dim);white-space:nowrap;font-size:11.5px}
 .mlist button{display:inline-flex;align-items:center;gap:6px}
 .mpre{padding:9px 18px 0;font-size:11px;letter-spacing:.05em;color:var(--faint);font-weight:700}
 .mpr{font-size:10px;letter-spacing:.04em;color:var(--faint);font-weight:700}
+.vlist{display:flex;gap:5px;flex-wrap:wrap;padding:0 18px 10px}
+.vlist button{padding:4px 10px;border:1px solid var(--line);border-radius:6px;
+ font-family:var(--mono);font-size:11.5px}
+.vlist button[aria-pressed="true"]{background:var(--sel);border-color:var(--accent);font-weight:650}
+.qrow{display:flex;gap:5px;flex-wrap:wrap;align-items:center;padding:0 18px 8px}
+.qtag{font-size:10.5px;letter-spacing:.03em;padding:2px 7px;border:1px solid var(--line);
+ border-radius:4px;color:var(--dim)}
+.qsrc{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--faint)}
 .mn{font-family:var(--mono);font-size:10.5px;color:var(--dim);border-left:1px solid var(--line2);padding-left:6px}
 .mtop{padding:14px 18px 0}
 .mtop h2{font-size:15.5px;font-weight:650;letter-spacing:-.01em}
@@ -181,6 +189,7 @@ td.n{color:var(--dim);white-space:nowrap;font-size:11.5px}
 var D = JSON.parse(document.getElementById('data').textContent);
 var nav = document.getElementById('nav'), main = document.getElementById('main'), q = document.getElementById('q');
 var cur = 'home', tab = 'pt', mi = 0, kindF = '', gradeF = '', term = '';
+var vsel = 0;   // 고른 형번 (variants) — 모델을 바꾸면 0 으로 되돌린다
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -209,7 +218,7 @@ function buildNav(){
   });
   nav.innerHTML = h;
   nav.querySelectorAll('button').forEach(function(b){
-    b.addEventListener('click',function(){ cur=b.dataset.id; tab='pt'; mi=0; kindF=''; gradeF=''; render(); });
+    b.addEventListener('click',function(){ cur=b.dataset.id; tab='pt'; mi=0; vsel=0; kindF=''; gradeF=''; render(); });
   });
 }
 function markNav(){ nav.querySelectorAll('button').forEach(function(b){
@@ -368,6 +377,26 @@ function renderModels(models, l3){
   if(m.elec) h += sec('전기 데이터 — 용량별 전류 · 손실 · 효율', m.elec.rows.length)
     + '<div class="msg" style="margin:0 18px 10px"><p>'+fmt(m.elec.note)+'</p></div>'
     + table({header:m.elec.header, rows:m.elec.rows});
+  // 형번별 정격 — 데이터시트 한 장이 형번 하나다. 제품군을 고른 뒤 형번을 고르면
+  // 그 형번의 정격이 나온다. 시뮬레이터가 쓰는 값이 여기 있다.
+  if((m.variants||[]).length){
+    var vs = m.variants, vi = Math.min(vsel, vs.length-1);
+    h += sec('형번별 정격 사양', vs.length)
+       + '<div class="vlist">' + vs.map(function(v,i){
+           return '<button data-vi="'+i+'" aria-pressed="'+(i===vi)+'">'+esc(v.code)+'</button>';
+         }).join('') + '</div>'
+       + table({header:['항목','값','단위','구역','근거'], rows:vs[vi].spec});
+  }
+  // 카탈로그·설계 가이드에서 뽑은 정격 사양 행렬. 한 줄이 형번 하나이고
+  // 열이 속성이라 포인트 표와 구조가 다르다 — 표마다 따로 그린다.
+  (m.specTables||[]).forEach(function(t){
+    var q = t.quantities || [];
+    h += sec('정격 사양 — ' + (t.title || '표'), t.rows.length)
+       + '<div class="qrow">' + q.filter(Boolean).map(function(x){
+             return '<span class="qtag">'+esc(QLABEL[x]||x)+'</span>'; }).join('')
+       + '<span class="qsrc">' + esc(t.source||'') + ' p'+t.page+'</span></div>'
+       + table({header:t.header, rows:t.rows});
+  });
   if(m.points.length){
     var pts = m.points.filter(function(p){return p.inst;});
     var hasNote = m.points.some(function(p){return p.note;});
@@ -401,6 +430,11 @@ function commonPrefix(a){
   return p;
 }
 
+var QLABEL = {power:'전력', current:'전류', voltage:'전압', frequency:'주파수',
+  efficiency:'효율', loss:'손실', capacity:'용량', airflow:'풍량', pressure:'압력',
+  speed:'회전수', torque:'토크', temperature:'온도', weight:'중량',
+  dimension:'치수', noise:'소음', protection:'보호등급'};
+
 function sec(t,n){ return '<div class="sec">'+esc(t)+(n?' <b>'+n+'</b>':'')+'</div>'; }
 
 function render(){
@@ -411,7 +445,9 @@ function render(){
   main.querySelectorAll('.tabs button').forEach(function(b){
     b.addEventListener('click',function(){ tab=b.dataset.tab; kindF=''; gradeF=''; render(); });});
   main.querySelectorAll('.mlist button').forEach(function(b){
-    b.addEventListener('click',function(){ mi=+b.dataset.mi; render(); });});
+    b.addEventListener('click',function(){ mi=+b.dataset.mi; vsel=0; render(); });});
+  main.querySelectorAll('.vlist button').forEach(function(b){
+    b.addEventListener('click',function(){ vsel=+b.dataset.vi; render(); });});
   main.querySelectorAll('.chip').forEach(function(b){
     b.addEventListener('click',function(){
       if(b.dataset.kind!==undefined) kindF = (kindF===b.dataset.kind)?'':b.dataset.kind;
