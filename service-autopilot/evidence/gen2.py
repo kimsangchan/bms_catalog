@@ -148,6 +148,16 @@ th.srt:hover{color:var(--accent)}
 .pgb[disabled]{opacity:.35;cursor:default}
 .pgn{font-family:var(--mono);color:var(--dim);margin-left:4px}
 thead th{position:sticky;top:0;background:var(--bg);z-index:2}
+.lgd{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:0 18px 8px;
+ font-size:11px;color:var(--faint)}
+.lgd .sim{margin-left:6px}
+.tdesc{display:block;font-style:normal;font-size:11px;color:var(--dim);margin-top:2px;
+ line-height:1.5;max-width:46ch}
+.sim{font-size:10px;font-weight:700;letter-spacing:.03em;padding:1px 6px;border-radius:3px;
+ white-space:nowrap}
+.sim.s3{background:var(--accent-bg);color:var(--accent)}
+.sim.s2{background:var(--sel);color:var(--dim)}
+.sim.s1{background:transparent;color:var(--faint)}
 .ms{font-size:10px;letter-spacing:.03em;padding:1px 5px;border-radius:3px;
  background:var(--sel);color:var(--accent);font-weight:700}
 nav .sm{color:var(--accent)}
@@ -306,6 +316,7 @@ function pager(key, total, page, pages){
 
 function table(t, opts){
   opts = opts||{};
+  if(t.raw) opts.raw = true;
   var ki = t.header.findIndex(function(c){return /종류/.test(c);});
   var gi = t.header.findIndex(function(c){return /등급/.test(c);});
   var rows = t.rows.filter(function(r){
@@ -332,14 +343,17 @@ function table(t, opts){
   var h = ctrl + '<div class="tw"><table data-tk="'+esc(key)+'"><thead><tr>';
   t.header.forEach(function(c,i){
     var mark = so && so.col===i ? (so.dir>0?' ▲':' ▼') : '';
-    h += '<th class="srt" data-col="'+i+'">'+fmt(c)+'<i class="sa">'+mark+'</i></th>';
+    // raw 표는 머리글에도 미리 만든 조각(배지)이 들어온다 — 이스케이프하면 글자로 샌다
+    h += '<th class="srt" data-col="'+i+'">'+(opts.raw ? String(c) : fmt(c))
+       + '<i class="sa">'+mark+'</i></th>';
   });
   h += '</tr></thead><tbody>';
   rows.forEach(function(r){
     h += '<tr>';
     r.forEach(function(c,i){
       var cls = NUMCOL.test(t.header[i]) || /^\d/.test(String(c)) ? ' class="n"' : '';
-      h += '<td'+cls+'>'+fmt(c)+'</td>';
+      // raw 로 표시된 표는 셀에 이미 만들어 둔 조각(배지·설명)을 그대로 낸다
+      h += '<td'+cls+'>'+(opts.raw ? String(c) : fmt(c))+'</td>';
     });
     h += '</tr>';
   });
@@ -551,9 +565,13 @@ function renderModels(models, l3){
     var vs = m.variants, vi = Math.min(vsel, vs.length-1);
     // 형번을 고르기 전에 **나란히 비교**할 수 있어야 한다. 하나씩 눌러 보며
     // 외우게 하면 안 된다 (테슬러 — 복잡함은 도구가 떠안는다).
-    var KEYS = [['정격전압', /nominal voltage$/i], ['운전 전력', /power consumption in operation/i],
-                ['유지 전력', /power consumption.*(rest|holding)/i], ['토크', /torque motor/i],
-                ['구동시간', /running time/i], ['소음', /sound power/i], ['중량', /^weight$/i]];
+    var KEYS = [['정격전압', /nominal voltage$/i, 'Nominal voltage'],
+                ['운전 전력', /power consumption in operation/i, 'Power consumption in operation'],
+                ['유지 전력', /power consumption.*(rest|holding)/i, 'Power consumption in rest position'],
+                ['토크', /torque motor/i, 'Torque motor'],
+                ['구동시간', /running time/i, 'Running Time (Motor)'],
+                ['소음', /sound power/i, 'Sound power level'],
+                ['중량', /^weight$/i, 'Weight']];
     var used = KEYS.filter(function(k){
       return vs.some(function(v){ return (v.spec||[]).some(function(r){ return k[1].test(r[0]); }); });
     });
@@ -575,8 +593,14 @@ function renderModels(models, l3){
        + '사양은 같은 제품의 <b>'+esc(m.specFromName)+'</b> 문서에서 가져왔어요 — '
        + '프로토콜만 다르고 기기는 같아요.</p></div>';
     h += sec('형번 비교 — 핵심 정격', vs.length)
-         + table({header:['형번'].concat(used.map(function(k){return k[0];})),
-                  rows:crows, key:'vcmp'+m.id});
+         + '<div class="lgd">'
+         + '<span class="sim s3">★ 핵심</span> 시뮬레이터 계산에 직접 들어가요'
+         + '<span class="sim s2">· 조건</span> 한계·조건으로 쓰여요'
+         + '<span class="sim s1">· 참고</span> 선정에만 쓰여요</div>'
+         + table({header:['형번'].concat(used.map(function(k){
+                    var t = termOf(k[2] || k[0]);
+                    return k[0] + (t ? ' ' + simTag(t.sim) : '');
+                  })), rows:crows, key:'vcmp'+m.id, raw:true});
     }
     h += sec('형번별 상세', vs.length)
        + '<div class="vlist">' + vs.map(function(v,i){
@@ -584,7 +608,13 @@ function renderModels(models, l3){
                 + (v.photo ? '<img class="vth" src="'+v.photo+'" alt="">' : '')
                 + esc(v.code)+'</button>';
          }).join('') + '</div>'
-       + table({header:['항목','값','단위','구역','근거'], rows:vs[vi].spec});
+       + table({header:['항목','한글 이름 · 뜻','값','단위','시뮬레이터'],
+                rows:vs[vi].spec.map(function(r){
+                  var t = termOf(r[0]);
+                  return [r[0],
+                          t ? '<b>'+esc(t.ko)+'</b><i class="tdesc">'+esc(t.desc)+'</i>' : '—',
+                          r[1], r[2], t ? simTag(t.sim) : ''];
+                }), key:'vspec'+vi+m.id, raw:true});
   }
   // 카탈로그·설계 가이드에서 뽑은 정격 사양 행렬. 한 줄이 형번 하나이고
   // 열이 속성이라 포인트 표와 구조가 다르다 — 표마다 따로 그린다.
@@ -651,6 +681,23 @@ var QLABEL = {power:'전력', current:'전류', voltage:'전압', frequency:'주
   efficiency:'효율', loss:'손실', capacity:'용량', airflow:'풍량', pressure:'압력',
   speed:'회전수', torque:'토크', temperature:'온도', weight:'중량',
   dimension:'치수', noise:'소음', protection:'보호등급'};
+
+// 영문 사양 이름 → {한글, 설명, 시뮬레이터 쓰임새}. 못 알아본 것은 null 을 준다
+// (지어내지 않는다). 사전은 data/spec-terms.json 에 있다.
+var TERMS = (D.terms||[]).map(function(t){
+  return {re:new RegExp(t[0],'i'), ko:t[1], desc:t[2], sim:t[3]};
+});
+function termOf(label){
+  var s = String(label||'').trim();
+  for(var i=0;i<TERMS.length;i++) if(TERMS[i].re.test(s)) return TERMS[i];
+  return null;
+}
+var SIMLBL = {3:'계산에 직접', 2:'조건·한계', 1:'참고'};
+function simTag(n){
+  if(!n) return '';
+  return '<span class="sim s'+n+'" title="시뮬레이터에서 '+SIMLBL[n]+' 쓰여요">'
+       + (n===3?'★ 핵심':(n===2?'· 조건':'· 참고'))+'</span>';
+}
 
 function specCount(m){
   return (m.specTables||[]).length + (m.variants||[]).length + ((m.spec||[]).length?1:0);

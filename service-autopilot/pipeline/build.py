@@ -69,14 +69,18 @@ def load():
     for v in models.values():
         v.sort(key=lambda x: (x["vendor"], x["model"]))
     l3 = json.load(open(os.path.join(DATA, "l3-status.json"), encoding="utf-8"))
-    return equips, models, l3
+    # 용어 사전 — 영문 사양 이름을 한글·설명·시뮬레이터 쓰임새로 옮긴다
+    terms = json.load(open(os.path.join(DATA, "spec-terms.json"),
+                           encoding="utf-8"))["terms"]
+    return equips, models, l3, terms
 
 
 def main():
-    equips, models, l3 = load()
+    equips, models, l3, terms = load()
     src = open(TPL, encoding="utf-8").read()
     html = src[src.index('HTML = r"""') + len('HTML = r"""'):src.rindex('"""')]
-    data = {"equips": equips, "models": models, "l3": l3, "domOrder": DOM_ORDER}
+    data = {"equips": equips, "models": models, "l3": l3,
+            "domOrder": DOM_ORDER, "terms": terms}
     totp = sum(e["np"] for e in equips)
     tots = sum(e["ns"] for e in equips)
     nmodel = sum(len(v) for v in models.values())
