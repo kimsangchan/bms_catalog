@@ -93,6 +93,15 @@ td.n{color:var(--dim);white-space:nowrap;font-size:11.5px}
 .mlist button{display:inline-flex;align-items:center;gap:6px}
 .mpre{padding:9px 18px 0;font-size:11px;letter-spacing:.05em;color:var(--faint);font-weight:700}
 .mpr{font-size:10px;letter-spacing:.04em;color:var(--faint);font-weight:700}
+.slist{display:flex;gap:5px;flex-wrap:wrap;padding:0 18px 10px;max-height:132px;overflow:auto}
+.slist button{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;
+ border:1px solid var(--line);border-radius:6px;font-size:11.5px}
+.slist button[aria-pressed="true"]{background:var(--sel);border-color:var(--accent);font-weight:650}
+.pg{display:flex;gap:6px;align-items:center;padding:6px 18px;font-size:11.5px}
+.pgb{padding:3px 9px;border:1px solid var(--line);border-radius:5px;font-size:11px}
+.pgb[disabled]{opacity:.35;cursor:default}
+.pgn{font-family:var(--mono);color:var(--dim);margin-left:4px}
+thead th{position:sticky;top:0;background:var(--bg);z-index:2}
 .ms{font-size:10px;letter-spacing:.03em;padding:1px 5px;border-radius:3px;
  background:var(--sel);color:var(--accent);font-weight:700}
 nav .sm{color:var(--accent)}
@@ -160,6 +169,7 @@ var D = JSON.parse(document.getElementById('data').textContent);
 var nav = document.getElementById('nav'), main = document.getElementById('main'), q = document.getElementById('q');
 var cur = 'home', tab = 'pt', mi = 0, kindF = '', gradeF = '', term = '';
 var vsel = 0;   // 고른 형번 (variants) — 모델을 바꾸면 0 으로 되돌린다
+var ssel = 0;   // 고른 사양 표
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -191,13 +201,31 @@ function buildNav(){
   });
   nav.innerHTML = h;
   nav.querySelectorAll('button').forEach(function(b){
-    b.addEventListener('click',function(){ cur=b.dataset.id; tab='pt'; mi=0; vsel=0; kindF=''; gradeF=''; render(); });
+    b.addEventListener('click',function(){ cur=b.dataset.id; tab='pt'; mi=0; vsel=0; ssel=0; pageOf={}; kindF=''; gradeF=''; render(); });
   });
 }
 function markNav(){ nav.querySelectorAll('button').forEach(function(b){
   b.setAttribute('aria-current', b.dataset.id===cur ? 'true':'false'); }); }
 
 // ── 표
+// 표가 길면 나눠 그린다. 1,537행짜리 오브젝트 목록을 한 번에 그리면
+// 화면이 끝없이 늘어나고 원하는 줄을 찾을 수 없다 (밀러의 법칙 — 덩어리로 끊는다).
+var PAGE = 60;
+var pageOf = {};        // 표 키 → 현재 쪽
+function pageKey(t){ return (t.key || (t.header||[]).join('|')).slice(0,80); }
+
+function pager(key, total, page, pages){
+  if(pages < 2) return '';
+  var from = page*PAGE+1, to = Math.min(total, (page+1)*PAGE);
+  return '<div class="pg" data-pk="'+esc(key)+'">'
+    + '<button class="pgb" data-go="0" '+(page?'':'disabled')+'>처음</button>'
+    + '<button class="pgb" data-go="'+(page-1)+'" '+(page?'':'disabled')+'>이전</button>'
+    + '<span class="pgn"><b>'+from+'–'+to+'</b> / '+total+'행 · '+(page+1)+'/'+pages+'쪽</span>'
+    + '<button class="pgb" data-go="'+(page+1)+'" '+(page<pages-1?'':'disabled')+'>다음</button>'
+    + '<button class="pgb" data-go="'+(pages-1)+'" '+(page<pages-1?'':'disabled')+'>끝</button>'
+    + '</div>';
+}
+
 function table(t, opts){
   opts = opts||{};
   var ki = t.header.findIndex(function(c){return /종류/.test(c);});
@@ -209,7 +237,15 @@ function table(t, opts){
     return true;
   });
   if(!rows.length) return '';
-  var h = '<table><thead><tr>';
+  // 긴 표만 쪽으로 나눈다. 짧은 표까지 나누면 오히려 손이 더 간다.
+  var key = pageKey(t), total = rows.length, pages = 1, page = 0, ctrl = '';
+  if(!opts.nopage && total > PAGE){
+    pages = Math.ceil(total/PAGE);
+    page = Math.min(pageOf[key]||0, pages-1);
+    ctrl = pager(key, total, page, pages);
+    rows = rows.slice(page*PAGE, (page+1)*PAGE);
+  }
+  var h = ctrl + '<table><thead><tr>';
   t.header.forEach(function(c){ h += '<th>'+fmt(c)+'</th>'; });
   h += '</tr></thead><tbody>';
   rows.forEach(function(r){
@@ -220,7 +256,7 @@ function table(t, opts){
     });
     h += '</tr>';
   });
-  return h + '</tbody></table>';
+  return h + '</tbody></table>' + (pages>1 ? ctrl : '');
 }
 function counted(tabs){ return tabs.reduce(function(a,t){return a+t.rows.length;},0); }
 
@@ -363,17 +399,29 @@ function renderModels(models, l3){
   }
   // 카탈로그·설계 가이드에서 뽑은 정격 사양 행렬. 한 줄이 형번 하나이고
   // 열이 속성이라 포인트 표와 구조가 다르다 — 표마다 따로 그린다.
-  (m.specTables||[]).forEach(function(t){
-    var q = t.quantities || [];
+  // 사양 표는 모델 하나에 수십 개까지 붙는다(Ascend 38개). 전부 펼치면 스크롤이
+  // 끝나지 않아 원하는 표를 못 찾는다 → **목록에서 골라 하나씩** 본다 (힉의 법칙).
+  var sts = m.specTables || [];
+  if(sts.length){
+    var si = Math.min(ssel, sts.length-1), t = sts[si];
+    h += sec('정격 사양', sts.length)
+       + '<div class="slist">' + sts.map(function(x,i){
+           var qq = (x.quantities||[]).filter(Boolean);
+           var lbl = (x.title||'표 '+(i+1)).replace(/^Table\s*\d+\.\s*/,'');
+           return '<button data-si="'+i+'" aria-pressed="'+(i===si)+'">'
+                + esc(lbl.slice(0,34))
+                + '<span class="mn">'+x.rows.length+'</span>'
+                + (qq.length?'<span class="ms">'+esc(QLABEL[qq[0]]||qq[0])+'</span>':'')
+                + '</button>';
+         }).join('') + '</div>';
     var uq = [];
-    q.forEach(function(x){ if(x && uq.indexOf(x)<0) uq.push(x); });
-    h += sec('정격 사양 — ' + (t.title || '표'), t.rows.length)
-       + '<div class="qrow">'
+    (t.quantities||[]).forEach(function(x){ if(x && uq.indexOf(x)<0) uq.push(x); });
+    h += '<div class="qrow">'
        + (t.orientation==='row' ? '<span class="qtag alt">행=항목 · 열=형번</span>' : '')
        + uq.map(function(x){ return '<span class="qtag">'+esc(QLABEL[x]||x)+'</span>'; }).join('')
        + '<span class="qsrc">' + esc(t.source||'') + ' p'+t.page+'</span></div>'
-       + table({header:t.header, rows:t.rows});
-  });
+       + table({header:t.header, rows:t.rows, key:'st'+si+(t.source||'')});
+  }
   if(m.points.length){
     var pts = m.points.filter(function(p){return p.inst;});
     var hasNote = m.points.some(function(p){return p.note;});
@@ -427,9 +475,18 @@ function render(){
   main.querySelectorAll('.tabs button').forEach(function(b){
     b.addEventListener('click',function(){ tab=b.dataset.tab; kindF=''; gradeF=''; render(); });});
   main.querySelectorAll('.mlist button').forEach(function(b){
-    b.addEventListener('click',function(){ mi=+b.dataset.mi; vsel=0; render(); });});
+    b.addEventListener('click',function(){ mi=+b.dataset.mi; vsel=0; ssel=0; pageOf={}; render(); });});
   main.querySelectorAll('.vlist button').forEach(function(b){
     b.addEventListener('click',function(){ vsel=+b.dataset.vi; render(); });});
+  main.querySelectorAll('.slist button').forEach(function(b){
+    b.addEventListener('click',function(){ ssel=+b.dataset.si; pageOf={}; render(); });});
+  main.querySelectorAll('.pgb').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(b.disabled) return;
+      var y = window.scrollY;
+      pageOf[b.parentNode.dataset.pk] = +b.dataset.go;
+      render(); window.scrollTo(0, y);   // 쪽만 바뀌고 보던 자리는 그대로
+    });});
   main.querySelectorAll('.chip').forEach(function(b){
     b.addEventListener('click',function(){
       if(b.dataset.kind!==undefined) kindF = (kindF===b.dataset.kind)?'':b.dataset.kind;
