@@ -214,6 +214,40 @@ SOURCES = [
         "access": "무로그인",
     },
     {
+        "id": "trane-airside-catalog",
+        "vendor": "Trane",
+        "kind": "카탈로그·데이터시트",
+        "note": "공기측 제품 카탈로그 — 지붕형 패키지(Precedent·IntelliPak)·스플릿(Odyssey·"
+                "IntelliCore RAUK). 형번별 냉방능력·풍량·압축기/팬 전동기 정격이 실린다. "
+                "문서번호 계열이 냉동기와 달라 따로 둔다 (RT-PRC·PKGP-PRC·SS-PRC·ACDS-PRC).",
+        "enumerate": "list",
+        "urls": [
+            ELIB_CATALOG + n for n in [
+                "RT-PRC023AY-EN_12202022.pdf",    # Precedent 3~10톤
+                "PKGP-PRC019D-EN_09302023.pdf",   # Precedent 히트펌프
+                "RT-PRC103C-EN_01312025.pdf",     # IntelliPak
+                "RT-PRC112B-EN_11152025.pdf",     # IntelliPak 차세대
+                "SS-PRC050C-EN_03142026.pdf",     # Odyssey 히트펌프 6~25톤
+                "SS-PRC058B-EN_05082025.pdf",     # IntelliCore 스플릿 (RAUK)
+                "ACDS-PRC005B-EN_05082025.pdf",   # IntelliCore 공랭 응축기
+            ]] + [
+            "https://www.trane.com/content/dam/Trane/Commercial/global/products-systems/"
+            "equipment/unitary/rooftop-systems/precedent-12-5-to-25-tons/"
+            "PKGP-PRC021C-EN_07152023.pdf",
+            "https://www.trane.com/content/dam/Trane/Commercial/global/products-systems/"
+            "equipment/unitary/rooftop-systems/intellipak-with-symbio-800/"
+            "RT-PRC086F-EN_05282020.pdf",
+            "https://www.trane.com/content/dam/Trane/Commercial/global/products-systems/"
+            "equipment/unitary/split-systems/odyssey-6-to-25-tons/"
+            "SS-PRC028AA-EN_06262022.pdf",
+            "https://www.trane.com/content/dam/Trane/Commercial/global/products-systems/"
+            "equipment/unitary/split-systems/rauj-cauj-20-to-120-tons/"
+            "SS-PRC030L-EN_07092021.pdf",
+        ],
+        "extractor": "spec",
+        "access": "무로그인",
+    },
+    {
         "id": "ebmpapst-catalog",
         "vendor": "ebm-papst",
         "kind": "카탈로그·데이터시트",

@@ -258,9 +258,14 @@ def main(argv):
         # 사양 문서 ↔ 모델 연결표를 읽어 한꺼번에 붙인다.
         # 카탈로그 하나가 여러 모델(형번 계열)을 덮으므로 1:N 이다.
         mp = json.load(open(os.path.join(DATA, "spec-map.json"), encoding="utf-8"))
+        # --only 로 문서를 골라 돌린다. 전체 재적용은 대형 카탈로그 때문에 오래 걸려
+        # 새로 넣은 것만 확인하고 싶을 때가 많다.
+        only = argv[argv.index("--only") + 1].lower() if "--only" in argv else None
         done = 0
         for fname, mids in mp.items():
             if fname.startswith("_"):
+                continue
+            if only and only not in fname.lower():
                 continue
             path = os.path.join(RAW, fname)
             if not os.path.exists(path):
