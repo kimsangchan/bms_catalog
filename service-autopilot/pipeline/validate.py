@@ -148,8 +148,15 @@ def check_model(m, eq, kg):
     # 9) 정격 사양 — 시뮬레이터가 쓰려면 통신 맵만으로는 부족하다
     st = m.get("specTables") or []
     vr = m.get("variants") or []
-    if st or vr:
+    # 형번이 하나인 장치는 행렬 표도 형번별 목록도 아니라 '항목/값' 한 벌이다
+    # (게이트웨이·계측기). 이걸 안 세다가 사양을 넣어 둔 모델에 '사양 없음' 이 떴다.
+    sp = m.get("spec") or []
+    if st or vr or sp:
         qs = sorted({q for t in st for q in (t.get("quantities") or []) if q})
+        if sp:
+            units = {r[2] for r in sp if len(r) > 2 and r[2] and r[2] != "—"}
+            qs = sorted((set(qs) | {S.quantity_of_unit(u) for u in units}) - {None})
+            add("I", "spec-flat", "사양 항목 %d건 (항목/값)" % len(sp))
         if vr:
             # 형번별 사양은 항목/값 목록이라 물리량을 단위에서 읽는다
             units = {r[2] for v in vr for r in v.get("spec", []) if r[2] and r[2] != "—"}

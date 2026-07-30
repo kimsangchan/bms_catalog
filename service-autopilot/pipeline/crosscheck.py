@@ -48,8 +48,9 @@ HDRWORD = re.compile(r"^(Object (Identifier|Name|States|Status|Data Points.*)|Pr
                      r"(Analog|Binary|Multi-?State) (Input|Output|Value)s?( \w+)?)$", re.I)
 
 
-def _lines(pdf, head_pt=80):
+def _lines(pdf, head_pt=80, with_y=False):
     """(페이지번호, 줄) 순서대로. 머리글 영역은 **좌표로** 잘라낸다.
+    with_y=True 면 (페이지, 블록 하단 y, 줄) 을 준다 — 표 제목보다 아래인지 볼 때 쓴다.
 
     문자열 목록으로 막으려 했더니 문서마다 머리글이 달라 계속 새는데(모델명·프로토콜명이
     포인트 이름 자리에 섞였다), 머리글은 어느 문서나 페이지 맨 위에 있다.
@@ -63,7 +64,7 @@ def _lines(pdf, head_pt=80):
             for ln in b[4].split("\n"):
                 t = ln.strip()
                 if t and not NOISE.match(t) and not HDRWORD.match(t):
-                    yield i, t
+                    yield (i, b[3], t) if with_y else (i, t)
 
 
 def raw_lontalk(pdf):
@@ -123,6 +124,62 @@ def raw_bacnet_rev(pdf):
             prev = None
             continue
         prev = t
+    return _drop_sparse(out)
+
+
+TYPETOK = re.compile(r"^(AI|AO|AV|BI|BO|BV|MI|MO|MV|MSI|MSO|MSV)$")
+# 한 문서 안에 장치가 둘이고 **번호를 다시 쓰는** 경우가 있다 — JCI VRF 게이트웨이는
+# 실내기 표와 실외기 표가 AI-16 을 각각 다른 뜻으로 쓴다. 표 제목으로 갈라야 한다.
+CAPTION = re.compile(r"points for (indoor|outdoor) units", re.I)
+
+
+def _captions(pdf):
+    """표 제목만 따로 줍는다 — 페이지 맨 위에 있어 _lines 의 머리글 자르기에 걸린다.
+    돌려주는 것은 [(페이지, 제목 하단 y, 'indoor'|'outdoor')] 이다."""
+    import fitz
+    out = []
+    for i, pg in enumerate(fitz.open(pdf)):
+        for b in pg.get_text("blocks"):
+            m = CAPTION.search(re.sub(r"\s+", " ", b[4]))
+            if m:
+                out.append((i, b[3], m.group(1).lower()))
+    return out
+
+
+def _sect_at(caps, page, y):
+    """이 줄을 덮는 표 제목 — 같은 쪽에서 위쪽, 없으면 앞 쪽의 마지막 제목."""
+    best = None
+    for cp, cy, s in caps:
+        if cp < page or (cp == page and cy <= y):
+            best = s
+    return best
+
+
+def raw_typefirst(pdf):
+    """타입이 제 줄에 혼자 오고 번호가 맨 뒤인 문서 — JCI 는 열을 이렇게 갈라 적는다.
+
+        AI / Indoor Unit Capacity Code / UNIT-CAP / 4
+
+    타입 줄에서 시작해 숫자만 있는 줄을 만나면 그 직전 줄이 오브젝트 이름이다.
+    표 인식을 쓰지 않으므로 extract.py 와 독립된 경로다.
+    """
+    caps = _captions(pdf)
+    out, pend, buf = [], None, []
+    for pi, y, t in _lines(pdf, with_y=True):
+        sect = _sect_at(caps, pi, y)
+        if TYPETOK.match(t):
+            pend, buf = (pi, S.canon_type(t)), []
+            continue
+        if pend is None:
+            continue
+        if BARE.match(t):
+            name = buf[-1] if buf else ""
+            if E.nameish(name) and len(name) >= 3:
+                out.append({"page": pend[0], "type": pend[1], "inst": int(t),
+                            "name": name, "sect": sect})
+            pend, buf = None, []
+            continue
+        buf.append(t)
     return _drop_sparse(out)
 
 
@@ -249,18 +306,28 @@ def _same(a, b):
     return x == y or (len(min(x, y, key=len)) >= 4 and (x in y or y in x))
 
 
-def compare(pdf, table_rows=None):
+def compare(pdf, table_rows=None, sect=None):
+    """sect 를 주면 그 표 제목 아래 줄만 대조에 쓴다.
+
+    한 문서가 장치 둘을 담고 번호를 다시 쓰면(JCI 실내기·실외기) 걸러내지 않은
+    줄 경로는 두 장치를 뒤섞어 가짜 불일치를 만든다.
+    """
     fam = E.classify(pdf)
     if table_rows is None:
         table_rows = (E.extract_lontalk(pdf, keep_order=True) if fam == "lontalk"
                       else E.extract(pdf)[0])
+    if sect:
+        table_rows = [r for r in table_rows if r.get("sect") == sect]
     # 줄 읽기 경로가 여러 개다. '줄이 많이 잡힌 것'이 아니라 **표와 실제로 겹치는 것**을
     # 골라야 한다. 줄 수로 고르다가 냉동기 문서에서 엉뚱한 경로가 뽑혀 겹침 1건이 됐다.
     A = _segmap(table_rows)
     flat = {k for seg in A for k in seg}
     cands = ([raw_lontalk(pdf)] if fam == "lontalk"
              else [raw_bacnet(pdf), raw_bacnet_rev(pdf), raw_bare(pdf),
-                   raw_modbus(pdf), raw_modbus_wide(pdf), raw_hexreg(pdf)])
+                   raw_typefirst(pdf), raw_modbus(pdf), raw_modbus_wide(pdf),
+                   raw_hexreg(pdf)])
+    if sect:
+        cands = [[r for r in rs if r.get("sect") == sect] for rs in cands]
     tbl = {}
     for seg in A:
         tbl.update(seg)

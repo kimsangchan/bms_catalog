@@ -7,19 +7,109 @@
  "cat": "HVAC.AIR.TERMINAL.VRF",
  "tag": "vrf-indoorUnit-fcu",
  "status": "active",
- "summary": "VRF 실내기·실외기를 BACnet으로 노출하는 게이트웨이. 실내기 32점 · 실외기 27점이 인스턴스 번호까지 문서에 확정돼 있다. (실외기 오브젝트)",
+ "summary": "VRF 실내기·실외기를 BACnet으로 노출하는 게이트웨이. 실내기 32점 · 실외기 26점이 인스턴스 번호까지 문서에 확정돼 있다. (실외기 오브젝트)",
  "has": {
-  "spec": false,
+  "spec": true,
   "points": true
  },
  "ede": false,
- "spec": [],
+ "spec": [
+  [
+   "Power Consumption",
+   "12 to 15 VDC at 5.2 W maximum",
+   "VDC",
+   "The included power adapter is for connection to 100 to 240 VAC.",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Ambient Temperature Conditions",
+   "Operating: 0 to 50°C (32 to 122°F) / Operating Survival: -30 to 60°C (-22 to 140°F) / Non-Operating: -40 to 70°C (-40 to 158°F)",
+   "—",
+   "VRF Smart Gateway Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Ambient Humidity Conditions",
+   "Storage: 5 to 95% RH, 30°C (86°F) maximum dew point conditions / Operating: 5 to 95% RH, 30°C (86°F) maximum dew point conditions",
+   "—",
+   "VRF Smart Gateway Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Dimensions",
+   "145.4 x 85.4 x 40.1 mm (5.72 x 3.36 x 1.58 in.) when used vertically",
+   "—",
+   "VRF Smart Gateway Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Weight",
+   "0.21 kg (0.46 lb)",
+   "kg",
+   "Weights do not include the external power supply.",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "BTL Certified",
+   "Software Version 1.1 or later",
+   "—",
+   "VRF Smart Gateway Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Transmission Power (Typical)",
+   "Wireless Local Area Network (WLAN) Transmission Power at CE Compliant levels: / +14.5 dBm @ 54 Mbps; +12.5 dBm @ 65 Mbps / Channel 6 preconfigured, supported CH 1 to 11 for United States and Canada, and CH 1 to 12 for all other countries",
+   "—",
+   "Communication Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "WLAN Receiver Sensitivity (Typical)",
+   "-76 dBm, 10% packet error rate (PER), 54 Mbps / -73 dBm, 10% PER, 65 Mbps",
+   "dBm",
+   "Communication Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Transmission Speeds",
+   "Wireless Communication: 2.4 GHz ISM bands, 802.11 b/g/n, 11/22/54 Mbps / Serial Communication (H-LINK Bus): 9600 bps, Connection to Outdoor and Indoor Units / Ethernet Communication: 10, 100 Mbps, Connection to BAS over BACnet IP",
+   "—",
+   "Communication Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Transmission Range (Typical)",
+   "Wireless Communication: 30 m (98 ft) line-of-sight indoors, 91 m (299 ft) line-of-sight outdoors / Serial Communication (H-LINK Bus): 1,000 m (3,280 ft) cable length / Ethernet Communication: 100 m (328 ft) cable length",
+   "—",
+   "Communication Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Wireless Security",
+   "WPA2-PSK TKIP (Wi-Fi Protected Access Pre-Shared Key mode Temporal Key Integrity Protocol) / WPA2-EAP-PEAP, WPA2-EAP-TLS",
+   "—",
+   "Communication Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ]
+ ],
  "comm": [
   [
-   "BACnet",
-   "게이트웨이 표준",
-   "—",
-   "설치 지침서"
+   "BACnet/IP",
+   "관제(BAS) 쪽",
+   "Ethernet 10/100 Mbps · 100 m",
+   "제출자료"
+  ],
+  [
+   "H-LINK",
+   "실내기·실외기 쪽",
+   "직렬 9600 bps · 1,000 m",
+   "제출자료"
+  ],
+  [
+   "WLAN",
+   "무선 (선택)",
+   "2.4 GHz 802.11 b/g/n · WPA2",
+   "제출자료"
   ]
  ],
  "io": [],
@@ -234,6 +324,42 @@
    "note": "Stop / Run"
   }
  ],
- "gap": "실내기 정격 스펙(냉난방능력·소비전력·냉매)은 게이트웨이 문서에 없다 → 실내기 제조사 카탈로그 필요. 국내는 삼성 DMS·LG ACP 게이트웨이가 같은 역할이며 포인트 구성이 유사하다(LG ACP: RS-485 4포트·실내기 256대, 삼성 DMS 2.5: 실내기당 제어·감시 25점·최대 256대).",
- "extractor": "table"
+ "gap": "게이트웨이 자신의 정격(전원 12~15 VDC·5.2 W, 주위 0~50 ℃, BACnet IP·H-LINK)은 제출자료로 확보했다. 아직 없는 것은 실내기·실외기의 정격 성능 — 냉난방능력·소비전력·냉매량은 게이트웨이 문서에 없고 실내기 제조사 카탈로그 몫이다. 국내는 삼성 DMS·LG ACP 게이트웨이가 같은 역할이며 포인트 구성이 유사하다(LG ACP: RS-485 4포트·실내기 256대, 삼성 DMS 2.5: 실내기당 제어·감시 25점·최대 256대).",
+ "extractor": "table",
+ "crosscheck": {
+  "fam": "bacnet",
+  "segments": 1,
+  "table": 26,
+  "raw": 24,
+  "both": 23,
+  "same": 23,
+  "diff": [],
+  "rate": 1.0,
+  "verified": {
+   "AI-3": "ALARM-CODE",
+   "AI-11": "INV-HRS",
+   "AI-12": "COMP-HRS",
+   "AI-13": "INV-FREQ",
+   "AI-14": "TOTAL-FREQ",
+   "AI-15": "FAN-%",
+   "AI-16": "EXPV-%",
+   "AI-17": "BYPEXPV-%",
+   "AI-18": "DISCH-P",
+   "AI-19": "SUCT-P",
+   "AI-21": "INV2ND-A",
+   "AI-22": "INVPRI-A",
+   "AI-23": "COMP2-A",
+   "AI-24": "INVTOP-T",
+   "AI-25": "COMP2TOP-T",
+   "BI-27": "DEFROST-S",
+   "BI-28": "EMERGRUN-S",
+   "MSI-6": "SYSTEM-MODE",
+   "MSI-7": "SYSTEM-S",
+   "MSI-8": "HX-STATE",
+   "MSI-9": "INV-STATE",
+   "MSI-10": "FAN-STATE",
+   "MSI-26": "PROT-CODE"
+  },
+  "sect": "outdoor"
+ }
 }

@@ -12,7 +12,8 @@
 
 --limit N 은 '문서번호 N개까지'라는 뜻이다 (조회 횟수가 아니다).
 """
-import collections, json, os, sys, hashlib, time, urllib.request, urllib.error
+import collections, json, os, sys, hashlib, time
+import urllib.request, urllib.error, urllib.parse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
@@ -128,6 +129,19 @@ def probe(src, limit=None, verbose=True, workers=12):
     return found
 
 
+def local_name(src, url):
+    """저장할 파일 이름.
+
+    보통은 URL 의 마지막 조각을 쓴다. 그런데 벤더가 'user guide.pdf' 처럼
+    벤더도 제품도 안 들어간 이름으로 올려 두면 다른 벤더 문서와 부딪히고
+    나중에 무슨 문서인지 알 수 없다. 그런 소스는 rename 에 이름을 적어 둔다.
+    """
+    raw = os.path.basename(url).split("?")[0]
+    raw = urllib.parse.unquote(raw)
+    fixed = (src.get("rename") or {}).get(raw)
+    return fixed or raw.replace(" ", "_")
+
+
 def run(src, limit=None):
     os.makedirs(RAW, exist_ok=True)
     led = load_ledger()
@@ -137,7 +151,7 @@ def run(src, limit=None):
         u = item["url"]
         if u in led and led[u].get("sha256"):
             continue
-        name = os.path.basename(u).split("?")[0]
+        name = local_name(src, u)
         dest = os.path.join(RAW, name)
         try:
             sha, size = fetch(u, dest, src=src)

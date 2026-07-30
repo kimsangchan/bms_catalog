@@ -7,55 +7,121 @@
  "cat": "HVAC.AIR.TERMINAL.VRF",
  "tag": "vrf-indoorUnit-fcu",
  "status": "active",
- "summary": "VRF 실내기·실외기를 BACnet으로 노출하는 게이트웨이. 실내기 32점 · 실외기 27점이 인스턴스 번호까지 문서에 확정돼 있다.",
+ "summary": "VRF 실내기·실외기를 BACnet으로 노출하는 게이트웨이. 실내기 32점 · 실외기 26점이 인스턴스 번호까지 문서에 확정돼 있다.",
  "has": {
-  "spec": false,
+  "spec": true,
   "points": true
  },
  "ede": false,
- "spec": [],
+ "spec": [
+  [
+   "Power Consumption",
+   "12 to 15 VDC at 5.2 W maximum",
+   "VDC",
+   "The included power adapter is for connection to 100 to 240 VAC.",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Ambient Temperature Conditions",
+   "Operating: 0 to 50°C (32 to 122°F) / Operating Survival: -30 to 60°C (-22 to 140°F) / Non-Operating: -40 to 70°C (-40 to 158°F)",
+   "—",
+   "VRF Smart Gateway Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Ambient Humidity Conditions",
+   "Storage: 5 to 95% RH, 30°C (86°F) maximum dew point conditions / Operating: 5 to 95% RH, 30°C (86°F) maximum dew point conditions",
+   "—",
+   "VRF Smart Gateway Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Dimensions",
+   "145.4 x 85.4 x 40.1 mm (5.72 x 3.36 x 1.58 in.) when used vertically",
+   "—",
+   "VRF Smart Gateway Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Weight",
+   "0.21 kg (0.46 lb)",
+   "kg",
+   "Weights do not include the external power supply.",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "BTL Certified",
+   "Software Version 1.1 or later",
+   "—",
+   "VRF Smart Gateway Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Transmission Power (Typical)",
+   "Wireless Local Area Network (WLAN) Transmission Power at CE Compliant levels: / +14.5 dBm @ 54 Mbps; +12.5 dBm @ 65 Mbps / Channel 6 preconfigured, supported CH 1 to 11 for United States and Canada, and CH 1 to 12 for all other countries",
+   "—",
+   "Communication Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "WLAN Receiver Sensitivity (Typical)",
+   "-76 dBm, 10% packet error rate (PER), 54 Mbps / -73 dBm, 10% PER, 65 Mbps",
+   "dBm",
+   "Communication Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Transmission Speeds",
+   "Wireless Communication: 2.4 GHz ISM bands, 802.11 b/g/n, 11/22/54 Mbps / Serial Communication (H-LINK Bus): 9600 bps, Connection to Outdoor and Indoor Units / Ethernet Communication: 10, 100 Mbps, Connection to BAS over BACnet IP",
+   "—",
+   "Communication Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Transmission Range (Typical)",
+   "Wireless Communication: 30 m (98 ft) line-of-sight indoors, 91 m (299 ft) line-of-sight outdoors / Serial Communication (H-LINK Bus): 1,000 m (3,280 ft) cable length / Ethernet Communication: 100 m (328 ft) cable length",
+   "—",
+   "Communication Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ],
+  [
+   "Wireless Security",
+   "WPA2-PSK TKIP (Wi-Fi Protected Access Pre-Shared Key mode Temporal Key Integrity Protocol) / WPA2-EAP-PEAP, WPA2-EAP-TLS",
+   "—",
+   "Communication Specifications",
+   "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf p1"
+  ]
+ ],
  "comm": [
   [
-   "BACnet",
-   "게이트웨이 표준",
-   "—",
-   "설치 지침서"
+   "BACnet/IP",
+   "관제(BAS) 쪽",
+   "Ethernet 10/100 Mbps · 100 m",
+   "제출자료"
+  ],
+  [
+   "H-LINK",
+   "실내기·실외기 쪽",
+   "직렬 9600 bps · 1,000 m",
+   "제출자료"
+  ],
+  [
+   "WLAN",
+   "무선 (선택)",
+   "2.4 GHz 802.11 b/g/n · WPA2",
+   "제출자료"
   ]
  ],
  "io": [],
  "elec": null,
  "points": [
   {
-   "type": "BO",
-   "inst": 5,
-   "name": "UNITEN-MODE · 운전 허용",
+   "type": "AI",
+   "inst": 4,
+   "name": "UNIT-CAP · 실내기 용량 코드",
    "unitRaw": "—",
    "unit": null,
-   "note": "Shutdown / Enable"
-  },
-  {
-   "type": "MSO",
-   "inst": 6,
-   "name": "SYSTEM-MODE · 운전모드 지령",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "1 Cool · 2 Dry · 3 Fan · 4 Heat · 5 Auto"
-  },
-  {
-   "type": "BI",
-   "inst": 7,
-   "name": "HtClg-REQ · 냉난방 요구",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "False / True"
-  },
-  {
-   "type": "MSO",
-   "inst": 8,
-   "name": "SF-SPEED-C · 팬속도 지령",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "1 Low · 2 Med · 3 High · 4 Auto"
+   "note": "0~255 — 실내기 용량을 코드로 알려 준다"
   },
   {
    "type": "AI",
@@ -106,14 +172,6 @@
    "note": "-127~127 ℃"
   },
   {
-   "type": "AO",
-   "inst": 15,
-   "name": "ZN-SP · 실내 설정온도",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "17~30 ℃"
-  },
-  {
    "type": "AI",
    "inst": 16,
    "name": "RZN-T · 리모컨 실내온도",
@@ -124,10 +182,18 @@
   {
    "type": "AI",
    "inst": 17,
-   "name": "COMP to REQ · 요구 압축기 속도",
+   "name": "COMP~REQ · 요구 압축기 속도",
    "unitRaw": "Hz",
    "unit": "Hz",
    "note": "0~255 Hz"
+  },
+  {
+   "type": "AI",
+   "inst": 18,
+   "name": "UNIT-STOP-CODE · 정지 코드",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "0~255 — 멈춘 이유를 코드로 알려 준다"
   },
   {
    "type": "AI",
@@ -136,6 +202,30 @@
    "unitRaw": "—",
    "unit": null,
    "note": "0~255"
+  },
+  {
+   "type": "AI",
+   "inst": 27,
+   "name": "ZN-T · 실내온도(흡입)",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "RA-T와 동일 값"
+  },
+  {
+   "type": "AO",
+   "inst": 15,
+   "name": "ZN-SP · 실내 설정온도",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "17~30 ℃"
+  },
+  {
+   "type": "BI",
+   "inst": 7,
+   "name": "HtClg-REQ · 냉난방 요구",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "False / True"
   },
   {
    "type": "BI",
@@ -178,30 +268,6 @@
    "note": "Normal / Alarm"
   },
   {
-   "type": "MSI",
-   "inst": 25,
-   "name": "SYSTEM-S · 실제 운전모드",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Cool / Dry / Fan / Heat"
-  },
-  {
-   "type": "MSI",
-   "inst": 26,
-   "name": "SF-SPD · 실제 팬속도",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Low / Med / High"
-  },
-  {
-   "type": "AI",
-   "inst": 27,
-   "name": "ZN-T · 실내온도(흡입)",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "RA-T와 동일 값"
-  },
-  {
    "type": "BI",
    "inst": 28,
    "name": "FILT-S · 필터 상태",
@@ -211,11 +277,27 @@
   },
   {
    "type": "BO",
+   "inst": 5,
+   "name": "UNITEN-MODE · 운전 허용",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Shutdown / Enable"
+  },
+  {
+   "type": "BO",
    "inst": 29,
    "name": "FILT-S-RESET · 필터 리셋",
    "unitRaw": "—",
    "unit": null,
    "note": "Clean / Dirty"
+  },
+  {
+   "type": "BO",
+   "inst": 30,
+   "name": "UNIT-LO · 유닛 전체 잠금",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Unlock / Lock — 리모컨 조작을 통째로 막는다"
   },
   {
    "type": "BO",
@@ -256,8 +338,81 @@
    "unitRaw": "—",
    "unit": null,
    "note": "Unlock / Lock"
+  },
+  {
+   "type": "MSI",
+   "inst": 25,
+   "name": "SYSTEM-S · 실제 운전모드",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Cool / Dry / Fan / Heat"
+  },
+  {
+   "type": "MSI",
+   "inst": 26,
+   "name": "SF-SPD · 실제 팬속도",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Low / Med / High"
+  },
+  {
+   "type": "MSO",
+   "inst": 6,
+   "name": "SYSTEM-MODE · 운전모드 지령",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "1 Cool · 2 Dry · 3 Fan · 4 Heat · 5 Auto"
+  },
+  {
+   "type": "MSO",
+   "inst": 8,
+   "name": "SF-SPEED-C · 팬속도 지령",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "1 Low · 2 Med · 3 High · 4 Auto"
   }
  ],
- "gap": "실내기 정격 스펙(냉난방능력·소비전력·냉매)은 게이트웨이 문서에 없다 → 실내기 제조사 카탈로그 필요. 국내는 삼성 DMS·LG ACP 게이트웨이가 같은 역할이며 포인트 구성이 유사하다(LG ACP: RS-485 4포트·실내기 256대, 삼성 DMS 2.5: 실내기당 제어·감시 25점·최대 256대).",
- "extractor": "table"
+ "gap": "게이트웨이 자신의 정격(전원 12~15 VDC·5.2 W, 주위 0~50 ℃, BACnet IP·H-LINK)은 제출자료로 확보했다. 아직 없는 것은 실내기·실외기의 정격 성능 — 냉난방능력·소비전력·냉매량은 게이트웨이 문서에 없고 실내기 제조사 카탈로그 몫이다. 국내는 삼성 DMS·LG ACP 게이트웨이가 같은 역할이며 포인트 구성이 유사하다(LG ACP: RS-485 4포트·실내기 256대, 삼성 DMS 2.5: 실내기당 제어·감시 25점·최대 256대).",
+ "extractor": "table",
+ "crosscheck": {
+  "fam": "bacnet",
+  "segments": 1,
+  "table": 32,
+  "raw": 32,
+  "both": 28,
+  "same": 28,
+  "diff": [],
+  "rate": 1.0,
+  "verified": {
+   "AI-4": "UNIT-CAP",
+   "AI-9": "EXPV-%",
+   "AI-10": "LIQ-PIPE-T",
+   "AI-11": "GAS-PIPE-T",
+   "AI-14": "DIFF-T",
+   "AI-16": "RZN-T",
+   "AI-17": "COMP~REQ",
+   "AI-18": "UNIT-STOP-CODE",
+   "AI-19": "ALARM-CODE",
+   "AO-15": "ZN-SP",
+   "BI-7": "HtClg-REQ",
+   "BI-20": "RMT-OPT",
+   "BI-21": "DEFROST-S",
+   "BI-22": "REM-CON",
+   "BI-24": "ALARM-S",
+   "BI-28": "FILT-S",
+   "BO-5": "UNITEN-MODE",
+   "BO-29": "FILT-S-RESET",
+   "BO-30": "UNIT-LO",
+   "BO-31": "FANCMD-LO",
+   "BO-32": "SYSMODE-LO",
+   "BO-33": "ZNSP-LO",
+   "BO-34": "FANSPD-LO",
+   "BO-35": "LOUVER-LO",
+   "MSI-25": "SYSTEM-S",
+   "MSI-26": "SF-SPD",
+   "MSO-6": "SYSTEM-MODE",
+   "MSO-8": "SF-SPEED-C"
+  },
+  "sect": "indoor"
+ }
 }

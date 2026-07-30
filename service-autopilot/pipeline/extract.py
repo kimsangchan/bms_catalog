@@ -95,6 +95,12 @@ COL = {
     # 이 별칭까지 오지 않는다.
     "modbus": ["modbus register", "modbus address", "register address",
                "modbus-register", "address", "register"],
+    # 타입과 번호를 한 칸에 'AI-4' 로 적지 않고 열을 갈라 적는 벤더가 있다
+    # (JCI VRF 게이트웨이: 'Object Type'=AI, 'BACnet Instance Number'=4).
+    # 이때는 두 열을 합쳐야 오브젝트가 된다 — 아래 split 모드.
+    "objtype": ["bacnet object type", "object type", "obj type"],
+    "instance": ["bacnet instance number", "instance number",
+                 "object instance", "instance"],
 }
 
 
@@ -117,10 +123,38 @@ def _mk_idx(hdr):
     return idx
 
 
+# 한 문서에 장치가 둘이고 **번호를 다시 쓰는** 경우를 표 제목으로 가른다.
+# JCI VRF 게이트웨이는 실내기 표와 실외기 표가 AI-16 을 각각 다른 뜻으로 쓴다 —
+# 가르지 않으면 뒤 표가 앞 표를 덮어써서 실외기 포인트가 조용히 사라진다.
+SECT_CAPTION = re.compile(r"points for (indoor|outdoor) units", re.I)
+
+
+def captions(pdf):
+    """[(페이지, 제목 하단 y, 구간이름)] — 표 제목이 어디서 무엇으로 바뀌는지."""
+    import fitz
+    out = []
+    for i, pg in enumerate(fitz.open(pdf)):
+        for b in pg.get_text("blocks"):
+            m = SECT_CAPTION.search(re.sub(r"\s+", " ", b[4]))
+            if m:
+                out.append((i, b[3], m.group(1).lower()))
+    return out
+
+
+def sect_at(caps, page, y):
+    """이 위치를 덮는 표 제목 — 같은 쪽 위쪽, 없으면 앞 쪽의 마지막 제목."""
+    best = None
+    for cp, cy, s in caps:
+        if cp < page or (cp == page and cy <= y):
+            best = s
+    return best
+
+
 def extract_tables(pdf, default_type=None):
     """표 인식 추출. 오브젝트 ID 열이 'AI-10101' 형태든 '1' 형태든 처리."""
     import fitz
     doc = fitz.open(pdf)
+    caps = captions(pdf)
     rows = []
     for pg in doc:
         try:
@@ -145,7 +179,11 @@ def extract_tables(pdf, default_type=None):
                 i_id = i_mb
                 if i_nm < 0:
                     i_nm = idx(*COL["desc"])
-            if i_id < 0 or i_nm < 0:
+            # 타입 열 / 번호 열이 갈라져 있는가. 같은 열을 가리키면 아니다 —
+            # Belimo 는 열 이름 자체가 'Object Type [Instance]' 라 둘 다 걸린다.
+            i_ty, i_in = idx(*COL["objtype"]), idx(*COL["instance"])
+            split_mode = i_ty >= 0 and i_in >= 0 and i_ty != i_in
+            if (i_id < 0 and not split_mode) or i_nm < 0:
                 continue
             i_ds, i_un = idx(*COL["desc"]), idx(*COL["unit"])
             i_rg, i_rw = idx(*COL["range"]), idx(*COL["rw"])
@@ -155,11 +193,19 @@ def extract_tables(pdf, default_type=None):
             i_rd = idx("relinquish")
             # 이 표가 다루는 오브젝트 타입 (섹션 제목에서 온 기본값)
             for r in data[1:]:
-                if not r or len(r) <= max(i_id, i_nm):
+                if not r or len(r) <= max(i_id, i_nm, i_ty, i_in):
                     continue
-                raw_id = _c(r[i_id])
+                split = None
+                if split_mode:
+                    t_raw = S.canon_type(_c(r[i_ty]))
+                    n_raw = _c(r[i_in])
+                    if t_raw in S.OBJ_TYPES and BARE_ID.match(n_raw):
+                        split = (t_raw, int(n_raw))
+                raw_id = _c(r[i_id]) if i_id >= 0 else ""
                 pid = parse_objid(raw_id)
-                if pid:
+                if split:
+                    typ, inst = split
+                elif pid:
                     typ, inst = pid
                 elif mb_mode and BARE_ID.match(raw_id):
                     typ, inst = "MB", int(raw_id)
@@ -187,10 +233,13 @@ def extract_tables(pdf, default_type=None):
                 rows.append({"type": S.canon_type(typ), "inst": inst,
                              "name": name, "unitRaw": UNIT_HINT.get(u, u or None),
                              "unit": S.canon_unit(UNIT_HINT.get(u, u)),
-                             "note": " · ".join(note)[:240]})
+                             "note": " · ".join(note)[:240],
+                             "sect": sect_at(caps, pg.number, t.bbox[1])})
     seen, out = set(), []
     for r in sorted(rows, key=lambda x: (x["type"], x["inst"])):
-        k = (r["type"], r["inst"])
+        # 구간이 나뉜 문서는 구간까지 넣어 유일성을 본다 — 안 넣으면 실외기 AI-16 이
+        # 실내기 AI-16 에 밀려 사라진다.
+        k = (r.get("sect"), r["type"], r["inst"]) if r.get("sect") else (r["type"], r["inst"])
         if k in seen:
             continue
         seen.add(k)

@@ -436,6 +436,34 @@ SOURCES = [
         "extractor": "html",
         "access": "무로그인",
     },
+    {
+        "id": "jci-vrf-gateway",
+        "vendor": "Johnson Controls / York",
+        "kind": "게이트웨이 설치설명서 · 제출자료",
+        "note": "VRF Smart Gateway (SI-VRFCBN02-0Sx). 실내기(IDU)·실외기(ODU) BACnet "
+                "포인트 표가 설치설명서 11~14쪽에 있다. "
+                "⚠ 정본 사이트 docs.johnsoncontrols.com 은 본문을 JS 로 그리고 "
+                "딥링크가 다른 문서로 전환돼 긁을 수 없다 — 같은 문서의 PDF 배포본을 쓴다. "
+                "제출자료(submittal)는 전원·통신·환경 정격이 들어 있다.",
+        "enumerate": "list",
+        "urls": [
+            "https://files.hvacnavigator.com/p/installation%20instructions%20rev%20b.pdf",
+            "https://files.hvacnavigator.com/p/cbn02%20submittal%20sheet%20v2.pdf",
+            "https://files.hvacnavigator.com/p/user%20guide.pdf",
+        ],
+        # 벤더가 'user guide.pdf' 처럼 제품명 없는 이름으로 올려 둬서 그대로 두면
+        # 다른 벤더 문서와 부딪힌다. 문서 표지의 코드(LIT-·Part No.)로 바꿔 적는다.
+        "rename": {
+            "installation instructions rev b.pdf":
+                "JCI_VRF-Smart-Gateway_Install_24-10143-1183-B.pdf",
+            "cbn02 submittal sheet v2.pdf":
+                "JCI_VRF-Smart-Gateway_Submittal_CBN02-v2.pdf",
+            "user guide.pdf":
+                "JCI_VRF-Smart-Gateway_UserGuide_LIT-12012385.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+    },
 ]
 
 

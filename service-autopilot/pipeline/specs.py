@@ -217,6 +217,86 @@ def extract_pairs(pdf, max_pages=6):
     return uniq
 
 
+# 값 맨 앞의 수치에 붙은 단위만 인정한다. 제출자료처럼 값이 문장인 경우
+# 문장 아무 데서나 단위를 주우면 엉뚱해진다 — 습도 '5 to 95% RH, 30°C dew point'
+# 에서 °C 를 집어 습도의 단위를 온도로 적은 적이 있다.
+LEAD_UNIT = re.compile(
+    r"^\s*(?:[-–]?\d[\d.,]*)\s*(?:(?:to|~|\.\.\.|[-–])\s*[-–]?\d[\d.,]*\s*)?"
+    r"(VDC|VAC|kW|W|VA|V|A|mA|Hz|°C|℃|°F|%|kg|lb|mm|in|dBm|dBA?|rpm|Mbps|bps)\b",
+    re.I)
+
+
+def lead_unit(val):
+    m = LEAD_UNIT.match(val or "")
+    return m.group(1) if m else ""
+
+
+def extract_labeled(pdf, max_pages=6):
+    """2열 '항목 | 값' 사양 표 → [(구역, 항목, 값, 단위)]
+
+    extract_pairs 와 겨루는 게 아니라 서로 다른 문서 형태를 맡는다.
+    extract_pairs 는 줄 순서로 읽어 '항목 다음 줄이 값' 인 문서를 처리한다.
+    그런데 조판이 표로 되어 있으면 원문 텍스트 순서가 뒤섞인다 — JCI 제출자료는
+    항목 덩어리와 값 덩어리가 따로 나와서 줄 순서로 읽으면 엉뚱하게 짝지어진다.
+    표 인식으로는 정확히 잡히므로 그쪽을 쓴다.
+
+    표 규칙
+      · 값 칸이 빈 첫 행 = 구역 제목 ('VRF Smart Gateway Specifications')
+      · 항목 칸이 빈 행  = 앞 항목의 값이 이어지는 줄
+    """
+    import fitz
+    doc = fitz.open(pdf)
+    out = []
+    for pi in range(min(max_pages, doc.page_count)):
+        pg = doc[pi]
+        try:
+            tabs = pg.find_tables()
+        except Exception:
+            continue
+        for t in tabs.tables:
+            data = t.extract()
+            if not data or len(data[0]) != 2 or len(data) < 3:
+                continue
+            section, last = "", None
+            for r in data:
+                lab, val = _c(r[0]), _c(r[1])
+                if lab and not val:
+                    section = lab          # 구역 제목
+                    continue
+                if not lab and val and last is not None:
+                    last["value"] += " / " + val   # 값이 이어지는 줄
+                    continue
+                if not lab or not val:
+                    continue
+                last = {"section": section, "label": lab, "value": val,
+                        "unit": lead_unit(val), "note": "", "page": pi + 1}
+                out.append(last)
+    seen, uniq = set(), []
+    for r in out:
+        k = (r["section"], r["label"])
+        if k in seen:
+            continue
+        seen.add(k)
+        # 'Note: ...' 은 값이 아니라 값에 붙은 단서다. 값 칸에 남겨 두면 요약 타일이
+        # 문장을 통째로 받아 한 글자씩 세로로 늘어진다 — 비고 칸으로 옮긴다.
+        m = re.split(r"\s*\bNote:\s*", r["value"], maxsplit=1)
+        if len(m) == 2:
+            r["value"], r["note"] = m[0].strip(" /"), m[1].strip()
+        uniq.append(r)
+    return uniq
+
+
+def labeled_to_spec(rows, source):
+    """항목/값 표 → 카탈로그 표시용 [항목, 값, 단위, 조건·비고, 근거]
+
+    4번째 칸은 단서가 있으면 단서, 없으면 표의 구역 제목이다 — 화면은 용어 분류로
+    다시 묶으므로 구역 제목보다 단서가 더 쓸모 있다.
+    """
+    return [[r["label"], r["value"], r["unit"] or "—",
+             r["note"] or r["section"] or "—", "%s p%d" % (source, r["page"])]
+            for r in rows]
+
+
 def pairs_to_spec(pairs, source):
     """항목/값 목록 → 카탈로그 표시용 [항목, 값, 단위, 구역, 근거]"""
     return [[p["label"], re.sub(r"\s*%s$" % re.escape(p["unit"]), "", p["value"]).strip()
@@ -317,6 +397,24 @@ def main(argv):
         key = [p for p in pairs if re.search(r"power|voltage|torque|current", p["label"], re.I)]
         print("%-38s ← %-14s 항목 %d개 (전기·구동 %d)"
               % (fam[:38], code, len(pairs), len(key)))
+        return 0
+
+    # 2열 '항목 | 값' 사양 표를 모델의 spec 에 넣는다 (형번이 하나인 장치용).
+    # 항목 이름은 원문 영문 그대로 둔다 — 한글·설명·시뮬레이터 중요도는
+    # 카탈로그가 용어 사전(spec-terms.json)으로 붙여 주므로 여기서 번역하지 않는다.
+    if "--label" in argv:
+        i = argv.index("--label")
+        mid, fname = argv[i + 1], argv[i + 2]
+        path = os.path.join(DATA, "models", mid + ".json")
+        m = json.load(open(path, encoding="utf-8"))
+        rows = extract_labeled(os.path.join(RAW, fname))
+        if not rows:
+            print("  · %s — 2열 사양 표를 못 찾았다" % fname)
+            return 1
+        m["spec"] = labeled_to_spec(rows, fname)
+        m["has"] = dict(m.get("has", {}), spec=True)
+        json.dump(m, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print("%-46s ← %-40s 사양 %d항목" % (mid[:46], fname[:40], len(rows)))
         return 0
 
     if "--attach" in argv:

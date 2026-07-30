@@ -59,6 +59,11 @@ UNIT_CANON = {
     "lpm": "Lpm", "LPM": "Lpm", "gpm": "gpm", "Secs": "s", "Sec": "s",
     "Mins": "min", "Hrs": "h", "Deg F": "degF", "Deg C": "degC",
     "인": "person", "회": "count", "층": "floor", "—": None, "": None,
+    # 교류/직류를 단위에 붙여 쓰는 표기. 전압은 전압이다 — 12~15 VDC 를 못 알아봐서
+    # 사양을 넣어 둔 모델에 '전압 없음' 이 떴다.
+    "VDC": "V", "VAC": "V", "Vdc": "V", "Vac": "V",
+    # 통신 속도·무선 세기 — 게이트웨이 사양에 나온다
+    "bps": "bps", "kbps": "bps", "Mbps": "bps", "dBm": "dBm",
 }
 
 REQUIRED_EQUIP = ["id", "no", "title", "domain"]
@@ -148,6 +153,7 @@ UNIT_QUANTITY = {
     "mm": "dimension", "in": "dimension", "m3h": "airflow", "Lps": "airflow",
     "Pa": "pressure", "kPa": "pressure", "bar": "pressure", "psi": "pressure",
     "dBA": "noise", "s": "time", "min": "time", "h": "time", "kWh": "energy",
+    "bps": "datarate", "dBm": "signal",
 }
 
 

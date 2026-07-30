@@ -175,6 +175,9 @@ th .lbl.k3{color:var(--accent)}
 .tile{background:var(--bg);padding:9px 14px}
 .tk{font-size:10.5px;font-weight:700;letter-spacing:.03em;color:var(--accent)}
 .tv{font-family:var(--mono);font-size:17px;font-weight:650;letter-spacing:-.02em;margin-top:2px}
+/* 벤더가 값 칸에 '12 to 15 VDC at 5.2 W maximum' 처럼 길게 적어 두면 큰 글씨로는
+   타일 안에서 한 글자씩 세로로 늘어진다. 긴 값만 작게 — 읽히는 쪽이 우선이다. */
+.tv.tvl{font-size:12px;font-weight:600;letter-spacing:0;line-height:1.35}
 .tv small{font-size:11px;font-weight:400;color:var(--dim);margin-left:3px}
 .tn{font-size:10px;color:var(--faint);margin-top:2px;overflow:hidden;text-overflow:ellipsis;
  white-space:nowrap}
@@ -584,8 +587,16 @@ function renderModels(models, l3){
      + '<span>분류 <code>'+esc(m.cat)+'</code></span><span>태그 <code>'+esc(m.tag)+'</code></span>'
      + '<span>사양값 '+badge(m.has.spec)+'</span><span>오브젝트 목록 '+badge(m.has.points)+'</span></div>';
   h += '<div class="wrap">';
-  if(m.spec.length) h += sec('정격 사양', m.spec.length)
-    + table({header:['항목','값','단위','조건·비고','근거'], rows:m.spec});
+  // 정격 사양은 형번별(variants)과 같은 사양 시트로 그린다 — 한글 이름·설명·
+  // 시뮬레이터 중요도가 용어 사전에서 붙는다. 전에는 원문 영문 그대로 나열됐다.
+  if(m.spec.length){
+    var srcs = {};
+    m.spec.forEach(function(r){ if(r[4]) srcs[String(r[4]).replace(/\s+p\d+$/,'')] = 1; });
+    h += sec('정격 사양', m.spec.length)
+       + renderSpecSheet(m.spec, 'f'+m.id)
+       + '<div class="msg" style="margin:0 18px 14px"><p>근거 '
+       + esc(Object.keys(srcs).join(' · ')) + '</p></div>';
+  }
   if(m.comm.length) h += sec('통신', m.comm.length)
     + table({header:['프로토콜','제공','물리계층','근거'], rows:m.comm});
   if(m.io.length) h += sec('하드웨어 입출력 · 레지스터 구성', m.io.length)
@@ -809,12 +820,17 @@ function renderSpecSheet(spec, key){
     h += '<div class="tiles">' + pick.slice(0,8).map(function(x){
       // 괄호 환산값·조건은 잘라 큰 글씨를 짧게. 값에 이미 단위가 있으면 또 붙이지 않는다
       var val = String(x.r[1]).replace(/\s*\[[^\]]*\]/g,'')
-                  .replace(/\s*@.*$/,'').replace(/\s*,.*$/,'').trim();
+                  .replace(/\s*@.*$/,'').replace(/\s*,.*$/,'')
+                  .replace(/\s*\bNote:.*$/i,'').replace(/\s*\(.*$/,'').trim();
+      // 벤더가 값 칸에 문장을 넣어 두면 타입 타일이 한 글자씩 세로로 늘어진다.
+      // 요약은 짧아야 요약이다 — 넘치면 자르고 전문은 아래 상세 표에 그대로 있다.
+      if(val.length > 30) val = val.slice(0,29).trim() + '…';
       var u = (x.r[2]==='—'||!x.r[2]) ? ''
             : (val.toLowerCase().indexOf(String(x.r[2]).toLowerCase())>=0 ? '' : x.r[2]);
       return '<div class="tile" title="'+esc(x.r[0]+' — '+x.t.desc)+'">'
            + '<div class="tk">'+esc(x.t.ko)+'</div>'
-           + '<div class="tv">'+esc(val)+(u?'<small>'+esc(u)+'</small>':'')+'</div>'
+           + '<div class="tv'+(val.length>13?' tvl':'')+'">'
+           + esc(val)+(u?'<small>'+esc(u)+'</small>':'')+'</div>'
            + '<div class="tn">'+esc(x.r[0])+'</div></div>';
     }).join('') + '</div>';
   }

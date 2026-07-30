@@ -72,6 +72,13 @@
    "전기"
   ],
   [
+   "^power consumption$|^power consumption\\b(?!.*(operation|rest|wire))",
+   "소비전력",
+   "장치가 평상시 쓰는 전력. 전원 용량과 발열 계산의 출발점이다.",
+   3,
+   "전기"
+  ],
+  [
    "^transformer sizing",
    "변압기 용량",
    "이 기기 하나에 필요한 변압기 용량(VA). 여러 대를 물릴 때 합산한다.",
@@ -534,6 +541,13 @@
    "설치·환경"
   ],
   [
+   "^ambient humidity",
+   "주위 습도 범위",
+   "이 습도 안에서 써야 한다는 뜻. 넘으면 결로가 생긴다.",
+   2,
+   "설치·환경"
+  ],
+  [
    "^communication|^bus|bacnet|modbus|mp-bus",
    "통신",
    "지원 프로토콜.",
@@ -553,6 +567,48 @@
    "센서가 변화를 따라오는 데 걸리는 시간. 제어 안정성에 영향을 준다.",
    2,
    "제어·동작"
+  ],
+  [
+   "^btl certified|bacnet testing lab",
+   "BACnet 인증 (BTL)",
+   "BACnet 표준을 지키는지 공인 시험소에서 확인받았다는 표시. **BACnet Testing Laboratories** — 관제와 붙일 때 호환을 보증한다.",
+   1,
+   "제어·동작"
+  ],
+  [
+   "^transmission speeds?|^baud|^data rate",
+   "통신 속도",
+   "초당 주고받는 양. 느리면 한 바퀴 도는 시간이 길어져 값이 늦게 올라온다 — 시뮬레이터의 갱신 주기 한계가 된다.",
+   2,
+   "제어·동작"
+  ],
+  [
+   "^transmission range|^cable length|^segment length",
+   "통신 거리",
+   "케이블·무선이 닿는 최대 거리. 설계에서 중계기가 필요한지 가른다.",
+   1,
+   "설치·환경"
+  ],
+  [
+   "^transmission power",
+   "무선 송신 출력",
+   "무선 전파를 얼마나 세게 내보내는지. 국가별 규제 상한이 있다.",
+   1,
+   "설치·환경"
+  ],
+  [
+   "receiver sensitivity",
+   "수신 감도",
+   "이보다 약한 전파는 못 알아듣는다는 한계값. 값이 작을수록(음수로 클수록) 좋다.",
+   1,
+   "설치·환경"
+  ],
+  [
+   "^wireless security|^encryption",
+   "무선 보안 방식",
+   "무선 구간을 어떤 방식으로 잠그는지. 폐쇄망 설계에서 확인할 항목이다.",
+   1,
+   "기타"
   ]
  ]
 }
