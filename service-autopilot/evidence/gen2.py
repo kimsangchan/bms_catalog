@@ -140,6 +140,18 @@ td.n{color:var(--dim);white-space:nowrap;font-size:11.5px}
 .slist button{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;
  border:1px solid var(--line);border-radius:6px;font-size:11.5px}
 .slist button[aria-pressed="true"]{background:var(--sel);border-color:var(--accent);font-weight:650}
+/* 표의 성격을 먼저 고른다 — 정격/성능/치수는 쓰임이 다르다 */
+.klist{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:2px 18px 9px}
+.klist button{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
+ border:1px solid var(--line);border-radius:16px;font-size:12px}
+.klist button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);
+ color:#fff;font-weight:650}
+.klist button[aria-pressed="true"] .mn{color:#fff;opacity:.75}
+.khint{font-size:11.5px;color:var(--dim);margin-left:6px}
+/* 내보내기 — 화면에서 보는 것과 별개로 뽑아 쓰는 길 */
+.csv{margin-left:8px;padding:3px 9px;border:1px solid var(--line);border-radius:5px;
+ font-size:10.5px;font-family:var(--mono);color:var(--dim);white-space:nowrap}
+.csv:hover{border-color:var(--accent);color:var(--accent)}
 th.srt{cursor:pointer;user-select:none}
 th.srt:hover{color:var(--accent)}
 .sa{font-style:normal;font-size:9px;color:var(--accent)}
@@ -279,6 +291,16 @@ var nav = document.getElementById('nav'), main = document.getElementById('main')
 var cur = 'home', tab = 'pt', mi = 0, kindF = '', gradeF = '', term = '';
 var vsel = 0;   // 고른 형번 (variants) — 모델을 바꾸면 0 으로 되돌린다
 var ssel = 0;   // 고른 사양 표
+var ksel = 'rating';  // 고른 표 성격 — 모델을 바꾸면 정격으로 되돌린다
+// 표의 성격. 정격이 먼저다 — 시뮬레이터가 바로 쓰는 값이 거기 있다.
+var KIND_ORDER = ['rating','perf','dim','etc'];
+var KIND_KO = {rating:'정격', perf:'성능표', dim:'치수·중량', etc:'기타'};
+var KIND_HINT = {
+  rating:'이 제품이 늘 갖는 값 — 전압·전류·능력·효율',
+  perf:'조건을 넣고 찾아보는 표 — 온도별 능력, 풍량×정압별 축동력',
+  dim:'설치용 치수와 중량 — 계산에는 쓰지 않아요',
+  etc:'위 셋에 넣기 어려운 표'
+};
 var searchAll_on = false;   // 전체 검색 화면인가
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
@@ -662,11 +684,26 @@ function renderModels(models, l3){
   // 끝나지 않아 원하는 표를 못 찾는다 → **목록에서 골라 하나씩** 본다 (힉의 법칙).
   var sts = (m.specTables || []).slice();
   if(sts.length){
+    // 표는 성격이 섞여 있다 — '이 제품이 늘 갖는 값(정격)' 과 '조건을 넣고
+    // 찾아보는 표(성능)' 와 '치수' 는 쓰임이 다르다. 한 덩어리로 늘어놓으면
+    // 무슨 표인지 알 수 없다(실측: 모델 하나에 148개).
+    // 성격을 먼저 고르고, 그 안에서 표를 고른다.
+    sts.forEach(function(x,i){ x._i = i; });
+    var kinds = KIND_ORDER.filter(function(k){
+      return sts.some(function(x){ return (x.kind||'etc')===k; }); });
+    var kk = kinds.indexOf(ksel) >= 0 ? ksel : kinds[0];
+    sts = sts.filter(function(x){ return (x.kind||'etc')===kk; });
     // 시뮬레이터가 쓰는 열이 많은 표를 앞에 둔다 — 'General Data 1' 부터 보여 주면
     // 정작 필요한 전기 데이터 표를 한참 찾아야 한다
     sts.sort(function(a,b){ return summarizeMatrix(b).length - summarizeMatrix(a).length; });
     var si = Math.min(ssel, sts.length-1), t = sts[si];
-    h += sec('정격 사양', sts.length)
+    h += sec('사양 표', (m.specTables||[]).length)
+       + '<div class="klist">' + kinds.map(function(k){
+           var n = (m.specTables||[]).filter(function(x){ return (x.kind||'etc')===k; }).length;
+           return '<button data-kk="'+k+'" aria-pressed="'+(k===kk)+'">'
+                + esc(KIND_KO[k]) + '<span class="mn">' + n + '</span></button>';
+         }).join('')
+       + '<span class="khint">' + esc(KIND_HINT[kk]||'') + '</span></div>'
        + '<div class="slist">' + sts.map(function(x,i){
            var qq = (x.quantities||[]).filter(Boolean);
            var lbl = (x.title||'표 '+(i+1)).replace(/^Table\s*\d+\.\s*/,'');
@@ -684,7 +721,27 @@ function renderModels(models, l3){
     h += '<div class="qrow">'
        + (t.orientation==='row' ? '<span class="qtag alt">행=항목 · 열=형번</span>' : '')
        + uq.map(function(x){ return '<span class="qtag">'+esc(QLABEL[x]||x)+'</span>'; }).join('')
-       + '<span class="qsrc">' + esc(t.source||'') + ' p'+t.page+'</span></div>'
+       + '<span class="qsrc">' + esc(t.source||'') + ' p'+t.page+'</span>'
+       + csvBtn('st'+m.id+t._i,
+                safeName(m.model+'_'+(t.title||'표')+'_p'+t.page)+'.csv',
+                t.header, t.rows, '이 표 CSV')
+       // 여러 표를 한 파일로 낼 때는 가로로 이어 붙이면 안 된다 — 표마다 열 구성이
+       // 달라 '열1…열16' 이 되고 무엇인지 알 수 없다. 한 줄에 값 하나씩 두는
+       // 세로형으로 낸다. 열 이름이 값과 함께 붙어 있어 그대로 처리할 수 있다.
+       + csvBtn('stall'+m.id+kk, safeName(m.model+'_'+KIND_KO[kk])+'_전체.csv',
+                ['표','쪽','근거','행','열','값'],
+                sts.reduce(function(acc,x){
+                  x.rows.forEach(function(r, ri){
+                    r.forEach(function(v, ci){
+                      if(v===''||v===null||v===undefined) return;
+                      acc.push([x.title||'', x.page, x.source||'', ri+1,
+                                x.header[ci]||('열'+(ci+1)), v]);
+                    });
+                  });
+                  return acc;
+                }, []),
+                KIND_KO[kk]+' 전체 CSV')
+       + '</div>'
        + matrixTiles(t)
        + table({header:t.orientation==='row' ? t.header : t.header.map(function(hh){
                   var tt = termOf(hh);
@@ -708,7 +765,16 @@ function renderModels(models, l3){
       return hasNote ? [p.inst||'', p.type, p.unitDisp, p.name, p.note||'']
                      : [p.inst, p.type, p.unitDisp, p.name];
     });
+    // 매핑 자동화에 실제로 쓰이는 건 이 표다 — 뽑아 갈 수 있어야 한다.
+    // 화면 표기(unitDisp)가 아니라 원문 단위와 정규 단위를 함께 넣는다.
     h += sec('오브젝트 목록 — BMS에 이대로 만들어져요', pts.length)
+       + '<div class="qrow"><span class="qsrc">인스턴스 번호까지 문서에 확정된 목록</span>'
+       + csvBtn('pt'+m.id, safeName(m.vendor+'_'+m.model)+'_오브젝트목록.csv',
+                ['type','instance','name','unit','unitRaw','note'],
+                m.points.map(function(p){
+                  return [p.type, p.inst||'', p.name, p.unit||'', p.unitRaw||'', p.note||'']; }),
+                '오브젝트 목록 CSV')
+       + '</div>'
        + kindChips([{header:head, rows:rows}])
        + table({header:head, rows:rows});
   }
@@ -763,10 +829,14 @@ var CATORD = ['전기','성능','제어·동작','물리','설치·환경','기�
 
 // 행렬형 사양 표(행=형번, 열=속성)는 값이 여러 줄이라 타일 하나로 못 줄인다.
 // 대신 **열마다 숫자 범위**를 뽑아 '이 표가 무엇을 담고 있는지'를 한 줄로 보여 준다.
+// 카탈로그에서 하이픈은 거의 언제나 '범위'나 '구분'이지 음수 부호가 아니다.
+// '208-230 460 575'(전압 선택지)를 -230 으로 읽어 전압 범위가 '−230 ~ 575' 로
+// 나왔다. 숫자 바로 뒤에 붙은 하이픈은 부호로 보지 않는다.
 function numsIn(list){
   var out = [];
   list.forEach(function(v){
-    var m = String(v).replace(/,/g,'').match(/-?\d+(\.\d+)?/g);
+    var s = String(v).replace(/,/g,'').replace(/(\d)\s*[-–]\s*(?=\d)/g, '$1 ');
+    var m = s.match(/-?\d+(\.\d+)?/g);
     if(m) m.forEach(function(x){ var n=parseFloat(x); if(isFinite(n)) out.push(n); });
   });
   return out;
@@ -888,16 +958,60 @@ function render(){
   wire();
 }
 
+// ── CSV 내보내기 ─────────────────────────────────────────────────────────────
+// 화면에서 눈으로 보는 것과 별개로, 뽑아서 쓰는 길이 있어야 한다.
+// 오프라인 단일 HTML 이라 서버가 없다 → Blob 으로 만들어 바로 내려받는다.
+var CSVSRC = {};   // 버튼이 가리키는 표를 여기 담아 둔다
+
+function csvCell(v){
+  var s = (v===null||v===undefined) ? '' : String(v);
+  // 화면용 태그가 섞여 들어오면 글자만 남긴다
+  if(s.indexOf('<')>=0){ var d=document.createElement('div'); d.innerHTML=s; s=d.textContent; }
+  s = s.replace(/\s+/g,' ').trim();
+  return /[",\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
+}
+
+function toCsv(header, rows){
+  return [header.map(csvCell).join(',')]
+    .concat(rows.map(function(r){ return r.map(csvCell).join(','); })).join('\r\n');
+}
+
+function downloadCsv(key){
+  var d = CSVSRC[key];
+  if(!d) return;
+  // BOM 을 붙인다 — 안 붙이면 엑셀이 한글을 깨서 연다
+  var blob = new Blob(['﻿' + toCsv(d.header, d.rows)],
+                      {type:'text/csv;charset=utf-8;'});
+  var url = URL.createObjectURL(blob), a = document.createElement('a');
+  a.href = url; a.download = d.name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+}
+
+function csvBtn(key, name, header, rows, label){
+  CSVSRC[key] = {name:name, header:header, rows:rows};
+  return '<button class="csv" data-csv="'+esc(key)+'" title="'+esc(name)+'">'
+       + '↓ ' + esc(label||'CSV') + '</button>';
+}
+
+function safeName(s){
+  return String(s||'data').replace(/[\\/:*?"<>|]+/g,'-').replace(/\s+/g,'_').slice(0,80);
+}
+
 function wire(){
   var re = function(){ var y=window.scrollY; render(); window.scrollTo(0,y); };
   main.querySelectorAll('.tabs button').forEach(function(b){
     b.addEventListener('click',function(){ tab=b.dataset.tab; kindF=''; gradeF=''; render(); });});
   main.querySelectorAll('.mlist button').forEach(function(b){
-    b.addEventListener('click',function(){ mi=+b.dataset.mi; vsel=0; ssel=0; pageOf={}; render(); });});
+    b.addEventListener('click',function(){ mi=+b.dataset.mi; vsel=0; ssel=0; ksel='rating'; pageOf={}; render(); });});
   main.querySelectorAll('.vlist button').forEach(function(b){
     b.addEventListener('click',function(){ vsel=+b.dataset.vi; render(); });});
+  main.querySelectorAll('.klist button').forEach(function(b){
+    b.addEventListener('click',function(){ ksel=b.dataset.kk; ssel=0; pageOf={}; render(); });});
   main.querySelectorAll('.slist button').forEach(function(b){
     b.addEventListener('click',function(){ ssel=+b.dataset.si; pageOf={}; render(); });});
+  main.querySelectorAll('.csv').forEach(function(b){
+    b.addEventListener('click',function(){ downloadCsv(b.dataset.csv); });});
   main.querySelectorAll('th.srt').forEach(function(th){
     th.addEventListener('click',function(){
       var k = th.closest('table').dataset.tk, c = +th.dataset.col, cu = sortOf[k];

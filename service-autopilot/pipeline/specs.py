@@ -17,6 +17,7 @@
   python specs.py --scan                     수집한 문서 전부 훑는다
   python specs.py --attach <모델ID> <파일>    모델에 붙인다
 """
+import collections
 import glob
 import json
 import os
@@ -304,6 +305,86 @@ def pairs_to_spec(pairs, source):
              p["section"] or "—", "%s p%d" % (source, p["page"])] for p in pairs]
 
 
+# ── 표의 성격 ────────────────────────────────────────────────────────────────
+# 카탈로그에서 뽑은 표를 전부 '정격 사양'이라 부르면 안 된다. 실제로는 성격이
+# 다른 세 가지가 섞여 있다 (실측: 표 1,254개 중 정격은 소수였다).
+#   rating 정격 — 이 제품이 늘 갖는 값 (전압·전류·능력·효율). 시뮬레이터가 바로 쓴다.
+#   perf   성능 — 조건을 넣고 찾아보는 표 (온도별 능력, 풍량×정압별 축동력).
+#   dim    치수·중량 — 설치용. 계산에는 안 쓴다.
+KIND_KO = {"rating": "정격 사양", "perf": "성능표 (조건별 조회)",
+           "dim": "치수·중량", "etc": "기타"}
+KIND_ORDER = ["rating", "perf", "dim", "etc"]
+
+PERF_WORD = re.compile(
+    r"fan performance|\bbhp\b|static pressure|외부\s*정압|"
+    r"(gross|net|total|cooling|heating)\s+capacit|capacit\w* (at|vs)|"
+    r"performance data|part load|ipl[vc]\b", re.I)
+DIM_WORD = re.compile(
+    r"dimension|weight|clearance|shipping|rigging|center of gravity|"
+    r"치수|중량|외형", re.I)
+RATING_WORD = re.compile(
+    r"general data|mains supply|ratings?\b|electrical data|nominal|정격", re.I)
+# 시뮬레이터가 쓰는 물리량 — 이게 있으면 치수 낱말이 섞여 있어도 정격 표다
+RATING_Q = {"power", "current", "voltage", "capacity", "efficiency", "airflow"}
+
+
+def table_kind(t):
+    """사양 표 하나의 성격. 제목 낱말만 보지 않고 표 구조도 본다."""
+    qs = [x for x in (t.get("quantities") or []) if x]
+    txt = "%s %s" % (t.get("title") or "", " ".join(str(h) for h in t["header"]))
+    if PERF_WORD.search(txt):
+        return "perf"
+    # 조회 격자 — 같은 물리량 열이 넷 이상 되풀이되면 '조건을 바꿔 가며 읽는 표'다.
+    # 열이 형번인 전치 표(orientation='row')는 되풀이가 정상이므로 제외한다.
+    if t.get("orientation") == "column" and qs:
+        top, n = collections.Counter(qs).most_common(1)[0]
+        if n >= 4 and len(set(qs)) <= 2:
+            return "perf"
+    if RATING_WORD.search(txt) or (set(qs) & RATING_Q):
+        return "rating"
+    if DIM_WORD.search(txt) or (qs and set(qs) <= {"dimension", "weight"}):
+        return "dim"
+    return "etc"
+
+
+# 제목 자리에 제목이 아닌 게 들어온 경우 — 표 위쪽 글자를 줍다 보니 치수 값이나
+# 각주를 집는다. 실측 예: '93 11/32” (2363)', 'CFM RPM BHP RPM BHP …'
+NUMTITLE = re.compile(r'^[\d\s./"”“()\-–,;:×x]+$')
+
+
+TABLE_NO = re.compile(r"^(table|tabla|tableau|tabelle|표)\s*\d", re.I)
+
+
+def title_is_junk(title, header):
+    ti = (title or "").strip()
+    if len(ti) < 4 or NUMTITLE.match(ti):
+        return True
+    # 문서가 스스로 붙인 표 제목·절 번호는 건드리지 않는다. 열 이름과 낱말이
+    # 겹친다는 이유로 'Table 5. General data — 3 to 5 tons' 나
+    # '5.2.2 Mains Supply' 까지 갈아치운 적이 있다.
+    if TABLE_NO.match(ti) or re.match(r"^\d+(\.\d+)+\s", ti):
+        return False
+    words = [w.lower() for w in re.findall(r"[A-Za-z가-힣]{2,}", ti)]
+    if not words:
+        return True
+    # 같은 낱말이 세 번 이상 되풀이되면 제목이 아니라 열 이름을 늘어놓은 것이다
+    # ('CFM RPM BHP RPM BHP RPM BHP …')
+    if collections.Counter(words).most_common(1)[0][1] >= 3:
+        return True
+    # 긴 제목인데 전부 열 이름이면 머리글을 주운 것이다
+    hwords = set(w for h in header for w in str(h).lower().split())
+    return len(ti) > 30 and all(w in hwords for w in words)
+
+
+def fix_title(t):
+    """제목이 제목이 아니면 표의 성격과 쪽으로 대신 짓는다. 지어내지 않는다 —
+    '무슨 표인지'는 성격에서, '어디서 왔는지'는 쪽 번호에서 온다."""
+    if not title_is_junk(t.get("title"), t["header"]):
+        return t.get("title")
+    return "%s — %s p%s" % (KIND_KO[t.get("kind") or table_kind(t)],
+                            t.get("source") or "원문", t.get("page"))
+
+
 def digest(tables):
     """표에서 물리량이 붙은 열만 골라 요약 — 무엇을 확보했는지 한눈에 본다."""
     got = {}
@@ -397,6 +478,35 @@ def main(argv):
         key = [p for p in pairs if re.search(r"power|voltage|torque|current", p["label"], re.I)]
         print("%-38s ← %-14s 항목 %d개 (전기·구동 %d)"
               % (fam[:38], code, len(pairs), len(key)))
+        return 0
+
+    # 이미 붙여 둔 사양 표에 성격(kind)을 매기고, 제목이 아닌 제목을 고쳐 준다.
+    # 다시 추출하지 않는다 — 표 내용은 그대로고 분류만 얹는다.
+    if "--kinds" in argv:
+        import collections as _c
+        tally, fixed = _c.Counter(), 0
+        for path in sorted(glob.glob(os.path.join(DATA, "models", "*.json"))):
+            m = json.load(open(path, encoding="utf-8"))
+            ts = m.get("specTables") or []
+            if not ts:
+                continue
+            for t in ts:
+                # 앞서 고친 제목이 있으면 원문으로 되돌린 뒤 다시 판정한다 —
+                # 판정 규칙을 고쳤을 때 되풀이해 돌릴 수 있어야 한다.
+                if t.get("titleRaw") is not None:
+                    t["title"] = t.pop("titleRaw")
+                t["kind"] = table_kind(t)
+                tally[t["kind"]] += 1
+                new = fix_title(t)
+                if new != t.get("title"):
+                    t["titleRaw"] = t.get("title")
+                    t["title"] = new
+                    fixed += 1
+            json.dump(m, open(path, "w", encoding="utf-8"),
+                      ensure_ascii=False, indent=1)
+        print("사양 표 %d개 분류 · 제목 %d개 고침" % (sum(tally.values()), fixed))
+        for k in KIND_ORDER:
+            print("  %-18s %d개" % (KIND_KO[k], tally[k]))
         return 0
 
     # 2열 '항목 | 값' 사양 표를 모델의 spec 에 넣는다 (형번이 하나인 장치용).
