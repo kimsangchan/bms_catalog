@@ -1,0 +1,1847 @@
+{
+ "id": "vertiv-liebert-crv",
+ "equipId": "e7",
+ "vendor": "Vertiv / Liebert",
+ "model": "CRV",
+ "name": "행간 냉방 CRV — BACnet (Liebert iCOM v4)",
+ "cat": "HVAC.AIR.CRAC",
+ "tag": "crac",
+ "status": "active",
+ "summary": "IntelliSlot 통신카드(IS-UNITY-DP)로 BACnet에 노출되는 오브젝트 203점. AV 78 · BV 74 · MSV 51. 단위가 문서에 적힌 아날로그 63점.",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "comm": [
+  [
+   "BACnet/IP",
+   "IS-UNITY-DP 카드",
+   "Ethernet",
+   "vertiv-liebert-intellislot-modbus-and-bacnet-protocols-reference-guide-sl-28170.pdf"
+  ],
+  [
+   "BACnet MS/TP",
+   "IS-UNITY-DP 카드",
+   "RS-485",
+   "vertiv-liebert-intellislot-modbus-and-bacnet-protocols-reference-guide-sl-28170.pdf"
+  ]
+ ],
+ "io": [],
+ "elec": null,
+ "points": [
+  {
+   "type": "AV",
+   "inst": 1,
+   "name": "Supply Air Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5002_1"
+  },
+  {
+   "type": "AV",
+   "inst": 2,
+   "name": "Return Air Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 4291_1"
+  },
+  {
+   "type": "AV",
+   "inst": 3,
+   "name": "Return Dew Point",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5004_1"
+  },
+  {
+   "type": "AV",
+   "inst": 4,
+   "name": "Remote Sensor Minimum Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5005_1"
+  },
+  {
+   "type": "AV",
+   "inst": 5,
+   "name": "Remote Sensor Maximum Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5006_1"
+  },
+  {
+   "type": "AV",
+   "inst": 6,
+   "name": "Remote Sensor Average Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5007_1"
+  },
+  {
+   "type": "AV",
+   "inst": 7,
+   "name": "Air Temperature Set Point",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5008_1"
+  },
+  {
+   "type": "AV",
+   "inst": 8,
+   "name": "Cooling Proportional Band",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5009_1"
+  },
+  {
+   "type": "AV",
+   "inst": 9,
+   "name": "Heating Proportional Band",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5010_1"
+  },
+  {
+   "type": "AV",
+   "inst": 10,
+   "name": "Air Temperature Dead Band",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5011_1"
+  },
+  {
+   "type": "AV",
+   "inst": 11,
+   "name": "High Supply Air Temperature Threshold",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5014_1"
+  },
+  {
+   "type": "AV",
+   "inst": 12,
+   "name": "Low Supply Air Temperature Threshold",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5018_1"
+  },
+  {
+   "type": "AV",
+   "inst": 13,
+   "name": "High Return Air Temperature Threshold",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5022_1"
+  },
+  {
+   "type": "AV",
+   "inst": 14,
+   "name": "Raw Auxiliary Air Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5964_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 15,
+   "name": "Actual Auxiliary Air Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5965_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 24,
+   "name": "Supply Humidity",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 5027_1"
+  },
+  {
+   "type": "AV",
+   "inst": 25,
+   "name": "Return Humidity",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 5028_1"
+  },
+  {
+   "type": "AV",
+   "inst": 26,
+   "name": "Humidity Set Point",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 5029_1"
+  },
+  {
+   "type": "AV",
+   "inst": 27,
+   "name": "Humidification Proportional Band",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 5030_1"
+  },
+  {
+   "type": "AV",
+   "inst": 28,
+   "name": "Dehumidification Proportional Band",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 5031_1"
+  },
+  {
+   "type": "AV",
+   "inst": 29,
+   "name": "Humidity Dead Band",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 5032_1"
+  },
+  {
+   "type": "AV",
+   "inst": 30,
+   "name": "High Return Humidity Threshold",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 5033_1"
+  },
+  {
+   "type": "AV",
+   "inst": 31,
+   "name": "Low Return Humidity Threshold",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 5035_1"
+  },
+  {
+   "type": "AV",
+   "inst": 42,
+   "name": "Fan Speed Proportional Band",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5048_1"
+  },
+  {
+   "type": "AV",
+   "inst": 43,
+   "name": "Fan Speed Manual Set Point",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5049_1"
+  },
+  {
+   "type": "AV",
+   "inst": 44,
+   "name": "Fan Speed Maximum Set Point",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5050_1"
+  },
+  {
+   "type": "AV",
+   "inst": 45,
+   "name": "Fan Speed Minimum Set Point",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5051_1"
+  },
+  {
+   "type": "AV",
+   "inst": 56,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5059_1"
+  },
+  {
+   "type": "AV",
+   "inst": 67,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5059_2"
+  },
+  {
+   "type": "AV",
+   "inst": 155,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5059_10"
+  },
+  {
+   "type": "AV",
+   "inst": 166,
+   "name": "Supply Fluid Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 4624_1"
+  },
+  {
+   "type": "AV",
+   "inst": 167,
+   "name": "High Supply Fluid Temperature Threshold",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 4625_1"
+  },
+  {
+   "type": "AV",
+   "inst": 178,
+   "name": "BMS Timeout Period",
+   "unitRaw": "min",
+   "unit": "min",
+   "note": "코드 5075_1"
+  },
+  {
+   "type": "AV",
+   "inst": 179,
+   "name": "Auto Restart Delay",
+   "unitRaw": "sec",
+   "unit": "s",
+   "note": "코드 4710_1"
+  },
+  {
+   "type": "AV",
+   "inst": 190,
+   "name": "Operating Efficiency",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5076_1"
+  },
+  {
+   "type": "AV",
+   "inst": 191,
+   "name": "Fan Speed",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5077_1"
+  },
+  {
+   "type": "AV",
+   "inst": 192,
+   "name": "Cooling Capacity (Master)",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5078_1"
+  },
+  {
+   "type": "AV",
+   "inst": 193,
+   "name": "Dehumidifier Utilization",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5079_1"
+  },
+  {
+   "type": "AV",
+   "inst": 194,
+   "name": "Reheat Utilization",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5080_1"
+  },
+  {
+   "type": "AV",
+   "inst": 195,
+   "name": "Humidifier Utilization",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5081_1"
+  },
+  {
+   "type": "AV",
+   "inst": 196,
+   "name": "Calculated Next Maintenance Month",
+   "unitRaw": null,
+   "unit": null,
+   "note": "코드 4868_1"
+  },
+  {
+   "type": "AV",
+   "inst": 197,
+   "name": "Calculated Next Maintenance Year",
+   "unitRaw": null,
+   "unit": null,
+   "note": "코드 4869_1"
+  },
+  {
+   "type": "AV",
+   "inst": 198,
+   "name": "Maintenance Ramp",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 4870_1"
+  },
+  {
+   "type": "AV",
+   "inst": 209,
+   "name": "System Date and Time",
+   "unitRaw": "Secs since Epoch (UTC)",
+   "unit": null,
+   "note": "코드 4293_1"
+  },
+  {
+   "type": "AV",
+   "inst": 221,
+   "name": "Condenser Outside Air Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5534_1"
+  },
+  {
+   "type": "AV",
+   "inst": 233,
+   "name": "Condenser Fan Speed",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5276_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 234,
+   "name": "Condenser Fan Power",
+   "unitRaw": "kW",
+   "unit": "kW",
+   "note": "코드 5538_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 246,
+   "name": "Condenser Fan Speed",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5276_1_2"
+  },
+  {
+   "type": "AV",
+   "inst": 247,
+   "name": "Condenser Fan Power",
+   "unitRaw": "kW",
+   "unit": "kW",
+   "note": "코드 5538_1_2"
+  },
+  {
+   "type": "AV",
+   "inst": 285,
+   "name": "Condenser Low Noise Mode Max Fan Speed",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5548_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 286,
+   "name": "Condenser Normal Mode Max Fan Speed",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5549_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 287,
+   "name": "Condenser Low Noise Mode - Interval Days",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Monday 2 = Tuesday 4 = Wednesday 8 = Thursday 16 = Friday 32 = Saturday 64 = Sunday · 코드 5550_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 288,
+   "name": "Condenser Low Noise Mode - Full Days",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Monday 2 = Tuesday 4 = Wednesday 8 = Thursday 16 = Friday 32 = Saturday 64 = Sunday · 코드 5551_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 289,
+   "name": "Condenser Low Noise Mode Start Time",
+   "unitRaw": "Seconds since Midnight",
+   "unit": null,
+   "note": "코드 5552_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 290,
+   "name": "Condenser Low Noise Mode Stop Time",
+   "unitRaw": "Seconds since Midnight",
+   "unit": null,
+   "note": "코드 5553_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 300,
+   "name": "Super Saver Call For Cooling",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 6234_1"
+  },
+  {
+   "type": "AV",
+   "inst": 10001,
+   "name": "Supply Air Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5002_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10002,
+   "name": "Return Air Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 4291_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10003,
+   "name": "Return Dew Point",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5004_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10004,
+   "name": "Remote Sensor Minimum Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5005_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10005,
+   "name": "Remote Sensor Maximum Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5006_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10006,
+   "name": "Remote Sensor Average Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5007_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10007,
+   "name": "Air Temperature Set Point",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5008_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10008,
+   "name": "Cooling Proportional Band",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5009_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10009,
+   "name": "Heating Proportional Band",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5010_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10010,
+   "name": "Air Temperature Dead Band",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5011_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10011,
+   "name": "High Supply Air Temperature Threshold",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5014_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10012,
+   "name": "Low Supply Air Temperature Threshold",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5018_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10013,
+   "name": "High Return Air Temperature Threshold",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5022_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10014,
+   "name": "Raw Auxiliary Air Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5964_1_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10015,
+   "name": "Actual Auxiliary Air Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5965_1_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10042,
+   "name": "Fan Speed Proportional Band",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5048_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10056,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5059_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10067,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5059_2_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10155,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5059_10_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10166,
+   "name": "Supply Fluid Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 4624_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10167,
+   "name": "High Supply Fluid Temperature Threshold",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 4625_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10221,
+   "name": "Condenser Outside Air Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5534_1_deg_F"
+  },
+  {
+   "type": "BV",
+   "inst": 1,
+   "name": "Supply Air Over Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5015_1"
+  },
+  {
+   "type": "BV",
+   "inst": 2,
+   "name": "Supply Air Under Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5019_1"
+  },
+  {
+   "type": "BV",
+   "inst": 3,
+   "name": "Return Air Over Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5023_1"
+  },
+  {
+   "type": "BV",
+   "inst": 4,
+   "name": "Supply Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5026_1"
+  },
+  {
+   "type": "BV",
+   "inst": 5,
+   "name": "Return Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5147_1"
+  },
+  {
+   "type": "BV",
+   "inst": 6,
+   "name": "Aux Air Temp Device Communication Lost",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5966_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 16,
+   "name": "High Return Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5034_1"
+  },
+  {
+   "type": "BV",
+   "inst": 17,
+   "name": "Low Return Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5036_1"
+  },
+  {
+   "type": "BV",
+   "inst": 18,
+   "name": "Humidifier Hours Exceeded",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5037_1"
+  },
+  {
+   "type": "BV",
+   "inst": 19,
+   "name": "Dehumidifier Hours Exceeded",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5038_1"
+  },
+  {
+   "type": "BV",
+   "inst": 20,
+   "name": "Humidifier Under Current",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5039_1"
+  },
+  {
+   "type": "BV",
+   "inst": 21,
+   "name": "Humidifier Over Current",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5040_1"
+  },
+  {
+   "type": "BV",
+   "inst": 22,
+   "name": "Humidifier Low Water",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5041_1"
+  },
+  {
+   "type": "BV",
+   "inst": 23,
+   "name": "Humidifier Cylinder Worn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5042_1"
+  },
+  {
+   "type": "BV",
+   "inst": 24,
+   "name": "Humidifier Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5043_1"
+  },
+  {
+   "type": "BV",
+   "inst": 25,
+   "name": "Ext Humidifier Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5044_1"
+  },
+  {
+   "type": "BV",
+   "inst": 26,
+   "name": "Humidifier Control Board Not Detected",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5045_1"
+  },
+  {
+   "type": "BV",
+   "inst": 27,
+   "name": "Return Humidity Out Of Proportional Band",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5046_1"
+  },
+  {
+   "type": "BV",
+   "inst": 38,
+   "name": "Loss of Air Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5053_1"
+  },
+  {
+   "type": "BV",
+   "inst": 39,
+   "name": "Fan Hours Exceeded",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5054_1"
+  },
+  {
+   "type": "BV",
+   "inst": 40,
+   "name": "Top Fan Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5055_1"
+  },
+  {
+   "type": "BV",
+   "inst": 41,
+   "name": "Bottom Fan Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5056_1"
+  },
+  {
+   "type": "BV",
+   "inst": 52,
+   "name": "Remote Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5060_1"
+  },
+  {
+   "type": "BV",
+   "inst": 63,
+   "name": "Remote Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5060_2"
+  },
+  {
+   "type": "BV",
+   "inst": 151,
+   "name": "Remote Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5060_10"
+  },
+  {
+   "type": "BV",
+   "inst": 162,
+   "name": "Compressor 1 High Head Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4669_1"
+  },
+  {
+   "type": "BV",
+   "inst": 163,
+   "name": "Compressor 1 Low Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5062_1"
+  },
+  {
+   "type": "BV",
+   "inst": 164,
+   "name": "Compressor 1 Hours Exceeded",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5063_1"
+  },
+  {
+   "type": "BV",
+   "inst": 165,
+   "name": "Dig Scroll Comp 1 Temp Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5064_1"
+  },
+  {
+   "type": "BV",
+   "inst": 166,
+   "name": "Dig Scroll Comp 1 Over Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5065_1"
+  },
+  {
+   "type": "BV",
+   "inst": 167,
+   "name": "Compressor 1 Low Pressure Transducer Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5066_1"
+  },
+  {
+   "type": "BV",
+   "inst": 168,
+   "name": "Compressor 1 High Pressure Transducer Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5148_1"
+  },
+  {
+   "type": "BV",
+   "inst": 169,
+   "name": "Ext Compressor Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5067_1"
+  },
+  {
+   "type": "BV",
+   "inst": 170,
+   "name": "Compressor 1 Short Cycle",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4681_1"
+  },
+  {
+   "type": "BV",
+   "inst": 171,
+   "name": "Compressor 1 Pump Down Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5146_1"
+  },
+  {
+   "type": "BV",
+   "inst": 182,
+   "name": "Reheater Over Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5068_1"
+  },
+  {
+   "type": "BV",
+   "inst": 183,
+   "name": "Electric Reheater Hours Exceeded",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5069_1"
+  },
+  {
+   "type": "BV",
+   "inst": 184,
+   "name": "Ext Reheat Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5070_1"
+  },
+  {
+   "type": "BV",
+   "inst": 195,
+   "name": "Condenser 1 Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5071_1"
+  },
+  {
+   "type": "BV",
+   "inst": 196,
+   "name": "Condenser VFD Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5072_1"
+  },
+  {
+   "type": "BV",
+   "inst": 197,
+   "name": "Condenser TVSS Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5073_1"
+  },
+  {
+   "type": "BV",
+   "inst": 208,
+   "name": "Supply Chilled Water Over Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4626_1"
+  },
+  {
+   "type": "BV",
+   "inst": 209,
+   "name": "Chilled Water Control Valve Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4703_1"
+  },
+  {
+   "type": "BV",
+   "inst": 210,
+   "name": "Supply Chilled Water Loss of Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4980_1"
+  },
+  {
+   "type": "BV",
+   "inst": 221,
+   "name": "Customer Input 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4270_1"
+  },
+  {
+   "type": "BV",
+   "inst": 222,
+   "name": "Customer Input 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4271_1"
+  },
+  {
+   "type": "BV",
+   "inst": 223,
+   "name": "Customer Input 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4272_1"
+  },
+  {
+   "type": "BV",
+   "inst": 224,
+   "name": "Customer Input 4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4273_1"
+  },
+  {
+   "type": "BV",
+   "inst": 225,
+   "name": "Smoke Detected",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4720_1"
+  },
+  {
+   "type": "BV",
+   "inst": 226,
+   "name": "Water Under Floor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4723_1"
+  },
+  {
+   "type": "BV",
+   "inst": 227,
+   "name": "Service Required",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4726_1"
+  },
+  {
+   "type": "BV",
+   "inst": 228,
+   "name": "Shutdown - Loss Of Power",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4714_1"
+  },
+  {
+   "type": "BV",
+   "inst": 229,
+   "name": "Ext Over Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5104_1"
+  },
+  {
+   "type": "BV",
+   "inst": 230,
+   "name": "Ext Loss of Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5105_1"
+  },
+  {
+   "type": "BV",
+   "inst": 231,
+   "name": "Ext Condenser Pump High Water",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5106_1"
+  },
+  {
+   "type": "BV",
+   "inst": 232,
+   "name": "Ext Standby Glycol Pump On",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5107_1"
+  },
+  {
+   "type": "BV",
+   "inst": 233,
+   "name": "External Fire Detected",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5108_1"
+  },
+  {
+   "type": "BV",
+   "inst": 234,
+   "name": "Unit On",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5109_1"
+  },
+  {
+   "type": "BV",
+   "inst": 235,
+   "name": "Unit Off",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5110_1"
+  },
+  {
+   "type": "BV",
+   "inst": 236,
+   "name": "Unit Standby",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5111_1"
+  },
+  {
+   "type": "BV",
+   "inst": 237,
+   "name": "Unit Partial Shutdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5112_1"
+  },
+  {
+   "type": "BV",
+   "inst": 238,
+   "name": "Unit Shutdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5113_1"
+  },
+  {
+   "type": "BV",
+   "inst": 239,
+   "name": "Water Leakage Detector Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5114_1"
+  },
+  {
+   "type": "BV",
+   "inst": 240,
+   "name": "BMS Communications Timeout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5115_1"
+  },
+  {
+   "type": "BV",
+   "inst": 241,
+   "name": "Maintenance Due",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5116_1"
+  },
+  {
+   "type": "BV",
+   "inst": 242,
+   "name": "Maintenance Completed",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5117_1"
+  },
+  {
+   "type": "BV",
+   "inst": 243,
+   "name": "Clogged Air Filter",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5118_1"
+  },
+  {
+   "type": "BV",
+   "inst": 244,
+   "name": "RAM Battery Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5119_1"
+  },
+  {
+   "type": "BV",
+   "inst": 245,
+   "name": "Master Unit Communication Lost",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5120_1"
+  },
+  {
+   "type": "BV",
+   "inst": 246,
+   "name": "High Power Shutdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5121_1"
+  },
+  {
+   "type": "BV",
+   "inst": 247,
+   "name": "Supply Fluid Temp Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4651_1"
+  },
+  {
+   "type": "BV",
+   "inst": 248,
+   "name": "Unspecified General Event",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5588_1"
+  },
+  {
+   "type": "BV",
+   "inst": 269,
+   "name": "Condenser Unit Unspecified General Event",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5637_1"
+  },
+  {
+   "type": "BV",
+   "inst": 270,
+   "name": "Condenser Circuit Unspecified General Event",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5638_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 1,
+   "name": "Server Class",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = UPS 2 = AIR 3 = PMP 4 = PDU 5 = MONITOR · 코드 4553_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 12,
+   "name": "Air Temperature Control Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Supply 2 = Remote 3 = Return · 코드 5012_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 13,
+   "name": "Remote Sensor Temperature Calculation",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Average 2 = Maximum · 코드 5013_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 18,
+   "name": "Auxiliary Air Temperature Enable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 6132_1_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 19,
+   "name": "Auxiliary Proxy Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Disabled 2 = Initializing 3 = Active 4 = Inactive 5 = Comm Lost · 코드 6133_1_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 24,
+   "name": "Fan Control Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Internal (Auto) 2 = External (Manual) · 코드 5047_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 25,
+   "name": "Fan Control Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Supply 2 = Remote 3 = Return · 코드 5052_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 36,
+   "name": "Remote Sensor Function",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Disable 2 = Reference 3 = Control · 코드 5058_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 47,
+   "name": "Remote Sensor Function",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Disable 2 = Reference · 코드 5058_2"
+  },
+  {
+   "type": "MSV",
+   "inst": 135,
+   "name": "Remote Sensor Function",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Disable 2 = Reference 3 = Control · 코드 5058_10"
+  },
+  {
+   "type": "MSV",
+   "inst": 146,
+   "name": "System Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Normal Operation 2 = StartUp 3 = Normal with Warning 4 = Normal with Alarm 5 = Abnormal Operation · 코드 4123_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 147,
+   "name": "Unit Operating State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = off 2 = on 3 = standby · 코드 4706_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 148,
+   "name": "Unit Control Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Internal (Auto) 2 = External (Manual) · 코드 4707_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 149,
+   "name": "Unit Off Reason",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = None 2 = User 3 = Alarm 4 = Timer 5 = Monitoring 6 = Remote Off 7 = HCS12 Off · 코드 5074_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 160,
+   "name": "System On/Off Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = off 2 = on · 코드 5143_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 171,
+   "name": "System Event Acknowledge/Reset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Reset 2 = Acknowledge · 코드 4717_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 172,
+   "name": "Smoke Detected - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 4721_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 173,
+   "name": "Smoke Detected - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 4722_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 174,
+   "name": "Water Under Floor - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 4724_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 175,
+   "name": "Water Under Floor - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 4725_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 176,
+   "name": "Customer Input 1 - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 4718_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 177,
+   "name": "Customer Input 1 - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 4719_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 178,
+   "name": "Customer Input 2 - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5098_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 179,
+   "name": "Customer Input 2 - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 5099_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 180,
+   "name": "Customer Input 3 - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5100_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 181,
+   "name": "Customer Input 3 - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 5101_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 182,
+   "name": "Customer Input 4 - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5102_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 183,
+   "name": "Customer Input 4 - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 5103_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 184,
+   "name": "Service Required - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 4727_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 185,
+   "name": "Service Required - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 4728_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 186,
+   "name": "Shutdown - Loss Of Power - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 4715_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 187,
+   "name": "Shutdown - Loss Of Power - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 4716_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 188,
+   "name": "Ext Loss of Flow - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5082_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 189,
+   "name": "Ext Loss of Flow - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 5083_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 190,
+   "name": "Ext Reheat Lockout - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5084_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 191,
+   "name": "Ext Reheat Lockout - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 5085_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 192,
+   "name": "Ext Humidifier Lockout - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5086_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 193,
+   "name": "Ext Humidifier Lockout - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 5087_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 194,
+   "name": "Ext Compressor Lockout - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5088_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 195,
+   "name": "Ext Compressor Lockout - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 5089_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 196,
+   "name": "Ext Over Temperature - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5090_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 197,
+   "name": "Ext Over Temperature - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 5091_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 198,
+   "name": "Condenser VFD Issue - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5092_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 199,
+   "name": "Condenser VFD Issue - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message · 코드 5093_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 200,
+   "name": "Condenser TVSS Issue - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5094_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 201,
+   "name": "Condenser TVSS Issue - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 5095_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 202,
+   "name": "Condenser 1 Issue - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5096_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 203,
+   "name": "Condenser 1 Issue - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 5097_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 215,
+   "name": "Condenser Refrigerant Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = R22 2 = R407C 3 = R410A · 코드 5533_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 227,
+   "name": "Condenser Low Noise Mode State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Inactive 2 = Active (Interval) 3 = Active (Full Day) · 코드 5546_1_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 228,
+   "name": "Condenser Low Noise Mode Schedule Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5547_1_1"
+  }
+ ],
+ "crosscheck": {
+  "fam": "bacnet",
+  "segments": 1,
+  "table": 203,
+  "raw": 174,
+  "both": 174,
+  "same": 174,
+  "diff": [],
+  "rate": 1.0,
+  "verified": {
+   "AV-1": "Supply Air Temperature",
+   "AV-2": "Return Air Temperature",
+   "AV-3": "Return Dew Point",
+   "AV-7": "Air Temperature Set Point",
+   "AV-8": "Cooling Proportional Band",
+   "AV-9": "Heating Proportional Band",
+   "AV-10": "Air Temperature Dead Band",
+   "AV-14": "Raw Auxiliary Air Temperature",
+   "AV-15": "Actual Auxiliary Air Temperature",
+   "AV-24": "Supply Humidity",
+   "AV-25": "Return Humidity",
+   "AV-26": "Humidity Set Point",
+   "AV-27": "Humidification Proportional Band",
+   "AV-28": "Dehumidification Proportional Band",
+   "AV-29": "Humidity Dead Band",
+   "AV-30": "High Return Humidity Threshold",
+   "AV-31": "Low Return Humidity Threshold",
+   "AV-42": "Fan Speed Proportional Band",
+   "AV-43": "Fan Speed Manual Set Point",
+   "AV-44": "Fan Speed Maximum Set Point",
+   "AV-45": "Fan Speed Minimum Set Point",
+   "AV-166": "Supply Fluid Temperature",
+   "AV-178": "BMS Timeout Period",
+   "AV-179": "Auto Restart Delay",
+   "AV-190": "Operating Efficiency",
+   "AV-191": "Fan Speed",
+   "AV-192": "Cooling Capacity (Master)",
+   "AV-193": "Dehumidifier Utilization",
+   "AV-194": "Reheat Utilization",
+   "AV-195": "Humidifier Utilization",
+   "AV-196": "Calculated Next Maintenance Month",
+   "AV-197": "Calculated Next Maintenance Year",
+   "AV-198": "Maintenance Ramp",
+   "AV-209": "System Date and Time",
+   "AV-221": "Condenser Outside Air Temperature",
+   "AV-233": "Condenser Fan Speed",
+   "AV-234": "Condenser Fan Power",
+   "AV-246": "Condenser Fan Speed",
+   "AV-247": "Condenser Fan Power",
+   "AV-285": "Condenser Low Noise Mode Max Fan Speed",
+   "AV-286": "Condenser Normal Mode Max Fan Speed",
+   "AV-287": "Condenser Low Noise Mode - Interval Days",
+   "AV-288": "Condenser Low Noise Mode - Full Days",
+   "AV-289": "Condenser Low Noise Mode Start Time",
+   "AV-290": "Condenser Low Noise Mode Stop Time",
+   "AV-300": "Super Saver Call For Cooling",
+   "AV-10001": "Supply Air Temperature",
+   "AV-10002": "Return Air Temperature",
+   "AV-10003": "Return Dew Point",
+   "AV-10007": "Air Temperature Set Point",
+   "AV-10008": "Cooling Proportional Band",
+   "AV-10009": "Heating Proportional Band",
+   "AV-10010": "Air Temperature Dead Band",
+   "AV-10014": "Raw Auxiliary Air Temperature",
+   "AV-10015": "Actual Auxiliary Air Temperature",
+   "AV-10042": "Fan Speed Proportional Band",
+   "AV-10166": "Supply Fluid Temperature",
+   "AV-10221": "Condenser Outside Air Temperature",
+   "BV-1": "Supply Air Over Temperature",
+   "BV-2": "Supply Air Under Temperature",
+   "BV-3": "Return Air Over Temperature",
+   "BV-4": "Supply Air Sensor Issue",
+   "BV-5": "Return Air Sensor Issue",
+   "BV-6": "Aux Air Temp Device Communication Lost",
+   "BV-16": "High Return Humidity",
+   "BV-17": "Low Return Humidity",
+   "BV-18": "Humidifier Hours Exceeded",
+   "BV-19": "Dehumidifier Hours Exceeded",
+   "BV-20": "Humidifier Under Current",
+   "BV-21": "Humidifier Over Current",
+   "BV-22": "Humidifier Low Water",
+   "BV-23": "Humidifier Cylinder Worn",
+   "BV-24": "Humidifier Issue",
+   "BV-25": "Ext Humidifier Lockout",
+   "BV-26": "Humidifier Control Board Not Detected",
+   "BV-27": "Return Humidity Out Of Proportional Band",
+   "BV-38": "Loss of Air Flow",
+   "BV-39": "Fan Hours Exceeded",
+   "BV-40": "Top Fan Issue",
+   "BV-41": "Bottom Fan Issue",
+   "BV-162": "Compressor 1 High Head Pressure",
+   "BV-163": "Compressor 1 Low Suction Pressure",
+   "BV-164": "Compressor 1 Hours Exceeded",
+   "BV-165": "Dig Scroll Comp 1 Temp Sensor Issue",
+   "BV-166": "Dig Scroll Comp 1 Over Temp",
+   "BV-167": "Compressor 1 Low Pressure Transducer Issue",
+   "BV-168": "Compressor 1 High Pressure Transducer Issue",
+   "BV-169": "Ext Compressor Lockout",
+   "BV-170": "Compressor 1 Short Cycle",
+   "BV-171": "Compressor 1 Pump Down Issue",
+   "BV-182": "Reheater Over Temperature",
+   "BV-183": "Electric Reheater Hours Exceeded",
+   "BV-184": "Ext Reheat Lockout",
+   "BV-195": "Condenser 1 Issue",
+   "BV-196": "Condenser VFD Issue",
+   "BV-197": "Condenser TVSS Issue",
+   "BV-208": "Supply Chilled Water Over Temp",
+   "BV-209": "Chilled Water Control Valve Failure",
+   "BV-210": "Supply Chilled Water Loss of Flow",
+   "BV-221": "Customer Input 1",
+   "BV-222": "Customer Input 2",
+   "BV-223": "Customer Input 3",
+   "BV-224": "Customer Input 4",
+   "BV-225": "Smoke Detected",
+   "BV-226": "Water Under Floor",
+   "BV-227": "Service Required",
+   "BV-228": "Shutdown - Loss Of Power",
+   "BV-229": "Ext Over Temperature",
+   "BV-230": "Ext Loss of Flow",
+   "BV-231": "Ext Condenser Pump High Water",
+   "BV-232": "Ext Standby Glycol Pump On",
+   "BV-233": "External Fire Detected",
+   "BV-234": "Unit On",
+   "BV-235": "Unit Off",
+   "BV-236": "Unit Standby",
+   "BV-237": "Unit Partial Shutdown",
+   "BV-238": "Unit Shutdown",
+   "BV-239": "Water Leakage Detector Sensor Issue",
+   "BV-240": "BMS Communications Timeout",
+   "BV-241": "Maintenance Due",
+   "BV-242": "Maintenance Completed",
+   "BV-243": "Clogged Air Filter",
+   "BV-244": "RAM Battery Issue",
+   "BV-245": "Master Unit Communication Lost",
+   "BV-246": "High Power Shutdown",
+   "BV-247": "Supply Fluid Temp Sensor Issue",
+   "BV-248": "Unspecified General Event",
+   "BV-269": "Condenser Unit Unspecified General Event",
+   "BV-270": "Condenser Circuit Unspecified General Event",
+   "MSV-1": "Server Class",
+   "MSV-12": "Air Temperature Control Sensor",
+   "MSV-13": "Remote Sensor Temperature Calculation",
+   "MSV-18": "Auxiliary Air Temperature Enable",
+   "MSV-19": "Auxiliary Proxy Status",
+   "MSV-24": "Fan Control Mode",
+   "MSV-25": "Fan Control Sensor",
+   "MSV-146": "System Status",
+   "MSV-147": "Unit Operating State",
+   "MSV-148": "Unit Control Mode",
+   "MSV-149": "Unit Off Reason",
+   "MSV-160": "System On/Off Control",
+   "MSV-171": "System Event Acknowledge/Reset",
+   "MSV-172": "Smoke Detected - Event Control",
+   "MSV-173": "Smoke Detected - Event Type",
+   "MSV-174": "Water Under Floor - Event Control",
+   "MSV-175": "Water Under Floor - Event Type",
+   "MSV-176": "Customer Input 1 - Event Control",
+   "MSV-177": "Customer Input 1 - Event Type",
+   "MSV-178": "Customer Input 2 - Event Control",
+   "MSV-179": "Customer Input 2 - Event Type",
+   "MSV-180": "Customer Input 3 - Event Control",
+   "MSV-181": "Customer Input 3 - Event Type",
+   "MSV-182": "Customer Input 4 - Event Control",
+   "MSV-183": "Customer Input 4 - Event Type",
+   "MSV-184": "Service Required - Event Control",
+   "MSV-185": "Service Required - Event Type",
+   "MSV-187": "Shutdown - Loss Of Power - Event Type",
+   "MSV-188": "Ext Loss of Flow - Event Control",
+   "MSV-189": "Ext Loss of Flow - Event Type",
+   "MSV-190": "Ext Reheat Lockout - Event Control",
+   "MSV-191": "Ext Reheat Lockout - Event Type",
+   "MSV-192": "Ext Humidifier Lockout - Event Control",
+   "MSV-193": "Ext Humidifier Lockout - Event Type",
+   "MSV-195": "Ext Compressor Lockout - Event Type",
+   "MSV-196": "Ext Over Temperature - Event Control",
+   "MSV-197": "Ext Over Temperature - Event Type",
+   "MSV-198": "Condenser VFD Issue - Event Control",
+   "MSV-199": "Condenser VFD Issue - Event Type",
+   "MSV-200": "Condenser TVSS Issue - Event Control",
+   "MSV-201": "Condenser TVSS Issue - Event Type",
+   "MSV-202": "Condenser 1 Issue - Event Control",
+   "MSV-203": "Condenser 1 Issue - Event Type",
+   "MSV-215": "Condenser Refrigerant Type",
+   "MSV-227": "Condenser Low Noise Mode State"
+  }
+ },
+ "gap": "정격 사양(냉방능력·소비전력·풍량·냉매)은 이 문서에 없다 — 통신 레퍼런스라 오브젝트 목록만 싣는다. 제품별 기술자료가 따로 필요하다. 제어기는 Liebert iCOM v4 이고, 같은 제품이라도 제어기 세대가 다르면 인스턴스 번호가 달라진다.",
+ "extractor": "table"
+}

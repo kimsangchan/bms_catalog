@@ -28,6 +28,16 @@ MODBUS_TYPES = {"MB"}
 OBJ_TYPES = BACNET_TYPES | LON_TYPES | MODBUS_TYPES | {"—"}
 # MI/MO/MV 는 문서 표기 그대로 받아들이되 canonical 은 MSI/MSO/MSV
 TYPE_ALIAS = {"MI": "MSI", "MO": "MSO", "MV": "MSV"}
+# 오브젝트 타입을 약어가 아니라 BACnet 표준 이름 그대로 적는 문서가 있다
+# (Vertiv/Liebert: 'Analog_Value'). 표 안에서 줄바꿈돼 'Analog_ Value' 로도 나오므로
+# 공백을 지운 형태로 찾는다.
+TYPE_LONG = {
+    "analog_input": "AI", "analog_output": "AO", "analog_value": "AV",
+    "binary_input": "BI", "binary_output": "BO", "binary_value": "BV",
+    "multistate_input": "MSI", "multistate_output": "MSO",
+    "multistate_value": "MSV", "multi-state_input": "MSI",
+    "multi-state_output": "MSO", "multi-state_value": "MSV",
+}
 
 # 프로토콜 판정 — 오브젝트 타입만 보고 어느 통신 맵인지 알 수 있다
 def protocol_of(t):
@@ -64,6 +74,10 @@ UNIT_CANON = {
     "VDC": "V", "VAC": "V", "Vdc": "V", "Vac": "V",
     # 통신 속도·무선 세기 — 게이트웨이 사양에 나온다
     "bps": "bps", "kbps": "bps", "Mbps": "bps", "dBm": "dBm",
+    # Vertiv/Liebert 정밀공조 표기. 교류/직류를 단위에 붙이고, 상대습도를 '% RH' 로,
+    # 시간을 'hr' 로 적는다. kBTU/h 는 냉방능력이라 시뮬레이터가 바로 쓴다.
+    "A AC": "A", "A DC": "A", "% RH": "percent", "hr": "h",
+    "bar": "bar", "kBTU/h": "kBTUh", "kBTU": "kBTU", "BTU/h": "kBTUh",
 }
 
 REQUIRED_EQUIP = ["id", "no", "title", "domain"]
@@ -77,7 +91,10 @@ EXTRACTORS = {"table", "ede", "layout", "manual", "html"}
 
 def canon_type(t):
     t = (t or "—").strip()
-    return TYPE_ALIAS.get(t, t)
+    if t in TYPE_ALIAS:
+        return TYPE_ALIAS[t]
+    long = TYPE_LONG.get(re.sub(r"\s+", "", t).lower())
+    return long or t
 
 
 NO_UNIT = {"", "—", "-", "None", "N/A", "*", "none"}
@@ -154,6 +171,8 @@ UNIT_QUANTITY = {
     "Pa": "pressure", "kPa": "pressure", "bar": "pressure", "psi": "pressure",
     "dBA": "noise", "s": "time", "min": "time", "h": "time", "kWh": "energy",
     "bps": "datarate", "dBm": "signal",
+    # 냉방능력은 전력과 같은 물리량이다 — 단위계만 다르다(1 kBTU/h ≈ 293 W).
+    "kBTUh": "power", "kBTU": "energy",
 }
 
 

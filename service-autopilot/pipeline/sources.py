@@ -374,7 +374,11 @@ SOURCES = [
         "vendor": "Vertiv",
         "kind": "프로토콜 레퍼런스",
         "note": "IntelliSlot 통신카드의 Modbus·BACnet 데이터포인트. 항온항습기(CRAC)·"
-                "UPS가 붙는다 — 계열 e7(FCU·CRAC)·e19(전력)를 채운다.",
+                "UPS가 붙는다 — 계열 e7(FCU·CRAC)·e19(전력)를 채운다. "
+                "⚠ 1,748쪽 통합 레퍼런스라 제품 수십 개가 한 문서에 있고 제품끼리 "
+                "인스턴스 번호가 겹친다. 통째로 뽑으면 뒤 제품이 앞 제품을 덮으므로 "
+                "제품별 쪽 범위로 나눠 뽑는다 (extract_tables(pages=...)). "
+                "쪽 범위는 제품별 표 제목 '<제품>—Binary Data'…'—Glossary' 로 정했다.",
         "enumerate": "list",
         "urls": [
             "https://www.vertiv.com/4a1e3e/globalassets/shared/"

@@ -1,0 +1,1465 @@
+{
+ "id": "vertiv-liebert-crd30-40",
+ "equipId": "e7",
+ "vendor": "Vertiv / Liebert",
+ "model": "CRD30-40",
+ "name": "행간 냉방 CRD30-40 — BACnet (Liebert iCOM Edge)",
+ "cat": "HVAC.AIR.CRAC",
+ "tag": "crac",
+ "status": "active",
+ "summary": "IntelliSlot 통신카드(IS-UNITY-DP)로 BACnet에 노출되는 오브젝트 161점. AV 72 · BV 79 · MSV 10. 단위가 문서에 적힌 아날로그 52점.",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "comm": [
+  [
+   "BACnet/IP",
+   "IS-UNITY-DP 카드",
+   "Ethernet",
+   "vertiv-liebert-intellislot-modbus-and-bacnet-protocols-reference-guide-sl-28170.pdf"
+  ],
+  [
+   "BACnet MS/TP",
+   "IS-UNITY-DP 카드",
+   "RS-485",
+   "vertiv-liebert-intellislot-modbus-and-bacnet-protocols-reference-guide-sl-28170.pdf"
+  ]
+ ],
+ "io": [],
+ "elec": null,
+ "points": [
+  {
+   "type": "AV",
+   "inst": 1,
+   "name": "Supply Air Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5002_1"
+  },
+  {
+   "type": "AV",
+   "inst": 2,
+   "name": "Return Air Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 4291_1"
+  },
+  {
+   "type": "AV",
+   "inst": 3,
+   "name": "Remote Sensor Average Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5007_1"
+  },
+  {
+   "type": "AV",
+   "inst": 5,
+   "name": "Supply Air Theoretical Humidity",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 8090_1"
+  },
+  {
+   "type": "AV",
+   "inst": 6,
+   "name": "Return Humidity",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 5028_1"
+  },
+  {
+   "type": "AV",
+   "inst": 8,
+   "name": "Supply Air Temperature Set Point",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5331_1"
+  },
+  {
+   "type": "AV",
+   "inst": 9,
+   "name": "Return Air Temperature Set Point",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5333_1"
+  },
+  {
+   "type": "AV",
+   "inst": 10,
+   "name": "Remote Sensor Air Temperature Set Point",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 8082_1"
+  },
+  {
+   "type": "AV",
+   "inst": 11,
+   "name": "Humidity Set Point",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 5029_1"
+  },
+  {
+   "type": "AV",
+   "inst": 12,
+   "name": "Cooling Proportional Band",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5009_1"
+  },
+  {
+   "type": "AV",
+   "inst": 13,
+   "name": "Humidification Proportional Band",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 5030_1"
+  },
+  {
+   "type": "AV",
+   "inst": 14,
+   "name": "Air Filter Hours",
+   "unitRaw": "hr",
+   "unit": "h",
+   "note": "코드 7521_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 25,
+   "name": "Supply Air Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 8077_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 36,
+   "name": "Supply Air Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 8077_1_2"
+  },
+  {
+   "type": "AV",
+   "inst": 47,
+   "name": "Supply Air Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 8077_1_3"
+  },
+  {
+   "type": "AV",
+   "inst": 58,
+   "name": "Return Air Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 8078_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 69,
+   "name": "Return Air Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 8078_1_2"
+  },
+  {
+   "type": "AV",
+   "inst": 80,
+   "name": "Return Air Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 8078_1_3"
+  },
+  {
+   "type": "AV",
+   "inst": 91,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5059_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 102,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5059_1_2"
+  },
+  {
+   "type": "AV",
+   "inst": 190,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 5059_1_10"
+  },
+  {
+   "type": "AV",
+   "inst": 201,
+   "name": "Supply Sensor Humidity",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 8079_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 212,
+   "name": "Supply Sensor Humidity",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 8079_1_2"
+  },
+  {
+   "type": "AV",
+   "inst": 223,
+   "name": "Supply Sensor Humidity",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 8079_1_3"
+  },
+  {
+   "type": "AV",
+   "inst": 234,
+   "name": "Return Sensor Humidity",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 8080_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 404,
+   "name": "Compressor Discharge Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 7532_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 405,
+   "name": "Compressor Suction Temperature",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 7533_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 406,
+   "name": "Compressor Suction Superheat",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 7534_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 407,
+   "name": "Compressor Discharge Superheat",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 7535_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 408,
+   "name": "Compressor Low Pressure",
+   "unitRaw": "bar",
+   "unit": "bar",
+   "note": "코드 7531_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 409,
+   "name": "Compressor High Pressure",
+   "unitRaw": "bar",
+   "unit": "bar",
+   "note": "코드 7530_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 410,
+   "name": "Compressor Hours",
+   "unitRaw": "hr",
+   "unit": "h",
+   "note": "코드 5267_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 421,
+   "name": "Fan Temperature Difference Setpoint",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 7517_1"
+  },
+  {
+   "type": "AV",
+   "inst": 422,
+   "name": "Fan Hours",
+   "unitRaw": "hr",
+   "unit": "h",
+   "note": "코드 5374_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 423,
+   "name": "Fan Speed",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5077_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 424,
+   "name": "Condenser Fan Speed",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5276_1"
+  },
+  {
+   "type": "AV",
+   "inst": 425,
+   "name": "Condensate Fan Hours",
+   "unitRaw": "hr",
+   "unit": "h",
+   "note": "코드 8413_1"
+  },
+  {
+   "type": "AV",
+   "inst": 435,
+   "name": "Fan Static Pressure",
+   "unitRaw": "Pa",
+   "unit": "Pa",
+   "note": "코드 7527_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 450,
+   "name": "Condensate Pump Hours",
+   "unitRaw": "hr",
+   "unit": "h",
+   "note": "코드 8122_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 457,
+   "name": "System Input RMS A-N",
+   "unitRaw": "VAC",
+   "unit": "V",
+   "note": "코드 4096_1"
+  },
+  {
+   "type": "AV",
+   "inst": 458,
+   "name": "System Input RMS Current Phase A",
+   "unitRaw": "A AC",
+   "unit": "A",
+   "note": "코드 4113_1"
+  },
+  {
+   "type": "AV",
+   "inst": 459,
+   "name": "System Input RMS B-N",
+   "unitRaw": "VAC",
+   "unit": "V",
+   "note": "코드 4098_1"
+  },
+  {
+   "type": "AV",
+   "inst": 460,
+   "name": "System Input RMS Current Phase B",
+   "unitRaw": "A AC",
+   "unit": "A",
+   "note": "코드 4114_1"
+  },
+  {
+   "type": "AV",
+   "inst": 461,
+   "name": "System Input RMS C-N",
+   "unitRaw": "VAC",
+   "unit": "V",
+   "note": "코드 4100_1"
+  },
+  {
+   "type": "AV",
+   "inst": 462,
+   "name": "System Input RMS Current Phase C",
+   "unitRaw": "A AC",
+   "unit": "A",
+   "note": "코드 4115_1"
+  },
+  {
+   "type": "AV",
+   "inst": 463,
+   "name": "Energy Consumption",
+   "unitRaw": "kWH",
+   "unit": "kWh",
+   "note": "코드 5900_1"
+  },
+  {
+   "type": "AV",
+   "inst": 465,
+   "name": "System Input Frequency",
+   "unitRaw": "Hz",
+   "unit": "Hz",
+   "note": "코드 4105_1"
+  },
+  {
+   "type": "AV",
+   "inst": 476,
+   "name": "Electric Reheater Hours",
+   "unitRaw": "hr",
+   "unit": "h",
+   "note": "코드 5366_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 487,
+   "name": "Cooling Capacity (Primary)",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 5078_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 488,
+   "name": "Humidifier Hours",
+   "unitRaw": "hr",
+   "unit": "h",
+   "note": "코드 5369_1_1"
+  },
+  {
+   "type": "AV",
+   "inst": 621,
+   "name": "Active Power",
+   "unitRaw": "kW",
+   "unit": "kW",
+   "note": "코드 8749_1"
+  },
+  {
+   "type": "AV",
+   "inst": 10001,
+   "name": "Supply Air Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5002_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10002,
+   "name": "Return Air Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 4291_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10003,
+   "name": "Remote Sensor Average Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5007_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10008,
+   "name": "Supply Air Temperature Set Point",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5331_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10009,
+   "name": "Return Air Temperature Set Point",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5333_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10010,
+   "name": "Remote Sensor Air Temperature Set Point",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 8082_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10012,
+   "name": "Cooling Proportional Band",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5009_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10025,
+   "name": "Supply Air Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 8077_1_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10036,
+   "name": "Supply Air Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 8077_1_2_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10047,
+   "name": "Supply Air Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 8077_1_3_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10058,
+   "name": "Return Air Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 8078_1_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10069,
+   "name": "Return Air Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 8078_1_2_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10080,
+   "name": "Return Air Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 8078_1_3_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10091,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5059_1_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10102,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5059_1_2_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10190,
+   "name": "Remote Sensor Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 5059_1_10_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10404,
+   "name": "Compressor Discharge Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 7532_1_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10405,
+   "name": "Compressor Suction Temperature",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 7533_1_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10406,
+   "name": "Compressor Suction Superheat",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 7534_1_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10407,
+   "name": "Compressor Discharge Superheat",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 7535_1_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10421,
+   "name": "Fan Temperature Difference Setpoint",
+   "unitRaw": "deg F",
+   "unit": "degF",
+   "note": "코드 7517_1_deg_F"
+  },
+  {
+   "type": "BV",
+   "inst": 1,
+   "name": "Remote Sensor Under Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5598_1"
+  },
+  {
+   "type": "BV",
+   "inst": 2,
+   "name": "Supply Air Over Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5015_1"
+  },
+  {
+   "type": "BV",
+   "inst": 4,
+   "name": "High Return Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5034_1"
+  },
+  {
+   "type": "BV",
+   "inst": 5,
+   "name": "Remote Sensor Over Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5597_1"
+  },
+  {
+   "type": "BV",
+   "inst": 6,
+   "name": "Low Return Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5036_1"
+  },
+  {
+   "type": "BV",
+   "inst": 7,
+   "name": "Return Air Under Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5335_1"
+  },
+  {
+   "type": "BV",
+   "inst": 8,
+   "name": "Clogged Air Filter",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5118_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 11,
+   "name": "Loss of Airflow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7522_1"
+  },
+  {
+   "type": "BV",
+   "inst": 16,
+   "name": "Supply Air Under Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5019_1"
+  },
+  {
+   "type": "BV",
+   "inst": 17,
+   "name": "Return Air Over Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5023_1"
+  },
+  {
+   "type": "BV",
+   "inst": 28,
+   "name": "Supply Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5026_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 39,
+   "name": "Supply Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5026_1_2"
+  },
+  {
+   "type": "BV",
+   "inst": 50,
+   "name": "Supply Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5026_1_3"
+  },
+  {
+   "type": "BV",
+   "inst": 61,
+   "name": "Return Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5147_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 72,
+   "name": "Return Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5147_1_2"
+  },
+  {
+   "type": "BV",
+   "inst": 83,
+   "name": "Return Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5147_1_3"
+  },
+  {
+   "type": "BV",
+   "inst": 94,
+   "name": "External Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7495_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 105,
+   "name": "External Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7495_1_2"
+  },
+  {
+   "type": "BV",
+   "inst": 193,
+   "name": "External Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7495_1_10"
+  },
+  {
+   "type": "BV",
+   "inst": 237,
+   "name": "Return Humidity Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5902_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 414,
+   "name": "Compressor Suction Temperature Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7557_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 415,
+   "name": "Compressor Discharge Temperature Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7556_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 417,
+   "name": "Low Compressor Pressure Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7554_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 418,
+   "name": "High Compressor Pressure Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7553_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 419,
+   "name": "Low Compressor Discharge Superheat Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7548_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 420,
+   "name": "Low Compressor Discharge Superheat",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7547_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 424,
+   "name": "Low Compressor Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7541_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 426,
+   "name": "High Compressor Discharge Temperature Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7544_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 427,
+   "name": "High Compressor Discharge Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7543_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 428,
+   "name": "Low Compressor Pressure Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7542_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 429,
+   "name": "High Compressor Presssure Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7540_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 430,
+   "name": "High Compressor Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7539_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 431,
+   "name": "Compressor Driver Failure Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7496_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 435,
+   "name": "Compressor Driver Communication Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7500_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 437,
+   "name": "Compressor Drive Failure U00",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8051_1"
+  },
+  {
+   "type": "BV",
+   "inst": 438,
+   "name": "Compressor Drive Failure U01",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8052_1"
+  },
+  {
+   "type": "BV",
+   "inst": 439,
+   "name": "Compressor Drive Failure U02",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8053_1"
+  },
+  {
+   "type": "BV",
+   "inst": 440,
+   "name": "Compressor Drive Failure U03",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8054_1"
+  },
+  {
+   "type": "BV",
+   "inst": 441,
+   "name": "Compressor Drive Failure U04",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8055_1"
+  },
+  {
+   "type": "BV",
+   "inst": 442,
+   "name": "Compressor Drive Failure U05",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8056_1"
+  },
+  {
+   "type": "BV",
+   "inst": 443,
+   "name": "Compressor Drive Failure U06",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8057_1"
+  },
+  {
+   "type": "BV",
+   "inst": 444,
+   "name": "Compressor Drive Failure U07",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8058_1"
+  },
+  {
+   "type": "BV",
+   "inst": 445,
+   "name": "Compressor Drive Failure U08",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8059_1"
+  },
+  {
+   "type": "BV",
+   "inst": 446,
+   "name": "Compressor Drive Failure U09",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8060_1"
+  },
+  {
+   "type": "BV",
+   "inst": 447,
+   "name": "Compressor Drive Failure U10",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8061_1"
+  },
+  {
+   "type": "BV",
+   "inst": 448,
+   "name": "Compressor Drive Failure U11",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8062_1"
+  },
+  {
+   "type": "BV",
+   "inst": 449,
+   "name": "Compressor Drive Failure U12",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8063_1"
+  },
+  {
+   "type": "BV",
+   "inst": 450,
+   "name": "Compressor Drive Failure U13",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8064_1"
+  },
+  {
+   "type": "BV",
+   "inst": 451,
+   "name": "Compressor Drive Failure U14",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8065_1"
+  },
+  {
+   "type": "BV",
+   "inst": 452,
+   "name": "Compressor Drive Failure U15",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8066_1"
+  },
+  {
+   "type": "BV",
+   "inst": 480,
+   "name": "Fan Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4729_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 491,
+   "name": "Fan Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4729_1_2"
+  },
+  {
+   "type": "BV",
+   "inst": 579,
+   "name": "Fan Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4729_1_10"
+  },
+  {
+   "type": "BV",
+   "inst": 590,
+   "name": "Fan Static Pressure Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7563_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 606,
+   "name": "Outdoor Fan Communication Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8463_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 607,
+   "name": "Outdoor Fan Driver Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8464_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 608,
+   "name": "Outdoor Fan Communication Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8463_1_2"
+  },
+  {
+   "type": "BV",
+   "inst": 609,
+   "name": "Outdoor Fan Driver Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8464_1_2"
+  },
+  {
+   "type": "BV",
+   "inst": 612,
+   "name": "Input Undervoltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5568_1"
+  },
+  {
+   "type": "BV",
+   "inst": 613,
+   "name": "Input Overvoltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5569_1"
+  },
+  {
+   "type": "BV",
+   "inst": 615,
+   "name": "Input Frequency Deviation",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6186_1"
+  },
+  {
+   "type": "BV",
+   "inst": 630,
+   "name": "Electrical Heater Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7503_1"
+  },
+  {
+   "type": "BV",
+   "inst": 642,
+   "name": "Repeated Teamwork Address",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7525_1"
+  },
+  {
+   "type": "BV",
+   "inst": 643,
+   "name": "Loss of Teamwork Slave",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7524_1"
+  },
+  {
+   "type": "BV",
+   "inst": 644,
+   "name": "Teamwork Master is offline or not connected to the network",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7523_1"
+  },
+  {
+   "type": "BV",
+   "inst": 645,
+   "name": "Smoke Detected",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4720_1"
+  },
+  {
+   "type": "BV",
+   "inst": 646,
+   "name": "Water Under Floor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4723_1"
+  },
+  {
+   "type": "BV",
+   "inst": 647,
+   "name": "External Fire Detected",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5108_1"
+  },
+  {
+   "type": "BV",
+   "inst": 648,
+   "name": "Humidifier Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5043_1"
+  },
+  {
+   "type": "BV",
+   "inst": 649,
+   "name": "Humidifier Hours Exceeded",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5037_1"
+  },
+  {
+   "type": "BV",
+   "inst": 650,
+   "name": "EEV Driver Communication Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7551_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 651,
+   "name": "EEV Driver Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7552_1"
+  },
+  {
+   "type": "BV",
+   "inst": 653,
+   "name": "Internal Communications Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4300_1"
+  },
+  {
+   "type": "BV",
+   "inst": 654,
+   "name": "10DI Sensor Communication Fail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8072_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 656,
+   "name": "Ext Condenser Pump High Water",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5106_1"
+  },
+  {
+   "type": "BV",
+   "inst": 657,
+   "name": "Ext Remote Shutdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5500_1"
+  },
+  {
+   "type": "BV",
+   "inst": 658,
+   "name": "Shutdown - Loss Of Power",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4714_1"
+  },
+  {
+   "type": "BV",
+   "inst": 691,
+   "name": "Custom Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 7561_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 799,
+   "name": "Energy Meter Communication Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 8468_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 1,
+   "name": "Server Class",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = UPS 2 = AIR 3 = PMP 4 = PDU 5 = MONITOR · 코드 4553_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 23,
+   "name": "Compressor Control Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = ReturnAirAverageTemp 2 = ReturnAirMaxTemp 3 = ReturnAirMinTemp 4 = SupplyAirAverageTemp 5 = SupplyAirMaxTemp 6 = SupplyAirMinTemp 7 = RemoteAverageTemp 8 = RemoteMaxTemp 9 = RemoteMinTemp · 코드 7502_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 34,
+   "name": "Fan Control Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = ReturnAirAverageTemp 2 = ReturnAirMaxTemp 3 = ReturnAirMinTemp 4 = SupplyAirAverageTemp 5 = SupplyAirMaxTemp 6 = SupplyAirMinTemp 7 = RemoteAverageTemp 8 = RemoteMaxTemp 9 = RemoteMinTemp 10 = TemperatureDiff 11 = StaticPressure · 코드 75"
+  },
+  {
+   "type": "MSV",
+   "inst": 45,
+   "name": "Electric Reheat State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = off · 코드 5386_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 56,
+   "name": "Humidifier State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = off 2 = on · 코드 5388_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 57,
+   "name": "Dehumidifier State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = off 2 = on · 코드 5387_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 58,
+   "name": "Cooling State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = off 2 = on · 코드 5382_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 59,
+   "name": "Teamwork Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Single 2 = TeamworkMode0 3 = TeamworkMode1 4 = TeamworkMode2 5 = TeamworkMode3 · 코드 7529_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 60,
+   "name": "Monitoring ON/OFF",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = on 2 = off · 코드 7536_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 71,
+   "name": "System Operating State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Run 2 = Standby 3 = Display Off 4 = Remote Off 5 = Monitoring Off 6 = Lockout · 코드 7528_1"
+  }
+ ],
+ "crosscheck": {
+  "fam": "bacnet",
+  "segments": 1,
+  "table": 161,
+  "raw": 129,
+  "both": 128,
+  "same": 128,
+  "diff": [],
+  "rate": 1.0,
+  "verified": {
+   "AV-1": "Supply Air Temperature",
+   "AV-2": "Return Air Temperature",
+   "AV-3": "Remote Sensor Average Temperature",
+   "AV-5": "Supply Air Theoretical Humidity",
+   "AV-6": "Return Humidity",
+   "AV-8": "Supply Air Temperature Set Point",
+   "AV-9": "Return Air Temperature Set Point",
+   "AV-10": "Remote Sensor Air Temperature Set Point",
+   "AV-11": "Humidity Set Point",
+   "AV-12": "Cooling Proportional Band",
+   "AV-13": "Humidification Proportional Band",
+   "AV-14": "Air Filter Hours",
+   "AV-234": "Return Sensor Humidity",
+   "AV-404": "Compressor Discharge Temperature",
+   "AV-405": "Compressor Suction Temperature",
+   "AV-406": "Compressor Suction Superheat",
+   "AV-407": "Compressor Discharge Superheat",
+   "AV-408": "Compressor Low Pressure",
+   "AV-409": "Compressor High Pressure",
+   "AV-410": "Compressor Hours",
+   "AV-421": "Fan Temperature Difference Setpoint",
+   "AV-422": "Fan Hours",
+   "AV-423": "Fan Speed",
+   "AV-424": "Condenser Fan Speed",
+   "AV-425": "Condensate Fan Hours",
+   "AV-435": "Fan Static Pressure",
+   "AV-450": "Condensate Pump Hours",
+   "AV-457": "System Input RMS A-N",
+   "AV-458": "System Input RMS Current Phase A",
+   "AV-459": "System Input RMS B-N",
+   "AV-460": "System Input RMS Current Phase B",
+   "AV-461": "System Input RMS C-N",
+   "AV-462": "System Input RMS Current Phase C",
+   "AV-463": "Energy Consumption",
+   "AV-465": "System Input Frequency",
+   "AV-476": "Electric Reheater Hours",
+   "AV-487": "Cooling Capacity (Primary)",
+   "AV-488": "Humidifier Hours",
+   "AV-621": "Active Power",
+   "AV-10001": "Supply Air Temperature",
+   "AV-10002": "Return Air Temperature",
+   "AV-10003": "Remote Sensor Average Temperature",
+   "AV-10008": "Supply Air Temperature Set Point",
+   "AV-10009": "Return Air Temperature Set Point",
+   "AV-10010": "Remote Sensor Air Temperature Set Point",
+   "AV-10012": "Cooling Proportional Band",
+   "AV-10404": "Compressor Discharge Temperature",
+   "AV-10405": "Compressor Suction Temperature",
+   "AV-10406": "Compressor Suction Superheat",
+   "AV-10407": "Compressor Discharge Superheat",
+   "AV-10421": "Fan Temperature Difference Setpoint",
+   "BV-1": "Remote Sensor Under Temperature",
+   "BV-2": "Supply Air Over Temperature",
+   "BV-4": "High Return Humidity",
+   "BV-5": "Remote Sensor Over Temperature",
+   "BV-6": "Low Return Humidity",
+   "BV-7": "Return Air Under Temperature",
+   "BV-8": "Clogged Air Filter",
+   "BV-11": "Loss of Airflow",
+   "BV-16": "Supply Air Under Temperature",
+   "BV-17": "Return Air Over Temperature",
+   "BV-237": "Return Humidity Sensor Issue",
+   "BV-414": "Compressor Suction Temperature Sensor Failure",
+   "BV-415": "Compressor Discharge Temperature Sensor Failure",
+   "BV-417": "Low Compressor Pressure Sensor Failure",
+   "BV-418": "High Compressor Pressure Sensor Failure",
+   "BV-419": "Low Compressor Discharge Superheat Lockout",
+   "BV-420": "Low Compressor Discharge Superheat",
+   "BV-424": "Low Compressor Pressure",
+   "BV-426": "High Compressor Discharge Temperature Lockout",
+   "BV-427": "High Compressor Discharge Temperature",
+   "BV-428": "Low Compressor Pressure Lockout",
+   "BV-429": "High Compressor Presssure Lockout",
+   "BV-430": "High Compressor Pressure",
+   "BV-431": "Compressor Driver Failure Lockout",
+   "BV-435": "Compressor Driver Communication Failure",
+   "BV-437": "Compressor Drive Failure U00",
+   "BV-438": "Compressor Drive Failure U01",
+   "BV-439": "Compressor Drive Failure U02",
+   "BV-440": "Compressor Drive Failure U03",
+   "BV-441": "Compressor Drive Failure U04",
+   "BV-442": "Compressor Drive Failure U05",
+   "BV-443": "Compressor Drive Failure U06",
+   "BV-444": "Compressor Drive Failure U07",
+   "BV-445": "Compressor Drive Failure U08",
+   "BV-446": "Compressor Drive Failure U09",
+   "BV-447": "Compressor Drive Failure U10",
+   "BV-448": "Compressor Drive Failure U11",
+   "BV-449": "Compressor Drive Failure U12",
+   "BV-450": "Compressor Drive Failure U13",
+   "BV-451": "Compressor Drive Failure U14",
+   "BV-452": "Compressor Drive Failure U15",
+   "BV-590": "Fan Static Pressure Sensor Failure",
+   "BV-606": "Outdoor Fan Communication Failure",
+   "BV-607": "Outdoor Fan Driver Failure",
+   "BV-608": "Outdoor Fan Communication Failure",
+   "BV-609": "Outdoor Fan Driver Failure",
+   "BV-612": "Input Undervoltage",
+   "BV-613": "Input Overvoltage",
+   "BV-615": "Input Frequency Deviation",
+   "BV-630": "Electrical Heater Failure",
+   "BV-642": "Repeated Teamwork Address",
+   "BV-643": "Loss of Teamwork Slave",
+   "BV-644": "Teamwork Master is offline or not connected to the network",
+   "BV-645": "Smoke Detected",
+   "BV-646": "Water Under Floor",
+   "BV-647": "External Fire Detected",
+   "BV-648": "Humidifier Issue",
+   "BV-649": "Humidifier Hours Exceeded",
+   "BV-650": "EEV Driver Communication Failure",
+   "BV-651": "EEV Driver Failure",
+   "BV-653": "Internal Communications Failure",
+   "BV-654": "10DI Sensor Communication Fail",
+   "BV-656": "Ext Condenser Pump High Water",
+   "BV-657": "Ext Remote Shutdown",
+   "BV-658": "Shutdown - Loss Of Power",
+   "BV-691": "Custom Alarm",
+   "BV-799": "Energy Meter Communication Failure",
+   "MSV-1": "Server Class",
+   "MSV-23": "Compressor Control Mode",
+   "MSV-34": "Fan Control Mode",
+   "MSV-45": "Electric Reheat State",
+   "MSV-56": "Humidifier State",
+   "MSV-57": "Dehumidifier State",
+   "MSV-58": "Cooling State",
+   "MSV-59": "Teamwork Status",
+   "MSV-60": "Monitoring ON/OFF",
+   "MSV-71": "System Operating State"
+  }
+ },
+ "gap": "정격 사양(냉방능력·소비전력·풍량·냉매)은 이 문서에 없다 — 통신 레퍼런스라 오브젝트 목록만 싣는다. 제품별 기술자료가 따로 필요하다. 제어기는 Liebert iCOM Edge 이고, 같은 제품이라도 제어기 세대가 다르면 인스턴스 번호가 달라진다.",
+ "extractor": "table"
+}

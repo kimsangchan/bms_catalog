@@ -48,7 +48,7 @@ HDRWORD = re.compile(r"^(Object (Identifier|Name|States|Status|Data Points.*)|Pr
                      r"(Analog|Binary|Multi-?State) (Input|Output|Value)s?( \w+)?)$", re.I)
 
 
-def _lines(pdf, head_pt=80, with_y=False):
+def _lines(pdf, head_pt=80, with_y=False, pages=None):
     """(페이지번호, 줄) 순서대로. 머리글 영역은 **좌표로** 잘라낸다.
     with_y=True 면 (페이지, 블록 하단 y, 줄) 을 준다 — 표 제목보다 아래인지 볼 때 쓴다.
 
@@ -57,7 +57,10 @@ def _lines(pdf, head_pt=80, with_y=False):
     실측: BAS-PTS 시리즈는 머리글 y≤73, 첫 표 y≈90 → 80pt 로 자른다.
     """
     import fitz
-    for i, pg in enumerate(fitz.open(pdf)):
+    doc = fitz.open(pdf)
+    rng = range(*pages) if pages else range(doc.page_count)
+    for i in rng:
+        pg = doc[i]
         # 블록 순서는 PDF가 주는 읽기 순서를 그대로 쓴다. y좌표로 다시 정렬했더니
         # 셀 안에서 줄바꿈된 이름의 뒷부분이 앞부분과 떨어져 짝이 어긋났다.
         for b in (b for b in pg.get_text("blocks") if b[3] > head_pt):
@@ -67,10 +70,10 @@ def _lines(pdf, head_pt=80, with_y=False):
                     yield (i, b[3], t) if with_y else (i, t)
 
 
-def raw_lontalk(pdf):
+def raw_lontalk(pdf, pages=None):
     """줄 순서: 숫자 줄 → 바로 다음의 nv*/nci* 줄. 표 인식을 쓰지 않는다."""
     out, pending = [], None
-    for pi, t in _lines(pdf):
+    for pi, t in _lines(pdf, pages=pages):
         if BARE.match(t):
             pending = (pi, int(t))
             continue
@@ -94,10 +97,10 @@ def _drop_sparse(rows, minimum=3):
     return [r for r in rows if n[r["page"]] >= minimum]
 
 
-def raw_bacnet(pdf):
+def raw_bacnet(pdf, pages=None):
     """줄 순서: 'AI-10101' 같은 ID 줄 → 바로 다음의 이름 줄."""
     out, pending = [], None
-    for pi, t in _lines(pdf):
+    for pi, t in _lines(pdf, pages=pages):
         pid = E.parse_objid(t)
         if pid:
             pending = (pi, S.canon_type(pid[0]), pid[1])
@@ -109,14 +112,14 @@ def raw_bacnet(pdf):
     return _drop_sparse(out)
 
 
-def raw_bacnet_rev(pdf):
+def raw_bacnet_rev(pdf, pages=None):
     """이름이 ID보다 **앞에** 오는 문서 — Belimo 는 'RelPos' 다음 줄이 'AI[1]' 이다.
 
     같은 줄 읽기지만 짝짓는 방향이 반대다. 방향을 잘못 잡으면 겹침이 거의 0이 되므로
     두 방향을 모두 만들어 두고 겹침이 큰 쪽을 쓴다.
     """
     out, prev = [], None
-    for pi, t in _lines(pdf):
+    for pi, t in _lines(pdf, pages=pages):
         pid = E.parse_objid(t)
         if pid and prev and E.nameish(prev):
             out.append({"page": pi, "type": S.canon_type(pid[0]),
@@ -155,7 +158,7 @@ def _sect_at(caps, page, y):
     return best
 
 
-def raw_typefirst(pdf):
+def raw_typefirst(pdf, pages=None):
     """타입이 제 줄에 혼자 오고 번호가 맨 뒤인 문서 — JCI 는 열을 이렇게 갈라 적는다.
 
         AI / Indoor Unit Capacity Code / UNIT-CAP / 4
@@ -165,7 +168,7 @@ def raw_typefirst(pdf):
     """
     caps = _captions(pdf)
     out, pend, buf = [], None, []
-    for pi, y, t in _lines(pdf, with_y=True):
+    for pi, y, t in _lines(pdf, with_y=True, pages=pages):
         sect = _sect_at(caps, pi, y)
         if TYPETOK.match(t):
             pend, buf = (pi, S.canon_type(t)), []
@@ -183,11 +186,37 @@ def raw_typefirst(pdf):
     return _drop_sparse(out)
 
 
-def raw_bare(pdf):
+# 타입을 약어가 아니라 표준 이름으로 적는 문서 — 셀 안에서 줄바꿈되면 'Analog_ Value'
+TYPELONG = re.compile(r"^(Analog|Binary|Multi-?State)_\s?(Input|Output|Value)$", re.I)
+
+
+def raw_nametype(pdf, pages=None):
+    """이름 → 타입 → 번호 순서로 적힌 문서 (Vertiv/Liebert IntelliSlot).
+
+        Smoke Detected / Binary_Value / 645 / 4720_1 / RD / Active on Alarm
+
+    타입 줄을 만나면 **직전 줄**이 이름이고, 그 다음 숫자 줄이 번호다.
+    """
+    out, prev, pend = [], None, None
+    for pi, t in _lines(pdf, pages=pages):
+        if TYPELONG.match(t) or TYPETOK.match(t):
+            pend = ((pi, S.canon_type(t), prev)
+                    if prev and E.nameish(prev) and len(prev) >= 3 else None)
+            prev = t
+            continue
+        if pend and BARE.match(t):
+            out.append({"page": pend[0], "type": pend[1], "inst": int(t),
+                        "name": pend[2]})
+            pend = None
+        prev = t
+    return _drop_sparse(out)
+
+
+def raw_bare(pdf, pages=None):
     """ID가 숫자만인 문서 — 타입은 페이지 섹션 제목에서 온다 (extract.py와 같은 근거)."""
     types = E.section_types(pdf)
     out, pending = [], None
-    for pi, t in _lines(pdf):
+    for pi, t in _lines(pdf, pages=pages):
         if BARE.match(t):
             pending = (pi, int(t))
             continue
@@ -201,10 +230,10 @@ def raw_bare(pdf):
     return _drop_sparse(out)
 
 
-def raw_modbus_wide(pdf):
+def raw_modbus_wide(pdf, pages=None):
     """주소가 작은 레지스터 표(0·1·2…) — 오름차순 성질로 잡음을 거른다."""
     out, pending, last, page = [], None, -1, -1
-    for pi, t in _lines(pdf):
+    for pi, t in _lines(pdf, pages=pages):
         if pi != page:
             page, last = pi, -1
         if re.match(r"^\d{1,5}$", t):
@@ -220,7 +249,7 @@ def raw_modbus_wide(pdf):
     return _drop_sparse(out)
 
 
-def raw_modbus(pdf):
+def raw_modbus(pdf, pages=None):
     """Modbus 레지스터 표 — 레지스터 번호 줄 → 바로 다음 이름 줄.
 
     BACnet 오브젝트 ID 가 없는 문서는 이 경로로 대조한다. 없으면 교차 대조가
@@ -230,7 +259,7 @@ def raw_modbus(pdf):
     구분되지 않는다. **표 안에서 주소는 오름차순**이라는 성질을 함께 써서 거른다.
     """
     out, pending = [], None
-    for pi, t in _lines(pdf):
+    for pi, t in _lines(pdf, pages=pages):
         if re.match(r"^[1-4]\d{4}$", t):
             pending = (pi, int(t))
             continue
@@ -242,10 +271,10 @@ def raw_modbus(pdf):
     return _drop_sparse(out)
 
 
-def raw_hexreg(pdf):
+def raw_hexreg(pdf, pages=None):
     """'D000' 형식 레지스터 — ebm-papst 가 문자+16진으로 쓴다. 번호 줄 → 다음 이름 줄."""
     out, pending = [], None
-    for pi, t in _lines(pdf):
+    for pi, t in _lines(pdf, pages=pages):
         m = E.HEX_REG.match(t)
         if m:
             pending = (pi, int(m.group(2), 16))
@@ -306,15 +335,18 @@ def _same(a, b):
     return x == y or (len(min(x, y, key=len)) >= 4 and (x in y or y in x))
 
 
-def compare(pdf, table_rows=None, sect=None):
-    """sect 를 주면 그 표 제목 아래 줄만 대조에 쓴다.
+def compare(pdf, table_rows=None, sect=None, pages=None):
+    """한 문서에 장치가 여럿이고 번호를 다시 쓸 때 대조 범위를 좁히는 두 방법.
 
-    한 문서가 장치 둘을 담고 번호를 다시 쓰면(JCI 실내기·실외기) 걸러내지 않은
-    줄 경로는 두 장치를 뒤섞어 가짜 불일치를 만든다.
+    sect   표 제목으로 가른다 (JCI 실내기·실외기 — 제목이 표 바로 위에 있다)
+    pages  쪽 범위로 가른다 (Vertiv IntelliSlot — 제품 수십 개가 한 문서에 있다)
+
+    걸러내지 않으면 줄 경로가 여러 장치를 뒤섞어 가짜 불일치를 만든다.
     """
     fam = E.classify(pdf)
     if table_rows is None:
         table_rows = (E.extract_lontalk(pdf, keep_order=True) if fam == "lontalk"
+                      else E.extract_tables(pdf, pages=pages) if pages
                       else E.extract(pdf)[0])
     if sect:
         table_rows = [r for r in table_rows if r.get("sect") == sect]
@@ -322,10 +354,12 @@ def compare(pdf, table_rows=None, sect=None):
     # 골라야 한다. 줄 수로 고르다가 냉동기 문서에서 엉뚱한 경로가 뽑혀 겹침 1건이 됐다.
     A = _segmap(table_rows)
     flat = {k for seg in A for k in seg}
-    cands = ([raw_lontalk(pdf)] if fam == "lontalk"
-             else [raw_bacnet(pdf), raw_bacnet_rev(pdf), raw_bare(pdf),
-                   raw_typefirst(pdf), raw_modbus(pdf), raw_modbus_wide(pdf),
-                   raw_hexreg(pdf)])
+    P = {"pages": pages}
+    cands = ([raw_lontalk(pdf, **P)] if fam == "lontalk"
+             else [raw_bacnet(pdf, **P), raw_bacnet_rev(pdf, **P), raw_bare(pdf, **P),
+                   raw_typefirst(pdf, **P), raw_nametype(pdf, **P),
+                   raw_modbus(pdf, **P), raw_modbus_wide(pdf, **P),
+                   raw_hexreg(pdf, **P)])
     if sect:
         cands = [[r for r in rs if r.get("sect") == sect] for rs in cands]
     tbl = {}

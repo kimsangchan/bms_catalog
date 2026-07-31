@@ -1,0 +1,835 @@
+{
+ "id": "vertiv-liebert-icom-dcl",
+ "equipId": "e7",
+ "vendor": "Vertiv / Liebert",
+ "model": "iCOM DCL",
+ "name": "냉각 분배 DCL — BACnet (Liebert iCOM v4)",
+ "cat": "HVAC.AIR.CRAC",
+ "tag": "crac",
+ "status": "active",
+ "summary": "IntelliSlot 통신카드(IS-UNITY-DP)로 BACnet에 노출되는 오브젝트 88점. BV 57 · MSV 31. 단위가 문서에 적힌 아날로그 0점.",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "comm": [
+  [
+   "BACnet/IP",
+   "IS-UNITY-DP 카드",
+   "Ethernet",
+   "vertiv-liebert-intellislot-modbus-and-bacnet-protocols-reference-guide-sl-28170.pdf"
+  ],
+  [
+   "BACnet MS/TP",
+   "IS-UNITY-DP 카드",
+   "RS-485",
+   "vertiv-liebert-intellislot-modbus-and-bacnet-protocols-reference-guide-sl-28170.pdf"
+  ]
+ ],
+ "io": [],
+ "elec": null,
+ "points": [
+  {
+   "type": "BV",
+   "inst": 1,
+   "name": "Supply Air Over Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5015_1"
+  },
+  {
+   "type": "BV",
+   "inst": 2,
+   "name": "Supply Air Under Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5019_1"
+  },
+  {
+   "type": "BV",
+   "inst": 3,
+   "name": "Return Air Over Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5023_1"
+  },
+  {
+   "type": "BV",
+   "inst": 4,
+   "name": "Supply Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5026_1"
+  },
+  {
+   "type": "BV",
+   "inst": 5,
+   "name": "Return Air Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5147_1"
+  },
+  {
+   "type": "BV",
+   "inst": 6,
+   "name": "Unit Top Return Air Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6274_1"
+  },
+  {
+   "type": "BV",
+   "inst": 7,
+   "name": "Unit Middle Return Air Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6275_1"
+  },
+  {
+   "type": "BV",
+   "inst": 8,
+   "name": "Unit Bottom Return Air Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6276_1"
+  },
+  {
+   "type": "BV",
+   "inst": 9,
+   "name": "Unit Top Supply Air Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6277_1"
+  },
+  {
+   "type": "BV",
+   "inst": 10,
+   "name": "Unit Middle First Supply Air Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6278_1"
+  },
+  {
+   "type": "BV",
+   "inst": 11,
+   "name": "Unit Middle Second Supply Air Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6284_1"
+  },
+  {
+   "type": "BV",
+   "inst": 12,
+   "name": "Unit Bottom Supply Air Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6279_1"
+  },
+  {
+   "type": "BV",
+   "inst": 13,
+   "name": "Pipe Temperature Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6358_1"
+  },
+  {
+   "type": "BV",
+   "inst": 24,
+   "name": "High Return Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5034_1"
+  },
+  {
+   "type": "BV",
+   "inst": 25,
+   "name": "Low Return Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5036_1"
+  },
+  {
+   "type": "BV",
+   "inst": 26,
+   "name": "Dehumidifier Hours Exceeded",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5038_1"
+  },
+  {
+   "type": "BV",
+   "inst": 37,
+   "name": "Loss of Air Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5053_1"
+  },
+  {
+   "type": "BV",
+   "inst": 38,
+   "name": "Fan Hours Exceeded",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5054_1"
+  },
+  {
+   "type": "BV",
+   "inst": 39,
+   "name": "Top Fan Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5055_1"
+  },
+  {
+   "type": "BV",
+   "inst": 40,
+   "name": "Bottom Fan Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5056_1"
+  },
+  {
+   "type": "BV",
+   "inst": 51,
+   "name": "Remote Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5060_1"
+  },
+  {
+   "type": "BV",
+   "inst": 62,
+   "name": "Remote Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5060_2"
+  },
+  {
+   "type": "BV",
+   "inst": 84,
+   "name": "Remote Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5060_4"
+  },
+  {
+   "type": "BV",
+   "inst": 95,
+   "name": "Chilled Water Control Valve Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4703_1"
+  },
+  {
+   "type": "BV",
+   "inst": 96,
+   "name": "Supply Chilled Water Loss of Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4980_1"
+  },
+  {
+   "type": "BV",
+   "inst": 97,
+   "name": "Chilled Water Control Active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6293_1"
+  },
+  {
+   "type": "BV",
+   "inst": 98,
+   "name": "Modbus 0-10V Module Communication Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6297_1"
+  },
+  {
+   "type": "BV",
+   "inst": 109,
+   "name": "Chilled Water Flow Transducer Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6294_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 110,
+   "name": "Chilled Water Inlet Temperature Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6295_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 111,
+   "name": "Chilled Water High Inlet Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6296_1_1"
+  },
+  {
+   "type": "BV",
+   "inst": 122,
+   "name": "Chilled Water Flow Transducer Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6294_1_2"
+  },
+  {
+   "type": "BV",
+   "inst": 123,
+   "name": "Chilled Water Inlet Temperature Sensor Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6295_1_2"
+  },
+  {
+   "type": "BV",
+   "inst": 124,
+   "name": "Chilled Water High Inlet Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6296_1_2"
+  },
+  {
+   "type": "BV",
+   "inst": 135,
+   "name": "Customer Input 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4270_1"
+  },
+  {
+   "type": "BV",
+   "inst": 136,
+   "name": "Customer Input 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4271_1"
+  },
+  {
+   "type": "BV",
+   "inst": 137,
+   "name": "Customer Input 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4272_1"
+  },
+  {
+   "type": "BV",
+   "inst": 138,
+   "name": "Customer Input 4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4273_1"
+  },
+  {
+   "type": "BV",
+   "inst": 139,
+   "name": "Smoke Detected",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4720_1"
+  },
+  {
+   "type": "BV",
+   "inst": 140,
+   "name": "Water Under Floor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4723_1"
+  },
+  {
+   "type": "BV",
+   "inst": 141,
+   "name": "Service Required",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 4726_1"
+  },
+  {
+   "type": "BV",
+   "inst": 142,
+   "name": "Ext Over Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5104_1"
+  },
+  {
+   "type": "BV",
+   "inst": 143,
+   "name": "Ext Loss of Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5105_1"
+  },
+  {
+   "type": "BV",
+   "inst": 144,
+   "name": "Ext Condenser Pump High Water",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5106_1"
+  },
+  {
+   "type": "BV",
+   "inst": 145,
+   "name": "Ext Standby Glycol Pump On",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5107_1"
+  },
+  {
+   "type": "BV",
+   "inst": 146,
+   "name": "External Fire Detected",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5108_1"
+  },
+  {
+   "type": "BV",
+   "inst": 147,
+   "name": "Unit On",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5109_1"
+  },
+  {
+   "type": "BV",
+   "inst": 148,
+   "name": "Unit Off",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5110_1"
+  },
+  {
+   "type": "BV",
+   "inst": 149,
+   "name": "Unit Partial Shutdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5112_1"
+  },
+  {
+   "type": "BV",
+   "inst": 150,
+   "name": "Unit Shutdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5113_1"
+  },
+  {
+   "type": "BV",
+   "inst": 151,
+   "name": "Water Leakage Detector Sensor Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5114_1"
+  },
+  {
+   "type": "BV",
+   "inst": 152,
+   "name": "BMS Communications Timeout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5115_1"
+  },
+  {
+   "type": "BV",
+   "inst": 153,
+   "name": "Maintenance Due",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5116_1"
+  },
+  {
+   "type": "BV",
+   "inst": 154,
+   "name": "Maintenance Completed",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5117_1"
+  },
+  {
+   "type": "BV",
+   "inst": 155,
+   "name": "RAM Battery Issue",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5119_1"
+  },
+  {
+   "type": "BV",
+   "inst": 156,
+   "name": "High Power Shutdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5121_1"
+  },
+  {
+   "type": "BV",
+   "inst": 157,
+   "name": "Unspecified General Event",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 5588_1"
+  },
+  {
+   "type": "BV",
+   "inst": 158,
+   "name": "Rack Doors Open",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 6299_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 1,
+   "name": "Server Class",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = UPS 2 = AIR 3 = PMP 4 = PDU 5 = MONITOR · 코드 4553_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 12,
+   "name": "Air Temperature Control Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Supply 2 = Remote 3 = Return · 코드 5012_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 13,
+   "name": "Remote Sensor Temperature Calculation",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Average 2 = Maximum · 코드 5013_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 14,
+   "name": "Return Temperature/Humidity Sensor Control Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Average 2 = Maximum 3 = Top Sensor 4 = Middle Sensor 5 = Bottom Sensor · 코드 6266_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 15,
+   "name": "Supply Temperature Sensor Control Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Average 2 = Maximum 3 = Top Sensor 4 = Middle Sensor 1 5 = Middle Sensor 2 6 = Bottom Sensor · 코드 6267_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 26,
+   "name": "Dehumidifier State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = off 2 = on · 코드 5387_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 37,
+   "name": "Fan Control Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Internal (Auto) 2 = External (Manual) · 코드 5047_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 38,
+   "name": "Fan Control Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Supply Sensor 2 = Remote Sensor 3 = Return Sensor 4 = Delta Ret-Sup 5 = Delta Remote 6 = Pipe Sensor · 코드 6449_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 49,
+   "name": "Remote Sensor Function",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Disable 2 = Reference 3 = Control · 코드 5058_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 60,
+   "name": "Remote Sensor Function",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Disable 2 = Reference 3 = Control · 코드 5058_2"
+  },
+  {
+   "type": "MSV",
+   "inst": 82,
+   "name": "Remote Sensor Function",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Disable 2 = Reference 3 = Control · 코드 5058_4"
+  },
+  {
+   "type": "MSV",
+   "inst": 93,
+   "name": "Chilled Water Valve Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Single 2 = 2 Parallel 3 = 2 Alternate 4 = 2 Cascade · 코드 6286_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 94,
+   "name": "Chilled Water Main Valve",
+   "unitRaw": null,
+   "unit": null,
+   "note": "— · 코드 6287_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 95,
+   "name": "Chilled Water Auto Valve Rotation",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 6288_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 96,
+   "name": "Chilled Water Inlet Temperature Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 6290_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 107,
+   "name": "System Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Normal Operation 2 = StartUp 3 = Normal with Warning 4 = Normal with Alarm 5 = Abnormal Operation · 코드 4123_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 108,
+   "name": "Unit Operating State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = off 2 = on 3 = standby · 코드 4706_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 109,
+   "name": "Unit Control Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Internal (Auto) 2 = External (Manual) · 코드 4707_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 110,
+   "name": "Unit Operating State Reason",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Reason Unknown 2 = Network Display 3 = Alarm 4 = Schedule 5 = Remote System 6 = External Input 7 = Local Display · 코드 5074_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 121,
+   "name": "System On/Off Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = off 2 = on · 코드 5143_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 122,
+   "name": "Rack Door Open Sensor Selection",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Supply Sensor 2 = Rack Sensor 1 3 = Rack Sensor 2 4 = Rack Sensor 3 5 = Rack Sensor 4 · 코드 6361_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 133,
+   "name": "System Event Acknowledge/Reset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Reset 2 = Acknowledge · 코드 4717_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 134,
+   "name": "Smoke Detected - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 4721_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 135,
+   "name": "Smoke Detected - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 4722_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 136,
+   "name": "Water Under Floor - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 4724_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 137,
+   "name": "Water Under Floor - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 4725_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 138,
+   "name": "Customer Input 1 - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 4718_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 139,
+   "name": "Customer Input 1 - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 4719_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 140,
+   "name": "Customer Input 2 - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5098_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 141,
+   "name": "Customer Input 2 - Event Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Message 2 = Warning 3 = Alarm · 코드 5099_1"
+  },
+  {
+   "type": "MSV",
+   "inst": 142,
+   "name": "Customer Input 3 - Event Control",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = disabled 2 = enabled · 코드 5100_1"
+  }
+ ],
+ "crosscheck": {
+  "fam": "bacnet",
+  "segments": 1,
+  "table": 88,
+  "raw": 168,
+  "both": 82,
+  "same": 82,
+  "diff": [],
+  "rate": 1.0,
+  "verified": {
+   "BV-1": "Supply Air Over Temperature",
+   "BV-2": "Supply Air Under Temperature",
+   "BV-3": "Return Air Over Temperature",
+   "BV-4": "Supply Air Sensor Issue",
+   "BV-5": "Return Air Sensor Issue",
+   "BV-6": "Unit Top Return Air Sensor Failure",
+   "BV-7": "Unit Middle Return Air Sensor Failure",
+   "BV-8": "Unit Bottom Return Air Sensor Failure",
+   "BV-9": "Unit Top Supply Air Sensor Failure",
+   "BV-10": "Unit Middle First Supply Air Sensor Failure",
+   "BV-11": "Unit Middle Second Supply Air Sensor Failure",
+   "BV-12": "Unit Bottom Supply Air Sensor Failure",
+   "BV-13": "Pipe Temperature Sensor Failure",
+   "BV-24": "High Return Humidity",
+   "BV-25": "Low Return Humidity",
+   "BV-26": "Dehumidifier Hours Exceeded",
+   "BV-37": "Loss of Air Flow",
+   "BV-38": "Fan Hours Exceeded",
+   "BV-39": "Top Fan Issue",
+   "BV-40": "Bottom Fan Issue",
+   "BV-95": "Chilled Water Control Valve Failure",
+   "BV-96": "Supply Chilled Water Loss of Flow",
+   "BV-97": "Chilled Water Control Active",
+   "BV-98": "Modbus 0-10V Module Communication Failure",
+   "BV-109": "Chilled Water Flow Transducer Failure",
+   "BV-110": "Chilled Water Inlet Temperature Sensor Failure",
+   "BV-111": "Chilled Water High Inlet Temperature",
+   "BV-122": "Chilled Water Flow Transducer Failure",
+   "BV-123": "Chilled Water Inlet Temperature Sensor Failure",
+   "BV-124": "Chilled Water High Inlet Temperature",
+   "BV-135": "Customer Input 1",
+   "BV-136": "Customer Input 2",
+   "BV-137": "Customer Input 3",
+   "BV-138": "Customer Input 4",
+   "BV-139": "Smoke Detected",
+   "BV-140": "Water Under Floor",
+   "BV-141": "Service Required",
+   "BV-142": "Ext Over Temperature",
+   "BV-143": "Ext Loss of Flow",
+   "BV-144": "Ext Condenser Pump High Water",
+   "BV-145": "Ext Standby Glycol Pump On",
+   "BV-146": "External Fire Detected",
+   "BV-147": "Unit On",
+   "BV-148": "Unit Off",
+   "BV-149": "Unit Partial Shutdown",
+   "BV-150": "Unit Shutdown",
+   "BV-151": "Water Leakage Detector Sensor Issue",
+   "BV-152": "BMS Communications Timeout",
+   "BV-153": "Maintenance Due",
+   "BV-154": "Maintenance Completed",
+   "BV-155": "RAM Battery Issue",
+   "BV-156": "High Power Shutdown",
+   "BV-157": "Unspecified General Event",
+   "BV-158": "Rack Doors Open",
+   "MSV-1": "Server Class",
+   "MSV-12": "Air Temperature Control Sensor",
+   "MSV-13": "Remote Sensor Temperature Calculation",
+   "MSV-14": "Return Temperature/Humidity Sensor Control Type",
+   "MSV-15": "Supply Temperature Sensor Control Type",
+   "MSV-26": "Dehumidifier State",
+   "MSV-37": "Fan Control Mode",
+   "MSV-38": "Fan Control Sensor",
+   "MSV-93": "Chilled Water Valve Control",
+   "MSV-94": "Chilled Water Main Valve",
+   "MSV-95": "Chilled Water Auto Valve Rotation",
+   "MSV-96": "Chilled Water Inlet Temperature Control",
+   "MSV-107": "System Status",
+   "MSV-108": "Unit Operating State",
+   "MSV-109": "Unit Control Mode",
+   "MSV-110": "Unit Operating State Reason",
+   "MSV-121": "System On/Off Control",
+   "MSV-122": "Rack Door Open Sensor Selection",
+   "MSV-133": "System Event Acknowledge/Reset",
+   "MSV-134": "Smoke Detected - Event Control",
+   "MSV-135": "Smoke Detected - Event Type",
+   "MSV-136": "Water Under Floor - Event Control",
+   "MSV-137": "Water Under Floor - Event Type",
+   "MSV-138": "Customer Input 1 - Event Control",
+   "MSV-139": "Customer Input 1 - Event Type",
+   "MSV-140": "Customer Input 2 - Event Control",
+   "MSV-141": "Customer Input 2 - Event Type",
+   "MSV-142": "Customer Input 3 - Event Control"
+  }
+ },
+ "gap": "정격 사양(냉방능력·소비전력·풍량·냉매)은 이 문서에 없다 — 통신 레퍼런스라 오브젝트 목록만 싣는다. 제품별 기술자료가 따로 필요하다. 제어기는 Liebert iCOM v4 이고, 같은 제품이라도 제어기 세대가 다르면 인스턴스 번호가 달라진다.",
+ "extractor": "table"
+}

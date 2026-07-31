@@ -1,0 +1,309 @@
+{
+ "id": "vertiv-liebert-mini-mate2",
+ "equipId": "e7",
+ "vendor": "Vertiv / Liebert",
+ "model": "Mini-Mate2",
+ "name": "소형 정밀공조 Mini-Mate2 — BACnet (IntelliSlot Unity)",
+ "cat": "HVAC.AIR.CRAC",
+ "tag": "crac",
+ "status": "active",
+ "summary": "IntelliSlot 통신카드(IS-UNITY-DP)로 BACnet에 노출되는 오브젝트 29점. AV 9 · BV 20. 단위가 문서에 적힌 아날로그 2점.",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "comm": [
+  [
+   "BACnet/IP",
+   "IS-UNITY-DP 카드",
+   "Ethernet",
+   "vertiv-liebert-intellislot-modbus-and-bacnet-protocols-reference-guide-sl-28170.pdf"
+  ],
+  [
+   "BACnet MS/TP",
+   "IS-UNITY-DP 카드",
+   "RS-485",
+   "vertiv-liebert-intellislot-modbus-and-bacnet-protocols-reference-guide-sl-28170.pdf"
+  ]
+ ],
+ "io": [],
+ "elec": null,
+ "points": [
+  {
+   "type": "AV",
+   "inst": 5,
+   "name": "Inlet Air Temperature",
+   "unitRaw": "deg C deg F",
+   "unit": null,
+   "note": "코드 bs01_1 bs01_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 6,
+   "name": "Return Humidity",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 bs02_1"
+  },
+  {
+   "type": "AV",
+   "inst": 7,
+   "name": "Cool/Heat Stages",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = None 1 = Stage 1 2 = Stage 2 · 코드 bs08_1"
+  },
+  {
+   "type": "AV",
+   "inst": 8,
+   "name": "Temperature Control Capacity",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "코드 bs09_1"
+  },
+  {
+   "type": "AV",
+   "inst": 9,
+   "name": "Return Air Temperature Set Point",
+   "unitRaw": "deg C deg F",
+   "unit": null,
+   "note": "코드 bs10_1 bs10_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 10,
+   "name": "Humidity Set Point",
+   "unitRaw": "% RH",
+   "unit": "percent",
+   "note": "코드 bs12_1"
+  },
+  {
+   "type": "AV",
+   "inst": 11,
+   "name": "Return Air Temperature Set Point",
+   "unitRaw": "deg C deg F",
+   "unit": null,
+   "note": "코드 bc02_1 bc02_1_deg_F"
+  },
+  {
+   "type": "AV",
+   "inst": 17,
+   "name": "Glyco Pump On",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = off 1 = on · 코드 bs07_1"
+  },
+  {
+   "type": "AV",
+   "inst": 22,
+   "name": "Air Temperature Proportional Band",
+   "unitRaw": "deg C",
+   "unit": "degC",
+   "note": "코드 bc25_1"
+  },
+  {
+   "type": "BV",
+   "inst": 1,
+   "name": "Internal Communications Failure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba21_1"
+  },
+  {
+   "type": "BV",
+   "inst": 2,
+   "name": "Compressor 1 High Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba22_1"
+  },
+  {
+   "type": "BV",
+   "inst": 3,
+   "name": "Compressor 2 High Pressure (Not in 1-5 ton unit)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba23_1"
+  },
+  {
+   "type": "BV",
+   "inst": 4,
+   "name": "Loss of Air Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba24_1"
+  },
+  {
+   "type": "BV",
+   "inst": 5,
+   "name": "Ext Standby Glycol Pump On",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba25_1"
+  },
+  {
+   "type": "BV",
+   "inst": 6,
+   "name": "Clogged Air Filter",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba26_1"
+  },
+  {
+   "type": "BV",
+   "inst": 7,
+   "name": "High Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba27_1"
+  },
+  {
+   "type": "BV",
+   "inst": 8,
+   "name": "Low Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba28_1"
+  },
+  {
+   "type": "BV",
+   "inst": 9,
+   "name": "High Return Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba29_1"
+  },
+  {
+   "type": "BV",
+   "inst": 10,
+   "name": "Low Return Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba30_1"
+  },
+  {
+   "type": "BV",
+   "inst": 11,
+   "name": "Humidifier Problem",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba31_1"
+  },
+  {
+   "type": "BV",
+   "inst": 12,
+   "name": "Smoke Detected",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba32_1"
+  },
+  {
+   "type": "BV",
+   "inst": 13,
+   "name": "Supply Chilled Water Loss of Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba33_1"
+  },
+  {
+   "type": "BV",
+   "inst": 14,
+   "name": "Ext Standby Unit On (Not in 1-5 ton unit)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba34_1"
+  },
+  {
+   "type": "BV",
+   "inst": 15,
+   "name": "Compressor Short Cycle",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba35_1"
+  },
+  {
+   "type": "BV",
+   "inst": 16,
+   "name": "Loss Of Power",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba36_1"
+  },
+  {
+   "type": "BV",
+   "inst": 17,
+   "name": "Custom Alarm #1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba37_1"
+  },
+  {
+   "type": "BV",
+   "inst": 18,
+   "name": "Custom Alarm #2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba38_1"
+  },
+  {
+   "type": "BV",
+   "inst": 19,
+   "name": "Custom Alarm #3 (Not in 1-5 ton unit)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba39_1"
+  },
+  {
+   "type": "BV",
+   "inst": 20,
+   "name": "Custom Alarm #4 (Not in 1-5 ton unit)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Active on Alarm · 코드 ba40_1"
+  }
+ ],
+ "crosscheck": {
+  "fam": "bacnet",
+  "segments": 1,
+  "table": 29,
+  "raw": 29,
+  "both": 28,
+  "same": 28,
+  "diff": [],
+  "rate": 1.0,
+  "verified": {
+   "AV-5": "Inlet Air Temperature",
+   "AV-6": "Return Humidity",
+   "AV-7": "Cool/Heat Stages",
+   "AV-8": "Temperature Control Capacity",
+   "AV-9": "Return Air Temperature Set Point",
+   "AV-10": "Humidity Set Point",
+   "AV-11": "Return Air Temperature Set Point",
+   "AV-22": "Air Temperature Proportional Band",
+   "BV-1": "Internal Communications Failure",
+   "BV-2": "Compressor 1 High Pressure",
+   "BV-3": "Compressor 2 High Pressure (Not in 1-5 ton unit)",
+   "BV-4": "Loss of Air Flow",
+   "BV-5": "Ext Standby Glycol Pump On",
+   "BV-6": "Clogged Air Filter",
+   "BV-7": "High Temperature",
+   "BV-8": "Low Temperature",
+   "BV-9": "High Return Humidity",
+   "BV-10": "Low Return Humidity",
+   "BV-11": "Humidifier Problem",
+   "BV-12": "Smoke Detected",
+   "BV-13": "Supply Chilled Water Loss of Flow",
+   "BV-14": "Ext Standby Unit On (Not in 1-5 ton unit)",
+   "BV-15": "Compressor Short Cycle",
+   "BV-16": "Loss Of Power",
+   "BV-17": "Custom Alarm #1",
+   "BV-18": "Custom Alarm #2",
+   "BV-19": "Custom Alarm #3 (Not in 1-5 ton unit)",
+   "BV-20": "Custom Alarm #4 (Not in 1-5 ton unit)"
+  }
+ },
+ "gap": "정격 사양(냉방능력·소비전력·풍량·냉매)은 이 문서에 없다 — 통신 레퍼런스라 오브젝트 목록만 싣는다. 제품별 기술자료가 따로 필요하다. 제어기는 IntelliSlot Unity 이고, 같은 제품이라도 제어기 세대가 다르면 인스턴스 번호가 달라진다.",
+ "extractor": "table"
+}

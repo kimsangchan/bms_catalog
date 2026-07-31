@@ -81,13 +81,19 @@ COL = {
            "objekt-id", "objektkennung", "object type"],
     # 'object nmae' 는 오타가 아니라 원문 그대로다 — Trane RTHD 문서가 그렇게 썼고,
     # 이걸 못 알아봐서 설명 열이 이름 자리로 들어와 81행이 오염됐다.
-    "name": ["object name", "object nmae", "point name", "diagnostic name",
-             "designation",
+    # 'data label' · 'data description' 이 'object name' 보다 **앞**이다.
+    # Vertiv/Liebert 는 사람이 읽는 이름을 이 칸에 두고 Object Name 에는
+    # '5598_1_2' 같은 내부 코드를 적는다. 순서를 바꾸면 이름 자리가 코드로 채워진다.
+    # 같은 문서 안에서도 표마다 'Data Label' 과 'Data Description' 이 섞여 나온다 —
+    # 정밀공조 CW 계열은 표 115개 중 34개가 후자라, 이걸 빼먹으면 그만큼이 코드가 됐다.
+    "name": ["data label", "data description", "object name", "object nmae",
+             "point name", "diagnostic name", "designation",
              "objektname", "nom de l'objet", "nombre del objeto"],
     "unit": ["unit", "units", "einheit", "unité", "unidad"],
     "desc": ["description", "beschreibung", "descripción"],
     "range": ["valid range", "range", "bereich"],
-    "rw": ["read/write", "read", "r/w", "zugriff"],
+    "rw": ["read/write", "read", "r/w", "access", "zugriff"],
+    "notes": ["notes", "note", "bemerkung"],
     "dep": ["configuration", "dependency", "abhängigkeit"],
     "states": ["object states", "states", "zustände"],
     # 'register' 단독도 받는다 — Danfoss Modbus 모듈 문서가 이렇게 쓴다.
@@ -150,13 +156,35 @@ def sect_at(caps, page, y):
     return best
 
 
-def extract_tables(pdf, default_type=None):
-    """표 인식 추출. 오브젝트 ID 열이 'AI-10101' 형태든 '1' 형태든 처리."""
+def _header_row(data, look=3):
+    """머리글이 몇 번째 행인가. 못 찾으면 None.
+
+    벤더가 표 위에 배너 행('Controller | Liebert iCOM v4')을 얹어 두면 첫 행에는
+    열 이름이 없다. 앞 몇 행만 본다 — 더 내려가면 자료 행을 머리글로 착각한다.
+    """
+    for i in range(min(look, len(data) - 1)):
+        hdr = [_c(c).lower() for c in data[i]]
+        idx = _mk_idx(hdr)
+        has_id = (idx(*COL["id"]) >= 0 or idx(*COL["modbus"]) >= 0
+                  or (idx(*COL["objtype"]) >= 0 and idx(*COL["instance"]) >= 0))
+        if has_id and idx(*COL["name"]) >= 0:
+            return i
+    return 0 if len(data) > 1 else None
+
+
+def extract_tables(pdf, default_type=None, pages=None):
+    """표 인식 추출. 오브젝트 ID 열이 'AI-10101' 형태든 '1' 형태든 처리.
+
+    pages=(시작, 끝) 은 **0부터 세는 반열린 구간**이다. 한 문서에 제품 수십 개가
+    들어 있는 통합 레퍼런스(Vertiv IntelliSlot 1,748쪽)에서 제품 하나만 뽑을 때 쓴다.
+    통째로 훑으면 느리고, 제품끼리 인스턴스 번호가 겹쳐 서로를 덮는다.
+    """
     import fitz
     doc = fitz.open(pdf)
     caps = captions(pdf)
+    rng = range(*pages) if pages else range(doc.page_count)
     rows = []
-    for pg in doc:
+    for pg in (doc[i] for i in rng):
         try:
             tabs = pg.find_tables()
         except Exception:
@@ -165,7 +193,13 @@ def extract_tables(pdf, default_type=None):
             data = t.extract()
             if len(data) < 2:
                 continue
-            hdr = [_c(c).lower() for c in data[0]]
+            # 머리글이 첫 행이 아닐 수 있다. Vertiv/Liebert 는 표마다 위에
+            # 'Controller | Liebert iCOM v4' 배너 행을 하나 얹어 두는데, 첫 행만
+            # 보다가 정밀공조 최대 계열(CW·CWA·DSE·PDX/PCW)을 통째로 놓쳤다.
+            h0 = _header_row(data)
+            if h0 is None:
+                continue
+            hdr = [_c(c).lower() for c in data[h0]]
             idx = _mk_idx(hdr)
             i_id = idx(*COL["id"])
             # 진단 알람도 BACnet 오브젝트다 — Ascend 문서는 이름 열을 'Diagnostic Name'
@@ -186,13 +220,23 @@ def extract_tables(pdf, default_type=None):
             if (i_id < 0 and not split_mode) or i_nm < 0:
                 continue
             i_ds, i_un = idx(*COL["desc"]), idx(*COL["unit"])
+            # 'Data Description' 을 이름으로 쓴 표에서는 설명 열이 이름 열과 같은 칸을
+            # 가리킨다. 그대로 두면 비고가 이름을 한 번 더 되뇐다.
+            if i_ds == i_nm:
+                i_ds = -1
             i_rg, i_rw = idx(*COL["range"]), idx(*COL["rw"])
             i_dp, i_st = idx(*COL["dep"]), idx(*COL["states"])
+            # 단위를 제 열에 두지 않고 비고에 'Units: deg C' 로 적는 문서가 있다
+            # (Vertiv/Liebert). 비고 열을 안 읽으면 온도 포인트가 전부 단위 미상이 된다.
+            i_nt = idx(*COL["notes"])
+            # 이름 열이 'Data Label' 인 문서에서 'Object Name' 은 벤더 내부 코드다.
+            # 버리지 않고 비고에 남긴다 — 현장에서 이 코드로 조회한다.
+            i_on = idx("object name")
             i_ra = idx("register\naddres", "register address", "address")
             i_rt = idx("register\ntype", "register type")
             i_rd = idx("relinquish")
             # 이 표가 다루는 오브젝트 타입 (섹션 제목에서 온 기본값)
-            for r in data[1:]:
+            for r in data[h0 + 1:]:
                 if not r or len(r) <= max(i_id, i_nm, i_ty, i_in):
                     continue
                 split = None
@@ -230,6 +274,15 @@ def extract_tables(pdf, default_type=None):
                     note.append("Modbus %s %s" % (_c(r[i_rt]) if 0 <= i_rt < len(r) else "reg",
                                                   _c(r[i_ra])))
                 u = _c(r[i_un]) if 0 <= i_un < len(r) else ""
+                if 0 <= i_nt < len(r) and _c(r[i_nt]):
+                    nt = _c(r[i_nt])
+                    mu = re.match(r"units?\s*[:=]\s*(.+?)\s*$", nt, re.I)
+                    if mu and not u:
+                        u = mu.group(1)
+                    else:
+                        note.append(nt)
+                if 0 <= i_on < len(r) and i_on != i_nm and _c(r[i_on]):
+                    note.append("코드 " + _c(r[i_on]))
                 rows.append({"type": S.canon_type(typ), "inst": inst,
                              "name": name, "unitRaw": UNIT_HINT.get(u, u or None),
                              "unit": S.canon_unit(UNIT_HINT.get(u, u)),
