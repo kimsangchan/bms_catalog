@@ -114,6 +114,9 @@ main{min-width:0;display:flex;flex-direction:column}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{min-width:max-content}
 table{width:100%;border-collapse:collapse;font-size:12.3px}
+.tw.compact table{min-width:980px;table-layout:fixed}
+.tw.compact th,.tw.compact td{white-space:normal;overflow-wrap:anywhere;line-height:1.45}
+.tw.compact td.n{white-space:normal}
 th{position:sticky;top:45px;background:var(--bg);text-align:left;padding:7px 10px;
  font-size:10.5px;font-weight:700;letter-spacing:.04em;color:var(--faint);
  border-bottom:1px solid var(--line);white-space:nowrap;z-index:2}
@@ -140,6 +143,15 @@ td.n{color:var(--dim);white-space:nowrap;font-size:11.5px}
 .slist button{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;
  border:1px solid var(--line);border-radius:6px;font-size:11.5px}
 .slist button[aria-pressed="true"]{background:var(--sel);border-color:var(--accent);font-weight:650}
+.slist button{white-space:normal;text-align:left;line-height:1.35;max-width:360px}
+.sgroups{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;
+ padding:0 18px 10px}
+.sgroup{border-top:1px solid var(--line2);padding-top:8px}
+.sgroup h4{font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--faint);margin-bottom:6px}
+.sgroup .slist{padding:0;max-height:none}
+.slist .stxt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.slist .stxt b{font-size:11.8px;font-weight:650;overflow-wrap:anywhere}
+.slist .stxt i{font-style:normal;font-size:10.5px;color:var(--faint);overflow-wrap:anywhere}
 /* 표의 성격을 먼저 고른다 — 정격/성능/치수는 쓰임이 다르다 */
 .klist{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:2px 18px 9px}
 .klist button{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
@@ -238,6 +250,43 @@ nav .sm{color:var(--accent)}
 .msg b{display:block;font-size:13.5px;margin-bottom:4px}
 .msg p{font-size:12.3px;color:var(--dim)}
 .msg .nx{margin-top:8px;font-size:12px;color:var(--warn)}
+.purpose{border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);
+ margin:10px 0 4px;padding:12px 18px;background:var(--panel)}
+.purpose h3{font-size:13px;font-weight:650;margin-bottom:4px}
+.purpose p{font-size:12px;color:var(--dim);max-width:86ch}
+.pstat{display:flex;gap:14px;flex-wrap:wrap;margin-top:9px;font-size:11.5px;color:var(--dim)}
+.pstat b{font-family:var(--mono);color:var(--ink)}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;
+ padding:8px 18px 4px}
+.mini h4{font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--faint);margin-bottom:6px}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:1px 6px;border-radius:4px;
+ font-size:10.5px;font-weight:700;letter-spacing:.03em}
+.pill.y{background:var(--accent-bg);color:var(--accent)}
+.pill.c{background:var(--sel);color:var(--dim)}
+.pill.n{background:var(--warn-bg);color:var(--warn)}
+.guide{margin:0 18px 10px;padding:10px 12px;border-left:3px solid var(--accent);
+ background:var(--panel)}
+.guide b{display:block;font-size:12.5px;margin-bottom:3px}
+.guide p{font-size:12px;color:var(--dim);max-width:92ch}
+.guide .why{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.guide .why span{font-size:10.5px;padding:2px 7px;border-radius:4px;background:var(--sel);color:var(--dim)}
+.mtabs{display:flex;gap:2px;padding:10px 18px 0;border-bottom:1px solid var(--line2)}
+.mtabs button{padding:7px 10px;font-size:12px;color:var(--dim);border-bottom:2px solid transparent;margin-bottom:-1px}
+.mtabs button[aria-selected="true"]{color:var(--ink);font-weight:650;border-bottom-color:var(--accent)}
+.mtabs i{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-left:4px}
+.unitpick{padding:0 18px 8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px}
+.ucard{border:1px solid var(--line);border-radius:6px;padding:8px 10px;text-align:left;background:var(--bg)}
+.ucard:hover{border-color:var(--accent)}
+.ucard[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-bg)}
+.ucard b{display:block;font-size:12px;margin-bottom:2px}
+.ucard span{display:block;font-size:11px;color:var(--dim);line-height:1.35}
+.udetail{margin:0 18px 12px;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);
+ padding:10px 0}
+.udetail h4{font-size:13px;font-weight:650;margin-bottom:8px}
+.uvals{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;background:var(--line2)}
+.uval{background:var(--bg);padding:8px 10px;min-height:58px}
+.uval .k{font-size:10.5px;color:var(--faint);font-weight:700;letter-spacing:.04em}
+.uval .v{font-family:var(--mono);font-size:13px;font-weight:650;margin-top:2px;overflow-wrap:anywhere}
 
 /* 홈 */
 .home{padding:20px 18px 60px;max-width:960px}
@@ -288,18 +337,20 @@ nav .sm{color:var(--accent)}
 "use strict";
 var D = JSON.parse(document.getElementById('data').textContent);
 var nav = document.getElementById('nav'), main = document.getElementById('main'), q = document.getElementById('q');
-var cur = 'home', tab = 'pt', mi = 0, kindF = '', gradeF = '', term = '';
+var cur = 'home', tab = 'md', mi = 0, kindF = '', gradeF = '', term = '';
 var vsel = 0;   // 고른 형번 (variants) — 모델을 바꾸면 0 으로 되돌린다
 var ssel = 0;   // 고른 사양 표
-var ksel = 'rating';  // 고른 표 성격 — 모델을 바꾸면 정격으로 되돌린다
-// 표의 성격. 정격이 먼저다 — 시뮬레이터가 바로 쓰는 값이 거기 있다.
+var usel = {};  // 모델 ID → 고른 Unit Model Number 후보
+var mview = 'unit'; // 모델 상세 안의 작업 탭
+var ksel = 'rating';  // 고른 표 성격 — 모델을 바꾸면 모델별 기본 정격표로 되돌린다
+// 표의 성격. rating은 사용자가 바로 입력하는 값이 아니라 모델별 정격값을 찾는 원문표다.
 var KIND_ORDER = ['rating','perf','dim','etc'];
-var KIND_KO = {rating:'정격', perf:'성능표', dim:'치수·중량', etc:'기타'};
+var KIND_KO = {rating:'모델별 기본 정격표', perf:'조건별 성능표', dim:'치수·중량', etc:'부속·참고'};
 var KIND_HINT = {
-  rating:'이 제품이 늘 갖는 값 — 전압·전류·능력·효율',
+  rating:'선택한 Unit Model Number와 같은 행/열만 보면 됩니다',
   perf:'조건을 넣고 찾아보는 표 — 온도별 능력, 풍량×정압별 축동력',
   dim:'설치용 치수와 중량 — 계산에는 쓰지 않아요',
-  etc:'위 셋에 넣기 어려운 표'
+  etc:'부속 호환, 배선, 선정 참고표 — 기본 화면에서는 접어 둬요'
 };
 var searchAll_on = false;   // 전체 검색 화면인가
 
@@ -333,11 +384,14 @@ function buildNav(){
   });
   nav.innerHTML = h;
   nav.querySelectorAll('button').forEach(function(b){
-    b.addEventListener('click',function(){ cur=b.dataset.id; tab='pt'; mi=0; vsel=0; ssel=0; pageOf={}; kindF=''; gradeF=''; render(); });
+    b.addEventListener('click',function(){ cur=b.dataset.id; tab=defaultTab(cur); mi=0; vsel=0; ssel=0; mview='unit'; pageOf={}; kindF=''; gradeF=''; render(); });
   });
 }
 function markNav(){ nav.querySelectorAll('button').forEach(function(b){
   b.setAttribute('aria-current', b.dataset.id===cur ? 'true':'false'); }); }
+function defaultTab(eid){
+  return (D.models[eid]||[]).length ? 'md' : 'pt';
+}
 
 // ── 표
 // 표가 길면 나눠 그린다. 1,537행짜리 오브젝트 목록을 한 번에 그리면
@@ -399,7 +453,8 @@ function table(t, opts){
     rowsAll.sort(function(x,y){ return cmpCell(x[so.col], y[so.col]) * so.dir; });
     rows = (!opts.nopage && total > PAGE) ? rowsAll.slice(page*PAGE,(page+1)*PAGE) : rowsAll;
   }
-  var h = ctrl + '<div class="tw"><table data-tk="'+esc(key)+'"><thead><tr>';
+  var cls = opts.compact ? 'tw compact' : 'tw';
+  var h = ctrl + '<div class="'+cls+'"><table data-tk="'+esc(key)+'"><thead><tr>';
   t.header.forEach(function(c,i){
     var mark = so && so.col===i ? (so.dir>0?' ▲':' ▼') : '';
     // raw 표는 머리글에도 미리 만든 조각(배지)이 들어온다 — 이스케이프하면 글자로 샌다
@@ -529,9 +584,9 @@ function renderHome(){
    + '</div>'
    + '<h1 style="margin-top:28px;font-size:16px">포인트 수가 층마다 달라요</h1>'
    + '<div class="rows">'
-   + row('공통','장비 종류의 최소 공통','모델이 무엇이든 항상 있는 포인트예요. 왼쪽에서 장비를 고르면 이게 나와요.','계열당 10~35')
-   + row('부속 포함','부속까지 펼친 것','공조기 1대 = 급기팬 + 환기팬 + 코일 + 댐퍼 4개 + 필터 + 인버터 2대예요.','1대당 30~120')
-   + row('모델','그 모델이 내보내는 전부','제조사 문서가 있어야 채워져요. <b>냉동기 원심 기종은 217점</b>이에요.','모델당 30~300')
+   + row('L2','장비 종류의 기본 화면','모델이 무엇이든 항상 있는 포인트예요. 공조기라면 급기온도, 밸브 개도, 팬 지령 같은 관제용 목록이에요.','계열당 10~35')
+   + row('L2.5','부속까지 펼친 화면','공조기 1대 = 급기팬 + 환기팬 + 코일 + 댐퍼 4개 + 필터 + 인버터 2대예요. 부속 수만큼 포인트가 늘어요.','1대당 30~120')
+   + row('L3','제조사 원문 전체','통신 문서가 내보내는 전체 오브젝트예요. 매핑·시운전에는 필요하지만 운영자 화면에 전부 올리지는 않아요.','모델당 30~300')
    + '</div>'
    + '<p class="lead" style="margin-top:18px">왼쪽에서 장비를 고르고, 위쪽 <b>모델</b> 탭을 누르면 실제 오브젝트 목록을 볼 수 있어요.</p>'
    + '</div>';
@@ -543,10 +598,11 @@ function row(k,t,d,r){
 
 function renderEquip(e){
   var models = D.models[e.id]||[], l3 = D.l3[e.id];
+  if(tab==='md' && !models.length) tab = 'pt';
   var h = '<div class="hd"><div class="dom">'+esc(e.domain)+'</div><h1>'+esc(e.title)+'</h1>'
         + '<div class="tag">'+fmt(e.head)+'</div></div>';
   h += '<div class="tabs">'
-     + tb('pt','포인트',e.np) + tb('sp','사양',e.ns) + tb('md','모델',models.length) + '</div>';
+     + tb('md','모델',models.length) + tb('pt','포인트',e.np) + tb('sp','사양',e.ns) + '</div>';
   if(tab==='pt'){
     h += kindChips(e.points);
     h += '<div class="wrap">' + e.points.map(function(t){return table(t);}).join('');
@@ -592,7 +648,7 @@ function renderModels(models, l3){
       var th = x.photo ? '<img class="mth" src="'+x.photo+'" alt="">' : '';
       return '<button data-mi="'+i+'" aria-pressed="'+(i===mi)+'">'+th+esc(lbl)+tail
            + (n ? '<span class="mn">'+n+'</span>' : '')
-           + (sn ? '<span class="ms">사양 '+sn+'</span>' : '') + '</button>';
+           + (sn ? '<span class="ms">원문표 '+sn+'</span>' : '') + '</button>';
     }).join('') + '</div>';
   }
   // 형번을 골랐으면 그 형번 사진을, 아니면 제품군 사진을 보여 준다.
@@ -605,10 +661,16 @@ function renderModels(models, l3){
      + '<p>'+fmt(m.summary)+'</p>'
      + (psrc ? '<div class="psrc">사진 출처 '+esc(psrc)+'</div>' : '')
      + '</div></div>';
-  h += '<div class="meta"><span>모델 <code>'+esc(m.model)+'</code></span>'
+  h += '<div class="meta"><span>프로파일 <code>'+esc(m.model)+'</code></span>'
      + '<span>분류 <code>'+esc(m.cat)+'</code></span><span>태그 <code>'+esc(m.tag)+'</code></span>'
      + '<span>사양값 '+badge(m.has.spec)+'</span><span>오브젝트 목록 '+badge(m.has.points)+'</span></div>';
   h += '<div class="wrap">';
+  if(isAhuModel(m)){
+    h += renderAhuPurposeWorkspace(m);
+    h += '</div>';
+    if(m.gap) h += '<div class="msg"><b>아직 못 채운 것</b><p>'+fmt(m.gap)+'</p></div>';
+    return h;
+  }
   // 정격 사양은 형번별(variants)과 같은 사양 시트로 그린다 — 한글 이름·설명·
   // 시뮬레이터 중요도가 용어 사전에서 붙는다. 전에는 원문 영문 그대로 나열됐다.
   if(m.spec.length){
@@ -697,13 +759,18 @@ function renderModels(models, l3){
     // 정작 필요한 전기 데이터 표를 한참 찾아야 한다
     sts.sort(function(a,b){ return summarizeMatrix(b).length - summarizeMatrix(a).length; });
     var si = Math.min(ssel, sts.length-1), t = sts[si];
-    h += sec('사양 표', (m.specTables||[]).length)
+    if(isAhuModel(m)){
+      h += '<details class="more rawspec"><summary>제조사 원문표 상세 '
+        + (m.specTables||[]).length + '개 <i>(확정 기본값이 아니라 근거 확인용 후보표예요)</i></summary>';
+    }
+    h += sec('제조사 원문표', (m.specTables||[]).length)
        + '<div class="klist">' + kinds.map(function(k){
            var n = (m.specTables||[]).filter(function(x){ return (x.kind||'etc')===k; }).length;
            return '<button data-kk="'+k+'" aria-pressed="'+(k===kk)+'">'
-                + esc(KIND_KO[k]) + '<span class="mn">' + n + '</span></button>';
+                + esc(KIND_KO[k]) + '<span class="mn">' + n + '개</span></button>';
          }).join('')
        + '<span class="khint">' + esc(KIND_HINT[kk]||'') + '</span></div>'
+       + specKindGuide(kk)
        + '<div class="slist">' + sts.map(function(x,i){
            var qq = (x.quantities||[]).filter(Boolean);
            var lbl = (x.title||'표 '+(i+1)).replace(/^Table\s*\d+\.\s*/,'');
@@ -711,14 +778,14 @@ function renderModels(models, l3){
            if(sts.filter(function(z){return (z.title||'')===(x.title||'');}).length>1)
              lbl += ' (p'+x.page+')';
            return '<button data-si="'+i+'" aria-pressed="'+(i===si)+'">'
-                + esc(lbl.slice(0,34))
-                + '<span class="mn">'+x.rows.length+'</span>'
-                + (qq.length?'<span class="ms">'+esc(QLABEL[qq[0]]||qq[0])+'</span>':'')
+                + esc(lbl)
+                + (qq.length?'<span class="ms">포함값: '+esc(QLABEL[qq[0]]||qq[0])+'</span>':'')
                 + '</button>';
          }).join('') + '</div>';
     var uq = [];
     (t.quantities||[]).forEach(function(x){ if(x && uq.indexOf(x)<0) uq.push(x); });
-    h += '<div class="qrow">'
+    h += rawSpecGuide(t, kk)
+       + '<div class="qrow">'
        + (t.orientation==='row' ? '<span class="qtag alt">행=항목 · 열=형번</span>' : '')
        + uq.map(function(x){ return '<span class="qtag">'+esc(QLABEL[x]||x)+'</span>'; }).join('')
        + '<span class="qsrc">' + esc(t.source||'') + ' p'+t.page+'</span>'
@@ -742,7 +809,7 @@ function renderModels(models, l3){
                 }, []),
                 KIND_KO[kk]+' 전체 CSV')
        + '</div>'
-       + matrixTiles(t)
+       + (isAhuModel(m) ? '' : matrixTiles(t))
        + table({header:t.orientation==='row' ? t.header : t.header.map(function(hh){
                   var tt = termOf(hh);
                   return tt ? '<span class="lbl '+simCls(tt.sim)+'"'+tipAttr(tt)+'>'
@@ -755,6 +822,7 @@ function renderModels(models, l3){
                                    : esc(r[0])].concat(r.slice(1).map(esc));
                       }) : t.rows.map(function(r){ return r.map(esc); })),
                 key:'st'+si+(t.source||''), raw:true});
+    if(isAhuModel(m)) h += '</details>';
   }
   if(m.points.length){
     var pts = m.points.filter(function(p){return p.inst;});
@@ -767,8 +835,8 @@ function renderModels(models, l3){
     });
     // 매핑 자동화에 실제로 쓰이는 건 이 표다 — 뽑아 갈 수 있어야 한다.
     // 화면 표기(unitDisp)가 아니라 원문 단위와 정규 단위를 함께 넣는다.
-    h += sec('오브젝트 목록 — BMS에 이대로 만들어져요', pts.length)
-       + '<div class="qrow"><span class="qsrc">인스턴스 번호까지 문서에 확정된 목록</span>'
+    h += sec('제조사 원문 오브젝트 목록', pts.length)
+       + '<div class="qrow"><span class="qsrc">인스턴스 번호까지 문서에 확정된 L3 전체 목록</span>'
        + csvBtn('pt'+m.id, safeName(m.vendor+'_'+m.model)+'_오브젝트목록.csv',
                 ['type','instance','name','unit','unitRaw','note'],
                 m.points.map(function(p){
@@ -796,6 +864,576 @@ function commonPrefix(a){
     if(!p) return '';
   }
   return p;
+}
+
+function isAhuModel(m){
+  return m.equipId === 'e5' || /HVAC\.AIR\.(AHU|RTU)/i.test(m.cat||'')
+      || /\b(ahu|rtu|rooftop)\b/i.test(m.tag||'');
+}
+
+// 공조기 운영 화면은 L3 원문 전체가 아니라 L2 기본 화면에서 시작한다.
+// 아래 규칙은 "화면 후보를 먼저 보여 주는" 얇은 계층이고, 원문 목록은 그대로 보존한다.
+// 다른 설비는 VIEW_PROFILES에 패턴을 추가해서 같은 방식으로 확장한다.
+var VIEW_PROFILES = {
+  ahu: [
+    ['급기온도', /(?:supply|discharge).*air.*temp|discharge.*temp/i],
+    ['환기온도', /return.*air.*temp/i],
+    ['외기온도', /outdoor|outside.*air.*temp/i],
+    ['급기정압', /(?:supply|discharge).*static.*pressure|duct.*static/i],
+    ['급기온도 설정값', /(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint/i],
+    ['급기정압 설정값', /static.*pressure.*setpoint/i],
+    ['팬 지령/상태', /fan.*(?:command|status|speed|frequency)|(?:supply|return).*fan/i],
+    ['외기댐퍼', /outdoor.*air.*damper|outside.*air.*damper/i],
+    ['냉수·냉방 밸브/능력', /cool(?:ing)?|chilled.*water|cooling.*capacity/i],
+    ['온수·난방 밸브/능력', /heat(?:ing)?|hot.*water/i],
+    ['필터/차압', /filter|differential.*pressure/i],
+    ['경보/고장', /alarm|fault|emergency|freeze|lockout/i]
+  ]
+};
+
+function renderAhuPurposeWorkspace(m){
+  var p = (D.purpose||{})[m.id];
+  if(!p) return renderAhuOperatorView(m);
+  var views = availableModelViews(m, p);
+  if(!views.some(function(x){return x.id===mview;})) mview = views[0].id;
+  var h = '<div class="purpose"><h3>이 모델 문서를 이렇게 쓰면 돼요</h3>'
+    + '<p>먼저 <b>Unit Model Number</b>를 고릅니다. '
+    + '이 화면의 모델명은 물리 장비 1대가 아니라 통신 프로파일/제품군 문서인 경우가 많습니다. '
+    + '원문표는 선택한 형번 값이 PDF 어디에서 왔는지 확인할 때만 봅니다.</p>'
+    + '<div class="pstat"><span>Unit Model Number <b>'+((p.unitModels||[]).length||0)+'</b>개</span>'
+    + '<span>제조사 원문 포인트 <b>'+((p.counts||{}).l3MappingPoints||0)+'</b>개 보존</span>'
+    + '<span>원문표 <b>'+((m.specTables||[]).length||0)+'</b>개</span></div></div>';
+  h += '<div class="mtabs">' + views.map(function(v){
+      return '<button data-mview="'+v.id+'" aria-selected="'+(mview===v.id)+'">'
+        + esc(v.label) + '<i>'+v.count+'</i></button>';
+    }).join('') + '</div>';
+  return h + renderModelViewPanel(m, p);
+}
+
+function availableModelViews(m, p){
+  var views = [];
+  if((p.unitModels||[]).length) views.push({id:'unit', label:'형번·정격', count:p.unitModels.length});
+  views.push({id:'points', label:'오브젝트 목록', count:(m.points||[]).length});
+  if((m.specTables||[]).length) views.push({id:'raw', label:'원문표', count:(m.specTables||[]).length});
+  if((m.docs||[]).length) views.push({id:'docs', label:'근거', count:(m.docs||[]).length});
+  return views;
+}
+
+function renderModelViewPanel(m, p){
+  if(mview === 'unit') return renderAhuUnitModelCandidates(m);
+  if(mview === 'bms') return renderBmsTemplatePanel(m, p);
+  if(mview === 'sim') return renderSimulatorInputPanel(m, p);
+  if(mview === 'points') return renderObjectPointPanel(m);
+  if(mview === 'raw') return renderRawSpecPanel(m);
+  if(mview === 'docs') return renderDocsPanel(m);
+  return '';
+}
+
+function renderBmsTemplatePanel(m, p){
+  var tm = p.templatePointMappings || [];
+  return sec('BMS 기본화면', tm.length)
+    + '<div class="guide"><b>운영 화면에 먼저 올릴 포인트예요</b>'
+    + '<p>장비별 템플릿 데이터에서 온 항목입니다. 화면 코드가 목록을 정하는 것이 아니라 데이터셋의 <code>templatePointMappings</code>를 그대로 보여줍니다.</p></div>'
+    + table({header:['상태','화면 이름','원문 포인트','종류','단위'],
+             rows:tm.map(function(x){
+               var mp = x.matchedPoint || {};
+               return [statusPill(x.status), esc(x.templateName),
+                       mp.name ? esc(mp.name) : '—', mp.type || x.objectType || '—',
+                       esc(mp.unit || x.unit || '—')];
+             }), key:'ahu-purpose-template'+m.id, raw:true, nopage:true});
+}
+
+function renderSimulatorInputPanel(m, p){
+  var sm = p.simulatorRequirementMappings || [];
+  return sec('시뮬레이터 입력', sm.length)
+    + '<div class="guide"><b>계산에 필요한 정격 항목이에요</b>'
+    + '<p>장비별 사양 요구사항 데이터에서 온 항목입니다. <b>후보</b>는 제품군 원문표에서 찾은 값이라 Unit Model Number·전원·옵션을 골라야 확정됩니다.</p></div>'
+    + table({header:['상태','필요 정격','찾은 값','단위'],
+             rows:sm.map(function(x){
+               var mi = (x.matchedInputs || [])[0] || {};
+               var label = mi.label ? mi.label + ' · ' : '';
+               var note = x.status === 'candidate' ? '<br><span class="tdesc">형번·전원·옵션을 더 골라야 확정</span>' : '';
+               return [statusPill(x.status), esc(x.requirementName),
+                       mi.name ? esc(label + mi.name + ' = ' + (mi.value || '')) + note : '—',
+                       esc(mi.unit || x.unit || '—')];
+             }), key:'ahu-purpose-sim'+m.id, raw:true, nopage:true});
+}
+
+function renderObjectPointPanel(m){
+  var pts = (m.points||[]).filter(function(p){return p.inst;});
+  var hasNote = (m.points||[]).some(function(p){return p.note;});
+  var head = hasNote ? ['인스턴스','종류','단위','오브젝트명','값 범위 · 상태']
+                     : ['인스턴스','종류','단위','오브젝트명'];
+  var rows = (m.points||[]).map(function(p){
+    return hasNote ? [p.inst||'', p.type, p.unitDisp, p.name, p.note||'']
+                   : [p.inst, p.type, p.unitDisp, p.name];
+  });
+  return sec('제조사 원문 오브젝트 목록', pts.length)
+    + '<div class="guide"><b>L3 전체 포인트예요</b>'
+    + '<p>BMS 자동 매핑과 시운전에 필요한 제조사 원문 오브젝트 목록입니다. 운영 화면에 전부 올리는 목록이 아니라, 상세 매핑의 원천입니다.</p></div>'
+    + '<div class="qrow"><span class="qsrc">인스턴스 번호까지 문서에 확정된 L3 전체 목록</span>'
+    + csvBtn('pt'+m.id, safeName(m.vendor+'_'+m.model)+'_오브젝트목록.csv',
+             ['type','instance','name','unit','unitRaw','note'],
+             (m.points||[]).map(function(p){
+               return [p.type, p.inst||'', p.name, p.unit||'', p.unitRaw||'', p.note||'']; }),
+             '오브젝트 목록 CSV')
+    + '</div>'
+    + kindChips([{header:head, rows:rows}])
+    + table({header:head, rows:rows});
+}
+
+function renderDocsPanel(m){
+  return sec('근거 문서', (m.docs||[]).length)
+    + table({header:['종류','제목','발행자','문서번호','발행','경로','상태'],
+             rows:(m.docs||[]).map(function(d){
+               return [d[0],d[1],d[2],d[3],d[4],'['+'열기'+']('+d[5]+')',d[6]];})});
+}
+
+function renderRawSpecPanel(m){
+  var sts = (m.specTables || []).slice();
+  if(!sts.length) return '<div class="msg"><b>원문표가 없어요</b><p>이 모델 문서에서는 사양 표를 찾지 못했어요.</p></div>';
+  sts.forEach(function(x,i){ x._i = i; });
+  var purpose = (D.purpose||{})[m.id] || {};
+  var units = purpose.unitModels || [];
+  var selectedUnit = units.length ? units[Math.min(usel[m.id] || 0, units.length-1)] : null;
+  var kinds = KIND_ORDER.filter(function(k){
+    return sts.some(function(x){ return (x.kind||'etc')===k; });
+  });
+  var kk = kinds.indexOf(ksel) >= 0 ? ksel : kinds[0];
+  sts = sts.filter(function(x){ return (x.kind||'etc')===kk; });
+  sts.sort(function(a,b){
+    return rawTableRelevance(b, selectedUnit) - rawTableRelevance(a, selectedUnit)
+        || summarizeMatrix(b).length - summarizeMatrix(a).length;
+  });
+  var si = Math.min(ssel, sts.length-1), t = sts[si];
+  var h = sec('원문표', (m.specTables||[]).length)
+    + rawBlindSpotGuide(selectedUnit)
+    + '<div class="klist">' + kinds.map(function(k){
+        var n = (m.specTables||[]).filter(function(x){ return (x.kind||'etc')===k; }).length;
+        return '<button data-kk="'+k+'" aria-pressed="'+(k===kk)+'">'
+          + esc(KIND_KO[k]) + '<span class="mn">' + n + '개</span></button>';
+      }).join('')
+    + '<span class="khint">' + esc(KIND_HINT[kk]||'') + '</span></div>'
+    + specKindGuide(kk)
+    + rawTableList(sts, si, selectedUnit);
+  var uq = [];
+  (t.quantities||[]).forEach(function(x){ if(x && uq.indexOf(x)<0) uq.push(x); });
+  h += rawSpecGuide(t, kk)
+    + '<div class="qrow">'
+    + (t.orientation==='row' ? '<span class="qtag alt">행=항목 · 열=형번</span>' : '')
+    + uq.map(function(x){ return '<span class="qtag">'+esc(QLABEL[x]||x)+'</span>'; }).join('')
+    + '<span class="qsrc">' + esc(t.source||'') + ' p'+t.page+'</span>'
+    + csvBtn('st'+m.id+t._i, safeName(m.model+'_'+(t.title||'표')+'_p'+t.page)+'.csv',
+             t.header, t.rows, '이 표 CSV')
+    + csvBtn('stall'+m.id+kk, safeName(m.model+'_'+KIND_KO[kk])+'_전체.csv',
+             ['표','쪽','근거','행','열','값'],
+             sts.reduce(function(acc,x){
+               x.rows.forEach(function(r, ri){
+                 r.forEach(function(v, ci){
+                   if(v===''||v===null||v===undefined) return;
+                   acc.push([x.title||'', x.page, x.source||'', ri+1,
+                             x.header[ci]||('열'+(ci+1)), v]);
+                 });
+               });
+               return acc;
+             }, []),
+             KIND_KO[kk]+' 전체 CSV')
+    + '</div>'
+    + table({header:t.orientation==='row' ? t.header : t.header.map(function(hh){
+             var tt = termOf(hh);
+             return tt ? '<span class="lbl '+simCls(tt.sim)+'"'+tipAttr(tt)+'>'
+                         + esc(hh)+'</span>' : esc(hh);
+           }),
+           rows:(t.orientation==='row' ? t.rows.map(function(r){
+             var tt = termOf(r[0]);
+             return [tt ? '<span class="lbl '+simCls(tt.sim)+'"'+tipAttr(tt)+'>'
+                          + esc(tt.ko)+'<i>'+esc(r[0])+'</i></span>'
+                        : esc(r[0])].concat(r.slice(1).map(esc));
+           }) : t.rows.map(function(r){ return r.map(esc); })),
+           key:'st'+si+(t.source||''), raw:true});
+  return h;
+}
+
+function renderAhuUnitModelCandidates(m){
+  var purpose = (D.purpose||{})[m.id] || {};
+  var rows = purpose.unitModels || extractAhuUnitModels(m);
+  if(!rows.length) return '';
+  var idx = Math.min(usel[m.id] || 0, rows.length-1);
+  var curUnit = rows[idx];
+  return sec('Unit Model Number별 정격 후보', rows.length)
+    + '<div class="guide"><b>여기서 실제 장비 형번을 골라야 해요</b>'
+    + '<p>제품군 문서에는 여러 형번의 값이 한꺼번에 들어 있습니다. 실제 현장 장비가 아래 형번 중 무엇인지 정해지면 그 형번의 풍량·냉방능력·조합 공조기를 한 줄로 좁힐 수 있습니다. 전압은 별도 전기 특성표에서 전원 코드와 함께 다시 확정해야 합니다.</p></div>'
+    + '<div class="unitpick">' + rows.map(function(r,i){
+        return '<button class="ucard" data-ui="'+i+'" aria-pressed="'+(i===idx)+'">'
+          + '<b>'+esc(unitCode(r))+'</b>'
+          + '<span>'+esc(unitRoleLabel(r))+' · '+esc(unitCapacity(r))+' · 풍량 '+esc(unitAirflow(r)||'—')+'</span>'
+          + '<span>'+esc(unitCardMetric(r))+'</span></button>';
+      }).join('') + '</div>'
+    + renderAhuUnitDetail(curUnit, purpose.electricalRows || [])
+    + sec('전체 Unit Model Number 표', rows.length)
+    + '<div class="guide"><b>실제 장비를 고르는 기준표예요</b>'
+    + '<p>현장 장비일람표나 자재승인원에 적힌 형번을 이 표에서 찾아 선택합니다. 선택한 형번의 정격값을 기본값 후보로 쓰고, 오브젝트 목록은 같은 프로파일 문서의 L3 매핑 근거로 씁니다.</p></div>'
+    + table({header:[
+               '용량대','Unit Model Number','구분','조합 공조기','정격 풍량',
+               '냉방능력','AHRI 냉방능력','EER',
+               '팬 모터','팬 회전수','코일 면적','코일 열수/FPI','근거표'
+             ],
+             rows:rows.map(unitRow), key:'ahu-unit-models'+m.id, raw:true, nopage:false, compact:true})
+}
+
+function renderAhuUnitDetail(r, electricalRows){
+  if(!r) return '';
+  var items = [
+    ['구분', unitRoleLabel(r)],
+    ['용량대', unitCapacity(r)],
+    ['Unit Model Number', unitCode(r)],
+    ['정격 풍량', unitAirflow(r)],
+    ['근거', unitSource(r)],
+  ];
+  if(unitRole(r) === 'airHandler'){
+    items.splice(4, 0,
+      ['팬 모터', r.fanMotorHp && r.fanMotorHp !== '—' ? r.fanMotorHp + ' HP' : '—'],
+      ['팬 회전수', r.fanMotorRpm],
+      ['코일 면적', r.coilFaceArea],
+      ['코일 열수/FPI', r.coilRowsFpi]);
+  } else {
+    items.splice(4, 0,
+      ['조합 공조기', r.matchedAirHandler || r.airHandler],
+      ['냉방능력', unitCooling(r)],
+      ['AHRI 냉방능력', r.ahriNetCoolingCapacity || r.ahriCooling],
+      ['EER', r.eer]);
+  }
+  return '<div class="udetail"><h4>'+esc(unitCode(r))+'</h4><div class="uvals">'
+    + items.map(function(x){
+      return '<div class="uval"><div class="k">'+esc(x[0])+'</div><div class="v">'+esc(x[1]||'—')+'</div></div>';
+    }).join('') + '</div></div>'
+    + renderUnitElectricalRows(r, electricalRows);
+}
+
+function unitRow(r){
+  return [
+    unitCapacity(r),
+    unitCode(r),
+    unitRoleLabel(r),
+    r.matchedAirHandler || r.airHandler,
+    unitAirflow(r),
+    unitCooling(r),
+    r.ahriNetCoolingCapacity || r.ahriCooling,
+    r.eer,
+    r.fanMotorHp,
+    r.fanMotorRpm,
+    r.coilFaceArea,
+    r.coilRowsFpi,
+    unitSource(r),
+  ].map(esc);
+}
+
+function unitCode(r){ return r.unitModelNumber || r.unitModel || '—'; }
+function unitRole(r){ return r.unitRole || (/TWE/i.test(unitCode(r)) ? 'airHandler' : 'condensingUnit'); }
+function unitRoleLabel(r){ return unitRole(r) === 'airHandler' ? '공기측 유닛' : '실외/응축 유닛'; }
+function unitCapacity(r){ return r.capacityClass || r.tons || '—'; }
+function unitAirflow(r){ return r.ratedAirflow || r.airflow || '—'; }
+function unitCooling(r){ return r.grossCoolingCapacity || r.cooling || '—'; }
+function unitCardMetric(r){
+  if(unitRole(r) === 'airHandler'){
+    return '팬 ' + ((r.fanMotorHp && r.fanMotorHp !== '—') ? r.fanMotorHp + ' HP' : '—')
+      + ' · 코일 ' + (r.coilRowsFpi || '—');
+  }
+  return '냉방 ' + unitCooling(r);
+}
+function unitSource(r){
+  if(r.source) return r.source;
+  return (r.sourceTable || '').replace(/^Table\s*\d+\.\s*/,'') + (r.sourcePage ? ' p'+r.sourcePage : '');
+}
+
+function renderUnitElectricalRows(unit, rows){
+  var picked = electricalRowsForUnit(unit, rows);
+  if(!picked.length) return '';
+  return sec('선택 형번 전기 특성', picked.length)
+    + '<div class="guide"><b>전기 약어는 이렇게 읽으면 돼요</b>'
+    + '<p><b>RLA</b>는 압축기가 운전 중 먹는 전류, <b>LRA</b>는 기동 순간 전류, '
+    + '<b>FLA</b>는 팬 모터 정격전류, <b>MCA</b>는 최소 전선 용량, <b>MOP</b>는 최대 차단기 용량입니다. '
+    + '원문표의 여러 모델/전압 묶음을 한 행씩 쪼개서 보여줍니다.</p></div>'
+    + table({header:['유닛','전압','상','모터 구분','압축기1 RLA','압축기1 LRA','압축기2 RLA','압축기2 LRA','팬 FLA','팬 LRA','MCA','MOP','근거'],
+             rows:picked.map(electricalRow), key:'ahu-electrical'+unitCode(unit), raw:true, nopage:true, compact:true});
+}
+
+function electricalRowsForUnit(unit, rows){
+  if(!unit || !rows) return [];
+  var re = unitElectricalRegex(unit);
+  return rows.filter(function(r){ return re.test(r.unitModelNumber||''); }).slice(0, 12);
+}
+
+function unitElectricalRegex(unit){
+  var code = unitCode(unit);
+  var tta = code.match(/\bTTA(\d{4})\*([A-Z])\*/i);
+  if(tta) return new RegExp('^TTA' + tta[1] + '.*' + tta[2] + '$', 'i');
+  var exact = code.match(/\b(TTA|TWE)\d{4}[A-Z0-9]*/i);
+  if(exact) return new RegExp('^' + exact[0].replace(/([.*+?^${}()|\[\]\\])/g,'\\$1'), 'i');
+  return /$^/;
+}
+
+function electricalRow(r){
+  return [
+    r.unitModelNumber,
+    r.voltage,
+    r.phase,
+    motorSetLabel(r.motorSet),
+    cleanElecValue(r.compressor1Rla),
+    cleanElecValue(r.compressor1Lra),
+    cleanElecValue(r.compressor2Rla),
+    cleanElecValue(r.compressor2Lra),
+    cleanElecValue(r.fanFla),
+    cleanElecValue(r.fanLra),
+    cleanElecValue(r.mca),
+    cleanElecValue(r.mop),
+    (r.sourceTable || '').replace(/^Table\s*\d+\.\s*/,'') + (r.sourcePage ? ' p'+r.sourcePage : ''),
+  ].map(esc);
+}
+
+function cleanElecValue(x){
+  return x && x !== 'N/A' && x !== '—' ? x : '—';
+}
+
+function motorSetLabel(x){
+  return {
+    compressorAndCondenserFan:'압축기/응축팬',
+    standardEvaporatorFan:'표준 공기측 팬',
+    oversizedEvaporatorFan:'대형 공기측 팬'
+  }[x] || (x || '—');
+}
+
+function rawTableList(sts, si, selectedUnit){
+  var groups = [
+    ['selected', '현재 선택한 형번'],
+    ['condensing', '실외/응축 유닛'],
+    ['airHandler', '공기측 유닛'],
+    ['electrical', '전기 특성'],
+    ['performance', '조건별 성능'],
+    ['dimension', '치수·설치'],
+    ['accessory', '부속·참고']
+  ];
+  var grouped = {};
+  groups.forEach(function(g){ grouped[g[0]] = []; });
+  sts.forEach(function(t, i){
+    var rel = rawTableHasSelectedUnit(t, selectedUnit);
+    var key = rel ? 'selected' : rawTableCategory(t);
+    if(!grouped[key]) grouped[key] = [];
+    grouped[key].push({table:t, index:i, rel:rel});
+  });
+  return '<div class="sgroups">' + groups.map(function(g){
+    var list = grouped[g[0]] || [];
+    if(!list.length) return '';
+    return '<div class="sgroup"><h4>'+esc(g[1])+'</h4><div class="slist">'
+      + list.map(function(item){
+        var x = item.table;
+        var title = rawTableDisplayTitle(x);
+        var raw = (x.title||'표 '+(item.index+1)).replace(/^Table\s*\d+\.\s*/,'');
+        var qty = firstQuantityLabel(x);
+        return '<button data-si="'+item.index+'" aria-pressed="'+(item.index===si)+'">'
+          + '<span class="stxt"><b>'+esc(title)+'</b><i>'+esc(raw)+'</i></span>'
+          + (item.rel?'<span class="ms">현재 형번 포함</span>':'')
+          + (qty?'<span class="ms">'+esc(qty)+'</span>':'')
+          + '</button>';
+      }).join('') + '</div></div>';
+  }).join('') + '</div>';
+}
+
+function rawTableHasSelectedUnit(t, unit){
+  if(!unit) return false;
+  var compact = compactModelCode(unitCode(unit));
+  var source = unit.sourceTable || unit.source || '';
+  var text = ((t.title||'') + ' ' + (t.header||[]).join(' ') + ' '
+           + (t.rows||[]).slice(0,12).map(function(r){ return (r||[]).join(' '); }).join(' '));
+  if(source && (t.title||'') === source) return true;
+  if(compact && text.indexOf(compact) >= 0) return true;
+  return !!(compact && fuzzyModelRegex(compact).test(text));
+}
+
+function rawTableCategory(t){
+  var text = ((t.title||'') + ' ' + (t.header||[]).join(' ')).toLowerCase();
+  if(/electrical|voltage|motor|mca|mop|rla|fla|compressor.*fan/.test(text)) return 'electrical';
+  if(/air handler|twe|szvav|evaporator fan/.test(text)) return 'airHandler';
+  if(/condensing unit|tta|compressor/.test(text)) return 'condensing';
+  if((t.kind||'') === 'perf' || /performance|capacity correction|airflow|static pressure/.test(text)) return 'performance';
+  if((t.kind||'') === 'dim' || /dimension|clearance|curb|weight|shipping/.test(text)) return 'dimension';
+  return 'accessory';
+}
+
+function rawTableDisplayTitle(t){
+  var raw = (t.title||'').replace(/^Table\s*\d+\.\s*/,'');
+  var cap = capacityRangeFromTitle(raw);
+  var text = raw.toLowerCase();
+  if(/electrical|voltage|mca|mop|rla|fla/.test(text)) return (cap ? cap + ' ' : '') + '전기 특성';
+  if(/air handler|twe|szvav|evaporator fan/.test(text)) return (cap ? cap + ' ' : '') + '공기측 유닛 기본 정격';
+  if(/condensing unit|tta|compressor/.test(text)) return (cap ? cap + ' ' : '') + '실외/응축 유닛 기본 정격';
+  if(/performance/.test(text)) return (cap ? cap + ' ' : '') + '조건별 성능표';
+  if(/dimension|clearance|curb|weight|shipping/.test(text)) return (cap ? cap + ' ' : '') + '치수·설치 표';
+  return raw || '원문표';
+}
+
+function capacityRangeFromTitle(title){
+  var m = String(title||'').match(/(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)\s*tons?/i);
+  if(m) return m[1] + '-' + m[2] + '톤';
+  m = String(title||'').match(/(\d+(?:\.\d+)?)\s*tons?/i);
+  return m ? m[1] + '톤' : '';
+}
+
+function firstQuantityLabel(t){
+  var qs = (t.quantities||[]).filter(Boolean);
+  return qs.length ? '포함값: ' + (QLABEL[qs[0]] || qs[0]) : '';
+}
+
+function rawBlindSpotGuide(unit){
+  var target = unit ? unitCode(unit) : '선택한 Unit Model Number';
+  return '<div class="guide"><b>여기는 값을 고르는 화면이 아니라 근거를 확인하는 화면이에요</b>'
+    + '<p>블라인드 스팟은 세 가지입니다. 첫째, 프로파일 모델과 실제 장비 형번이 다릅니다. '
+    + '둘째, 원문표 한 장에는 여러 형번·전원·옵션이 함께 들어갑니다. '
+    + '셋째, 실외/응축 유닛과 공기측 유닛은 보는 정격이 다릅니다. '
+    + '따라서 먼저 <b>형번·정격</b> 탭에서 <code>'+esc(target)+'</code>를 고르고, 여기서는 그 값이 어느 원문표에서 왔는지만 확인합니다.</p></div>';
+}
+
+function rawTableRelevance(t, unit){
+  if(!unit) return 0;
+  var code = unitCode(unit);
+  var compact = compactModelCode(code);
+  var source = unit.sourceTable || unit.source || '';
+  var text = ((t.title||'') + ' ' + (t.header||[]).join(' ') + ' '
+           + (t.rows||[]).slice(0,12).map(function(r){ return (r||[]).join(' '); }).join(' '));
+  var score = 0;
+  if(source && (t.title||'') === source) score += 50;
+  if(compact && text.indexOf(compact) >= 0) score += 30;
+  if(compact && fuzzyModelRegex(compact).test(text)) score += 20;
+  if(unitRole(unit) === 'airHandler' && /air handler|TWE|evaporator fan|SZVAV/i.test(text)) score += 6;
+  if(unitRole(unit) !== 'airHandler' && /condensing unit|TTA|compressor/i.test(text)) score += 6;
+  return score;
+}
+
+function compactModelCode(code){
+  var m = String(code||'').match(/\b(TTA|TWE)\d{4}[A-Z0-9*\/-]*/i);
+  return m ? m[0].replace(/[*,\/-].*$/,'') : '';
+}
+
+function fuzzyModelRegex(code){
+  var s = String(code||'').replace(/([.*+?^${}()|\[\]\\])/g,'\\$1');
+  if(!s) return /$^/;
+  return new RegExp(s.replace(/\\\*/g,'.*').replace(/[A-Z]$/i,'.*'), 'i');
+}
+
+function extractAhuUnitModels(m){
+  var out = [];
+  (m.specTables||[]).forEach(function(t){
+    if((t.kind||'etc') !== 'rating' || t.orientation !== 'row') return;
+    if(!/general data/i.test(t.title||'')) return;
+    var first = (t.rows||[])[0] || [];
+    var rows = t.rows || [];
+    for(var c=1;c<(t.header||[]).length;c++){
+      var unit = cleanModelLabel(first[c]);
+      if(!unit) continue;
+      out.push({
+        tons: t.header[c] || '—',
+        unitModel: unit,
+        airHandler: valueForLabel(rows, /matched air handler$/i, c) || '—',
+        airflow: valueForLabel(rows, /AHRI Rated Airflow/i, c) || valueForLabel(rows, /^CFM$/i, c) || '—',
+        cooling: valueForLabel(rows, /Gross Cooling Capacity - System/i, c) || '—',
+        ahriCooling: valueForLabel(rows, /AHRI Net Cooling Capacity/i, c) || '—',
+        eer: valueForLabel(rows, /Matched Air Handler \(EER\)|System \(EER\)/i, c) || '—',
+        source: (t.title||'').replace(/^Table\s*\d+\.\s*/,'') + ' p' + (t.page||''),
+      });
+    }
+  });
+  return out;
+}
+
+function cleanModelLabel(s){
+  s = String(s||'').replace(/\s+/g,' ').trim();
+  if(!s || /^system data|cooling performance|efficiency$/i.test(s)) return '';
+  return s;
+}
+
+function valueForLabel(rows, re, col){
+  for(var i=0;i<rows.length;i++){
+    var r = rows[i] || [];
+    if(re.test(String(r[0]||''))) return String(r[col]||'').trim();
+  }
+  return '';
+}
+
+function statusPill(s){
+  if(s === 'matched') return '<span class="pill y">확정</span>';
+  if(s === 'candidate') return '<span class="pill c">후보</span>';
+  return '<span class="pill n">없음</span>';
+}
+
+function renderAhuOperatorView(m){
+  var picked = [], seen = {};
+  VIEW_PROFILES.ahu.forEach(function(rule){
+    var p = (m.points||[]).find(function(x){ return !seen[x.name] && rule[1].test(x.name||''); });
+    if(!p) return;
+    seen[p.name] = 1;
+    picked.push([rule[0], p.type, p.unitDisp, p.name, p.inst||'']);
+  });
+  var h = sec('관제 화면 우선 후보', picked.length)
+    + '<div class="msg" style="margin:0 18px 10px"><p>'
+    + '<b>L2</b>는 운영자가 보는 기본 화면, <b>L3</b>는 제조사 통신문서 전체예요. '
+    + '아래 표는 L3 전체 목록에서 공조기 화면에 먼저 올릴 만한 것만 골라 본 후보예요. '
+    + '나머지 원문 오브젝트는 아래 상세 목록에 그대로 남겨 둡니다.</p></div>';
+  if(!picked.length) return h;
+  return h + table({header:['화면 이름','종류','단위','원문 오브젝트명','인스턴스'],
+                    rows:picked, key:'ahuop'+m.id, nopage:true});
+}
+
+function specKindGuide(kind){
+  var title = {
+    rating:'모델별 기본 정격표예요',
+    perf:'성능표는 운전 조건을 넣고 찾아보는 표예요',
+    dim:'치수·중량은 설치와 반입 검토용이에요',
+    etc:'부속·참고는 선정·배선·호환 확인용이에요'
+  }[kind] || '원문 표';
+  var body = {
+    rating:'제조사 PDF에서 Unit Model Number별 풍량, 냉방능력, 효율 같은 기본값을 적어 둔 표입니다. 여러 형번이나 전원 옵션이 함께 보이면 전체를 읽지 말고 선택한 형번과 같은 열/행만 따라가면 됩니다.',
+    perf:'예: 외기온도별 냉방능력, 풍량별 압력손실처럼 조건에 따라 값이 바뀝니다. “정답 하나”가 아니라 조건을 선택해서 읽는 표입니다.',
+    dim:'예: 폭, 깊이, 높이, 중량입니다. BMS 제어나 에너지 계산보다 설치 공간, 반입, 유지보수 동선 확인에 씁니다.',
+    etc:'예: 부속품, 배선, 호환표입니다. 자동 매핑과 시뮬레이터에는 보통 바로 쓰지 않고, 시운전·구매 확인 때 참고합니다.'
+  }[kind] || '';
+  return '<div class="guide"><b>'+esc(title)+'</b><p>'+esc(body)+'</p></div>';
+}
+
+function rawSpecGuide(t, kind){
+  var evidence = rawSpecEvidence(t);
+  if(!evidence.length && kind !== 'rating') return '';
+  var title = kind === 'rating'
+    ? '선택한 형번의 열/행만 보면 돼요'
+    : '이 표를 읽는 기준';
+  var body = kind === 'rating'
+    ? '원문표에는 여러 모델명, 용량대, 전원 옵션이 함께 들어갑니다. 형번·정격 탭에서 고른 Unit Model Number와 같은 열 또는 같은 행만 근거로 보면 됩니다.'
+    : '조건별 성능표와 치수표는 시뮬레이터 기본값을 바로 확정하는 표가 아닙니다. 필요한 조건이나 설치 조건을 정한 뒤 근거로 확인합니다.';
+  return '<div class="guide"><b>'+esc(title)+'</b><p>'+esc(body)+'</p>'
+       + (evidence.length ? '<div class="why">'+evidence.map(function(x){
+           return '<span>'+esc(x)+'</span>';
+         }).join('')+'</div>' : '') + '</div>';
+}
+
+function rawSpecEvidence(t){
+  var text = ((t.title||'') + ' ' + (t.header||[]).join(' ') + ' '
+           + (t.rows||[]).slice(0,6).map(function(r){ return (r||[]).join(' '); }).join(' '));
+  var out = [];
+  var modelHits = text.match(/\b[A-Z]{2,5}\d{3,5}[A-Z0-9*\/-]*/g) || [];
+  var voltHits = text.match(/\b(?:200|208|230|380|460|575)(?:-\d+)?\b/g) || [];
+  var tonHits = text.match(/\b\d+(?:\.\d+)?\s*(?:Tons?|ton)\b/gi) || [];
+  if(unique(modelHits).length >= 2) out.push('여러 형번');
+  if(unique(voltHits).length >= 2) out.push('여러 전원 옵션');
+  if(unique(tonHits).length >= 2 || /\b\d+(?:\.\d+)?\s*[-–]\s*\d+(?:\.\d+)?\s*tons?\b/i.test(text))
+    out.push('여러 용량대');
+  if(/standard|high static|oversized|electric heat|steam|hot water|option/i.test(text))
+    out.push('옵션별 값');
+  return out;
+}
+
+function unique(list){
+  var seen = {}, out = [];
+  list.forEach(function(x){ var k=String(x).toLowerCase(); if(!seen[k]){seen[k]=1; out.push(x);} });
+  return out;
 }
 
 var QLABEL = {power:'전력', current:'전류', voltage:'전압', frequency:'주파수',
@@ -1003,7 +1641,15 @@ function wire(){
   main.querySelectorAll('.tabs button').forEach(function(b){
     b.addEventListener('click',function(){ tab=b.dataset.tab; kindF=''; gradeF=''; render(); });});
   main.querySelectorAll('.mlist button').forEach(function(b){
-    b.addEventListener('click',function(){ mi=+b.dataset.mi; vsel=0; ssel=0; ksel='rating'; pageOf={}; render(); });});
+    b.addEventListener('click',function(){ mi=+b.dataset.mi; vsel=0; ssel=0; mview='unit'; ksel='rating'; pageOf={}; render(); });});
+  main.querySelectorAll('.mtabs button').forEach(function(b){
+    b.addEventListener('click',function(){ mview=b.dataset.mview; pageOf={}; render(); });});
+  main.querySelectorAll('.ucard').forEach(function(b){
+    b.addEventListener('click',function(){
+      var models = D.models[cur] || [], m = models[Math.min(mi, models.length-1)];
+      if(m) usel[m.id] = +b.dataset.ui;
+      render();
+    });});
   main.querySelectorAll('.vlist button').forEach(function(b){
     b.addEventListener('click',function(){ vsel=+b.dataset.vi; render(); });});
   main.querySelectorAll('.klist button').forEach(function(b){

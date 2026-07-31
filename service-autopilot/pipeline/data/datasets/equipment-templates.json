@@ -1,0 +1,3422 @@
+{
+ "e5": {
+  "id": "e5",
+  "title": "공조기 (AHU)",
+  "domain": "공기측 설비",
+  "templatePoints": [
+   {
+    "name": "급기온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`discharge`✓ `air`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "환기온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`return-air`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "외기온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`outside-air`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "혼합공기온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`mixed-air`✓ `temp`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급기습도",
+    "objectType": "AI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`discharge`✓ `air`✓ `humidity`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "환기습도",
+    "objectType": "AI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`return-air`✓ `humidity`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급기 정압",
+    "objectType": "AI",
+    "unit": "Pa",
+    "role": "sensor",
+    "tags": "`discharge`✓ `static-pressure`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급기 풍량",
+    "objectType": "AI",
+    "unit": "CMH",
+    "role": "sensor",
+    "tags": "`discharge`✓ `air`✓ `flow`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "환기 CO2",
+    "objectType": "AI",
+    "unit": "ppm",
+    "role": "sensor",
+    "tags": "`return-air`✓ `co2-concentration`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급기온도 설정값",
+    "objectType": "AV",
+    "unit": "℃",
+    "role": "sp",
+    "tags": "`discharge`✓ `air`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급기 정압 설정값",
+    "objectType": "AV",
+    "unit": "Pa",
+    "role": "sp",
+    "tags": "`discharge`✓ `static-pressure`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급기팬 주파수 지령",
+    "objectType": "AO",
+    "unit": "Hz",
+    "role": "cmd",
+    "tags": "`supply-fan`✓ `vfd-freq`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "환기팬 주파수 지령",
+    "objectType": "AO",
+    "unit": "Hz",
+    "role": "cmd",
+    "tags": "`return-fan`✓ `vfd-freq`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "냉수밸브 개도",
+    "objectType": "AO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`chilled-water`✓ `valve`✓ `position`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "온수밸브 개도",
+    "objectType": "AO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`hot-water`✓ `valve`✓ `position`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "외기댐퍼 개도",
+    "objectType": "AO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`outside-air`✓ `damper`✓ `position`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "환기댐퍼 개도",
+    "objectType": "AO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`return-air`✓ `damper`✓ `position`★",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "배기댐퍼 개도",
+    "objectType": "AO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`exhaust-air`✓ `damper`✓ `position`★",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "가습 지령",
+    "objectType": "AO/BO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`humidifier-equip`✓ `cmd`✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "필터 차압",
+    "objectType": "AI/BI",
+    "unit": "Pa",
+    "role": "sensor",
+    "tags": "`airfilter`✓ `differential-pressure`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "동결 방지 경보",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`temp`✓ `alarm`✓ `critical`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운전 모드",
+    "objectType": "MSO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "(정지/냉방/난방/송풍/외기냉방)",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "외기냉방 모드",
+    "objectType": "BV",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`economizer-mode`✓ `free-cooling`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "급기 풍량",
+    "unit": "CMH",
+    "condition": "정격/설계 구분",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "환기 풍량",
+    "unit": "CMH",
+    "condition": "환기팬 있는 경우",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "최소 외기량",
+    "unit": "CMH 또는 %",
+    "condition": "환기기준 산출값",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "기외정압",
+    "unit": "mmAq / Pa",
+    "condition": "덕트 저항",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "급기팬 형식·모터출력",
+    "unit": "— / kW",
+    "condition": "시로코·터보·플러그",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "환기팬 형식·모터출력",
+    "unit": "— / kW",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "냉수코일 능력",
+    "unit": "kW",
+    "condition": "**조건**: 냉수 7/12℃, 입구공기 27℃DB·19℃WB",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "온수코일 능력",
+    "unit": "kW",
+    "condition": "**조건**: 온수 60/50℃, 입구공기 5℃",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "냉수·온수 유량",
+    "unit": "LPM",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "코일 열수·핀피치",
+    "unit": "row / mm",
+    "condition": "냉수·온수 각각",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "코일 정면풍속",
+    "unit": "m/s",
+    "condition": "보통 2.5~3.0",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "필터 형식·효율·차압",
+    "unit": "— / % / Pa",
+    "condition": "프리·미디엄·HEPA (초기·최종 차압)",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "가습 방식·가습량",
+    "unit": "— / kg/h",
+    "condition": "증기·기화·초음파",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "열회수 유무·효율",
+    "unit": "— / %",
+    "condition": "전열교환 내장형",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "케이싱·단열",
+    "unit": "—",
+    "condition": "판넬 두께·단열재",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전원",
+    "unit": "V/φ/Hz",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e6": {
+  "id": "e6",
+  "title": "터미널 유닛 (VAV · CAV)",
+  "domain": "공기측 설비",
+  "templatePoints": [
+   {
+    "name": "실내온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`zone`✓ `air`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "풍량",
+    "objectType": "AI",
+    "unit": "CMH",
+    "role": "sensor",
+    "tags": "`discharge`✓ `air`✓ `flow`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "풍량 설정값",
+    "objectType": "AV",
+    "unit": "CMH",
+    "role": "sp",
+    "tags": "`discharge`✓ `air`✓ `flow`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "최대 풍량 설정",
+    "objectType": "AV",
+    "unit": "CMH",
+    "role": "sp",
+    "tags": "`air`✓ `flow`✓ `maxVal`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "최소 풍량 설정",
+    "objectType": "AV",
+    "unit": "CMH",
+    "role": "sp",
+    "tags": "`air`✓ `flow`✓ `minVal`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "댐퍼 개도 지령",
+    "objectType": "AO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`damper`✓ `position`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "최소 댐퍼 개도",
+    "objectType": "AV",
+    "unit": "%",
+    "role": "sp",
+    "tags": "`damper`✓ `minVal`✓ `position`★",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "재실 냉방 설정온도",
+    "objectType": "AV",
+    "unit": "℃",
+    "role": "sp",
+    "tags": "`occupied`✓ `zone`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "재실 난방 설정온도",
+    "objectType": "AV",
+    "unit": "℃",
+    "role": "sp",
+    "tags": "`occupied`✓ `zone`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "비재실 설정온도",
+    "objectType": "AV",
+    "unit": "℃",
+    "role": "sp",
+    "tags": "`zone`✓ `temp`✓ `setback`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운전 모드",
+    "objectType": "MSO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "(정지/냉방/난방/환기)",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "재실 감지",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`occupancy`✓ `occupied`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "재열밸브 개도",
+    "objectType": "AO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`hot-water`✓ `valve`✓ `reheat`★",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "내장팬 운전",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`fan`✓ `run`✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "정격 풍량",
+    "unit": "CMH",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "최대·최소 풍량",
+    "unit": "CMH",
+    "condition": "최소는 환기 확보량",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "인렛 구경",
+    "unit": "mm",
+    "condition": "200·250·300·350·400",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정압 손실",
+    "unit": "Pa",
+    "condition": "정격 풍량 기준",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "풍량 측정 방식",
+    "unit": "—",
+    "condition": "차압식·열선식",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "재열코일 유무·능력",
+    "unit": "— / kW",
+    "condition": "온수 유량·구경 포함",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "팬 내장(팬파워드) 유무·출력",
+    "unit": "— / kW",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "액추에이터 토크·구동시간",
+    "unit": "Nm / s",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "소음(NC)",
+    "unit": "—",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e7": {
+  "id": "e7",
+  "title": "팬코일 유닛 (FCU) · 항온항습기 (CRAC)",
+  "domain": "공기측 설비",
+  "templatePoints": [
+   {
+    "name": "실내온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`zone`✓ `air`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "설정온도",
+    "objectType": "AV",
+    "unit": "℃",
+    "role": "sp",
+    "tags": "`zone`✓ `air`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "팬 단계",
+    "objectType": "MSO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`fan`✓ `speed`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "냉수밸브",
+    "objectType": "BO/AO",
+    "unit": "— / %",
+    "role": "cmd",
+    "tags": "`chilled-water`✓ `valve`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "온수밸브",
+    "objectType": "BO/AO",
+    "unit": "— / %",
+    "role": "cmd",
+    "tags": "`hot-water`✓ `valve`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "냉난방 모드",
+    "objectType": "MSO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`cooling-mode`✓ `heating-mode`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "실내습도",
+    "objectType": "AI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`zone`✓ `humidity`✓",
+    "grade": "선택(CRAC 필수)",
+    "datasetTier": "template"
+   },
+   {
+    "name": "습도 설정값",
+    "objectType": "AV",
+    "unit": "%",
+    "role": "sp",
+    "tags": "`zone`✓ `humidity`✓",
+    "grade": "선택(CRAC 필수)",
+    "datasetTier": "template"
+   },
+   {
+    "name": "응축수 넘침",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`condensate`✓ `level`✓ `alarm`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "스케줄 사용",
+    "objectType": "BV",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`enable`✓ `occupied`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "냉방능력",
+    "unit": "kW",
+    "condition": "**조건**: 냉수 7/12℃, 실내 27℃DB·19.5℃WB",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "난방능력",
+    "unit": "kW",
+    "condition": "**조건**: 온수 60/50℃, 실내 20℃",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정격 풍량",
+    "unit": "CMH",
+    "condition": "강 단계 기준",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "팬 단계 수",
+    "unit": "단",
+    "condition": "보통 3단",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "모터 출력",
+    "unit": "W",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "냉수·온수 유량",
+    "unit": "LPM",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "배관 구경",
+    "unit": "mm",
+    "condition": "공급·환수",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "응축수 배관·드레인펌프",
+    "unit": "mm / —",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정압",
+    "unit": "Pa",
+    "condition": "덕트형",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "형식",
+    "unit": "—",
+    "condition": "노출·매입·덕트·카세트",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "(CRAC) 제습·가습 능력",
+    "unit": "kg/h",
+    "condition": "항온항습만",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "(CRAC) 온·습도 정밀도",
+    "unit": "±℃ / ±%",
+    "condition": "항온항습만",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e8": {
+  "id": "e8",
+  "title": "VRF (실내기 · 실외기)",
+  "domain": "공기측 설비",
+  "templatePoints": [
+   {
+    "name": "실내온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`zone`✓ `air`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "설정온도",
+    "objectType": "AV",
+    "unit": "℃",
+    "role": "sp",
+    "tags": "`zone`✓ `air`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "토출온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`discharge`✓ `air`✓ `temp`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운전 모드",
+    "objectType": "MSO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "(냉방/난방/송풍/제습/자동)",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "풍량 단계",
+    "objectType": "MSO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`fan`✓ `speed`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "에러 코드",
+    "objectType": "AI/MSO",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fault`✓ `alarm-text`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "필터 청소 신호",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`airfilter`✓ `alarm`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "재실 감지",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`occupancy`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "리모컨 잠금",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`enable`✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "(실외기) 압축기 운전율",
+    "objectType": "AI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`compressor`✓ `load`★",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "(실외기) 소비전력",
+    "objectType": "AI",
+    "unit": "kW",
+    "role": "sensor",
+    "tags": "`elec-power`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "냉방능력 / 난방능력",
+    "unit": "kW",
+    "condition": "표준조건 (냉방 실내27/실외35℃, 난방 실내20/실외7℃)",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정격 소비전력",
+    "unit": "kW",
+    "condition": "냉방·난방 각각",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "COP / SEER",
+    "unit": "—",
+    "condition": "`cop` ✓ `eer` ✓ 태그 존재",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "냉매 종류·충전량",
+    "unit": "— / kg",
+    "condition": "R410A·R32·R134a",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "배관 구경 (액·가스)",
+    "unit": "mm",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정격 풍량",
+    "unit": "CMH",
+    "condition": "강 기준",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "형식",
+    "unit": "—",
+    "condition": "4WAY 카세트·1WAY·덕트·벽걸이·바닥",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "실외기 조합",
+    "unit": "—",
+    "condition": "매칭 모델·연결 대수·최대 연장배관",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "통신 방식",
+    "unit": "—",
+    "condition": "벤더 게이트웨이 (BACnet/Modbus 변환)",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e9": {
+  "id": "e9",
+  "title": "냉동기 (칠러)",
+  "domain": "열원·수측 설비",
+  "templatePoints": [
+   {
+    "name": "냉수 출구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`chilled-water`✓ `temp`✓ `leaving`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "냉수 입구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`chilled-water`✓ `temp`✓ `entering`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "냉수 출구온도 설정값",
+    "objectType": "AV",
+    "unit": "℃",
+    "role": "sp",
+    "tags": "`chilled-water`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "냉각수 출구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`condenser-water`✓ `temp`✓ `leaving`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "냉각수 입구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`condenser-water`✓ `temp`✓ `entering`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "부하율",
+    "objectType": "AI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`load`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "소비전력",
+    "objectType": "AI",
+    "unit": "kW",
+    "role": "sensor",
+    "tags": "`elec-power`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "적산 전력량",
+    "objectType": "AI",
+    "unit": "kWh",
+    "role": "sensor",
+    "tags": "`elec-energy`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "압축기 전류",
+    "objectType": "AI",
+    "unit": "A",
+    "role": "sensor",
+    "tags": "`compressor`✓ `elec-current`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "증발 압력·온도",
+    "objectType": "AI",
+    "unit": "kPa / ℃",
+    "role": "sensor",
+    "tags": "`evaporator`✓ `refrig`✓ `pressure`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "응축 압력·온도",
+    "objectType": "AI",
+    "unit": "kPa / ℃",
+    "role": "sensor",
+    "tags": "`condenser`✓ `refrig`✓ `pressure`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "냉수 유량",
+    "objectType": "AI",
+    "unit": "㎥/h",
+    "role": "sensor",
+    "tags": "`chilled-water`✓ `flow`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "알람 코드",
+    "objectType": "AI/MSO",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fault`✓ `alarm-text`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "대수제어 순위",
+    "objectType": "AV",
+    "unit": "—",
+    "role": "sp",
+    "tags": "`stage`★",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "원격 기동 허용",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`enable`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "냉동능력",
+    "unit": "RT 또는 kW",
+    "condition": "**조건 필수**: 냉수 12/7℃, 냉각수 32/37℃",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "압축기 형식",
+    "unit": "—",
+    "condition": "터보(원심)·스크류·스크롤·왕복동·흡수식",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "COP / IPLV",
+    "unit": "—",
+    "condition": "부분부하 효율",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "냉수 입·출구온도",
+    "unit": "℃",
+    "condition": "설계치",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "냉수 유량",
+    "unit": "LPM 또는 ㎥/h",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "냉각수 입·출구온도",
+    "unit": "℃",
+    "condition": "수냉식",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "냉각수 유량",
+    "unit": "LPM",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "증발기·응축기 압력손실",
+    "unit": "kPa",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정격 전압·전류·소비전력",
+    "unit": "V / A / kW",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "기동 방식",
+    "unit": "—",
+    "condition": "Y-Δ·리액터·인버터",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "냉매 종류·충전량",
+    "unit": "— / kg",
+    "condition": "R134a·R1234ze·R513A",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "최소 부하율",
+    "unit": "%",
+    "condition": "언로딩 한계",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "(흡수식) 열원·소비량",
+    "unit": "— / N㎥/h·kg/h",
+    "condition": "가스·중온수·증기",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "소음",
+    "unit": "dB(A)",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e10": {
+  "id": "e10",
+  "title": "냉각탑",
+  "domain": "열원·수측 설비",
+  "templatePoints": [
+   {
+    "name": "냉각수 출구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`condenser-water`✓ `temp`✓ `leaving`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "냉각수 입구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`condenser-water`✓ `temp`✓ `entering`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "출구온도 설정값",
+    "objectType": "AV",
+    "unit": "℃",
+    "role": "sp",
+    "tags": "`condenser-water`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "외기 습구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`outside-air`✓ `wetBulb`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "팬 주파수 지령",
+    "objectType": "AO",
+    "unit": "Hz",
+    "role": "cmd",
+    "tags": "`cooling-tower-fan`✓ `vfd-freq`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "팬 현재 주파수",
+    "objectType": "AI",
+    "unit": "Hz",
+    "role": "sensor",
+    "tags": "`cooling-tower-fan`✓ `vfd-freq`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "수위 (저·고)",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`level`✓ `alarm`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "보충수 밸브",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`makeup-water`✓ `valve`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "블로우다운 밸브",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`blowdown-water`✓ `valve`✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "입구 전동밸브 개도",
+    "objectType": "AO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`condenser-water`✓ `valve`✓ `position`★",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "진동 경보",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`vibration-sensor`✓ `alarm`✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "수질 (전도도·pH)",
+    "objectType": "AI",
+    "unit": "µS/cm · —",
+    "role": "sensor",
+    "tags": "`condenser-water`✓ `tds`✓ / `ph`✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "냉각능력",
+    "unit": "RT 또는 kW",
+    "condition": "**조건**: 입구 37℃ / 출구 32℃ / 습구 27℃ (국내 표준)",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "순환 수량",
+    "unit": "LPM 또는 ㎥/h",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "설계 습구온도",
+    "unit": "℃",
+    "condition": "지역별",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "형식",
+    "unit": "—",
+    "condition": "직교류·대향류 / 개방식·밀폐식",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "팬 형식·모터출력·대수",
+    "unit": "— / kW / 대",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "팬 인버터 유무",
+    "unit": "—",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "충진재 형식",
+    "unit": "—",
+    "condition": "필름·스플래시",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "보충수량",
+    "unit": "LPM",
+    "condition": "증발·비산·블로우다운",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "살수 압력",
+    "unit": "kPa",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "소음",
+    "unit": "dB(A)",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "중량 (운전시)",
+    "unit": "kg",
+    "condition": "구조 검토용",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e11": {
+  "id": "e11",
+  "title": "보일러 · 온수발생기",
+  "domain": "열원·수측 설비",
+  "templatePoints": [
+   {
+    "name": "온수 출구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`hot-water`✓ `temp`✓ `leaving`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "온수 환수온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`hot-water`✓ `temp`✓ `entering`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "출구온도 설정값",
+    "objectType": "AV",
+    "unit": "℃",
+    "role": "sp",
+    "tags": "`hot-water`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "버너 단계 / 출력",
+    "objectType": "MSO/AO",
+    "unit": "— / %",
+    "role": "cmd",
+    "tags": "`stage`★ / `load`★",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "관내 압력",
+    "objectType": "AI",
+    "unit": "kPa",
+    "role": "sensor",
+    "tags": "`hot-water`✓ `pressure`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "(증기) 증기압력",
+    "objectType": "AI",
+    "unit": "MPa",
+    "role": "sensor",
+    "tags": "`steam`✓ `pressure`✓",
+    "grade": "필수(증기식)",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급수 저수위",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`level`✓ `low-low`✓ `alarm`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "가스 누설",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`gas-detector`✓ `alarm`✓ `critical`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "연료 적산 사용량",
+    "objectType": "AI",
+    "unit": "N㎥",
+    "role": "sensor",
+    "tags": "`naturalGas`✓ `volume`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "배기 온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`exhaust-air`✓ `temp`✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "실화·소염 경보",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fault`✓ `critical`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "정격 열출력",
+    "unit": "kW 또는 kcal/h",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "열효율",
+    "unit": "%",
+    "condition": "**저위발열량 기준 명기**",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "연료 종류",
+    "unit": "—",
+    "condition": "도시가스(LNG)·LPG·경유·전기·바이오매스",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "연료 소비량",
+    "unit": "N㎥/h 또는 L/h",
+    "condition": "정격 기준",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "최고 사용압력",
+    "unit": "MPa",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "온수 출구온도 범위",
+    "unit": "℃",
+    "condition": "(증기식은 증기압력 범위)",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전열면적",
+    "unit": "㎡",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "버너 형식·제어",
+    "unit": "—",
+    "condition": "단단·2단·비례·저NOx",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "NOx 배출",
+    "unit": "ppm",
+    "condition": "환경 규제치",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "배기 온도·배기통 구경",
+    "unit": "℃ / mm",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "안전장치",
+    "unit": "—",
+    "condition": "저수위·과압·실화",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전원",
+    "unit": "V/φ",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e12": {
+  "id": "e12",
+  "title": "열교환기 · 전열교환기",
+  "domain": "열원·수측 설비",
+  "templatePoints": [
+   {
+    "name": "1차 입구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "(해당 유체)✓ `temp`✓ `entering`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "1차 출구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "(해당 유체)✓ `temp`✓ `leaving`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "2차 입구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "(해당 유체)✓ `temp`✓ `entering`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "2차 출구온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "(해당 유체)✓ `temp`✓ `leaving`★",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급기온도 (전열)",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`discharge`✓ `air`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "배기온도 (전열)",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`exhaust-air`✓ `temp`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "바이패스 댐퍼",
+    "objectType": "AO/BO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`bypass`✓ `damper`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "로터 회전 확인 (회전식)",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`heat-recovery`✓ `run`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "차압",
+    "objectType": "AI",
+    "unit": "Pa / kPa",
+    "role": "sensor",
+    "tags": "`differential-pressure`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급기 CO2",
+    "objectType": "AI",
+    "unit": "ppm",
+    "role": "sensor",
+    "tags": "`discharge`✓ `air`✓ `co2-concentration`✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "2차측 제어밸브 개도",
+    "objectType": "AO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "(유체)✓ `valve`✓ `position`★",
+    "grade": "권장",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "열교환량",
+    "unit": "kW",
+    "condition": "**조건**: 1·2차 입출구온도·유량 명기",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "형식",
+    "unit": "—",
+    "condition": "판형·쉘앤튜브 / 회전식·고정식(현열·전열)",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "1차·2차 유체",
+    "unit": "—",
+    "condition": "냉수-냉각수, 급기-배기 등",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "1차·2차 유량",
+    "unit": "LPM / CMH",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "1차·2차 입·출구온도",
+    "unit": "℃",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전열 면적",
+    "unit": "㎡",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "압력 손실",
+    "unit": "kPa / Pa",
+    "condition": "1·2차 각각",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "온도(현열)교환효율",
+    "unit": "%",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "습도(전열)교환효율",
+    "unit": "%",
+    "condition": "전열교환기만",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "최고 사용압력·온도",
+    "unit": "MPa / ℃",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e13": {
+  "id": "e13",
+  "title": "송풍기 (급기 · 환기 · 배기)",
+  "domain": "반송·구동",
+  "templatePoints": [
+   {
+    "name": "주파수 지령",
+    "objectType": "AO",
+    "unit": "Hz",
+    "role": "cmd",
+    "tags": "(용도 fan)✓ `vfd-freq`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "현재 주파수",
+    "objectType": "AI",
+    "unit": "Hz",
+    "role": "sensor",
+    "tags": "(용도 fan)✓ `vfd-freq`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "풍량",
+    "objectType": "AI",
+    "unit": "CMH",
+    "role": "sensor",
+    "tags": "`air`✓ `flow`✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "벨트 끊김·차압",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`differential-pressure`✓ `alarm`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "전류",
+    "objectType": "AI",
+    "unit": "A",
+    "role": "sensor",
+    "tags": "`elec-current`✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "풍량",
+    "unit": "CMH",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정압",
+    "unit": "mmAq 또는 Pa",
+    "condition": "전압·정압 구분",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "형식",
+    "unit": "—",
+    "condition": "시로코(다익)·터보·익형·축류·사류·플러그",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "회전수",
+    "unit": "rpm",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전동기 출력",
+    "unit": "kW",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전원",
+    "unit": "V/φ/Hz",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "인버터 유무",
+    "unit": "—",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "효율",
+    "unit": "%",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "소음",
+    "unit": "dB(A)",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "구동 방식",
+    "unit": "—",
+    "condition": "직결·벨트",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "용도",
+    "unit": "—",
+    "condition": "급기·환기·배기·주방배기·제연 (**태그가 달라진다**)",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e14": {
+  "id": "e14",
+  "title": "펌프",
+  "domain": "반송·구동",
+  "templatePoints": [
+   {
+    "name": "주파수 지령",
+    "objectType": "AO",
+    "unit": "Hz",
+    "role": "cmd",
+    "tags": "`pump`✓ `vfd-freq`✓",
+    "grade": "필수(변유량)",
+    "datasetTier": "template"
+   },
+   {
+    "name": "현재 주파수",
+    "objectType": "AI",
+    "unit": "Hz",
+    "role": "sensor",
+    "tags": "`pump`✓ `vfd-freq`✓",
+    "grade": "필수(변유량)",
+    "datasetTier": "template"
+   },
+   {
+    "name": "토출 압력",
+    "objectType": "AI",
+    "unit": "kPa",
+    "role": "sensor",
+    "tags": "(계통 유체)✓ `discharge`✓ `pressure`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "계통 차압",
+    "objectType": "AI",
+    "unit": "kPa",
+    "role": "sensor",
+    "tags": "(계통 유체)✓ `differential-pressure`✓",
+    "grade": "필수(변유량)",
+    "datasetTier": "template"
+   },
+   {
+    "name": "차압 설정값",
+    "objectType": "AV",
+    "unit": "kPa",
+    "role": "sp",
+    "tags": "(계통 유체)✓ `differential-pressure`✓",
+    "grade": "필수(변유량)",
+    "datasetTier": "template"
+   },
+   {
+    "name": "유량",
+    "objectType": "AI",
+    "unit": "㎥/h",
+    "role": "sensor",
+    "tags": "(계통 유체)✓ `flow`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "전류",
+    "objectType": "AI",
+    "unit": "A",
+    "role": "sensor",
+    "tags": "`elec-current`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "정격 유량",
+    "unit": "LPM 또는 ㎥/h",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전양정",
+    "unit": "m",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전동기 출력",
+    "unit": "kW",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "극수 / 회전수",
+    "unit": "P / rpm",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "형식",
+    "unit": "—",
+    "condition": "원심·다단·라인·수중·인라인",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "효율",
+    "unit": "%",
+    "condition": "최고효율점(BEP)",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "흡입·토출 구경",
+    "unit": "mm",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "필요 NPSH",
+    "unit": "m",
+    "condition": "캐비테이션 검토",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "인버터 유무",
+    "unit": "—",
+    "condition": "변유량 계통은 필수",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전원",
+    "unit": "V/φ",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "용도(계통)",
+    "unit": "—",
+    "condition": "냉수·냉각수·온수·급수·소화 (**태그가 달라진다**)",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e15": {
+  "id": "e15",
+  "title": "인버터 (VFD)",
+  "domain": "반송·구동",
+  "templatePoints": [
+   {
+    "name": "주파수 지령",
+    "objectType": "AO",
+    "unit": "Hz",
+    "role": "cmd",
+    "tags": "`vfd`✓ `vfd-freq`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "현재 주파수",
+    "objectType": "AI",
+    "unit": "Hz",
+    "role": "sensor",
+    "tags": "`vfd`✓ `vfd-freq`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "출력 전류",
+    "objectType": "AI",
+    "unit": "A",
+    "role": "sensor",
+    "tags": "`vfd`✓ `elec-current`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "출력 전압",
+    "objectType": "AI",
+    "unit": "V",
+    "role": "sensor",
+    "tags": "`vfd`✓ `volt`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "출력 전력",
+    "objectType": "AI",
+    "unit": "kW",
+    "role": "sensor",
+    "tags": "`vfd`✓ `elec-power`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "적산 전력량",
+    "objectType": "AI",
+    "unit": "kWh",
+    "role": "sensor",
+    "tags": "`vfd`✓ `elec-energy`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "DC 링크 전압",
+    "objectType": "AI",
+    "unit": "V",
+    "role": "sensor",
+    "tags": "`vfd`✓ `dc-elec`✓ `volt`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "방열판 온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`vfd`✓ `temp`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "누적 운전시간",
+    "objectType": "AI",
+    "unit": "h",
+    "role": "sensor",
+    "tags": "`vfd`✓ `runtime`★",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "트립·고장",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`vfd`✓ `fault`✓ `alarm`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "트립 코드",
+    "objectType": "AI/MSO",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`vfd`✓ `fault`✓ `alarm-text`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "정·역 지령",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`vfd`✓ `cmd`✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "정격 용량",
+    "unit": "kW",
+    "condition": "적용 모터 기준",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정격 입력 전압·상",
+    "unit": "V / φ",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정격 출력 전류",
+    "unit": "A",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "과부하 내량",
+    "unit": "% / s",
+    "condition": "예 110%/60s (HVAC용), 150%/60s (일반)",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "제어 방식",
+    "unit": "—",
+    "condition": "V/f·센서리스 벡터·벡터",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "통신 프로토콜",
+    "unit": "—",
+    "condition": "Modbus RTU·BACnet MSTP·Profibus·EtherNet/IP",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "내장 필터·리액터",
+    "unit": "—",
+    "condition": "EMC 필터·DC 리액터",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "냉각 방식",
+    "unit": "—",
+    "condition": "강제공랭·수랭",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "보호등급",
+    "unit": "IP",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "주변온도 범위",
+    "unit": "℃",
+    "condition": "디레이팅 조건",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e16": {
+  "id": "e16",
+  "title": "계량 · 계측 · 제어기",
+  "domain": "계측·제어",
+  "templatePoints": [
+   {
+    "name": "순시 유량",
+    "objectType": "AI",
+    "unit": "㎥/h",
+    "role": "sensor",
+    "tags": "(유체)✓ `flow`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "적산 유량",
+    "objectType": "AI",
+    "unit": "㎥",
+    "role": "sensor",
+    "tags": "(유체)✓ `volume`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "순시 전력",
+    "objectType": "AI",
+    "unit": "kW",
+    "role": "sensor",
+    "tags": "`elec-power`✓ `active-power`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "적산 전력량",
+    "objectType": "AI",
+    "unit": "kWh",
+    "role": "sensor",
+    "tags": "`elec-energy`✓ `active-energy`✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "상전압 / 선전류",
+    "objectType": "AI",
+    "unit": "V / A",
+    "role": "sensor",
+    "tags": "`phase-voltage`✓ / `phaseCurrent`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "무효·피상 전력",
+    "objectType": "AI",
+    "unit": "kvar / kVA",
+    "role": "sensor",
+    "tags": "`reactive-power`✓ / `apparent-power`✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "역률",
+    "objectType": "AI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`power-factor`★",
+    "grade": "권장",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "측정 범위",
+    "unit": "물리량 단위",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정확도 등급",
+    "unit": "%",
+    "condition": "예 ±0.5%, KS C 계량 등급",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "관경 (유량계)",
+    "unit": "mm",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "방식",
+    "unit": "—",
+    "condition": "초음파·전자식·터빈·차압 / CT·직결·PT",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "출력",
+    "unit": "—",
+    "condition": "4–20mA·펄스·통신",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "펄스 정수",
+    "unit": "펄스/단위",
+    "condition": "**적산 환산에 필수**",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "통신 프로토콜",
+    "unit": "—",
+    "condition": "Modbus RTU·BACnet·M-Bus",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "I/O 점수",
+    "unit": "점",
+    "condition": "AI/AO/DI/DO 각각",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "확장 가능 점수",
+    "unit": "점",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "지원 프로토콜",
+    "unit": "—",
+    "condition": "BACnet IP/MSTP·Modbus TCP/RTU·LonWorks·전용",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "프로그램 용량",
+    "unit": "—",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전원",
+    "unit": "V",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "통신 속도",
+    "unit": "bps",
+    "condition": "MSTP 보율",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e19": {
+  "id": "e19",
+  "title": "전력 설비",
+  "domain": "전력 설비",
+  "templatePoints": [
+   {
+    "name": "상전압 (R/S/T)",
+    "objectType": "AI",
+    "unit": "V",
+    "role": "sensor",
+    "tags": "`phase-voltage` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "선전류",
+    "objectType": "AI",
+    "unit": "A",
+    "role": "sensor",
+    "tags": "`phaseCurrent` ✓ / `lineCurrent` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "유효 전력",
+    "objectType": "AI",
+    "unit": "kW",
+    "role": "sensor",
+    "tags": "`active-power` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "무효 / 피상 전력",
+    "objectType": "AI",
+    "unit": "kvar / kVA",
+    "role": "sensor",
+    "tags": "`reactive-power` ✓ / `apparent-power` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "역률",
+    "objectType": "AI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`power-factor` ★",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "주파수",
+    "objectType": "AI",
+    "unit": "Hz",
+    "role": "sensor",
+    "tags": "`ac-freq` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "적산 전력량",
+    "objectType": "AI",
+    "unit": "kWh",
+    "role": "sensor",
+    "tags": "`active-energy` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "차단기 개폐 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`breaker` ✓ `run` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "차단기 트립",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`breaker` ✓ `fault` ✓ `critical` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "변압기 권선 온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`transformer` ✓ `temp` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "누설 전류",
+    "objectType": "AI",
+    "unit": "mA",
+    "role": "sensor",
+    "tags": "`leakage-current` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "전압·전류 불평형",
+    "objectType": "AI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`volt-imbalance` ✓ / `current-imbalance` ✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "고조파 왜형률",
+    "objectType": "AI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`volt-thd` ✓ / `current-thd` ✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "정전",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`incoming-power` ✓ `fault` ✓ `critical` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "발전 전압 / 전류 / 전력",
+    "objectType": "AI",
+    "unit": "V / A / kW",
+    "role": "sensor",
+    "tags": "`generator` ✓ + `volt`·`elec-current`·`elec-power` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "주파수",
+    "objectType": "AI",
+    "unit": "Hz",
+    "role": "sensor",
+    "tags": "`generator` ✓ `ac-freq` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "연료 수위",
+    "objectType": "AI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`generator` ✓ `level` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "냉각수 온도 / 윤활유 압력",
+    "objectType": "AI",
+    "unit": "℃ / kPa",
+    "role": "sensor",
+    "tags": "`generator` ✓ + `temp`·`pressure` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "축전지 전압",
+    "objectType": "AI",
+    "unit": "V",
+    "role": "sensor",
+    "tags": "`battery` ✓ `volt` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "자동 / 수동 절환",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`enable` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "시동 실패",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fault` ✓ `critical` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "누적 운전시간",
+    "objectType": "AI",
+    "unit": "h",
+    "role": "sensor",
+    "tags": "`runtime` ★",
+    "grade": "권장",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "정격 용량",
+    "unit": "kVA",
+    "condition": "변압기",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "1차·2차 전압",
+    "unit": "V",
+    "condition": "예 22.9kV / 380-220V",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "결선",
+    "unit": "—",
+    "condition": "Δ-Y, Y-Y",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "임피던스 전압",
+    "unit": "%",
+    "condition": "단락전류 계산용",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "냉각 방식",
+    "unit": "—",
+    "condition": "건식(몰드)·유입",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "무부하손·부하손",
+    "unit": "W",
+    "condition": "효율 산정",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정격 전류 / 차단 용량",
+    "unit": "A / kA",
+    "condition": "차단기",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "절연 등급·내압",
+    "unit": "— / kV",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "보호 계전 방식",
+    "unit": "—",
+    "condition": "OCR·OCGR·디지털 계전기",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정격 출력",
+    "unit": "kVA / kW",
+    "condition": "비상용·상용 구분",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "원동기 형식",
+    "unit": "—",
+    "condition": "디젤·가스",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "연료 종류·소비량",
+    "unit": "— / L/h",
+    "condition": "정격 부하 기준",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "연료 탱크 용량·연속 운전시간",
+    "unit": "L / h",
+    "condition": "법정 확보시간",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정격 전압·주파수·역률",
+    "unit": "V / Hz / —",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "기동 방식",
+    "unit": "—",
+    "condition": "전기식(축전지)·공기식",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "기동 시간",
+    "unit": "s",
+    "condition": "법정 요구(비상전원)",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "축전지 사양",
+    "unit": "V / Ah",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "소음·배기 처리",
+    "unit": "dB(A) / —",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e20": {
+  "id": "e20",
+  "title": "조명 · 차양",
+  "domain": "조명·차양",
+  "templatePoints": [
+   {
+    "name": "점멸 지령",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`luminaire` ✓ `enable` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "점등 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`luminaire` ✓ `run` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "조광 지령",
+    "objectType": "AO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`dimming` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "조도 (실측)",
+    "objectType": "AI",
+    "unit": "lux",
+    "role": "sensor",
+    "tags": "`illuminance` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "색온도 지령",
+    "objectType": "AO",
+    "unit": "K",
+    "role": "cmd",
+    "tags": "`color-temperature` ✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "재실 감지",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`occupancy` ✓ `motion-sensor` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "그룹 / 씬 호출",
+    "objectType": "MSO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`luminaire` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "비상등 자기진단 결과",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`emergency-light` ✓ `fault` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "블라인드 개도",
+    "objectType": "AO",
+    "unit": "%",
+    "role": "cmd",
+    "tags": "`blind` ✓ `position` ★",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "소비전력",
+    "objectType": "AI",
+    "unit": "kW",
+    "role": "sensor",
+    "tags": "`elec-power` ✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "정격 소비전력",
+    "unit": "W",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "광속",
+    "unit": "lm",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "광효율",
+    "unit": "lm/W",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "색온도",
+    "unit": "K",
+    "condition": "3000·4000·5700",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "연색성",
+    "unit": "Ra (CRI)",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "배광 각도",
+    "unit": "°",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "조광 방식",
+    "unit": "—",
+    "condition": "0–10V · DALI · PWM · 위상",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정격 수명",
+    "unit": "h",
+    "condition": "L70 기준 명기",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "보호등급",
+    "unit": "IP",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "(비상등) 예비전원 시간",
+    "unit": "분",
+    "condition": "법정 확보시간",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "(블라인드) 구동 모터 출력·행정시간",
+    "unit": "W / s",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e21": {
+  "id": "e21",
+  "title": "방재 (소방 · 제연 · 검지)",
+  "domain": "방재",
+  "templatePoints": [
+   {
+    "name": "화재 발생 (구역별)",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fire-zone` ✓ `alarm` ✓ `critical` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "감지기 동작",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`heat-detector` ✓ `alarm` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "수신기 고장·단선",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`firealarm-panel` ✓ `fault` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "경보 출력 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`alarm-bell` ✓ `run` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "방화댐퍼 폐쇄 확인",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fire-damper` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "제연댐퍼 개방 확인",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`smoke-damper` ✓ `smoke-zone` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "제연팬 운전",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`exhaust-fan` ✓ `smoke-zone` ✓ `run` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "소화펌프 운전",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fire-pump` ✓ `run` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "소화배관 압력",
+    "objectType": "AI",
+    "unit": "MPa",
+    "role": "sensor",
+    "tags": "`fire-pump` ✓ `pressure` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "가스 농도",
+    "objectType": "AI",
+    "unit": "ppm / %LEL",
+    "role": "sensor",
+    "tags": "`gas-detector` ✓ + `ch4`·`co` ✓ + `concentration` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "일산화탄소 농도",
+    "objectType": "AI",
+    "unit": "ppm",
+    "role": "sensor",
+    "tags": "`co-detector` ✓ `co-concentration` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "누수 감지",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`water-leak` ✓ `alarm` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "화재 연동 운전 (설비측)",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fire-mode` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "수신기 회로 수",
+    "unit": "회로",
+    "condition": "화재 수신기",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "감지기 종류·작동 온도",
+    "unit": "— / ℃",
+    "condition": "정온·차동·광전·불꽃",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "경계구역 구성",
+    "unit": "—",
+    "condition": "층·구역 매핑",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "스프링클러 헤드 종류·방수량·작동온도",
+    "unit": "— / LPM / ℃",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "소화 배관 사용압력",
+    "unit": "MPa",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "소화펌프 토출량·양정·출력",
+    "unit": "LPM / m / kW",
+    "condition": "주펌프·충압펌프",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "제연 풍량·정압",
+    "unit": "CMH / Pa",
+    "condition": "제연팬",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "방화·방연 댐퍼 구동방식",
+    "unit": "—",
+    "condition": "퓨즈·모터·복귀형",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "가스검지기 대상가스·검지범위·경보값",
+    "unit": "— / ppm(%LEL)",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e22": {
+  "id": "e22",
+  "title": "승강 설비",
+  "domain": "승강",
+  "templatePoints": [
+   {
+    "name": "현재 층",
+    "objectType": "AI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`elevator` ✓ `floor-position` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운행 방향",
+    "objectType": "MSO",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`elevator` ✓ (정지/상승/하강)",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운전 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`elevator` ✓ `run` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "도어 개폐",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`door` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "고장",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`elevator` ✓ `fault` ✓ `major` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "갇힘 (구출 요청)",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`elevator` ✓ `alarm` ✓ `critical` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "화재관제 운전",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`elevator` ✓ `fire-mode` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "비상전원 운전",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`elevator` ✓ `generator` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "점검 중",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`elevator` ✓ `enable` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "소비전력",
+    "objectType": "AI",
+    "unit": "kW",
+    "role": "sensor",
+    "tags": "`elec-power` ✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운행 횟수",
+    "objectType": "AI",
+    "unit": "회",
+    "role": "sensor",
+    "tags": "`runtime` ★",
+    "grade": "선택",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "정격 적재하중 / 정원",
+    "unit": "kg / 인",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정격 속도",
+    "unit": "m/min",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "층수 / 정지층 / 행정거리",
+    "unit": "층 / 층 / m",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "구동 방식",
+    "unit": "—",
+    "condition": "권상(기어드·기어리스)·유압·MRL",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "제어 방식",
+    "unit": "—",
+    "condition": "VVVF·군관리",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전동기 출력",
+    "unit": "kW",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "도어 방식·개폐 시간",
+    "unit": "— / s",
+    "condition": "중앙개폐·측면개폐",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "비상 장치",
+    "unit": "—",
+    "condition": "정전시 구출운전·비상통화·자가발전 운전",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "(에스컬레이터) 유효폭·경사각·양정",
+    "unit": "mm / ° / m",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e23": {
+  "id": "e23",
+  "title": "보안 · 출입 (BMS 연동 범위)",
+  "domain": "보안·출입",
+  "templatePoints": [
+   {
+    "name": "도어 개방 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`door-sensor` ✓ `door` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "강제 개방 경보",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`access-control` ✓ `alarm` ✓ `major` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "장시간 개방 경보",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`access-control` ✓ `alarm` ✓ `warning` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "출입 이벤트",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`card-reader` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "카메라 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`ip-camera` ✓ `fault` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "움직임 감지",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`motion-sensor` ✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "화재 연동 비상 개방",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`door-controller` ✓ `fire-mode` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "해상도 / 프레임 / 압축",
+    "unit": "MP / fps / —",
+    "condition": "카메라 (H.264·H.265)",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "렌즈 초점거리·화각",
+    "unit": "mm / °",
+    "condition": "카메라",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "야간 촬영·IR 거리",
+    "unit": "m",
+    "condition": "카메라",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "보호등급·동작온도",
+    "unit": "IP / ℃",
+    "condition": "카메라",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "리더 인증 방식",
+    "unit": "—",
+    "condition": "RF(125kHz·13.56MHz)·생체·모바일",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "도어 잠금 방식",
+    "unit": "—",
+    "condition": "EM락·데드볼트·스트라이크",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "저장 채널 수·보존 기간",
+    "unit": "ch / 일",
+    "condition": "NVR",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "전원",
+    "unit": "V / PoE",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e24": {
+  "id": "e24",
+  "title": "환경 · 실내공기질",
+  "domain": "환경·공기질",
+  "templatePoints": [
+   {
+    "name": "CO2 농도",
+    "objectType": "AI",
+    "unit": "ppm",
+    "role": "sensor",
+    "tags": "`co2-concentration` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "PM10 / PM2.5",
+    "objectType": "AI",
+    "unit": "㎍/㎥",
+    "role": "sensor",
+    "tags": "`pm10-concentration` ✓ / `pm25-concentration` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "TVOC",
+    "objectType": "AI",
+    "unit": "ppb / ㎍/㎥",
+    "role": "sensor",
+    "tags": "`tvoc-concentration` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "포름알데히드",
+    "objectType": "AI",
+    "unit": "㎍/㎥",
+    "role": "sensor",
+    "tags": "`ch2o-concentration` ✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "라돈",
+    "objectType": "AI",
+    "unit": "Bq/㎥",
+    "role": "sensor",
+    "tags": "`radon` ✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "실내 온·습도",
+    "objectType": "AI",
+    "unit": "℃ / %",
+    "role": "sensor",
+    "tags": "`zone` ✓ `air` ✓ + `temp`·`humidity` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "재실 인원",
+    "objectType": "AI",
+    "unit": "인",
+    "role": "sensor",
+    "tags": "`occupancy` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "외기 온·습도",
+    "objectType": "AI",
+    "unit": "℃ / %",
+    "role": "sensor",
+    "tags": "`outside-air` ✓ + `temp`·`humidity` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "외기 풍속 / 풍향",
+    "objectType": "AI",
+    "unit": "m/s / °",
+    "role": "sensor",
+    "tags": "`wind-speed` ✓ / `wind-direction` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "일사량",
+    "objectType": "AI",
+    "unit": "W/㎡",
+    "role": "sensor",
+    "tags": "`solar-irradiance` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "강수 감지",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`precipitation` ✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "측정 대상·범위",
+    "unit": "— / 물리량 단위",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정확도",
+    "unit": "± 단위 또는 %",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "응답 시간 (T90)",
+    "unit": "s",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "교정 주기",
+    "unit": "개월",
+    "condition": "**유지보수 계획의 입력값**",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "센서 방식",
+    "unit": "—",
+    "condition": "NDIR(CO2)·광산란(PM)·PID(VOC)·전기화학",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "출력",
+    "unit": "—",
+    "condition": "4–20mA·0–10V·Modbus·BACnet",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "사용 환경",
+    "unit": "℃ / %RH",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ },
+ "e25": {
+  "id": "e25",
+  "title": "급배수 · 위생",
+  "domain": "급배수·위생",
+  "templatePoints": [
+   {
+    "name": "수조 수위",
+    "objectType": "AI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`domestic-water` ✓ `level` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "고수위 / 저수위 경보",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`level` ✓ + `high-high` ✓ / `low-low` ✓ + `alarm` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급수 펌프 운전",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`booster-pump` ✓ `run` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "토출 압력",
+    "objectType": "AI",
+    "unit": "kPa",
+    "role": "sensor",
+    "tags": "`domestic-water` ✓ `pressure` ✓ `discharge` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급수 유량 / 적산",
+    "objectType": "AI",
+    "unit": "㎥/h / ㎥",
+    "role": "sensor",
+    "tags": "`domestic-water` ✓ + `flow` ✓ / `volume` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "배수(오수) 수위",
+    "objectType": "AI/BI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`wastewater` ✓ `level` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "배수 펌프 운전",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`submersible-pump` ✓ `run` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "누수 감지",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`water-leak` ✓ `alarm` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   },
+   {
+    "name": "잔류 염소",
+    "objectType": "AI",
+    "unit": "mg/L",
+    "role": "sensor",
+    "tags": "`chlorine` ✓",
+    "grade": "권장",
+    "datasetTier": "template"
+   },
+   {
+    "name": "pH / 전도도(TDS)",
+    "objectType": "AI",
+    "unit": "— / µS/cm",
+    "role": "sensor",
+    "tags": "`ph` ✓ / `tds` ✓",
+    "grade": "선택",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급탕 온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`hot-water` ✓ `temp` ✓",
+    "grade": "필수",
+    "datasetTier": "template"
+   }
+  ],
+  "simulatorSpecRequirements": [
+   {
+    "name": "수조 용량 / 재질 / 형식",
+    "unit": "㎥ / —",
+    "condition": "저수조·고가수조",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "급수 방식",
+    "unit": "—",
+    "condition": "고가수조·압력수조·부스터(인버터)",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "부스터 펌프 대수·토출압·유량",
+    "unit": "대 / kPa / LPM",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "배수 방식·펌프 사양",
+    "unit": "— / LPM·m·kW",
+    "condition": "오수·잡배수·우수",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "정수·소독 방식",
+    "unit": "—",
+    "condition": "염소·자외선",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "배관 재질·구경",
+    "unit": "— / mm",
+    "condition": "",
+    "requiredFor": "simulator"
+   },
+   {
+    "name": "급탕 저탕량·가열능력",
+    "unit": "L / kW",
+    "condition": "",
+    "requiredFor": "simulator"
+   }
+  ]
+ }
+}

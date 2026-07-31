@@ -308,9 +308,10 @@ def pairs_to_spec(pairs, source):
 # ── 표의 성격 ────────────────────────────────────────────────────────────────
 # 카탈로그에서 뽑은 표를 전부 '정격 사양'이라 부르면 안 된다. 실제로는 성격이
 # 다른 세 가지가 섞여 있다 (실측: 표 1,254개 중 정격은 소수였다).
-#   rating 정격 — 이 제품이 늘 갖는 값 (전압·전류·능력·효율). 시뮬레이터가 바로 쓴다.
+#   rating 원문 정격 후보 — 전압·전류·능력·효율 후보. 모델군·옵션 표일 수 있어 바로 확정값은 아니다.
 #   perf   성능 — 조건을 넣고 찾아보는 표 (온도별 능력, 풍량×정압별 축동력).
 #   dim    치수·중량 — 설치용. 계산에는 안 쓴다.
+#   etc    부속·참고 — 호환표·배선표·선정표처럼 값은 있지만 바로 계산값은 아니다.
 KIND_KO = {"rating": "정격 사양", "perf": "성능표 (조건별 조회)",
            "dim": "치수·중량", "etc": "기타"}
 KIND_ORDER = ["rating", "perf", "dim", "etc"]
@@ -318,12 +319,21 @@ KIND_ORDER = ["rating", "perf", "dim", "etc"]
 PERF_WORD = re.compile(
     r"fan performance|\bbhp\b|static pressure|외부\s*정압|"
     r"(gross|net|total|cooling|heating)\s+capacit|capacit\w* (at|vs)|"
-    r"performance data|part load|ipl[vc]\b", re.I)
+    r"performance data|part load|ipl[vc]\b|throw distance|pressure drop|"
+    r"성능표|조건별\s*조회|coil capacity|air temperature rise", re.I)
 DIM_WORD = re.compile(
     r"dimension|weight|clearance|shipping|rigging|center of gravity|"
-    r"치수|중량|외형", re.I)
+    r"roof curb|service clearance|connection drawing|suction lines?|liquid lines?|"
+    r"\bfigure\b|치수|중량|외형", re.I)
 RATING_WORD = re.compile(
     r"general data|mains supply|ratings?\b|electrical data|nominal|정격", re.I)
+# 정격처럼 보이는 단위가 있어도 쓰임새가 다른 표. 다른 설비에도 같은 원칙을 적용한다:
+# "바로 계산하는 기본값"이 아니라 "무엇과 맞는가/어떻게 연결하는가"이면 참고다.
+REFERENCE_WORD = re.compile(
+    r"accessor(y|ies)|used with|unit wiring|wiring diagram|field supplied|"
+    r"single point connection|control stages?|fuse|circuit breaker|"
+    r"plenum|grille|isolator|subbase|compatib|selection table|"
+    r"\bcabinet\b|features?|benefits?|배선|차단기|퓨즈|호환|부속|액세서리|선정표", re.I)
 # 시뮬레이터가 쓰는 물리량 — 이게 있으면 치수 낱말이 섞여 있어도 정격 표다
 RATING_Q = {"power", "current", "voltage", "capacity", "efficiency", "airflow"}
 
@@ -334,16 +344,18 @@ def table_kind(t):
     txt = "%s %s" % (t.get("title") or "", " ".join(str(h) for h in t["header"]))
     if PERF_WORD.search(txt):
         return "perf"
+    if REFERENCE_WORD.search(txt):
+        return "etc"
     # 조회 격자 — 같은 물리량 열이 넷 이상 되풀이되면 '조건을 바꿔 가며 읽는 표'다.
     # 열이 형번인 전치 표(orientation='row')는 되풀이가 정상이므로 제외한다.
     if t.get("orientation") == "column" and qs:
         top, n = collections.Counter(qs).most_common(1)[0]
         if n >= 4 and len(set(qs)) <= 2:
             return "perf"
-    if RATING_WORD.search(txt) or (set(qs) & RATING_Q):
-        return "rating"
     if DIM_WORD.search(txt) or (qs and set(qs) <= {"dimension", "weight"}):
         return "dim"
+    if RATING_WORD.search(txt) or (set(qs) & RATING_Q):
+        return "rating"
     return "etc"
 
 

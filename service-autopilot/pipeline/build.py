@@ -41,7 +41,8 @@ def load():
         m = json.load(open(f, encoding="utf-8"))
         base = m["id"].rsplit("-idu", 1)[0].rsplit("-odu", 1)[0]
         models.setdefault(m["equipId"], []).append({
-            "id": m["id"], "vendor": m["vendor"], "model": m["model"], "name": m["name"],
+            "id": m["id"], "equipId": m["equipId"],
+            "vendor": m["vendor"], "model": m["model"], "name": m["name"],
             "cat": m["cat"], "tag": m["tag"], "status": m.get("status", "active"),
             "summary": m.get("summary", ""), "has": m.get("has", {}),
             "spec": m.get("spec", []), "comm": m.get("comm", []), "io": m.get("io", []),
@@ -75,12 +76,48 @@ def load():
     return equips, models, l3, terms
 
 
+def load_purpose_dataset():
+    """화면 설명용으로 목적별 데이터셋을 작게 싣는다.
+
+    전체 dataset에는 L3 전체 포인트가 다시 들어 있어 HTML이 불필요하게 커진다.
+    여기서는 모델 상세에서 바로 보여 줄 matched/missing 판정만 남긴다.
+    """
+    import datasets
+
+    raw = datasets.build_dataset()
+    out = {}
+    for mid, m in raw["modelMappings"].items():
+        out[mid] = {
+            "counts": m["counts"],
+            "unitModels": m.get("unitModels", []),
+            "electricalRows": m.get("electricalRows", []),
+            "templatePointMappings": m["templatePointMappings"],
+            "simulatorRequirementMappings": [{
+                "requirementName": r["requirementName"],
+                "unit": r["unit"],
+                "condition": r["condition"],
+                "status": r["status"],
+                "matchedInputs": [{
+                    "name": x.get("name"),
+                    "label": x.get("label"),
+                    "value": x.get("value") or x.get("valueRange"),
+                    "unit": x.get("unit"),
+                    "condition": x.get("condition"),
+                    "simulatorUse": x.get("simulatorUse"),
+                    "sourceKind": x.get("sourceKind"),
+                } for x in (r.get("matchedInputs") or [])[:3]],
+            } for r in m["simulatorRequirementMappings"]],
+        }
+    return out
+
+
 def main():
     equips, models, l3, terms = load()
+    purpose = load_purpose_dataset()
     src = open(TPL, encoding="utf-8").read()
     html = src[src.index('HTML = r"""') + len('HTML = r"""'):src.rindex('"""')]
     data = {"equips": equips, "models": models, "l3": l3,
-            "domOrder": DOM_ORDER, "terms": terms}
+            "domOrder": DOM_ORDER, "terms": terms, "purpose": purpose}
     totp = sum(e["np"] for e in equips)
     tots = sum(e["ns"] for e in equips)
     nmodel = sum(len(v) for v in models.values())
