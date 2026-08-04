@@ -264,6 +264,26 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(dps["units"]["ratedAirflow"], "cfm")
         self.assertEqual(dps["eer"], "13.5")
 
+    def test_every_e5_model_has_unit_candidates(self):
+        # 재발 방지 게이트 — 공조기 모델은 형번·정격 카드가 반드시 1개 이상이어야 한다.
+        # 새 벤더를 넣고 이 테스트가 깨지면 체크리스트 5번(인식 사다리 확장)을 하지
+        # 않은 것이다. "조판 탓" 으로 넘기지 말 것 (AAON 실사례 — 텍스트 층 파서로 해결).
+        data = datasets.build_dataset(equip_ids={"e5"})
+        missing = [mid for mid, m in data["modelMappings"].items()
+                   if not m.get("unitModels")]
+        self.assertEqual(missing, [])
+
+    def test_aaon_cabinet_text_yields_units_with_iom_tonnage(self):
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"]["aaon-vccx2-rn-rq-series-rooftop-bacnet"]
+        units = {item["unitModelNumber"]: item for item in model["unitModels"]}
+
+        self.assertGreaterEqual(len(units), 20)
+        rn6 = units["RN-006"]
+        self.assertEqual(rn6["capacityClass"], "6 Tons")
+        self.assertEqual(rn6["ratedAirflow"], "2,000")
+        self.assertEqual(rn6["units"]["ratedAirflow"], "CFM")
+
     def test_carrier_letter_sizes_become_units_with_nominal_capacity(self):
         # Carrier 48/50N — 크기가 한 글자(N~T)이고 톤수는 'NOMINAL CAPACITY (tons)' 행.
         # 치수·커브 표도 같은 제목 낱말을 쓰므로 이 행이 없으면 형번을 만들면 안 된다.

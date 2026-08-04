@@ -363,9 +363,10 @@ def value_unit_for_label(rows, pattern, col, unit_col=None):
     return "", ""
 
 
-# 형번으로 인정하는 토큰 — 문자 계열 + 숫자 2자리 이상 (TTA0724, WHJ150, T/YSC036G3).
-# 'Scroll'(압축기 형식)이나 '1/5, 2/7.5'(압축기 구성) 같은 속성값이 형번으로 오인되지 않게 한다.
-UNIT_CODE_TOKEN = re.compile(r"[A-Z][A-Za-z/]{1,8}\d{2,}")
+# 형번으로 인정하는 토큰 — 문자 계열 + 숫자 2자리 이상 (TTA0724, WHJ150, T/YSC036G3,
+# RN-006 처럼 하이픈이 낀 표기 포함). 'Scroll'(압축기 형식)이나 '1/5, 2/7.5'(압축기
+# 구성) 같은 속성값이 형번으로 오인되지 않게 한다.
+UNIT_CODE_TOKEN = re.compile(r"[A-Z][A-Za-z/\-]{1,8}\d{2,}")
 
 
 def looks_like_unit_code(text):
@@ -470,7 +471,7 @@ def size_row_units(table, model, out, seen):
     family = ("Envistar" if "Envistar" in src
               else unit_family_for(model, table.get("title") or ""))
     af_i = next((i for i, h in enumerate(header)
-                 if re.search(r"air ?fl\s?ow", h or "", re.I)), None)
+                 if re.search(r"air\s?f\s?l\s?o\s?w", h or "", re.I)), None)
     cool_i = next((i for i, h in enumerate(header)
                    if re.search(r"cooling power", h or "", re.I)), None)
     if af_i is None:
@@ -479,7 +480,7 @@ def size_row_units(table, model, out, seen):
     # Envistar 는 부머리글 행(Min/SFPv/Max)에 있다. 머리글 쪽을 먼저 본다.
     sub = rows[0] if rows and not (rows[0][0] or "").strip() else []
     af_max = next((i for i, h in enumerate(header)
-                   if i > af_i and re.search(r"max\.? air ?fl\s?ow", h or "", re.I)), None)
+                   if i > af_i and re.search(r"max\.?\s?air\s?f\s?l\s?o\s?w", h or "", re.I)), None)
     if af_max is None:
         af_max = af_i
         for off in range(0, 4):
@@ -496,8 +497,9 @@ def size_row_units(table, model, out, seen):
         seen.add(key)
         lo = cells[af_i] if af_i < len(cells) else ""
         hi = cells[af_max] if af_max != af_i and af_max < len(cells) else ""
-        if not hi:
-            # Max 열 머리글이 빈칸인 표(Swegon 크기 012) — 오른쪽의 다음 값이 최대값이다
+        if not hi and not re.search(r"\d\s*[-–]\s*\d", lo):
+            # Max 열 머리글이 빈칸인 표(Swegon 크기 012) — 오른쪽의 다음 값이 최대값이다.
+            # lo 가 이미 '290 - 1620' 범위면 완결이므로 이웃 값을 붙이지 않는다.
             for j in range(af_i + 1, min(af_i + 4, len(cells))):
                 if (cells[j] or "").strip():
                     hi = cells[j]
@@ -547,6 +549,20 @@ def unit_models(model):
         return []
     out, seen, capacity_units = [], set(), {}
     for table in model.get("specTables") or []:
+        # 크기 행 표(Size + 풍량 열)는 kind 와 무관하게 모양으로 먼저 알아본다 —
+        # Swegon 퀵가이드 본표는 머리글이 배너('Ecodesign')이고 진짜 머리글이 첫
+        # 행이라 분류가 치수로 빠져 있었다. 배너면 첫 행을 머리글로 승격한다.
+        h0 = row_cells(table.get("header") or [])
+        r0 = table.get("rows") or []
+        if h0 and not (h0[0] or "").strip() and r0:
+            f0 = row_cells(r0[0])
+            if f0 and re.match(r"^siz", f0[0] or "", re.I):
+                table = dict(table, header=r0[0], rows=r0[1:])
+                h0 = f0
+        if (h0 and re.match(r"^siz", h0[0] or "", re.I)
+                and any(re.search(r"air\s?f\s?l\s?o\s?w", h or "", re.I) for h in h0)):
+            size_row_units(table, model, out, seen)
+            continue
         if (table.get("kind") or "etc") != "rating":
             continue
         title = table.get("title") or ""
@@ -557,7 +573,7 @@ def unit_models(model):
             # '1행=크기(04~28), 열=풍량·냉방능력' 구조를 모양으로 알아본다
             header0 = row_cells(table.get("header") or [])
             if (header0 and re.match(r"^siz", header0[0] or "", re.I)
-                    and any(re.search(r"air ?fl\s?ow", h or "", re.I) for h in header0)):
+                    and any(re.search(r"air\s?f\s?l\s?o\s?w", h or "", re.I) for h in header0)):
                 size_row_units(table, model, out, seen)
             continue
         header = row_cells(table.get("header") or [])
