@@ -47,6 +47,35 @@ OVERRIDE = {
     "BAS-PTS002A-EN_11082024.pdf": {"cat": "HVAC.AIR.RTU.WSHP", "tag": "rooftop"},
     "BAS-PTS006A-EN_11152024.pdf": {"cat": "HVAC.AIR.RTU", "tag": "rooftop"},
     "BAS-PTS036A-EN_12042024.pdf": {"cat": "HVAC.AIR.SPLIT", "tag": "ahu"},
+    # Daikin ED 문서는 표지 제목이 'Protocol Information' 뿐이라 제품명이 안 잡힌다.
+    # 제품·컨트롤러는 각 문서 1쪽 적용 모델 목록에서 옮겨 적었다.
+    "Daikin_ED-15112-21_MicroTech_Rooftop-AHU_Protocol.pdf": {
+        "cat": "HVAC.AIR.RTU", "tag": "rooftop",
+        "controller": "MicroTech III/4",
+        "product": "Rebel·RoofPak·Maverick II Rooftop & Self-Contained",
+    },
+    "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf": {
+        "controller": "MicroTech III/4",
+        "product": "AGZ·AMZ·ADS·AWV·WME·WWV Chillers",
+    },
+    "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf": {
+        "controller": "MicroTech",
+        "product": "AGZ-F & WMT Chillers",
+    },
+    "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf": {
+        "controller": "MicroTech",
+        "product": "WME-C/D Magnitude Chiller",
+    },
+    "JCI_Simplicity-SE_Point-Mapping_5177447-uts-a-1215.pdf": {
+        "cat": "HVAC.AIR.RTU", "tag": "rooftop",
+        "controller": "Simplicity SE (Smart Equipment)",
+        "product": "York Rooftop Units",
+    },
+    "IVProdukt_Siemens-Climatix-POL908_AHU_BACnet_Objects_V1.pdf": {
+        "cat": "HVAC.AIR.AHU", "tag": "ahu",
+        "controller": "Climatix POL908",
+        "product": "IV Produkt AHU Application",
+    },
 }
 
 # 구간 이름을 사람 말로 — 목차에서 딴 약어를 풀어 쓴다 (LonMark 표준 프로파일)
@@ -62,8 +91,11 @@ SEGWORD = {
 
 def read(pdf):
     fam = E.classify(pdf)
-    rows = (E.extract_lontalk(pdf, keep_order=True) if fam == "lontalk"
-            else E.extract(pdf)[0])
+    rows = E.extract_lontalk(pdf, keep_order=True) if fam == "lontalk" else []
+    # 'network variable' 라는 말만으로 lontalk 판정된 BACnet 문서(Daikin ED)가 있다 —
+    # SNVT 가 이만큼 안 나오면 일반 추출로 다시 읽는다 (extract.extract 와 같은 기준).
+    if len(rows) < 20:
+        rows = E.extract(pdf)[0]
     return rows, C.compare(pdf, table_rows=rows), fam
 
 
@@ -88,6 +120,12 @@ def plan_one(fname, vendor="Trane"):
     eq, cat, tag, why = CL.classify_equip(rows, doctext)
     ov = OVERRIDE.get(fname, {})
     eq, cat, tag = ov.get("equipId", eq), ov.get("cat", cat), ov.get("tag", tag)
+    # 표지 자동 인식이 제품·컨트롤러 이름을 못 뽑는 문서(제목이 'Protocol Information'
+    # 뿐인 Daikin ED 등)는 모델 ID 가 문장 조각이 된다 — 이름만 손으로 준다.
+    if ov.get("product"):
+        ti["product"] = ov["product"]
+    if "controller" in ov:
+        ti["controller"] = ov["controller"]
 
     names = CL.segment_names(pdf)
     labels = names if len(names) == len(segs) else []

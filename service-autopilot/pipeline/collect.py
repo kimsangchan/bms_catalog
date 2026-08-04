@@ -65,7 +65,23 @@ def head(url, timeout=12, src=None):
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return r.status, int(r.headers.get("Content-Length") or 0)
     except urllib.error.HTTPError as e:
+        # Daikin(tahoeweb)처럼 HEAD 를 405 로 막는 서버가 있다 — 1바이트 GET 으로 다시 두드린다
+        if e.code in (405, 501):
+            return _head_by_range(url, timeout, src)
         return e.code, 0
+    except Exception:
+        return 0, 0
+
+
+def _head_by_range(url, timeout, src):
+    req = urllib.request.Request(url, headers=_hdr(src, {"Range": "bytes=0-0"}))
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            rng = r.headers.get("Content-Range") or ""   # 예: bytes 0-0/2231509
+            if "/" in rng:
+                return 200, int(rng.split("/")[-1])
+            # Range 를 무시하고 200 전체 응답을 주는 서버(tahoeweb) — 헤더만 읽고 닫는다
+            return 200, int(r.headers.get("Content-Length") or 0)
     except Exception:
         return 0, 0
 
@@ -136,7 +152,7 @@ def local_name(src, url):
     벤더도 제품도 안 들어간 이름으로 올려 두면 다른 벤더 문서와 부딪히고
     나중에 무슨 문서인지 알 수 없다. 그런 소스는 rename 에 이름을 적어 둔다.
     """
-    raw = os.path.basename(url).split("?")[0]
+    raw = os.path.basename(url.rstrip("/")).split("?")[0]
     raw = urllib.parse.unquote(raw)
     fixed = (src.get("rename") or {}).get(raw)
     return fixed or raw.replace(" ", "_")

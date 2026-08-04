@@ -74,10 +74,11 @@ PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류
 
 ## 지금 상태 (2026-08-04)
 
-- 모델 **83건** · 오브젝트 **16,031점** · 사양 표 1,254개 · `validate.py` 오류 0
-- 공조기(e5) 6모델 전부 형번·정격 후보 완료 — 형번 후보 88건 · 전기 특성 373행
-  (형번이 문서에 없는 RAUJ·IntelliPak은 '제품군 N Ton' 용량급으로 표기)
-- 마지막 커밋: 공조기 형번 정격을 6모델 전부로 확장 (용량급 표 · 1행=1형번 전기표)
+- 모델 **89건** · 오브젝트 **18,306점** · `validate.py` 오류 0 · 계열 커버리지 10/19
+- 공조기(e5) 9모델(Trane 6 + Daikin MicroTech·JCI Simplicity SE·Siemens Climatix) —
+  Trane 6모델은 형번·정격 후보까지 완료(형번 88건·전기 특성 373행, 용량급 표기 포함)
+- 냉동기(e9)에 Daikin MicroTech 3모델(AGZ·AWV·WME 계열 등) 추가
+- 마지막 커밋: JCI·Siemens·Daikin 모델 추가 (신규 소스 3건 · 추출기 별칭·형태 4종 보강)
 
 ### 다음에 할 만한 것
 

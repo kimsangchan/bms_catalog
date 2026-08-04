@@ -1,0 +1,2316 @@
+{
+ "id": "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet",
+ "equipId": "e5",
+ "vendor": "Daikin",
+ "model": "MicroTech III/4 — Rebel·RoofPak·Maverick II Rooftop & Self-Contained (BACnet)",
+ "name": "MicroTech III/4 Rebel·RoofPak·Maverick II Rooftop & Self-Contained",
+ "cat": "HVAC.AIR.RTU",
+ "tag": "rooftop",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 285점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "AI",
+   "inst": 1,
+   "name": "DischAirTemp",
+   "unitRaw": "-50°-249. 99°F -45. 56°-121. 11°C",
+   "unit": null,
+   "note": "The current reading of the unit discharge air temperature sensor. · 범위 -50°-249. 99°F -45. 56°-121. 11°C"
+  },
+  {
+   "type": "AI",
+   "inst": 2,
+   "name": "RATemp",
+   "unitRaw": "-20°-199. 99°F -28. 89°- 93. 33°C Default: NA",
+   "unit": null,
+   "note": "The current reading from the unit return air temperature sensor. Applies only if the unit is configured for a return air sensor. · 범위 -20°-199. 99°F -28. 89°- 93. 33°C Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 3,
+   "name": "SpaceTemp",
+   "unitRaw": "0°-150° -17. 78°-65. 56°C",
+   "unit": null,
+   "note": "The current space or zone temperature from the optional space air temperature sensor. Applies only if the unit is configured for a space temperature sensor. If the optional space temperature sensor is not installed and a BACnet network is n"
+  },
+  {
+   "type": "AI",
+   "inst": 4,
+   "name": "OutdoorTemp",
+   "unitRaw": "-50°-150°F -45. 56°-65. 56°C",
+   "unit": null,
+   "note": "The current value of a unit-mounted outdoor air temperature sensor. Applies only if the unit is configured for an outdoor air temperature sensor. · 범위 -50°-150°F -45. 56°-65. 56°C"
+  },
+  {
+   "type": "AI",
+   "inst": 5,
+   "name": "MATemp",
+   "unitRaw": "-50°-249. 99°F -45. 56°-121. 11°C",
+   "unit": null,
+   "note": "The current mixed air temperature from the mixed air temperature sensor. Applies only to self-contained units configured with a mixed air temperature sensor. · 범위 -50°-249. 99°F -45. 56°-121. 11°C"
+  },
+  {
+   "type": "AI",
+   "inst": 6,
+   "name": "CWTemp",
+   "unitRaw": "-50°-150°F -45. 56°-65. 56°C",
+   "unit": null,
+   "note": "The current entering water temperature from the entering water temperature sensor. Applies only to self-contained units configured with a water condenser. · 범위 -50°-150°F -45. 56°-65. 56°C"
+  },
+  {
+   "type": "AI",
+   "inst": 7,
+   "name": "EFT LCT _",
+   "unitRaw": "-83. 2°-249. 99°F -64°-121. 11°C",
+   "unit": null,
+   "note": "The current value of the unit entering fan/leaving coil air temperature sensor. Applies only to units configured for an entering fan temperature sensor. · 범위 -83. 2°-249. 99°F -64°-121. 11°C"
+  },
+  {
+   "type": "AI",
+   "inst": 8,
+   "name": "FanSpd",
+   "unitRaw": "0-110%",
+   "unit": null,
+   "note": "The current percentage of supply fan capacity. It reads 0% whenever the fan is off. If the unit is configured as constant volume, FanSpd reads 100% when the fan is on. Otherwise, it reads the feedback from the VFD. · 범위 0-110%"
+  },
+  {
+   "type": "AI",
+   "inst": 9,
+   "name": "BldgStatPress",
+   "unitRaw": "-0.2489 - 0.2489” WC -62 .. 62 Pa",
+   "unit": null,
+   "note": "Displays the reading of the current building static pressure sensor. · 범위 -0.2489 - 0.2489” WC -62 .. 62 Pa"
+  },
+  {
+   "type": "AI",
+   "inst": 10,
+   "name": "ExhFanValue",
+   "unitRaw": "0-100%",
+   "unit": null,
+   "note": "The current percentage of return fan or exhaust fan capacity. Applies only to units configured with a return/ exhaust fan. · 범위 0-100%"
+  },
+  {
+   "type": "AI",
+   "inst": 11,
+   "name": "SpaceRH",
+   "unitRaw": "0-100%",
+   "unit": null,
+   "note": "The current reading of the optional relative humidity sensor. · 범위 0-100%"
+  },
+  {
+   "type": "AI",
+   "inst": 12,
+   "name": "Conductivity",
+   "unitRaw": "0-5000",
+   "unit": null,
+   "note": "Provides the conductivity of the sump water in an evaporative cooled condenser. · 범위 0-5000"
+  },
+  {
+   "type": "AI",
+   "inst": 13,
+   "name": "SpaceCO2",
+   "unitRaw": "0-5000 ppm",
+   "unit": null,
+   "note": "The current space CO level from the optional space CO 2 2 sensor. This value reflects the SpaceIAQ Input (if valid) or the value from a locally wired sensor. Applies only if the unit is configured for an airside economizer and Min OA Type i"
+  },
+  {
+   "type": "AI",
+   "inst": 14,
+   "name": "ControlTemp",
+   "unitRaw": "-50°-249. 99°F -45. 56°- 121. 11°C",
+   "unit": null,
+   "note": "The current control temperature sensor reading. The control temperature sensor is selected with MSV:39, Control Temp Source. · 범위 -50°-249. 99°F -45. 56°- 121. 11°C"
+  },
+  {
+   "type": "AI",
+   "inst": 15,
+   "name": "ERWheelSpd",
+   "unitRaw": "0-100% Default: NA",
+   "unit": null,
+   "note": "The current speed of the energy recovery wheel, expressed as a percentage. · 범위 0-100% Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 16,
+   "name": "ERLAT",
+   "unitRaw": "-50°-249. 99°F -45. 56°-121. 11°C Default: NA",
+   "unit": null,
+   "note": "The current value of energy recovery wheel leaving air temperature sensor. · 범위 -50°-249. 99°F -45. 56°-121. 11°C Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 17,
+   "name": "EREAT",
+   "unitRaw": "-20°-199. 99°F -28. 89°-93. 33°C Default: NA",
+   "unit": null,
+   "note": "The current value of energy recovery wheel exhaust air temperature sensor. · 범위 -20°-199. 99°F -28. 89°-93. 33°C Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 21,
+   "name": "DischLn3Temp",
+   "unitRaw": "-50°-392°F -45. 56°-200°C",
+   "unit": null,
+   "note": "The current reading of the unit inverter compressor (Comp. 3) discharge line refrigerant temperature sensor. Applies only to Rebel (DPS, DPH) units. · 범위 -50°-392°F -45. 56°-200°C"
+  },
+  {
+   "type": "AI",
+   "inst": 22,
+   "name": "DischLn1Temp",
+   "unitRaw": "-50°-392°F -45. 56°-200°C",
+   "unit": null,
+   "note": "The current reading of the unit inverter compressor (Comp. 1) discharge line refrigerant temperature sensor. Applies only to Rebel (DPS, DPH) units. · 범위 -50°-392°F -45. 56°-200°C"
+  },
+  {
+   "type": "AI",
+   "inst": 23,
+   "name": "DefrostTemp",
+   "unitRaw": "-50°-200°F -45. 56°-93. 33°C",
+   "unit": null,
+   "note": "The current reading of the unit defrost temperature sensor. Applies only to Rebel (DPS, DPH) units. · 범위 -50°-200°F -45. 56°-93. 33°C"
+  },
+  {
+   "type": "AI",
+   "inst": 24,
+   "name": "SucnRefTemp",
+   "unitRaw": "-50°-200°F -45. 56°-93. 33°C",
+   "unit": null,
+   "note": "The current reading of the unit suction line refrigerant temperature sensor. Applies only to Rebel (DPS, DPH) units. · 범위 -50°-200°F -45. 56°-93. 33°C"
+  },
+  {
+   "type": "AI",
+   "inst": 25,
+   "name": "RefSuctionP",
+   "unitRaw": "0-725. 2 psi 0-5000 kPa",
+   "unit": null,
+   "note": "The current reading from refrigerant circuit suction pressure sensor. · 범위 0-725. 2 psi 0-5000 kPa"
+  },
+  {
+   "type": "AI",
+   "inst": 26,
+   "name": "RefDischP",
+   "unitRaw": "0-725. 2 psi 0-5000 kPa",
+   "unit": null,
+   "note": "The current reading of the unit discharge line refrigerant pressure sensor. Applies only to Rebel (DPS, DPH) units. · 범위 0-725. 2 psi 0-5000 kPa"
+  },
+  {
+   "type": "AI",
+   "inst": 27,
+   "name": "IndoorRefTemp",
+   "unitRaw": "-50°-150°F -45. 56°-65. 56°C",
+   "unit": null,
+   "note": "The current indoor refrigerant temperature from the indoor refrigerant temperature sensor. Applies only if the unit is configured for heat pump operation. · 범위 -50°-150°F -45. 56°-65. 56°C"
+  },
+  {
+   "type": "AI",
+   "inst": 28,
+   "name": "OutdoorRefTemp",
+   "unitRaw": "-50°-150°F -45. 56°-65. 56°C",
+   "unit": null,
+   "note": "The current outdoor refrigerant temperature from the outdoor refrigerant temperature sensor. Applies only if the unit is configured for heat pump operation. · 범위 -50°-150°F -45. 56°-65. 56°C"
+  },
+  {
+   "type": "AI",
+   "inst": 29,
+   "name": "INVCompTemp",
+   "unitRaw": "-83. 2°-147. 2°F -45. 56°-65. 56°C",
+   "unit": null,
+   "note": "The current reading of the Inverter Compressor Body Temperature. Applies only if the Rebel unit is configured with a 12 hp inverter compressor (DPS015). · 범위 -83. 2°-147. 2°F -45. 56°-65. 56°C"
+  },
+  {
+   "type": "AI",
+   "inst": 30,
+   "name": "C1RefDischP",
+   "unitRaw": "0-725. 2 psi 0-5000 kPa",
+   "unit": null,
+   "note": "The current reading from circuit 1 refrigerant discharge pressure sensor. · 범위 0-725. 2 psi 0-5000 kPa"
+  },
+  {
+   "type": "AI",
+   "inst": 31,
+   "name": "C2RefDischP",
+   "unitRaw": "0-725. 2 psi 0-5000 kPa",
+   "unit": null,
+   "note": "The current reading from circuit 2 refrigerant discharge pressure sensor. · 범위 0-725. 2 psi 0-5000 kPa"
+  },
+  {
+   "type": "AI",
+   "inst": 32,
+   "name": "DischLn2Temp",
+   "unitRaw": "-50°-392°F -45. 56°-200. 0°C",
+   "unit": null,
+   "note": "The current reading of the unit inverter compressor (Comp. 2) discharge line refrigerant temperature sensor. Applies only to Rebel (DPS, DPH) units. · 범위 -50°-392°F -45. 56°-200. 0°C"
+  },
+  {
+   "type": "AV",
+   "inst": 1,
+   "name": "ClgCapacity",
+   "unitRaw": "0-100%",
+   "unit": null,
+   "note": "The current percentage of maximum unit cooling capacity. Applies only if the unit is configured for cooling. · 범위 0-100%"
+  },
+  {
+   "type": "AV",
+   "inst": 2,
+   "name": "HtgCapacity",
+   "unitRaw": "0-100%",
+   "unit": null,
+   "note": "The current percentage of maximum unit heating capacity. Applies only if the unit is configured for heating. · 범위 0-100%"
+  },
+  {
+   "type": "AV",
+   "inst": 3,
+   "name": "TimeToNextState",
+   "unitRaw": "0-65534 Min Default: 65535 (Null)",
+   "unit": null,
+   "note": "범위 0-65534 Min Default: 65535 (Null)"
+  },
+  {
+   "type": "AV",
+   "inst": 4,
+   "name": "LocalSpaceTmp",
+   "unitRaw": "0°-150°F -17. 78°-65. 56°C Default: NA",
+   "unit": null,
+   "note": "The current space air temperature provided by the local space air temperature sensor. Applies only if the unit is configured for a space temperature sensor. · 범위 0°-150°F -17. 78°-65. 56°C Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 5,
+   "name": "LocalOATemp",
+   "unitRaw": "-50°-150°F -45. 56°-65. 56°C Default: NA",
+   "unit": null,
+   "note": "The current outdoor air temperature provided by the local outdoor air temperature sensor. Applies only if the unit is configured for an outdoor air temperature sensor. · 범위 -50°-150°F -45. 56°-65. 56°C Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 6,
+   "name": "DuctStatPress",
+   "unitRaw": "0-5” WC 0-1250 Pa",
+   "unit": null,
+   "note": "The current duct static pressure sensor reading. When a unit is equipped with two duct static pressure sensors, it displays the lower of the two sensor readings. Static pressure control is then based on the lower of the two readings. Applie"
+  },
+  {
+   "type": "AV",
+   "inst": 7,
+   "name": "DuctStaticSP",
+   "unitRaw": "0.2-4.0” WC 49. 82-996. 36 Pa Default: 1” WC / 249 Pa",
+   "unit": null,
+   "note": "Sets the Duct Static Pressure Setpoint used to control the discharge air fan VFD. If the Present Value is set beyond the valid limits from the network, the value written from the network is ignored. Applies only if the unit supply fan type "
+  },
+  {
+   "type": "AV",
+   "inst": 8,
+   "name": "BldgStaticSP",
+   "unitRaw": "-0.2489 - 0.2489” WC -62 .. 62 PaC Default: 0.05” WC / 12.5 Pa",
+   "unit": null,
+   "note": "Sets the building static pressure setpoint used for controlling the return air or exhaust fan inlet VFD. The VFD is modulated to maintain the building static pressure sensor input at this setpoint. Uses maximum and minimum limits, so if the"
+  },
+  {
+   "type": "AV",
+   "inst": 9,
+   "name": "OccCoolSP",
+   "unitRaw": "0°-100°F -17. 78°-37. 78°C Default: 72°F / 22. 22°C",
+   "unit": null,
+   "note": "Sets the Occupied Cooling Setpoint value when it is not controlled by another function. It uses maximum and minimum limits, so if the Present Value is set beyond the acceptable range from the network, the value is ignored and the unit contr"
+  },
+  {
+   "type": "AV",
+   "inst": 10,
+   "name": "UnoccCoolSetpt",
+   "unitRaw": "39. 992°-99. 986 °F -4. 44°-37. 77°C Default: 85°F / 29. 44°C",
+   "unit": null,
+   "note": "Sets the temperature above which the unit starts and provides unoccupied heating (night setup) during unoccupied periods. An optional space temperature sensor is required for unoccupied cooling operation. It uses maximum and minimum limits,"
+  },
+  {
+   "type": "AV",
+   "inst": 11,
+   "name": "OccHeatSP",
+   "unitRaw": "0°-100°F -17. 78°-37. 78°C Default: 68°F / 20°C",
+   "unit": null,
+   "note": "Sets the Occupied Heating Setpoint value when it is not controlled by other function. It uses maximum and minimum limits, so if the Present Value is set beyond the acceptable range, the value is ignored and the unit controller continues to "
+  },
+  {
+   "type": "AV",
+   "inst": 12,
+   "name": "UnoccHeatSetpt",
+   "unitRaw": "39. 99°-99. 98°F -4. 44°-37. 77°C Default: 55°F / 12. 78°C",
+   "unit": null,
+   "note": "Sets the temperature above which the unit starts and provides cooling (night setback) during unoccupied periods. An optional space temperature sensor is required for unoccupied cooling operation. It uses maximum and minimum limits, so if th"
+  },
+  {
+   "type": "AV",
+   "inst": 13,
+   "name": "DAClgSetpt",
+   "unitRaw": "39. 992°-100. 0°F 4. 44°-37. 78°C Default: 55°F / 12. 78°C",
+   "unit": null,
+   "note": "Sets the Network Cooling Discharge Setpoint only when ClgReset = Network. The unit controller internally limits the Present Value that is written between the Min Clg Spt (AV:14) and the Max Clg Spt. Refer to the Cooling Set Up menu on the u"
+  },
+  {
+   "type": "AV",
+   "inst": 14,
+   "name": "DefaultDATClgSetpt",
+   "unitRaw": "39. 992°-100. 0°F 4. 44°-37. 78°C Default: 55°F / 12. 78°C",
+   "unit": null,
+   "note": "Sets the Minimum Discharge Air Cooling Setpoint. It is also changeable via the unit controller keypad/display. The unit controller uses the last valid value it received from either the network or keypad/display. · 범위 39. 992°-100. 0°F 4. 44"
+  },
+  {
+   "type": "AV",
+   "inst": 15,
+   "name": "EconCapacity",
+   "unitRaw": "0-100%",
+   "unit": null,
+   "note": "The current percentage of economizer capacity or outdoor air damper position. · 범위 0-100%"
+  },
+  {
+   "type": "AV",
+   "inst": 16,
+   "name": "MinOAPosNetIn",
+   "unitRaw": "0-100% Default: NA",
+   "unit": null,
+   "note": "Sets the Outdoor Air Damper Minimum Position setpoint. The Minimum Outdoor Air Damper Position Input setpoint uses this value when 1) it is not controlled by another function and 2) when Min OA Pos = Network via the unit controller the keyp"
+  },
+  {
+   "type": "AV",
+   "inst": 17,
+   "name": "DAHtgSetpt",
+   "unitRaw": "39. 99-140°F 4. 44°-60°C Default: 100°F / 37. 78°C",
+   "unit": null,
+   "note": "Sets the Network Heating Discharge Setpoint and only applies when HtgReset = Network. The unit controller internally limits the Present Value that is written between the Min Htg Spt and the Max Htg Spt (AV:18). See the Heating menu on the u"
+  },
+  {
+   "type": "AV",
+   "inst": 18,
+   "name": "DefaultDATHtgSetpt",
+   "unitRaw": "40°-140°F 4. 4°-60°C Default: 120°F / 48. 89°C",
+   "unit": null,
+   "note": "Sets the maximum allowable discharge air heating setpoint determined by the discharge air temperature reset function. It is changeable via the unit controller keypad/display. The controller uses the last valid value it last received from ei"
+  },
+  {
+   "type": "AV",
+   "inst": 19,
+   "name": "SpaceRHNetIn",
+   "unitRaw": "0-100% Default: 163. 835% (Null)",
+   "unit": null,
+   "note": "Sets the relative humidity from the network. If the network value becomes unreliable, the humidity reverts to the value provided by the attached relative humidity sensor. · 범위 0-100% Default: 163. 835% (Null)"
+  },
+  {
+   "type": "AV",
+   "inst": 20,
+   "name": "SpaceDewPt",
+   "unitRaw": "-50°-150°F -45. 56°-65. 56°C",
+   "unit": null,
+   "note": "The current Dew Point Temperature value is calculated from the optional relative humidity sensor. · 범위 -50°-150°F -45. 56°-65. 56°C"
+  },
+  {
+   "type": "AV",
+   "inst": 21,
+   "name": "SupFanCapNetIn",
+   "unitRaw": "0-100% Default: 163. 835 (Null)",
+   "unit": null,
+   "note": "Sets the discharge air VFD speed when the Supply Fan Capacity Control Flag is set to Speed (MSV:11=2) using maximum and minimum limits. If the Present Value is set beyond these limits from the network, the value is ignored and the controlle"
+  },
+  {
+   "type": "AV",
+   "inst": 22,
+   "name": "RetFanCapNetIn",
+   "unitRaw": "0-100% Default: 163. 835 (Null)",
+   "unit": null,
+   "note": "Sets the return/exhaust air VFD speed when Return/ Exhaust Fan Control (MSV:12) = Speed (4). Applies only to units configured for a modulating return fan. Uses maximum and minimum limits, so if the Present Value is set beyond these limits f"
+  },
+  {
+   "type": "AV",
+   "inst": 23,
+   "name": "ExhFanCapNetIn",
+   "unitRaw": "0-100% Default: 163. 835 (Null)",
+   "unit": null,
+   "note": "Overrides the local exhaust fan capacity control. Remote Return/Exhaust Fan Capacity Control Flag (MSV:12) must be set to Speed (4) for the unit controller to use this remote capacity for control. Applies only to units that are configured f"
+  },
+  {
+   "type": "AV",
+   "inst": 24,
+   "name": "ActiveWarning",
+   "unitRaw": "NA",
+   "unit": null,
+   "note": "Allows individual notification of the highest priority active warning alarm. The value in Table 41 is the largest number in its enumeration that corresponds to an active alarm. 1 · 범위 NA"
+  },
+  {
+   "type": "AV",
+   "inst": 25,
+   "name": "ActiveProblem",
+   "unitRaw": "NA",
+   "unit": null,
+   "note": "Allows individual notification of the highest priority active problem alarm. The value in Table 42 is the largest number in its enumeration that corresponds to an active alarm. 1 · 범위 NA"
+  },
+  {
+   "type": "AV",
+   "inst": 26,
+   "name": "ActiveFault",
+   "unitRaw": "NA",
+   "unit": null,
+   "note": "Allows individual notification of the highest priority active fault alarm. The value in Table 43 is the largest number in its enumeration that corresponds to an active alarm. 1 · 범위 NA"
+  },
+  {
+   "type": "AV",
+   "inst": 27,
+   "name": "AlarmValue",
+   "unitRaw": "NA",
+   "unit": null,
+   "note": "Allows individual notification of the highest priority active alarm. The value in Table 40 is the largest number in its enumeration that corresponds to an active alarm. 1 · 범위 NA"
+  },
+  {
+   "type": "AV",
+   "inst": 28,
+   "name": "SpaceTempInput",
+   "unitRaw": "0°-150°F -17. 78°-65. 56°C Default: 327. 67 (Null)",
+   "unit": null,
+   "note": "The current space or zone temperature network value. If this network value becomes unreliable, the temperature reverts to the space temperature sensor value. Applies only if the unit is configured for a space temperature sensor. · 범위 0°-150"
+  },
+  {
+   "type": "AV",
+   "inst": 29,
+   "name": "OutdoorTempInput",
+   "unitRaw": "-50°-150°F -45. 56°-65. 56°C Default: 327. 67 (Null)",
+   "unit": null,
+   "note": "Enables the outdoor air temperature to be configured from the network. Write the temperature to this property when using a single temperature sensor to determine the outdoor air temperature for the entire network. Applies only if the unit i"
+  },
+  {
+   "type": "AV",
+   "inst": 31,
+   "name": "SpaceIAQNetIn",
+   "unitRaw": "0-5000 ppm Default: 32767 (Null)",
+   "unit": null,
+   "note": "Indicates the current space CO level from the network. 2 This value takes priority over a locally wired sensor. It is used for minimum OA damper control and only applies if Min OA Type is set to IAQ VDC or IAQ mA. · 범위 0-5000 ppm Default: 3"
+  },
+  {
+   "type": "AV",
+   "inst": 32,
+   "name": "EconEnable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Enables or disables the economizer. Applies only if 1) if the unit is configured for a waterside or airside economizer and 2) when Ctrl Mode = Auto. • If EconEnable = 0, then the economizer is disabled. • If it is 1 and EconEnaPercent is 0,"
+  },
+  {
+   "type": "AV",
+   "inst": 33,
+   "name": "EconEnablePct",
+   "unitRaw": "0-100% Default: 100%",
+   "unit": null,
+   "note": "범위 0-100% Default: 100%"
+  },
+  {
+   "type": "AV",
+   "inst": 34,
+   "name": "CoolEnable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Enables or disables the primary cooling. Applies only if 1) the unit is configured for mechanical cooling and 2) when Ctrl Mode = Auto. • If CoolEnable is 0, then the primary cooling is disabled. If it is 1 and CoolEnablePct is 0, the prima"
+  },
+  {
+   "type": "AV",
+   "inst": 35,
+   "name": "CoolEnablePct",
+   "unitRaw": "0-100% Default: 100%",
+   "unit": null,
+   "note": "범위 0-100% Default: 100%"
+  },
+  {
+   "type": "AV",
+   "inst": 36,
+   "name": "HeatEnable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Enables or disables the primary heating. Applies only if 1) the unit is configured for heating and 2) when Ctrl Mode = Auto. • If HeatEnable = 0, then the primary heating is disabled. • If HeatEnable = 1 and HeatEnablePct = 0, the primary h"
+  },
+  {
+   "type": "AV",
+   "inst": 37,
+   "name": "HeatEnablePct",
+   "unitRaw": "0-100% Default: 100%",
+   "unit": null,
+   "note": "범위 0-100% Default: 100%"
+  },
+  {
+   "type": "AV",
+   "inst": 38,
+   "name": "WaterflowSwitch",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Allows the network to set the waterflow status. Applies only to units that are configured for mechanical cooling. The cooling configuration is either individual circuits or dual circuit water condenser, and no head pressure control. · 범위 -1"
+  },
+  {
+   "type": "AV",
+   "inst": 39,
+   "name": "EffDATempSP",
+   "unitRaw": "-83. 2°.. 147. 2°F -64°.. 64°C Default: NA",
+   "unit": null,
+   "note": "Reflects the Effective Heating Discharge Temperature Setpoint if the unit is in the heating state. If not, it reflects the Discharge Air Cooling Setpoint when the unit is in any other operating state. · 범위 -83. 2°.. 147. 2°F -64°.. 64°C Def"
+  },
+  {
+   "type": "AV",
+   "inst": 40,
+   "name": "HumiditySP",
+   "unitRaw": "0-100% Default: NA",
+   "unit": null,
+   "note": "Defines the Relative Humidity Setpoint via the network. · 범위 0-100% Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 41,
+   "name": "DewpointSP",
+   "unitRaw": "0-100°F -17. 78° - +37. 78°C Default: NA",
+   "unit": null,
+   "note": "Defines the Dew Point Setpoint via the network. The “Dehum Method = item” on the keypad/display can be changed to DewPt as desired. · 범위 0-100°F -17. 78° - +37. 78°C Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 42,
+   "name": "OAFlow",
+   "unitRaw": "0-60007. 25 CFM 0-28320 l/s",
+   "unit": null,
+   "note": "The amount of outdoor airflow entering the unit. Applies only to units configured for design flow. · 범위 0-60007. 25 CFM 0-28320 l/s"
+  },
+  {
+   "type": "AV",
+   "inst": 43,
+   "name": "ReceiveHeartbeat",
+   "unitRaw": "0-6553. 4 Sec Default: 0 Sec",
+   "unit": null,
+   "note": "Defines the maximum period of time that elapses after the last update to specified network parameters before the unit controller starts to use its default values. Receive Heartbeat is not supported on unit controller application versions 25"
+  },
+  {
+   "type": "AV",
+   "inst": 44,
+   "name": "ReheatCapacity",
+   "unitRaw": "0-100%",
+   "unit": null,
+   "note": "Indicates the current percentage of the unit’s reheat capacity. Applies only to units configured with cooling. · 범위 0-100%"
+  },
+  {
+   "type": "AV",
+   "inst": 45,
+   "name": "HiRAT",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current reading of the return air sensor. The Present Value of this object is the same as it is for AI:2. This object is only present for intrinsic reporting of the High Return Air Temperature alarm. The unit controller commands this ob"
+  },
+  {
+   "type": "AV",
+   "inst": 53,
+   "name": "MinOAFlowSpt",
+   "unitRaw": "0-60007. 25 CFM 0-28320 l/s Default: 2000 CFM 943. 9 I/s",
+   "unit": null,
+   "note": "The Outdoor Air Setpoint applies only to units configured for design flow. · 범위 0-60007. 25 CFM 0-28320 l/s Default: 2000 CFM 943. 9 I/s"
+  },
+  {
+   "type": "AV",
+   "inst": 54,
+   "name": "SuplHtgCap",
+   "unitRaw": "0-100%",
+   "unit": null,
+   "note": "The current percentage of supplemental heating capacity. Applies only if 1) it is a Rebel unit (DPS, DPH) with heat pump and 2) is configured with heat. If so, the heating capacity comes from the heat pump compressor heat, and the supplemen"
+  },
+  {
+   "type": "AV",
+   "inst": 55,
+   "name": "DACMWUSpt",
+   "unitRaw": "40°-100°F 4. 4°-37. 78°C Default: 70°F / 21. 11°C",
+   "unit": null,
+   "note": "Defines the morning warm-up heating setpoint when the unit is configured for discharge air temperature control. It does not apply to zone temperature control units (the Occupied Heating Setpoint is used for morning warm-up purposes in zone "
+  },
+  {
+   "type": "AV",
+   "inst": 56,
+   "name": "MinDehumLCTSpt",
+   "unitRaw": "-39. 99°-100°F 4. 44°-37. 78°C Default: 44. 99°F / 7. 22°C",
+   "unit": null,
+   "note": "Determines the point where cooling is staged up during dehumidification operation. If the unit is equipped with modulating cooling (such as chilled water or variable speed compressor) this is the point the leaving coil temperature is contro"
+  },
+  {
+   "type": "AV",
+   "inst": 57,
+   "name": "MaxDehumLCTSpt",
+   "unitRaw": "-39. 99°-100°F 4. 44°-37. 78°C Default: 51. 99°F / 11. 11°C",
+   "unit": null,
+   "note": "Determines the point where cooling is staged down during dehumidification operation. · 범위 -39. 99°-100°F 4. 44°-37. 78°C Default: 51. 99°F / 11. 11°C"
+  },
+  {
+   "type": "AV",
+   "inst": 58,
+   "name": "MaxPurgeTime",
+   "unitRaw": "0-300 Min Default: 0 Min",
+   "unit": null,
+   "note": "Activates a preoccupancy purge function period that uses unoccupied economizer operation to pre-cool the space. Setting this to 0 minutes deactivates the function. · 범위 0-300 Min Default: 0 Min"
+  },
+  {
+   "type": "AV",
+   "inst": 100,
+   "name": "SupplyFanHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated supply fan hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 101,
+   "name": "RF EFHrs _",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated return or exhaust fan hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 102,
+   "name": "StgExh1Hrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The second stage exhaust fan accumulated run hours. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 103,
+   "name": "StgExh2Hrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The first stage exhaust fan accumulated run hours. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 104,
+   "name": "MechClgHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated mechanical cooling hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 105,
+   "name": "Comp1Hrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated compressor 1 hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 106,
+   "name": "Comp2Hrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated compressor 2 hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 107,
+   "name": "Comp3Hrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated compressor 3 hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 108,
+   "name": "Comp4Hrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated compressor 4 hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 109,
+   "name": "Comp5Hrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated compressor 5 hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 110,
+   "name": "Comp6Hrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated compressor 6 hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 111,
+   "name": "Comp7Hrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated compressor 7 hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 112,
+   "name": "Comp8Hrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated compressor 8 hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 113,
+   "name": "CmpClgHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The compressor cooling accumulated run hours. Applies only to Rebel (DPS, DPH) units. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 114,
+   "name": "CmpHtgHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The compressor heating accumulated run hours. Applies only to Rebel (DPS, DPH) units. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 115,
+   "name": "INVCmpHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated inverter compressor hours of operation. Applies only to Rebel (DPS, DPH) units. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 116,
+   "name": "HeatingHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated heating hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 117,
+   "name": "EconoHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated economizer hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 118,
+   "name": "TenantORHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated tenant override hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 119,
+   "name": "DehumHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated dehumidification hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 120,
+   "name": "ERWhlHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated energy recovery wheel hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 121,
+   "name": "VarCmpHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated Variable Compressor hours of operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 122,
+   "name": "ReheatHrs",
+   "unitRaw": "0-50000 Hours",
+   "unit": null,
+   "note": "The accumulated hours of continuous reheat operation. · 범위 0-50000 Hours"
+  },
+  {
+   "type": "AV",
+   "inst": 163,
+   "name": "GenCondStages",
+   "unitRaw": "0-8 Default: 8",
+   "unit": null,
+   "note": "The number of generic cooling stages. Applies only if the compressor configuration is set to Generic Condenser (2) and is used for remote condenser operation. Does not apply to DPS H _ and SCU unit types. · 범위 0-8 Default: 8"
+  },
+  {
+   "type": "AV",
+   "inst": 164,
+   "name": "MaxHtgStages",
+   "unitRaw": "1-8 Default: 1",
+   "unit": null,
+   "note": "The number of heating stages in the unit. · 범위 1-8 Default: 1"
+  },
+  {
+   "type": "AV",
+   "inst": 165,
+   "name": "MaximumHeatRise",
+   "unitRaw": "0-100 Default: 100",
+   "unit": null,
+   "note": "The maximum heat rise in the unit. Based on a three digit input. · 범위 0-100 Default: 100"
+  },
+  {
+   "type": "AV",
+   "inst": 166,
+   "name": "UnitSize",
+   "unitRaw": "0-999 Default: 050",
+   "unit": null,
+   "note": "The unit size in tons of cooling. · 범위 0-999 Default: 050"
+  },
+  {
+   "type": "BI",
+   "inst": 1,
+   "name": "AirFlwSw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the airflow switch (Closed (1) or Open (0)). It is the object that generates the alarm. The OffNormal state of this object indicates an Airflow Fault alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 2,
+   "name": "AirFlwWrSw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the airflow status (Closed (1) or Open (0)). The OffNormal state of this object indicates the Airflow Switch Warning alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 3,
+   "name": "DirtyFilterSw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the dirty filter switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the Dirty Filter Warning alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 4,
+   "name": "HiPress1Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Pressure Circuit 1 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the High Pressure Circuit 1 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 5,
+   "name": "HiPress2Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Pressure Circuit 2 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the High Pressure Circuit 2 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 6,
+   "name": "HiPress3Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Pressure Circuit 3 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the High Pressure Circuit 3 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 7,
+   "name": "HiPress4Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Pressure Circuit 4 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the High Pressure Circuit 4 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 8,
+   "name": "HiPress5Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Pressure Circuit 5 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the High Pressure Circuit 5 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 9,
+   "name": "HiPress6Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Pressure Circuit 6 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the High Pressure Circuit 6 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 10,
+   "name": "LoPress1Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Low Pressure Circuit 1 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the Low Pressure Circuit 1 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 11,
+   "name": "LoPress2Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Low Pressure Circuit 2 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the Low Pressure Circuit 2 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 12,
+   "name": "LoPress3Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Low Pressure Circuit 3 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the Low Pressure Circuit 3 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 13,
+   "name": "LoPress4Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Low Pressure Circuit 4 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the Low Pressure Circuit 4 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 14,
+   "name": "LoPress5Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Low Pressure Circuit 5 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the Low Pressure Circuit 5 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 15,
+   "name": "LoPress6Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Low Pressure Circuit 6 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the Low Pressure Circuit 6 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 16,
+   "name": "SmpWtrLvlSw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the sump pump water level switch (Closed (1) or Open (0)). It is the object that generates the alarm. The OffNormal state of this object indicates the Sump Water Level Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 17,
+   "name": "WtrFlwSw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the water flow switch (Closed (1) or Open (0)). It is the object that generates the alarm. The OffNormal state of this object indicates the Water Flow Switch Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 18,
+   "name": "WtrRegVlv",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the water regulating valve ((Closed (1) or Open (0)). It is the object that generates the alarm. The OffNormal state of this object indicates the Water Regulating Valve Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 19,
+   "name": "FreezeFltSw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the freeze fault switch (Closed (1) or Open (0)). It is the object that generates the alarm. The OffNormal state of this object indicates the Freeze Fault alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 21,
+   "name": "DuctHiLmtSw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the duct high limit switch (Closed (1) or Open (0)). It is the object that generates the alarm. The OffNormal state of this object indicates the Duct High Limit Fault alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 22,
+   "name": "EmergencyOffSw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the emergency off switch (Closed (1) or Open (0)). It is the object that generates the alarm. The OffNormal state of this object indicates the Emergency Off Fault alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 24,
+   "name": "LoPress7Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Low Pressure Circuit 7 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the Low Pressure Circuit 7 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 25,
+   "name": "LoPress8Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Low Pressure Circuit 8 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the Low Pressure Circuit 8 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 26,
+   "name": "HiPress7Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Pressure Circuit 7 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the High Pressure Circuit 7 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 27,
+   "name": "HiPress8Sw",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Pressure Circuit 8 switch (Closed (1) or Open (0)). The OffNormal state of this object indicates the High Pressure Circuit 8 Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 32,
+   "name": "HiPress1Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the High Pressure Problem alarm (0 = Normal, 1 = Alarm). The OffNormal state of this object indicates a High Pressure Problem alarm is active and the inverter compressor refrigerant circuit high limits have been exce"
+  },
+  {
+   "type": "BI",
+   "inst": 33,
+   "name": "LoPress1Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Low Pressure Problem alarm (0 = Normal, 1 = Alarm). The OffNormal state of this object indicates a Low Pressure Problem alarm is active and the inverter compressor refrigerant circuit low limits have been exceede"
+  },
+  {
+   "type": "BI",
+   "inst": 34,
+   "name": "INVCompPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Inverter Compressor Problem alarm (0 = Normal, 1 = Alarm). The OffNormal state of this object indicates the Inverter Compressor Problem alarm is active and that the inverter compressor body temperature limit has "
+  },
+  {
+   "type": "BI",
+   "inst": 35,
+   "name": "HiDLTempPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current binary status of the High Discharge Line Temperature Problem alarm for VFD compressor units. The OffNormal state of this object indicates that the High Discharge Line Temperature Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 36,
+   "name": "OAFanPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Outdoor Fan Problem alarm (0 = Normal, 1 = Alarm). The OffNormal state of this object indicates that the Outdoor Fan Problem alarm is active. Applies only to Rebel units."
+  },
+  {
+   "type": "BI",
+   "inst": 37,
+   "name": "LoChargePrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Low Refrigerant Charge Problem alarm (0 = Normal, 1 = Alarm). The OffNormal state of this object indicates that the Low Refrigerant Charge Problem alarm is active. Applies only to Rebel units."
+  },
+  {
+   "type": "BI",
+   "inst": 38,
+   "name": "IFBCommPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the IFB Comm Problem alarm (0 = Normal, 1 = Alarm). The OffNormal state of this object indicates that the IFB Comm Problem alarm is active and that an interruption has occurred between the unit controller and the inv"
+  },
+  {
+   "type": "BI",
+   "inst": 39,
+   "name": "LoPressDiffPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Low Pressure Differential Problem alarm (0 = Normal, 1 = Alarm). The OffNormal state of this object indicates the Low Pressure Differential Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 40,
+   "name": "ExpValvePrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Expansion Valve Problem alarm (0 = Normal, 1 = Alarm). The OffNormal state of this object indicates that the Expansion Valve Problem alarm is active. Applies only to Rebel units."
+  },
+  {
+   "type": "BI",
+   "inst": 41,
+   "name": "ChargeLossPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Charge Loss Problem alarm (0 = Normal, 1 = Alarm). The OffNormal state of this object indicates that the Charge Loss Problem alarm is active and the refrigerant system charge has been lost. Applies only to Rebel "
+  },
+  {
+   "type": "BI",
+   "inst": 42,
+   "name": "Ret/ExhFanWrn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "An active alarm indicates that there is a problem with the return or exhaust fan operation. The OffNormal state of this object indicates a Return / Exhaust Fan Warning. Applies to units with a VFD or EBM return/ exhaust fan."
+  },
+  {
+   "type": "BI",
+   "inst": 43,
+   "name": "HiINVTmpPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the High Inverter Compressor Body Temperature Problem alarm (0 = Normal, 1 = Alarm). The OffNormal state of this object indicates the High Inverter Compressor Body Temperature Problem alarm is active. Alarm applies o"
+  },
+  {
+   "type": "BI",
+   "inst": 46,
+   "name": "LoSuperHtWrn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "An active alarm indicates that the suction and discharge superheat values are low. The OffNormal state of this object indicates the Low Superheat Warning alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 47,
+   "name": "VarCompPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current binary status of the Variable Compressor Problem alarm for VFD compressor units. The OffNormal state of this object indicates a Variable Compressor Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 48,
+   "name": "LoDischPPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current binary status of the Low Discharge Pressure Problem alarm for VFD compressor units. The OffNormal state of this object indicates that the Low Discharge Pressure Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 49,
+   "name": "LoDischSHPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current binary status of the Low Discharge Superheat Problem alarm for VFD compressor units. The OffNormal state of this object indicates that the Low Discharge Superheat Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 50,
+   "name": "HiDischSHPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current binary status of the High Discharge Superheat Problem alarm for VFD compressor units. The OffNormal state of this object indicates the High Discharge Superheat Problem alarm is active."
+  },
+  {
+   "type": "BI",
+   "inst": 51,
+   "name": "VcmpOiStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Oil Status Switch. Also, the OffNormal state of this object indicates the Variable Compressor Low Oil Problem alarm is active and that the VFD oil boost alarm count has been exceeded."
+  },
+  {
+   "type": "BI",
+   "inst": 52,
+   "name": "ClgHPUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Cooling High Discharge Pressure Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Cooling High Discharge Pressure Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 53,
+   "name": "LoDschPUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Low Discharge Pressure Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Low Discharge Pressure Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 54,
+   "name": "VarCmpEmrgStopEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Variable Compressor Emergency Stop Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Variable Compressor Emergency Stop Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 55,
+   "name": "HiDLTmpUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Discharge Line Temperature Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the High Discharge Line Temperature Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 56,
+   "name": "LoDschSHUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Low Discharge Superheat Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Low Discharge Superheat Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 57,
+   "name": "HiDschSHUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Discharge Superheat Unload Event (0 = Inactive, 1 = Active).The OffNormal state of this object indicates the High Discharge Superheat Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 58,
+   "name": "RhtStgLmtEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Reheat Stage Limiting Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Reheat Stage Limiting Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 59,
+   "name": "OilBoostEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Variable Compressor Oil Boost Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Variable Compressor Oil Boost Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 60,
+   "name": "DemandShedEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Network Demand Shed Event (0 = Inactive, 1 = Active).The OffNormal state of this object indicates the Network Demand Shed Event is active. It is only available in application versions 2506017501 and 2506018201"
+  },
+  {
+   "type": "BI",
+   "inst": 61,
+   "name": "OverEconoWrn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "An active alarm indicates that the unit is economizing when it should not be economizing. The OffNormal state of this object indicates the Over Economizing Warning alarm is active. It is only available in application versions 2506017501 and"
+  },
+  {
+   "type": "BI",
+   "inst": 62,
+   "name": "UnderEconoWrn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "An active alarm indicates that the unit is not economizing when it should be economizing. The OffNormal state of this object indicates the Under Economizing Warning alarm is active. It is only available in application versions 2506017501 an"
+  },
+  {
+   "type": "BI",
+   "inst": 63,
+   "name": "ExcessOAWrn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "An active alarm indicates that the unit is delivering excess outdoor air. The OffNormal state of this object indicates the Excess Outdoor Air Warning alarm is active. It is only available in application versions 2506017501 and 2506018201 or"
+  },
+  {
+   "type": "BI",
+   "inst": 64,
+   "name": "OADStuckWrn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "An active alarm indicates that the air dampers may be stuck. The OffNormal state of this object indicates the Outdoor Air Damper Stuck Warning alarm is active. It is only available in application versions 2506017501 and 2506018201 or greate"
+  },
+  {
+   "type": "BI",
+   "inst": 65,
+   "name": "INVReqSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Inverter Compressor Request for Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Inverter Compressor Request for Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 66,
+   "name": "HtgLPUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Heating Low Suction Pressure Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Heating Low Suction Pressure Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 67,
+   "name": "ClgLPUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Cooling Low Suction Pressure Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Cooling Low Suction Pressure Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 68,
+   "name": "HtgHPUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Heating High Discharge Pressure Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Heating High Discharge Pressure Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 69,
+   "name": "HtgHPProtEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Heating High Discharge Pressure Protection Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Heating High Discharge Pressure Protection Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 70,
+   "name": "CmpRatioULEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Compression Ratio Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the High Compression Ratio Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 71,
+   "name": "INVFinTUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Inverter Compressor Board High Fin Temperature Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Inverter Compressor Board High Fin Temperature Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 72,
+   "name": "INVUnldReqEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Inverter Compressor Board Unload Request Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Inverter Compressor Board Unload Request Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 73,
+   "name": "CmpDsblSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Compressor Disable Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Compressor Disable Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 74,
+   "name": "Comp3DLTULEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Fixed Compressor High Discharge Line Temperature Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Fixed Compressor High Discharge Line Temperature Unload Event is activ"
+  },
+  {
+   "type": "BI",
+   "inst": 75,
+   "name": "INVAmpUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Inverter Compressor High Current Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Inverter Compressor High Current Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 76,
+   "name": "ClgDPUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Cooling Low Differential Pressure Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Cooling Low Differential Pressure Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 77,
+   "name": "HtgDPUnldEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Heating Low Differential Pressure Unload Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Heating Low Differential Pressure Unload Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 78,
+   "name": "ClgHPSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Cooling High Discharge Pressure Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Cooling High Discharge Pressure Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 79,
+   "name": "HtgLPSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Heating Low Suction Pressure Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Heating Low Suction Pressure Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 80,
+   "name": "ClgLPSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Cooling Low Suction Pressure Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Cooling Low Suction Pressure Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 81,
+   "name": "HtgHPSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Heating High Discharge Pressure Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Heating High Discharge Pressure Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 82,
+   "name": "INVDLTSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Inverter Compressor High Discharge Line Temperature Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Inverter Compressor High Discharge Line Temperature Standby Event "
+  },
+  {
+   "type": "BI",
+   "inst": 83,
+   "name": "ClgDPSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Cooling Low Differential Pressure Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Cooling Low Differential Pressure Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 84,
+   "name": "HtgDPSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Heating Low Differential Pressure Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Heating Low Differential Pressure Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 85,
+   "name": "OAFanSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Outdoor Fan Problem Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Outdoor Fan Problem Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 86,
+   "name": "INVCmpTSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the High Compressor Body Temperature Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the High Compressor Body Temperature Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 87,
+   "name": "OFReqSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Outdoor Fan Board Request for Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Outdoor Fan Board Request for Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 88,
+   "name": "OilBalanceEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Variable Compressor Oil Boost Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Variable Compressor Oil Boost Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 89,
+   "name": "INVCmpSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Inverter Compressor Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Inverter Compressor Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 90,
+   "name": "LoOilBoostEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Variable Compressor Low Oil Boost Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Variable Compressor Low Oil Boost Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 91,
+   "name": "HiOilBoostEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Variable Compressor High Oil Boost Event (0 = Inactive, 1 = Active).The OffNormal state of this object indicates the Variable Compressor High Oil Boost Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 92,
+   "name": "EVSyncSBEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Event Sync Standby Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates the Event Synch Standby Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 94,
+   "name": "ClgHiTeULEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the current binary status of the Cooling High Suction Pressure Unloading control event (0 = Inactive, 1 = Active). Applies to DPS units. The OffNormal state of this object indicates the Cooling High Suction Pressure Unloading Even"
+  },
+  {
+   "type": "BI",
+   "inst": 95,
+   "name": "OilInjectionEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Oil Injection control event (0 = Inactive, 1 = Active). Applies to MPS and RTU units with variable-speed compressors. The OffNormal state of this object indicates the Oil Injection Event is active."
+  },
+  {
+   "type": "BI",
+   "inst": 96,
+   "name": "MOPEvnt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the Maximum Over-Current Protection Event (0 = Inactive, 1 = Active). The OffNormal state of this object indicates that MOP is active."
+  },
+  {
+   "type": "BI",
+   "inst": 97,
+   "name": "MOPPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the condition of the maximum over-current protection alarm."
+  },
+  {
+   "type": "BV",
+   "inst": 1,
+   "name": "ExhFanState",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if the unit controller is commanding the return or exhaust fan to “On.” Applies only to units configured for a return/exhaust fan. · 범위 1 = Of f 2 = On"
+  },
+  {
+   "type": "BV",
+   "inst": 2,
+   "name": "AFSwWrn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Airflow Switch Warning alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 3,
+   "name": "ConductivityWrn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Conductivity alarm (0 = Normal, 1 = Alarm). Applies only to units configured for evaporative condensing."
+  },
+  {
+   "type": "BV",
+   "inst": 4,
+   "name": "DrtyFltrWrn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Dirty Filter Warning alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 5,
+   "name": "EFT LCTPrb _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Entering Fan Temperature/ Leaving Coil Temperature Sensor Problem alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 6,
+   "name": "EntWtrTmpPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Entering Fan Temperature/ Leaving Coil Temperature Sensor Problem alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 7,
+   "name": "FreezePrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Freeze Problem alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 8,
+   "name": "HiPressCkt1Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the High Pressure Circuit 1 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for two or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 9,
+   "name": "HiPressCkt2Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the High Pressure Circuit 2 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for two or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 10,
+   "name": "HiPressCkt3Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the High Pressure Circuit 3 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for three or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 11,
+   "name": "HiPressCkt4Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the High Pressure Circuit 4 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for four or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 12,
+   "name": "HiPressCkt5Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the High Pressure Circuit 5 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for five or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 13,
+   "name": "HiPressCkt6Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the High Pressure Circuit 6 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for six or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 14,
+   "name": "LoPressCkt1Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Low Pressure Circuit 1 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for two or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 15,
+   "name": "LoPressCkt2Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Low Pressure Circuit 2 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for two or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 16,
+   "name": "LoPressCkt3Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Low Pressure Circuit 3 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for three or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 17,
+   "name": "LoPressCkt4Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Low Pressure Circuit 4 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for four or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 18,
+   "name": "LoPressCkt5Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Low Pressure Circuit 5 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for five or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 19,
+   "name": "LoPressCkt6Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Low Pressure Circuit 6 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for six or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 20,
+   "name": "MixAirTmpPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Mixed Air Temperature Sensor Problem alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 21,
+   "name": "OutdoorTmpPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Outdoor Air Temperature Sensor Problem alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 22,
+   "name": "ReturnTmpPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Return Air Temperature Sensor Problem alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 23,
+   "name": "SpaceTmpPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Space Temperature Sensor Problem alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 24,
+   "name": "SmpWtrLvlPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Sump Water Level Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured with an evaporative condenser."
+  },
+  {
+   "type": "BV",
+   "inst": 25,
+   "name": "WtrFlowSwPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Waterflow Switch Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured with a waterside condenser and when a lack of water flow is indicated by an open water flow switch or a network signal."
+  },
+  {
+   "type": "BV",
+   "inst": 26,
+   "name": "WtrRegVlvPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Water Regulating Valve Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for head pressure control."
+  },
+  {
+   "type": "BV",
+   "inst": 27,
+   "name": "AirflowFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Air Flow Fault alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 28,
+   "name": "ControlTempFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Control Temperature Fault alarm (0 = Normal, 1 = Alarm). It is active when the respective sensor is not reliable or when a valid temperature value is not provided via the network."
+  },
+  {
+   "type": "BV",
+   "inst": 29,
+   "name": "DischSensorFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Discharge Air Temperature (DAT) Sensor Fault alarm (0 = Normal, 1 = Alarm). An active alarm indicates that the DAT sensor is not reliable."
+  },
+  {
+   "type": "BV",
+   "inst": 30,
+   "name": "DuctHiLmtFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Duct High Limit Fault alarm (0 = Normal, 1 = Alarm). Applies only to Variable Air Volume (VAV) units configured for supply fan VFDs."
+  },
+  {
+   "type": "BV",
+   "inst": 31,
+   "name": "EmergencyOffFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Emergency Off Fault alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 32,
+   "name": "FreezeFault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Freeze Fault alarm (0 = Normal, 1 = Alarm). Applies only to units installed with a waterside economizer, chilled water coil, hot water coil or steam coil and when the freezestat is in the Open position."
+  },
+  {
+   "type": "BV",
+   "inst": 33,
+   "name": "HiDischTmpFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "An active alarm indicates that the discharge air temperature exceeds the High Discharge Temperature setting."
+  },
+  {
+   "type": "BV",
+   "inst": 34,
+   "name": "HiReturnTmpFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the High Return Temperature Fault alarm (0 = Normal, 1 = Alarm). Applies only to units configured for a return air (RAT) sensor and when the RAT has exceeded the High Return Temperature limit."
+  },
+  {
+   "type": "BV",
+   "inst": 35,
+   "name": "LoDischTmpFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "An active alarm indicates that the discharge air temperature is below the Low Discharge Temperature setting."
+  },
+  {
+   "type": "BV",
+   "inst": 38,
+   "name": "HeatFailPrb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Heat Fail Problem alarm (0 = Normal, 1 = Alarm)."
+  },
+  {
+   "type": "BV",
+   "inst": 50,
+   "name": "LoPressCkt7Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Low Pressure Circuit 7 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for seven or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 51,
+   "name": "LoPressCkt8Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the Low Pressure Circuit 8 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for eight or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 52,
+   "name": "HiPressCkt7Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the High Pressure Circuit 7 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for seven or more mechanical cooling circuits."
+  },
+  {
+   "type": "BV",
+   "inst": 53,
+   "name": "HiPressCkt8Prb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the status of the High Pressure Circuit 8 Problem alarm (0 = Normal, 1 = Alarm). Applies only to units configured for eight or more mechanical cooling circuits."
+  },
+  {
+   "type": "MSV",
+   "inst": 1,
+   "name": "Daikin AppliedStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The operating status (i. e. Mode) of the unit controller. · 범위 1 = Enabled 2 = Off Man 3 = Off ManCtrl 4 = Off Net 5 = Off Alarm 6 = Off Fan Retry"
+  },
+  {
+   "type": "MSV",
+   "inst": 2,
+   "name": "ClgStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if cooling is currently enabled. If cooling is disabled, the reason is indicated. · 범위 1 = Enabled 2 = None 3 = Off Amb 4 = Off Alarm 5 = Off Net 6 = Off Man"
+  },
+  {
+   "type": "MSV",
+   "inst": 3,
+   "name": "EconoStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if the economizer is currently enabled. If the economizer is disabled, the reason is indicated. · 범위 1 = Enabled 2 = None 3 = Off Amb 4 = Off Alarm3 5 = Off Net 6 = Off Man 7 = Off Dehum"
+  },
+  {
+   "type": "MSV",
+   "inst": 4,
+   "name": "HtgStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if heating is currently enabled. If heating is disabled, the reason is indicated. · 범위 1 = Enabled 2 = None 3 = Off Amb 4 = Off Alarm3 5 = Off Net 6 = Off Man"
+  },
+  {
+   "type": "MSV",
+   "inst": 5,
+   "name": "ApplicCmd",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Sets the unit in an application mode. While it does not “force” the unit into any state, it does disable certain unit operations. For example, an Application Mode of “Cool Only” disables heating, “Heat Only” disables cooling, and “Fan Only”"
+  },
+  {
+   "type": "MSV",
+   "inst": 6,
+   "name": "EffectOccup",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if the unit is currently in an occupied, unoccupied, or tenant override mode of operation. · 범위 1 = Occ 2 = Unocc 3 = TntOvrd"
+  },
+  {
+   "type": "MSV",
+   "inst": 7,
+   "name": "OccManCmd",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Sets the unit into a different occupancy mode. The request is typically sent by a wall-mounted occupant-interface module or a supervisory device used to manually control occupancy modes or to override the scheduled occupancy. · 범위 1 = Occ 2"
+  },
+  {
+   "type": "MSV",
+   "inst": 8,
+   "name": "CurrentState",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Commands the occupancy function of the unit controller when Occupancy Mode is set to Auto. A scheduler or a supervisory node typically sends the request. Occupancy Scheduler Input contains three parts: Current state, (required) _ Next state"
+  },
+  {
+   "type": "MSV",
+   "inst": 9,
+   "name": "NextState",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "MSV",
+   "inst": 10,
+   "name": "EmergOverride",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Shuts off the unit controller. If it is set to Off, the unit controller cannot start based on a time clock or any other means. Doing so also shuts off a network signal and puts Unit Status = OffNet. The only way to start the unit controller"
+  },
+  {
+   "type": "MSV",
+   "inst": 11,
+   "name": "SupFanCtrl",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Selects the supply fan airflow control used on a unit equipped with a variable volume supply air fan. Option Descriptions/Notes 1 = DSP (The supply fan airflow maintains the duct static pressure at the duct static pressure set point. Applie"
+  },
+  {
+   "type": "MSV",
+   "inst": 12,
+   "name": "ExhRetFanCtrl",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Selects the return or exhaust fan airflow control. Option Descriptions/Notes 1 = None (No method selected) 2 = Tracking (If the unit is equipped with return fan VFD, the return fan airflow is controlled based on an adjustable tracking relat"
+  },
+  {
+   "type": "MSV",
+   "inst": 13,
+   "name": "ClearAlarms",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Clears all active alarms or all active alarms in a particular alarm class. See Alarms and Events section for more information on clearing BACnet alarms. If you choose to clear an alarm using MSV:13, it should be done with intention and prec"
+  },
+  {
+   "type": "MSV",
+   "inst": 14,
+   "name": "VAVBoxOutput",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The VAV box output is provided for interlocking field VAV box operation with the unit heating or cooling. The value = 0 when the unit is in any heating state, Start, or Recirc. The value = 1 when the unit is in any other state. Applies only"
+  },
+  {
+   "type": "MSV",
+   "inst": 15,
+   "name": "UnitState",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current operating mode of the unit. · 범위 1 = Off 2 = Start 3 = Recirc 4 = FanOnly 5 = MinDAT 6 = Htg 7 = Econo 8 = Clg"
+  },
+  {
+   "type": "MSV",
+   "inst": 16,
+   "name": "UnitSupport",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Sets the type of units that are passed from the controller to the BACnet network. If the value is Off, then Metric units are passed. If the value is On, the type of units that are passed depend on how the keypad/display is configured. If th"
+  },
+  {
+   "type": "MSV",
+   "inst": 37,
+   "name": "ERWhlOnOff",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The command status (On or Off) of the energy recovery wheel. · 범위 1 = Of f 2 = On Default: NA"
+  },
+  {
+   "type": "MSV",
+   "inst": 38,
+   "name": "AHULoc/Net",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if the unit controller is set to use local or network inputs. AHU Loc/Net can only be changed from the keypad/ display (applicable parameters in this table denoted with a “1”). It must be set to Network (1) for most of the writeab"
+  },
+  {
+   "type": "MSV",
+   "inst": 39,
+   "name": "CtlrTempSrc",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Selects the temperature sensor input to be used for the unit heating/cooling changeover or zone cooling and heating capacity change decisions. For example, if CtrlTempSrc is set to “Return,” then the Control Temp parameter reads the same va"
+  },
+  {
+   "type": "MSV",
+   "inst": 45,
+   "name": "SuplHtgStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current status of supplemental heating. Applies only if 1) it is a Rebel unit (DPS, DPH) with heat pump, and 2) the unit is configured with heat. If so, the heating status is determined by the heat pump compressor and the supplemental h"
+  },
+  {
+   "type": "MSV",
+   "inst": 46,
+   "name": "DehumStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if the dehumidification operation is currently active. · 범위 1 = Inactive 2 = Active"
+  },
+  {
+   "type": "MSV",
+   "inst": 47,
+   "name": "DefrostState",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the unit’s current defrost state. 1 = Of f 2 = Init (Defrost Initialization) 3 = Exec (Execute Defrost) 4 = Term (Terminate Defrost) · 범위 1 = Of f 2 = Init 3 = Exec 4 = Term Default: NA"
+  },
+  {
+   "type": "MSV",
+   "inst": 48,
+   "name": "DemandShed",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Enables the demand shed functionality. For this feature to be active, 1) the DemandShed object in the HtgClg ChgOvr Set-Up keypad/display menu must be set to Enable, and 2) Network Demand Shed Enable must be set to Active. It is only availa"
+  },
+  {
+   "type": "MSV",
+   "inst": 49,
+   "name": "MWUStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if Morning Warmup is active. It is only available in application versions 2506017501 and 2506018201 or newer. · 범위 1 = Unavail 2 = Avail"
+  },
+  {
+   "type": "MSV",
+   "inst": 50,
+   "name": "FreeClgStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if free cooling is available. It is only available in application versions 2506017501 and 2506018201 or newer. · 범위 1 = Unavail 2 = Avail"
+  },
+  {
+   "type": "MSV",
+   "inst": 51,
+   "name": "UseTStatSpts",
+   "unitRaw": null,
+   "unit": null,
+   "note": "When MSV:51 = 2 (Yes), the temperature setpoint can be adjusted via the locally wired wall sensor and the unit ignores BACnet inputs to Occ Htg and Occ Clg setpoints. When MSV:51 = 1 (No), the Occ Htg and Occ Clg setpoints can be adjusted v"
+  },
+  {
+   "type": "MSV",
+   "inst": 111,
+   "name": "UnitType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Defines the AHU model associated with the unit controller. Not all unit types are available in every application. Unit Type is determined based on the construction of the unit and should not be changed. 1=Applied Rooftop (RTU) 2=Self-Contai"
+  },
+  {
+   "type": "MSV",
+   "inst": 112,
+   "name": "CtrlType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Defines the control logic for the unit. Description/Notes DAT = Discharge air temperature control 1ZnVAV = Single-zone VAV control · 범위 1 = Zone control 2 = DAT control 3 = 1ZnVAV 4 = RefOnly Default: 2 (DAT)"
+  },
+  {
+   "type": "MSV",
+   "inst": 113,
+   "name": "ClgType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The type of cooling in the unit. Not all options are available in all applications. Description/Notes VCSV1 = Variable compressor-circuit 1 with SV1 valve VCSV2 = Variable compressor-circuit 2 with SV1 valve · 범위 1 = None 2 = Standard Compr"
+  },
+  {
+   "type": "MSV",
+   "inst": 114,
+   "name": "CompCfg",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The compressor configuration and compressor staging for the unit. Not all options are available in all application versions or unit types. · 범위 1 = None 2 = Generic Condenser 3 = 2Cmp/2Circ/3Stg 4 = 3Cmp/2Circ/4StgorVar 5 = 3Cmp/3Circ/3Stg "
+  },
+  {
+   "type": "MSV",
+   "inst": 115,
+   "name": "LoAmb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if Low Ambient control is available. This position has no effect on unit operation. · 범위 1 = No 2 = Yes Default: 1 (No)"
+  },
+  {
+   "type": "MSV",
+   "inst": 116,
+   "name": "EvapCondCtrl",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The type of evaporator condenser control configured for the unit. This parameter does not apply to SCU (Self-Contained Unit) models. · 범위 1 = Std Method 1 2 = Std Method 2 3 = Evap ABB 4 = Evap MD2 5 = Evap MD3 6 = Evap DF 7 = Not Used 8 = "
+  },
+  {
+   "type": "MSV",
+   "inst": 117,
+   "name": "DamperType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The style of damper installed in the unit. Option Descriptions/Notes 6 = 100% OA damper, D3 gateway 7 = Airside economizer, D3 gateway 8 = 30% OA damper, D3 gateway 9 = Economizer airside fault detection 10 = Economizer fault detection and "
+  },
+  {
+   "type": "MSV",
+   "inst": 118,
+   "name": "OAFlowStation",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The type of outdoor air flow station installed in the unit. Option Descriptions/Notes DF = DesignFlow Generic Flow Station = Field-provided flow station · 범위 2 = DF 015-030 (800) _ 3 = DF 036-042 (802) _ 4 = DF 045-075 (047) _ 5 = DF 080-13"
+  },
+  {
+   "type": "MSV",
+   "inst": 119,
+   "name": "HtgType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The type of heating in the unit. · 범위 1 = None 2 = F BP (face and bypass) _ 3 = Staged (gas or electric) 4 = Gas3-1 turndown 5 = Gas20-1 turndown 6 = SteamWtr 7 = SCR electric heat 8 = MPSLoGas 9 = MPSHiGas 10=SC30LoG 11=SC30HiG Default: 1 "
+  },
+  {
+   "type": "MSV",
+   "inst": 120,
+   "name": "SAFType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The model of supply fan installed in the unit. Not all fan options are available for each unit type. · 범위 1 = Constant Volume (CAV) 2 = VFD/ABB BD _ 3 = VFD/DF BD _ 4 = VFD/MD2 BD _ 5 = VFD/MD3 BD _ 6 = VFD/MD6 BD _ 7 = EBMVAV DD _ 8 = EBMC"
+  },
+  {
+   "type": "MSV",
+   "inst": 121,
+   "name": "RAFType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The model of return air fan installed in the unit. Not all fan options are available for each unit. Does not apply to SCU unit types. · 범위 1 = CAV 2 = RF EF VFD/ABB _ 3 = RF EF VFD/DF _ 4 = RF EF VFD/MD2 _ 5 = RF EF VFD/MD3 _ 6 = RF EF VFD/"
+  },
+  {
+   "type": "MSV",
+   "inst": 122,
+   "name": "2ndDSPSensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if a second duct static pressure sensor installed in the unit. It is determined based on the construction of the unit and should not be changed. · 범위 1 = No 2 = Yes Default: 1 (No)"
+  },
+  {
+   "type": "MSV",
+   "inst": 123,
+   "name": "EFTLCTSnsr",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if there is an entering fan or leaving coil temperature sensor installed in the unit. It is determined based on the construction of the unit and should not be changed. · 범위 1 = No 2 = Yes Default: 1 (No)"
+  },
+  {
+   "type": "MSV",
+   "inst": 124,
+   "name": "EnergyRec",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if there is energy recovery in the unit and what type. It is determined based on the construction of the unit and should not be changed. · 범위 1 = None 2 = CnstSpd 3 = DFVFD 4 = MD2VFD 5 = MD3VFD 6 = ABBVFD 7 = CnstSpdHum Default: "
+  },
+  {
+   "type": "MSV",
+   "inst": 125,
+   "name": "ClgCirType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The type of cooling circuit for the unit. Not all options are available in all applications. It is determined based on the construction of the unit and should not be changed. · 범위 1 = Individ 2 = 2CircWtr 3 = 2CircAir or 1CircAir Default: 3"
+  },
+  {
+   "type": "MSV",
+   "inst": 126,
+   "name": "HdPressCtrl",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if Head Pressure Control is enabled or not. It is determined based on the construction of the unit and should not be changed. · 범위 1 = No 2 = Yes Default: 1 (No)"
+  },
+  {
+   "type": "MSV",
+   "inst": 127,
+   "name": "BypassCtrl",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The bypass control logic for a self-contained unit. · 범위 1 = Slave 2 = Bypass Default: 1 (Slave)"
+  },
+  {
+   "type": "MSV",
+   "inst": 128,
+   "name": "RefrigType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The type of refrigerant in the unit. · 범위 1 = R22 2 = R407C 3 = 410A 4 = R32 Default: 1 (R22)"
+  },
+  {
+   "type": "MSV",
+   "inst": 129,
+   "name": "ReheatType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The type of reheat in the unit. Not all methods of reheat are available for all unit types. · 범위 1 = None 2 = StgHG (staged) 3 = ModHG (modulating) 4 = StdHt (standard unit heat) 5 = ModLSC 6 = HG LSC _ Default: 1 (None)"
+  },
+  {
+   "type": "MSV",
+   "inst": 130,
+   "name": "UnitVoltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The voltage configured for the unit. · 범위 1 = 208 60Hz _ 2 = 230 60Hz _ 3 = 460 60Hz _ 4 = 575 60Hz _ 5 = 208 50Hz _ 6 = 230 50Hz _ 7 = 460 50Hz _ 8 = 575 50Hz _ Default: 3 (460 60Hz) _"
+  },
+  {
+   "type": "MSV",
+   "inst": 131,
+   "name": "EVType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The expansion valve controller configured for the unit. Applies to Rebel DPS and DPS H unit types. _ · 범위 1 = None 2 = EVBSg 3 = EVBDF 4 = MTSag 5 = MTDF 6 = MTSgDF 7 = MTDFSg 8 = MTDFC Default: 1 (None)"
+  },
+  {
+   "type": "NC",
+   "inst": 1,
+   "name": "NC1-Faults",
+   "unitRaw": "NA",
+   "unit": null,
+   "note": "Generates notifications for fault alarms. The Recipient List _ Generates notifications for event alarms. The Recipient List1,2 property conveys a list of one or more _ recipients to which notifications will be sent. The Ack _ Required prope"
+  },
+  {
+   "type": "NC",
+   "inst": 2,
+   "name": "NC2-Problems",
+   "unitRaw": "NA",
+   "unit": null,
+   "note": "Generates notifications for event alarms. The Recipient List1,2 property conveys a list of one or more _ recipients to which notifications will be sent. The Ack _ Required property defines whether or not acknowledgment is required for notif"
+  },
+  {
+   "type": "NC",
+   "inst": 3,
+   "name": "NC3-Warnings",
+   "unitRaw": "NA",
+   "unit": null,
+   "note": "Generates notifications for event alarms. The Recipient List1,2 property conveys a list of one or more _ recipients to which notifications will be sent. The Ack _ Required property defines whether or not acknowledgment is required for notif"
+  },
+  {
+   "type": "NC",
+   "inst": 4,
+   "name": "NC4-Events",
+   "unitRaw": "NA",
+   "unit": null,
+   "note": "Generates notifications for event alarms. The Recipient List1,2 property conveys a list of one or more _ recipients to which notifications will be sent. The Ack _ Required property defines whether or not acknowledgment is required for notif"
+  }
+ ],
+ "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "extractor": "table",
+ "sourceDoc": "Daikin_ED-15112-21_MicroTech_Rooftop-AHU_Protocol.pdf",
+ "classifiedBy": "포인트 이름 증거 8종: economizer, outdoor air damper, supply air, discharge air",
+ "crosscheck": {
+  "unverifiable": "Daikin 소스가 교차 대조 불가로 표시 — 개요표와 상세표가 서로 다른 열이다"
+ }
+}

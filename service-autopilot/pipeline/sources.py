@@ -441,6 +441,84 @@ SOURCES = [
         "access": "무로그인",
     },
     {
+        "id": "daikin-applied-protocol",
+        "vendor": "Daikin",
+        "kind": "포인트리스트",
+        "note": "Daikin Applied MicroTech III/4 유닛 컨트롤러 프로토콜 정보(ED 시리즈) — "
+                "BACnet·LonWorks·Modbus 데이터포인트 정본. ED 15112 는 옥상형·자냉식"
+                "(Rebel DPS/DPH·RoofPak RPE/RPS·Maverick II MPS·Self-Contained SWT/SWP), "
+                "ED 15120·19131·19111 은 냉동기(AGZ·AMZ·ADS·AWV Pathfinder·WME Magnitude·"
+                "WWV Navigator·AGZ-F·WMT·WMC-E). tahoeweb API 직링크가 무로그인으로 열린다. "
+                "⚠ HEAD 는 405 — collect.py 가 1바이트 GET 으로 폴백한다.",
+        "enumerate": "list",
+        "urls": [
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "ED%2015112-21%20MicroTech%20AHU%20Unit%20Controller%20Protocol%20Document.pdf/",
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "ED%2015120-12.pdf/",
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "ED%2019131-1.pdf/",
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "ED19111-3.pdf/",
+        ],
+        "rename": {
+            "ED 15112-21 MicroTech AHU Unit Controller Protocol Document.pdf":
+                "Daikin_ED-15112-21_MicroTech_Rooftop-AHU_Protocol.pdf",
+            "ED 15120-12.pdf": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+            "ED 19131-1.pdf": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+            "ED19111-3.pdf": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인 (HEAD 405)",
+        # 15112·15120 은 설명 셀이 여러 줄로 감겨 줄 읽기 경로가 (ID, 이름) 짝을
+        # 복원하지 못한다 — 표 인식 결과가 정본이고 대조는 불가.
+        # (19131·19111 은 짧은 셀이라 대조가 되고 실제 98% 이상 일치)
+        "crosscheck_unreliable": r"ED-15112|ED-15120",
+    },
+    {
+        "id": "jci-simplicity-se",
+        "vendor": "Johnson Controls / York",
+        "kind": "포인트리스트",
+        "note": "York 옥상형(RTU) Smart Equipment(Simplicity SE) 포인트 매핑 기술 부록 — "
+                "BACnet OID 와 Modbus 레지스터가 한 표에 병기된다(펌웨어 v1072, 문서 "
+                "5177447-UTS-A-1215). docs.johnsoncontrols.com 본문은 JS 렌더링이라 못 긁지만 "
+                "khub content API 는 원본 PDF 를 그대로 준다.",
+        "enumerate": "list",
+        "urls": [
+            "https://docs.johnsoncontrols.com/ductedsystems/api/khub/documents/"
+            "gdWRBs86kDYxV_EHhOCGbw/content",
+        ],
+        "rename": {
+            "content": "JCI_Simplicity-SE_Point-Mapping_5177447-uts-a-1215.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+        # 표의 ID 열(BACOid)에 타입이 없어 Modbus 주소를 포인트 번호로 쓴다 —
+        # 줄 읽기 경로는 BACOid 를 집어 짝이 어긋나므로 대조 불가.
+        "crosscheck_unreliable": r"JCI_Simplicity-SE",
+    },
+    {
+        "id": "siemens-climatix-ahu",
+        "vendor": "Siemens",
+        "kind": "포인트리스트",
+        "note": "Climatix POL908 표준 AHU 애플리케이션의 BACnet/IP 오브젝트 주소 목록. "
+                "지멘스 원본 오브젝트 문서(CB1Y3963en)는 OEM 채널 배포라, Climatix 를 쓰는 "
+                "AHU 제조사 IV Produkt 가 공개한 적용판을 쓴다 — 컨트롤러는 Siemens Climatix "
+                "POL908, 유닛은 IV Produkt AHU. 오브젝트 구조는 표준 AHU 애플리케이션 v3.x 기준.",
+        "enumerate": "list",
+        "urls": [
+            "https://www.ivprodukt.com/file/2572",
+        ],
+        "rename": {
+            "2572": "IVProdukt_Siemens-Climatix-POL908_AHU_BACnet_Objects_V1.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+        # 이름이 1열, 인스턴스가 2열이라 줄 읽기 경로가 ID 를 먼저 못 찾는다 —
+        # 표 인식 결과가 정본이고 대조는 불가.
+        "crosscheck_unreliable": r"IVProdukt",
+    },
+    {
         "id": "jci-vrf-gateway",
         "vendor": "Johnson Controls / York",
         "kind": "게이트웨이 설치설명서 · 제출자료",

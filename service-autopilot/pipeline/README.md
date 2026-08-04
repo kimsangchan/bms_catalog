@@ -327,25 +327,31 @@ Belimo 는 같은 기기를 BACnet 판과 Modbus 판으로 낸다. 사양은 같
 Air Water 구동기는 계열 문서가 없고 형번마다 따로다 (`LR24A-MOD` 등).
 ```
 
-벤더별 모델: Trane 32 · Belimo 16 · ebm-papst 4 · Danfoss 3 · JCI 2 · Daikin 1 · Grundfos 1
+벤더별 모델: Trane 32 · Belimo 19 · Vertiv/Liebert 19 · Daikin 5 · ebm-papst 4 ·
+Danfoss 3 · JCI 3 · Schneider 2 · Grundfos 1 · Siemens 1
 
-계열 커버리지 **8 / 19**
+계열 커버리지 **10 / 19**
 
 | 채워진 계열 | 모델 | 포인트 |
 |---|---|---|
-| 냉동기 (칠러) | 26 | 8,149 |
-| 전력 설비 | 2 | 0 (사양만) |
-| 계량 · 계측 · 제어기 | 13 | 417 |
-| 공조기 (AHU) | 6 | 835 |
+| 냉동기 (칠러) | 29 | 8,809 |
+| FCU · 항온항습기 (CRAC) | 19 | 5,515 |
+| 계량 · 계측 · 제어기 | 15 | 417 |
+| 공조기 (AHU) | 9 | 2,453 |
 | 송풍기 | 4 | 652 |
-| 터미널 유닛 (VAV) | 3 | 75 |
-| VRF | 3 | 88 |
+| 터미널 유닛 (VAV) | 4 | 75 |
+| VRF | 3 | 91 |
 | 인버터 (VFD) | 3 | 191 |
+| 전력 설비 | 2 | 0 (사양만) |
 | 펌프 | 1 | 103 |
 
-빈 계열 11개: 냉각탑 · 보일러 · 열교환기 · FCU/항온항습기 · 전력 · 조명 · 방재 ·
-승강 · 보안 · 환경 · 급배수. 관련 벤더가 포인트 목록을 공개하지 않거나
-(승강·방재는 대개 전용 프로토콜), 정본이 PDF가 아닌 경우(Schneider 는 xls)다.
+공조기·냉동기의 Daikin(MicroTech ED 시리즈)·JCI(Simplicity SE)·Siemens(Climatix
+POL908, IV Produkt 적용판)는 2026-08 에 추가됐다 — 문서별 함정은 sources.py 주석 참고
+(tahoeweb HEAD 405 · khub content API · 타입 열 없는 BACOid · 머리글에 타입이 적힌 표).
+
+빈 계열 9개: 냉각탑 · 보일러 · 열교환기 · 조명 · 방재 · 승강 · 보안 · 환경 · 급배수.
+관련 벤더가 포인트 목록을 공개하지 않거나(승강·방재는 대개 전용 프로토콜),
+정본이 PDF가 아닌 경우(Schneider 는 xls)다.
 
 ## 봇 차단이 걸린 사이트
 

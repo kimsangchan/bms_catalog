@@ -1,0 +1,675 @@
+{
+ "id": "daikin-microtech-wme-c-d-magnitude-chiller-bacnet-modbus-co",
+ "equipId": "e9",
+ "vendor": "Daikin",
+ "model": "MicroTech — WME-C/D Magnitude Chiller (BACnet·Modbus) · Co",
+ "name": "MicroTech WME-C/D Magnitude Chiller · Co",
+ "cat": "HVAC.PLANT.CHILLER",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 70점 · Modbus 9점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ],
+  [
+   "Modbus",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "AI",
+   "inst": 1,
+   "name": "EntEvapWaterTemp",
+   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unit": null,
+   "note": "The temperature of the fluid entering the evaporator. · 범위 -40 – 230°F -40 – 110°C Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 2,
+   "name": "LvgEvapWaterTempUnit",
+   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unit": null,
+   "note": "The current temperature of the fluid leaving the evapo­ rator. · 범위 -40 – 230°F -40 – 110°C Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 3,
+   "name": "EntCondWaterTemp",
+   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unit": null,
+   "note": "The current temperature of the fluid entering the con­ denser. · 범위 -40 – 230°F -40 – 110°C Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 4,
+   "name": "LvgCondWaterTemp",
+   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unit": null,
+   "note": "The current temperature of the fluid leaving the con­ denser. · 범위 -40 – 230°F -40 – 110°C Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 9,
+   "name": "C1Comp1Current",
+   "unitRaw": "Amp range varies by chiller model Default: NA",
+   "unit": null,
+   "note": "The average current of the compressor motor. · 범위 Amp range varies by chiller model Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 10,
+   "name": "C1Comp2Current",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 27,
+   "name": "C1Comp1Voltage",
+   "unitRaw": "0 – 15000 VAC Default: NA",
+   "unit": null,
+   "note": "The average voltage of the compressor motor. · 범위 0 – 15000 VAC Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 28,
+   "name": "C1Comp2Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 45,
+   "name": "C1Comp1Kilowatts",
+   "unitRaw": "0 – 3500 kilowatts Default: NA",
+   "unit": null,
+   "note": "The current power of the compressor motor. · 범위 0 – 3500 kilowatts Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 46,
+   "name": "C1Comp2Kilowatts",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 63,
+   "name": "C1Comp1Discharge­ Temp",
+   "unitRaw": "-40 – 249.8°F -40 – 121°C Default: NA",
+   "unit": null,
+   "note": "The current refrigerant tem­ perature discharged from the compressor. · 범위 -40 – 249.8°F -40 – 121°C Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 64,
+   "name": "C1Comp2Discharge­ Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 81,
+   "name": "C1Comp1DischRefPres­ sure",
+   "unitRaw": "0-410 Psi; 0-2827 kPa, Default: NA",
+   "unit": null,
+   "note": "The current discharge refrigerant pressure for the compressor. · 범위 0-410 Psi; 0-2827 kPa, Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 82,
+   "name": "C1Comp2DischRefPres­ sure",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 99,
+   "name": "Cond1RefPressure",
+   "unitRaw": "0-410 Psi (700 Psi for R410A) 0-2827 kPa, (4826 kPa for R410A) Default: NA",
+   "unit": null,
+   "note": "The current condenser refrig­ erant pressure. · 범위 0-410 Psi (700 Psi for R410A) 0-2827 kPa, (4826 kPa for R410A) Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 105,
+   "name": "C1Comp1SuctionTemp",
+   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unit": null,
+   "note": "The current suction refrig­ erant temperature for the compressor. · 범위 -40 – 230°F -40 – 110°C Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 106,
+   "name": "C1Comp2SuctionTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 123,
+   "name": "C1Comp1SuctionPres­ sure",
+   "unitRaw": "-350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
+   "unit": null,
+   "note": "The current suction refriger­ ant pressure for the compres­ sor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 124,
+   "name": "C1Comp2SuctionPres­ sure",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AI",
+   "inst": 141,
+   "name": "C1EvapRefPressure",
+   "unitRaw": "-350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
+   "unit": null,
+   "note": "The current evaporator refrig­ erant pressure. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 147,
+   "name": "CondWaterFlowRate",
+   "unitRaw": "0-65,535 GPM 0-4134.6 L/S Default: NA",
+   "unit": null,
+   "note": "The current fluid flow rate for the condenser (Field-Sup­ plied Flow Meter). · 범위 0-65,535 GPM 0-4134.6 L/S Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 148,
+   "name": "EvapWaterFlowRate",
+   "unitRaw": "0-65,535 GPM 0-4134.6 L/S Default: NA",
+   "unit": null,
+   "note": "The current fluid flow rate for the evaporator (Field-Sup­ plied Flow Meter). · 범위 0-65,535 GPM 0-4134.6 L/S Default: NA"
+  },
+  {
+   "type": "AI",
+   "inst": 218,
+   "name": "C1LiqLineRefTemp",
+   "unitRaw": "-40°–230°F -40°–110°C Default: NA",
+   "unit": null,
+   "note": "The current liquid line refrig­ erant temperature. · 범위 -40°–230°F -40°–110°C Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 1,
+   "name": "ActiveCapacityLimit",
+   "unitRaw": "0 – 100% Default: NA",
+   "unit": null,
+   "note": "Measures of the ratio of operating ca­ pacity limit to full capacity expressed as a percentage. This value is the lowest of all limits specified by the operator, analog Demand Limit input, or Network Capacity Limit Setpoint. · 범위 0 – 100% D"
+  },
+  {
+   "type": "AV",
+   "inst": 2,
+   "name": "ChillerCapacity",
+   "unitRaw": "0 – 100% Default: NA",
+   "unit": null,
+   "note": "The percent of maximum capacity the chiller is producing under the present operating conditions. At 100%, the chiller may be producing more or less than its nominal rating due to varia­ tions in operating conditions. · 범위 0 – 100% Default: "
+  },
+  {
+   "type": "AV",
+   "inst": 3,
+   "name": "NetworkCapacityLimitPct",
+   "unitRaw": "0 – 100% Default: 100%",
+   "unit": null,
+   "note": "Sets the maximum capacity level of the chiller. This level may be adjusted, but not above the factory-specified limit. The unit controller only uses this variable if Remote Enable is set to Enable. Remote Enable can only be changed using th"
+  },
+  {
+   "type": "AV",
+   "inst": 4,
+   "name": "NetworkCoolTempSetpoint",
+   "unitRaw": "38.0 – 75.0°F 3.33 – 2.89°C Default: 43.88°F/6.6°C",
+   "unit": null,
+   "note": "Changes the cooling setpoint from the network. It sets the temperature of the leaving Chilled Fluid when the chiller is operating in the Cooling Mode. It cannot be set below the local Cool Setpoint. The unit controller only uses this variab"
+  },
+  {
+   "type": "AV",
+   "inst": 5,
+   "name": "ActiveLvgWaterTarget",
+   "unitRaw": "38.0°–149.9° F 3.33°–65.5°C Default: NA",
+   "unit": null,
+   "note": "The current setpoint used to control the chiller. The setpoint that is used is based on the operating mode (Ice, Cool or Heat) of the chiller and any “LWT reset” functions that are in effect. See Chiller Mode Output and Chiller Mode Setpoin"
+  },
+  {
+   "type": "AV",
+   "inst": 8,
+   "name": "C1Comp1MotorCurrentPercent",
+   "unitRaw": "0-115% Default: 0",
+   "unit": null,
+   "note": "The current percent RLA for the com­ pressor motor of the compressor. · 범위 0-115% Default: 0"
+  },
+  {
+   "type": "AV",
+   "inst": 9,
+   "name": "C1Comp2MotorCurrentPercent",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AV",
+   "inst": 26,
+   "name": "C1Comp1DischSatRefTemp",
+   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unit": null,
+   "note": "The current discharge saturated refrig­ erant temperature for the compressor. · 범위 -40 – 230°F -40 – 110°C Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 27,
+   "name": "C1Comp2DischSatRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AV",
+   "inst": 44,
+   "name": "Cond1SatRefTemp",
+   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unit": null,
+   "note": "The current saturated refrigerant temperature of the condenser. · 범위 -40 – 230°F -40 – 110°C Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 50,
+   "name": "C1Comp1SuctSatTemp",
+   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unit": null,
+   "note": "The current suction saturated refriger­ ant temperature for the compressor. · 범위 -40 – 230°F -40 – 110°C Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 51,
+   "name": "C1Comp2SuctSatTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AV",
+   "inst": 68,
+   "name": "C1EvapSatRefTemp",
+   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unit": null,
+   "note": "The current saturated refrigerant temperature of the evaporator. · 범위 -40 – 230°F -40 – 110°C Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 74,
+   "name": "C1Comp1Hours",
+   "unitRaw": "0 –999,999 Default: NA",
+   "unit": null,
+   "note": "The number of hours that the com­ pressor motor has been turned on. · 범위 0 –999,999 Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 75,
+   "name": "C1Comp2Hours",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AV",
+   "inst": 92,
+   "name": "C1Comp1Starts",
+   "unitRaw": "0 –65,535 Default: NA",
+   "unit": null,
+   "note": "The number of times the compressor motor has been started. · 범위 0 –65,535 Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 93,
+   "name": "C1Comp2Starts",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AV",
+   "inst": 110,
+   "name": "CondPump1RunHours",
+   "unitRaw": "0 –999,999 Default: NA",
+   "unit": null,
+   "note": "The number of hours that the pump motor has been turned on. · 범위 0 –999,999 Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 111,
+   "name": "CondPump2RunHours",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AV",
+   "inst": 112,
+   "name": "EvapPump1OperHours",
+   "unitRaw": "0 –999,999 Default: NA",
+   "unit": null,
+   "note": "The number of hours that the pump motor has been turned on. · 범위 0 –999,999 Default: NA"
+  },
+  {
+   "type": "AV",
+   "inst": 113,
+   "name": "EvapPump2OperHours",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "AV",
+   "inst": 901,
+   "name": "AVFaultAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See BACnet Alarm Indices section for additional information. See BAC­ net Fault Alarm Index for additional information."
+  },
+  {
+   "type": "AV",
+   "inst": 902,
+   "name": "AVWarningAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See BACnet Warning Alarm Index for additional information."
+  },
+  {
+   "type": "AV",
+   "inst": 903,
+   "name": "AVWarningAlarmCode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See Warning Alarms for additional information."
+  },
+  {
+   "type": "AV",
+   "inst": 905,
+   "name": "AVFaultAlarmCode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See BACnet Alarm Codes section for additional information. See Fault Alarms for additional information."
+  },
+  {
+   "type": "BI",
+   "inst": 1,
+   "name": "CondWaterFlowStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The status of the fluid flowing through the condenser. · 범위 0 = No Flow 1 = Flow"
+  },
+  {
+   "type": "BI",
+   "inst": 2,
+   "name": "EvapWaterFlowStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The status of the fluid flowing through the evaporator. · 범위 0 = No Flow 1 = Flow"
+  },
+  {
+   "type": "BI",
+   "inst": 3,
+   "name": "ChillerLocalRemote",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the chiller is in local control or allowed to be controlled remotely over the network. The value can only be changed locally from the unit controller keypad/display. The values from the following variables are ignored in t"
+  },
+  {
+   "type": "BI",
+   "inst": 4,
+   "name": "UnitOnOff",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current state of the chiller. · 범위 0 = Chiller Off 1 = Chiller On"
+  },
+  {
+   "type": "BI",
+   "inst": 5,
+   "name": "RunEnabled",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The running mode of the chiller. Run Enabled indicates that the chiller can start if operating conditions are met. · 범위 0 = Off 1 = Run Al­ lowed Default: NA"
+  },
+  {
+   "type": "BI",
+   "inst": 6,
+   "name": "ChillerLimited",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether conditions may exist that prevent the chiller from reaching full capacity. · 범위 0 = Not Limited 1 = Limited"
+  },
+  {
+   "type": "BI",
+   "inst": 7,
+   "name": "ChillerEnableOutput",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if operation of the chiller is disabled or en­ abled. The chiller is allowed to run if enabled and not allowed to run if disabled. · 범위 0 = Disable 1 = Enable"
+  },
+  {
+   "type": "BI",
+   "inst": 8,
+   "name": "EvapPump1State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if the pump has been commanded ON or OFF. · 범위 0 = Pump Off Request 1 = Pump On Request"
+  },
+  {
+   "type": "BI",
+   "inst": 9,
+   "name": "EvapPump2State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if the pump has been commanded ON or OFF. · 범위 0 = Pump Off Request 1 = Pump On Request"
+  },
+  {
+   "type": "BI",
+   "inst": 10,
+   "name": "AlarmDigitalOutput",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether an alarm condition has occurred. This object must be polled for alarm indication. · 범위 0 = No Alarm 1 = Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 11,
+   "name": "CondPump1State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if the pump has been commanded ON or OFF.- · 범위 0 = Pump Off Request 1 = Pump On Request"
+  },
+  {
+   "type": "BI",
+   "inst": 12,
+   "name": "CondPump2State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if the pump has been commanded ON or OFF. · 범위 0 = Pump Off Request 1 = Pump On Request"
+  },
+  {
+   "type": "BI",
+   "inst": 163,
+   "name": "C1Cmp1Unavailable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the compressor is available to run. · 범위 0 = Available 1 = Unavailable Default: NA"
+  },
+  {
+   "type": "BI",
+   "inst": 164,
+   "name": "C1Cmp2Unavailable",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "BV",
+   "inst": 2,
+   "name": "ChillerEnableStp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Disables or enables chiller operation over the net­ work. Setting this variable to Enable does not start the chiller. It only allows the chiller to start if other operating conditions are satisfied. The unit controller only uses this variab"
+  },
+  {
+   "type": "BV",
+   "inst": 8,
+   "name": "ClearAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Clears all active alarms. Many alarms are automati­ cally clearing alarms. Of the alarms that need to be manually cleared, the alarms listed below cannot be cleared from the network: • COMPRESSOR SHUTDOWN – Evaporator Pressure Low Circuit #"
+  },
+  {
+   "type": "MB",
+   "inst": 28,
+   "name": "Warning",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "MB",
+   "inst": 30,
+   "name": "Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See Alarm Data Point Details section for additional infor­ mation."
+  },
+  {
+   "type": "MB",
+   "inst": 31,
+   "name": "Warning",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  },
+  {
+   "type": "MB",
+   "inst": 33,
+   "name": "Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See Alarm Data Point Details section for additional infor­ mation."
+  },
+  {
+   "type": "MB",
+   "inst": 39,
+   "name": "Circuit 1",
+   "unitRaw": "0 – 410 psi × 10 (700 psi for R410A) 0 – 2827 kPa × 10 (4826 kPa for R410A) Default: NA",
+   "unit": null,
+   "note": "Indicates the current condenser pressure. · 범위 0 – 410 psi × 10 (700 psi for R410A) 0 – 2827 kPa × 10 (4826 kPa for R410A) Default: NA"
+  },
+  {
+   "type": "MB",
+   "inst": 40,
+   "name": "Circuit 1",
+   "unitRaw": "-14.98 – 185°F × 10 -26.1 – 85°C × 10 Default: NA",
+   "unit": null,
+   "note": "Indicates the current satu­ rated refrigerant tempera­ ture of the condenser. · 범위 -14.98 – 185°F × 10 -26.1 – 85°C × 10 Default: NA"
+  },
+  {
+   "type": "MB",
+   "inst": 41,
+   "name": "Circuit 1",
+   "unitRaw": "0 – 410 psi × 10 (700 psi for R410A) 0 – 2827 kPa × 10 (4826 kPa for R410A) Default: NA",
+   "unit": null,
+   "note": "Indicates the current evaporator pressure. · 범위 0 – 410 psi × 10 (700 psi for R410A) 0 – 2827 kPa × 10 (4826 kPa for R410A) Default: NA"
+  },
+  {
+   "type": "MB",
+   "inst": 42,
+   "name": "Circuit 1",
+   "unitRaw": "-14.98 – 185°F × 10 -26.1 – 85°C × 10 Default: NA",
+   "unit": null,
+   "note": "Indicates the current satu­ rated refrigerant tempera­ ture of the evaporator. · 범위 -14.98 – 185°F × 10 -26.1 – 85°C × 10 Default: NA"
+  },
+  {
+   "type": "MB",
+   "inst": 1984,
+   "name": "Circuit 1",
+   "unitRaw": "-40 – 230°F × 10 -40 – 110°C × 10 Default: NA",
+   "unit": null,
+   "note": "Indicates the liquid line refrigerant temperature for the circuit. · 범위 -40 – 230°F × 10 -40 – 110°C × 10 Default: NA"
+  },
+  {
+   "type": "MSV",
+   "inst": 1,
+   "name": "UnitStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The unit status of the chiller. · 범위 1 = OFF 2 = START 3 = RUN 4 = PRESHUT­ DOWN 5 = SERVICE"
+  },
+  {
+   "type": "MSV",
+   "inst": 2,
+   "name": "ActiveMode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current operating mode of the chiller. Only Cool Mode applies to models WME-C and WME-D. · 범위 1 = ICE 2 = COOL 3 = HEAT 4= COOL/HEAT RECOVERY Default: 2 = COOL"
+  },
+  {
+   "type": "MSV",
+   "inst": 3,
+   "name": "ChillerOpera­ tionMode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Changes the operating mode of the chiller and provides the ability for another node on the network to place a chiller in another mode. The unit controller only uses this variable if Remote Enable is set to Enable. Remote Enable can only be "
+  },
+  {
+   "type": "MSV",
+   "inst": 100,
+   "name": "C1Comp1OffAuto",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Enables (default) or disables the compressor. When power is cycled to the controller, the object returns to the default value (Auto). Note: Must have chiller appli­ cation code 1.2.4 or newer for these objects to be available. · 범위 1 = OFF "
+  },
+  {
+   "type": "MSV",
+   "inst": 101,
+   "name": "C1Comp2OffAuto",
+   "unitRaw": null,
+   "unit": null,
+   "note": ""
+  }
+ ],
+ "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "extractor": "table",
+ "sourceDoc": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+ "classifiedBy": "포인트 이름 증거 4종: evaporator, condenser, chiller, refrigerant",
+ "crosscheck": {
+  "rate": 0.9852941176470589,
+  "both": 68,
+  "diff": [
+   [
+    "MSV",
+    4,
+    "Units",
+    "1 = Metric"
+   ]
+  ]
+ }
+}

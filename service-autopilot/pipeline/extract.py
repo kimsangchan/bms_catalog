@@ -86,10 +86,13 @@ COL = {
     # '5598_1_2' 같은 내부 코드를 적는다. 순서를 바꾸면 이름 자리가 코드로 채워진다.
     # 같은 문서 안에서도 표마다 'Data Label' 과 'Data Description' 이 섞여 나온다 —
     # 정밀공조 CW 계열은 표 115개 중 34개가 후자라, 이걸 빼먹으면 그만큼이 코드가 됐다.
+    # 'property description' 은 JCI Simplicity SE, 'data point' 는 Daikin ED 의
+    # Modbus 표('Chiller Data Point') — 없으면 설명 열이 이름 자리에 들어온다.
     "name": ["data label", "data description", "object name", "object nmae",
-             "point name", "diagnostic name", "designation",
-             "objektname", "nom de l'objet", "nombre del objeto"],
-    "unit": ["unit", "units", "einheit", "unité", "unidad"],
+             "point name", "data point", "diagnostic name", "designation",
+             "property description", "objektname", "nom de l'objet", "nombre del objeto"],
+    # 'dim' 은 Siemens Climatix — 단위 열 이름이 'Dim' 이다.
+    "unit": ["unit", "units", "dim", "einheit", "unité", "unidad"],
     "desc": ["description", "beschreibung", "descripción"],
     "range": ["valid range", "range", "bereich"],
     "rw": ["read/write", "read", "r/w", "access", "zugriff"],
@@ -217,6 +220,17 @@ def extract_tables(pdf, default_type=None, pages=None):
             # Belimo 는 열 이름 자체가 'Object Type [Instance]' 라 둘 다 걸린다.
             i_ty, i_in = idx(*COL["objtype"]), idx(*COL["instance"])
             split_mode = i_ty >= 0 and i_in >= 0 and i_ty != i_in
+            # 타입이 열이 아니라 **머리글에** 적힌 표 — Siemens Climatix 는
+            # 'Analog input, object name' + 'Object instance' 구조라 타입 열이 없다.
+            head_type = None
+            if i_id < 0 and not split_mode and i_in >= 0 and i_nm >= 0:
+                mh = re.search(r"(analog|binary|multi-?state)\s+(input|output|value)",
+                               " ".join(hdr), re.I)
+                if mh:
+                    fam = mh.group(1).lower().replace("-", "")
+                    head_type = SPELLED_TYPE.get((fam, mh.group(2).lower()))
+                    if head_type:
+                        i_id = i_in
             if (i_id < 0 and not split_mode) or i_nm < 0:
                 continue
             i_ds, i_un = idx(*COL["desc"]), idx(*COL["unit"])
@@ -247,6 +261,7 @@ def extract_tables(pdf, default_type=None, pages=None):
                         split = (t_raw, int(n_raw))
                 raw_id = _c(r[i_id]) if i_id >= 0 else ""
                 pid = parse_objid(raw_id)
+                extra_note = ""
                 if split:
                     typ, inst = split
                 elif pid:
@@ -255,14 +270,24 @@ def extract_tables(pdf, default_type=None, pages=None):
                     typ, inst = "MB", int(raw_id)
                 elif mb_mode and HEX_REG.match(raw_id):
                     typ, inst = "MB", int(HEX_REG.match(raw_id).group(2), 16)
+                elif BARE_ID.match(raw_id) and head_type:
+                    typ, inst = head_type, int(raw_id)
                 elif BARE_ID.match(raw_id) and default_type:
                     typ, inst = default_type, int(raw_id)
+                elif (BARE_ID.match(raw_id) and 0 <= i_mb != i_id
+                      and i_mb < len(r) and BARE_ID.match(_c(r[i_mb]))
+                      and int(_c(r[i_mb])) > 0):
+                    # JCI Simplicity SE — ID 열(BACOid)에 타입이 없어 오브젝트로 못
+                    # 만든다. 같은 행의 Modbus 주소를 레지스터 포인트로 취입하고
+                    # BACnet OID 는 비고에 남긴다 (타입은 LIT-12011950 참조).
+                    typ, inst = "MB", int(_c(r[i_mb]))
+                    extra_note = "BACnet OID %s (타입 열 없음)" % raw_id
                 else:
                     continue
                 name = _c(r[i_nm])
                 if not name or len(name) < 3:
                     continue
-                note = []
+                note = [extra_note] if extra_note else []
                 for i, pfx in ((i_ds, ""), (i_st, ""), (i_rg, "범위 "), (i_rd, "기본 ")):
                     if 0 <= i < len(r) and _c(r[i]):
                         note.append(pfx + _c(r[i]))
@@ -506,7 +531,10 @@ def extract(pdf, mode="auto"):
     fam = classify(pdf)
     if fam == "lontalk":
         p = extract_lontalk(pdf)
-        if p:
+        # SNVT 가 이 정도는 나와야 진짜 LonWorks 문서다. Daikin ED 문서는 표 제목이
+        # 'BACnet Network Variables' 라 lontalk 으로 오판됐고, SNVT 추출이 2점을 내고
+        # 조기 반환해 BACnet 표 285점을 통째로 버린 적이 있다.
+        if len(p) >= 20:
             return p, "lontalk"
     if mode in ("auto", "table"):
         p = extract_tables(pdf)
