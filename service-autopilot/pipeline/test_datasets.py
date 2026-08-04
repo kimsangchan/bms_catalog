@@ -381,6 +381,35 @@ class CuratedUnitDatasetTest(unittest.TestCase):
                 for fid in rd.get("detail") or []:
                     self.assertIn(fid, ids, "%s.%s.detail: %s" % (cid, role, fid))
 
+    def test_every_equip_with_extracted_units_has_schema_class(self):
+        # 스키마 우선 규칙 — 형번이 나오는 설비 계열은 클래스(열 구성·라벨·역할)를
+        # unit-schema.json classes 에 먼저 정의해야 한다. 새 설비(냉각탑·VAV 등)를
+        # 수집하며 스키마 없이 지나가면 여기서 잡힌다 (units.py --propose-class 초안).
+        schema = U.load_schema()
+        classes = schema.get("classes") or {}
+        for mid, model in datasets.load_models().items():
+            if U.extraction_records(model, schema):
+                self.assertIn(
+                    model.get("equipId"), classes,
+                    "%s: 설비 %s 클래스 미정의 — units.py --propose-class %s"
+                    % (mid, model.get("equipId"), model.get("equipId")))
+
+    def test_extracted_fields_are_all_defined_in_schema_features(self):
+        # 사전 우선 규칙 — 추출기에 새 필드(pick)를 더할 때 공유 속성 사전에 먼저
+        # 정의하지 않으면 확정본 저장에서 조용히 떨어져 나간다(데이터 유실).
+        # 여기서 시끄럽게 잡는다: 추출 행의 모든 사양 키는 features 에 있어야 한다.
+        META = {"unitModelNumber", "unitNumberKind", "unitRole", "units",
+                "sourceTable", "sourcePage", "sourceFile", "selectionStatus", "status"}
+        ids = set(U.field_ids(U.load_schema()))
+        for mid, model in datasets.load_models().items():
+            for row in datasets.unit_models(model):
+                for key in row:
+                    if key in META:
+                        continue
+                    self.assertIn(key, ids,
+                                  "%s: 추출 필드 %r 가 속성 사전(features)에 없다 — "
+                                  "unit-schema.json 에 먼저 정의" % (mid, key))
+
     def test_merge_preserves_verified_and_manual_and_reports_drift(self):
         # 생존 규칙 — 사람 확정본(verified·manual)은 추출이 절대 덮지 않는다.
         verified = {"unitModelNumber": "X-01", "status": "verified",

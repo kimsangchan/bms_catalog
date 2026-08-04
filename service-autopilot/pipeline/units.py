@@ -11,11 +11,16 @@
   verified   사람 확인 — 동기화가 절대 덮지 않는다. 추출이 달라지면 드리프트 보고만
   manual     수기 입력 — 추출이 못 만드는 값(문서 한계). 동기화가 건드리지 않는다
 
+스키마 우선 규칙: 설비 클래스(unit-schema.json classes)가 정의되지 않은 설비는
+--sync 가 확정본을 만들지 않는다. 새 설비 계열의 첫 수집은
+--propose-class 로 초안을 떠서 사전에 먼저 정의한다.
+
 실행:
   python units.py --sync [--only <모델ID>]     추출 제안을 확정본에 반영
   python units.py --diff [--only <모델ID>]     쓰지 않고 바뀔 내용만 보고
   python units.py --verify <모델ID> [형번...]   extracted → verified 승격 (생략=전체)
   python units.py --status                     모델별 확정본 현황
+  python units.py --propose-class <설비ID>     새 설비 계열의 classes 블록 초안
 """
 import argparse
 import json
@@ -129,13 +134,21 @@ def load_stored(model_id):
 
 def sync(only=None, write=True):
     schema = load_schema()
+    classes = schema.get("classes") or {}
     os.makedirs(UNITS_DIR, exist_ok=True)
     models = datasets.load_models()
     changed = 0
+    missing_class = {}
     for mid, model in sorted(models.items()):
         if only and mid != only:
             continue
         extracted = extraction_records(model, schema)
+        # 스키마 우선 규칙 — 설비 클래스가 사전에 정의되기 전에는 확정본을 만들지
+        # 않는다. 새 설비 계열의 첫 수집은 units.py --propose-class 로 초안을 떠서
+        # unit-schema.json classes 에 먼저 넣는다 (열 구성·라벨·역할이 설비마다 다르다).
+        if extracted and model.get("equipId") not in classes:
+            missing_class.setdefault(model.get("equipId"), []).append(mid)
+            continue
         stored_doc = load_stored(mid)
         stored = (stored_doc or {}).get("units") or []
         if not extracted and not stored:
@@ -163,9 +176,52 @@ def sync(only=None, write=True):
             with open(unit_path(mid), "w", encoding="utf-8") as f:
                 json.dump(doc, f, ensure_ascii=False, indent=1)
                 f.write("\n")
+    if missing_class:
+        print("✗ 스키마 클래스 미정의 설비 — 확정본을 만들지 않았다.")
+        for eq, mids in sorted(missing_class.items()):
+            print("   %s (%d모델): python units.py --propose-class %s 로 초안을 떠서"
+                  " unit-schema.json classes 에 먼저 정의" % (eq, len(mids), eq))
+        return -1
     if not changed:
         print("변경 없음 — 확정본이 추출 제안과 일치한다.")
     return changed
+
+
+def propose_class(equip_id):
+    """새 설비 계열의 클래스 초안 — 그 설비 모델들의 추출 제안에서 필드·역할
+    사용 빈도를 세어 unit-schema.json classes 에 붙여 넣을 블록을 만들어 준다.
+
+    어디까지나 초안이다 — 한글 이름, 설비 관점에서 뜻이 달라지는 라벨
+    (labels 오버라이드, 예: 냉동기의 코일·팬 = 응축기 쪽), 역할별 상세 순서는
+    사람이 원문을 보고 다듬는다. 제조사가 달라도 필드는 공유 사전(features)의
+    id 만 쓰므로 클래스는 벤더 중립으로 유지된다.
+    """
+    schema = load_schema()
+    fields, roles = {}, {}
+    for model in datasets.load_models().values():
+        if model.get("equipId") != equip_id:
+            continue
+        for rec in extraction_records(model, schema):
+            roles[rec.get("unitRole") or "?"] = roles.get(rec.get("unitRole") or "?", 0) + 1
+            for fid in rec["fields"]:
+                fields[fid] = fields.get(fid, 0) + 1
+    if not fields:
+        print("%s: 추출 제안이 없다 — 인식 사다리(datasets.unit_models)부터 확인" % equip_id)
+        return 1
+    order = [fid for fid, _n in sorted(fields.items(), key=lambda x: (-x[1], x[0]))
+             if fid != "capacityClass"]
+    block = {equip_id: {
+        "ko": "<설비 이름 — 사람이 채운다>",
+        "table": ["capacityClass"] + order,
+        "detailExtra": [],
+        "roles": {role: {"ko": "<역할 이름 — 사람이 채운다>", "detail": order[:5]}
+                  for role in sorted(roles)},
+    }}
+    print("# 필드 사용 빈도: " + ", ".join(
+        "%s %d" % (fid, n) for fid, n in sorted(fields.items(), key=lambda x: -x[1])))
+    print("# unit-schema.json 의 classes 에 붙여 넣고 한글 이름·라벨 오버라이드를 다듬는다:")
+    print(json.dumps(block, ensure_ascii=False, indent=1))
+    return 0
 
 
 def verify(model_id, codes):
@@ -212,11 +268,15 @@ def main(argv=None):
     parser.add_argument("codes", nargs="*", help="--verify 대상 형번 (생략=전체)")
     parser.add_argument("--status", action="store_true")
     parser.add_argument("--only", metavar="MODEL_ID")
+    parser.add_argument("--propose-class", metavar="EQUIP_ID",
+                        help="새 설비 계열의 classes 블록 초안 생성 (스키마 우선 규칙)")
     args = parser.parse_args(argv)
+    if args.propose_class:
+        return propose_class(args.propose_class)
     if args.sync:
-        sync(only=args.only, write=True)
+        return 1 if sync(only=args.only, write=True) < 0 else 0
     elif args.diff:
-        sync(only=args.only, write=False)
+        return 1 if sync(only=args.only, write=False) < 0 else 0
     elif args.verify:
         return verify(args.verify, args.codes)
     elif args.status:

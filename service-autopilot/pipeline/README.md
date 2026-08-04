@@ -200,6 +200,8 @@ python datasets.py --equip e5                # 공조기만 다시 생성
    - 새 필드가 필요하면 **속성 사전(`data/unit-schema.json`)에 먼저 정의**한다 —
      공유 사전(features) + 설비 클래스별 세트(classes: 열 구성·라벨 오버라이드·
      역할별 상세). 같은 속성도 설비마다 뜻이 다르다(냉동기의 코일·팬 = 응축기 쪽).
+   - **새 설비 계열이면 '수집 3규칙·새 설비 계열 절차' 절부터** — 클래스 미정의면
+     sync 가 거부한다 (`units.py --propose-class <설비ID>` 로 초안).
    - 원문 대조를 마친 형번은 `units.py --verify <모델> [형번]` 으로 승격 —
      verified/manual 은 sync 가 절대 덮지 않는다(어긋나면 드리프트 경고만).
 
@@ -252,6 +254,24 @@ unit-schema.json (속성 사전)      datasets.unit_models (추출 = 제안)
 - 검수 승격: `python units.py --verify <모델ID> [형번…]` · 현황: `--status` · 예고: `--diff`
 - 문서에 없는 값(York 전기표 등)은 확정본에 `status: "manual"` 로 직접 채울 수 있다 —
   추출이 재현 못 해도 sync 가 건드리지 않는다.
+
+### 수집 3규칙 — 새 설비·새 제조사가 와도 같은 틀에 담기게
+
+| 규칙 | 내용 | 기계 강제 |
+|---|---|---|
+| **① 스키마 우선** | 형번이 나오는 설비 계열은 `classes.<설비ID>` (열 구성·라벨·역할)를 **수집과 함께 정의**한다. 클래스 없이는 확정본이 안 만들어진다 | `--sync` 거부 · validate `units-class` E · `test_every_equip_with_extracted_units_has_schema_class` |
+| **② 사전 우선** | 새 속성은 공유 사전(features)에 **먼저** 정의한다. 사전 밖 필드는 확정본 저장에서 조용히 유실된다 | `test_extracted_fields_are_all_defined_in_schema_features` |
+| **③ 벤더 중립** | 클래스는 제조사를 모른다 — 필드는 공유 사전 id 만 쓰고, 설비 관점에서 뜻이 달라지는 표기는 클래스 `labels` 오버라이드로 처리(냉동기의 코일·팬 = 응축기 쪽) | 스키마 구조 자체 (벤더별 필드 없음) |
+
+### 새 설비 계열(냉각탑·VAV 등)에 형번이 처음 생길 때
+
+1. 인식 사다리(datasets.unit_models)가 그 설비 문서의 표를 읽게 만든다 (기존 5단계).
+2. `python units.py --propose-class <설비ID>` — 추출 제안의 필드·역할 사용 빈도를
+   세어 **classes 블록 초안**을 만들어 준다 (열 순서 = 빈도순).
+3. 초안을 unit-schema.json `classes` 에 붙이고 사람이 다듬는다: 설비 한글 이름,
+   역할 이름, **설비 관점 라벨 오버라이드**, 역할별 상세(detail) 순서.
+4. 새 속성이 필요하면 features 사전에 먼저 추가한다 (규칙 ②).
+5. `units.py --sync` → 화면 확인 → 원문 대조 후 `--verify` 승격.
 
 `datasets/` 산출물은 세 파일이다.
 

@@ -195,6 +195,13 @@ def check_curated_units(m, add):
     ids = set(U.field_ids(schema))
     statuses = set(schema.get("statuses") or ())
     proposals = U.extraction_records(m, schema)
+    # 스키마 우선 규칙 — 형번이 나오는 설비는 클래스(열 구성·라벨·역할)가 사전에
+    # 정의돼 있어야 한다. 없으면 sync 가 거부하므로 여기서 원인을 알려 준다.
+    if proposals and m.get("equipId") not in (schema.get("classes") or {}):
+        add("E", "units-class",
+            "설비 %s 의 스키마 클래스 미정의 — units.py --propose-class %s 초안으로 "
+            "unit-schema.json classes 에 먼저 정의" % (m.get("equipId"), m.get("equipId")))
+        return
     path = U.unit_path(m["id"])
     if not os.path.exists(path):
         if proposals:
