@@ -633,6 +633,36 @@ SOURCES = [
         "crosscheck_unreliable": r"IVProdukt",
     },
     {
+        "id": "swegon-gold",
+        "vendor": "Swegon",
+        "kind": "포인트리스트",
+        "note": "GOLD RX/PX/CX/SD(E/F세대) 공조기 — 유럽 AHU 중 통합 문서 공개가 가장 성실한 "
+                "벤더다. Modbus RTU/TCP 레지스터 정본(0x/1x/3x/4x 참조 표기) + 치수 카탈로그"
+                "(크기 004~120 풍량·모터·전기) + AHU 퀵가이드(크기별 요약표). 컨트롤러는 IQlogic. "
+                "BACnet 목록 정본은 xls/zip 배포라 PDF 는 Modbus 를 정본으로 쓴다.",
+        "enumerate": "list",
+        "urls": [
+            "https://www.swegon.com/globalassets/digizuite/9313-en-gold_e_modbus_other_en.pdf",
+            "https://www.swegon.com/globalassets/digizuite/8415-en-goldrx_f_dimensioning_productcatalogue_en.pdf",
+            "https://www.swegon.com/globalassets/digizuite/6770-en-ahu_quick-guide_en.pdf",
+            "https://www.bacnetinternational.net/catalog/manu/swegon%20operations%20ab/GOLD_E_BACnet_PICS_PV1.11_140429.pdf",
+            # 정비 매뉴얼 — 전기 데이터(크기별 전원·퓨즈)와 표지의 제품 실물 사진용
+            "https://www.swegon.com/globalassets/digizuite/16498-en-goldskfrx_maintenance_en.pdf",
+        ],
+        "rename": {
+            "9313-en-gold_e_modbus_other_en.pdf": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+            "8415-en-goldrx_f_dimensioning_productcatalogue_en.pdf": "Swegon_GOLD-RX_Dimensioning_Catalogue.pdf",
+            "6770-en-ahu_quick-guide_en.pdf": "Swegon_AHU_QuickGuide.pdf",
+            "GOLD_E_BACnet_PICS_PV1.11_140429.pdf": "Swegon_GOLD-E_BACnet_PICS.pdf",
+            "16498-en-goldskfrx_maintenance_en.pdf": "Swegon_GOLD-RX_Maintenance.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+        # 레지스터가 '1x0501' 참조 표기 + 여러 줄 설명 셀이라 줄 읽기가 짝을 못 만든다 —
+        # 표 인식 결과가 정본이고 대조는 불가.
+        "crosscheck_unreliable": r"Swegon_GOLD-EF_Modbus",
+    },
+    {
         "id": "jci-vrf-gateway",
         "vendor": "Johnson Controls / York",
         "kind": "게이트웨이 설치설명서 · 제출자료",

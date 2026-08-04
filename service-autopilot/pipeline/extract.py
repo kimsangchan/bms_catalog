@@ -27,6 +27,9 @@ BARE_ID = re.compile(r"^(\d{1,6})$")
 # ebm-papst 는 레지스터를 'D000'·'D14A' 처럼 문자+16진으로 쓴다. 값은 16진이다
 # (문서에 D149·D14A 가 이어진다). 원표기는 비고에 남긴다.
 HEX_REG = re.compile(r"^([A-Z])([0-9A-F]{3})$")
+# Swegon 은 Modbus 참조 표기 '0x0001·1x0501·3x0004·4x0094' 를 쓴다 — 표준 절대
+# 참조로 편다 (1x0501 → 10501, 4x0094 → 40094). 앞자리가 테이블(코일/입력/레지스터)이다.
+MODBUS_REF = re.compile(r"^([0134])x(\d{4})$")
 # 'Analog Input, 1' / 'Binary Value 3' 처럼 타입을 풀어 쓴 형식 — CH530 문서가 이렇게 쓴다.
 # 이걸 못 읽어 RTHD(CH530) 문서에서 0점이 나왔다.
 SPELLED = re.compile(
@@ -88,9 +91,12 @@ COL = {
     # 정밀공조 CW 계열은 표 115개 중 34개가 후자라, 이걸 빼먹으면 그만큼이 코드가 됐다.
     # 'property description' 은 JCI Simplicity SE, 'data point' 는 Daikin ED 의
     # Modbus 표('Chiller Data Point') — 없으면 설명 열이 이름 자리에 들어온다.
+    # 맨 뒤의 'name' 단독은 최후 보루다 — Swegon 은 열 이름이 그냥 'Name' 이라
+    # 이게 없으면 설명 열이 이름 자리에 들어온다.
     "name": ["data label", "data description", "object name", "object nmae",
              "point name", "data point", "diagnostic name", "designation",
-             "property description", "objektname", "nom de l'objet", "nombre del objeto"],
+             "property description", "objektname", "nom de l'objet", "nombre del objeto",
+             "name"],
     # 'dim' 은 Siemens Climatix — 단위 열 이름이 'Dim' 이다.
     "unit": ["unit", "units", "dim", "einheit", "unité", "unidad"],
     "desc": ["description", "beschreibung", "descripción"],
@@ -101,9 +107,9 @@ COL = {
     "states": ["object states", "states", "zustände"],
     # 'register' 단독도 받는다 — Danfoss Modbus 모듈 문서가 이렇게 쓴다.
     # BACnet 문서에도 'Register Type' 열이 있지만 그쪽은 ID 열을 먼저 찾으므로
-    # 이 별칭까지 오지 않는다.
+    # 이 별칭까지 오지 않는다. 'modbus' 단독은 Swegon GOLD — ID 열 이름이 'Modbus' 다.
     "modbus": ["modbus register", "modbus address", "register address",
-               "modbus-register", "address", "register"],
+               "modbus-register", "address", "register", "modbus"],
     # 타입과 번호를 한 칸에 'AI-4' 로 적지 않고 열을 갈라 적는 벤더가 있다
     # (JCI VRF 게이트웨이: 'Object Type'=AI, 'BACnet Instance Number'=4).
     # 이때는 두 열을 합쳐야 오브젝트가 된다 — 아래 split 모드.
@@ -268,6 +274,10 @@ def extract_tables(pdf, default_type=None, pages=None):
                     typ, inst = pid
                 elif mb_mode and BARE_ID.match(raw_id):
                     typ, inst = "MB", int(raw_id)
+                elif mb_mode and MODBUS_REF.match(raw_id):
+                    mr = MODBUS_REF.match(raw_id)
+                    typ, inst = "MB", int(mr.group(1)) * 10000 + int(mr.group(2))
+                    extra_note = "원표기 " + raw_id
                 elif mb_mode and HEX_REG.match(raw_id):
                     typ, inst = "MB", int(HEX_REG.match(raw_id).group(2), 16)
                 elif BARE_ID.match(raw_id) and head_type:

@@ -350,8 +350,10 @@ def table_kind(t):
     if RATING_WORD.search(t.get("title") or ""):
         return "rating"
     # 풍량·냉방능력 열을 가진 표는 정격이다 — Envistar 표가 퓨즈 열 하나 때문에
-    # 참고로 빠진 적이 있다 (조건별 성능표는 위 PERF 가 먼저 거른다)
-    if re.search(r"cooling power|air ?flow \(m3?/s\)", txt, re.I):
+    # 참고로 빠진 적이 있다 (조건별 성능표는 위 PERF 가 먼저 거른다).
+    # 'fl\s?ow' 는 PDF 합자가 갈라진 'Air fl ow'(Swegon) 표기까지 받는다.
+    if re.search(r"cooling power|air ?fl\s?ow \(m3?/[hs]\)|min\. and max\.? air ?fl\s?ows?",
+                 txt, re.I):
         return "rating"
     if REFERENCE_WORD.search(txt):
         return "etc"

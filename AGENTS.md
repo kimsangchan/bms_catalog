@@ -74,7 +74,10 @@ PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류
 
 ## 지금 상태 (2026-08-04)
 
-- 모델 **89건** · 오브젝트 **18,306점** · 정격 사양 **70모델** · `validate.py` 오류 0 · 계열 10/19
+- 모델 **91건** · 오브젝트 **21,832점** · 정격 사양 **72모델** · `validate.py` 오류 0 · 계열 10/19
+- 글로벌 공조기 커버리지: 리더 4사 전부(Trane·Daikin·JCI/York·**Carrier 48/50N**) +
+  유럽 **Swegon GOLD**(Modbus 3,362점)·IV Produkt. 남은 후보: AAON·Lennox·Systemair·
+  Mitsubishi — `pipeline/README.md` '새 벤더 추가 절차' 체크리스트대로 진행할 것.
 - 공조기(e5) 9모델(Trane 6 + Daikin MicroTech·JCI Simplicity SE·Siemens Climatix) —
   8모델 형번·정격 후보 완료(형번 133건·전기 특성 373행 — York 32·Rebel 13 포함,
   Envistar 만 미지원: 카탈로그 표 제목이 각주 조각). 신규 6모델 사진·근거 문서 연결 완료.

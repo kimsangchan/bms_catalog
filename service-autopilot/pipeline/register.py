@@ -82,6 +82,12 @@ OVERRIDE = {
         "controller": "ComfortLink",
         "product": "48/50N WeatherExpert Rooftop 75-150 Ton",
     },
+    # 표지 제목이 개요 문장이라 조각이 잡힌다
+    "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf": {
+        "cat": "HVAC.AIR.AHU", "tag": "ahu",
+        "controller": "IQlogic",
+        "product": "GOLD RX/PX/CX/SD AHU",
+    },
 }
 
 # 구간 이름을 사람 말로 — 목차에서 딴 약어를 풀어 쓴다 (LonMark 표준 프로파일)
