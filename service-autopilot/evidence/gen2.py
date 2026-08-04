@@ -1062,7 +1062,8 @@ function renderAhuUnitModelCandidates(m){
   var curUnit = rows[idx];
   return sec('Unit Model Number별 정격 후보', rows.length)
     + '<div class="guide"><b>여기서 실제 장비 형번을 골라야 해요</b>'
-    + '<p>제품군 문서에는 여러 형번의 값이 한꺼번에 들어 있습니다. 실제 현장 장비가 아래 형번 중 무엇인지 정해지면 그 형번의 풍량·냉방능력·조합 공조기를 한 줄로 좁힐 수 있습니다. 전압은 별도 전기 특성표에서 전원 코드와 함께 다시 확정해야 합니다.</p></div>'
+    + '<p>제품군 문서에는 여러 형번의 값이 한꺼번에 들어 있습니다. 실제 현장 장비가 아래 형번 중 무엇인지 정해지면 그 형번의 풍량·냉방능력·조합 공조기를 한 줄로 좁힐 수 있습니다. 전압은 별도 전기 특성표에서 전원 코드와 함께 다시 확정해야 합니다.</p>'
+    + '<p>단위는 원문표 라벨·단위 열에 적힌 것을 그대로 씁니다. 라벨에 단위가 없는 AHRI 정격(냉방능력·풍량)은 미국 카탈로그(I-P 단위계) 관례인 Btu/h·CFM으로 표기했습니다 — 환산: CFM×1.699=㎥/h · Btu/h×0.293=W.</p></div>'
     + '<div class="unitpick">' + rows.map(function(r,i){
         return '<button class="ucard" data-ui="'+i+'" aria-pressed="'+(i===idx)+'">'
           + '<b>'+esc(unitCode(r))+'</b>'
@@ -1092,26 +1093,29 @@ function renderAhuUnitDetail(r, electricalRows){
   ];
   if(unitRole(r) === 'airHandler'){
     items.splice(4, 0,
-      ['팬 모터', r.fanMotorHp && r.fanMotorHp !== '—' ? r.fanMotorHp + ' HP' : '—'],
-      ['팬 회전수', r.fanMotorRpm],
-      ['코일 면적', r.coilFaceArea],
+      ['팬 모터', valueWithUnit(r, 'fanMotorHp', 'HP')],
+      ['팬 회전수', valueWithUnit(r, 'fanMotorRpm', 'RPM')],
+      ['코일 면적', valueWithUnit(r, 'coilFaceArea', '')],
       ['코일 열수/FPI', r.coilRowsFpi]);
   } else if(unitRole(r) === 'packagedUnit'){
     items.splice(4, 0,
-      ['냉방능력', unitCooling(r)],
-      ['AHRI 냉방능력', r.ahriNetCoolingCapacity || r.ahriCooling],
+      ['냉방능력', valueWithUnit(r, 'grossCoolingCapacity', 'Btu/h')],
+      ['AHRI 냉방능력', valueWithUnit(r, 'ahriNetCoolingCapacity', 'Btu/h')],
       ['EER', r.eer],
-      ['팬 모터', r.fanMotorHp && r.fanMotorHp !== '—' ? r.fanMotorHp + ' HP' : '—']);
+      ['팬 모터', valueWithUnit(r, 'fanMotorHp', 'HP')]);
   } else {
     items.splice(4, 0,
       ['조합 공조기', r.matchedAirHandler || r.airHandler],
-      ['냉방능력', unitCooling(r)],
-      ['AHRI 냉방능력', r.ahriNetCoolingCapacity || r.ahriCooling],
+      ['냉방능력', valueWithUnit(r, 'grossCoolingCapacity', 'Btu/h')],
+      ['AHRI 냉방능력', valueWithUnit(r, 'ahriNetCoolingCapacity', 'Btu/h')],
       ['EER', r.eer]);
   }
   // 용량급 표(RAUJ·IntelliPak)에서 온 값 — 있을 때만 붙인다
-  [['압축기 구성', r.compressorConfig], ['용량 단계 %', r.capacitySteps],
-   ['냉매 회로', r.refrigerantCircuits], ['응축 팬', r.condenserFans]
+  [['압축기 구성', valueWithUnit(r, 'compressorConfig', '')],
+   ['용량 단계', valueWithUnit(r, 'capacitySteps', '%')],
+   ['냉매 회로', r.refrigerantCircuits],
+   ['응축 팬', r.condenserFans],
+   ['응축 풍량', valueWithUnit(r, 'condenserAirflow', '')]
   ].forEach(function(x){ if(x[1] && x[1] !== '—') items.push([x[0], x[1]]); });
   if(r.unitNumberKind === 'capacityClass')
     items.push(['형번 표기', '문서가 이 유닛을 형번 없이 톤수로만 구분해요']);
@@ -1129,12 +1133,12 @@ function unitRow(r){
     unitRoleLabel(r),
     r.matchedAirHandler || r.airHandler,
     unitAirflow(r),
-    unitCooling(r),
-    r.ahriNetCoolingCapacity || r.ahriCooling,
+    valueWithUnit(r, 'grossCoolingCapacity', 'Btu/h'),
+    valueWithUnit(r, 'ahriNetCoolingCapacity', 'Btu/h'),
     r.eer,
-    r.fanMotorHp,
-    r.fanMotorRpm,
-    r.coilFaceArea,
+    valueWithUnit(r, 'fanMotorHp', 'HP'),
+    valueWithUnit(r, 'fanMotorRpm', 'RPM'),
+    valueWithUnit(r, 'coilFaceArea', ''),
     r.coilRowsFpi,
     unitSource(r),
   ].map(esc);
@@ -1147,20 +1151,36 @@ function unitRoleLabel(r){
           packagedUnit:'일체형(패키지) 유닛'}[unitRole(r)] || '실외/응축 유닛';
 }
 function unitCapacity(r){ return r.capacityClass || r.tons || '—'; }
-function unitAirflow(r){ return r.ratedAirflow || r.airflow || '—'; }
+function unitAirflow(r){ return valueWithUnit(r, 'ratedAirflow', 'CFM') !== '—'
+  ? valueWithUnit(r, 'ratedAirflow', 'CFM') : (r.airflow || '—'); }
 function unitCooling(r){
   var v = r.grossCoolingCapacity || r.cooling || '—';
   if(v === '—') v = r.ahriNetCoolingCapacity || '—';
   return v;
 }
+// 값 + 단위. 단위는 ① 문서 라벨/단위 열에서 가져온 것(r.units) ② 라벨에 단위가 없는
+// AHRI 정격의 I-P 관례(conv — 냉방 Btu/h·풍량 CFM, 안내문에 근거 표기) 순서다.
+function valueWithUnit(r, field, conv){
+  var v = r[field];
+  if(!v || v === '—') return '—';
+  var u = (r.units||{})[field] || conv || '';
+  return u ? v + ' ' + u : v;
+}
+function coolingWithUnit(r){
+  if(r.grossCoolingCapacity && r.grossCoolingCapacity !== '—')
+    return valueWithUnit(r, 'grossCoolingCapacity', 'Btu/h');
+  if(r.ahriNetCoolingCapacity && r.ahriNetCoolingCapacity !== '—')
+    return valueWithUnit(r, 'ahriNetCoolingCapacity', 'Btu/h');
+  return r.cooling || '—';
+}
 function unitCardMetric(r){
   if(unitRole(r) === 'airHandler'){
-    return '팬 ' + ((r.fanMotorHp && r.fanMotorHp !== '—') ? r.fanMotorHp + ' HP' : '—')
+    return '팬 ' + valueWithUnit(r, 'fanMotorHp', 'HP')
       + ' · 코일 ' + (r.coilRowsFpi || '—');
   }
   if(unitCooling(r) === '—' && r.capacitySteps && r.capacitySteps !== '—')
-    return '용량 단계 ' + r.capacitySteps + ' %';
-  return '냉방 ' + unitCooling(r);
+    return '용량 단계 ' + valueWithUnit(r, 'capacitySteps', '%');
+  return '냉방 ' + coolingWithUnit(r);
 }
 function unitSource(r){
   if(r.source) return r.source;
@@ -1173,7 +1193,8 @@ function renderUnitElectricalRows(unit, rows){
   return sec('선택 형번 전기 특성', picked.length)
     + '<div class="guide"><b>전기 약어는 이렇게 읽으면 돼요</b>'
     + '<p><b>RLA</b>는 압축기가 운전 중 먹는 전류, <b>LRA</b>는 기동 순간 전류, '
-    + '<b>FLA</b>는 팬 모터 정격전류, <b>MCA</b>는 최소 전선 용량, <b>MOP</b>는 최대 차단기 용량입니다. '
+    + '<b>FLA</b>는 팬 모터 정격전류, <b>MCA</b>는 최소 전선 용량, <b>MOP</b>는 최대 차단기 용량 — '
+    + '전압(V) 열을 뺀 값은 전부 전류(A)입니다. '
     + '원문표의 여러 모델/전압 묶음을 한 행씩 쪼개서 보여줍니다.</p></div>'
     + table({header:['유닛','전압','상','모터 구분','압축기1 RLA','압축기1 LRA','압축기2 RLA','압축기2 LRA','팬 FLA','팬 LRA','MCA','MOP','근거'],
              rows:picked.map(electricalRow), key:'ahu-electrical'+unitCode(unit), raw:true, nopage:true, compact:true});

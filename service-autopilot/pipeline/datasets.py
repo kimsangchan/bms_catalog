@@ -331,6 +331,37 @@ def clean_model_label(value):
     return text
 
 
+def label_unit(label):
+    """라벨에 적힌 단위만 뽑는다 — (sq ft)·(%)·CFM·HP·RPM 등. 없는 단위는 지어내지 않는다."""
+    text = clean_text(label)
+    m = re.search(r"\(([^)]*(?:%|ft|cfm|btu|mbh|hp|rpm|ton|kw|psi|°f)[^)]*)\)", text, re.I)
+    if m and not re.search(r"nominal|standard|oversiz|fins|t/y", m.group(1), re.I):
+        return m.group(1).strip()
+    if re.search(r"\bcfm\b", text, re.I):
+        return "CFM"
+    if re.search(r"\bhp\b", text, re.I):
+        return "HP"
+    if re.search(r"\brpm\b", text, re.I):
+        return "RPM"
+    return ""
+
+
+def value_unit_for_label(rows, pattern, col, unit_col=None):
+    """값과 함께 그 값의 단위를 돌려준다 — 라벨 안 단위가 1순위, RAUK식 단위 열이 2순위."""
+    regex = re.compile(pattern, re.I)
+    for row in rows:
+        cells = row_cells(row)
+        if cells and regex.search(cells[0]):
+            value = cells[col] if col < len(cells) else ""
+            unit = label_unit(cells[0])
+            if not unit and unit_col is not None and unit_col < len(cells):
+                candidate = cells[unit_col]
+                if candidate and len(candidate) <= 8 and not re.match(r"^[\d.,/ –-]+$", candidate):
+                    unit = candidate
+            return value, unit
+    return "", ""
+
+
 # 형번으로 인정하는 토큰 — 문자 계열 + 숫자 2자리 이상 (TTA0724, WHJ150, T/YSC036G3).
 # 'Scroll'(압축기 형식)이나 '1/5, 2/7.5'(압축기 구성) 같은 속성값이 형번으로 오인되지 않게 한다.
 UNIT_CODE_TOKEN = re.compile(r"[A-Z][A-Za-z/]{1,8}\d{2,}")
@@ -366,6 +397,7 @@ CAPACITY_FILL_LABELS = {
     "refrigerantCircuits": r"Number of Refrigerant Circuits|No\. of Circuits",
     "condenserFans": r"Number/Size/Type",
     "ratedAirflow": r"CFM Range",
+    "condenserAirflow": r"Nominal Total Airflow",
 }
 
 
@@ -380,10 +412,12 @@ def capacity_units_from_table(table, model, merged):
     title = table.get("title") or ""
     family = unit_family_for(model, title)
     role = "condensingUnit" if re.search(r"condensing", title, re.I) else "packagedUnit"
-    for col in range(1, len(header)):
+    cap_cols = [col for col in range(1, len(header))
+                if re.match(r"^\d{2,3}$", header[col] or "")]
+    # RAUK식 표는 값 열이 2번부터라 1번 열이 단위 전용이다 (Tons·%·cfm·ft2)
+    unit_col = 1 if cap_cols and min(cap_cols) >= 2 else None
+    for col in cap_cols:
         cap = header[col]
-        if not re.match(r"^\d{2,3}$", cap or ""):
-            continue
         key = "%s|%s" % (family, cap)
         unit = merged.get(key)
         if unit is None:
@@ -405,15 +439,19 @@ def capacity_units_from_table(table, model, merged):
                 "capacitySteps": "—",
                 "refrigerantCircuits": "—",
                 "condenserFans": "—",
+                "condenserAirflow": "—",
+                "units": {},
                 "sourceTable": title,
                 "sourcePage": table.get("page"),
                 "selectionStatus": "unit_candidate",
             }
         for field, pattern in CAPACITY_FILL_LABELS.items():
             if unit[field] == "—":
-                value = value_for_label(rows, pattern, col)
+                value, measure = value_unit_for_label(rows, pattern, col, unit_col=unit_col)
                 if value:
                     unit[field] = value
+                    if measure:
+                        unit["units"][field] = measure
 
 
 def unit_models(model):
@@ -448,38 +486,40 @@ def unit_models(model):
             if code in seen:
                 continue
             seen.add(code)
-            role = unit_role_for(code, title)
-            out.append({
-                "unitModelNumber": code,
-                "unitNumberKind": "modelNumber",
-                "unitRole": role,
-                "capacityClass": header[col] or "—",
-                "matchedAirHandler": value_for_label(rows, r"matched air handler$", col) or "—",
-                "ratedAirflow": (
-                    value_for_label(rows, r"AHRI Rated Airflow", col)
-                    or value_for_label(rows, r"^CFM$", col)
-                    or value_for_label(rows, r"CFM \(Nominal\)", col)
-                    or "—"
-                ),
-                "grossCoolingCapacity": (
-                    value_for_label(rows, r"Gross Cooling Capacity - System", col)
-                    or value_for_label(rows, r"^Gross Cooling Capacity$", col)
-                    or "—"
-                ),
-                "ahriNetCoolingCapacity": (
-                    value_for_label(rows, r"AHRI Net Cooling Capacity", col) or "—"
-                ),
-                "eer": (
-                    value_for_label(rows, r"Matched Air Handler \(EER\)|System \(EER\)|^EER$", col) or "—"
-                ),
-                "coilFaceArea": value_for_label(rows, r"Face Area", col) or "—",
-                "coilRowsFpi": value_for_label(rows, r"Rows/FPI", col) or "—",
-                "fanMotorHp": value_for_label(rows, r"Motor HP", col) or "—",
-                "fanMotorRpm": value_for_label(rows, r"Motor RPM", col) or "—",
-                "sourceTable": table.get("title") or "",
-                "sourcePage": table.get("page"),
-                "selectionStatus": "unit_candidate",
-            })
+            fields, units = {}, {}
+
+            def pick(field, *patterns):
+                for pattern in patterns:
+                    value, unit = value_unit_for_label(rows, pattern, col)
+                    if value:
+                        fields[field] = value
+                        if unit:
+                            units[field] = unit
+                        return
+                fields[field] = "—"
+
+            pick("matchedAirHandler", r"matched air handler$")
+            # 풍량 우선순위: AHRI 정격 → 급기 공칭('Nominal cfm') → 팬 공칭.
+            # 맨 뒤 '^CFM$'는 Precedent 패키지 유닛에서 응축 팬 풍량이라 급기 라벨보다 뒤에 둔다.
+            pick("ratedAirflow", r"AHRI Rated Airflow", r"Nominal cfm/AHRI Rated cfm",
+                 r"CFM \(Nominal\)", r"^CFM$")
+            pick("grossCoolingCapacity", r"Gross Cooling Capacity - System",
+                 r"^Gross Cooling Capacity$")
+            pick("ahriNetCoolingCapacity", r"AHRI Net Cooling Capacity")
+            pick("eer", r"Matched Air Handler \(EER\)", r"System \(EER\)", r"^EER$")
+            pick("coilFaceArea", r"Face Area")
+            pick("coilRowsFpi", r"Rows/FPI")
+            pick("fanMotorHp", r"Motor HP")
+            pick("fanMotorRpm", r"Motor RPM")
+            out.append(dict(fields,
+                            unitModelNumber=code,
+                            unitNumberKind="modelNumber",
+                            unitRole=unit_role_for(code, title),
+                            capacityClass=header[col] or "—",
+                            units=units,
+                            sourceTable=table.get("title") or "",
+                            sourcePage=table.get("page"),
+                            selectionStatus="unit_candidate"))
     out.extend(capacity_units.values())
     return out
 

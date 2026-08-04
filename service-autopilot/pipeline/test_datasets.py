@@ -114,7 +114,9 @@ class DatasetBuildTest(unittest.TestCase):
 
         self.assertEqual(twe["unitRole"], "airHandler")
         self.assertEqual(twe["ratedAirflow"], "2400")
+        self.assertEqual(twe["units"]["ratedAirflow"], "CFM")
         self.assertEqual(twe["fanMotorHp"], "2.0/3.0")
+        self.assertEqual(twe["units"]["fanMotorHp"], "HP")
         self.assertEqual(twe["coilFaceArea"], "8.1")
         self.assertEqual(twe["coilRowsFpi"], "4/14")
         self.assertEqual(twe["grossCoolingCapacity"], "—")
@@ -165,6 +167,11 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(first["unitRole"], "condensingUnit")
         self.assertEqual(first["capacitySteps"], "100-50")
         self.assertEqual(first["compressorConfig"], "10-10")
+        # 단위는 RAUK 표의 전용 단위 열(1번 열)에서 온다
+        self.assertEqual(first["units"]["capacitySteps"], "%")
+        self.assertEqual(first["units"]["compressorConfig"], "Tons")
+        self.assertEqual(first["condenserAirflow"], "14600")
+        self.assertEqual(first["units"]["condenserAirflow"], "cfm")
 
     def test_intellipak_units_merge_general_data_and_continued_tables(self):
         data = datasets.build_dataset(equip_ids={"e5"})
@@ -178,6 +185,8 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(twenty["condenserFans"], '2/30"/Prop')
         # 급기 CFM 범위는 (continued) 표에 있다 — 병합이 끊기면 '—'로 퇴행한다
         self.assertEqual(twenty["ratedAirflow"], "4,000 - 9,000")
+        self.assertEqual(twenty["units"]["ratedAirflow"], "CFM")
+        self.assertEqual(twenty["units"]["capacitySteps"], "%")
         seventy_five = units["IntelliPak 75 Ton"]
         self.assertEqual(seventy_five["ratedAirflow"], "15,000 - 30,000")
 
@@ -189,6 +198,9 @@ class DatasetBuildTest(unittest.TestCase):
         ysc = units["T/YSC036G3,4,W"]
         self.assertEqual(ysc["unitRole"], "packagedUnit")
         self.assertEqual(ysc["ahriNetCoolingCapacity"], "36,000")
+        # 풍량은 응축 팬 CFM(3,600)이 아니라 급기 정격('Nominal cfm/AHRI Rated cfm')이어야 한다
+        self.assertEqual(ysc["ratedAirflow"], "1,200/1,200")
+        self.assertEqual(ysc["units"]["ratedAirflow"], "CFM")
         whj = units["WHJ150"]
         self.assertEqual(whj["unitRole"], "packagedUnit")
         self.assertEqual(whj["grossCoolingCapacity"], "154000")
