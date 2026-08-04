@@ -326,7 +326,7 @@ DIM_WORD = re.compile(
     r"roof curb|service clearance|connection drawing|suction lines?|liquid lines?|"
     r"\bfigure\b|치수|중량|외형", re.I)
 RATING_WORD = re.compile(
-    r"general data|mains supply|ratings?\b|electrical data|nominal|정격", re.I)
+    r"general data|physical data|mains supply|ratings?\b|electrical data|nominal|정격", re.I)
 # 정격처럼 보이는 단위가 있어도 쓰임새가 다른 표. 다른 설비에도 같은 원칙을 적용한다:
 # "바로 계산하는 기본값"이 아니라 "무엇과 맞는가/어떻게 연결하는가"이면 참고다.
 REFERENCE_WORD = re.compile(
@@ -344,6 +344,10 @@ def table_kind(t):
     txt = "%s %s" % (t.get("title") or "", " ".join(str(h) for h in t["header"]))
     if PERF_WORD.search(txt):
         return "perf"
+    # 문서가 제목으로 정격이라 밝힌 표는 머리글 낱말로 참고 처리하지 않는다 —
+    # Rebel 'Physical Data' 표가 머리글의 'Small cabinet' 때문에 참고로 빠진 적이 있다.
+    if RATING_WORD.search(t.get("title") or ""):
+        return "rating"
     if REFERENCE_WORD.search(txt):
         return "etc"
     # 조회 격자 — 같은 물리량 열이 넷 이상 되풀이되면 '조건을 바꿔 가며 읽는 표'다.
@@ -378,6 +382,10 @@ def title_is_junk(title, header):
         return False
     words = [w.lower() for w in re.findall(r"[A-Za-z가-힣]{2,}", ti)]
     if not words:
+        return True
+    # 각주 참조 조각 — 'fuse protection d'·'Alt. A' 처럼 짧은 문구가 외딴 한 글자로
+    # 끝나면 표 제목이 아니라 각주 표시를 주운 것이다 (IV Produkt 카탈로그 실측)
+    if re.search(r"\s[a-hA-H]\.?$", ti) and len(words) <= 4:
         return True
     # 같은 낱말이 세 번 이상 되풀이되면 제목이 아니라 열 이름을 늘어놓은 것이다
     # ('CFM RPM BHP RPM BHP RPM BHP …')

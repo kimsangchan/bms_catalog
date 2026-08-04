@@ -81,6 +81,15 @@ class SpecTableKindTest(unittest.TestCase):
 
         self.assertEqual(specs.table_kind(t), "dim")
 
+    def test_physical_data_title_beats_cabinet_header_word(self):
+        # Rebel 카탈로그 — 머리글의 'Small cabinet' 낱말로 참고 처리되면 안 된다
+        t = table(
+            "Rebel® Physical Data — Model DPS 003 – 028",
+            ["Model", "Small cabinet", "", "Medium cabinet", "", "Large cabinet"],
+        )
+
+        self.assertEqual(specs.table_kind(t), "rating")
+
     def test_cabinet_feature_text_is_reference_not_rating(self):
         t = table(
             "Cabinet",

@@ -469,16 +469,33 @@ def unit_models(model):
         if (table.get("kind") or "etc") != "rating":
             continue
         title = table.get("title") or ""
-        if not re.search(r"general data", title, re.I):
+        # York·Daikin 카탈로그는 같은 구조의 표를 'Physical Data' 라고 부른다
+        if not re.search(r"general data|physical data", title, re.I):
             continue
         header = row_cells(table.get("header") or [])
         rows = table.get("rows") or []
         first = row_cells(rows[0]) if rows else []
+        # 형번이 어디 적혔는가 — ① 첫 행(Trane·York ZJ078형) ② 머리글(York ZJ037형:
+        # 'Models ZJ037'처럼 머리글 칸에 형번) ③ 첫 행이 숫자 크기 코드뿐이고 제목이
+        # 'Model DPS 003 – 028' 꼴이면 제품군+코드로 조합(Rebel형)
         code_cols = []
         for col in range(1, len(header)):
             code = clean_model_label(first[col] if col < len(first) else "")
             if code and looks_like_unit_code(code):
                 code_cols.append((col, code))
+        if not code_cols:
+            for col in range(1, len(header)):
+                cell = re.sub(r"^models?\s+", "", header[col] or "", flags=re.I)
+                code = clean_model_label(cell)
+                if code and looks_like_unit_code(code):
+                    code_cols.append((col, code))
+        if not code_cols:
+            fam = re.search(r"model\s+([A-Z]{2,6})\b\s*\d", title, re.I)
+            if fam:
+                for col in range(1, len(header)):
+                    cell = first[col] if col < len(first) else ""
+                    if re.match(r"^\d{2,3}$", cell or ""):
+                        code_cols.append((col, "%s %s" % (fam.group(1).upper(), cell)))
         if not code_cols:
             capacity_units_from_table(table, model, capacity_units)
             continue
@@ -502,20 +519,34 @@ def unit_models(model):
             # 풍량 우선순위: AHRI 정격 → 급기 공칭('Nominal cfm') → 팬 공칭.
             # 맨 뒤 '^CFM$'는 Precedent 패키지 유닛에서 응축 팬 풍량이라 급기 라벨보다 뒤에 둔다.
             pick("ratedAirflow", r"AHRI Rated Airflow", r"Nominal cfm/AHRI Rated cfm",
-                 r"CFM \(Nominal\)", r"^CFM$")
+                 r"^Nominal airflow", r"^Nominal CFM$", r"CFM \(Nominal\)", r"^CFM$")
             pick("grossCoolingCapacity", r"Gross Cooling Capacity - System",
-                 r"^Gross Cooling Capacity$")
-            pick("ahriNetCoolingCapacity", r"AHRI Net Cooling Capacity")
-            pick("eer", r"Matched Air Handler \(EER\)", r"System \(EER\)", r"^EER$")
+                 r"^Gross Cooling Capacity$", r"^Gross Capacity @ (ARI|AHRI)")
+            pick("ahriNetCoolingCapacity", r"AHRI Net Cooling Capacity",
+                 r"^(ARI|AHRI) net capacity")
+            # 'EER1, 7' 처럼 각주 번호가 붙는 표기(Rebel)까지 받는다
+            pick("eer", r"Matched Air Handler \(EER\)", r"System \(EER\)",
+                 r"^EER(?![A-Za-z])")
             pick("coilFaceArea", r"Face Area")
             pick("coilRowsFpi", r"Rows/FPI")
             pick("fanMotorHp", r"Motor HP")
             pick("fanMotorRpm", r"Motor RPM")
+            pick("capacitySteps", r"Unit Capacity Steps")
+            # 용량대 — Trane 은 머리글이 '6 Tons' 지만 York·Rebel 머리글은
+            # 'Models'·'Small cabinet' 같은 묶음 이름이라, 숫자가 없으면 표의
+            # 공칭 톤수 행에서 가져온다
+            capacity = header[col] or "—"
+            # 머리글이 용량('6 Tons')이 아니라 형번('Models ZJ037')이거나 묶음
+            # 이름('Small cabinet')이면 표의 공칭 톤수 행에서 가져온다
+            if not re.search(r"\d", capacity) or looks_like_unit_code(capacity):
+                tons, _u = value_unit_for_label(
+                    rows, r"^Nominal Tonnage$|^Gross cooling capacity \(tons\)", col)
+                capacity = ("%s Tons" % tons) if tons else "—"
             out.append(dict(fields,
                             unitModelNumber=code,
                             unitNumberKind="modelNumber",
                             unitRole=unit_role_for(code, title),
-                            capacityClass=header[col] or "—",
+                            capacityClass=capacity,
                             units=units,
                             sourceTable=table.get("title") or "",
                             sourcePage=table.get("page"),

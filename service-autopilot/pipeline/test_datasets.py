@@ -234,6 +234,36 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(wshp["fanFla"], "2.2")
         self.assertEqual(wshp["fanLra"], "7.3")
 
+    def test_york_physical_data_units_come_from_header_codes(self):
+        # York 기술 가이드 — 형번이 첫 행이 아니라 머리글('Models ZJ037')에 있다
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"][
+            "johnson-controls-york-simplicity-se-smart-equipment-york-rooftop-units-modbus"]
+        units = {item["unitModelNumber"]: item for item in model["unitModels"]}
+
+        self.assertGreaterEqual(len(units), 30)
+        zj = units["ZJ037"]
+        self.assertEqual(zj["unitRole"], "packagedUnit")
+        self.assertEqual(zj["capacityClass"], "3.0 Tons")
+        self.assertEqual(zj["ratedAirflow"], "1200")
+        self.assertEqual(zj["eer"], "12.2")
+        self.assertEqual(zj["grossCoolingCapacity"], "36000")
+
+    def test_rebel_size_codes_get_family_prefix_from_title(self):
+        # Rebel 물리 데이터 — 첫 행이 '003' 같은 크기 코드뿐이라 제목의 'Model DPS'
+        # 제품군을 붙여 형번으로 만든다. EER 은 'EER1, 7' 각주 표기.
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"][
+            "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet"]
+        units = {item["unitModelNumber"]: item for item in model["unitModels"]}
+
+        self.assertEqual(len(units), 13)
+        dps = units["DPS 003"]
+        self.assertEqual(dps["capacityClass"], "3 Tons")
+        self.assertEqual(dps["ratedAirflow"], "1125")
+        self.assertEqual(dps["units"]["ratedAirflow"], "cfm")
+        self.assertEqual(dps["eer"], "13.5")
+
     def test_inducer_and_power_exhaust_motors_are_not_electrical_rows(self):
         data = datasets.build_dataset(equip_ids={"e5"})
         model = data["modelMappings"]["trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-scc"]
