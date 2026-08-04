@@ -76,6 +76,12 @@ OVERRIDE = {
         "controller": "Climatix POL908",
         "product": "IV Produkt AHU Application",
     },
+    # 표지가 'Controls, Start-Up…' 매뉴얼이라 제품명 대신 Form 번호가 잡힌다
+    "Carrier_48-50N-7T_WeatherExpert_Controls.pdf": {
+        "cat": "HVAC.AIR.RTU", "tag": "rooftop",
+        "controller": "ComfortLink",
+        "product": "48/50N WeatherExpert Rooftop 75-150 Ton",
+    },
 }
 
 # 구간 이름을 사람 말로 — 목차에서 딴 약어를 풀어 쓴다 (LonMark 표준 프로파일)

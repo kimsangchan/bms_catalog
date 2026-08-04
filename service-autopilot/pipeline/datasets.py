@@ -534,8 +534,9 @@ def unit_models(model):
         if (table.get("kind") or "etc") != "rating":
             continue
         title = table.get("title") or ""
-        # York·Daikin 카탈로그는 같은 구조의 표를 'Physical Data' 라고 부른다
-        if not re.search(r"general data|physical data", title, re.I):
+        # York·Daikin 은 'Physical Data', Carrier 는 'SIZES N-T (… TONS NOMINAL
+        # CAPACITY)' 라고 부른다 — 같은 구조의 표다
+        if not re.search(r"general data|physical data|tons? nominal capacity", title, re.I):
             # Envistar 는 표 제목이 각주 조각이라 제목으로 못 거른다 — 대신
             # '1행=크기(04~28), 열=풍량·냉방능력' 구조를 모양으로 알아본다
             header0 = row_cells(table.get("header") or [])
@@ -574,6 +575,14 @@ def unit_models(model):
                     cell = first[col] if col < len(first) else ""
                     if re.match(r"^\d{2,3}$", cell or ""):
                         code_cols.append((col, "%s %s" % (fam.group(1).upper(), cell)))
+        if not code_cols:
+            # Carrier 48/50N — 크기가 머리글의 한 글자(N~T)이고 톤수는
+            # 'NOMINAL CAPACITY' 행에 있다. 이 행이 없으면(치수·커브 표) 만들지 않는다.
+            fam2 = re.search(r"^([\w/]+)\s+SIZES\b", title)
+            if fam2 and value_for_label(rows, r"^NOMINAL CAPACITY", 1):
+                for col in range(1, len(header)):
+                    if re.match(r"^[A-Z]$", header[col] or ""):
+                        code_cols.append((col, "%s %s" % (fam2.group(1), header[col])))
         if not code_cols:
             capacity_units_from_table(table, model, capacity_units)
             continue
@@ -619,7 +628,9 @@ def unit_models(model):
             # 이름('Small cabinet')이면 표의 공칭 톤수 행에서 가져온다
             if not re.search(r"\d", capacity) or looks_like_unit_code(capacity):
                 tons, _u = value_unit_for_label(
-                    rows, r"^Nominal Tonnage$|^Gross cooling capacity \(tons\)", col)
+                    rows,
+                    r"^Nominal Tonnage$|^Gross cooling capacity \(tons\)|^NOMINAL CAPACITY",
+                    col)
                 capacity = ("%s Tons" % tons) if tons else "—"
             out.append(dict(fields,
                             unitModelNumber=code,

@@ -63,7 +63,12 @@ def head(url, timeout=12, src=None):
     req = urllib.request.Request(url, method="HEAD", headers=_hdr(src))
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
-            return r.status, int(r.headers.get("Content-Length") or 0)
+            size = int(r.headers.get("Content-Length") or 0)
+            # shareddocs(Carrier)는 HEAD 200 인데 Content-Length 를 안 준다 —
+            # 크기 0 으로 두면 probe 의 최소 크기 필터에 걸려 살아있는 문서를 버린다
+            if r.status == 200 and size == 0:
+                return _head_by_range(url, timeout, src)
+            return r.status, size
     except urllib.error.HTTPError as e:
         # Daikin(tahoeweb)처럼 HEAD 를 405 로 막는 서버가 있다 — 1바이트 GET 으로 다시 두드린다
         if e.code in (405, 501):

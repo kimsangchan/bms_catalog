@@ -158,7 +158,8 @@ SOURCES = [
         "id": "carrier-shareddocs",
         "vendor": "Carrier",
         "kind": "통합가이드",
-        "note": "shareddocs.com/hvac/docs 공개 저장소.",
+        "note": "shareddocs.com/hvac/docs 공개 저장소. ⚠ HEAD 가 Content-Length 를 안 줘서 "
+                "collect.py 가 1바이트 GET 으로 크기를 확인한다.",
         "enumerate": "list",
         "urls": [
             "https://www.shareddocs.com/hvac/docs/1000/Public/03/11-808-357-01.pdf",
@@ -167,6 +168,29 @@ SOURCES = [
         ],
         "extractor": "auto",
         "access": "무로그인",
+    },
+    {
+        "id": "carrier-48-50n",
+        "vendor": "Carrier",
+        "kind": "포인트리스트",
+        "note": "WeatherExpert 48/50N 옥상형(75~150톤, ComfortLink 컨트롤러) — 컨트롤 매뉴얼 "
+                "48/50N-7T 의 APPENDIX F 'BACNET COMMUNICATION OPTION · NETWORK POINTS LIST' 가 "
+                "포인트 정본이고, Product Data 48/50N-6PD 가 정격 카탈로그다. "
+                "Carrier 는 포인트 리스트를 별도 문서로 내지 않고 컨트롤 매뉴얼 부록에 싣는다.",
+        "enumerate": "list",
+        "urls": [
+            "https://www.shareddocs.com/hvac/docs/1005/Public/02/48-50N-7T.pdf",
+            "https://www.shareddocs.com/hvac/docs/1005/Public/05/48-50N-6PD.pdf",
+        ],
+        "rename": {
+            "48-50N-7T.pdf": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+            "48-50N-6PD.pdf": "Carrier_48-50N-6PD_WeatherExpert_ProductData.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+        # APPENDIX F 표가 설명·CCN 코드·BACnet 이름 3열이라 줄 읽기가 일부 행에서
+        # 옆 열(CCN 코드 'a404 1 _')을 짚는다 — 표 인식 결과(사람용 설명)가 정본.
+        "crosscheck_unreliable": r"48-50N-7T",
     },
     # ── 사양 문서 (kind="카탈로그·데이터시트") ─────────────────────────────
     # 통합 포인트 리스트에는 정격이 실리지 않는다. 시뮬레이터가 쓸 전압·전류·

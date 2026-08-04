@@ -264,6 +264,19 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(dps["units"]["ratedAirflow"], "cfm")
         self.assertEqual(dps["eer"], "13.5")
 
+    def test_carrier_letter_sizes_become_units_with_nominal_capacity(self):
+        # Carrier 48/50N — 크기가 한 글자(N~T)이고 톤수는 'NOMINAL CAPACITY (tons)' 행.
+        # 치수·커브 표도 같은 제목 낱말을 쓰므로 이 행이 없으면 형번을 만들면 안 된다.
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"][
+            "carrier-comfortlink-48-50n-weatherexpert-rooftop-75-150-ton-bacnet-co"]
+        units = {item["unitModelNumber"]: item for item in model["unitModels"]}
+
+        self.assertEqual(len(units), 6)
+        self.assertEqual(units["48/50N N"]["capacityClass"], "75 Tons")
+        self.assertEqual(units["48/50N T"]["capacityClass"], "150 Tons")
+        self.assertEqual(units["48/50N N"]["unitRole"], "packagedUnit")
+
     def test_inducer_and_power_exhaust_motors_are_not_electrical_rows(self):
         data = datasets.build_dataset(equip_ids={"e5"})
         model = data["modelMappings"]["trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-scc"]

@@ -63,15 +63,15 @@ def thumbnail(pdf, xref, max_w=MAX_W):
     import fitz
     doc = fitz.open(pdf)
     pix = fitz.Pixmap(doc, xref)
-    if pix.alpha:                       # 투명 배경은 흰색으로 깔아준다
-        pix = fitz.Pixmap(fitz.csRGB, pix)
-    elif pix.colorspace and pix.colorspace.n == 4:   # CMYK → RGB
+    # PNG 로 쓸 수 있는 것은 회색·RGB 뿐이다 — CMYK·별색·알파는 전부 RGB 로 변환
+    # (Carrier 6PD 표지가 CMYK+알파라 여기서 죽은 적이 있다)
+    if pix.alpha or pix.colorspace is None or pix.colorspace.n not in (1, 3):
         pix = fitz.Pixmap(fitz.csRGB, pix)
     if pix.width > max_w:
         scale = max_w / pix.width
         mat = fitz.Matrix(scale, scale)
         pix = fitz.Pixmap(doc, xref)
-        if pix.alpha or (pix.colorspace and pix.colorspace.n == 4):
+        if pix.alpha or pix.colorspace is None or pix.colorspace.n not in (1, 3):
             pix = fitz.Pixmap(fitz.csRGB, pix)
         # Pixmap 은 직접 리샘플이 안 되므로 PIL 이 있으면 쓰고, 없으면 원본을 쓴다
         try:
