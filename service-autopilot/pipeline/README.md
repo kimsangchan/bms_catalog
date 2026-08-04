@@ -186,6 +186,14 @@ python datasets.py --equip e5                # 공조기만 다시 생성
      크기 행(Envistar))에 형태를 추가하고 **테스트도 같이** 넣는다.
    - 분류 함정: 머리글 낱말(cabinet·fuse)로 정격 표가 참고로 빠질 수 있다 —
      table_kind 의 선판정 규칙 참고.
+   - ⚠ **형번 표 한 행에 스펙이 다 들어가 보이면** PDF 추출이 하위 행들을 한 행으로
+     누른 것이다(Carrier 48/50N 실사고 — 모든 열 값이 1열 한 칸에 뭉침).
+     `datasets.plausible_rating_value` 가드(60자/숫자 8개 초과 거부)가 자동으로
+     버리고, `test_unit_fields_reject_collapsed_row_pdf_blobs_everywhere` 게이트가
+     전 모델을 상시 검사한다 — 뭉친 값이 정말 필요하면 vendor_* 텍스트층 파서로
+     풀어서 주입한다(AAON 사례).
+   - 형번 행에는 `sourceFile`(원본 PDF 파일명)이 실려야 근거 클릭 → 해당 쪽 열기가
+     된다 — `test_unit_rows_carry_source_file_for_pdf_page_link` 가 강제한다.
 
 **6. 용어 사전 적중률: 새 모델 사양 라벨의 spec-terms 적중률을 재고 미적중 상위를
    보강한다** (37%→73% 사례). 실제 표에 나온 용어만. ⚠ JSON 정규식 `\b` 는 `\\b`.

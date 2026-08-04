@@ -230,6 +230,8 @@ nav .sm{color:var(--accent)}
  border-radius:4px;color:var(--dim)}
 .qtag.alt{border-color:var(--accent);color:var(--ink)}
 .qsrc{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--faint)}
+.srclink{color:inherit;text-decoration:underline dotted;text-underline-offset:2px}
+.srclink:hover{color:var(--accent);text-decoration-style:solid}
 .mn{font-family:var(--mono);font-size:10.5px;color:var(--dim);border-left:1px solid var(--line2);padding-left:6px}
 .mtop{display:flex;gap:16px;align-items:flex-start;padding:14px 18px 0}
 .mtxt{min-width:0;flex:1}
@@ -788,7 +790,7 @@ function renderModels(models, l3){
        + '<div class="qrow">'
        + (t.orientation==='row' ? '<span class="qtag alt">행=항목 · 열=형번</span>' : '')
        + uq.map(function(x){ return '<span class="qtag">'+esc(QLABEL[x]||x)+'</span>'; }).join('')
-       + '<span class="qsrc">' + esc(t.source||'') + ' p'+t.page+'</span>'
+       + '<span class="qsrc">' + srcLink(t.source, t.page, (t.source||'') + ' p'+t.page) + '</span>'
        + csvBtn('st'+m.id+t._i,
                 safeName(m.model+'_'+(t.title||'표')+'_p'+t.page)+'.csv',
                 t.header, t.rows, '이 표 CSV')
@@ -1029,7 +1031,7 @@ function renderRawSpecPanel(m){
     + '<div class="qrow">'
     + (t.orientation==='row' ? '<span class="qtag alt">행=항목 · 열=형번</span>' : '')
     + uq.map(function(x){ return '<span class="qtag">'+esc(QLABEL[x]||x)+'</span>'; }).join('')
-    + '<span class="qsrc">' + esc(t.source||'') + ' p'+t.page+'</span>'
+    + '<span class="qsrc">' + srcLink(t.source, t.page, (t.source||'') + ' p'+t.page) + '</span>'
     + csvBtn('st'+m.id+t._i, safeName(m.model+'_'+(t.title||'표')+'_p'+t.page)+'.csv',
              t.header, t.rows, '이 표 CSV')
     + csvBtn('stall'+m.id+kk, safeName(m.model+'_'+KIND_KO[kk])+'_전체.csv',
@@ -1104,7 +1106,7 @@ var UNIT_COLS = [
   ['팬 회전수', function(r){ return valueWithUnit(r, 'fanMotorRpm', 'RPM'); }],
   ['코일 면적', function(r){ return valueWithUnit(r, 'coilFaceArea', ''); }],
   ['코일 열수/FPI', function(r){ return r.coilRowsFpi || '—'; }],
-  ['근거표', unitSource],
+  ['근거표', unitSourceLink, true],
 ];
 var UNIT_COLS_KEEP = {'용량대':1, 'Unit Model Number':1, '구분':1, '근거표':1};
 function unitTable(rows, m){
@@ -1112,7 +1114,11 @@ function unitTable(rows, m){
     return UNIT_COLS_KEEP[c[0]] || rows.some(function(r){ var v = c[1](r); return v && v !== '—'; });
   });
   return table({header:active.map(function(c){ return c[0]; }),
-                rows:rows.map(function(r){ return active.map(function(c){ return esc(c[1](r) || '—'); }); }),
+                // 세 번째 원소가 true 인 열(근거표)은 링크 조각을 이미 만들어 와서 그대로 낸다
+                rows:rows.map(function(r){ return active.map(function(c){
+                  var v = c[1](r) || '—';
+                  return c[2] ? v : esc(v);
+                }); }),
                 key:'ahu-unit-models'+m.id, raw:true, nopage:false, compact:true});
 }
 
@@ -1123,7 +1129,7 @@ function renderAhuUnitDetail(r, electricalRows){
     ['용량대', unitCapacity(r)],
     ['Unit Model Number', unitCode(r)],
     ['정격 풍량', unitAirflow(r)],
-    ['근거', unitSource(r)],
+    ['근거', unitSourceLink(r), true],
   ];
   if(unitRole(r) === 'airHandler'){
     items.splice(4, 0,
@@ -1159,7 +1165,9 @@ function renderAhuUnitDetail(r, electricalRows){
   items = items.filter(function(x){ return KEEP[x[0]] || (x[1] && x[1] !== '—'); });
   return '<div class="udetail"><h4>'+esc(unitCode(r))+'</h4><div class="uvals">'
     + items.map(function(x){
-      return '<div class="uval"><div class="k">'+esc(x[0])+'</div><div class="v">'+esc(x[1]||'—')+'</div></div>';
+      // 세 번째 원소가 true 인 항목(근거)은 링크 조각을 이미 만들어 와서 그대로 낸다
+      return '<div class="uval"><div class="k">'+esc(x[0])+'</div><div class="v">'
+        + (x[2] ? String(x[1]||'—') : esc(x[1]||'—'))+'</div></div>';
     }).join('') + '</div></div>'
     + renderUnitElectricalRows(r, electricalRows);
 }
@@ -1212,6 +1220,23 @@ function unitSource(r){
   if(r.source) return r.source;
   return (r.sourceTable || '').replace(/^Table\s*\d+\.\s*/,'') + (r.sourcePage ? ' p'+r.sourcePage : '');
 }
+// 출처 클릭 → 수집 원본 PDF(pipeline/data/raw)의 해당 쪽을 새 탭으로 연다.
+// source 의 '#…' 조각은 파이프라인이 표 구분용으로 붙인 것이라 파일명에서 뗀다.
+// data/raw 는 gitignore 라 수집을 돌린 PC에서만 열린다 — 파일이 없으면 404 다.
+function srcHref(file, page){
+  if(!file || !/\.pdf/i.test(String(file))) return '';
+  return '../pipeline/data/raw/' + encodeURIComponent(String(file).split('#')[0])
+    + (page ? '#page='+page : '');
+}
+function srcLink(file, page, text){
+  var h = srcHref(file, page);
+  if(!h) return esc(text);
+  return '<a class="srclink" href="'+h+'" target="_blank" rel="noopener" '
+    + 'title="원문 PDF 해당 쪽 열기">'+esc(text)+'</a>';
+}
+function unitSourceLink(r){
+  return srcLink(r.sourceFile, r.sourcePage || r.page, unitSource(r));
+}
 
 function renderUnitElectricalRows(unit, rows){
   var picked = electricalRowsForUnit(unit, rows);
@@ -1246,7 +1271,7 @@ function unitElectricalRegex(unit){
 }
 
 function electricalRow(r){
-  return [
+  var cells = [
     r.unitModelNumber,
     r.voltage,
     r.phase,
@@ -1259,8 +1284,10 @@ function electricalRow(r){
     cleanElecValue(r.fanLra),
     cleanElecValue(r.mca),
     cleanElecValue(r.mop),
-    (r.sourceTable || '').replace(/^Table\s*\d+\.\s*/,'') + (r.sourcePage ? ' p'+r.sourcePage : ''),
   ].map(esc);
+  cells.push(srcLink(r.sourceFile, r.sourcePage,
+    (r.sourceTable || '').replace(/^Table\s*\d+\.\s*/,'') + (r.sourcePage ? ' p'+r.sourcePage : '')));
+  return cells;
 }
 
 function cleanElecValue(x){

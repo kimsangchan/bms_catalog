@@ -298,6 +298,37 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(units["48/50N N"]["capacityClass"], "75 Tons")
         self.assertEqual(units["48/50N T"]["capacityClass"], "150 Tons")
         self.assertEqual(units["48/50N N"]["unitRole"], "packagedUnit")
+        # 이 표는 PDF 추출 때 응축 팬·코일 블록의 하위 행들이 한 행으로 눌려
+        # 모든 열 값이 1열 한 칸에 뭉친다 — 가드가 버려서 '—' 여야 한다
+        self.assertEqual(units["48/50N N"]["coilFaceArea"], "—")
+        self.assertEqual(units["48/50N N"]["fanMotorHp"], "—")
+
+    def test_unit_fields_reject_collapsed_row_pdf_blobs_everywhere(self):
+        # 재발 방지 게이트 — PDF 추출이 하위 행 여러 개를 한 행으로 눌러 모든 열
+        # 값이 한 칸에 뭉친 덩어리('MCHX Aluminum … 138.7 173.3 …')가 어떤 모델의
+        # 어떤 형번 필드로든 새면 실패한다 (Carrier 48/50N 실사례). 새 벤더를
+        # 등록할 때 형번 표 한 행에 스펙이 다 들어가 보이면 이 테스트가 먼저 잡는다.
+        skip = {"sourceTable", "sourceFile", "source", "units"}
+        for model in datasets.load_models().values():
+            for row in datasets.unit_models(model):
+                for field, value in row.items():
+                    if field in skip or not isinstance(value, str):
+                        continue
+                    self.assertTrue(
+                        datasets.plausible_rating_value(value),
+                        "%s %s.%s 에 눌린 다열 덩어리: %r" % (
+                            model.get("id"), row.get("unitModelNumber"),
+                            field, value[:80]))
+
+    def test_unit_rows_carry_source_file_for_pdf_page_link(self):
+        # 출처 클릭 → 원문 PDF 해당 쪽 열기가 되려면 형번 행마다 원본 파일명이 있어야 한다
+        for model in datasets.load_models().values():
+            for row in datasets.unit_models(model):
+                self.assertIn(
+                    ".pdf", (row.get("sourceFile") or "").lower(),
+                    "%s %s 에 sourceFile 이 없다: %r" % (
+                        model.get("id"), row.get("unitModelNumber"),
+                        row.get("sourceFile")))
 
     def test_inducer_and_power_exhaust_motors_are_not_electrical_rows(self):
         data = datasets.build_dataset(equip_ids={"e5"})

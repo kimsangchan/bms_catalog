@@ -347,6 +347,21 @@ def label_unit(label):
     return ""
 
 
+def plausible_rating_value(value):
+    """정격 '한 개 값'으로 볼 만한 모양인지 — 눌린(collapsed) 다열 행 감지.
+
+    PDF 추출이 하위 행 여러 개를 한 행으로 누르면 라벨 여러 개가 한 칸에 붙고
+    모든 열의 값이 1열 한 칸에 뭉친다 (Carrier 48/50N 물리 데이터 표 —
+    'MCHX Aluminum … 138.7 173.3 … 260.0'). 이런 덩어리는 형번 필드에 싣지 않는다.
+    실측 분리선: 뭉친 값은 길이 106+·숫자 12개+, 정상 최장값은 길이 42(Rebel 팬
+    모터 HP 선택 목록)·숫자 7개(용량 단계) — 여유를 두고 60자/숫자 8개에서 자른다.
+    """
+    text = clean_text(value)
+    if len(text) > 60:
+        return False
+    return len(re.findall(r"\d+(?:[.,]\d+)?", text)) <= 8
+
+
 def value_unit_for_label(rows, pattern, col, unit_col=None):
     """값과 함께 그 값의 단위를 돌려준다 — 라벨 안 단위가 1순위, RAUK식 단위 열이 2순위."""
     regex = re.compile(pattern, re.I)
@@ -354,6 +369,9 @@ def value_unit_for_label(rows, pattern, col, unit_col=None):
         cells = row_cells(row)
         if cells and regex.search(cells[0]):
             value = cells[col] if col < len(cells) else ""
+            if value and not plausible_rating_value(value):
+                # 눌린 다열 행의 뭉친 덩어리 — 값 없음으로 치고 다음 행을 본다
+                continue
             unit = label_unit(cells[0])
             if not unit and unit_col is not None and unit_col < len(cells):
                 candidate = cells[unit_col]
@@ -447,6 +465,7 @@ def capacity_units_from_table(table, model, merged):
                 "units": {},
                 "sourceTable": title,
                 "sourcePage": table.get("page"),
+                "sourceFile": table.get("source"),
                 "selectionStatus": "unit_candidate",
             }
         for field, pattern in CAPACITY_FILL_LABELS.items():
@@ -529,6 +548,7 @@ def size_row_units(table, model, out, seen):
             "units": units,
             "sourceTable": table.get("title") or "",
             "sourcePage": table.get("page"),
+            "sourceFile": table.get("source"),
             "selectionStatus": "unit_candidate",
         })
 
@@ -674,6 +694,7 @@ def unit_models(model):
                             units=units,
                             sourceTable=table.get("title") or "",
                             sourcePage=table.get("page"),
+                            sourceFile=table.get("source"),
                             selectionStatus="unit_candidate"))
     out.extend(capacity_units.values())
     return out
@@ -759,6 +780,7 @@ def per_unit_electrical_rows(table):
             "motorSet": motor_set,
             "sourceTable": title,
             "sourcePage": table.get("page"),
+            "sourceFile": table.get("source"),
             "source": source,
         }
         if is_compressor:
@@ -830,6 +852,7 @@ def electrical_rows(model):
                         "fanLra": at_token(fan_lra, idx),
                         "sourceTable": title,
                         "sourcePage": table.get("page"),
+                        "sourceFile": table.get("source"),
                         "source": source,
                     })
             continue
@@ -891,6 +914,7 @@ def electrical_rows(model):
                         "mop": at_token(item["mop"], idx),
                         "sourceTable": title,
                         "sourcePage": table.get("page"),
+                        "sourceFile": table.get("source"),
                         "source": source,
                     })
         if len(out) == handled_before:
