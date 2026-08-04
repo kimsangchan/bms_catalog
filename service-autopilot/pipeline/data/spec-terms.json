@@ -37,7 +37,7 @@
    "전기"
   ],
   [
-   "^(volts|voltage)$",
+   "^(volts|voltage)$|^volts?$",
    "전압",
    "전원 전압.",
    3,
@@ -107,21 +107,21 @@
    "전기"
   ],
   [
-   "^rla\b|rla @|running load amp",
+   "^rla\\b|rla @|running load amp|\\brla\\b",
    "정격 운전 전류 (RLA)",
    "정상 운전 중 흐르는 전류. **Running Load Amps** — 전력 계산과 케이블 선정에 쓴다.",
    3,
    "전기"
   ],
   [
-   "^lra\b|\blra \\(|locked rotor amp",
+   "^lra\\b|\\blra \\(|locked rotor amp",
    "구속 전류 (LRA)",
    "기동 순간 전동기가 아직 안 돌 때 흐르는 최대 전류. **Locked Rotor Amps** — 보통 정격의 5~7배다.",
    2,
    "전기"
   ],
   [
-   "^fla|full load amp",
+   "^fla|full load amp|\\bfla\\b",
    "전부하 전류 (FLA)",
    "정격 부하에서의 전류. **Full Load Amps**.",
    3,
@@ -156,7 +156,7 @@
    "전기"
   ],
   [
-   "^tons?$|nominal tons|unit size \\(tons\\)",
+   "^tons?$|nominal tons|unit size \\(tons\\)|^size \\(tons\\)|nominal tonnage",
    "냉동 능력 (톤)",
    "1톤 = 3.517 kW. **열 계산의 기준 용량**이다.",
    3,
@@ -191,7 +191,7 @@
    "전기"
   ],
   [
-   "^air ?flow|^cfm$|^scfm",
+   "^air ?flow|^cfm$|^scfm|\\bcfm\\b",
    "풍량",
    "단위 시간당 보내는 공기량. CFM×1.699 = ㎥/h. **반송동력 계산의 기준**이다.",
    3,
@@ -205,7 +205,7 @@
    "성능"
   ],
   [
-   "rows/fpi|fins per inch",
+   "rows/fpi|fins per inch|^rows$|^fins per inch",
    "코일 열수·핀 간격",
    "열교환 성능과 압력손실을 좌우한다.",
    2,
@@ -303,7 +303,7 @@
    "성능"
   ],
   [
-   "^weight|shipping|operating weight",
+   "^weight|shipping|operating weight|^operating wt",
    "중량",
    "운반·설치 하중. 시뮬레이션에는 쓰지 않는다.",
    1,
@@ -609,6 +609,181 @@
    "무선 구간을 어떤 방식으로 잠그는지. 폐쇄망 설계에서 확인할 항목이다.",
    1,
    "기타"
+  ],
+  [
+   "^total input \\(kw|^system power|^total kilowatts",
+   "총 입력전력",
+   "유닛 전체(압축기+팬)가 먹는 전력. **시뮬레이터 소비전력 계산의 기준값**이다.",
+   3,
+   "전기"
+  ],
+  [
+   "^cooling power|^heating power",
+   "냉방·난방 능력",
+   "유닛이 내는 냉방(난방) 열량. kW 표기 — 12,000 Btu/h ≈ 3.517 kW.",
+   3,
+   "성능"
+  ],
+  [
+   "^sfpv?\\b|specific fan power",
+   "비팬동력 (SFP)",
+   "풍량 1㎥/s를 보내는 데 드는 팬 전력(kW/(㎥/s)). 낮을수록 효율적 — 유럽 AHU 효율 지표.",
+   3,
+   "전기"
+  ],
+  [
+   "^heat(ing)? input",
+   "난방 입력",
+   "가스 난방이 소비하는 입력 열량. 출력과의 비가 난방 효율이다.",
+   3,
+   "성능"
+  ],
+  [
+   "^heat(ing)? output",
+   "난방 출력",
+   "가스 난방이 실제로 내는 열량(K Btu). 입력 × 효율.",
+   3,
+   "성능"
+  ],
+  [
+   "^max(imum)? operating current|^operating current",
+   "최대 운전 전류",
+   "정상 운전에서 흐를 수 있는 가장 큰 전류. 전선·차단기 선정과 시뮬레이터 전류 한계에 쓴다.",
+   3,
+   "전기"
+  ],
+  [
+   "^max conn\\.? power|^connected power",
+   "최대 연결 전력",
+   "이 부품(압축기 등)이 계약 전력에 더하는 최대 소비전력.",
+   3,
+   "전기"
+  ],
+  [
+   "^motor hp\\b|^motor output|^nominal hp",
+   "팬 모터 출력 (HP)",
+   "송풍기 모터의 축출력. 1 HP ≈ 0.746 kW — 반송동력 계산에 쓴다.",
+   3,
+   "전기"
+  ],
+  [
+   "^mcc$|max(imum)? continuous current",
+   "최대 연속 전류 (MCC)",
+   "이 전류까지는 계속 흘러도 된다는 한계값. 전선 굵기 산정에 쓴다.",
+   2,
+   "전기"
+  ],
+  [
+   "^max fuse|fuse.*breaker size|^external fuse|^recommended fuse",
+   "퓨즈·차단기 용량",
+   "이 유닛 앞에 달아야 하는 보호기기 정격(A). 전기 공사 조건이다.",
+   2,
+   "전기"
+  ],
+  [
+   "^air on (evaporator|condenser)|^entering (wet |dry )?bulb",
+   "시험 조건 (입구 공기)",
+   "성능표의 값이 잰 조건 — 입구 공기 온도가 다르면 능력도 달라진다.",
+   2,
+   "성능"
+  ],
+  [
+   "^(no\\.? |number of )?stages$",
+   "용량 단수",
+   "냉방·난방을 몇 단계로 나눠 켜는가. 부분부하 거동을 정한다.",
+   2,
+   "성능"
+  ],
+  [
+   "^electric heat\\b",
+   "전기 히터",
+   "옵션 전기 난방의 용량(kW) 선택지.",
+   2,
+   "성능"
+  ],
+  [
+   "^power variant",
+   "출력 사양",
+   "같은 크기에서 고를 수 있는 모터·능력 조합 (Envistar 1V/2V).",
+   2,
+   "성능"
+  ],
+  [
+   "^circuitry type",
+   "코일 회로 구성",
+   "코일 냉매 회로를 나누는 방식(split-face 등).",
+   1,
+   "성능"
+  ],
+  [
+   "^tube diameter",
+   "코일 관 지름",
+   "코일 동관의 바깥지름(인치).",
+   1,
+   "물리"
+  ],
+  [
+   "^drive type|^belt$|^no\\.? speeds|^motor sheave|^blower sheave|^frame size",
+   "팬 구동 부속",
+   "벨트·풀리·프레임 등 송풍기 구동계 사양.",
+   1,
+   "물리"
+  ],
+  [
+   "^fan (diameter|size)\\b",
+   "팬 지름",
+   "송풍기 날개 지름(인치).",
+   1,
+   "물리"
+  ],
+  [
+   "^no\\.? burners",
+   "버너 수",
+   "가스 난방 버너 개수.",
+   1,
+   "성능"
+  ],
+  [
+   "^gas (limit|piping)",
+   "가스 설정",
+   "가스 난방의 한계 온도·배관 규격.",
+   1,
+   "설치·환경"
+  ],
+  [
+   "^heating model",
+   "난방 모델",
+   "난방 용량별 하위 모델 구분.",
+   1,
+   "설치·환경"
+  ],
+  [
+   "^system \\d",
+   "냉매 계통",
+   "냉매 회로별 구분(충전량 등은 계통마다 다르다).",
+   1,
+   "성능"
+  ],
+  [
+   "^filters?$|^filter (type|area|modules)",
+   "필터",
+   "필터 형식·크기·수량.",
+   1,
+   "물리"
+  ],
+  [
+   "^(ahri|ari) (cooling|heating) performance",
+   "AHRI 정격 성능 (구획)",
+   "미국 AHRI 표준 조건에서 잰 정격 구간의 머리글.",
+   1,
+   "성능"
+  ],
+  [
+   "^(condenser|evaporator) coil data|^condenser fan data|^belt drive evap fan data|^direct drive evap fan data",
+   "구성품 자료 (구획)",
+   "응축기·증발기 코일, 팬 자료 구간의 머리글.",
+   1,
+   "물리"
   ]
  ]
 }

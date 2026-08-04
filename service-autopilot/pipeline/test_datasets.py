@@ -70,9 +70,14 @@ class DatasetBuildTest(unittest.TestCase):
         model = data["modelMappings"]["trane-symbio-700-odyssey-lontalk-scc"]
         by_name = {item["requirementName"]: item for item in model["simulatorRequirementMappings"]}
 
+        # 문서에 정말 없는 값은 후보를 지어내면 안 된다
         self.assertEqual(by_name["기외정압"]["status"], "missing")
-        self.assertEqual(by_name["급기팬 형식·모터출력"]["status"], "missing")
         self.assertEqual(by_name["온수코일 능력"]["status"], "missing")
+        # 급기팬 모터출력은 원래 missing 이었지만 용어 사전에 'Motor HP' 를 넣은 뒤
+        # TWE 표의 실제 값(2–3 HP)이 후보로 잡힌다 — 사전 보강의 의도된 결과다
+        fan = by_name["급기팬 형식·모터출력"]
+        self.assertEqual(fan["status"], "candidate")
+        self.assertEqual(fan["matchedInputs"][0]["name"], "Motor HP - Standard/Oversized")
 
     def test_power_requirement_prefers_voltage_over_phase(self):
         data = datasets.build_dataset(equip_ids={"e5"})
