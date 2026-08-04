@@ -90,6 +90,16 @@ class SpecTableKindTest(unittest.TestCase):
 
         self.assertEqual(specs.table_kind(t), "rating")
 
+    def test_envistar_capacity_table_beats_fuse_reference_word(self):
+        # Envistar — 퓨즈 열이 있어도 풍량·냉방능력 표는 정격이다
+        t = table(
+            "기타 — IVProdukt_Envistar_Catalog_2024-3_en.pdf p30",
+            ["Size", "Dimensions (mm)", "Air flow (m3/s) a", "", "",
+             "Cooling power (kW)", "External fuse protection c", "Weight d (kg)"],
+        )
+
+        self.assertEqual(specs.table_kind(t), "rating")
+
     def test_cabinet_feature_text_is_reference_not_rating(self):
         t = table(
             "Cabinet",

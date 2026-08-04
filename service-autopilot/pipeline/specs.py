@@ -326,7 +326,8 @@ DIM_WORD = re.compile(
     r"roof curb|service clearance|connection drawing|suction lines?|liquid lines?|"
     r"\bfigure\b|치수|중량|외형", re.I)
 RATING_WORD = re.compile(
-    r"general data|physical data|mains supply|ratings?\b|electrical data|nominal|정격", re.I)
+    r"general data|physical data|mains supply|ratings?\b|electrical data|nominal|"
+    r"cooling power|정격", re.I)
 # 정격처럼 보이는 단위가 있어도 쓰임새가 다른 표. 다른 설비에도 같은 원칙을 적용한다:
 # "바로 계산하는 기본값"이 아니라 "무엇과 맞는가/어떻게 연결하는가"이면 참고다.
 REFERENCE_WORD = re.compile(
@@ -347,6 +348,10 @@ def table_kind(t):
     # 문서가 제목으로 정격이라 밝힌 표는 머리글 낱말로 참고 처리하지 않는다 —
     # Rebel 'Physical Data' 표가 머리글의 'Small cabinet' 때문에 참고로 빠진 적이 있다.
     if RATING_WORD.search(t.get("title") or ""):
+        return "rating"
+    # 풍량·냉방능력 열을 가진 표는 정격이다 — Envistar 표가 퓨즈 열 하나 때문에
+    # 참고로 빠진 적이 있다 (조건별 성능표는 위 PERF 가 먼저 거른다)
+    if re.search(r"cooling power|air ?flow \(m3?/s\)", txt, re.I):
         return "rating"
     if REFERENCE_WORD.search(txt):
         return "etc"

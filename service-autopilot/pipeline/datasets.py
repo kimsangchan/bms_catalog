@@ -334,7 +334,8 @@ def clean_model_label(value):
 def label_unit(label):
     """라벨에 적힌 단위만 뽑는다 — (sq ft)·(%)·CFM·HP·RPM 등. 없는 단위는 지어내지 않는다."""
     text = clean_text(label)
-    m = re.search(r"\(([^)]*(?:%|ft|cfm|btu|mbh|hp|rpm|ton|kw|psi|°f)[^)]*)\)", text, re.I)
+    m = re.search(r"\(([^)]*(?:%|ft|cfm|btu|mbh|hp|rpm|ton|kw|psi|°f|m³|m3|l/s|cmh)[^)]*)\)",
+                  text, re.I)
     if m and not re.search(r"nominal|standard|oversiz|fins|t/y", m.group(1), re.I):
         return m.group(1).strip()
     if re.search(r"\bcfm\b", text, re.I):
@@ -456,6 +457,64 @@ def capacity_units_from_table(table, model, merged):
                         unit["units"][field] = measure
 
 
+def size_row_units(table, model, out, seen):
+    """행=크기 코드(04~28), 열=풍량·냉방능력인 표 (IV Produkt Envistar).
+
+    표 제목이 각주 조각으로 깨져 시리즈 이름은 남지 않았다 — 제품군은 문서
+    이름(Envistar)에서 오고, 같은 크기가 시리즈마다 있으므로 쪽수로 가른다.
+    풍량은 Min–Max 범위 그대로 적는다 (사이 값은 SFPv 조건별 선정치).
+    """
+    header = row_cells(table.get("header") or [])
+    rows = [row_cells(r) for r in table.get("rows") or []]
+    src = table.get("source") or ""
+    family = ("Envistar" if "Envistar" in src
+              else unit_family_for(model, table.get("title") or ""))
+    af_i = next((i for i, h in enumerate(header)
+                 if re.search(r"air ?flow", h or "", re.I)), None)
+    cool_i = next((i for i, h in enumerate(header)
+                   if re.search(r"cooling power", h or "", re.I)), None)
+    if af_i is None:
+        return
+    # 머리글 다음의 부머리글 행(Min/SFPv/Max)에서 Max 열의 상대 위치를 찾는다
+    sub = rows[0] if rows and not (rows[0][0] or "").strip() else []
+    af_max = af_i
+    for off in range(0, 4):
+        if af_i + off < len(sub) and re.search(r"max", sub[af_i + off] or "", re.I):
+            af_max = af_i + off
+            break
+    for cells in rows:
+        code = (cells[0] or "").strip()
+        if not re.match(r"^\d{2,3}$", code):
+            continue
+        key = (family, code, table.get("page"))
+        if key in seen:
+            continue
+        seen.add(key)
+        lo = cells[af_i] if af_i < len(cells) else ""
+        hi = cells[af_max] if af_max < len(cells) else ""
+        airflow = (" – ".join(x for x in (lo, hi) if x)) or "—"
+        cool = (cells[cool_i] if cool_i is not None and cool_i < len(cells) else "") or "—"
+        units = {}
+        if airflow != "—" and label_unit(header[af_i]):
+            units["ratedAirflow"] = label_unit(header[af_i])
+        if cool != "—" and cool_i is not None and label_unit(header[cool_i]):
+            units["grossCoolingCapacity"] = label_unit(header[cool_i])
+        out.append({
+            "unitModelNumber": "%s %s" % (family, code),
+            "unitNumberKind": "capacityClass",
+            "unitRole": "packagedUnit",
+            "capacityClass": "크기 %s" % code,
+            "matchedAirHandler": "—", "ratedAirflow": airflow,
+            "grossCoolingCapacity": cool, "ahriNetCoolingCapacity": "—",
+            "eer": "—", "coilFaceArea": "—", "coilRowsFpi": "—",
+            "fanMotorHp": "—", "fanMotorRpm": "—",
+            "units": units,
+            "sourceTable": table.get("title") or "",
+            "sourcePage": table.get("page"),
+            "selectionStatus": "unit_candidate",
+        })
+
+
 def unit_models(model):
     """제품군/통신 프로파일 문서 안의 실제 Unit Model Number 후보.
 
@@ -477,6 +536,12 @@ def unit_models(model):
         title = table.get("title") or ""
         # York·Daikin 카탈로그는 같은 구조의 표를 'Physical Data' 라고 부른다
         if not re.search(r"general data|physical data", title, re.I):
+            # Envistar 는 표 제목이 각주 조각이라 제목으로 못 거른다 — 대신
+            # '1행=크기(04~28), 열=풍량·냉방능력' 구조를 모양으로 알아본다
+            header0 = row_cells(table.get("header") or [])
+            if (header0 and re.match(r"^siz", header0[0] or "", re.I)
+                    and any(re.search(r"air ?flow", h or "", re.I) for h in header0)):
+                size_row_units(table, model, out, seen)
             continue
         header = row_cells(table.get("header") or [])
         rows = table.get("rows") or []
