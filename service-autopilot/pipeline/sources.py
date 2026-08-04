@@ -476,6 +476,96 @@ SOURCES = [
         "crosscheck_unreliable": r"ED-15112|ED-15120",
     },
     {
+        "id": "daikin-applied-catalog",
+        "vendor": "Daikin",
+        "kind": "카탈로그·데이터시트",
+        "note": "Daikin Applied 제품 카탈로그 — 신규 등록한 통신 맵 모델의 정격 공백을 메운다. "
+                "CAT 624(Trailblazer AGZ-E 30~241톤)·CAT 635(AGZ-F R-32 30~230톤)·"
+                "CAT 261(Rebel DPS 옥상형 3~31톤)·ED 19116(Rebel 물리 데이터 시트). "
+                "tahoeweb 직링크 — HEAD 405 는 collect.py 가 GET 으로 폴백.",
+        "enumerate": "list",
+        "urls": [
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "CAT624.pdf/",
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "CAT635-4.pdf/",
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "Rebel%20-%20CAT%20261.pdf/",
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "Rebel%20Physical%20Data%20Sheet.pdf/",
+            # WME 는 신형 카탈로그(CAT 639·641)가 표 없는 브로슈어라 쓸모가 없었다 —
+            # 표가 있는 구판 카탈로그(CAT 632)와 엔지니어링 데이터(ED 19135)를 쓴다.
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "CAT632.pdf/",
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "ED19135.pdf/",
+        ],
+        "rename": {
+            "CAT624.pdf": "Daikin_CAT624-23_Trailblazer_AGZ-E_Catalog.pdf",
+            "CAT635-4.pdf": "Daikin_CAT635-4_Trailblazer_AGZ-F_Catalog.pdf",
+            "Rebel - CAT 261.pdf": "Daikin_CAT261_Rebel_DPS_Catalog.pdf",
+            "Rebel Physical Data Sheet.pdf": "Daikin_ED-19116_Rebel_Physical_Data.pdf",
+            "CAT632.pdf": "Daikin_CAT632-5_Magnitude_WME-C_Catalog.pdf",
+            "ED19135.pdf": "Daikin_ED-19135_Magnitude_WME-D_EngData.pdf",
+        },
+        "extractor": "spec",
+        "access": "무로그인 (HEAD 405)",
+    },
+    # York 기술 가이드 — khub URL 은 끝이 전부 'content' 라 파일명이 겹친다.
+    # rename 이 원 이름 기준이라 문서 하나당 소스 하나로 가른다.
+    {
+        "id": "jci-york-techguide-small",
+        "vendor": "Johnson Controls / York",
+        "kind": "카탈로그·데이터시트",
+        "note": "York ZF/ZJ/ZR 3~12.5톤 옥상형 기술 가이드(6046560-YTG-B-0921) — "
+                "Simplicity SE 가 올라가는 유닛의 형번별 냉방능력·EER·풍량·코일·전기 데이터. "
+                "khub content API 가 원본 PDF 를 준다 (JS 페이지 아님).",
+        "enumerate": "list",
+        "urls": [
+            "https://docs.johnsoncontrols.com/ductedsystems/api/khub/documents/"
+            "8FNScx_sQaKMcRktYOaTHQ/content",
+        ],
+        "rename": {
+            "content": "York_ZF-ZJ-ZR_3-12.5t_TechGuide_6046560-YTG-B-0921.pdf",
+        },
+        "extractor": "spec",
+        "access": "무로그인",
+    },
+    {
+        "id": "jci-york-techguide-large",
+        "vendor": "Johnson Controls / York",
+        "kind": "카탈로그·데이터시트",
+        "note": "York ZJ/ZR/ZF 15~25톤(180-300 MBh) 옥상형 기술 가이드(5168277-YTG-K-0119).",
+        "enumerate": "list",
+        "urls": [
+            "https://docs.johnsoncontrols.com/ductedsystems/api/khub/documents/"
+            "acP22u5ozd07h~ghOynw6g/content",
+        ],
+        "rename": {
+            "content": "York_ZJ-ZR-ZF_15-25t_TechGuide_5168277-YTG-K-0119.pdf",
+        },
+        "extractor": "spec",
+        "access": "무로그인",
+    },
+    {
+        "id": "ivprodukt-envistar-catalog",
+        "vendor": "Siemens",
+        "kind": "카탈로그·데이터시트",
+        "note": "IV Produkt Envistar 공조기 카탈로그(2024) — Climatix 모델의 유닛 쪽 정격. "
+                "크기별 풍량(m³/s)·냉방능력(kW)·SFPv·퓨즈·중량 표가 실린다. "
+                "공식 브로슈어의 배포 미러(enawent) — ivprodukt.com 은 파일 번호가 불투명해 "
+                "문서 정체가 파일명에 남는 미러 URL 을 쓴다.",
+        "enumerate": "list",
+        "urls": [
+            "https://www.enawent.pl/files/14/2024_3_Envistar_en.pdf",
+        ],
+        "rename": {
+            "2024_3_Envistar_en.pdf": "IVProdukt_Envistar_Catalog_2024-3_en.pdf",
+        },
+        "extractor": "spec",
+        "access": "무로그인",
+    },
+    {
         "id": "jci-simplicity-se",
         "vendor": "Johnson Controls / York",
         "kind": "포인트리스트",

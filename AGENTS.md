@@ -74,11 +74,14 @@ PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류
 
 ## 지금 상태 (2026-08-04)
 
-- 모델 **89건** · 오브젝트 **18,306점** · `validate.py` 오류 0 · 계열 커버리지 10/19
+- 모델 **89건** · 오브젝트 **18,306점** · 정격 사양 **70모델** · `validate.py` 오류 0 · 계열 10/19
 - 공조기(e5) 9모델(Trane 6 + Daikin MicroTech·JCI Simplicity SE·Siemens Climatix) —
   Trane 6모델은 형번·정격 후보까지 완료(형번 88건·전기 특성 373행, 용량급 표기 포함)
 - 냉동기(e9)에 Daikin MicroTech 3모델(AGZ·AWV·WME 계열 등) 추가
-- 마지막 커밋: JCI·Siemens·Daikin 모델 추가 (신규 소스 3건 · 추출기 별칭·형태 4종 보강)
+- 신규 6모델 전부 제품 카탈로그 정격 연결 완료(Trailblazer CAT624/635 · Rebel ED19116 ·
+  York 기술가이드 2권 · Envistar 2024 · Magnitude CAT632/ED19135). ⚠ Daikin 신형
+  카탈로그(CAT 261·639·641)는 표 없는 브로슈어라 ED/구판을 써야 한다.
+- 마지막 커밋: 신규 6모델 정격 카탈로그 연결 (spec-map 9문서 추가)
 
 ### 다음에 할 만한 것
 

@@ -9,7 +9,7 @@
  "status": "active",
  "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 70점 · Modbus 9점",
  "has": {
-  "spec": false,
+  "spec": true,
   "points": true
  },
  "ede": false,
@@ -671,5 +671,380 @@
     "1 = Metric"
    ]
   ]
- }
+ },
+ "specTables": [
+  {
+   "title": "Table 2: WME Overall Dimensions",
+   "page": 8,
+   "orientation": "column",
+   "header": [
+    "Model3",
+    "Heat Exchanger",
+    "Dished Waterbox Heads Length2 in (mm)",
+    "Marine Waterbox Heads Length2 in (mm)",
+    "Width in (mm)",
+    "Height1 in (mm)"
+   ],
+   "quantities": [
+    null,
+    null,
+    "dimension",
+    "dimension",
+    "dimension",
+    "dimension"
+   ],
+   "rows": [
+    [
+     "WME 092*S",
+     "E3012 / C2612",
+     "170.58 (4332)",
+     "188.46 (4787)",
+     "55 (1397)",
+     "97.69 (2481)"
+    ],
+    [
+     "WME 092*S",
+     "E3012 / C3012",
+     "173.95 (4418)",
+     "188.08 (4777)",
+     "74.53 (1893) 82.88 (2105) 82.97 (2107)",
+     "102.65 (2607)"
+    ],
+    [
+     "WME 092*S",
+     "E3612 / C3012",
+     "175.89 (4467)",
+     "194.39 (4937)",
+     "",
+     ""
+    ],
+    [
+     "WME 106*S",
+     "E3612 / C3012",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "WME 106*S",
+     "E3612 / C3612",
+     "174.64 (4435)",
+     "194.64 (4943)",
+     "85.13 (2162)",
+     "108.74 (2762)"
+    ],
+    [
+     "WME092*D",
+     "E4216 / C3616",
+     "226.06 (5742)",
+     "251.21 (6380)",
+     "95.87 (2435)",
+     "111.24 (2825)"
+    ],
+    [
+     "WME092*D",
+     "E4216 / C4216",
+     "",
+     "",
+     "98.03 (2490)",
+     "114.82 (2916)"
+    ],
+    [
+     "WME099*D",
+     "E4216 / C4216",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "WME106*D",
+     "E4216 / C4216",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "WME106*D",
+     "E4816 / C4216",
+     "231.44 (5878)",
+     "256.94 (6526)",
+     "104.3 (2649)",
+     "117.41 (2982)"
+    ]
+   ],
+   "source": "Daikin_CAT632-5_Magnitude_WME-C_Catalog.pdf"
+  },
+  {
+   "title": "Table 3: Short Circuit Current Ratings",
+   "page": 11,
+   "orientation": "column",
+   "header": [
+    "Motor Code",
+    "Voltage",
+    "Standard Panel SCCR",
+    "Optional High SCCR",
+    "Optional Ultra High SCCR"
+   ],
+   "quantities": [
+    null,
+    "voltage",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "M6, M7, 66 and 77",
+     "380V - 480V",
+     "35 kA* / 50 kA",
+     "65 kA",
+     "100 kA"
+    ],
+    [
+     "",
+     "575V",
+     "25 kA",
+     "35 kA / 50 kA",
+     "N/A"
+    ],
+    [
+     "68 and 79",
+     "380V - 480V",
+     "N/A",
+     "65 kA",
+     "100 kA"
+    ],
+    [
+     "",
+     "575V",
+     "25 kA",
+     "35 kA / 50 kA",
+     "N/A"
+    ],
+    [
+     "M8, M9, 88 and 99",
+     "380V - 480V",
+     "50 kA",
+     "65 kA",
+     "100 kA"
+    ],
+    [
+     "",
+     "575V",
+     "25 kA",
+     "35 kA",
+     "65 kA"
+    ]
+   ],
+   "source": "Daikin_CAT632-5_Magnitude_WME-C_Catalog.pdf"
+  },
+  {
+   "title": "Table 1: Short Circuit Current Ratings",
+   "page": 5,
+   "orientation": "column",
+   "header": [
+    "Motor Code",
+    "Voltage",
+    "Standard Panel SCCR",
+    "Optional High SCCR",
+    "Optional Ultra High SCCR"
+   ],
+   "quantities": [
+    null,
+    "voltage",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "MK",
+     "460V - 480V",
+     "35-50 kA",
+     "65 kA",
+     "100 kA"
+    ],
+    [
+     "",
+     "575V",
+     "25 kA",
+     "35 kA",
+     "50 kA"
+    ]
+   ],
+   "source": "Daikin_ED-19135_Magnitude_WME-D_EngData.pdf"
+  },
+  {
+   "title": "Table 4: Operating/Standby Limits",
+   "page": 15,
+   "orientation": "column",
+   "header": [
+    "Acceptable Temperatures (WME-D)1 Condition",
+    "Component",
+    "Description",
+    "R-515B Min Temp °F (°C)",
+    "Max Temp °F (°C)"
+   ],
+   "quantities": [
+    "temperature",
+    null,
+    null,
+    "temperature",
+    "temperature"
+   ],
+   "rows": [
+    [
+     "Standby",
+     "Evaporator",
+     "Water",
+     "35 (1. 7)",
+     "140 (60)"
+    ],
+    [
+     "",
+     "",
+     "Water w/ Antifreeze2",
+     "35 (1. 7)",
+     "140 (60)"
+    ],
+    [
+     "",
+     "Equipment Room",
+     "Air w/ Water in Vessels4",
+     "34 (1. 1)",
+     "140 (60)"
+    ],
+    [
+     "",
+     "",
+     "Air w/ no Water in Vessels4",
+     "-25 (-31. 6)",
+     "140 (60)"
+    ],
+    [
+     "Startup",
+     "Evaporator",
+     "Water",
+     "35 (1. 7)",
+     "90 (32. 2)"
+    ],
+    [
+     "",
+     "",
+     "Water w/ Antifreeze2",
+     "35 (1. 7)",
+     "90 (32. 2)"
+    ],
+    [
+     "",
+     "Condenser",
+     "Water",
+     "40 (4. 4)",
+     "120 (48. 9)"
+    ],
+    [
+     "",
+     "Equipment Room",
+     "Air4,5",
+     "34 (1. 1)",
+     "104 (40)"
+    ],
+    [
+     "Operating",
+     "Evaporator",
+     "Entering Water",
+     "35 (1. 7)",
+     "90 (32. 2)"
+    ],
+    [
+     "",
+     "",
+     "Leaving Water3",
+     "35 (1. 7)",
+     "70 (21. 1)"
+    ],
+    [
+     "",
+     "",
+     "Entering Water w/ Antifreeze2",
+     "35 (1. 7)",
+     "90 (32. 2)"
+    ],
+    [
+     "",
+     "",
+     "Leaving Water w/ Antifreeze2",
+     "35 (1. 7)",
+     "70 (21. 1)"
+    ],
+    [
+     "",
+     "Condenser",
+     "Entering Water",
+     "40 (4. 4)",
+     "120 (48. 9)"
+    ],
+    [
+     "",
+     "",
+     "Leaving Water3",
+     "50 (10)",
+     "126 (52. 2)"
+    ],
+    [
+     "",
+     "Equipment Room",
+     "Air4,5",
+     "34 (1. 1)",
+     "104 (40)"
+    ],
+    [
+     "NOTES:",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "1",
+     "Contact a Daikin Applied representative for performance at specific operating conditions, as some limits depend on unit configuration",
+     "",
+     "",
+     ""
+    ],
+    [
+     "2",
+     "Antifreeze temperature limits must have appropriate glycol concentration",
+     "",
+     "",
+     ""
+    ],
+    [
+     "3",
+     "Allowable leaving fluid temperatures depend on Saturation Temperature",
+     "",
+     "",
+     ""
+    ],
+    [
+     "4",
+     "5%-95% relative humidity, non-condensing",
+     "",
+     "",
+     ""
+    ],
+    [
+     "5",
+     "For non-conditioned equipment rooms please contact factory for maximum dew point, limits may depend on specific selection.",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "source": "Daikin_ED-19135_Magnitude_WME-D_EngData.pdf"
+  }
+ ]
 }
