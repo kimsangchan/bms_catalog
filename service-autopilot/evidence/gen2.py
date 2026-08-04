@@ -1096,6 +1096,12 @@ function renderAhuUnitDetail(r, electricalRows){
       ['팬 회전수', r.fanMotorRpm],
       ['코일 면적', r.coilFaceArea],
       ['코일 열수/FPI', r.coilRowsFpi]);
+  } else if(unitRole(r) === 'packagedUnit'){
+    items.splice(4, 0,
+      ['냉방능력', unitCooling(r)],
+      ['AHRI 냉방능력', r.ahriNetCoolingCapacity || r.ahriCooling],
+      ['EER', r.eer],
+      ['팬 모터', r.fanMotorHp && r.fanMotorHp !== '—' ? r.fanMotorHp + ' HP' : '—']);
   } else {
     items.splice(4, 0,
       ['조합 공조기', r.matchedAirHandler || r.airHandler],
@@ -1103,6 +1109,12 @@ function renderAhuUnitDetail(r, electricalRows){
       ['AHRI 냉방능력', r.ahriNetCoolingCapacity || r.ahriCooling],
       ['EER', r.eer]);
   }
+  // 용량급 표(RAUJ·IntelliPak)에서 온 값 — 있을 때만 붙인다
+  [['압축기 구성', r.compressorConfig], ['용량 단계 %', r.capacitySteps],
+   ['냉매 회로', r.refrigerantCircuits], ['응축 팬', r.condenserFans]
+  ].forEach(function(x){ if(x[1] && x[1] !== '—') items.push([x[0], x[1]]); });
+  if(r.unitNumberKind === 'capacityClass')
+    items.push(['형번 표기', '문서가 이 유닛을 형번 없이 톤수로만 구분해요']);
   return '<div class="udetail"><h4>'+esc(unitCode(r))+'</h4><div class="uvals">'
     + items.map(function(x){
       return '<div class="uval"><div class="k">'+esc(x[0])+'</div><div class="v">'+esc(x[1]||'—')+'</div></div>';
@@ -1130,15 +1142,24 @@ function unitRow(r){
 
 function unitCode(r){ return r.unitModelNumber || r.unitModel || '—'; }
 function unitRole(r){ return r.unitRole || (/TWE/i.test(unitCode(r)) ? 'airHandler' : 'condensingUnit'); }
-function unitRoleLabel(r){ return unitRole(r) === 'airHandler' ? '공기측 유닛' : '실외/응축 유닛'; }
+function unitRoleLabel(r){
+  return {airHandler:'공기측 유닛', condensingUnit:'실외/응축 유닛',
+          packagedUnit:'일체형(패키지) 유닛'}[unitRole(r)] || '실외/응축 유닛';
+}
 function unitCapacity(r){ return r.capacityClass || r.tons || '—'; }
 function unitAirflow(r){ return r.ratedAirflow || r.airflow || '—'; }
-function unitCooling(r){ return r.grossCoolingCapacity || r.cooling || '—'; }
+function unitCooling(r){
+  var v = r.grossCoolingCapacity || r.cooling || '—';
+  if(v === '—') v = r.ahriNetCoolingCapacity || '—';
+  return v;
+}
 function unitCardMetric(r){
   if(unitRole(r) === 'airHandler'){
     return '팬 ' + ((r.fanMotorHp && r.fanMotorHp !== '—') ? r.fanMotorHp + ' HP' : '—')
       + ' · 코일 ' + (r.coilRowsFpi || '—');
   }
+  if(unitCooling(r) === '—' && r.capacitySteps && r.capacitySteps !== '—')
+    return '용량 단계 ' + r.capacitySteps + ' %';
   return '냉방 ' + unitCooling(r);
 }
 function unitSource(r){
@@ -1170,6 +1191,10 @@ function unitElectricalRegex(unit){
   if(tta) return new RegExp('^TTA' + tta[1] + '.*' + tta[2] + '$', 'i');
   var exact = code.match(/\b(TTA|TWE)\d{4}[A-Z0-9]*/i);
   if(exact) return new RegExp('^' + exact[0].replace(/([.*+?^${}()|\[\]\\])/g,'\\$1'), 'i');
+  // 일반형: 계열 끝 2글자+숫자 (T/YSC036G3,4,W → SC036, WHJ150 → HJ150).
+  // 전기표는 T/YSC·W/DHJ처럼 첫 글자만 다른 병기 표기를 쓰므로 뒷부분으로 맞춘다.
+  var generic = code.match(/([A-Z]{2})(\d{2,})/i);
+  if(generic) return new RegExp(generic[1] + generic[2], 'i');
   return /$^/;
 }
 

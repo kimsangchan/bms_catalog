@@ -331,32 +331,127 @@ def clean_model_label(value):
     return text
 
 
+# 형번으로 인정하는 토큰 — 문자 계열 + 숫자 2자리 이상 (TTA0724, WHJ150, T/YSC036G3).
+# 'Scroll'(압축기 형식)이나 '1/5, 2/7.5'(압축기 구성) 같은 속성값이 형번으로 오인되지 않게 한다.
+UNIT_CODE_TOKEN = re.compile(r"[A-Z][A-Za-z/]{1,8}\d{2,}")
+
+
+def looks_like_unit_code(text):
+    return bool(UNIT_CODE_TOKEN.search(text or ""))
+
+
+def unit_role_for(code, title):
+    """TWE=공기측, 표 제목에 condensing=실외/응축, 그 외(옥상형·WSHP)=일체형."""
+    if re.search(r"\bTWE", code or "", re.I):
+        return "airHandler"
+    if re.search(r"condensing", title or "", re.I):
+        return "condensingUnit"
+    return "packagedUnit"
+
+
+def unit_family_for(model, title):
+    """용량급 표의 제품군 이름 — 표 제목(RAUJ condensing units)이 1순위, 없으면 모델명에서."""
+    match = re.search(r"([A-Z]{3,}\d*)\s+condensing units", title or "")
+    if match:
+        return match.group(1)
+    match = re.search(r"[—-]\s*([A-Za-z][A-Za-z0-9]+)", clean_text(model.get("model")))
+    if match:
+        return re.sub(r"[™®]", "", match.group(1))
+    return ""
+
+
+CAPACITY_FILL_LABELS = {
+    "compressorConfig": r"Number/Size \(Nominal\)|Manifolded Compressor sizes",
+    "capacitySteps": r"Unit Capacity Steps",
+    "refrigerantCircuits": r"Number of Refrigerant Circuits|No\. of Circuits",
+    "condenserFans": r"Number/Size/Type",
+    "ratedAirflow": r"CFM Range",
+}
+
+
+def capacity_units_from_table(table, model, merged):
+    """형번이 없고 톤수 열로만 유닛을 구분하는 General data 표 (RAUJ·IntelliPak).
+
+    문서가 유닛을 톤수로만 식별하므로 지어내지 않고 '제품군 + 톤수'를 후보 이름으로 쓴다.
+    같은 제품군의 (continued) 표는 열이 같으므로 빈 값만 이어서 채운다.
+    """
+    header = row_cells(table.get("header") or [])
+    rows = table.get("rows") or []
+    title = table.get("title") or ""
+    family = unit_family_for(model, title)
+    role = "condensingUnit" if re.search(r"condensing", title, re.I) else "packagedUnit"
+    for col in range(1, len(header)):
+        cap = header[col]
+        if not re.match(r"^\d{2,3}$", cap or ""):
+            continue
+        key = "%s|%s" % (family, cap)
+        unit = merged.get(key)
+        if unit is None:
+            unit = merged[key] = {
+                "unitModelNumber": ("%s %s Ton" % (family, cap)).strip(),
+                "unitNumberKind": "capacityClass",
+                "unitRole": role,
+                "capacityClass": "%s Tons" % cap,
+                "matchedAirHandler": "—",
+                "ratedAirflow": "—",
+                "grossCoolingCapacity": "—",
+                "ahriNetCoolingCapacity": "—",
+                "eer": "—",
+                "coilFaceArea": "—",
+                "coilRowsFpi": "—",
+                "fanMotorHp": "—",
+                "fanMotorRpm": "—",
+                "compressorConfig": "—",
+                "capacitySteps": "—",
+                "refrigerantCircuits": "—",
+                "condenserFans": "—",
+                "sourceTable": title,
+                "sourcePage": table.get("page"),
+                "selectionStatus": "unit_candidate",
+            }
+        for field, pattern in CAPACITY_FILL_LABELS.items():
+            if unit[field] == "—":
+                value = value_for_label(rows, pattern, col)
+                if value:
+                    unit[field] = value
+
+
 def unit_models(model):
     """제품군/통신 프로파일 문서 안의 실제 Unit Model Number 후보.
 
-    Trane 공조기 카탈로그는 행=속성, 열=형번인 General data 표를 쓴다.
-    프로파일 모델과 실제 장비 형번을 분리하려면 이 열을 다시 1행=형번 구조로 편다.
+    Trane 공조기 카탈로그의 General data 표는 두 갈래다.
+    ① 첫 행에 형번이 있는 표 (Odyssey TTA/TWE·Precedent T/YSC·WHJ) — 행/열 방향과
+       무관하게 같은 구조라 orientation으로 거르지 않는다.
+    ② 형번 없이 톤수 열로만 구분하는 표 (RAUJ·IntelliPak) — 용량급 후보로 편다.
     """
     if model.get("equipId") != "e5":
         return []
-    out = []
+    out, seen, capacity_units = [], set(), {}
     for table in model.get("specTables") or []:
         if (table.get("kind") or "etc") != "rating":
             continue
-        if table.get("orientation") != "row":
-            continue
-        if not re.search(r"general data", table.get("title") or "", re.I):
+        title = table.get("title") or ""
+        if not re.search(r"general data", title, re.I):
             continue
         header = row_cells(table.get("header") or [])
         rows = table.get("rows") or []
         first = row_cells(rows[0]) if rows else []
+        code_cols = []
         for col in range(1, len(header)):
             code = clean_model_label(first[col] if col < len(first) else "")
-            if not code:
+            if code and looks_like_unit_code(code):
+                code_cols.append((col, code))
+        if not code_cols:
+            capacity_units_from_table(table, model, capacity_units)
+            continue
+        for col, code in code_cols:
+            if code in seen:
                 continue
-            role = "airHandler" if re.search(r"\bTWE", code, re.I) else "condensingUnit"
+            seen.add(code)
+            role = unit_role_for(code, title)
             out.append({
                 "unitModelNumber": code,
+                "unitNumberKind": "modelNumber",
                 "unitRole": role,
                 "capacityClass": header[col] or "—",
                 "matchedAirHandler": value_for_label(rows, r"matched air handler$", col) or "—",
@@ -367,13 +462,15 @@ def unit_models(model):
                     or "—"
                 ),
                 "grossCoolingCapacity": (
-                    value_for_label(rows, r"Gross Cooling Capacity - System", col) or "—"
+                    value_for_label(rows, r"Gross Cooling Capacity - System", col)
+                    or value_for_label(rows, r"^Gross Cooling Capacity$", col)
+                    or "—"
                 ),
                 "ahriNetCoolingCapacity": (
                     value_for_label(rows, r"AHRI Net Cooling Capacity", col) or "—"
                 ),
                 "eer": (
-                    value_for_label(rows, r"Matched Air Handler \(EER\)|System \(EER\)", col) or "—"
+                    value_for_label(rows, r"Matched Air Handler \(EER\)|System \(EER\)|^EER$", col) or "—"
                 ),
                 "coilFaceArea": value_for_label(rows, r"Face Area", col) or "—",
                 "coilRowsFpi": value_for_label(rows, r"Rows/FPI", col) or "—",
@@ -383,6 +480,7 @@ def unit_models(model):
                 "sourcePage": table.get("page"),
                 "selectionStatus": "unit_candidate",
             })
+    out.extend(capacity_units.values())
     return out
 
 
@@ -406,6 +504,88 @@ def amp_pair(value, index):
     if len(tokens) >= (index + 1) * 2:
         return at_token(tokens, index * 2), at_token(tokens, index * 2 + 1)
     return at_token(tokens, index), ""
+
+
+def header_idx(header, pattern, start=0):
+    regex = re.compile(pattern, re.I)
+    for idx in range(start, len(header)):
+        if regex.search(header[idx]):
+            return idx
+    return None
+
+
+def per_unit_electrical_rows(table):
+    """헤더에 'Unit Model Number' 열이 있는 1행=1형번 전기 특성표 (Precedent·WSHP).
+
+    Odyssey처럼 한 칸에 형번 여러 개를 욱여넣지 않고 행마다 형번·전압이 하나라
+    헤더 이름으로 열을 찾아 그대로 편다. 두 갈래다.
+    ① 압축기+응축팬 표 — 고정 배치 14~15열 (RLA·LRA 열은 헤더가 'Amps'+빈칸으로 병합)
+    ② 공기측(증발기/실내) 팬 표 — Volts·Phase·hp·FLA(·LRA) 열을 이름으로 찾는다
+    """
+    title = table.get("title") or ""
+    if (table.get("kind") or "etc") != "rating":
+        return []
+    # 급배기 보조 모터는 형번 선정 정보가 아니라서 싣지 않는다
+    if re.search(r"inducer|power exhaust", title, re.I):
+        return []
+    header = row_cells(table.get("header") or [])
+    umn_i = header_idx(header, r"unit model number")
+    if umn_i is None:
+        return []
+    rows = [row_cells(row) for row in table.get("rows") or []]
+    source = "%s p%s" % (title, table.get("page", ""))
+    out = []
+    is_compressor = bool(re.search(r"compressor", title, re.I))
+    if is_compressor and len(header) not in (14, 15):
+        return []
+    if not is_compressor:
+        volts_i = header_idx(header, r"volts", umn_i + 1)
+        phase_i = header_idx(header, r"phase", umn_i + 1)
+        hp_i = header_idx(header, r"\bhp", umn_i + 1)
+        fla_i = header_idx(header, r"\bfla\b", umn_i + 1)
+        lra_i = header_idx(header, r"^lra$", umn_i + 1)
+        if volts_i is None or fla_i is None:
+            return []
+    motor_set = ("compressorAndCondenserFan" if is_compressor
+                 else "oversizedEvaporatorFan" if re.search(r"oversiz", title, re.I)
+                 else "standardEvaporatorFan")
+    tons = ""
+    for row in rows:
+        if umn_i >= len(row):
+            continue
+        code = row[umn_i]
+        if not looks_like_unit_code(code):
+            continue
+        tons = row[0] or tons
+        base = {
+            "unitModelNumber": code,
+            "unitRole": "packagedUnit",
+            "capacityClass": tons,
+            "motorSet": motor_set,
+            "sourceTable": title,
+            "sourcePage": table.get("page"),
+            "source": source,
+        }
+        if is_compressor:
+            fan_fla, fan_lra = ((row[13], row[14]) if len(row) >= 15
+                                else amp_pair(row[13] if len(row) > 13 else "", 0))
+            out.append(dict(base,
+                            voltage=row[3] if len(row) > 3 else "",
+                            phase=row[4] if len(row) > 4 else "",
+                            compressor1Rla=row[7] if len(row) > 7 else "",
+                            compressor1Lra=row[8] if len(row) > 8 else "",
+                            fanCount=row[9] if len(row) > 9 else "",
+                            fanVoltage=row[10] if len(row) > 10 else "",
+                            fanPhase=row[11] if len(row) > 11 else "",
+                            fanFla=fan_fla, fanLra=fan_lra))
+        else:
+            out.append(dict(base,
+                            voltage=row[volts_i] if volts_i < len(row) else "",
+                            phase=row[phase_i] if phase_i is not None and phase_i < len(row) else "",
+                            motorHp=row[hp_i] if hp_i is not None and hp_i < len(row) else "",
+                            fanFla=row[fla_i] if fla_i < len(row) else "",
+                            fanLra=row[lra_i] if lra_i is not None and lra_i < len(row) else ""))
+    return out
 
 
 def electrical_rows(model):
@@ -458,6 +638,7 @@ def electrical_rows(model):
                         "source": source,
                     })
             continue
+        handled_before = len(out)
         for row in rows:
             if len(row) < 10 or not re.search(r"\bTWE", row[1], re.I):
                 continue
@@ -517,6 +698,9 @@ def electrical_rows(model):
                         "sourcePage": table.get("page"),
                         "source": source,
                     })
+        if len(out) == handled_before:
+            # Odyssey식(한 칸 여러 형번) 표가 아니면 1행=1형번 표로 다시 읽는다
+            out.extend(per_unit_electrical_rows(table))
     return out
 
 
