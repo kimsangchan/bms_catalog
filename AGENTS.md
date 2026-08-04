@@ -75,6 +75,11 @@ PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류
 ## 지금 상태 (2026-08-04)
 
 - 모델 **92건** · 오브젝트 **22,366점** · 정격 사양 **73모델** · `validate.py` 오류 0 · 계열 10/19
+- **형번 데이터가 확정 데이터셋(골든 레코드) 구조로 전환** — 추출은 제안, 정본은
+  `pipeline/data/units/<모델>.json`(23모델 360건). 속성 사전 `data/unit-schema.json`
+  (ETIM식: 공유 features + 설비 클래스별 열·라벨·역할 — 냉동기는 응축 코일·팬 라벨).
+  새 벤더 등록 후 **`units.py --sync` 필수**, 검수 승격 `--verify`. 화면은 확정본만
+  읽고 상태 배지(자동 추출/확인됨/수기 입력)·표↔카드 토글(카드=시리즈 대표 사진)이 있다.
 - 글로벌 공조기 커버리지(e5 12모델): 리더 4사 전부(Trane·Daikin·JCI/York·**Carrier**) +
   미국 **AAON**(VCCX2 534점) + 유럽 **Swegon GOLD**(Modbus 3,362점)·IV Produkt.
   남은 후보: Lennox·Systemair·Mitsubishi — `pipeline/README.md` '새 벤더 추가 절차'

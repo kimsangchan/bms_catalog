@@ -116,8 +116,11 @@ def main():
     purpose = load_purpose_dataset()
     src = open(TPL, encoding="utf-8").read()
     html = src[src.index('HTML = r"""') + len('HTML = r"""'):src.rindex('"""')]
+    # 형번 속성 사전 — 화면 열·라벨·역할 구성의 정본 (설비 클래스별)
+    unit_schema = json.load(open(os.path.join(DATA, "unit-schema.json"), encoding="utf-8"))
     data = {"equips": equips, "models": models, "l3": l3,
-            "domOrder": DOM_ORDER, "terms": terms, "purpose": purpose}
+            "domOrder": DOM_ORDER, "terms": terms, "purpose": purpose,
+            "unitSchema": unit_schema}
     totp = sum(e["np"] for e in equips)
     tots = sum(e["ns"] for e in equips)
     nmodel = sum(len(v) for v in models.values())

@@ -289,6 +289,25 @@ nav .sm{color:var(--accent)}
 .uval{background:var(--bg);padding:8px 10px;min-height:58px}
 .uval .k{font-size:10.5px;color:var(--faint);font-weight:700;letter-spacing:.04em}
 .uval .v{font-family:var(--mono);font-size:13px;font-weight:650;margin-top:2px;overflow-wrap:anywhere}
+.ustat{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em;
+ padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
+.ustat.ok{border-color:var(--accent);color:var(--accent)}
+.ustat.man{border-style:dashed;color:var(--ink)}
+.uvwt{display:flex;gap:6px;align-items:center;padding:0 18px 8px}
+.uvwt button{font-size:11px;padding:4px 12px;border:1px solid var(--line);border-radius:999px;
+ background:var(--bg);color:var(--dim)}
+.uvwt button[aria-pressed="true"]{border-color:var(--accent);color:var(--ink);background:var(--accent-bg)}
+.uvwn{font-size:10.5px;color:var(--faint)}
+.ugrid{padding:0 18px 14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.gcard{display:flex;flex-direction:column;gap:3px;padding:10px}
+.gimg{position:relative;margin:-4px -4px 4px;border-radius:4px;overflow:hidden;background:var(--line2)}
+.gimg img{display:block;width:100%;height:96px;object-fit:contain}
+.gimg i{position:absolute;right:4px;bottom:4px;font-size:9px;font-style:normal;
+ padding:1px 5px;border-radius:3px;background:rgba(0,0,0,.55);color:#fff}
+.gcard b{font-size:12.5px}
+.gcard .grole{font-size:10.5px;color:var(--faint)}
+.gcard .gvals{font-size:11px;color:var(--dim);line-height:1.4}
+.gcard .ustat{align-self:flex-start;margin:2px 0}
 
 /* 홈 */
 .home{padding:20px 18px 60px;max-width:960px}
@@ -343,6 +362,7 @@ var cur = 'home', tab = 'md', mi = 0, kindF = '', gradeF = '', term = '';
 var vsel = 0;   // 고른 형번 (variants) — 모델을 바꾸면 0 으로 되돌린다
 var ssel = 0;   // 고른 사양 표
 var usel = {};  // 모델 ID → 고른 Unit Model Number 후보
+var uvw = {};   // 모델 ID → 형번 목록 보기 방식 (table 표 | cards 카드)
 var mview = 'unit'; // 모델 상세 안의 작업 탭
 var ksel = 'rating';  // 고른 표 성격 — 모델을 바꾸면 모델별 기본 정격표로 되돌린다
 // 표의 성격. rating은 사용자가 바로 입력하는 값이 아니라 모델별 정격값을 찾는 원문표다.
@@ -1069,6 +1089,7 @@ function renderAhuUnitModelCandidates(m){
   if(!rows.length) return '';
   var idx = Math.min(usel[m.id] || 0, rows.length-1);
   var curUnit = rows[idx];
+  var view = uvw[m.id] || 'table';
   return sec('Unit Model Number별 정격 후보', rows.length)
     + '<div class="guide"><b>여기서 실제 장비 형번을 골라야 해요</b>'
     + '<p>제품군 문서에는 여러 형번의 값이 한꺼번에 들어 있습니다. 실제 현장 장비가 아래 형번 중 무엇인지 정해지면 그 형번의 풍량·냉방능력·조합 공조기를 한 줄로 좁힐 수 있습니다. 전압은 별도 전기 특성표에서 전원 코드와 함께 다시 확정해야 합니다.</p>'
@@ -1083,38 +1104,58 @@ function renderAhuUnitModelCandidates(m){
           + '<span>'+esc(line)+'</span>'
           + (metric ? '<span>'+esc(metric)+'</span>' : '') + '</button>';
       }).join('') + '</div>'
-    + renderAhuUnitDetail(curUnit, purpose.electricalRows || [])
+    + renderAhuUnitDetail(curUnit, purpose.electricalRows || [], m)
     + sec('전체 Unit Model Number 표', rows.length)
     + '<div class="guide"><b>실제 장비를 고르는 기준표예요</b>'
-    + '<p>현장 장비일람표나 자재승인원에 적힌 형번을 이 표에서 찾아 선택합니다. 선택한 형번의 정격값을 기본값 후보로 쓰고, 오브젝트 목록은 같은 프로파일 문서의 L3 매핑 근거로 씁니다. 문서에 없는 항목의 열은 표시하지 않아요.</p></div>'
-    + unitTable(rows, m)
+    + '<p>현장 장비일람표나 자재승인원에 적힌 형번을 이 표에서 찾아 선택합니다. 선택한 형번의 정격값을 기본값 후보로 쓰고, 오브젝트 목록은 같은 프로파일 문서의 L3 매핑 근거로 씁니다. 문서에 없는 항목의 열은 표시하지 않아요. 상태 배지: <b>자동 추출</b>=문서에서 기계가 옮긴 제안값, <b>확인됨</b>=사람이 원문과 대조해 확정, <b>수기 입력</b>=문서 한계로 직접 채움.</p></div>'
+    + '<div class="uvwt">'
+    +   '<button data-uvw="table" aria-pressed="'+(view!=='cards')+'">표로 보기</button>'
+    +   '<button data-uvw="cards" aria-pressed="'+(view==='cards')+'">카드로 보기</button>'
+    +   (view==='cards' ? '<span class="uvwn">카드는 훑어보며 고르는 용도예요 — 값 비교·정렬은 표가 정확합니다</span>' : '')
+    + '</div>'
+    + (view==='cards' ? unitCardGrid(rows, m, idx) : unitTable(rows, m))
 }
 
-// 전체 형번 표 — 값이 하나도 없는 열은 만들지 않는다 (벤더마다 문서에 싣는 항목이 다르다)
-var UNIT_COLS = [
-  ['용량대', unitCapacity],
-  ['Unit Model Number', unitCode],
-  ['구분', unitRoleLabel],
-  ['조합 공조기', function(r){ return r.matchedAirHandler || r.airHandler || '—'; }],
-  ['정격 풍량', unitAirflow],
-  ['냉방능력', function(r){ return valueWithUnit(r, 'grossCoolingCapacity', 'Btu/h'); }],
-  ['AHRI 냉방능력', function(r){ return valueWithUnit(r, 'ahriNetCoolingCapacity', 'Btu/h'); }],
-  ['EER', function(r){ return r.eer || '—'; }],
-  ['IEER', function(r){ return r.ieer || '—'; }],
-  ['용량 단계', function(r){ return valueWithUnit(r, 'capacitySteps', '%'); }],
-  ['팬 모터', function(r){ return valueWithUnit(r, 'fanMotorHp', 'HP'); }],
-  ['팬 회전수', function(r){ return valueWithUnit(r, 'fanMotorRpm', 'RPM'); }],
-  ['코일 면적', function(r){ return valueWithUnit(r, 'coilFaceArea', ''); }],
-  ['코일 열수/FPI', function(r){ return r.coilRowsFpi || '—'; }],
-  ['근거표', unitSourceLink, true],
-];
-var UNIT_COLS_KEEP = {'용량대':1, 'Unit Model Number':1, '구분':1, '근거표':1};
+// 전체 형번 표 — 열 구성·순서·라벨은 속성 사전(unit-schema.json)의 설비 클래스가 정본이고,
+// 값이 하나도 없는 열은 만들지 않는다 (벤더마다 문서에 싣는 항목이 다르다)
+function unitClassOf(m){
+  var sch = D.unitSchema || {};
+  return (sch.classes||{})[m.equipId] || {table: Object.keys(sch.features||{}), roles:{}};
+}
+function unitFeature(fid){ return ((D.unitSchema||{}).features||{})[fid] || {}; }
+function unitFieldKo(fid, cls){
+  // 설비별 라벨 오버라이드가 1순위 — 같은 속성이라도 설비마다 뜻이 다르다
+  // (냉동기의 코일·팬 = 응축기 쪽 값)
+  return ((cls||{}).labels||{})[fid] || unitFeature(fid).ko || fid;
+}
+var UNIT_STATUS = {verified:['확인됨','ok'], manual:['수기 입력','man'], extracted:['자동 추출','ext']};
+function unitStatusBadge(r){
+  var s = UNIT_STATUS[r.status||'extracted'] || [r.status, 'ext'];
+  return '<span class="ustat '+s[1]+'">'+esc(s[0])+'</span>';
+}
+function unitCols(m){
+  var cls = unitClassOf(m);
+  var cols = [
+    ['용량대', unitCapacity],
+    ['Unit Model Number', unitCode],
+    ['구분', function(r){ return unitRoleLabel(r, cls); }],
+    ['상태', unitStatusBadge, true],
+  ];
+  (cls.table||[]).forEach(function(fid){
+    if(fid === 'capacityClass') return;   // 첫 열(용량대)로 특별 취급
+    cols.push([unitFieldKo(fid, cls),
+               function(r){ return valueWithUnit(r, fid, unitFeature(fid).convUnit||''); }]);
+  });
+  cols.push(['근거표', unitSourceLink, true]);
+  return cols;
+}
+var UNIT_COLS_KEEP = {'용량대':1, 'Unit Model Number':1, '구분':1, '상태':1, '근거표':1};
 function unitTable(rows, m){
-  var active = UNIT_COLS.filter(function(c){
+  var active = unitCols(m).filter(function(c){
     return UNIT_COLS_KEEP[c[0]] || rows.some(function(r){ var v = c[1](r); return v && v !== '—'; });
   });
   return table({header:active.map(function(c){ return c[0]; }),
-                // 세 번째 원소가 true 인 열(근거표)은 링크 조각을 이미 만들어 와서 그대로 낸다
+                // 세 번째 원소가 true 인 열(상태·근거표)은 조각을 이미 만들어 와서 그대로 낸다
                 rows:rows.map(function(r){ return active.map(function(c){
                   var v = c[1](r) || '—';
                   return c[2] ? v : esc(v);
@@ -1122,46 +1163,54 @@ function unitTable(rows, m){
                 key:'ahu-unit-models'+m.id, raw:true, nopage:false, compact:true});
 }
 
-function renderAhuUnitDetail(r, electricalRows){
+// 카드 보기 — 사진과 핵심 값으로 훑어보며 고르는 용도. 문서에 형번별 사진은 없어서
+// 시리즈 대표 사진을 상속해 붙인다 (지어내지 않는다는 원칙 그대로).
+function unitCardGrid(rows, m, idx){
+  var cls = unitClassOf(m);
+  return '<div class="ugrid">' + rows.map(function(r, i){
+    var vals = [];
+    if(unitCapacity(r) !== '—') vals.push(unitCapacity(r));
+    if(unitAirflow(r) !== '—') vals.push('풍량 ' + unitAirflow(r));
+    var metric = unitCardMetric(r);
+    if(metric) vals.push(metric);
+    return '<button class="ucard gcard" data-ui="'+i+'" aria-pressed="'+(i===idx)+'">'
+      + (m.photo ? '<span class="gimg"><img src="'+m.photo+'" alt="" loading="lazy">'
+                   + '<i>시리즈 대표 사진</i></span>' : '')
+      + '<b>'+esc(unitCode(r))+'</b>'
+      + '<span class="grole">'+esc(unitRoleLabel(r, cls))+'</span>'
+      + unitStatusBadge(r)
+      + '<span class="gvals">'+esc(vals.join(' · ')||'문서에 정격 없음')+'</span>'
+      + '</button>';
+  }).join('') + '</div>';
+}
+
+function renderAhuUnitDetail(r, electricalRows, m){
   if(!r) return '';
+  var cls = unitClassOf(m);
   var items = [
-    ['구분', unitRoleLabel(r)],
+    ['구분', unitRoleLabel(r, cls)],
+    ['상태', unitStatusBadge(r), true],
     ['용량대', unitCapacity(r)],
     ['Unit Model Number', unitCode(r)],
     ['정격 풍량', unitAirflow(r)],
     ['근거', unitSourceLink(r), true],
   ];
-  if(unitRole(r) === 'airHandler'){
-    items.splice(4, 0,
-      ['팬 모터', valueWithUnit(r, 'fanMotorHp', 'HP')],
-      ['팬 회전수', valueWithUnit(r, 'fanMotorRpm', 'RPM')],
-      ['코일 면적', valueWithUnit(r, 'coilFaceArea', '')],
-      ['코일 열수/FPI', r.coilRowsFpi]);
-  } else if(unitRole(r) === 'packagedUnit'){
-    items.splice(4, 0,
-      ['냉방능력', valueWithUnit(r, 'grossCoolingCapacity', 'Btu/h')],
-      ['AHRI 냉방능력', valueWithUnit(r, 'ahriNetCoolingCapacity', 'Btu/h')],
-      ['EER', r.eer],
-      ['팬 모터', valueWithUnit(r, 'fanMotorHp', 'HP')]);
-  } else {
-    items.splice(4, 0,
-      ['조합 공조기', r.matchedAirHandler || r.airHandler],
-      ['냉방능력', valueWithUnit(r, 'grossCoolingCapacity', 'Btu/h')],
-      ['AHRI 냉방능력', valueWithUnit(r, 'ahriNetCoolingCapacity', 'Btu/h')],
-      ['EER', r.eer]);
-  }
-  // 용량급 표(RAUJ·IntelliPak)에서 온 값 — 있을 때만 붙인다
-  [['효율 IEER', r.ieer],
-   ['압축기 구성', valueWithUnit(r, 'compressorConfig', '')],
-   ['용량 단계', valueWithUnit(r, 'capacitySteps', '%')],
-   ['냉매 회로', r.refrigerantCircuits],
-   ['응축 팬', r.condenserFans],
-   ['응축 풍량', valueWithUnit(r, 'condenserAirflow', '')]
-  ].forEach(function(x){ if(x[1] && x[1] !== '—') items.push([x[0], x[1]]); });
+  // 역할별 앞세울 속성 → 클래스 공통 부가 속성 순 — 구성은 스키마
+  // (classes.roles.detail / detailExtra)가 정본이고, 값이 있을 때만 칸을 만든다
+  var seen = {};
+  items.forEach(function(x){ seen[x[0]] = 1; });
+  var order = (((cls.roles||{})[unitRole(r)]||{}).detail || []).concat(cls.detailExtra||[]);
+  order.forEach(function(fid){
+    var ko = unitFieldKo(fid, cls);
+    if(seen[ko]) return;
+    seen[ko] = 1;
+    var v = valueWithUnit(r, fid, unitFeature(fid).convUnit||'');
+    if(v && v !== '—') items.push([ko, v]);
+  });
   if(r.unitNumberKind === 'capacityClass')
     items.push(['형번 표기', '문서가 이 유닛을 형번 없이 톤수로만 구분해요']);
   // 문서에 없는 값('—')은 칸을 만들지 않는다 — 신원 항목만 항상 남긴다
-  var KEEP = {'구분':1, 'Unit Model Number':1, '근거':1, '형번 표기':1};
+  var KEEP = {'구분':1, '상태':1, 'Unit Model Number':1, '근거':1, '형번 표기':1};
   items = items.filter(function(x){ return KEEP[x[0]] || (x[1] && x[1] !== '—'); });
   return '<div class="udetail"><h4>'+esc(unitCode(r))+'</h4><div class="uvals">'
     + items.map(function(x){
@@ -1175,9 +1224,13 @@ function renderAhuUnitDetail(r, electricalRows){
 
 function unitCode(r){ return r.unitModelNumber || r.unitModel || '—'; }
 function unitRole(r){ return r.unitRole || (/TWE/i.test(unitCode(r)) ? 'airHandler' : 'condensingUnit'); }
-function unitRoleLabel(r){
+function unitRoleLabel(r, cls){
+  // 역할 이름도 스키마 클래스(classes.roles[].ko)가 1순위 — 설비마다 부르는 말이 다르다
+  var role = unitRole(r);
+  var d = ((cls||{}).roles||{})[role];
+  if(d && d.ko) return d.ko;
   return {airHandler:'공기측 유닛', condensingUnit:'실외/응축 유닛',
-          packagedUnit:'일체형(패키지) 유닛', chillerUnit:'냉동기 유닛'}[unitRole(r)]
+          packagedUnit:'일체형(패키지) 유닛', chillerUnit:'냉동기 유닛'}[role]
       || '실외/응축 유닛';
 }
 function unitCapacity(r){ return r.capacityClass || r.tons || '—'; }
@@ -1748,6 +1801,12 @@ function wire(){
       var models = D.models[cur] || [], m = models[Math.min(mi, models.length-1)];
       if(m) usel[m.id] = +b.dataset.ui;
       render();
+    });});
+  main.querySelectorAll('.uvwt button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var models = D.models[cur] || [], m = models[Math.min(mi, models.length-1)];
+      if(m) uvw[m.id] = b.dataset.uvw;
+      re();   // 보기 방식만 바뀌고 보던 자리는 그대로
     });});
   main.querySelectorAll('.vlist button').forEach(function(b){
     b.addEventListener('click',function(){ vsel=+b.dataset.vi; render(); });});
