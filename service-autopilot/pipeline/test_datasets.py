@@ -283,6 +283,8 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(rn6["capacityClass"], "6 Tons")
         self.assertEqual(rn6["ratedAirflow"], "2,000")
         self.assertEqual(rn6["units"]["ratedAirflow"], "CFM")
+        self.assertEqual(rn6["eer"], "Up to 13.2")
+        self.assertEqual(rn6["ieer"], "Up to 22.5")
 
     def test_carrier_letter_sizes_become_units_with_nominal_capacity(self):
         # Carrier 48/50N — 크기가 한 글자(N~T)이고 톤수는 'NOMINAL CAPACITY (tons)' 행.

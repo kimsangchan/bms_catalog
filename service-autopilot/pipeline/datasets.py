@@ -646,6 +646,7 @@ def unit_models(model):
             # 'EER1, 7' 처럼 각주 번호가 붙는 표기(Rebel)까지 받는다
             pick("eer", r"Matched Air Handler \(EER\)", r"System \(EER\)",
                  r"^EER(?![A-Za-z])")
+            pick("ieer", r"^IEER(?![A-Za-z])")
             pick("coilFaceArea", r"Face Area")
             pick("coilRowsFpi", r"Rows/FPI", r"Rows Deep/Fins")
             pick("fanMotorHp", r"Motor HP")
