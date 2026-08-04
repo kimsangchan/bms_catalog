@@ -78,6 +78,8 @@ PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류
 - 공조기(e5) 9모델(Trane 6 + Daikin MicroTech·JCI Simplicity SE·Siemens Climatix) —
   8모델 형번·정격 후보 완료(형번 133건·전기 특성 373행 — York 32·Rebel 13 포함,
   Envistar 만 미지원: 카탈로그 표 제목이 각주 조각). 신규 6모델 사진·근거 문서 연결 완료.
+- 형번·정격 작업 화면이 **냉동기(e9)까지 확장** — Daikin AGZ 16·Trane CGAM 14×3·
+  Ascend·Sintesis 등 형번 후보 118건(전체 251건). 게이트는 "형번이 실제로 뽑힌 모델".
 - 냉동기(e9)에 Daikin MicroTech 3모델(AGZ·AWV·WME 계열 등) 추가
 - 신규 6모델 전부 제품 카탈로그 정격 연결 완료(Trailblazer CAT624/635 · Rebel ED19116 ·
   York 기술가이드 2권 · Envistar 2024 · Magnitude CAT632/ED19135). ⚠ Daikin 신형

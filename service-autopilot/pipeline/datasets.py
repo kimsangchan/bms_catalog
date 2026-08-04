@@ -411,7 +411,9 @@ def capacity_units_from_table(table, model, merged):
     rows = table.get("rows") or []
     title = table.get("title") or ""
     family = unit_family_for(model, title)
-    role = "condensingUnit" if re.search(r"condensing", title, re.I) else "packagedUnit"
+    role = ("chillerUnit" if model.get("equipId") == "e9"
+            else "condensingUnit" if re.search(r"condensing", title, re.I)
+            else "packagedUnit")
     cap_cols = [col for col in range(1, len(header))
                 if re.match(r"^\d{2,3}$", header[col] or "")]
     # RAUK식 표는 값 열이 2번부터라 1번 열이 단위 전용이다 (Tons·%·cfm·ft2)
@@ -461,8 +463,12 @@ def unit_models(model):
     ① 첫 행에 형번이 있는 표 (Odyssey TTA/TWE·Precedent T/YSC·WHJ) — 행/열 방향과
        무관하게 같은 구조라 orientation으로 거르지 않는다.
     ② 형번 없이 톤수 열로만 구분하는 표 (RAUJ·IntelliPak) — 용량급 후보로 편다.
+
+    냉동기(e9)도 같은 구조다 — Daikin AGZ 'Physical Data' 는 첫 행 형번(AGZ031E),
+    Trane CGAM 'General data' 는 톤수 열 + 단위 열. 사용자가 냉동기에서 형번·정격이
+    안 보인다고 해서 확장했다.
     """
-    if model.get("equipId") != "e5":
+    if model.get("equipId") not in ("e5", "e9"):
         return []
     out, seen, capacity_units = [], set(), {}
     for table in model.get("specTables") or []:
@@ -488,6 +494,13 @@ def unit_models(model):
                 cell = re.sub(r"^models?\s+", "", header[col] or "", flags=re.I)
                 code = clean_model_label(cell)
                 if code and looks_like_unit_code(code):
+                    # 머리글 칸에 제품군 설명이 같이 든 경우('AGZ-E (Microchannel
+                    # Packaged Chiller) AGZ170E')는 형번 토큰만 꺼낸다
+                    if len(code) > 24:
+                        m2 = re.search(r"[A-Z][A-Za-z/]*\d+[A-Za-z0-9*\-]*", code)
+                        if not m2:
+                            continue
+                        code = m2.group(0)
                     code_cols.append((col, code))
         if not code_cols:
             fam = re.search(r"model\s+([A-Z]{2,6})\b\s*\d", title, re.I)
@@ -528,10 +541,11 @@ def unit_models(model):
             pick("eer", r"Matched Air Handler \(EER\)", r"System \(EER\)",
                  r"^EER(?![A-Za-z])")
             pick("coilFaceArea", r"Face Area")
-            pick("coilRowsFpi", r"Rows/FPI")
+            pick("coilRowsFpi", r"Rows/FPI", r"Rows Deep/Fins")
             pick("fanMotorHp", r"Motor HP")
             pick("fanMotorRpm", r"Motor RPM")
-            pick("capacitySteps", r"Unit Capacity Steps")
+            # 'Staging, 4 Stages …' 는 Daikin 냉동기의 용량 단계 표기다
+            pick("capacitySteps", r"Unit Capacity Steps", r"^Staging")
             # 용량대 — Trane 은 머리글이 '6 Tons' 지만 York·Rebel 머리글은
             # 'Models'·'Small cabinet' 같은 묶음 이름이라, 숫자가 없으면 표의
             # 공칭 톤수 행에서 가져온다
@@ -545,7 +559,8 @@ def unit_models(model):
             out.append(dict(fields,
                             unitModelNumber=code,
                             unitNumberKind="modelNumber",
-                            unitRole=unit_role_for(code, title),
+                            unitRole=("chillerUnit" if model.get("equipId") == "e9"
+                                      else unit_role_for(code, title)),
                             capacityClass=capacity,
                             units=units,
                             sourceTable=table.get("title") or "",
@@ -661,7 +676,7 @@ def per_unit_electrical_rows(table):
 
 def electrical_rows(model):
     """Electrical tables normalized to one row per unit-model/voltage option."""
-    if model.get("equipId") != "e5":
+    if model.get("equipId") not in ("e5", "e9"):
         return []
     out = []
     for table in model.get("specTables") or []:

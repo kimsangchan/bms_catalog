@@ -665,7 +665,7 @@ function renderModels(models, l3){
      + '<span>분류 <code>'+esc(m.cat)+'</code></span><span>태그 <code>'+esc(m.tag)+'</code></span>'
      + '<span>사양값 '+badge(m.has.spec)+'</span><span>오브젝트 목록 '+badge(m.has.points)+'</span></div>';
   h += '<div class="wrap">';
-  if(isAhuModel(m)){
+  if(hasUnitWorkspace(m)){
     h += renderAhuPurposeWorkspace(m);
     h += '</div>';
     if(m.gap) h += '<div class="msg"><b>아직 못 채운 것</b><p>'+fmt(m.gap)+'</p></div>';
@@ -871,6 +871,13 @@ function isAhuModel(m){
       || /\b(ahu|rtu|rooftop)\b/i.test(m.tag||'');
 }
 
+// 형번·정격 작업 화면을 열 수 있는가 — 공조기이거나, 형번 후보가 실제로 뽑힌 모델
+// (냉동기 카탈로그의 Physical/General data 도 같은 구조라 형번이 나온다)
+function hasUnitWorkspace(m){
+  var p = (D.purpose||{})[m.id];
+  return isAhuModel(m) || !!(p && (p.unitModels||[]).length);
+}
+
 // 공조기 운영 화면은 L3 원문 전체가 아니라 L2 기본 화면에서 시작한다.
 // 아래 규칙은 "화면 후보를 먼저 보여 주는" 얇은 계층이고, 원문 목록은 그대로 보존한다.
 // 다른 설비는 VIEW_PROFILES에 패턴을 추가해서 같은 방식으로 확장한다.
@@ -1065,9 +1072,12 @@ function renderAhuUnitModelCandidates(m){
     + '<p>제품군 문서에는 여러 형번의 값이 한꺼번에 들어 있습니다. 실제 현장 장비가 아래 형번 중 무엇인지 정해지면 그 형번의 풍량·냉방능력·조합 공조기를 한 줄로 좁힐 수 있습니다. 전압은 별도 전기 특성표에서 전원 코드와 함께 다시 확정해야 합니다.</p>'
     + '<p>단위는 원문표 라벨·단위 열에 적힌 것을 그대로 씁니다. 라벨에 단위가 없는 AHRI 정격(냉방능력·풍량)은 미국 카탈로그(I-P 단위계) 관례인 Btu/h·CFM으로 표기했습니다 — 환산: CFM×1.699=㎥/h · Btu/h×0.293=W.</p></div>'
     + '<div class="unitpick">' + rows.map(function(r,i){
+        var line = unitRoleLabel(r);
+        if(unitCapacity(r) !== '—') line += ' · ' + unitCapacity(r);
+        if(unitAirflow(r) !== '—') line += ' · 풍량 ' + unitAirflow(r);
         return '<button class="ucard" data-ui="'+i+'" aria-pressed="'+(i===idx)+'">'
           + '<b>'+esc(unitCode(r))+'</b>'
-          + '<span>'+esc(unitRoleLabel(r))+' · '+esc(unitCapacity(r))+' · 풍량 '+esc(unitAirflow(r)||'—')+'</span>'
+          + '<span>'+esc(line)+'</span>'
           + '<span>'+esc(unitCardMetric(r))+'</span></button>';
       }).join('') + '</div>'
     + renderAhuUnitDetail(curUnit, purpose.electricalRows || [])
@@ -1148,7 +1158,8 @@ function unitCode(r){ return r.unitModelNumber || r.unitModel || '—'; }
 function unitRole(r){ return r.unitRole || (/TWE/i.test(unitCode(r)) ? 'airHandler' : 'condensingUnit'); }
 function unitRoleLabel(r){
   return {airHandler:'공기측 유닛', condensingUnit:'실외/응축 유닛',
-          packagedUnit:'일체형(패키지) 유닛'}[unitRole(r)] || '실외/응축 유닛';
+          packagedUnit:'일체형(패키지) 유닛', chillerUnit:'냉동기 유닛'}[unitRole(r)]
+      || '실외/응축 유닛';
 }
 function unitCapacity(r){ return r.capacityClass || r.tons || '—'; }
 function unitAirflow(r){ return valueWithUnit(r, 'ratedAirflow', 'CFM') !== '—'
