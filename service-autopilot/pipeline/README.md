@@ -151,6 +151,56 @@ python datasets.py                           # 템플릿·시뮬레이터·매�
 python datasets.py --equip e5                # 공조기만 다시 생성
 ```
 
+## 새 벤더 추가 절차 (체크리스트)
+
+2026-08 JCI·Siemens·Daikin 추가 때 실제로 빠뜨렸던 것들이다. **순서대로, 하나도
+건너뛰지 말 것.** 각 항목의 함정은 이 세션에서 전부 한 번씩 실제로 밟았다.
+
+**1. 문서 발굴 — 통신 맵과 카탈로그를 처음부터 짝으로 찾는다**
+   포인트 리스트에는 정격이 없다. 통신 맵만 넣으면 "정격이 왜 없냐"가 바로 나온다.
+   - ⚠ 신형 마케팅 카탈로그(Daikin CAT 261·639·641)는 표 없는 브로슈어다 —
+     정격 표는 ED/엔지니어링 데이터나 구판 카탈로그에 있다. **수집 전에 표 유무 확인**
+     (`specs.extract_specs(pdf)` 가 0이면 다른 판을 찾는다).
+   - 서버 함정: tahoeweb 은 HEAD 405(GET 폴백 있음) · JCI 는 본문이 JS 지만
+     khub content API 가 원본 PDF · khub URL 은 전부 'content' 로 끝나 **문서당
+     소스 하나로 갈라 rename** · Belimo 류 봇차단은 headers.
+
+**2. sources.py 등록 → collect --run**
+   - rename 으로 벤더·문서번호가 남는 파일명을 만든다 ('user guide.pdf' 금지).
+   - 교차 대조가 구조적으로 불가한 문서(여러 줄 셀·타입 열 없음·이름/번호 열 역순)는
+     그 자리에서 `crosscheck_unreliable` + 사유를 적는다.
+
+**3. register.py --only <파일> (계획 먼저) → --run**
+   - 표지 인식이 깨져 모델 ID 가 문장 조각이면 OVERRIDE 에 product/controller 지정.
+   - 포인트 0건이면 추출기 문제다 — lontalk 오판(SNVT<20 가드)·이름 열 별칭
+     (extract.py COL)·타입 없는 ID(BACOid→Modbus 취입) 사례 참고. **고치면 회귀 확인**
+     (기존 문서 2~3건 재추출해 점수 동일한지).
+
+**4. 사양 연결: spec-map.json 짝 등록 → specs.py --apply --only <파일> →
+   ★ `specs.py --kinds`** — **--apply 뒤 --kinds 를 빠뜨리면 표 전부가 미분류로 남아
+   사양 요약·시뮬레이터 입력·형번 추출이 조용히 전부 0 이 된다** (실제 사고).
+
+**5. 형번·정격 확인: `datasets.build_dataset()` 에서 해당 모델 unitModels > 0 인지**
+   - 0 이면 카탈로그 표 형태가 새 것이다 — unit_models 의 인식 사다리(제목
+     general/physical data · 첫 행 형번 · 머리글 형번 · 제품군+크기 코드 ·
+     크기 행(Envistar))에 형태를 추가하고 **테스트도 같이** 넣는다.
+   - 분류 함정: 머리글 낱말(cabinet·fuse)로 정격 표가 참고로 빠질 수 있다 —
+     table_kind 의 선판정 규칙 참고.
+
+**6. 용어 사전 적중률: 새 모델 사양 라벨의 spec-terms 적중률을 재고 미적중 상위를
+   보강한다** (37%→73% 사례). 실제 표에 나온 용어만. ⚠ JSON 정규식 `\b` 는 `\\b`.
+
+**7. 사진: `images.py --auto` 후 반드시 눈으로 검수** — 표지 첫 그림이 건물·분위기
+   사진인 카탈로그가 많다(실제 사고 2건). photo 를 jpg 로 덤프해 확인하고 아니면
+   후보 나열 → `images.attach(mid, fname, pick=N)` 으로 교체.
+
+**8. 근거·문구: docs.json 에 카탈로그 문서를 등록**(안 하면 근거 탭에 포인트리스트만
+   보인다) + **모델 gap 을 실상태로 갱신**("카탈로그 필요" 낡은 문구 방지).
+
+**9. 마감: normalize → validate 오류 0 → build → 브라우저에서 파리티 확인**
+   (형번·정격 탭 기본 선택 · 카드 값과 단위 · 사진이 제품인가 · 근거 문서 수 ·
+   한글 라벨) → 한글 커밋(무엇이 왜 틀렸는지).
+
 ## 데이터 저장소 — 여기가 유일한 원본
 
 ```
