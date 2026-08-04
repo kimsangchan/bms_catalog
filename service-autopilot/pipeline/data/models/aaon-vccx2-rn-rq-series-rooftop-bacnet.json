@@ -1,0 +1,7079 @@
+{
+ "id": "aaon-vccx2-rn-rq-series-rooftop-bacnet",
+ "equipId": "e5",
+ "vendor": "AAON",
+ "model": "VCCX2 — RN/RQ Series Rooftop (BACnet)",
+ "name": "VCCX2 RN/RQ Series Rooftop",
+ "cat": "HVAC.AIR.RTU",
+ "tag": "rooftop",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. BACnet 534점",
+ "has": {
+  "spec": true,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "AI",
+   "inst": 1,
+   "name": "Application Software Version",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current version of the software in the unit"
+  },
+  {
+   "type": "AI",
+   "inst": 2,
+   "name": "Control Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Configured unit application"
+  },
+  {
+   "type": "AI",
+   "inst": 3,
+   "name": "Control Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Occupied/Unoccupied Status"
+  },
+  {
+   "type": "AI",
+   "inst": 4,
+   "name": "HVAC Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current operational status"
+  },
+  {
+   "type": "AI",
+   "inst": 5,
+   "name": "Control Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the Control Temperature Sensor"
+  },
+  {
+   "type": "AI",
+   "inst": 6,
+   "name": "Mode Cooling Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Cooling Mode Enable Setpoint Mirror (adjusted by the Space Sensor Slide adjustment and/or Night Setback offsets)"
+  },
+  {
+   "type": "AI",
+   "inst": 7,
+   "name": "Mode Heating Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Heating Mode Enable Setpoint Mirror (adjusted by the Space Sensor Slide adjustment and/or Night Setback offsets)"
+  },
+  {
+   "type": "AI",
+   "inst": 8,
+   "name": "Sensor Slide Adjust Effect",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Amount of Current Sensor Slide Adjust"
+  },
+  {
+   "type": "AI",
+   "inst": 9,
+   "name": "Supply Air Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the Supply Air Temperature sensor"
+  },
+  {
+   "type": "AI",
+   "inst": 10,
+   "name": "Supply Air Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current SAT Cooling or Heating Setpoint if there is no reset source; Current calculated SAT setpoint with Reset Source"
+  },
+  {
+   "type": "AI",
+   "inst": 11,
+   "name": "Controlling Coil Temp Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This is the current calculated Coil Suction Temperature target during Dehumidification Mode"
+  },
+  {
+   "type": "AI",
+   "inst": 12,
+   "name": "Space Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the Space Temperature Sensor"
+  },
+  {
+   "type": "AI",
+   "inst": 13,
+   "name": "Space Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the Space Humidity"
+  },
+  {
+   "type": "AI",
+   "inst": 14,
+   "name": "Return Air Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the Return Temperature Sensor"
+  },
+  {
+   "type": "AI",
+   "inst": 15,
+   "name": "Return Air Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the Return Air Humidity"
+  },
+  {
+   "type": "AI",
+   "inst": 16,
+   "name": "Outdoor Air Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the Outdoor Air Temperature Sensor"
+  },
+  {
+   "type": "AI",
+   "inst": 17,
+   "name": "Outdoor Air Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the Outdoor Humidity Sensor"
+  },
+  {
+   "type": "AI",
+   "inst": 18,
+   "name": "Outdoor Air Wetbulb",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current calculated Outdoor Wetbulb Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 19,
+   "name": "Outdoor Air Dewpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Calculated Outdoor Air Dewpoint Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 20,
+   "name": "Supply Air Setpoint Reset Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Supply Air Temp Setpoint Reset Input Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 21,
+   "name": "Duct Static Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Duct Static Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 22,
+   "name": "Duct Static Control Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Duct Static Control Signal (Fan VFD)"
+  },
+  {
+   "type": "AI",
+   "inst": 23,
+   "name": "Building Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the Building Pressure Sensor"
+  },
+  {
+   "type": "AI",
+   "inst": 24,
+   "name": "Building Pressure Control Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Building Pressure Control Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 25,
+   "name": "Outdoor Airflow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Outdoor Airflow Measurement"
+  },
+  {
+   "type": "AI",
+   "inst": 26,
+   "name": "Supply Airflow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Supply Airflow Measurement"
+  },
+  {
+   "type": "AI",
+   "inst": 27,
+   "name": "Return Airflow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Return Airflow Measurement"
+  },
+  {
+   "type": "AI",
+   "inst": 28,
+   "name": "Exhaust Airflow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Exhaust Airflow Measurement"
+  },
+  {
+   "type": "AI",
+   "inst": 29,
+   "name": "Carbon Dioxide",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Indoor CO2 Level"
+  },
+  {
+   "type": "AI",
+   "inst": 30,
+   "name": "Desired Economizer Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Modulating Signal to the Economizer Damper"
+  },
+  {
+   "type": "AI",
+   "inst": 31,
+   "name": "Economizer Feedback Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Title 24 current position of feedback from Economizer actuator"
+  },
+  {
+   "type": "AI",
+   "inst": 32,
+   "name": "Return Damper Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Signal to the Return Air Damper if using Return Air Bypass"
+  },
+  {
+   "type": "AI",
+   "inst": 33,
+   "name": "Return Bypass Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Signal to the Return Air Bypass Damper if using Return Air Bypass"
+  },
+  {
+   "type": "AI",
+   "inst": 34,
+   "name": "Modulating Cooling Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current percentage of the Modulating Chilled Water Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 35,
+   "name": "Modulating Heat Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current percentage of the Modulating Heating signal (Hot Water or SCR heat)"
+  },
+  {
+   "type": "AI",
+   "inst": 36,
+   "name": "Preheater Leaving Air Temp #1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Preheater Leaving Air Temperature #1"
+  },
+  {
+   "type": "AI",
+   "inst": 37,
+   "name": "Preheater Leaving Air Temp #2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Preheater Leaving Air Temperature #2"
+  },
+  {
+   "type": "AI",
+   "inst": 38,
+   "name": "Preheater Entering Air Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Entering Air Temp for Preheater"
+  },
+  {
+   "type": "AI",
+   "inst": 39,
+   "name": "Preheater Setpoint Reset Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Voltage Reset Input Value for Preheater"
+  },
+  {
+   "type": "AI",
+   "inst": 40,
+   "name": "Preheater SCR Output Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Modulating Heat Signal for Preheater"
+  },
+  {
+   "type": "AI",
+   "inst": 41,
+   "name": "Preheater PWM Output Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current PWM Output Signal for Preheater"
+  },
+  {
+   "type": "AI",
+   "inst": 42,
+   "name": "Mod Hot Gas Reheat Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of MHGRV Modulating Hot Gas Reheat Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 43,
+   "name": "Mod Gas Heat Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of MODGAS Modulating Gas Valve Control"
+  },
+  {
+   "type": "AI",
+   "inst": 44,
+   "name": "A1 Compressor Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A1 Modulating Cooling Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 45,
+   "name": "A2 Compressor Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A2 Modulating Cooling Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 46,
+   "name": "A1 Condenser Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current A1 Condenser Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 47,
+   "name": "A2 Condenser Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current A2 Condenser Signal or WSE Bypass Valve Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 48,
+   "name": "A1 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A1 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 49,
+   "name": "A2 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A2 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 50,
+   "name": "A1 Head Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A1 Head Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 51,
+   "name": "A2 Head Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A2 Head Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 52,
+   "name": "A1 Saturation Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A1 Coil Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 53,
+   "name": "A2 Saturation Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A2 Coil Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 54,
+   "name": "A1 Suction Line Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A1 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 55,
+   "name": "A2 Suction Line Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A2Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 56,
+   "name": "A1 Condenser Suction Temp (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A1 Suction Line Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 57,
+   "name": "A2 Condenser Suction Temp (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A2 Suction Line Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 58,
+   "name": "A1 Superheat Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A1 Superheat Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 59,
+   "name": "A2 Superheat Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A2 Superheat Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 60,
+   "name": "Condenser A1 Superheat (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A1 Superheat Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 61,
+   "name": "Condenser A2 Superheat (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A2 Superheat Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 62,
+   "name": "A1 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Compressor A1 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 63,
+   "name": "A2 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Compressor A2 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 64,
+   "name": "Condenser A1 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Condenser A1 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 65,
+   "name": "Condenser A2 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Condenser A2 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 66,
+   "name": "A1 Discharge Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A1 Discharge Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 67,
+   "name": "A2 Discharge Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor A2 Discharge Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 68,
+   "name": "A1 Leaving Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current A1 Leaving Water Temperature for WSHP"
+  },
+  {
+   "type": "AI",
+   "inst": 69,
+   "name": "B1 Compressor Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B1 Modulating Cooling Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 70,
+   "name": "B2 Compressor Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B2 Modulating Cooling Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 71,
+   "name": "B1 Condenser Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current B1 Condenser Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 72,
+   "name": "B2 Condenser Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current B2 Condenser Signal or WSE Bypass Valve Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 73,
+   "name": "B1 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B1 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 74,
+   "name": "B2 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B2 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 75,
+   "name": "B1 Head Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B1 Head Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 76,
+   "name": "B2 Head Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B2 Head Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 77,
+   "name": "B1 Saturation Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B1 Coil Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 78,
+   "name": "B2 Saturation Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B2 Coil Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 79,
+   "name": "B1 Suction Line Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B1 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 80,
+   "name": "B2 Suction Line Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B2 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 81,
+   "name": "B1 Condenser Suction Temp (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B1 Suction Line Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 82,
+   "name": "B2 Condenser Suction Temp (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B2 Suction Line Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 83,
+   "name": "B1 Superheat Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B1 Superheat Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 84,
+   "name": "B2 Superheat Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B2 Superheat Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 85,
+   "name": "Condenser B1 Superheat (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B1 Superheat Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 86,
+   "name": "Condenser B2 Superheat (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B2 Superheat Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 87,
+   "name": "B1 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Compressor B1 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 88,
+   "name": "B2 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Compressor B2 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 89,
+   "name": "Condenser B1 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Condenser B1 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 90,
+   "name": "Condenser B2 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Condenser B2 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 91,
+   "name": "B1 Discharge Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B1 Discharge Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 92,
+   "name": "B2 Discharge Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor B2 Discharge Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 93,
+   "name": "B1 Leaving Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current B1 Leaving Water Temperature for WSHP"
+  },
+  {
+   "type": "AI",
+   "inst": 94,
+   "name": "C1 Compressor Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C1 Modulating Cooling Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 95,
+   "name": "C2 Compressor Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C2 Modulating Cooling Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 96,
+   "name": "C1 Condenser Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current C1 Condenser Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 97,
+   "name": "C2 Condenser Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current C2 Condenser Signal or WSE Bypass Valve Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 98,
+   "name": "C1 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C1 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 99,
+   "name": "C2 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C2 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 100,
+   "name": "C1 Head Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C1 Head Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 101,
+   "name": "C2 Head Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C2 Head Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 102,
+   "name": "C1 Saturation Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C1 Coil Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 103,
+   "name": "C2 Saturation Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C2 Coil Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 104,
+   "name": "C1 Suction Line Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C1 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 105,
+   "name": "C2 Suction Line Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C2 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 106,
+   "name": "C1 Condenser Suction Temp (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C1 Suction Line Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 107,
+   "name": "C2 Condenser Suction Temp (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C2 Suction Line Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 108,
+   "name": "C1 Superheat Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C1 Superheat Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 109,
+   "name": "C2 Superheat Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C2 Superheat Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 110,
+   "name": "Condenser C1 Superheat (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C1 Superheat Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 111,
+   "name": "Condenser C2 Superheat (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C2 Superheat Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 112,
+   "name": "C1 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Compressor C1 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 113,
+   "name": "C2 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Compressor C2 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 114,
+   "name": "Condenser C1 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Condenser C1 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 115,
+   "name": "Condenser C2 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Condenser C2 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 116,
+   "name": "C1 Discharge Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C1 Discharge Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 117,
+   "name": "C2 Discharge Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor C2 Discharge Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 118,
+   "name": "C1 Leaving Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current C1 Leaving Water Temperature for WSHP"
+  },
+  {
+   "type": "AI",
+   "inst": 119,
+   "name": "D1 Compressor Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D1 Modulating Cooling Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 120,
+   "name": "D2 Compressor Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D2 Modulating Cooling Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 121,
+   "name": "D1 Condenser Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current D1 Condenser Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 122,
+   "name": "D2 Condenser Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current D2 Condenser Signal or WSE Bypass Valve Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 123,
+   "name": "D1 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D1 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 124,
+   "name": "D2 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D2 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 125,
+   "name": "D1 Head Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D1 Head Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 126,
+   "name": "D2 Head Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D2 Head Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 127,
+   "name": "D1 Saturation Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D1 Coil Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 128,
+   "name": "D2 Saturation Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D2 Coil Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 129,
+   "name": "D1 Suction Line Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D1 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 130,
+   "name": "D2 Suction Line Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D2 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 131,
+   "name": "D1 Condenser Suction Temp (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D1 Suction Line Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 132,
+   "name": "D2 Condenser Suction Temp (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D2 Suction Line Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 133,
+   "name": "D1 Superheat Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D1 Superheat Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 134,
+   "name": "D2 Superheat Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D2 Superheat Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 135,
+   "name": "Condenser D1 Superheat (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D1 Superheat Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 136,
+   "name": "Condenser D2 Superheat (Heat Pump)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D2 Superheat Temperature (Heat Pump)"
+  },
+  {
+   "type": "AI",
+   "inst": 137,
+   "name": "D1 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Compressor D1 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 138,
+   "name": "D2 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Compressor D2 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 139,
+   "name": "Condenser D1 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Condenser D1 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 140,
+   "name": "Condenser D2 Expansion Valve Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current position of Condenser D2 Expansion Valve"
+  },
+  {
+   "type": "AI",
+   "inst": 141,
+   "name": "D1 Discharge Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D1 Discharge Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 142,
+   "name": "D2 Discharge Temperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Compressor D2 Discharge Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 143,
+   "name": "D1 Leaving Water Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current D1 Leaving Water Temperature for WSHP"
+  },
+  {
+   "type": "AI",
+   "inst": 144,
+   "name": "Alarm Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates an alarm condition"
+  },
+  {
+   "type": "AI",
+   "inst": 145,
+   "name": "Outdoor Enthalpy",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Outdoor Enthalpy"
+  },
+  {
+   "type": "AI",
+   "inst": 146,
+   "name": "Plenum Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Reserved"
+  },
+  {
+   "type": "AI",
+   "inst": 147,
+   "name": "Return Fan Speed",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Reserved"
+  },
+  {
+   "type": "AI",
+   "inst": 148,
+   "name": "Plenum Calculated Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Reserved"
+  },
+  {
+   "type": "AI",
+   "inst": 149,
+   "name": "Return Air Enthalpy Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of Return Air Enthalpy"
+  },
+  {
+   "type": "AI",
+   "inst": 150,
+   "name": "Current Duct Static Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status of the duct static setpoint"
+  },
+  {
+   "type": "AI",
+   "inst": 151,
+   "name": "RSMZ 1 Condenser Fan",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 condenser fan signal"
+  },
+  {
+   "type": "AI",
+   "inst": 152,
+   "name": "RSMZ 1 VFD Comp Perc",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 VFD Compressor Percentage"
+  },
+  {
+   "type": "AI",
+   "inst": 153,
+   "name": "RSMZ 1 Discharge Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 discharge pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 154,
+   "name": "RSMZ 1 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 155,
+   "name": "RSMZ 1 Suction Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 156,
+   "name": "RSMZ 1 Saturation Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 157,
+   "name": "RSMZ 1 Superheat",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 Superheat Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 158,
+   "name": "RSMZ 1 EEV Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 EEV Valve Position"
+  },
+  {
+   "type": "AI",
+   "inst": 159,
+   "name": "RSMZ 1 Warnings",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 Warnings"
+  },
+  {
+   "type": "AI",
+   "inst": 160,
+   "name": "RSMZ 1 Comp VFD Alarms 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 Comp VFD Alarms 1"
+  },
+  {
+   "type": "AI",
+   "inst": 161,
+   "name": "RSMZ 1 Comp VFD Alarms 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 Comp VFD Alarms 2"
+  },
+  {
+   "type": "AI",
+   "inst": 162,
+   "name": "RSMZ 1 Comp VFD Drive Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 Comp VFD drive status"
+  },
+  {
+   "type": "AI",
+   "inst": 163,
+   "name": "RSMZ 1 Compressor Current",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current reading in Amps that the RSMZ 1 compressor is using"
+  },
+  {
+   "type": "AI",
+   "inst": 164,
+   "name": "RSMZ 1 Discharge Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 discharge line temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 165,
+   "name": "RSMZ 1 Faults",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 Faults"
+  },
+  {
+   "type": "AI",
+   "inst": 166,
+   "name": "RSMZ 1 Lockouts",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 1 Lockouts"
+  },
+  {
+   "type": "AI",
+   "inst": 167,
+   "name": "RSMZ 2 Condenser Fan",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 condenser fan signal"
+  },
+  {
+   "type": "AI",
+   "inst": 168,
+   "name": "RSMZ 2 VFD Comp Perc",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 VFD Compressor Percentage"
+  },
+  {
+   "type": "AI",
+   "inst": 169,
+   "name": "RSMZ 2 Discharge Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 discharge pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 170,
+   "name": "RSMZ 2 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 171,
+   "name": "RSMZ 2 Suction Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 172,
+   "name": "RSMZ 2 Saturation Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 173,
+   "name": "RSMZ 2 Superheat",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 Superheat temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 174,
+   "name": "RSMZ 2 EEV Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 EEV valve position"
+  },
+  {
+   "type": "AI",
+   "inst": 175,
+   "name": "RSMZ 2 Warnings",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 Warnings"
+  },
+  {
+   "type": "AI",
+   "inst": 176,
+   "name": "RSMZ 2 Comp VFD Alarms 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 Comp VFD Alarms 1"
+  },
+  {
+   "type": "AI",
+   "inst": 177,
+   "name": "RSMZ 2 Comp VFD Alarms 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 Comp VFD Alarms 2"
+  },
+  {
+   "type": "AI",
+   "inst": 178,
+   "name": "RSMZ 2 Comp VFD Drive Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 Comp VFD drive status"
+  },
+  {
+   "type": "AI",
+   "inst": 179,
+   "name": "RSMZ 2 Compressor Current",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current reading in Amps that the RSMZ 2 compressor is using"
+  },
+  {
+   "type": "AI",
+   "inst": 180,
+   "name": "RSMZ 2 Discharge Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 discharge line temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 181,
+   "name": "RSMZ 2 Faults",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 Faults"
+  },
+  {
+   "type": "AI",
+   "inst": 182,
+   "name": "RSMZ 2 Lockouts",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 2 Lockouts"
+  },
+  {
+   "type": "AI",
+   "inst": 183,
+   "name": "RSMZ 3 Condenser Fan",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 condenser fan signal"
+  },
+  {
+   "type": "AI",
+   "inst": 184,
+   "name": "RSMZ 3 Reheat Valve 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Reheat Valve 1 position"
+  },
+  {
+   "type": "AI",
+   "inst": 185,
+   "name": "RSMZ 3 Discharge Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 discharge pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 186,
+   "name": "RSMZ 3 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 187,
+   "name": "RSMZ 3 Suction Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 188,
+   "name": "RSMZ 3 Saturation Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 189,
+   "name": "RSMZ 3 Superheat",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Superheat temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 190,
+   "name": "RSMZ 3 EEV Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 EEV valve position"
+  },
+  {
+   "type": "AI",
+   "inst": 191,
+   "name": "RSMZ 3 Suction Pressure 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Suction pressure 2"
+  },
+  {
+   "type": "AI",
+   "inst": 192,
+   "name": "RSMZ 3 Suction Line Temp 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Suction Line Temperature 2"
+  },
+  {
+   "type": "AI",
+   "inst": 193,
+   "name": "RSMZ 3 Saturation Temp 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Saturation Temperature 2"
+  },
+  {
+   "type": "AI",
+   "inst": 194,
+   "name": "RSMZ 3 Superheat 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Superheat Temperature 2"
+  },
+  {
+   "type": "AI",
+   "inst": 195,
+   "name": "RSMZ 3 EEV Position 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 EEV valve position 2"
+  },
+  {
+   "type": "AI",
+   "inst": 196,
+   "name": "RSMZ 3 Warnings",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Warnings"
+  },
+  {
+   "type": "AI",
+   "inst": 197,
+   "name": "RSMZ 3 Discharge Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 discharge line temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 198,
+   "name": "RSMZ 3 Faults",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Faults"
+  },
+  {
+   "type": "AI",
+   "inst": 199,
+   "name": "RSMZ 3 Lockouts",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 3 Lockouts"
+  },
+  {
+   "type": "AI",
+   "inst": 200,
+   "name": "RSMZ 4 Condenser Fan",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Condenser Fan Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 201,
+   "name": "RSMZ 4 VFD Comp Perc",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 VFD Compressor Percentage"
+  },
+  {
+   "type": "AI",
+   "inst": 202,
+   "name": "RSMZ 4 Discharge Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Discharge Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 203,
+   "name": "RSMZ 4 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 204,
+   "name": "RSMZ 4 Suction Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 205,
+   "name": "RSMZ 4 Saturation Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 206,
+   "name": "RSMZ 4 Superheat",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Superheat Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 207,
+   "name": "RSMZ 4 EEV Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 EEV valve position"
+  },
+  {
+   "type": "AI",
+   "inst": 208,
+   "name": "RSMZ 4 Warnings",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Warnings"
+  },
+  {
+   "type": "AI",
+   "inst": 209,
+   "name": "RSMZ 4 Comp VFD Alarms 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Comp VFD Alarms 1"
+  },
+  {
+   "type": "AI",
+   "inst": 210,
+   "name": "RSMZ 4 Comp VFD Alarms 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Comp VFD Alarms 2"
+  },
+  {
+   "type": "AI",
+   "inst": 211,
+   "name": "RSMZ 4 Comp VFD Drive Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Comp VFD drive status"
+  },
+  {
+   "type": "AI",
+   "inst": 212,
+   "name": "RSMZ 4 Comp VFD Compressor Current",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current reading in Amps that the RSMZ 4 compressor is using"
+  },
+  {
+   "type": "AI",
+   "inst": 213,
+   "name": "RSMZ 4 Discharge Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 discharge line temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 214,
+   "name": "RSMZ 4 Faults",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Faults"
+  },
+  {
+   "type": "AI",
+   "inst": 215,
+   "name": "RSMZ 4 Lockouts",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 4 Lockouts"
+  },
+  {
+   "type": "AI",
+   "inst": 216,
+   "name": "RSMZ 5 Condenser Fan",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 Condenser Fan Signal"
+  },
+  {
+   "type": "AI",
+   "inst": 217,
+   "name": "RSMZ 5 VFD Comp Perc",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 VFD Compressor Percentage"
+  },
+  {
+   "type": "AI",
+   "inst": 218,
+   "name": "RSMZ 5 Discharge Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 discharge pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 219,
+   "name": "RSMZ 5 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 Suction pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 220,
+   "name": "RSMZ 5 Suction Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 221,
+   "name": "RSMZ 5 Saturation Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 222,
+   "name": "RSMZ 5 Superheat",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ5 Superheat temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 223,
+   "name": "RSMZ 5 EEV Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 EEV valve position"
+  },
+  {
+   "type": "AI",
+   "inst": 224,
+   "name": "RSMZ 5 Warnings",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 Warnings"
+  },
+  {
+   "type": "AI",
+   "inst": 225,
+   "name": "RSMZ 5 Comp VFD Alarms 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 Comp VFD Alarms 1"
+  },
+  {
+   "type": "AI",
+   "inst": 226,
+   "name": "RSMZ 5 Comp Alarms 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 Comp VFD Alarms 2"
+  },
+  {
+   "type": "AI",
+   "inst": 227,
+   "name": "RSMZ 5 Comp VFD Drive Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 Comp VFD drive status"
+  },
+  {
+   "type": "AI",
+   "inst": 228,
+   "name": "RSMZ 5 Compressor Current",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current reading in Amps that the RSMZ 5 compressor is using"
+  },
+  {
+   "type": "AI",
+   "inst": 229,
+   "name": "RSMZ 5 Discharge Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 discharge line temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 230,
+   "name": "RSMZ 5 Faults",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5 Faults"
+  },
+  {
+   "type": "AI",
+   "inst": 231,
+   "name": "RSMZ 5 Lockouts",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 5Lockouts"
+  },
+  {
+   "type": "AI",
+   "inst": 232,
+   "name": "RSMZ 6 Condenser Fan",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 condenser fan signal"
+  },
+  {
+   "type": "AI",
+   "inst": 233,
+   "name": "RSMZ 6 Reheat Valve 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Reheat Valve 1 position"
+  },
+  {
+   "type": "AI",
+   "inst": 234,
+   "name": "RSMZ 6 Discharge Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 discharge pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 235,
+   "name": "RSMZ 6 Suction Pressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Suction Pressure"
+  },
+  {
+   "type": "AI",
+   "inst": 236,
+   "name": "RSMZ 6 Suction Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Suction Line Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 237,
+   "name": "RSMZ 6 Saturation Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Saturation Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 238,
+   "name": "RSMZ 6 Superheat",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Superheat Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 239,
+   "name": "RSMZ 6 EEV Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 EEV valve position"
+  },
+  {
+   "type": "AI",
+   "inst": 240,
+   "name": "RSMZ 6 Suction Pressure 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Suction pressure 2"
+  },
+  {
+   "type": "AI",
+   "inst": 241,
+   "name": "RSMZ 6 Suction Line Temp 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Suction Line Temperature 2"
+  },
+  {
+   "type": "AI",
+   "inst": 242,
+   "name": "RSMZ 6 Saturation Temp 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Saturation Temperature 2"
+  },
+  {
+   "type": "AI",
+   "inst": 243,
+   "name": "RSMZ 6 Superheat 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Superheat Temperature 2"
+  },
+  {
+   "type": "AI",
+   "inst": 244,
+   "name": "RSMZ 6 EEV Position 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 EEV valve position 2"
+  },
+  {
+   "type": "AI",
+   "inst": 245,
+   "name": "RSMZ 6 Warnings",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Warnings"
+  },
+  {
+   "type": "AI",
+   "inst": 246,
+   "name": "RSMZ 6 Discharge Line Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 discharge line temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 247,
+   "name": "RSMZ 6 Faults",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Faults"
+  },
+  {
+   "type": "AI",
+   "inst": 248,
+   "name": "RSMZ 6 Lockouts",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current RSMZ 6 Lockouts"
+  },
+  {
+   "type": "AI",
+   "inst": 249,
+   "name": "Not used",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Not used"
+  },
+  {
+   "type": "AI",
+   "inst": 250,
+   "name": "Not used",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Not used"
+  },
+  {
+   "type": "AI",
+   "inst": 251,
+   "name": "Not used",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Not used"
+  },
+  {
+   "type": "AI",
+   "inst": 252,
+   "name": "Not used",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Not used"
+  },
+  {
+   "type": "AI",
+   "inst": 253,
+   "name": "SUB 1 Sub Cool 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Subcooling Module 1 Sub Cool 1 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 254,
+   "name": "SUB 1 Sub Cool 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Subcooling Module 1 Sub Cool 2 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 255,
+   "name": "SUB 1 Sub Cool 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Subcooling Module 1 Sub Cool 3 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 256,
+   "name": "SUB 1 Pressure 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Subcooling Module 1 liquid line pressure 1 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 257,
+   "name": "SUB 1 Pressure 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Subcooling Module 1 liquid line pressure 2 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 258,
+   "name": "SUB 1 Pressure 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Subcooling Module 1 liquid line pressure 3 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 259,
+   "name": "SUB 1 Saturation 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 1 saturation temperature 1 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 260,
+   "name": "SUB 1 Saturation 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 1 saturation temperature 2 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 261,
+   "name": "SUB 1 Saturation 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 1 saturation temperature 3 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 262,
+   "name": "SUB 1 Line Temp 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 1 liquid line temperature 1 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 263,
+   "name": "SUB 1 Line Temp 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 1 liquid line temperature 2 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 264,
+   "name": "SUB 1 Line Temp 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 1 liquid line temperature 3 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 265,
+   "name": "SUB 2 Sub Cool 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Subcooling Module 2 Sub Cool 1 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 266,
+   "name": "SUB 2 Sub Cool 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Subcooling Module 2 Sub Cool 2 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 267,
+   "name": "SUB 2 Sub Cool 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Subcooling Module 2 Sub Cool 3 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 268,
+   "name": "SUB 2 Pressure 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Subcooling Module 2 liquid line pressure 1 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 269,
+   "name": "SUB 2 Pressure 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 2 liquid line pressure 2 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 270,
+   "name": "SUB 2 Pressure 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 2 liquid line pressure 3 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 271,
+   "name": "SUB 2 Saturation 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 2 saturation temperature 1 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 272,
+   "name": "SUB 2 Saturation 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 2 saturation temperature 2 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 273,
+   "name": "SUB 2 Saturation 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 2 saturation temperature 3 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 274,
+   "name": "SUB 2 Line Temp 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 2 liquid line temperature 1 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 275,
+   "name": "SUB 2 Line Temp 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 2 liquid line temperature 2 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 276,
+   "name": "SUB 2 Line Temp 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Subcooling Module 2 liquid line temperature 3 reading"
+  },
+  {
+   "type": "AI",
+   "inst": 277,
+   "name": "Enter Water Pump",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status of Entering Water Temperature"
+  },
+  {
+   "type": "AI",
+   "inst": 278,
+   "name": "Return Plenum Pressure Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the Return Plenum Pressure Sensor"
+  },
+  {
+   "type": "AI",
+   "inst": 279,
+   "name": "Return Plenum Control Signal",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Return Plenum Control Signal (Motorized Exhaust Damper)"
+  },
+  {
+   "type": "AI",
+   "inst": 280,
+   "name": "Mixed Air Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Mixed air temperature sensor status. Used on units with Direct Fire Heat."
+  },
+  {
+   "type": "AI",
+   "inst": 281,
+   "name": "Actual Heat Rise",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Difference between supply air temperature and mixed air temperature on units with Direct Fire Heat."
+  },
+  {
+   "type": "AI",
+   "inst": 282,
+   "name": "Calculated Heat Rise",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The heat rise limit determined by how open the Outside Damper is."
+  },
+  {
+   "type": "AI",
+   "inst": 283,
+   "name": "Supply Air Relative Humidity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If an EBUS Supply Air Sensor is being used this shows the current supply air relative humidity reading."
+  },
+  {
+   "type": "AI",
+   "inst": 284,
+   "name": "Supply Air Dew Point",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If an EBUS Supply Air Sensor is being used this shows the current calculated supply air dew point."
+  },
+  {
+   "type": "AI",
+   "inst": 285,
+   "name": "Space Dew Point",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the calculated Space Dew Point."
+  },
+  {
+   "type": "AI",
+   "inst": 286,
+   "name": "Return Dew Point",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current value of the calculated Return Dew Point."
+  },
+  {
+   "type": "AV",
+   "inst": 1,
+   "name": "Occupied Cooling Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the control temperature rises one deadband above this setpoint, the control activates the cooling demand. This setpoint does not determine the mode in Occupied operation if the unit is configured for Supply Air Cooling or Supply Air Temp"
+  },
+  {
+   "type": "AV",
+   "inst": 2,
+   "name": "Occupied Heating Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the control temperature drops one deadband below this setpoint, the control activates the heating demand. This setpoint does not determine the mode in Occupied operation if the unit is configured for Supply Air Cooling or Supply Air Temp"
+  },
+  {
+   "type": "AV",
+   "inst": 3,
+   "name": "Hood On Cooling Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This is the Cooling Mode Enable Setpoint used only in Hood On Mode or Space Temperature Control of High Percentage Outdoor Air Units or VAV Tempering"
+  },
+  {
+   "type": "AV",
+   "inst": 4,
+   "name": "Hood On Heating Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This is the Heating Mode Enable Setpoint used only in Hood On Mode or Space Temperature Control of High Percentage Outdoor Air Units or VAV Tempering"
+  },
+  {
+   "type": "AV",
+   "inst": 5,
+   "name": "Unoccupied Cooling Offset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "During the Unoccupied Mode of Operation, this Setpoint offsets the Occupied Cooling Setpoint up by this user- adjustable amount. Use the default setting of 30°F for this setpoint to prevent Cooling during the Unoccupied Mode."
+  },
+  {
+   "type": "AV",
+   "inst": 6,
+   "name": "Unoccupied Heating Offset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "During the Unoccupied Mode of Operation, this Setpoint offsets the Occupied Heating Setpoint down by this user- adjustable amount. Use the default setting of 30°F for this setpoint to prevent Heating during Unoccupied Mode."
+  },
+  {
+   "type": "AV",
+   "inst": 7,
+   "name": "Mode Select Deadband",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This value is added to and subtracted from the HVAC Mode Setpoints to create a control deadband range"
+  },
+  {
+   "type": "AV",
+   "inst": 8,
+   "name": "Max Coil Setpoint Reset Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This is the highest that the Coil Temperature resets to during Space Humidity Reset of the Coil Suction Temperature Setpoint. If no coil temperature reset is required, this value should be set the same as the Min Coil Reset Limit."
+  },
+  {
+   "type": "AV",
+   "inst": 9,
+   "name": "Min Coil Setpoint Reset Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This is the lowest the Coil Temperature resets to during Space Humidity Reset of the Coil Suction Temperature Setpoint. If no coil temperature reset is required, this value should be set the same as the Max Coil Reset Limit."
+  },
+  {
+   "type": "AV",
+   "inst": 10,
+   "name": "Supply Air Cooling Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Supply Air Cooling Setpoint. If Supply Air Reset is configured this is the Low SAT Cooling Reset Value"
+  },
+  {
+   "type": "AV",
+   "inst": 11,
+   "name": "Supply Air Heating Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Supply Air Heating Setpoint. If Supply Air Reset is configured this is the Low SAT Heating Reset Value"
+  },
+  {
+   "type": "AV",
+   "inst": 12,
+   "name": "Max SAT Cooling Setpoint Reset Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If Supply Air Reset is configured this is the High SAT Cooling Reset Value"
+  },
+  {
+   "type": "AV",
+   "inst": 13,
+   "name": "Max SAT Heating Setpoint Reset Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If Supply Air Reset is configured this is the High SAT Heating Reset Value"
+  },
+  {
+   "type": "AV",
+   "inst": 14,
+   "name": "Supply Air Cooling Staging Window",
+   "unitRaw": null,
+   "unit": null,
+   "note": "In Cooling Mode, if the Supply Air Temperature drops below the Active Supply Air Cooling Setpoint minus this Staging Window, the Cooling Stage deactivates after its Minimum Run Time"
+  },
+  {
+   "type": "AV",
+   "inst": 15,
+   "name": "Supply Air Heating Staging Window",
+   "unitRaw": null,
+   "unit": null,
+   "note": "In Heating Mode, if the Supply Air Temperature rises above the Active Supply Air Heating Setpoint plus this Staging Window, the Heating Stage deactivates after its Minimum Run Time"
+  },
+  {
+   "type": "AV",
+   "inst": 16,
+   "name": "Warm-Up Target Temperature (See AV: 89 for Cool-Down Target Temperature)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If Morning Warm-Up is configured, then upon entering occupied mode, the Warm-Up Mode activates if the Return Air is below this temperature by one degree"
+  },
+  {
+   "type": "AV",
+   "inst": 17,
+   "name": "Warm-Up Mode Supply Air Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "During Morning Warm-Up, the Supply Air Temperature is controlled to this Setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 18,
+   "name": "Cool-Down Mode Supply Air Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "During Morning Cool-Down, the Supply Air Temperature is controlled to this Setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 19,
+   "name": "Mechanical Cooling Outdoor Air Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Mechanical Cooling is locked out when the Outdoor Air Temperature is below this Setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 20,
+   "name": "Mechanical Heating Outdoor Air Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Mechanical Heating is locked out when the Outdoor Air Temperature is above this Setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 21,
+   "name": "Low Supply Temp Cutoff Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Cooling is disabled if the Supply Air Temperature falls below this value. See sequence for more details"
+  },
+  {
+   "type": "AV",
+   "inst": 22,
+   "name": "High Supply Temp Cutoff Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Heating is disabled if the Supply Air Temperature rises above this value. See sequence for more details"
+  },
+  {
+   "type": "AV",
+   "inst": 23,
+   "name": "Preheater Cooling Mode Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the Preheater is enabled, and the unit is in the Cooling Mode, this is sent to the Preheat-X Controller to control Leaving Air Temperature"
+  },
+  {
+   "type": "AV",
+   "inst": 24,
+   "name": "Preheater Venting Mode Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the Preheater is enabled, and the unit is in the Vent Mode, this setpoint is sent to the Preheat-X Controller to control Leaving Air Temperature"
+  },
+  {
+   "type": "AV",
+   "inst": 25,
+   "name": "Preheater Heating Mode Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the Preheater is enabled, and the unit is in the Heating Mode, this setpoint is sent to the Preheat-X Controller to control Leaving Air Temperature"
+  },
+  {
+   "type": "AV",
+   "inst": 26,
+   "name": "Outdoor Air Dewpoint Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "On an MUA unit, if the OA dewpoint rises above this setpoint, Dehumidification is initiated"
+  },
+  {
+   "type": "AV",
+   "inst": 27,
+   "name": "Economizer Enable Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The economizer is enabled if the outdoor drybulb, dewpoint, or wetbulb temperature falls below this setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 28,
+   "name": "Heat Wheel Defrost Enable Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The unit goes into Heat Wheel Defrost if the Outdoor Air is below this setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 29,
+   "name": "PreHeat Enable Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the Supply Fan is energized, this is the temperature at which the Preheat Relay activates, or the Preheat-X activates. Operates only in the Occupied Mode."
+  },
+  {
+   "type": "AV",
+   "inst": 30,
+   "name": "Sensor Slide Offset Max Effect",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the space sensor has the optional slide adjustment feature, this is the maximum amount the slide can adjust the current heating and cooling setpoints up or down with full deflection of the slide"
+  },
+  {
+   "type": "AV",
+   "inst": 31,
+   "name": "Space Sensor Calibration Offset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the Space Temperature Sensor is reading incorrectly, use this option to enter an offset temperature to adjust the Sensor’s Temperature"
+  },
+  {
+   "type": "AV",
+   "inst": 32,
+   "name": "Supply Air Sensor Calibration Offset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the Supply Air Temperature Sensor is reading incorrectly, use this option to enter an offset temperature to adjust the Sensor’s Temperature"
+  },
+  {
+   "type": "AV",
+   "inst": 33,
+   "name": "Return Air Sensor Calibration Offset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the Return Temperature Sensor is reading incorrectly, use this option to enter an offset temperature to adjust the Sensor’s Temperature"
+  },
+  {
+   "type": "AV",
+   "inst": 34,
+   "name": "Outdoor Air Sensor Calibration Offset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the Outdoor Temperature Sensor is reading incorrectly, use this option to enter an offset temperature to adjust the Sensor’s Temperature"
+  },
+  {
+   "type": "AV",
+   "inst": 35,
+   "name": "Carbon Dioxide Sensor Calibration Offset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the CO2 Sensor is reading incorrectly, use this option to enter an offset value to adjust the Sensor’s CO2 reading"
+  },
+  {
+   "type": "AV",
+   "inst": 36,
+   "name": "Low Ambient Protection Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Temperature at which the Low Ambient Relay activates in the Occupied or Unoccupied Mode"
+  },
+  {
+   "type": "AV",
+   "inst": 37,
+   "name": "SAT Cool Setpoint Reset Source Low Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If doing Supply Air Setpoint Reset, this is the Low Reset Source value in Cooling that corresponds to the Supply Air Cool High Reset Setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 38,
+   "name": "SAT Cool Setpoint Reset Source High Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If doing Supply Air Setpoint Reset, this is the High Reset Source value in Cooling that corresponds to the Supply Air Cooling Setpoint (Low Reset)"
+  },
+  {
+   "type": "AV",
+   "inst": 39,
+   "name": "SAT Heat Setpoint Reset Source Low Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If doing Supply Air Setpoint Reset, this is the Low Reset Source value in Heating that corresponds to the Supply Air Heating High Reset Setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 40,
+   "name": "SAT Heat Setpoint Reset Source High Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If doing Supply Air Setpoint Reset, this is the High Reset Source value in Heating that corresponds to the Supply Air Heating Setpoint (Low Reset)"
+  },
+  {
+   "type": "AV",
+   "inst": 41,
+   "name": "Control Temperature High Alarm Offset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the temperature of the controlling sensor rises above the Occupied Cooling Setpoint by this value, a High Control Temp Alarm occurs. Only applies if configured for Space or Return Air Temp Control, or as Single Zone VAV."
+  },
+  {
+   "type": "AV",
+   "inst": 42,
+   "name": "Control Temperature Low Alarm Offset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the temperature of the controlling sensor falls below the Occupied Heating Setpoint by this value, a Low Control Temp Alarm occurs. Only applies if configured for Space or Return Air Temp Control, or as Single Zone VAV."
+  },
+  {
+   "type": "AV",
+   "inst": 43,
+   "name": "Heat Pump Compressor Heat Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Compressor Heat is locked out below this setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 44,
+   "name": "Maximum Main Fan VFD in SZ VAV Heating Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "In Single Zone VAV configuration, this is the max fan speed the VFD can modulate up to in Heat Mode"
+  },
+  {
+   "type": "AV",
+   "inst": 45,
+   "name": "Minimum Main Fan VFD in Cooling Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "In Single Zone VAV configuration, this is the fan speed at which the VFD starts when Cooling is initiated. In a VAV configuration this is the lowest fan speed allowed in the Cooling Mode. In CAV and MUA configurations this should be set to "
+  },
+  {
+   "type": "AV",
+   "inst": 46,
+   "name": "Minimum Main Fan VFD in Heating Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "In Single Zone VAV configuration, this is the fan speed at which the VFD starts when Heating is initiated. In a VAV configuration this is the lowest fan speed allowed in the Heating Mode. In CAV and MUA configurations this should be set to "
+  },
+  {
+   "type": "AV",
+   "inst": 47,
+   "name": "Minimum Main Fan VFD in Vent Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Speed at which the VFD operates in the Vent Mode in Single Zone VAV"
+  },
+  {
+   "type": "AV",
+   "inst": 48,
+   "name": "Maximum Economizer in Heating Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Max position the Economizer Damper opens to in Supply Air Tempering during Heating Mode. Takes priority over Max Position in High CO2."
+  },
+  {
+   "type": "AV",
+   "inst": 49,
+   "name": "Minimum Economizer Position",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The minimum position of the Outdoor Air damper in the Occupied Mode. This can be reset upwards based on indoor CO2 levels. NOTE: See Economizer Override via BACnet section in the Economizer area of the Sequence of Operations for additional "
+  },
+  {
+   "type": "AV",
+   "inst": 50,
+   "name": "Maximum Economizer CO2 Reset Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The maximum value the Economizer Minimum Position can be reset up to during CO2 override"
+  },
+  {
+   "type": "AV",
+   "inst": 51,
+   "name": "Minimum Carbon Dioxide Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This is the threshold CO2 level at which the Economizer Min Damper Position Setpoint begins to be reset higher"
+  },
+  {
+   "type": "AV",
+   "inst": 52,
+   "name": "Maximum Carbon Dioxide Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This is the CO2 level at which the Economizer Min Damper Position resets to the Economizer Max Position in High CO2. In between the Min and Max CO2 levels the Economizer Min Damper Position is proportionally reset between the configured Min"
+  },
+  {
+   "type": "AV",
+   "inst": 53,
+   "name": "Indoor Humidity Setpoint Low Reset Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "On indoor controlled (non-MUA) units, this is the Humidity setpoint at which the unit leaves Dehumidification. During Coil Temp Reset, this is the lowest Space RH value that corresponds to the High Coil Temp Setpoint. If the VCCX2 is config"
+  },
+  {
+   "type": "AV",
+   "inst": 54,
+   "name": "Indoor Humidity Setpoint High Reset Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "On indoor controlled (non-MUA) units, this is the Humidity setpoint at which the unit initiates Dehumidification. During Coil Temp Reset, this is the highest Space RH value that corresponds to the Low Coil Temp Setpoint. If the VCCX2 is con"
+  },
+  {
+   "type": "AV",
+   "inst": 55,
+   "name": "Duct Static Pressure Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Static Pressure Setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 56,
+   "name": "Duct Static Pressure Control Deadband",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Value above and below the Duct Static Pressure Setpoint where no control change occurs"
+  },
+  {
+   "type": "AV",
+   "inst": 57,
+   "name": "Building Pressure Control Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Building Pressure Setpoint or Exhaust Duct Static Pressure Setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 58,
+   "name": "Building Pressure Control Deadband",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Value above and below the Building Pressure Setpoint or the Exhaust Duct Static Pressure Setpoint where no control change occurs"
+  },
+  {
+   "type": "AV",
+   "inst": 59,
+   "name": "Minimum Outdoor CFM Requirement",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Minimum Outdoor Airflow CFM Setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 60,
+   "name": "Outdoor CFM Control Deadband",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Controls rate of change for damper signal. As OA CFM moves further from setpoint within this window, the damper makes a larger change."
+  },
+  {
+   "type": "AV",
+   "inst": 61,
+   "name": "Single Zone VAV Fan Speed Integral",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The Integral Constant for Single Zone VAV Fan Control"
+  },
+  {
+   "type": "AV",
+   "inst": 62,
+   "name": "Relay Run-time Hours Warning Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If any configured relay’s run time exceeds this number of hours of operation, a warning alarm is generated so that periodic maintenance can be performed"
+  },
+  {
+   "type": "AV",
+   "inst": 63,
+   "name": "Cooling Mode Head Pressure Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Head Pressure Setpoint in the Cooling Mode"
+  },
+  {
+   "type": "AV",
+   "inst": 64,
+   "name": "Dehum Mode Head Pressure Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Head Pressure Setpoint in the Dehumidification Mode"
+  },
+  {
+   "type": "AV",
+   "inst": 65,
+   "name": "Superheat Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Superheat Setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 66,
+   "name": "Maximum Outdoor CFM Requirement",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Maximum Outdoor Airflow CFM Setpoint in High CO2"
+  },
+  {
+   "type": "AV",
+   "inst": 67,
+   "name": "Schedule Force",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0 = Auto (uses controller’s schedule) 1 = Forced Occupied 2 = Forced Unoccupied"
+  },
+  {
+   "type": "AV",
+   "inst": 68,
+   "name": "HVAC Mode Override",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Overrides normal controller operation to force the unit into this desired mode. Configuring for “Auto” restores normal unit control of the mode of operation. 0=Auto 1=Vent 2=Cool 3=Heat 4=Vent Dehum 5=Cool Dehum 6=Heat Dehum."
+  },
+  {
+   "type": "AV",
+   "inst": 69,
+   "name": "Fan VFD Override",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Override to force the VFD to this percentage speed. Configuring “Auto” restores normal unit control of the VFD speed."
+  },
+  {
+   "type": "AV",
+   "inst": 70,
+   "name": "Outdoor Air Damper Override",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Overrides all other Outdoor Air Damper position commands to maintain this fixed position. Configuring for “Auto” restores normal unit control of the Outdoor Air Damper/ Economizer operation. NOTE: When a value of 0 or 100% is written the co"
+  },
+  {
+   "type": "AV",
+   "inst": 71,
+   "name": "Supply Setpoint Override",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This overrides whatever setpoint the Supply Air Temperature is currently being controlled to. 0=No Override."
+  },
+  {
+   "type": "AV",
+   "inst": 72,
+   "name": "Space Temperature Value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the controller is configured for this operation, the user can write a Space Sensor value"
+  },
+  {
+   "type": "AV",
+   "inst": 73,
+   "name": "Space Humidity Value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the controller is configured for this operation, the user can write a Space Humidity Sensor value"
+  },
+  {
+   "type": "AV",
+   "inst": 74,
+   "name": "Indoor RH Calibration Offset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the Space Humidity Sensor is reading incorrectly, use this option to enter an offset humidity to adjust the Sensor’s Humidity"
+  },
+  {
+   "type": "AV",
+   "inst": 75,
+   "name": "Relief Fan VFD",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Override to force the VFD to this percentage speed. Configuring “Auto” restores normal unit control of the VFD speed"
+  },
+  {
+   "type": "AV",
+   "inst": 76,
+   "name": "Relief Pressure Value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the controller is configured for this operation, the user can write Building Pressure Sensor value"
+  },
+  {
+   "type": "AV",
+   "inst": 77,
+   "name": "Carbon Dioxide Value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the controller is configured for this operation, the user can write a CO2 Sensor value."
+  },
+  {
+   "type": "AV",
+   "inst": 78,
+   "name": "Outdoor Air Temperature Value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the controller is configured for this operation, the user can write an Outdoor Sensor value"
+  },
+  {
+   "type": "AV",
+   "inst": 79,
+   "name": "Outdoor Air Humidity Value",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the controller is configured for this operation, the user can write an Outdoor Humidity Sensor value"
+  },
+  {
+   "type": "AV",
+   "inst": 80,
+   "name": "High Level Enthalpy (Reserved)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Reserved"
+  },
+  {
+   "type": "AV",
+   "inst": 81,
+   "name": "Low Level Enthalpy (Reserved)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Reserved"
+  },
+  {
+   "type": "AV",
+   "inst": 82,
+   "name": "Max Plenum Pressure Setpoint Reset Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Reserved"
+  },
+  {
+   "type": "AV",
+   "inst": 83,
+   "name": "Min Plenum Pressure Setpoint Reset Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Reserved"
+  },
+  {
+   "type": "AV",
+   "inst": 84,
+   "name": "Enthalpy Enable Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If configured for Comparative Enthalpy Economizer Control, the OA Enthalpy must be below this setpoint by the Enthalpy Enable Deadband before the OA/RA Enthalpy comparison is utilized to enable the Economizer"
+  },
+  {
+   "type": "AV",
+   "inst": 85,
+   "name": "EnthalpyEnable Deadband",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The OA Enthalpy must be below the Enthalpy Enable Setpoint by this amount, and the OA Enthalpy must be below the RA Enthalpy by this amount to utilize the Economizer"
+  },
+  {
+   "type": "AV",
+   "inst": 86,
+   "name": "Maximum Static Setpoint Reset Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "As the most open VAV damper rises above 80%, the static setpoint resets up to this maximum limit"
+  },
+  {
+   "type": "AV",
+   "inst": 87,
+   "name": "Minimum Static Setpoint Reset Limit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "As the most open VAV damper drops below 80%, the static setpoint resets down to this minimum reset limit"
+  },
+  {
+   "type": "AV",
+   "inst": 88,
+   "name": "Static Setpoint Reset Interval",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The Reset Interval is how often the setpoint reset calculation occurs. This must be an infrequent event, so the default is 15 minutes."
+  },
+  {
+   "type": "AV",
+   "inst": 89,
+   "name": "Cool-Down Target Temperature (See AV: 16 for Warm-Up Target Temperature)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If Morning Cool-Down is configured then upon entering occupied mode, the Cool-Down Mode activates if the return air is above this temperature by one degree"
+  },
+  {
+   "type": "AV",
+   "inst": 90,
+   "name": "Warm-Up Override",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Commands the unit into Morning Warm-Up Mode. 1=Command Warm-Up Mode"
+  },
+  {
+   "type": "AV",
+   "inst": 91,
+   "name": "Cool Down Override",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Commands the unit into Morning Cool-Down Mode 1=Command Cool-Down Mode"
+  },
+  {
+   "type": "AV",
+   "inst": 92,
+   "name": "Return Air High Limit Protection (for Voting Units or CV Units Only)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the Return Air Temperature goes above this limit, the unit reverts to Return Air Control. NOTE: This point only applies when the BMS is writing a space temperature value to the VCCX2 and that value is lost."
+  },
+  {
+   "type": "AV",
+   "inst": 93,
+   "name": "Return Air Low Limit Protection (for Voting Units or CV Units Only)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If the Return Air Temperature goes below this limit, the unit reverts to Return Air Control. NOTE: This point only applies when the BMS is writing a space temperature value to the VCCX2 and that value is lost."
+  },
+  {
+   "type": "AV",
+   "inst": 94,
+   "name": "Sump Drain Override",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Setting this value to 1 turns the Sump Drain relay on. Setting this value to 0 sets the relay operation to Auto. 0=Auto 1=On"
+  },
+  {
+   "type": "AV",
+   "inst": 95,
+   "name": "Return Plenum Pressure Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Return Plenum Pressure Setpoint"
+  },
+  {
+   "type": "AV",
+   "inst": 96,
+   "name": "Return Plenum Pressure Deadband",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Value above and below the Return Plenum Pressure Setpoint where no control change occurs"
+  },
+  {
+   "type": "AV",
+   "inst": 97,
+   "name": "Dehum Lockout Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "If Outdoor Air temperature is below this setpoint, Dehumidification Mode is locked out"
+  },
+  {
+   "type": "AV",
+   "inst": 98,
+   "name": "Emergency Compressor Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "This point can be used to lockout the compressors if the BMS wants them disabled."
+  },
+  {
+   "type": "AV",
+   "inst": 99,
+   "name": "Supply Air Dew Point Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "When the VCCX2 is configured for DX-DOAS control it modulates the compressors to try to maintain the Supply Air Dew Point Setpoint during dehumidification mode."
+  },
+  {
+   "type": "BI",
+   "inst": 1,
+   "name": "Cooling Enabled Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status that indicates Mechanical Cooling is enabled based on the Cooling Lockout"
+  },
+  {
+   "type": "BI",
+   "inst": 2,
+   "name": "Heating Enabled Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status that indicates that Mechanical Heating is enabled based on the Heating Lockout"
+  },
+  {
+   "type": "BI",
+   "inst": 3,
+   "name": "Economizer Enabled Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status that indicates the Economizer is enabled based on the Economizer Enable Setpoint"
+  },
+  {
+   "type": "BI",
+   "inst": 4,
+   "name": "Aux Heat Enabled Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Heat Pump Auxiliary Heat enabled"
+  },
+  {
+   "type": "BI",
+   "inst": 5,
+   "name": "Emergency Heat Enabled Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Shows the Emergency Heat is enabled based on the Compressor Heating Lockout"
+  },
+  {
+   "type": "BI",
+   "inst": 6,
+   "name": "Fan Proof of Airflow Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Proof of Airflow Binary Input Status"
+  },
+  {
+   "type": "BI",
+   "inst": 7,
+   "name": "Exhaust Hood On/Off Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Exhaust Hood On/Off Binary Input Status"
+  },
+  {
+   "type": "BI",
+   "inst": 8,
+   "name": "Remote Forced Occupied Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Remote Forced Occupied Mode Binary Input Status"
+  },
+  {
+   "type": "BI",
+   "inst": 9,
+   "name": "Remote Forced Cooling Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Remote Forced Cooling Mode Binary Input Status"
+  },
+  {
+   "type": "BI",
+   "inst": 10,
+   "name": "Remote Forced Heating Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Remote Forced Heating Mode Binary Input Status"
+  },
+  {
+   "type": "BI",
+   "inst": 11,
+   "name": "Remote Force Dehum Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Remote Force Dehumidification Mode Binary Input Status"
+  },
+  {
+   "type": "BI",
+   "inst": 12,
+   "name": "Bad Supply Air Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Alarm that indicates a failure of the Supply Air Sensor"
+  },
+  {
+   "type": "BI",
+   "inst": 13,
+   "name": "Bad Return Air Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Alarm that indicates a failure of the Return Air Sensor"
+  },
+  {
+   "type": "BI",
+   "inst": 14,
+   "name": "Bad Outdoor Air Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Failure of the Outdoor Air Temperature Sensor"
+  },
+  {
+   "type": "BI",
+   "inst": 15,
+   "name": "Bad Space Temp Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Failure of the Space Temperature Sensor. If Space is the controlling sensor, the unit shuts down."
+  },
+  {
+   "type": "BI",
+   "inst": 16,
+   "name": "Bad Carbon Dioxide Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Failure of the CO2 Sensor"
+  },
+  {
+   "type": "BI",
+   "inst": 17,
+   "name": "Bad Building Pressure Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Alarm indicating missing or failed Building Pressure Sensor"
+  },
+  {
+   "type": "BI",
+   "inst": 18,
+   "name": "Bad Outdoor Airflow Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "An Outdoor Airflow Sensor is configured, but not detected"
+  },
+  {
+   "type": "BI",
+   "inst": 19,
+   "name": "Bad Exhaust Airflow Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "An Exhaust Airflow Sensor is configured, but not detected"
+  },
+  {
+   "type": "BI",
+   "inst": 20,
+   "name": "Bad Supply Airflow Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "A Supply Airflow Sensor is configured, but not detected"
+  },
+  {
+   "type": "BI",
+   "inst": 21,
+   "name": "Bad Return Airflow Sensor",
+   "unitRaw": null,
+   "unit": null,
+   "note": "A Return Airflow Sensor is configured, but not detected"
+  },
+  {
+   "type": "BI",
+   "inst": 22,
+   "name": "Mechanical Cooling Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Compressor Relays are enabled but the Supply Air Temperature has not fallen 5°F w/in a user-adjustable time period. This does not apply to Modulating Cooling."
+  },
+  {
+   "type": "BI",
+   "inst": 23,
+   "name": "Mechanical Heating Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Heating Mode has been initiated but the Supply Air Temperature has not risen 5°F w/in a user-adjustable time period. Alarms on the MODGAS-X and Preheat-X Controller generate this alarm. This alarm does not apply to SCR Heat, Modulating Hot "
+  },
+  {
+   "type": "BI",
+   "inst": 24,
+   "name": "Fan Proving Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Alarm that indicates an Airflow failure from the Main Fan. Heating and Cooling are disabled."
+  },
+  {
+   "type": "BI",
+   "inst": 25,
+   "name": "Dirty Filter Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Alarm that indicates the filters are dirty"
+  },
+  {
+   "type": "BI",
+   "inst": 26,
+   "name": "Emergency Shutdown Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Alarm that indicates that Emergency Shutdown has been activated. Shuts the unit down."
+  },
+  {
+   "type": "BI",
+   "inst": 27,
+   "name": "Relay Runtime Warning",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates when any of the configured relays exceeds a configured number of hours of runtime. Can be used to schedule service, etc."
+  },
+  {
+   "type": "BI",
+   "inst": 28,
+   "name": "Economizer Missing Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Title 24 operation indicates missing economizer feedback"
+  },
+  {
+   "type": "BI",
+   "inst": 29,
+   "name": "Economizer Title 24 Failure A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Title 24 Air Temperature Sensor Failure"
+  },
+  {
+   "type": "BI",
+   "inst": 30,
+   "name": "Economizer Title 24 Failure B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Title 24 Not Economizing when it should"
+  },
+  {
+   "type": "BI",
+   "inst": 31,
+   "name": "Economizer Title 24 Failure C",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Title 24 Economizing when it should not"
+  },
+  {
+   "type": "BI",
+   "inst": 32,
+   "name": "Economizer Title 24 Failure D",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Title 24 Damper Not Modulating"
+  },
+  {
+   "type": "BI",
+   "inst": 33,
+   "name": "Economizer Title 24 Failure E",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Title 24 Excess Outdoor Air"
+  },
+  {
+   "type": "BI",
+   "inst": 34,
+   "name": "High Supply Temp Cutoff",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The Supply Air has risen above the Hi SAT Cutoff Setpoint. Heating stages deactivate and the fan continues to run. This alarm is generated."
+  },
+  {
+   "type": "BI",
+   "inst": 35,
+   "name": "Low Supply Temp Cutoff",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The Supply Air has fallen below the Low SAT Cutoff Setpoint. Cooling stages deactivate. After 10 minutes, the fan deactivates and this alarm is generated."
+  },
+  {
+   "type": "BI",
+   "inst": 36,
+   "name": "High Control Mode Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Occurs when the Controlling Sensor Temperature rises above the Cooling Mode Enable Setpoint plus the Control Mode High Alarm Offset. Applies only to Space or Return Air Temperature controlled units."
+  },
+  {
+   "type": "BI",
+   "inst": 37,
+   "name": "Low Control Mode Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Occurs when the Controlling Sensor Temperature falls below the Heating Mode Enable Setpoint minus the Control Mode Low Alarm Offset. Applies only to Space or Return Air Temperature controlled units."
+  },
+  {
+   "type": "BI",
+   "inst": 38,
+   "name": "Missing Refrigerant Module #1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Refrigerant Module #1 is bad or missing"
+  },
+  {
+   "type": "BI",
+   "inst": 39,
+   "name": "Missing Refrigerant Module #2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Refrigerant Module #2 is bad or missing"
+  },
+  {
+   "type": "BI",
+   "inst": 40,
+   "name": "Missing Refrigerant Module #3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Refrigerant Module #3 is bad or missing"
+  },
+  {
+   "type": "BI",
+   "inst": 41,
+   "name": "Missing Refrigerant Module #4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Refrigerant Module #4 is bad or missing"
+  },
+  {
+   "type": "BI",
+   "inst": 42,
+   "name": "Missing Preheater Board",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Preheater Module is bad or missing"
+  },
+  {
+   "type": "BI",
+   "inst": 43,
+   "name": "Missing Reheat Board",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The MHGR board is configured but not detected"
+  },
+  {
+   "type": "BI",
+   "inst": 44,
+   "name": "Missing Mod Gas Board",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The MODGAS board is configured but not detected"
+  },
+  {
+   "type": "BI",
+   "inst": 45,
+   "name": "Missing EM1 Board",
+   "unitRaw": null,
+   "unit": null,
+   "note": "EM1 Expansion Board is bad or missing"
+  },
+  {
+   "type": "BI",
+   "inst": 46,
+   "name": "Missing 12 Relay Expansion Board",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The 12 Relay Expansion Board is configured but not detected"
+  },
+  {
+   "type": "BI",
+   "inst": 47,
+   "name": "On Board Relay 1 Main Fan",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Main Fan Relay #1 on Main Board"
+  },
+  {
+   "type": "BI",
+   "inst": 48,
+   "name": "On Board Relay 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #2 on Main Board"
+  },
+  {
+   "type": "BI",
+   "inst": 49,
+   "name": "On Board Relay 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #3 on Main Board"
+  },
+  {
+   "type": "BI",
+   "inst": 50,
+   "name": "On Board Relay 4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #4 on Main Board"
+  },
+  {
+   "type": "BI",
+   "inst": 51,
+   "name": "On Board Relay 5",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #5 on Main Board"
+  },
+  {
+   "type": "BI",
+   "inst": 52,
+   "name": "On Board Relay 6",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #6 on Main Board"
+  },
+  {
+   "type": "BI",
+   "inst": 53,
+   "name": "On Board Relay 7",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #7 on Main Board"
+  },
+  {
+   "type": "BI",
+   "inst": 54,
+   "name": "On Board Relay 8",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #8 on Main Board"
+  },
+  {
+   "type": "BI",
+   "inst": 55,
+   "name": "Expansion Board EM1 Relay 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #1 on EM1 Board"
+  },
+  {
+   "type": "BI",
+   "inst": 56,
+   "name": "Expansion Board EM1 Relay 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #2 on EM1 Board"
+  },
+  {
+   "type": "BI",
+   "inst": 57,
+   "name": "Expansion Board EM1 Relay 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #3 on EM1 Board"
+  },
+  {
+   "type": "BI",
+   "inst": 58,
+   "name": "Expansion Board EM1 Relay 4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #4 on EM1 Board"
+  },
+  {
+   "type": "BI",
+   "inst": 59,
+   "name": "Expansion Board EM1 Relay 5",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #5 on EM1 Board"
+  },
+  {
+   "type": "BI",
+   "inst": 60,
+   "name": "12 Relay Expansion Board Relay 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #1 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 61,
+   "name": "12 Relay Expansion Board Relay 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #2 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 62,
+   "name": "12 Relay Expansion Board Relay 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #3 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 63,
+   "name": "12 Relay Expansion Board Relay 4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #4 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 64,
+   "name": "12 Relay Expansion Board Relay 5",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #5 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 65,
+   "name": "12 Relay Expansion Board Relay 6",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #6 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 66,
+   "name": "12 Relay Expansion Board Relay 7",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #7 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 67,
+   "name": "12 Relay Expansion Board Relay 8",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #8 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 68,
+   "name": "12 Relay Expansion Board Relay 9",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #9 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 69,
+   "name": "12 Relay Expansion Board Relay 10",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #10 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 70,
+   "name": "12 Relay Expansion Board Relay 11",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #11 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 71,
+   "name": "12 Relay Expansion Board Relay 12",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Configurable Relay #12 on 12 Relay Board"
+  },
+  {
+   "type": "BI",
+   "inst": 72,
+   "name": "Preheater Enable Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status of Preheater Enable Input"
+  },
+  {
+   "type": "BI",
+   "inst": 73,
+   "name": "Preheater Emergency Shutdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status of Preheater Emergency Shutdown Input"
+  },
+  {
+   "type": "BI",
+   "inst": 74,
+   "name": "Preheater Spare Binary Input #3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status of Preheater Binary Input #3"
+  },
+  {
+   "type": "BI",
+   "inst": 75,
+   "name": "MODGAS Enable Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status of MODGAS Controller"
+  },
+  {
+   "type": "BI",
+   "inst": 76,
+   "name": "MHGR Enable Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Status of MHGRV Controller"
+  },
+  {
+   "type": "BI",
+   "inst": 77,
+   "name": "A1 Compressor Enable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Enable Signal to Compressor A1"
+  },
+  {
+   "type": "BI",
+   "inst": 78,
+   "name": "A2 Compressor Enable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Enable Signal to Compressor A2"
+  },
+  {
+   "type": "BI",
+   "inst": 79,
+   "name": "A1 Compressor Alarms",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates an RSM alarm is present on the A1 circuit"
+  },
+  {
+   "type": "BI",
+   "inst": 80,
+   "name": "A2 Compressor Alarms",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates an RSM alarm is present on the A2 circuit"
+  },
+  {
+   "type": "BI",
+   "inst": 81,
+   "name": "A1-2 Defrost Switch",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Outside Coil A1/A2 Temp Switch for Defrost Mode"
+  },
+  {
+   "type": "BI",
+   "inst": 82,
+   "name": "A1-2 Water Proof of Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "A1/A2 Water Proof of Flow Switch"
+  },
+  {
+   "type": "BI",
+   "inst": 83,
+   "name": "A1-4 Emergency Shutdown (RSMD)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Emergency Shutdown Input on Module A"
+  },
+  {
+   "type": "BI",
+   "inst": 84,
+   "name": "Refrigerant Module 1 Relay 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Compressor A1 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 85,
+   "name": "Refrigerant Module 1 Relay 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Compressor A2 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 86,
+   "name": "Refrigerant Module 1 Relay 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Condenser 1 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 87,
+   "name": "Refrigerant Module 1 Relay 4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Relay #4"
+  },
+  {
+   "type": "BI",
+   "inst": 88,
+   "name": "Refrigerant Module 1 Relay 5",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Relay #5"
+  },
+  {
+   "type": "BI",
+   "inst": 89,
+   "name": "B1 Compressor Enable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Enable Signal to Compressor B1"
+  },
+  {
+   "type": "BI",
+   "inst": 90,
+   "name": "B2 Compressor Enable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Enable Signal to Compressor B2"
+  },
+  {
+   "type": "BI",
+   "inst": 91,
+   "name": "B1 Compressor Alarms",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates an RSM alarm is present on the B1 circuit"
+  },
+  {
+   "type": "BI",
+   "inst": 92,
+   "name": "B2 Compressor Alarms",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates an RSM alarm is present on the B2 circuit"
+  },
+  {
+   "type": "BI",
+   "inst": 93,
+   "name": "B1-2 Defrost Switch",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Outside Coil B1/B2 Temp Switch for Defrost Mode"
+  },
+  {
+   "type": "BI",
+   "inst": 94,
+   "name": "B1-2 Water Proof of Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "B1/B2 Switch for Water Proof of Flow"
+  },
+  {
+   "type": "BI",
+   "inst": 95,
+   "name": "B1-4 Emergency Shutdown (RSMD)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Emergency Shutdown Input on Module B"
+  },
+  {
+   "type": "BI",
+   "inst": 96,
+   "name": "Refrigerant Module 2 Relay 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Compressor 1 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 97,
+   "name": "Refrigerant Module 2 Relay 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Compressor 2 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 98,
+   "name": "Refrigerant Module 2 Relay 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Condenser 1 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 99,
+   "name": "Refrigerant Module 2 Relay 4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Relay #4"
+  },
+  {
+   "type": "BI",
+   "inst": 100,
+   "name": "Refrigerant Module 2 Relay 5",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Relay #5"
+  },
+  {
+   "type": "BI",
+   "inst": 101,
+   "name": "C1 Compressor Enable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Enable Signal to Compressor C1"
+  },
+  {
+   "type": "BI",
+   "inst": 102,
+   "name": "C2 Compressor Enable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Enable Signal to Compressor C2"
+  },
+  {
+   "type": "BI",
+   "inst": 103,
+   "name": "C1 Compressor Alarms",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates an RSM alarm is present on the C1 circuit"
+  },
+  {
+   "type": "BI",
+   "inst": 104,
+   "name": "C2 Compressor Alarms",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates an RSM alarm is present on the C2 circuit"
+  },
+  {
+   "type": "BI",
+   "inst": 105,
+   "name": "C1-2 Defrost Switch",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Outside Coil C1/C2Temp Switch for Defrost Mode"
+  },
+  {
+   "type": "BI",
+   "inst": 106,
+   "name": "C1-2 Water Proof of Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "C1/C2 Switch for Water Proof of Flow"
+  },
+  {
+   "type": "BI",
+   "inst": 107,
+   "name": "C1-4 Emergency Shutdown (RSMD)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Emergency Shutdown Input on Module C"
+  },
+  {
+   "type": "BI",
+   "inst": 108,
+   "name": "Refrigerant Module 3 Relay 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Compressor 1 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 109,
+   "name": "Refrigerant Module 3 Relay 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Compressor 2 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 110,
+   "name": "Refrigerant Module 3 Relay 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status Condenser 1 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 111,
+   "name": "Refrigerant Module 3 Relay 4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Relay #4"
+  },
+  {
+   "type": "BI",
+   "inst": 112,
+   "name": "Refrigerant Module 3 Relay 5",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Relay #5"
+  },
+  {
+   "type": "BI",
+   "inst": 113,
+   "name": "D1 Compressor Enable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Enable Signal to Compressor D1"
+  },
+  {
+   "type": "BI",
+   "inst": 114,
+   "name": "D2 Compressor Enable",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Enable Signal to Compressor D2"
+  },
+  {
+   "type": "BI",
+   "inst": 115,
+   "name": "D1 Compressor Alarms",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates an RSM alarm is present on the D1 circuit"
+  },
+  {
+   "type": "BI",
+   "inst": 116,
+   "name": "D2 Compressor Alarms",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates an RSM alarm is present on the D2 circuit"
+  },
+  {
+   "type": "BI",
+   "inst": 117,
+   "name": "D1-2 Defrost Switch",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Outside Coil D1/D2 Temp Switch for Defrost Mode"
+  },
+  {
+   "type": "BI",
+   "inst": 118,
+   "name": "D1-2 Water Proof of Flow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "D1/D2 Switch for Water Proof of Flow"
+  },
+  {
+   "type": "BI",
+   "inst": 119,
+   "name": "D1-4 Emergency Shutdown (RSMD)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Emergency Shutdown Input on Module D"
+  },
+  {
+   "type": "BI",
+   "inst": 120,
+   "name": "Refrigerant Module 4 Relay 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Compressor 1 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 121,
+   "name": "Refrigerant Module 4 Relay 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Compressor 2 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 122,
+   "name": "Refrigerant Module 4 Relay 3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Condenser 1 Enable Relay"
+  },
+  {
+   "type": "BI",
+   "inst": 123,
+   "name": "Refrigerant Module 4 Relay 4",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Relay #4"
+  },
+  {
+   "type": "BI",
+   "inst": 124,
+   "name": "Refrigerant Module 4 Relay 5",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Status of Relay #5"
+  },
+  {
+   "type": "BI",
+   "inst": 125,
+   "name": "Preheater Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Preheater Alarm Indicator"
+  },
+  {
+   "type": "BI",
+   "inst": 126,
+   "name": "Return Fan Proving Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Exhaust Fan / Return Fan Proof of Flow Alarm"
+  },
+  {
+   "type": "BI",
+   "inst": 127,
+   "name": "Compressor Running A",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Run Status of Compressor A"
+  },
+  {
+   "type": "BI",
+   "inst": 128,
+   "name": "Compressor Running B",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Run Status of Compressor B"
+  },
+  {
+   "type": "BI",
+   "inst": 129,
+   "name": "Compressor Running C",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Run Status of Compressor C"
+  },
+  {
+   "type": "BI",
+   "inst": 130,
+   "name": "Compressor Running C2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Run Status of Compressor C2"
+  },
+  {
+   "type": "BI",
+   "inst": 131,
+   "name": "Compressor Running D",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Run Status of Compressor D"
+  },
+  {
+   "type": "BI",
+   "inst": 132,
+   "name": "Compressor Running E",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Run Status of Compressor E"
+  },
+  {
+   "type": "BI",
+   "inst": 133,
+   "name": "Compressor Running E2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Run Status of Compressor E2"
+  },
+  {
+   "type": "BI",
+   "inst": 134,
+   "name": "Compressor Running F",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Run Status of Compressor F"
+  },
+  {
+   "type": "BI",
+   "inst": 135,
+   "name": "Compressor Running F2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Current Run Status of Compressor F2"
+  },
+  {
+   "type": "BI",
+   "inst": 136,
+   "name": "Return Fan Proving Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Proof of Return Fan Airflow Binary Input Status"
+  },
+  {
+   "type": "BI",
+   "inst": 137,
+   "name": "IAQ Mode Active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates that IAQ Mode is active"
+  },
+  {
+   "type": "BI",
+   "inst": 138,
+   "name": "Heat Wheel Defrost Active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates Heat Wheel Defrost is active"
+  },
+  {
+   "type": "BI",
+   "inst": 139,
+   "name": "Direct Fire Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Signal on EM1 binary input 2 from Direct Fire Module that indicates that the direct fire heater is active."
+  },
+  {
+   "type": "BI",
+   "inst": 140,
+   "name": "Direct Fire Alarm Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Signal on EM1 binary input 3 that indicates there is an active alarm on the Direct Fire Module."
+  },
+  {
+   "type": "BI",
+   "inst": 141,
+   "name": "Temp Rise Warning",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the heat rise when direct fire heat is active has exceeded the max heat rise by more than 1°F."
+  },
+  {
+   "type": "BI",
+   "inst": 142,
+   "name": "Temp Rise Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the heat rise when direct fire heat is active has exceeded the max heat rise by more than 2°F."
+  },
+  {
+   "type": "BI",
+   "inst": 143,
+   "name": "Temp Rise Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates three High Temp Rise alarms occurred within a 1-hour span and the unit heat is disabled until the unit is serviced."
+  },
+  {
+   "type": "BI",
+   "inst": 144,
+   "name": "High CO2 Rise Warning",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates that high return CO2 was detected when running direct fire heat."
+  },
+  {
+   "type": "BI",
+   "inst": 145,
+   "name": "High CO2 Rise Alarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates high return CO2 was detected and direct fire heat has been temporarily shut down for recovery."
+  },
+  {
+   "type": "BI",
+   "inst": 146,
+   "name": "High CO2 Rise Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates three CO2 warning alarms occurred within a 1-hour span and direct fire heat is now disabled until the unit is serviced."
+  },
+  {
+   "type": "BI",
+   "inst": 147,
+   "name": "Ignition Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates an active alarm on the Direct Fire Module."
+  },
+  {
+   "type": "BI",
+   "inst": 148,
+   "name": "Direct Fire Status Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates that Direct Fire Status Signal is not active within 10 minutes of a call to activate the heat. Heat Enable signal is removed and direct fire heating is locked out."
+  },
+  {
+   "type": "BI",
+   "inst": 149,
+   "name": "Direct Fire Setpoint Override",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the max calculated heat rise is limiting the Supply Air Setpoint to a lower value."
+  }
+ ],
+ "gap": "포인트는 VCCX2 기술 가이드 APPENDIX C(BACnet)에서 534점 취입(AI 286·AV 99·BI 149). 정격은 RN IOM(난방 용량·전기·필터 표 28개)에서 연결했으나, 형번별 냉방능력 표는 브로슈어 캐비닛 블록이 그래픽 조판이라 미취입 — 형번 카드 없음. RN-006~140 톤수·공칭 CFM 은 브로슈어 원문에 있다(선정 소프트웨어 병행 벤더).",
+ "extractor": "table",
+ "sourceDoc": "AAON_VCCX2_Technical_Guide.pdf",
+ "classifiedBy": "포인트 이름 증거 7종: economizer, outdoor air damper, supply air, return air",
+ "crosscheck": {
+  "unverifiable": "AAON 소스가 교차 대조 불가로 표시 — 개요표와 상세표가 서로 다른 열이다"
+ },
+ "specTables": [
+  {
+   "title": "성능표 (조건별 조회) — AAON_RN_Series_Brochure.pdf p7",
+   "page": 7,
+   "orientation": "column",
+   "header": [
+    "A–Cabinet Capacity",
+    "6–10 tons",
+    ""
+   ],
+   "quantities": [
+    "current",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Configuration",
+     "Vertical",
+     ""
+    ],
+    [
+     "Air-Cooled IEER",
+     "Up to 22.5",
+     ""
+    ],
+    [
+     "Air-Cooled EER",
+     "Up to 13.2",
+     ""
+    ],
+    [
+     "Nominal cfm",
+     "RN-006",
+     "2,000"
+    ],
+    [
+     "",
+     "RN-007",
+     "2,500"
+    ],
+    [
+     "",
+     "RN-008",
+     "2,650"
+    ],
+    [
+     "",
+     "RN-010",
+     "3,000"
+    ],
+    [
+     "Dimensions*",
+     "W: 79, H: 44, L: 82",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_Brochure.pdf",
+   "kind": "perf",
+   "titleRaw": ""
+  },
+  {
+   "title": "기타 — AAON_RN_Series_Brochure.pdf p7",
+   "page": 7,
+   "orientation": "column",
+   "header": [
+    "C–Cabinet Horizontal Capacity",
+    "11–30 tons",
+    ""
+   ],
+   "quantities": [
+    "capacity",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Configuration",
+     "Horizontal",
+     ""
+    ],
+    [
+     "Air-Cooled IEER",
+     "Up to 22.5",
+     ""
+    ],
+    [
+     "Air-Cooled EER",
+     "Up to 12.5",
+     ""
+    ],
+    [
+     "Nominal cfm",
+     "RN-011",
+     "3,600"
+    ],
+    [
+     "",
+     "RN-013",
+     "3,800"
+    ],
+    [
+     "",
+     "RN-016",
+     "6,400"
+    ],
+    [
+     "",
+     "RN-018",
+     "6,800"
+    ],
+    [
+     "",
+     "RN-020",
+     "7,000"
+    ],
+    [
+     "",
+     "RN-025",
+     "9,000"
+    ],
+    [
+     "",
+     "RN-030",
+     "10,500"
+    ],
+    [
+     "Dimensions*",
+     "W: 101, H: 60, L: 138",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_Brochure.pdf",
+   "kind": "etc",
+   "titleRaw": ""
+  },
+  {
+   "title": "*Dimensions vary depending on options selected. All dimensions are in inches. Design cfm m",
+   "page": 7,
+   "orientation": "column",
+   "header": [
+    "B–Cabinet Capacity",
+    "9–15 tons",
+    ""
+   ],
+   "quantities": [
+    "capacity",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Configuration",
+     "Vertical",
+     ""
+    ],
+    [
+     "Air-Cooled IEER",
+     "Up to 19.9",
+     ""
+    ],
+    [
+     "Air-Cooled EER",
+     "Up to 13.9",
+     ""
+    ],
+    [
+     "Nominal cfm",
+     "RN-009",
+     "3,400"
+    ],
+    [
+     "",
+     "RN-011",
+     "3,600"
+    ],
+    [
+     "",
+     "RN-013",
+     "3,800"
+    ],
+    [
+     "",
+     "RN-015",
+     "4,200"
+    ],
+    [
+     "Dimensions*",
+     "W: 96, H: 50, L: 88",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_Brochure.pdf",
+   "kind": "perf"
+  },
+  {
+   "title": "*Dimensions vary depending on options selected. All dimensions are in inches. Design cfm m",
+   "page": 7,
+   "orientation": "column",
+   "header": [
+    "D–Cabinet Capacity",
+    "26–70 tons",
+    ""
+   ],
+   "quantities": [
+    "capacity",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Configuration",
+     "Vertical",
+     ""
+    ],
+    [
+     "Air-Cooled IEER",
+     "Up to 19.6",
+     ""
+    ],
+    [
+     "Air-Cooled EER",
+     "Up to 11.7",
+     ""
+    ],
+    [
+     "Nominal cfm",
+     "RN-026",
+     "10,000"
+    ],
+    [
+     "",
+     "RN-031",
+     "12,400"
+    ],
+    [
+     "",
+     "RN-040",
+     "16,000"
+    ],
+    [
+     "",
+     "RN-050",
+     "20,000"
+    ],
+    [
+     "",
+     "RN-060",
+     "23,000"
+    ],
+    [
+     "",
+     "RN-070",
+     "25,000"
+    ],
+    [
+     "Dimensions*",
+     "W: 100, H: 102, L: 161",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_Brochure.pdf",
+   "kind": "perf"
+  },
+  {
+   "title": "*Dimensions vary depending on options selected. All dimensions are in inches. Design cfm m",
+   "page": 7,
+   "orientation": "column",
+   "header": [
+    "C–Cabinet Capacity",
+    "14–30 tons",
+    ""
+   ],
+   "quantities": [
+    "capacity",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Configuration",
+     "Vertical",
+     ""
+    ],
+    [
+     "Air-Cooled IEER",
+     "Up to 22.5",
+     ""
+    ],
+    [
+     "Air-Cooled EER",
+     "Up to 12.5",
+     ""
+    ],
+    [
+     "Nominal cfm",
+     "RN-014",
+     "5,200"
+    ],
+    [
+     "",
+     "RN-016",
+     "6,400"
+    ],
+    [
+     "",
+     "RN-018",
+     "6,800"
+    ],
+    [
+     "",
+     "RN-020",
+     "7,000"
+    ],
+    [
+     "",
+     "RN-025",
+     "9,000"
+    ],
+    [
+     "",
+     "RN-030",
+     "10,500"
+    ],
+    [
+     "Dimensions*",
+     "W: 101, H: 60, L: 110",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_Brochure.pdf",
+   "kind": "perf"
+  },
+  {
+   "title": "*Dimensions vary depending on options selected. All dimensions are in inches. Design cfm m",
+   "page": 7,
+   "orientation": "column",
+   "header": [
+    "E–Cabinet Capacity",
+    "75–140 tons",
+    ""
+   ],
+   "quantities": [
+    "capacity",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Configuration",
+     "Vertical",
+     ""
+    ],
+    [
+     "Air-Cooled IEER",
+     "Up to 18.4",
+     ""
+    ],
+    [
+     "Air-Cooled EER",
+     "Up to 11.0",
+     ""
+    ],
+    [
+     "Nominal cfm",
+     "RN-075",
+     "18,000"
+    ],
+    [
+     "",
+     "RN-090",
+     "22,000"
+    ],
+    [
+     "",
+     "RN-105",
+     "24,000"
+    ],
+    [
+     "",
+     "RN-120",
+     "29,500"
+    ],
+    [
+     "",
+     "RN-130",
+     "32,000"
+    ],
+    [
+     "",
+     "RN-140",
+     "33,000"
+    ],
+    [
+     "Dimensions*",
+     "W: 142, H: 105, L: 292",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_Brochure.pdf",
+   "kind": "perf"
+  },
+  {
+   "title": "TABLE 5 — NAMEPLATE VOLTAGE MARKINGS & TOLERANCES",
+   "page": 43,
+   "orientation": "column",
+   "header": [
+    "Hz",
+    "Nameplate Voltage",
+    "Nominal System Voltage",
+    "Opening Voltage Range 1 Min",
+    "Max",
+    "Acceptable Performance Range 2 Min",
+    "Max"
+   ],
+   "quantities": [
+    "frequency",
+    "voltage",
+    "voltage",
+    "voltage",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "60",
+     "115",
+     "120",
+     "104",
+     "127",
+     "108",
+     "126"
+    ],
+    [
+     "",
+     "208/230",
+     "208/240",
+     "187",
+     "254",
+     "187",
+     "252"
+    ],
+    [
+     "",
+     "208",
+     "208",
+     "187",
+     "228",
+     "187",
+     "228"
+    ],
+    [
+     "",
+     "230",
+     "240",
+     "208",
+     "254",
+     "216",
+     "252"
+    ],
+    [
+     "",
+     "265",
+     "277",
+     "240",
+     "293",
+     "249",
+     "291"
+    ],
+    [
+     "",
+     "460",
+     "480",
+     "416",
+     "508",
+     "432",
+     "504"
+    ],
+    [
+     "",
+     "575",
+     "600",
+     "520",
+     "635",
+     "540",
+     "630"
+    ],
+    [
+     "50",
+     "230",
+     "230",
+     "198",
+     "254",
+     "208",
+     "254"
+    ],
+    [
+     "",
+     "400",
+     "400",
+     "344",
+     "440",
+     "360",
+     "440"
+    ],
+    [
+     "Note: 1. Operating voltage is the min and max voltage for which the unit can function. Never operate outside of this min and max voltage. 2. The Acceptable Performance Range is the min and max voltage for which the unit performance is designed and rated to give acceptable performance.",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "치수·중량 — AAON_RN_Series_IOM_R454B.pdf p47",
+   "page": 47,
+   "orientation": "column",
+   "header": [
+    "Dimensions (Metric) Drain Pan Pressure",
+    "Trap Dimensions",
+    ""
+   ],
+   "quantities": [
+    "pressure",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Negative Static",
+     "X",
+     "X/2"
+    ],
+    [
+     "(mmHg)",
+     "(mm)",
+     "(mm)"
+    ],
+    [
+     "-0.93",
+     "38.1",
+     "19.1"
+    ],
+    [
+     "-1.87",
+     "50.8",
+     "25.4"
+    ],
+    [
+     "-2.80",
+     "63.5",
+     "31.8"
+    ],
+    [
+     "-3.74",
+     "76.2",
+     "38.1"
+    ],
+    [
+     "-4.67",
+     "88.9",
+     "44.5"
+    ],
+    [
+     "-5.60",
+     "101.6",
+     "50.8"
+    ],
+    [
+     "-6.54",
+     "114.3",
+     "57.2"
+    ],
+    [
+     "-7.47",
+     "127",
+     "63.5"
+    ],
+    [
+     "-8.41",
+     "139.7",
+     "69.9"
+    ],
+    [
+     "-9.34",
+     "152.4",
+     "76.2"
+    ],
+    [
+     "-10.28",
+     "165.1",
+     "82.6"
+    ],
+    [
+     "-11.21",
+     "177.8",
+     "88.9"
+    ],
+    [
+     "-12.14",
+     "190.5",
+     "95.3"
+    ],
+    [
+     "-13.08",
+     "203.2",
+     "101.6"
+    ],
+    [
+     "-14.01",
+     "215.9",
+     "108.0"
+    ],
+    [
+     "-14.95",
+     "228.6",
+     "114.3"
+    ],
+    [
+     "Note: 1 mm = 0.1 cm",
+     "",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "dim",
+   "titleRaw": ""
+  },
+  {
+   "title": "TABLE 12 — DRAW-THROUGH DRAIN TRAP",
+   "page": 47,
+   "orientation": "column",
+   "header": [
+    "",
+    "Dimensions (Metric) Drain Pan Pressure",
+    "Trap Dimensions",
+    ""
+   ],
+   "quantities": [
+    null,
+    "pressure",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "Negative Static",
+     "X",
+     "X/2"
+    ],
+    [
+     "",
+     "(inches of water)",
+     "(inch)",
+     "(inch)"
+    ],
+    [
+     "",
+     "-0.50",
+     "1.50",
+     "0.75"
+    ],
+    [
+     "",
+     "-1.00",
+     "2.00",
+     "1.00"
+    ],
+    [
+     "",
+     "-1.50",
+     "2.50",
+     "1.25"
+    ],
+    [
+     "",
+     "-2.00",
+     "3.00",
+     "1.50"
+    ],
+    [
+     "",
+     "-2.50",
+     "3.50",
+     "1.75"
+    ],
+    [
+     "",
+     "-3.00",
+     "4.00",
+     "2.00"
+    ],
+    [
+     "",
+     "-3.50",
+     "4.50",
+     "2.25"
+    ],
+    [
+     "",
+     "-4.00",
+     "5.00",
+     "2.50"
+    ],
+    [
+     "",
+     "-4.50",
+     "5.50",
+     "2.75"
+    ],
+    [
+     "",
+     "-5.00",
+     "6.00",
+     "3.00"
+    ],
+    [
+     "",
+     "-5.50",
+     "6.50",
+     "3.25"
+    ],
+    [
+     "",
+     "-6.00",
+     "7.00",
+     "3.50"
+    ],
+    [
+     "",
+     "-6.50",
+     "7.50",
+     "3.75"
+    ],
+    [
+     "",
+     "-7.00",
+     "8.00",
+     "4.00"
+    ],
+    [
+     "",
+     "-7.50",
+     "8.50",
+     "4.25"
+    ],
+    [
+     "",
+     "-8.00",
+     "9.00",
+     "4.50"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "dim"
+  },
+  {
+   "title": "기타 — AAON_RN_Series_IOM_R454B.pdf p49",
+   "page": 49,
+   "orientation": "column",
+   "header": [
+    "SET SCREW DIAMETER",
+    "TORQUE (Nm [in-lbs])"
+   ],
+   "quantities": [
+    null,
+    "torque"
+   ],
+   "rows": [
+    [
+     "6.4 mm (1/4 in.)",
+     "9 [80]"
+    ],
+    [
+     "7.9 mm (5/16 in.)",
+     "14.2 [126]"
+    ],
+    [
+     "9.5 mm (3/8 in.)",
+     "27.12 [240]"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc",
+   "titleRaw": ""
+  },
+  {
+   "title": "TABLE 20 — ACCEPTABLE MICROCHANNEL AIR-COOLED CONDENSER COIL LIQUID SUB-COOLING VALUES (ME",
+   "page": 53,
+   "orientation": "column",
+   "header": [
+    "Cooling Mode Liquid Sub-Cooling Values (ºC) Ambient",
+    "Evaporator Coil Saturation Temperature (ºC)",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "quantities": [
+    null,
+    "temperature",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "(ºC)",
+     "4.4",
+     "7.2",
+     "8.9",
+     "10.0",
+     "12.8"
+    ],
+    [
+     "19.4",
+     "5.0 - 7.8",
+     "4.4 - 7.2",
+     "4.4 - 7.2",
+     "3.9 - 6.7",
+     "2.8 - 5.6"
+    ],
+    [
+     "22.2",
+     "5.6 - 8.3",
+     "5.0 - 7.8",
+     "5.0 - 7.8",
+     "4.4 - 7.2",
+     "3.9 - 6.7"
+    ],
+    [
+     "27.8",
+     "5.6 - 8.3",
+     "5.6 - 8.3",
+     "5.6 - 8.3",
+     "5.0 - 7.8",
+     "3.9 - 6.7"
+    ],
+    [
+     "35.0",
+     "5.6 - 8.3",
+     "5.6 - 8.3",
+     "5.6 - 8.3",
+     "5.0 - 7.8",
+     "4.4 - 7.2"
+    ],
+    [
+     "40.6",
+     "6.1 - 8.9",
+     "6.1 - 8.9",
+     "5.6 - 8.3",
+     "5.6 - 8.3",
+     "4.4 - 7.2"
+    ],
+    [
+     "46.1",
+     "5.6 - 8.3",
+     "6.1 - 8.9",
+     "6.1 - 8.9",
+     "6.1 - 8.9",
+     "5.0 - 7.8"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "TABLE 21 — ACCEPTABLE MICROCHANNEL AIR-COOLED CONDENSER COIL LIQUID SUB-COOLING VALUES (IM",
+   "page": 54,
+   "orientation": "column",
+   "header": [
+    "Cooling Mode Liquid Sub-Cooling Values (ºC) Ambient",
+    "Evaporator Coil Saturation Temperature (°F)",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "quantities": [
+    null,
+    "temperature",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "(ºF)",
+     "40",
+     "45",
+     "48",
+     "50",
+     "55"
+    ],
+    [
+     "67",
+     "9 - 14",
+     "8 - 13",
+     "8 - 13",
+     "7 - 12",
+     "5 - 10"
+    ],
+    [
+     "72",
+     "10 - 15",
+     "9 - 14",
+     "9 - 14",
+     "8 - 13",
+     "7 - 12"
+    ],
+    [
+     "82",
+     "10 - 15",
+     "10 - 15",
+     "10 - 15",
+     "9 - 14",
+     "7 - 12"
+    ],
+    [
+     "95",
+     "10 - 15",
+     "10 - 15",
+     "10 - 15",
+     "9 - 14",
+     "8 - 13"
+    ],
+    [
+     "105",
+     "11 - 16",
+     "11 - 16",
+     "10 - 15",
+     "10 - 15",
+     "8 - 13"
+    ],
+    [
+     "115",
+     "10 - 15",
+     "11 - 16",
+     "11 - 16",
+     "11 - 16",
+     "9 - 14"
+    ],
+    [
+     "Note: 1. Microchannel condenser coils are more sensitive to charge. The system must be running in cooling mode with compressor, supply airflow & condenser fan speed at full load. The sub-cooling value changes depending on the ambient temperature reading and the microchannel evaporator coil saturation temperature. To find the correct sub-cooling value, find the ambient temperature on the first column and follow that across to the SST (4.4-12.8°C [40-55°F]). 2. Superheat for Microchannel condenser coils must be between 4.4 and 8.3°C (8 - 15°F)",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "TABLE 23 — MAX CHARGE AND MINIMUM AIRFLOWS FOR EACH BOX",
+   "page": 57,
+   "orientation": "column",
+   "header": [
+    "Box Size",
+    "Maximum Charge of any Single Circuit",
+    "",
+    "Minimum Airflow with Supplementary Heat",
+    "",
+    "Minimum Airflow for Non-Ducted Applications",
+    ""
+   ],
+   "quantities": [
+    null,
+    null,
+    null,
+    "airflow",
+    null,
+    "airflow",
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "kg",
+     "oz",
+     "m3/hr",
+     "CFM",
+     "m3/hr",
+     "CFM"
+    ],
+    [
+     "A",
+     "24.1",
+     "850",
+     "1126",
+     "663",
+     "2049",
+     "1206"
+    ],
+    [
+     "B",
+     "24.1",
+     "850",
+     "1881",
+     "1107",
+     "2049",
+     "1206"
+    ],
+    [
+     "C",
+     "42.5",
+     "1500",
+     "2542",
+     "1496",
+     "2880",
+     "1695"
+    ],
+    [
+     "D",
+     "26.9",
+     "1265",
+     "3152",
+     "1855",
+     "6944",
+     "4087"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "TABLE 26 — ECM CONDENSER FAN CYCLING OPTIONS",
+   "page": 59,
+   "orientation": "row",
+   "header": [
+    "Color",
+    "Terminal",
+    "Customer Connection",
+    "Option 1",
+    "Option 2",
+    "Option 3",
+    "Option 4",
+    "Option 5"
+   ],
+   "quantities": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    "speed",
+    null,
+    null,
+    "speed",
+    "speed"
+   ],
+   "rows": [
+    [
+     "Black",
+     "0.50 BWS",
+     "L1",
+     "208 - 230 VAC",
+     "208 - 230 VAC",
+     "208 - 230 VAC",
+     "208 - 230 VAC",
+     "208 - 230 VAC"
+    ],
+    [
+     "Brown",
+     "0.50 BWS",
+     "L2",
+     "208 - 230 VAC",
+     "208 - 230 VAC",
+     "208 - 230 VAC",
+     "208 - 230 VAC",
+     "208 - 230 VAC"
+    ],
+    [
+     "Green",
+     "#10 EYELET",
+     "Ground",
+     "GND",
+     "GND",
+     "GND",
+     "GND",
+     "GND"
+    ],
+    [
+     "Blue",
+     "0.50 BWS",
+     "Common",
+     "Common",
+     "24 VAC",
+     "24 VAC",
+     "24 VAC",
+     "24 VAC"
+    ],
+    [
+     "Yellow",
+     "0.50 BWS",
+     "Signal",
+     "PWM",
+     "",
+     "24 VAC",
+     "",
+     "24 VAC"
+    ],
+    [
+     "White",
+     "0.50 BWS",
+     "Signal",
+     "",
+     "",
+     "",
+     "24 VAC",
+     "24 VAC"
+    ],
+    [
+     "Orange",
+     "0.50 BWS",
+     "Signal",
+     "",
+     "24 VAC",
+     "",
+     "24 VAC",
+     ""
+    ],
+    [
+     "RPM",
+     "",
+     "",
+     "300-1100",
+     "300",
+     "500",
+     "850",
+     "1100"
+    ],
+    [
+     "Rotation",
+     "",
+     "",
+     "CCW",
+     "CCW",
+     "CCW",
+     "CCW",
+     "CCW"
+    ],
+    [
+     "ECM Toolbox ID",
+     "",
+     "",
+     "Variable",
+     "Speed 4",
+     "Speed 3",
+     "Speed 2",
+     "Speed 1"
+    ],
+    [
+     "20% PWM RPM",
+     "",
+     "",
+     "300",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "100% PWM RPM",
+     "",
+     "",
+     "1100",
+     "",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "TABLE 31 — DEMAND SIGNAL VS COMPRESSOR CAPACITY MODULATION",
+   "page": 72,
+   "orientation": "column",
+   "header": [
+    "Demand Signal (VDC)",
+    "Loaded %",
+    "Unloaded %",
+    "Time Loaded",
+    "Time Unloaded",
+    "% Compressor Capacity"
+   ],
+   "quantities": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    "capacity"
+   ],
+   "rows": [
+    [
+     "1.00",
+     "Off",
+     "Off",
+     "Off",
+     "Off",
+     "0%"
+    ],
+    [
+     "1.44",
+     "10%",
+     "90%",
+     "1.5 sec",
+     "13.5 sec",
+     "10%"
+    ],
+    [
+     "3.00",
+     "50%",
+     "50%",
+     "7.5 sec",
+     "7.5 sec",
+     "50%"
+    ],
+    [
+     "4.20",
+     "80%",
+     "20%",
+     "12 sec",
+     "3 sec",
+     "80%"
+    ],
+    [
+     "5.00",
+     "100%",
+     "0%",
+     "15 sec",
+     "0 sec",
+     "100%"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "치수·중량 — AAON_RN_Series_IOM_R454B.pdf p77",
+   "page": 77,
+   "orientation": "column",
+   "header": [
+    "Model (RNA-)",
+    "Supply and Return Connection Size [mm (inch)]"
+   ],
+   "quantities": [
+    null,
+    "dimension"
+   ],
+   "rows": [
+    [
+     "006, 007",
+     "25 (1) NPT"
+    ],
+    [
+     "008, 010, 009, 011, 013, 015, 016, 018, 020",
+     "38 (1 ½) NPT"
+    ],
+    [
+     "025, 030",
+     "51 (2) NPT"
+    ],
+    [
+     "026, 031, 040",
+     "63.5 (2 ½)"
+    ],
+    [
+     "Grooved Pipe",
+     ""
+    ],
+    [
+     "050, 060, 070",
+     "76 (3) Grooved Pipe"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "dim",
+   "titleRaw": ""
+  },
+  {
+   "title": "TABLE 36 — ENERGY RECOVERY WHEEL CLEANING FREQUENCY",
+   "page": 87,
+   "orientation": "column",
+   "header": [
+    "Class of Air",
+    "Examples",
+    "Cleaning Frequency"
+   ],
+   "quantities": [
+    null,
+    null,
+    "frequency"
+   ],
+   "rows": [
+    [
+     "Clean 1 Clean Air",
+     " Offices  Classrooms  Assembly Rooms  Churches",
+     "Every 8-10 years"
+    ],
+    [
+     "Class 2 Moderately Clean Air",
+     " Restrooms  Swimming Pools  Dining Rooms  Locker Rooms  Warehouse  Dorms",
+     "Every 4-6 years"
+    ],
+    [
+     "Class 3 Dirty Air",
+     " Kitchens  Dry Cleaners  Beauty Salons  Laboratories  Pet Shops",
+     "Every 1-2 years"
+    ],
+    [
+     "Class 4 Contaminated Air",
+     " Paint Spray Booths  Laboratory Fume Exhaust  Kitchen Grease Exhaust",
+     "Do not use in this applications"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "TABLE 37 — ELECTRIC AND GAS HEATING CAPACITIES",
+   "page": 90,
+   "orientation": "column",
+   "header": [
+    "",
+    "",
+    "Gas Heat Input Capacity",
+    "Gas Heat Output Capacity",
+    "Electric Heat Capacity",
+    ""
+   ],
+   "quantities": [
+    null,
+    null,
+    "capacity",
+    "capacity",
+    "capacity",
+    null
+   ],
+   "rows": [
+    [
+     "RN Unit Size",
+     "Model Option B3",
+     "MBH",
+     "MBH",
+     "kW (208V)",
+     "kW (230V, 380V, 460V, 575V)"
+    ],
+    [
+     "Horizontal C Series (11-25 & 30 tons)",
+     "1 = Heat 1",
+     "270.0",
+     "218.7",
+     "15.0",
+     "20.0"
+    ],
+    [
+     "",
+     "2 = Heat 2",
+     "405.0",
+     "328.1",
+     "30.0",
+     "40.0"
+    ],
+    [
+     "",
+     "3 = Heat 3",
+     "540.0",
+     "432.0",
+     "45.1",
+     "60.0"
+    ],
+    [
+     "",
+     "4 = Heat 4",
+     "",
+     "",
+     "60.1",
+     "80.0"
+    ],
+    [
+     "16-25 & 30 tons",
+     "5 = Heat 5",
+     "",
+     "",
+     "75.1",
+     "100.0"
+    ],
+    [
+     "",
+     "6 = Heat 6",
+     "",
+     "",
+     "90.1",
+     "120.0"
+    ],
+    [
+     "D Series (26, 31, 40, 50, 60, 70 tons)",
+     "1 = Heat 1",
+     "",
+     "",
+     "30.0",
+     "40.0"
+    ],
+    [
+     "",
+     "2 = Heat 2",
+     "600.0",
+     "480.0",
+     "60.1",
+     "80.0"
+    ],
+    [
+     "",
+     "3 = Heat 3",
+     "900.0",
+     "720.0",
+     "90.1",
+     "120.0"
+    ],
+    [
+     "",
+     "4 = Heat 4",
+     "1200.0",
+     "960.0",
+     "120.1",
+     "160.0"
+    ],
+    [
+     "31, 40, 50, 60, 70 tons",
+     "5 = Heat 5",
+     "",
+     "",
+     "150.2",
+     "200.0"
+    ],
+    [
+     "",
+     "6 = Heat 6",
+     "",
+     "",
+     "180.2",
+     "240.0"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "perf"
+  },
+  {
+   "title": "TABLE 38 — ELECTRIC AND GAS HEATING CAPACITIES",
+   "page": 91,
+   "orientation": "column",
+   "header": [
+    "Cabinet Size",
+    "Staging",
+    "Capacity (MBH)",
+    "Gas Valve QTY",
+    "Valve 1 Size",
+    "Valve 2 Size",
+    "Valve 3 Size",
+    "Valve 4 Size",
+    "Valve 5 Size",
+    "Valve 6 Size"
+   ],
+   "quantities": [
+    null,
+    null,
+    "capacity",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "RNA",
+     "1, 2, MOD",
+     "90",
+     "1",
+     "1/2 in.",
+     "-",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "4, HITD",
+     "",
+     "2",
+     "1/2 in.",
+     "1/2 in.",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "1, 2, MOD",
+     "150",
+     "1",
+     "1/2 in.",
+     "-",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "4, HITD",
+     "",
+     "2",
+     "1/2 in.",
+     "1/2 in.",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "1, 2, MOD",
+     "210",
+     "1",
+     "1/2 in.",
+     "-",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "4, HITD",
+     "",
+     "2",
+     "1/2 in.",
+     "1/2 in.",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "RNB",
+     "1, 2, MOD",
+     "195",
+     "1",
+     "3/4 in.",
+     "-",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "4, HITD",
+     "",
+     "2",
+     "3/4 in.",
+     "3/4 in.",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "1, 2, MOD",
+     "292.5",
+     "1",
+     "3/4 in.",
+     "-",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "4, HITD",
+     "",
+     "2",
+     "3/4 in.",
+     "3/4 in.",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "1, 2, MOD",
+     "390",
+     "1",
+     "3/4 in.",
+     "-",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "4, HITD",
+     "",
+     "2",
+     "3/4 in.",
+     "3/4 in.",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "RNC",
+     "2, MOD",
+     "270",
+     "1",
+     "3/4 in.",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "4, HITD",
+     "",
+     "2",
+     "1/2 in.",
+     "3/4 in.",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "2, 4, MOD",
+     "405",
+     "2",
+     "3/4 in.",
+     "3/4 in.",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "HITD",
+     "",
+     "3",
+     "1/2 in.",
+     "3/4 in.",
+     "3/4 in.",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "2, 4 MOD",
+     "540",
+     "2",
+     "3/4 in.",
+     "3/4 in.",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "HITD",
+     "",
+     "3",
+     "1/2 in.",
+     "3/4 in.",
+     "3/4 in.",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "RND",
+     "2,MOD",
+     "600",
+     "2",
+     "3/4 in.",
+     "3/4 in.",
+     "-",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "4, HITD",
+     "",
+     "4",
+     "1/2 in.",
+     "3/4 in.",
+     "1/2 in.",
+     "3/4 in.",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "2, 4 MOD",
+     "900",
+     "3",
+     "3/4 in.",
+     "3/4 in.",
+     "3/4 in.",
+     "-",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "HITD",
+     "",
+     "5",
+     "1/2 in.",
+     "3/4 in.",
+     "1/2 in.",
+     "3/4 in.",
+     "3/4 in.",
+     "-"
+    ],
+    [
+     "",
+     "2, 4 MOD",
+     "1200",
+     "4",
+     "3/4 in.",
+     "3/4 in.",
+     "3/4 in.",
+     "3/4 in.",
+     "-",
+     "-"
+    ],
+    [
+     "",
+     "HITD",
+     "",
+     "6",
+     "1/2 in.",
+     "3/4 in.",
+     "1/2 in.",
+     "3/4 in.",
+     "3/4 in.",
+     "3/4 in."
+    ],
+    [
+     "MOD = Modulating, HITD = High Turndown",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "perf"
+  },
+  {
+   "title": "치수·중량 — AAON_RN_Series_IOM_R454B.pdf p93",
+   "page": 93,
+   "orientation": "column",
+   "header": [
+    "Pipe Size (mm)",
+    "Support Intervals"
+   ],
+   "quantities": [
+    "dimension",
+    null
+   ],
+   "rows": [
+    [
+     "12.7 to 19.1",
+     "Every 1.8 m"
+    ],
+    [
+     "19.1 to 25.4",
+     "Every 2.4 m"
+    ],
+    [
+     "44.5 or Larger (Horizontal)",
+     "Every 3 m"
+    ],
+    [
+     "31.8 or Larger (Vertical)",
+     "Every Floor"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "dim",
+   "titleRaw": ""
+  },
+  {
+   "title": "Fault Words:",
+   "page": 101,
+   "orientation": "row",
+   "header": [
+    "Fault Words",
+    "Descriptions"
+   ],
+   "quantities": [
+    "current",
+    "voltage",
+    "voltage",
+    null,
+    "loss",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "“Phase a Loss”",
+     "There is no voltage sensed on 3-L1/S"
+    ],
+    [
+     "“Voltage Low”",
+     "Average line voltage is less than selected Undervoltage Percentage"
+    ],
+    [
+     "“Voltage High”",
+     "Average line voltage is more than selected Overvoltage Percentage"
+    ],
+    [
+     "“Imbalance”",
+     "One phase is lower than the average voltage by mother than the Imbalance percentage"
+    ],
+    [
+     "“Phase Loss”",
+     "One phase is more than 30% below the Line Voltage selection"
+    ],
+    [
+     "“Bad Rotation”",
+     "The phase rotation sequence is reversed"
+    ],
+    [
+     "“Bad Freq”",
+     "Line frequency out of allowable range of 45 to 65 Hz"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "기타 — AAON_RN_Series_IOM_R454B.pdf p102",
+   "page": 102,
+   "orientation": "column",
+   "header": [
+    "Feature 9A 0",
+    "Quantity Size [inches] No Pre Filters",
+    "Type"
+   ],
+   "quantities": [
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "A, E, F, H",
+     "(4) 16 x 20 x 2]",
+     "Pleated, MERV 8"
+    ],
+    [
+     "B, E, G, H",
+     "(2) 16 x 20 x 1",
+     "Metal Mesh, Outside Air"
+    ],
+    [
+     "C",
+     "(2) 40 x 16 x 5/16",
+     "Lint Screen"
+    ],
+    [
+     "",
+     "with RAB, Feature A2 = Q, R (2) 40 x 16 x 5/16",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc",
+   "titleRaw": ""
+  },
+  {
+   "title": "TABLE 47 — RN SERIES C HORIZONTAL 11, 13, 16-25, AND 30 TON PRE FILTERS",
+   "page": 102,
+   "orientation": "column",
+   "header": [
+    "Feature 9A 0,A",
+    "Quantity/Size No Pre Filters",
+    "Type"
+   ],
+   "quantities": [
+    "current",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "B,C,D",
+     "6 / 20 in. x 25 in. x 2 in.",
+     "Pleated, MERV 8"
+    ],
+    [
+     "Feature 9B",
+     "Quantity / Size",
+     "Type"
+    ],
+    [
+     "M",
+     "6 / 20 in. x 25 in. x 5/16 in.",
+     "Lint Screen"
+    ],
+    [
+     "Feature 19",
+     "Quantity / Size",
+     "Type"
+    ],
+    [
+     "C",
+     "(2) 49 x 20 x 5/16",
+     "Lint Screen"
+    ],
+    [
+     "",
+     "with RAB, Feature A2 = Q, R (3) 47 x 12 x 5/16",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "TABLE 55 — RN SERIES D CABINET 26, 31, AND 40 TON PRE FILTERS",
+   "page": 104,
+   "orientation": "column",
+   "header": [
+    "Feature 9A 0, A",
+    "Quantity/Size No Final Filters",
+    "Type"
+   ],
+   "quantities": [
+    "current",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "B, C, D",
+     "8 / 24 in. x 24 in. x 2 in.",
+     "Pleated, MERV 8"
+    ],
+    [
+     "",
+     "with RAB, Feature 8 = G,J,L 16 / 12 in. x 24 in. x 2 in.",
+     ""
+    ],
+    [
+     "Feature 9B",
+     "Quantity/Size",
+     "Type"
+    ],
+    [
+     "M",
+     "8 / 24 in. x 24 in. x 5/16 in.",
+     "Lint Screen"
+    ],
+    [
+     "Feature 19",
+     "Quantity/Size",
+     "Type"
+    ],
+    [
+     "B,G,H,J,K",
+     "Feature 4A = 0,A,B,C,E,K,Q 6 / 16 in. x 25 in. x 1 in.",
+     "Metal Mesh, Outside Air"
+    ],
+    [
+     "",
+     "With PE or PR, Feature 4A = F,G,H 4 / 16 in. x 25 in. x 1 in.",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "TABLE 56 — RN SERIES D CABINET 50, 60, AND 70 TON PRE FILTERS",
+   "page": 105,
+   "orientation": "column",
+   "header": [
+    "Feature 1A 0, A",
+    "Quantity/Size No Pre Filters",
+    "Type"
+   ],
+   "quantities": [
+    "current",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "B, C, D",
+     "24 / 12 in. x 24 in. x 2 in.",
+     "Pleated, MERV 8"
+    ],
+    [
+     "",
+     "with RAB, Feature 8 = G,J,L 16 / 12 in. x 24 in. x 2 in.",
+     ""
+    ],
+    [
+     "Feature 9B",
+     "Quantity/Size",
+     "Type"
+    ],
+    [
+     "M",
+     "12 / 47 in. x 12 in. x 5/16 in.",
+     "Lint Screen"
+    ],
+    [
+     "Feature 19",
+     "Quantity/Size",
+     "Type"
+    ],
+    [
+     "",
+     "Feature 4A = 0,A,B,C,E,K,Q",
+     "Metal Mesh, Outside Air"
+    ],
+    [
+     "",
+     "6 / 16 in. x 25 in. x 1 in.",
+     ""
+    ],
+    [
+     "B, G, H, J, K",
+     "With PE or PR, Feature 4A = F,G,H",
+     ""
+    ],
+    [
+     "",
+     "4 / 16 in. x 25 in. x 1 in.",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "FILTER CONVERSIONS",
+   "page": 106,
+   "orientation": "row",
+   "header": [
+    "Inches",
+    "Centimeters"
+   ],
+   "quantities": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "[12 x 24 x 2]",
+     "[30.5 x 61 x 5.1]"
+    ],
+    [
+     "[12 x 24 x 4]",
+     "[30.5 x 61 x 10.2]"
+    ],
+    [
+     "[14 x 25 x 2]",
+     "[35.6 x 63.5 x 5.1]"
+    ],
+    [
+     "[16 x 20 x 2]",
+     "[40.6 x 50.8 x 5.1 ]"
+    ],
+    [
+     "[16 x 20 x 4]",
+     "[40.6 x 50.8 x 10.2]"
+    ],
+    [
+     "[16 x 25 x 1]",
+     "[40.6 x 63.5 x 2.5]"
+    ],
+    [
+     "[18 x 20 x 2]",
+     "[45.7 x 50.8 x 5.1]"
+    ],
+    [
+     "[18 x 25 x 1]",
+     "[45.7 x 63.5 x 2.5]"
+    ],
+    [
+     "[20 x 16 x 2]",
+     "[50.8 x 40.6 x 5.1]"
+    ],
+    [
+     "[20 x 24 x 4]",
+     "[50.8 x 61 x 10.2]"
+    ],
+    [
+     "[20 x 25 x 1]",
+     "[50.8 x 63.5 x 2.5]"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "FILTER CONVERSIONS",
+   "page": 106,
+   "orientation": "row",
+   "header": [
+    "Inches",
+    "Centimeters"
+   ],
+   "quantities": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "[20 x 25 x 5/16]",
+     "[50.8 x 63.5 x 0.8]"
+    ],
+    [
+     "[20 x 25 x 2]",
+     "[50.8 x 63.5 x 5.1]"
+    ],
+    [
+     "[20 x 25 x 4]",
+     "[50.8 x 63.5 x 10.2]"
+    ],
+    [
+     "[24 x 20 x 2]",
+     "[61 x 50.8 x 5.1]"
+    ],
+    [
+     "[24 x 20 x 4]",
+     "[61 x 50.8 x 10.2]"
+    ],
+    [
+     "[24 x 24 x 5/16]",
+     "[61 x 61 x 0.8]"
+    ],
+    [
+     "[24 x 24 x 2]",
+     "[61 x 61 x 5.1]"
+    ],
+    [
+     "[24 x 24 x 4]",
+     "[61 x 61 x 10.2]"
+    ],
+    [
+     "[25 x 16 x 2]",
+     "[63.5 x 40.6 x 5.1]"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "TABLE 62 — CHLORIDE CONTENT",
+   "page": 110,
+   "orientation": "column",
+   "header": [
+    "Chloride Content",
+    "Maximum Temperature",
+    "",
+    "",
+    ""
+   ],
+   "quantities": [
+    null,
+    "temperature",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "60ºC (140ºF)",
+     "80ºC (176ºF)",
+     "120ºC (248ºF)",
+     "130ºC (266ºF)"
+    ],
+    [
+     "= 10 ppm",
+     "SS 304",
+     "SS 304",
+     "SS 304",
+     "SS 316"
+    ],
+    [
+     "= 25 ppm",
+     "SS 304",
+     "SS 304",
+     "SS 316",
+     "SS 316"
+    ],
+    [
+     "= 50 ppm",
+     "SS 304",
+     "SS 316",
+     "SS 316",
+     "Ti / SMO 254"
+    ],
+    [
+     "= 80 ppm",
+     "SS 316",
+     "SS 316",
+     "SS 316",
+     "Ti / SMO 254"
+    ],
+    [
+     "= 150 ppm",
+     "SS 316",
+     "SS 316",
+     "Ti / SMO 254",
+     "Ti / SMO 254"
+    ],
+    [
+     "= 300 ppm",
+     "SS 316",
+     "Ti / SMO 254",
+     "Ti / SMO 254",
+     "Ti / SMO 254"
+    ],
+    [
+     "> 300 ppm",
+     "Ti / SMO 254",
+     "Ti / SMO 254",
+     "Ti / SMO 254",
+     "Ti / SMO 254"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "Appendix B - Thermistor Temperature vs. Resistance Values",
+   "page": 111,
+   "orientation": "column",
+   "header": [
+    "°C",
+    "°F",
+    "Resistance (kOhms)"
+   ],
+   "quantities": [
+    "temperature",
+    "temperature",
+    null
+   ],
+   "rows": [
+    [
+     "-40",
+     "-40",
+     "2889.6"
+    ],
+    [
+     "-35",
+     "-31",
+     "2087.22"
+    ],
+    [
+     "-30",
+     "-22",
+     "1522.20"
+    ],
+    [
+     "-25",
+     "-13",
+     "1121.44"
+    ],
+    [
+     "-20",
+     "-4",
+     "834.72"
+    ],
+    [
+     "-15",
+     "5",
+     "627.28"
+    ],
+    [
+     "-10",
+     "14",
+     "475.74"
+    ],
+    [
+     "-5",
+     "23",
+     "363.99"
+    ],
+    [
+     "0",
+     "32",
+     "280.82"
+    ],
+    [
+     "5",
+     "41",
+     "218.41"
+    ],
+    [
+     "10",
+     "50",
+     "171.17"
+    ],
+    [
+     "15",
+     "59",
+     "135.14"
+    ],
+    [
+     "20",
+     "68",
+     "107.44"
+    ],
+    [
+     "25",
+     "77",
+     "86.00"
+    ],
+    [
+     "30",
+     "86",
+     "69.28"
+    ],
+    [
+     "35",
+     "95",
+     "56.16"
+    ],
+    [
+     "40",
+     "104",
+     "45.81"
+    ],
+    [
+     "45",
+     "113",
+     "37.58"
+    ],
+    [
+     "50",
+     "122",
+     "30.99"
+    ],
+    [
+     "55",
+     "131",
+     "25.68"
+    ],
+    [
+     "60",
+     "140",
+     "21.40"
+    ],
+    [
+     "65",
+     "149",
+     "17.91"
+    ],
+    [
+     "70",
+     "158",
+     "15.07"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "Appendix B - Thermistor Temperature vs. Resistance Values",
+   "page": 111,
+   "orientation": "column",
+   "header": [
+    "°C",
+    "°F",
+    "Resistance (kOhms)"
+   ],
+   "quantities": [
+    "temperature",
+    "temperature",
+    null
+   ],
+   "rows": [
+    [
+     "75",
+     "167",
+     "12.73"
+    ],
+    [
+     "80",
+     "176",
+     "10.79"
+    ],
+    [
+     "85",
+     "185",
+     "9.20"
+    ],
+    [
+     "90",
+     "194",
+     "7.87"
+    ],
+    [
+     "95",
+     "203",
+     "6.77"
+    ],
+    [
+     "100",
+     "212",
+     "5.85"
+    ],
+    [
+     "105",
+     "221",
+     "5.09"
+    ],
+    [
+     "110",
+     "230",
+     "4.45"
+    ],
+    [
+     "115",
+     "239",
+     "3.87"
+    ],
+    [
+     "120",
+     "248",
+     "3.35"
+    ],
+    [
+     "125",
+     "257",
+     "2.92"
+    ],
+    [
+     "130",
+     "266",
+     "2.58"
+    ],
+    [
+     "135",
+     "275",
+     "2.28"
+    ],
+    [
+     "140",
+     "284",
+     "2.02"
+    ],
+    [
+     "145",
+     "293",
+     "1.80"
+    ],
+    [
+     "150",
+     "302",
+     "1.59"
+    ],
+    [
+     "155",
+     "311",
+     "1.39"
+    ],
+    [
+     "160",
+     "320",
+     "1.25"
+    ],
+    [
+     "165",
+     "329",
+     "1.12"
+    ],
+    [
+     "170",
+     "338",
+     "1.01"
+    ],
+    [
+     "175",
+     "347",
+     "0.92"
+    ],
+    [
+     "180",
+     "356",
+     "0.83"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "기타 — AAON_RN_Series_IOM_R454B.pdf p114",
+   "page": 114,
+   "orientation": "column",
+   "header": [
+    "1. Does each port (sensor 1-3) have a male connector plugged into both Cabinet and Airstream connection on mitigation board? 2. Do compressor and gas heat operation shut off when the cabinet board sensor trips.",
+    "Yes Yes",
+    "No No"
+   ],
+   "quantities": [
+    "current",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "3. Normal unit operation commences except the compressor and gas heater after the cabinet board sensor trips?",
+     "Yes",
+     "No"
+    ],
+    [
+     "4. Does compressor shut off and fan stay on when the Airstream board sensor trips?",
+     "Yes",
+     "No"
+    ],
+    [
+     "5. Non-compressor or gas heating/cooling stay on when both boards trip? (electric heater stays on)",
+     "Yes",
+     "No"
+    ],
+    [
+     "6. When A2L airstream alarm is activated do supply fans start, VAV boxes open, and compressors stop?",
+     "Yes",
+     "No"
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc",
+   "titleRaw": ""
+  },
+  {
+   "title": "정격 사양 — AAON_RN_Series_IOM_R454B.pdf p114",
+   "page": 114,
+   "orientation": "column",
+   "header": [
+    "Supply Fan Assembly Alignment Check Rotation Nameplate Amps",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "quantities": [
+    "current",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Number",
+     "hp",
+     "L1",
+     "L2",
+     "L3"
+    ],
+    [
+     "1",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "2",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "Band Size VAV Control",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "VFD Frequency",
+     "",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "rating",
+   "titleRaw": ""
+  },
+  {
+   "title": "정격 사양 — AAON_RN_Series_IOM_R454B.pdf p114",
+   "page": 114,
+   "orientation": "column",
+   "header": [
+    "Power Exhaust Fan Assembly Alignment Check Rotation Nameplate Amps",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "quantities": [
+    "power",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Number",
+     "hp",
+     "L1",
+     "L2",
+     "L3"
+    ],
+    [
+     "1",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "2",
+     "",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "rating",
+   "titleRaw": ""
+  },
+  {
+   "title": "기타 — AAON_RN_Series_IOM_R454B.pdf p117",
+   "page": 117,
+   "orientation": "column",
+   "header": [
+    "1. Has the entire system been flushed and pressure checked? 2. Has the entire system been filled with fluid?",
+    "Yes Yes",
+    "No No"
+   ],
+   "quantities": [
+    "pressure",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "3. Has air been bled from the heat exchangers and piping?",
+     "Yes",
+     "No"
+    ],
+    [
+     "4. Is the glycol the proper type and concentration (N/A if water)?",
+     "Yes",
+     "No"
+    ],
+    [
+     "5. Is there a minimum load of 50% of the design load?",
+     "Yes",
+     "No"
+    ],
+    [
+     "6. Has the water piping been insulated?",
+     "Yes",
+     "No"
+    ],
+    [
+     "7. What is the freeze point of the glycol (N/A if water)?",
+     "",
+     ""
+    ],
+    [
+     "8. What is the glycol concentration?",
+     "",
+     ""
+    ],
+    [
+     "No Water Leaks Condenser Safety Check",
+     "",
+     ""
+    ],
+    [
+     "Water Flow GPM",
+     "",
+     ""
+    ],
+    [
+     "Water Inlet Temperature °C/°F Water Outlet Temperature °C/°F",
+     "",
+     ""
+    ]
+   ],
+   "source": "AAON_RN_Series_IOM_R454B.pdf",
+   "kind": "etc",
+   "titleRaw": ""
+  }
+ ],
+ "photo": "data:image/jpeg;base64,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",
+ "photoSource": "AAON_RN_Series_Brochure.pdf p1"
+}

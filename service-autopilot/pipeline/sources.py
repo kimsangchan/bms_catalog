@@ -663,6 +663,30 @@ SOURCES = [
         "crosscheck_unreliable": r"Swegon_GOLD-EF_Modbus",
     },
     {
+        "id": "aaon-vccx2",
+        "vendor": "AAON",
+        "kind": "포인트리스트",
+        "note": "RN/RQ 옥상형의 VCCX2 유닛 컨트롤러 — 기술 가이드 APPENDIX C 'BACnet Guide' 가 "
+                "포인트 정본(AI p72·AV p80·BI p86). 정격은 RN 브로슈어(캐비닛 A~E, RN-006~140 "
+                "공칭 CFM·IEER/EER)와 IOM(난방 용량·전기 표)에서. aaon.com hubfs 직링크 무로그인.",
+        "enumerate": "list",
+        "urls": [
+            "https://www.aaon.com/hubfs/G039840-VCCX2-T.pdf",
+            "https://www.aaon.com/hubfs/260619_RN_Brochure.pdf",
+            "https://www.aaon.com/hubfs/RN%20Series%20IOM%2020251210.pdf",
+        ],
+        "rename": {
+            "G039840-VCCX2-T.pdf": "AAON_VCCX2_Technical_Guide.pdf",
+            "260619_RN_Brochure.pdf": "AAON_RN_Series_Brochure.pdf",
+            "RN Series IOM 20251210.pdf": "AAON_RN_Series_IOM_R454B.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+        # 기술 가이드 본문(배선 절)과 부록이 같은 AI 번호를 다른 뜻으로 쓴다 —
+        # 줄 읽기가 본문 쪽을 짚어 어긋난다(원문 확인: AI:2=Control Mode 가 정답).
+        "crosscheck_unreliable": r"AAON_VCCX2",
+    },
+    {
         "id": "jci-vrf-gateway",
         "vendor": "Johnson Controls / York",
         "kind": "게이트웨이 설치설명서 · 제출자료",

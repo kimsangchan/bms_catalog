@@ -82,6 +82,12 @@ OVERRIDE = {
         "controller": "ComfortLink",
         "product": "48/50N WeatherExpert Rooftop 75-150 Ton",
     },
+    # 표지가 컨트롤러 기술 가이드라 ASM 번호 조각이 잡힌다
+    "AAON_VCCX2_Technical_Guide.pdf": {
+        "cat": "HVAC.AIR.RTU", "tag": "rooftop",
+        "controller": "VCCX2",
+        "product": "RN/RQ Series Rooftop",
+    },
     # 표지 제목이 개요 문장이라 조각이 잡힌다
     "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf": {
         "cat": "HVAC.AIR.AHU", "tag": "ahu",
@@ -141,6 +147,12 @@ def plan_one(fname, vendor="Trane"):
 
     names = CL.segment_names(pdf)
     labels = names if len(names) == len(segs) else []
+    # 구간 라벨은 'scc'·'idu' 같은 짧은 식별자여야 한다 — 목차 조각('Table 1:…')이
+    # 들어오면 모델 ID 가 오염되고, Windows 에서는 콜론 때문에 파일까지 깨진다(AAON 실측).
+    labels = [(l if l and len(l) <= 24 and ":" not in l and "\t" not in l else None)
+              for l in labels]
+    if all(l is None for l in labels):
+        labels = []
     # 프로토콜 이름은 실제 오브젝트 타입에서 딴다 — Modbus 전용 문서를 'BACnet'
     # 이라고 부르면 안 된다.
     allproto = collections.Counter(S.protocol_of(p["type"]) for p in rows)

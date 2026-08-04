@@ -80,8 +80,10 @@ def _c(x):
 COL = {
     # 'object type' 은 마지막에 둔다 — Belimo 는 ID 열 이름이 'Object Type [Instance]'
     # 이지만, 두 열이 다 있는 문서에서는 'object identifier' 가 먼저 잡혀야 한다.
+    # 맨 뒤 'object' 단독은 최후 보루 — AAON VCCX2 는 ID 열 이름이 그냥 'Object'
+    # ('AI: 1' 값)다. 다른 별칭이 다 실패했을 때만 온다.
     "id": ["object identifier", "identifier", "object id", "obj id", "id",
-           "objekt-id", "objektkennung", "object type"],
+           "objekt-id", "objektkennung", "object type", "object"],
     # 'object nmae' 는 오타가 아니라 원문 그대로다 — Trane RTHD 문서가 그렇게 썼고,
     # 이걸 못 알아봐서 설명 열이 이름 자리로 들어와 81행이 오염됐다.
     # 'data label' · 'data description' 이 'object name' 보다 **앞**이다.
@@ -96,7 +98,7 @@ COL = {
     "name": ["data label", "data description", "object name", "object nmae",
              "point name", "data point", "diagnostic name", "designation",
              "property description", "objektname", "nom de l'objet", "nombre del objeto",
-             "name"],
+             "parameter", "name"],
     # 'dim' 은 Siemens Climatix — 단위 열 이름이 'Dim' 이다.
     "unit": ["unit", "units", "dim", "einheit", "unité", "unidad"],
     "desc": ["description", "beschreibung", "descripción"],
