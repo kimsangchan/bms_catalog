@@ -700,6 +700,52 @@ def unit_models(model):
     return out
 
 
+_UNIT_SCHEMA = None
+
+
+def unit_schema():
+    global _UNIT_SCHEMA
+    if _UNIT_SCHEMA is None:
+        _UNIT_SCHEMA = load_json(os.path.join(DATA, "unit-schema.json"))
+    return _UNIT_SCHEMA
+
+
+def load_curated_units(model):
+    """화면·데이터셋이 읽는 형번 정본 — data/units/<모델>.json (units.py --sync 로 채움).
+
+    추출(unit_models)은 제안일 뿐이고, 확정본 파일에 없는 형번은 화면에도 없다
+    (PIM 골든 레코드 방식). 확정본 레코드를 기존 화면 행 모양(평평한 필드 +
+    units 딕셔너리)으로 펴고, 스키마의 전 필드를 '—' 로 패딩해 소비 코드가
+    필드 유무를 걱정하지 않게 한다. 누락·드리프트는 validate 가 잡는다.
+    """
+    path = os.path.join(DATA, "units", "%s.json" % model.get("id"))
+    if not os.path.exists(path):
+        return []
+    schema = unit_schema()
+    out = []
+    for rec in load_json(path).get("units") or []:
+        source = rec.get("source") or {}
+        row = {
+            "unitModelNumber": rec.get("unitModelNumber"),
+            "unitNumberKind": rec.get("unitNumberKind"),
+            "unitRole": rec.get("unitRole"),
+            "status": rec.get("status") or "extracted",
+            "selectionStatus": "unit_candidate",
+            "units": {},
+            "sourceTable": source.get("table") or "",
+            "sourcePage": source.get("page"),
+            "sourceFile": source.get("file"),
+        }
+        for fid in schema["features"]:
+            row[fid] = "—"
+        for fid, entry in (rec.get("fields") or {}).items():
+            row[fid] = entry.get("value") or "—"
+            if entry.get("unit"):
+                row["units"][fid] = entry["unit"]
+        out.append(row)
+    return out
+
+
 def split_tokens(value):
     text = clean_text(value)
     if not text or text.upper() in {"N/A", "NA"}:
@@ -1086,7 +1132,8 @@ def build_dataset(equip_ids=None):
         mapped = mapping_points(model.get("points") or [], candidates)
         sim = simulator_inputs(model, terms)
         refs = reference_tables(model)
-        units = unit_models(model)
+        # 화면·산출물은 확정 데이터셋(data/units)만 읽는다 — 추출은 units.py 의 제안 원천
+        units = load_curated_units(model)
         electrical = electrical_rows(model)
         equip_template = data["equipmentTemplates"].get(model.get("equipId"), {})
         template_mappings = template_point_mappings(

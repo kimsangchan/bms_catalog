@@ -2,6 +2,7 @@
 import unittest
 
 import datasets
+import units as U
 
 
 class DatasetBuildTest(unittest.TestCase):
@@ -329,6 +330,94 @@ class DatasetBuildTest(unittest.TestCase):
                     "%s %s 에 sourceFile 이 없다: %r" % (
                         model.get("id"), row.get("unitModelNumber"),
                         row.get("sourceFile")))
+
+
+class CuratedUnitDatasetTest(unittest.TestCase):
+    """형번 확정 데이터셋(골든 레코드) 게이트 — 추출은 제안, data/units 가 정본."""
+
+    def test_curated_file_exists_for_every_model_with_extraction(self):
+        # 추출이 형번을 내는데 확정본이 없으면 화면에서 형번이 사라진다 —
+        # units.py --sync 를 잊으면 여기서 잡힌다.
+        schema = U.load_schema()
+        for mid, model in datasets.load_models().items():
+            if not U.extraction_records(model, schema):
+                continue
+            stored = U.load_stored(mid)
+            self.assertTrue(
+                stored and stored.get("units"),
+                "%s: 추출 제안은 있는데 확정본(data/units)이 없다 — units.py --sync" % mid)
+
+    def test_curated_units_conform_to_schema(self):
+        # 확정본의 모든 레코드는 속성 사전(features)에 있는 필드만 쓰고,
+        # 값 모양 한계(눌린 다열 덩어리 금지)와 원본 PDF 출처를 지켜야 한다.
+        import glob, json, os
+        schema = U.load_schema()
+        ids = set(U.field_ids(schema))
+        statuses = set(schema["statuses"])
+        for path in glob.glob(os.path.join(U.UNITS_DIR, "*.json")):
+            doc = json.load(open(path, encoding="utf-8"))
+            for rec in doc.get("units") or []:
+                code = "%s %s" % (doc.get("modelId"), rec.get("unitModelNumber"))
+                self.assertIn(rec.get("status") or "extracted", statuses, code)
+                self.assertIn(".pdf", ((rec.get("source") or {}).get("file") or "").lower(),
+                              code + " 출처 파일 없음")
+                for fid, entry in (rec.get("fields") or {}).items():
+                    self.assertIn(fid, ids, code + " 사전 밖 필드 " + fid)
+                    self.assertTrue(
+                        datasets.plausible_rating_value((entry or {}).get("value") or ""),
+                        code + "." + fid + " 눌린 다열 덩어리")
+
+    def test_schema_classes_reference_defined_features(self):
+        # 클래스(설비별 세트)의 table·detail·labels 가 사전에 없는 id 를 가리키면
+        # 화면 열이 조용히 비거나 라벨이 원문 id 로 샌다.
+        schema = U.load_schema()
+        ids = set(schema["features"])
+        for cid, cls in schema["classes"].items():
+            for fid in (cls.get("table") or []) + (cls.get("detailExtra") or []):
+                self.assertIn(fid, ids, "%s.table/detailExtra: %s" % (cid, fid))
+            for fid in (cls.get("labels") or {}):
+                self.assertIn(fid, ids, "%s.labels: %s" % (cid, fid))
+            for role, rd in (cls.get("roles") or {}).items():
+                for fid in rd.get("detail") or []:
+                    self.assertIn(fid, ids, "%s.%s.detail: %s" % (cid, role, fid))
+
+    def test_merge_preserves_verified_and_manual_and_reports_drift(self):
+        # 생존 규칙 — 사람 확정본(verified·manual)은 추출이 절대 덮지 않는다.
+        verified = {"unitModelNumber": "X-01", "status": "verified",
+                    "fields": {"eer": {"value": "12.0"}}, "source": {"page": 1}}
+        manual = {"unitModelNumber": "M-01", "status": "manual",
+                  "fields": {"eer": {"value": "9.9"}}, "source": {"page": 3}}
+        extracted = [{"unitModelNumber": "X-01", "status": "extracted",
+                      "fields": {"eer": {"value": "13.5"}}, "source": {"page": 1}}]
+        merged, log = U.merge_units([verified, manual], extracted)
+        by_code = {r["unitModelNumber"]: r for r in merged}
+        self.assertEqual(by_code["X-01"]["fields"]["eer"]["value"], "12.0")
+        self.assertEqual(by_code["X-01"]["status"], "verified")
+        self.assertEqual(by_code["M-01"]["fields"]["eer"]["value"], "9.9")
+        kinds = {kind for kind, _ in log}
+        self.assertIn("drift", kinds)   # 확정본과 추출이 달라짐 — 알림만
+        self.assertIn("orphan", kinds)  # 추출이 못 만들어도 수기 입력은 남는다
+
+    def test_merge_updates_and_drops_extracted_proposals(self):
+        # extracted 상태는 추출이 자유롭게 갱신·삭제한다 (제안이니까).
+        old = [{"unitModelNumber": "A-01", "status": "extracted",
+                "fields": {"eer": {"value": "10"}}, "source": {"page": 5}},
+               {"unitModelNumber": "GONE-01", "status": "extracted",
+                "fields": {}, "source": {"page": 6}}]
+        new = [{"unitModelNumber": "A-01", "status": "extracted",
+                "fields": {"eer": {"value": "11"}}, "source": {"page": 5}}]
+        merged, log = U.merge_units(old, new)
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["fields"]["eer"]["value"], "11")
+        self.assertEqual({k for k, _ in log}, {"update", "drop"})
+
+    def test_build_reads_curated_only(self):
+        # 화면 데이터는 확정본 어댑터를 거친다 — status 필드가 실려 있어야 한다
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"]["aaon-vccx2-rn-rq-series-rooftop-bacnet"]
+        self.assertTrue(model["unitModels"])
+        for row in model["unitModels"]:
+            self.assertIn(row.get("status"), ("extracted", "verified", "manual"))
 
     def test_inducer_and_power_exhaust_motors_are_not_electrical_rows(self):
         data = datasets.build_dataset(equip_ids={"e5"})

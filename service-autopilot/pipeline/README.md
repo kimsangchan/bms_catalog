@@ -180,8 +180,11 @@ python datasets.py --equip e5                # 공조기만 다시 생성
    ★ `specs.py --kinds`** — **--apply 뒤 --kinds 를 빠뜨리면 표 전부가 미분류로 남아
    사양 요약·시뮬레이터 입력·형번 추출이 조용히 전부 0 이 된다** (실제 사고).
 
-**5. 형번·정격 확인: `datasets.build_dataset()` 에서 해당 모델 unitModels > 0 인지**
-   - 0 이면 카탈로그 표 형태가 새 것이다 — unit_models 의 인식 사다리(제목
+**5. 형번·정격: 추출 확인 → ★ `units.py --sync` 로 확정 데이터셋 반영**
+   - 추출은 **제안**이고 화면·빌드는 **확정 데이터셋(`data/units/<모델>.json`)만
+     읽는다** (PIM 골든 레코드 방식). sync 를 잊으면 화면에 형번이 안 나오고
+     `test_curated_file_exists_for_every_model_with_extraction` 이 잡는다.
+   - 추출이 0 이면 카탈로그 표 형태가 새 것이다 — unit_models 의 인식 사다리(제목
      general/physical data · 첫 행 형번 · 머리글 형번 · 제품군+크기 코드 ·
      크기 행(Envistar))에 형태를 추가하고 **테스트도 같이** 넣는다.
    - 분류 함정: 머리글 낱말(cabinet·fuse)로 정격 표가 참고로 빠질 수 있다 —
@@ -194,6 +197,11 @@ python datasets.py --equip e5                # 공조기만 다시 생성
      풀어서 주입한다(AAON 사례).
    - 형번 행에는 `sourceFile`(원본 PDF 파일명)이 실려야 근거 클릭 → 해당 쪽 열기가
      된다 — `test_unit_rows_carry_source_file_for_pdf_page_link` 가 강제한다.
+   - 새 필드가 필요하면 **속성 사전(`data/unit-schema.json`)에 먼저 정의**한다 —
+     공유 사전(features) + 설비 클래스별 세트(classes: 열 구성·라벨 오버라이드·
+     역할별 상세). 같은 속성도 설비마다 뜻이 다르다(냉동기의 코일·팬 = 응축기 쪽).
+   - 원문 대조를 마친 형번은 `units.py --verify <모델> [형번]` 으로 승격 —
+     verified/manual 은 sync 가 절대 덮지 않는다(어긋나면 드리프트 경고만).
 
 **6. 용어 사전 적중률: 새 모델 사양 라벨의 spec-terms 적중률을 재고 미적중 상위를
    보강한다** (37%→73% 사례). 실제 표에 나온 용어만. ⚠ JSON 정규식 `\b` 는 `\\b`.
@@ -215,6 +223,8 @@ python datasets.py --equip e5                # 공조기만 다시 생성
 data/
 ├─ equips/<id>.json     장비 계열 19건 (공통 사양·표준 포인트)
 ├─ models/<id>.json     모델 (정격·통신·오브젝트 목록)
+├─ unit-schema.json     형번 속성 사전 — ETIM식 공유 사전(features)+설비 클래스별 세트
+├─ units/<모델>.json     형번 확정 데이터셋(골든 레코드) — 화면·빌드의 정본
 ├─ datasets/            목적별 생성 데이터셋 (템플릿·시뮬레이터·매핑)
 ├─ docs.json            문서 메타 (출처·상태)
 ├─ known-good.json      정답 대조셋 (사람 확인분) — 교차 대조가 주 방어선
@@ -222,6 +232,26 @@ data/
 ├─ collected.json       수집 대장 (URL·해시·크기·실패 기록)
 └─ raw/                 내려받은 원문
 ```
+
+## 형번 확정 데이터셋 — 추출은 제안, `data/units/` 가 정본
+
+추출 사다리가 화면에 직결돼 있어 새 표 모양마다 화면 사고가 노출되던 구조를
+현업(PIM/MDM) 방식으로 뒤집었다. 속성 사전이 틀을 정하고, 추출은 제안만 쓰고,
+화면은 확정본만 읽는다.
+
+```
+unit-schema.json (속성 사전)      datasets.unit_models (추출 = 제안)
+        │                                  │
+        └────────► units.py --sync ◄───────┘        생존 규칙:
+                        │            extracted  제안 — sync 가 자유 갱신
+                data/units/<모델>.json  verified   사람 확인 — 절대 안 덮음(드리프트 경고만)
+                        │            manual     수기 입력 — 문서 한계 보완
+        build/datasets ◄┘  (validate: 누락 E · 사전 밖 필드 E · 미동기 W)
+```
+
+- 검수 승격: `python units.py --verify <모델ID> [형번…]` · 현황: `--status` · 예고: `--diff`
+- 문서에 없는 값(York 전기표 등)은 확정본에 `status: "manual"` 로 직접 채울 수 있다 —
+  추출이 재현 못 해도 sync 가 건드리지 않는다.
 
 `datasets/` 산출물은 세 파일이다.
 

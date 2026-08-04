@@ -1,0 +1,65 @@
+{
+ "version": 2,
+ "description": "형번(Unit Model Number) 사양 속성 사전 — ETIM 방식: 공유 속성 사전(features) + 설비 클래스별 속성 세트(classes). 설비마다 쓰는 속성·라벨이 다르고(예: 냉동기의 코일·팬 값은 응축기 쪽 값), 같은 설비 안에서도 유닛 구분(role)에 따라 상세 구성이 달라진다. 화면 열·확정 데이터셋(data/units)·검증(validate)이 전부 이 사전 기준으로 움직인다. 새 설비 계열에 형번이 생기면 classes 에 항목을 더한다.",
+ "statuses": {
+  "extracted": "자동 추출 — 검수 전 제안값. units.py --sync 가 자유롭게 갱신한다",
+  "verified": "사람 확인 — 동기화가 절대 덮어쓰지 않는다 (추출이 달라지면 드리프트 경고만)",
+  "manual": "수기 입력 — 문서 한계로 추출이 못 만드는 값을 사람이 직접 채웠다. 동기화가 건드리지 않는다"
+ },
+ "rules": {
+  "valueMaxLen": 60,
+  "valueMaxNumbers": 8,
+  "note": "정격 '한 개 값'의 모양 한계 — datasets.plausible_rating_value 와 같은 기준. 넘으면 눌린 다열 덩어리로 보고 검증 오류"
+ },
+ "features": {
+  "capacityClass": {"ko": "용량대", "convUnit": ""},
+  "matchedAirHandler": {"ko": "조합 공조기", "convUnit": ""},
+  "ratedAirflow": {"ko": "정격 풍량", "convUnit": "CFM"},
+  "grossCoolingCapacity": {"ko": "냉방능력", "convUnit": "Btu/h"},
+  "ahriNetCoolingCapacity": {"ko": "AHRI 냉방능력", "convUnit": "Btu/h"},
+  "eer": {"ko": "EER", "convUnit": ""},
+  "ieer": {"ko": "IEER", "convUnit": ""},
+  "capacitySteps": {"ko": "용량 단계", "convUnit": "%"},
+  "fanMotorHp": {"ko": "팬 모터", "convUnit": "HP"},
+  "fanMotorRpm": {"ko": "팬 회전수", "convUnit": "RPM"},
+  "coilFaceArea": {"ko": "코일 면적", "convUnit": ""},
+  "coilRowsFpi": {"ko": "코일 열수/FPI", "convUnit": ""},
+  "compressorConfig": {"ko": "압축기 구성", "convUnit": ""},
+  "refrigerantCircuits": {"ko": "냉매 회로", "convUnit": ""},
+  "condenserFans": {"ko": "응축 팬", "convUnit": ""},
+  "condenserAirflow": {"ko": "응축 풍량", "convUnit": ""}
+ },
+ "classes": {
+  "e5": {
+   "ko": "공조기 (AHU·RTU)",
+   "table": ["capacityClass", "matchedAirHandler", "ratedAirflow", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer", "ieer", "capacitySteps", "fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"],
+   "detailExtra": ["ieer", "compressorConfig", "capacitySteps", "refrigerantCircuits", "condenserFans", "condenserAirflow"],
+   "roles": {
+    "airHandler": {"ko": "공기측 유닛", "detail": ["fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"]},
+    "condensingUnit": {"ko": "실외/응축 유닛", "detail": ["matchedAirHandler", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer"]},
+    "packagedUnit": {"ko": "일체형(패키지) 유닛", "detail": ["grossCoolingCapacity", "ahriNetCoolingCapacity", "eer", "fanMotorHp"]}
+   }
+  },
+  "e9": {
+   "ko": "냉동기 (칠러)",
+   "labels": {
+    "coilFaceArea": "응축 코일 면적",
+    "coilRowsFpi": "응축 코일 열수/FPI",
+    "fanMotorRpm": "응축 팬 회전수",
+    "fanMotorHp": "응축 팬 모터"
+   },
+   "table": ["capacityClass", "grossCoolingCapacity", "eer", "ieer", "capacitySteps", "compressorConfig", "refrigerantCircuits", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"],
+   "detailExtra": ["condenserFans", "condenserAirflow", "ratedAirflow"],
+   "roles": {
+    "chillerUnit": {"ko": "냉동기 유닛", "detail": ["capacitySteps", "compressorConfig", "refrigerantCircuits", "fanMotorRpm", "coilFaceArea", "coilRowsFpi", "eer"]}
+   }
+  }
+ },
+ "notes": {
+  "features": "공유 속성 사전 — id 는 전 설비 공통, 한글 라벨과 관례 단위(convUnit)의 기본값. convUnit 은 라벨·단위 열에 단위가 없을 때 붙이는 I-P 관례(화면 안내문에 관례임을 명시)이고 문서 단위(units)가 있으면 그쪽이 이긴다",
+  "classes.labels": "설비별 라벨 오버라이드 — 같은 속성이라도 설비에 따라 뜻이 다를 때(냉동기의 코일·팬 = 응축기 쪽) 여기서 바꾼다",
+  "classes.table": "전체 형번 표의 열 구성·순서. 값이 하나도 없는 열은 화면이 자동으로 뺀다 (capacityClass 는 첫 열 특별 취급)",
+  "classes.roles.detail": "선택 형번 상세에서 역할별로 앞세우는 속성 순서. detailExtra 는 그 뒤에 값이 있을 때만 붙는다",
+  "validation": "확정 데이터셋의 필드는 features 에 정의된 id 만 허용(validate 오류). 클래스 table 에 없는 필드는 화면에 안 나올 뿐 저장은 허용"
+ }
+}

@@ -180,7 +180,62 @@ def check_model(m, eq, kg):
         add("I", "no-gap-note", "미확보 항목 설명(gap) 없음")
     if pts and m.get("extractor") == "manual":
         add("I", "manual", "수기 입력 — 재현 불가")
+
+    # 11) 형번 확정 데이터셋 — 추출은 제안, data/units/ 골든 레코드가 정본.
+    #     화면은 확정본만 읽으므로 누락·스키마 위반은 오류(E), 미동기는 경고(W)다.
+    check_curated_units(m, add)
     return out
+
+
+def check_curated_units(m, add):
+    import datasets as DS
+    import units as U
+
+    schema = U.load_schema()
+    ids = set(U.field_ids(schema))
+    statuses = set(schema.get("statuses") or ())
+    proposals = U.extraction_records(m, schema)
+    path = U.unit_path(m["id"])
+    if not os.path.exists(path):
+        if proposals:
+            add("E", "units-missing",
+                "형번 추출 제안 %d건인데 확정 데이터셋(data/units)이 없다 — units.py --sync"
+                % len(proposals))
+        return
+    doc = json.load(open(path, encoding="utf-8"))
+    curated = doc.get("units") or []
+    bad_field, blob, no_src = [], [], []
+    for rec in curated:
+        code = rec.get("unitModelNumber") or "?"
+        if (rec.get("status") or "extracted") not in statuses:
+            add("E", "units-status", "%s: 정의 밖 상태 %r" % (code, rec.get("status")))
+        for fid, entry in (rec.get("fields") or {}).items():
+            if fid not in ids:
+                bad_field.append("%s.%s" % (code, fid))
+            value = (entry or {}).get("value") or ""
+            if not DS.plausible_rating_value(value):
+                blob.append("%s.%s" % (code, fid))
+        if ".pdf" not in ((rec.get("source") or {}).get("file") or "").lower():
+            no_src.append(code)
+    if bad_field:
+        add("E", "units-field", "속성 사전에 없는 필드 %d건: %s" % (len(bad_field), bad_field[0]))
+    if blob:
+        add("E", "units-blob", "눌린 다열 덩어리 %d건: %s" % (len(blob), blob[0]))
+    if no_src:
+        add("E", "units-source", "원본 PDF 출처 없는 형번 %d건: %s" % (len(no_src), no_src[0]))
+    # 드리프트 — 추출 제안과 확정본의 어긋남. extracted 는 --sync 로 풀리고(W),
+    # verified/manual 은 사람 확정이 이기므로 알림만(I) 한다.
+    merged, log = U.merge_units(curated, proposals)
+    stale = [k for kind, k in log if kind in ("add", "update", "drop")]
+    kept = [k for kind, k in log if kind in ("drift", "orphan")]
+    if stale:
+        add("W", "units-stale", "추출 제안과 어긋난 %d건 (%s …) — units.py --sync"
+            % (len(stale), stale[0]))
+    if kept:
+        add("I", "units-drift", "사람 확정본과 추출이 다른 %d건 — 원문 재확인 권장" % len(kept))
+    if curated and not stale:
+        n_ver = sum(1 for r in curated if r.get("status") in ("verified", "manual"))
+        add("I", "units-ok", "형번 확정본 %d건 (사람 확인 %d)" % (len(curated), n_ver))
 
 
 def main(argv):
