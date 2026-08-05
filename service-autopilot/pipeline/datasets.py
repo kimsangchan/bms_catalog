@@ -657,12 +657,15 @@ def unit_models(model):
             pick("matchedAirHandler", r"matched air handler$")
             # 풍량 우선순위: AHRI 정격 → 급기 공칭('Nominal cfm') → 팬 공칭.
             # 맨 뒤 '^CFM$'는 Precedent 패키지 유닛에서 응축 팬 풍량이라 급기 라벨보다 뒤에 둔다.
-            pick("ratedAirflow", r"AHRI Rated Airflow", r"Nominal cfm/AHRI Rated cfm",
+            # 'Air ?Flow' — Lennox 는 'AHRI Rated Air Flow (cfm-high/low)' 로 띄어 쓴다
+            pick("ratedAirflow", r"AHRI Rated Air ?Flow", r"Nominal cfm/AHRI Rated cfm",
                  r"^Nominal airflow", r"^Nominal CFM$", r"CFM \(Nominal\)", r"^CFM$")
             pick("grossCoolingCapacity", r"Gross Cooling Capacity - System",
-                 r"^Gross Cooling Capacity$", r"^Gross Capacity @ (ARI|AHRI)")
+                 r"^Gross Cooling Capacity$", r"^Gross Cooling Capacity - Btuh",
+                 r"^Gross Capacity @ (ARI|AHRI)")
+            # Lennox 는 'Net Cooling Capacity (Btuh)' — 각주 1이 AHRI 인증 표기다
             pick("ahriNetCoolingCapacity", r"AHRI Net Cooling Capacity",
-                 r"^(ARI|AHRI) net capacity")
+                 r"^(ARI|AHRI) net capacity", r"^Net Cooling Capacity \(Btuh\)")
             # 'EER1, 7' 처럼 각주 번호가 붙는 표기(Rebel)까지 받는다
             pick("eer", r"Matched Air Handler \(EER\)", r"System \(EER\)",
                  r"^EER(?![A-Za-z])")

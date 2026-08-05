@@ -354,16 +354,20 @@ def section_types(pdf):
     return per_page
 
 
+# 표 캡션에 든 타입 — 'Table 13. Analog Output (AO) Objects List' (Lennox CORE).
+# 페이지 섹션 제목보다 정확하다: 한 쪽에 AO 표 끝과 AV 표 시작이 같이 있으면
+# 페이지 타입은 한쪽을 뒤집어쓴다.
+CAPTION_TYPE = re.compile(r"\((AI|AO|AV|BI|BO|BV|MSI|MSO|MSV)\)\s*Objects?\s*List", re.I)
+
+
 def extract_by_section(pdf):
-    """ID가 숫자만인 Trane 냉동기 문서용 — 페이지 섹션 제목으로 타입을 준다."""
+    """ID가 숫자만인 문서용 — 표 캡션의 '(AO) Objects List'(Lennox CORE)가 1순위,
+    없으면 페이지 섹션 제목(Trane 냉동기)으로 타입을 준다."""
     import fitz
     doc = fitz.open(pdf)
     types = section_types(pdf)
     rows = []
     for i, pg in enumerate(doc):
-        dt = types.get(i)
-        if not dt:
-            continue
         try:
             tabs = pg.find_tables()
         except Exception:
@@ -372,8 +376,17 @@ def extract_by_section(pdf):
             data = t.extract()
             if len(data) < 2:
                 continue
+            dt = types.get(i)
+            # 캡션이 표의 첫 행으로 눌려 들어오는 문서(Lennox) — 타입을 읽고 걷어낸다
+            cap = CAPTION_TYPE.search(_c(data[0][0]))
+            if cap and len(data) > 2:
+                dt = cap.group(1).upper()
+                data = data[1:]
+            if not dt:
+                continue
             hdr = [_c(c).lower() for c in data[0]]
-            i_id = next((j for j, h in enumerate(hdr) if "identifier" in h), -1)
+            i_id = next((j for j, h in enumerate(hdr)
+                         if "identifier" in h or "object id" in h), -1)
             i_nm = next((j for j, h in enumerate(hdr) if "object name" in h), -1)
             if i_id < 0 or i_nm < 0:
                 continue

@@ -714,6 +714,31 @@ SOURCES = [
         "extractor": "auto",
         "access": "무로그인",
     },
+    {
+        "id": "lennox-core-enlight",
+        "vendor": "Lennox",
+        "kind": "포인트리스트",
+        "note": "Enlight/Model L 옥상형 표준 탑재 CORE Unit Controller — BACnet 셋업 가이드 "
+                "508112-02(05/2026)의 Object Definitions(7절, AO/AV/BV/MSV 표)가 포인트 정본. "
+                "MS/TP·BACnet IP 내장. 정격은 Enlight LGT(가스/전기 3~6톤) EHB 210977 — "
+                "General Data(형번 LGT036H4E~072H4E·톤수·풍량·EER/IEER)와 전기 데이터. "
+                "lennox.com dA 직링크 무로그인.",
+        "enumerate": "list",
+        "urls": [
+            "https://www.lennox.com/dA/bfb1627cbc/508112-02a.pdf",
+            "https://www.lennox.com/dA/c72228c74f/ehb_lgt_abox_2411.pdf",
+            # 제품 실물 사진용 — EHB 는 그라데이션·코일 일러스트뿐이라 브로슈어에서 딴다
+            "https://www.lennox.com/dA/ec2cbef5a8/37J51_Enlight+Brochure+454B.pdf",
+        ],
+        # dA 해시 경로라 파일명이 문서번호뿐이다 — 표지 문서번호·제품명으로 바꿔 적는다
+        "rename": {
+            "508112-02a.pdf": "Lennox_CORE_BACnet_SetupGuide_508112-02.pdf",
+            "ehb_lgt_abox_2411.pdf": "Lennox_Enlight_LGT_EHB_210977.pdf",
+            "37J51_Enlight+Brochure+454B.pdf": "Lennox_Enlight_Brochure_37J51.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+    },
 ]
 
 

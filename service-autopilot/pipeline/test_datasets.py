@@ -287,6 +287,27 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(rn6["eer"], "Up to 13.2")
         self.assertEqual(rn6["ieer"], "Up to 22.5")
 
+    def test_lennox_general_data_text_yields_units(self):
+        # Lennox Enlight LGT — EHB 표 인식은 구간 라벨(General Data·Cooling
+        # Performance)이 항목 라벨과 눌려 라벨-값 짝이 끊긴다. 텍스트 층 주입
+        # (vendor_lennox)으로 4형번을 만들고, 기존 e5 스키마 클래스가 무수정으로
+        # 받는지(수집 3규칙 검증)를 본다. IEER 는 문서상 072 3상만 게재된다.
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"][
+            "lennox-core-unit-controller-enlight-model-l-rooftop-bacnet"]
+        units = {u["unitModelNumber"]: u for u in model["unitModels"]}
+
+        self.assertEqual(len(units), 4)
+        lgt36 = units["LGT036H4E"]
+        self.assertEqual(lgt36["capacityClass"], "3 Ton")
+        self.assertEqual(lgt36["ratedAirflow"], "1200/800")
+        self.assertEqual(lgt36["units"]["ratedAirflow"], "cfm-high/low")
+        self.assertEqual(lgt36["grossCoolingCapacity"], "36,600")
+        self.assertEqual(lgt36["ahriNetCoolingCapacity"], "36,000")
+        self.assertEqual(lgt36["eer"], "13.3")
+        self.assertEqual(lgt36["ieer"], "—")
+        self.assertEqual(units["LGT072H4E"]["ieer"], "17.0")
+
     def test_carrier_letter_sizes_become_units_with_nominal_capacity(self):
         # Carrier 48/50N — 크기가 한 글자(N~T)이고 톤수는 'NOMINAL CAPACITY (tons)' 행.
         # 치수·커브 표도 같은 제목 낱말을 쓰므로 이 행이 없으면 형번을 만들면 안 된다.

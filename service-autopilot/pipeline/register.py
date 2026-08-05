@@ -94,6 +94,12 @@ OVERRIDE = {
         "controller": "IQlogic",
         "product": "GOLD RX/PX/CX/SD AHU",
     },
+    # 표지의 'Supersedes 03/2026' 개정 표기가 제품명으로 잡힌다
+    "Lennox_CORE_BACnet_SetupGuide_508112-02.pdf": {
+        "cat": "HVAC.AIR.RTU", "tag": "rooftop",
+        "controller": "CORE Unit Controller",
+        "product": "Enlight·Model L Rooftop",
+    },
 }
 
 # 구간 이름을 사람 말로 — 목차에서 딴 약어를 풀어 쓴다 (LonMark 표준 프로파일)
