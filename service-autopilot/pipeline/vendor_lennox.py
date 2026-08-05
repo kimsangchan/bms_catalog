@@ -31,6 +31,8 @@ LABELS = [
      "AHRI Rated Air Flow (cfm-high/low) 3ph"),
     (r"[1¹]\s*EER \(Btuh/Watt\) - 3ph", "EER (Btuh/Watt) - 3ph"),
     (r"[1¹]\s*IEER \(Btuh/Watt\) 3ph", "IEER (Btuh/Watt) 3ph"),
+    (r"Total Unit Power \(kW\) 3ph", "Total Unit Power (kW) 3ph"),
+    (r"[2²]\s*Sound Rating Number \(SRN\) \(dBA\)", "Sound Rating Number (SRN) (dBA)"),
     # Compressor Type 은 텍스트 층에서 값 네 개가 한 줄로 눌려 짝을 못 만든다 — 뺀다
 ]
 

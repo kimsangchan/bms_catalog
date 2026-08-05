@@ -22,7 +22,8 @@
    "Mbh": "MBh",
    "K Btu": "MBh",
    "Btuh": "Btu/h",
-   "Btu": "Btu/h"
+   "Btu": "Btu/h",
+   "KW": "kW"
   },
   "notes": {
    "unitSpelling": "같은 단위의 철자 흔들림만 통일한다 — 척도가 다른 단위는 절대 섞지 않는다. 'K Btu'와 'MBh'는 둘 다 천 Btu/h 로 같은 척도, 냉방능력의 'Btu' 단독 표기는 시간당(Btu/h) 관례 축약",
@@ -49,13 +50,17 @@
   "condenserAirflow": {"ko": "응축 풍량", "convUnit": ""},
   "unitWidth": {"ko": "유닛 폭", "convUnit": "mm"},
   "unitHeight": {"ko": "유닛 높이", "convUnit": "mm"},
-  "unitLength": {"ko": "유닛 길이", "convUnit": "mm"}
+  "unitLength": {"ko": "유닛 길이", "convUnit": "mm"},
+  "systemPower": {"ko": "시스템 소비전력", "convUnit": "kW"},
+  "soundRating": {"ko": "소음 정격", "convUnit": "dB"},
+  "refrigerantCharge": {"ko": "냉매 충전량", "convUnit": ""},
+  "refrigerantControl": {"ko": "팽창 장치", "convUnit": ""}
  },
  "classes": {
   "e5": {
    "ko": "공조기 (AHU·RTU)",
-   "table": ["capacityClass", "matchedAirHandler", "ratedAirflow", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer", "ieer", "capacitySteps", "fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"],
-   "detailExtra": ["ieer", "compressorConfig", "capacitySteps", "refrigerantCircuits", "condenserFans", "condenserAirflow", "unitWidth", "unitHeight", "unitLength"],
+   "table": ["capacityClass", "matchedAirHandler", "ratedAirflow", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer", "ieer", "systemPower", "soundRating", "capacitySteps", "fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"],
+   "detailExtra": ["ieer", "compressorConfig", "capacitySteps", "refrigerantCircuits", "condenserFans", "condenserAirflow", "refrigerantCharge", "refrigerantControl", "unitWidth", "unitHeight", "unitLength"],
    "roles": {
     "airHandler": {"ko": "공기측 유닛", "detail": ["fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"]},
     "condensingUnit": {"ko": "실외/응축 유닛", "detail": ["matchedAirHandler", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer"]},

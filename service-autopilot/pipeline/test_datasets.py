@@ -450,6 +450,25 @@ class CuratedUnitDatasetTest(unittest.TestCase):
                         datasets.plausible_rating_value((entry or {}).get("value") or ""),
                         code + "." + fid + " 눌린 다열 덩어리")
 
+    def test_pick_patterns_reference_defined_features(self):
+        # 사전 우선 규칙의 패턴 층 강제 — 추출 pick(UNIT_FIELD_PICKS·CAPACITY_FILL)이
+        # 사전에 없는 필드로 값을 뽑으면 확정본 저장에서 유실된다. 패턴 정의 자체를 잡는다.
+        ids = set(U.field_ids(U.load_schema()))
+        for fid in list(datasets.UNIT_FIELD_PICKS) + list(datasets.CAPACITY_FILL_LABELS):
+            self.assertIn(fid, ids,
+                          "pick 필드 %r 가 속성 사전(features)에 없다 — 사전 먼저" % fid)
+
+    def test_schema_extension_features_fill_from_documents(self):
+        # --propose-features 발굴로 채택한 확장 필드가 실제 문서값으로 채워지는지 —
+        # 스키마가 벤더 공개 수준을 따라 성장할 수 있음을 상시 검증한다.
+        data = datasets.build_dataset(equip_ids={"e5"})
+        lgt = {u["unitModelNumber"]: u for u in data["modelMappings"][
+            "lennox-core-unit-controller-enlight-model-l-rooftop-bacnet"]["unitModels"]}
+        self.assertEqual(lgt["LGT036H4E"]["systemPower"], "2.7")
+        self.assertEqual(lgt["LGT036H4E"]["units"]["systemPower"], "kW")
+        self.assertEqual(lgt["LGT036H4E"]["soundRating"], "75")
+        self.assertEqual(lgt["LGT036H4E"]["units"]["soundRating"], "dBA")
+
     def test_schema_classes_reference_defined_features(self):
         # 클래스(설비별 세트)의 table·detail·labels 가 사전에 없는 id 를 가리키면
         # 화면 열이 조용히 비거나 라벨이 원문 id 로 샌다.

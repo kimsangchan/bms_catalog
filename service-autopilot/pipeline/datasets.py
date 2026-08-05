@@ -334,12 +334,14 @@ def clean_model_label(value):
 def label_unit(label):
     """라벨에 적힌 단위만 뽑는다 — (sq ft)·(%)·CFM·HP·RPM 등. 없는 단위는 지어내지 않는다."""
     text = clean_text(label)
-    m = re.search(r"\(([^)]*(?:%|ft|cfm|btu|mbh|hp|rpm|ton|kw|psi|°f|m³|m3|l/s|cmh|mm)[^)]*)\)",
+    m = re.search(r"\(([^)]*(?:%|ft|cfm|btu|mbh|hp|rpm|ton|kw|psi|°f|m³|m3|l/s|cmh|mm|db)[^)]*)\)",
                   text, re.I)
     if m and not re.search(r"nominal|standard|oversiz|fins|t/y", m.group(1), re.I):
         return m.group(1).strip()
     if re.search(r"\bcfm\b", text, re.I):
         return "CFM"
+    if re.search(r"\blbs\b", text, re.I):
+        return "lbs"
     if re.search(r"\bhp\b", text, re.I):
         return "HP"
     if re.search(r"\brpm\b", text, re.I):
@@ -420,6 +422,40 @@ CAPACITY_FILL_LABELS = {
     "condenserFans": r"Number/Size/Type",
     "ratedAirflow": r"CFM Range",
     "condenserAirflow": r"Nominal Total Airflow",
+}
+
+# 형번 표에서 필드별로 집는 라벨 패턴 — 순서가 우선순위다. 여기가 정본이라
+# units.py --propose-features(미채택 속성 발굴)가 같은 목록으로 대조한다.
+# 새 패턴을 더할 때는 속성 사전(unit-schema.json features)에 필드를 먼저 정의한다.
+UNIT_FIELD_PICKS = {
+    "matchedAirHandler": [r"matched air handler$"],
+    # 풍량 우선순위: AHRI 정격 → 급기 공칭('Nominal cfm') → 팬 공칭.
+    # 맨 뒤 '^CFM$'는 Precedent 패키지 유닛에서 응축 팬 풍량이라 급기 라벨보다 뒤.
+    # 'Air ?Flow'는 Lennox 띄어쓰기, 'Standard air flow volume'은 Mitsubishi 표준 풍량.
+    "ratedAirflow": [r"AHRI Rated Air ?Flow", r"Nominal cfm/AHRI Rated cfm",
+                     r"^Nominal airflow", r"^Standard air flow volume",
+                     r"^Nominal CFM$", r"CFM \(Nominal\)", r"^CFM$"],
+    "grossCoolingCapacity": [r"Gross Cooling Capacity - System",
+                             r"^Gross Cooling Capacity$", r"^Gross Cooling Capacity - Btuh",
+                             r"^Gross Capacity @ (ARI|AHRI)"],
+    # Lennox 는 'Net Cooling Capacity (Btuh)' — 각주 1이 AHRI 인증 표기다
+    "ahriNetCoolingCapacity": [r"AHRI Net Cooling Capacity",
+                               r"^(ARI|AHRI) net capacity", r"^Net Cooling Capacity \(Btuh\)"],
+    # 'EER1, 7' 처럼 각주 번호가 붙는 표기(Rebel)까지 받는다
+    "eer": [r"Matched Air Handler \(EER\)", r"System \(EER\)", r"^EER(?![A-Za-z])"],
+    "ieer": [r"^IEER(?![A-Za-z])"],
+    "coilFaceArea": [r"Face Area"],
+    "coilRowsFpi": [r"Rows/FPI", r"Rows Deep/Fins"],
+    "fanMotorHp": [r"Motor HP"],
+    "fanMotorRpm": [r"Motor RPM"],
+    # 'Staging, 4 Stages …' 는 Daikin 냉동기의 용량 단계 표기다
+    "capacitySteps": [r"Unit Capacity Steps", r"^Staging"],
+    # 아래 4종은 --propose-features 발굴로 채택 (2026-08-05) — 여러 벤더가
+    # 사전보다 더 공개하던 속성이다
+    "systemPower": [r"^System power \(KW\)", r"^Total Unit Power"],
+    "soundRating": [r"Sound Rating Number", r"^Outdoor Sound Rating"],
+    "refrigerantCharge": [r"^lbs of R-"],
+    "refrigerantControl": [r"^Refrigerant control$"],
 }
 
 
@@ -677,30 +713,8 @@ def unit_models(model):
                         return
                 fields[field] = "—"
 
-            pick("matchedAirHandler", r"matched air handler$")
-            # 풍량 우선순위: AHRI 정격 → 급기 공칭('Nominal cfm') → 팬 공칭.
-            # 맨 뒤 '^CFM$'는 Precedent 패키지 유닛에서 응축 팬 풍량이라 급기 라벨보다 뒤에 둔다.
-            # 'Air ?Flow' — Lennox 는 'AHRI Rated Air Flow (cfm-high/low)' 로 띄어 쓴다.
-            # 'Standard air flow volume' 은 Mitsubishi PAC-IF013 가이드라인의 표준 풍량.
-            pick("ratedAirflow", r"AHRI Rated Air ?Flow", r"Nominal cfm/AHRI Rated cfm",
-                 r"^Nominal airflow", r"^Standard air flow volume",
-                 r"^Nominal CFM$", r"CFM \(Nominal\)", r"^CFM$")
-            pick("grossCoolingCapacity", r"Gross Cooling Capacity - System",
-                 r"^Gross Cooling Capacity$", r"^Gross Cooling Capacity - Btuh",
-                 r"^Gross Capacity @ (ARI|AHRI)")
-            # Lennox 는 'Net Cooling Capacity (Btuh)' — 각주 1이 AHRI 인증 표기다
-            pick("ahriNetCoolingCapacity", r"AHRI Net Cooling Capacity",
-                 r"^(ARI|AHRI) net capacity", r"^Net Cooling Capacity \(Btuh\)")
-            # 'EER1, 7' 처럼 각주 번호가 붙는 표기(Rebel)까지 받는다
-            pick("eer", r"Matched Air Handler \(EER\)", r"System \(EER\)",
-                 r"^EER(?![A-Za-z])")
-            pick("ieer", r"^IEER(?![A-Za-z])")
-            pick("coilFaceArea", r"Face Area")
-            pick("coilRowsFpi", r"Rows/FPI", r"Rows Deep/Fins")
-            pick("fanMotorHp", r"Motor HP")
-            pick("fanMotorRpm", r"Motor RPM")
-            # 'Staging, 4 Stages …' 는 Daikin 냉동기의 용량 단계 표기다
-            pick("capacitySteps", r"Unit Capacity Steps", r"^Staging")
+            for field, patterns in UNIT_FIELD_PICKS.items():
+                pick(field, *patterns)
             # 용량대 — Trane 은 머리글이 '6 Tons' 지만 York·Rebel 머리글은
             # 'Models'·'Small cabinet' 같은 묶음 이름이라, 숫자가 없으면 표의
             # 공칭 톤수 행에서 가져온다

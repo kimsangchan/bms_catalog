@@ -263,6 +263,21 @@ unit-schema.json (속성 사전)      datasets.unit_models (추출 = 제안)
 | **② 사전 우선** | 새 속성은 공유 사전(features)에 **먼저** 정의한다. 사전 밖 필드는 확정본 저장에서 조용히 유실된다 | `test_extracted_fields_are_all_defined_in_schema_features` |
 | **③ 벤더 중립** | 클래스는 제조사를 모른다 — 필드는 공유 사전 id 만 쓰고, 설비 관점에서 뜻이 달라지는 표기는 클래스 `labels` 오버라이드로 처리(냉동기의 코일·팬 = 응축기 쪽) | 스키마 구조 자체 (벤더별 필드 없음) |
 
+### 벤더가 사전보다 더 많은 속성을 공개할 때 — 스키마 확장 워크플로
+
+문서가 우리 사전(features)에 없는 속성을 싣는 건 흔한 일이다(실측: e5 미채택
+라벨 259종). 확장은 감(직감)이 아니라 발굴 도구로 한다:
+
+1. `python units.py --propose-features <설비ID>` — 형번 사다리가 읽는 정격
+   표의 라벨 중 **어떤 pick 에도 안 걸린 것**을 벤더 수 순으로 보여 준다
+   (여러 벤더가 공통으로 싣는 라벨이 위 = 채택 가치).
+2. 채택하면 순서대로: features 정의 → `datasets.UNIT_FIELD_PICKS` 패턴 →
+   (벤더 파서 화이트리스트면 라벨 추가) → `--sync`. 게이트:
+   `test_pick_patterns_reference_defined_features`(사전 없는 pick 금지) ·
+   `test_extracted_fields_are_all_defined_in_schema_features`.
+3. 실적: 2026-08 발굴 채택 4종 — systemPower(kW)·soundRating(dB)·
+   refrigerantCharge(lbs)·refrigerantControl(TXV) → 확정본 215건 채움.
+
 ### 새 설비 계열(냉각탑·VAV 등)에 형번이 처음 생길 때
 
 1. 인식 사다리(datasets.unit_models)가 그 설비 문서의 표를 읽게 만든다 (기존 5단계).

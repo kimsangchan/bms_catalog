@@ -249,6 +249,59 @@ def propose_class(equip_id):
     return 0
 
 
+def propose_features(equip_id):
+    """스키마 확장 후보 발굴 — 문서가 사전보다 더 공개하는 속성을 찾는다.
+
+    형번 사다리가 읽는 정격 표(General/Physical data)의 라벨 행 중 어떤 pick
+    패턴에도 안 걸린 것을 모아 벤더(모델) 수 순으로 보여 준다. 여러 벤더가
+    공통으로 싣는 라벨이 위로 오므로, 사전(features)에 추가할 가치가 있는
+    속성이 데이터로 드러난다 — 채택하면 features 정의 → UNIT_FIELD_PICKS
+    패턴 → --sync 순서(사전 우선 규칙).
+    """
+    import datasets as DS
+    known = [p for pats in DS.UNIT_FIELD_PICKS.values() for p in pats]
+    known += list(DS.CAPACITY_FILL_LABELS.values())
+    known += [r"^Nominal Tonnage$", r"^NOMINAL CAPACITY",
+              r"Gross cooling capacity \(tons\)", r"^Models?$", r"^Model Number"]
+    found = {}
+    for model in DS.load_models().values():
+        if equip_id and model.get("equipId") != equip_id:
+            continue
+        for t in model.get("specTables") or []:
+            if (t.get("kind") or "") != "rating":
+                continue
+            title = t.get("title") or ""
+            if not re.search(r"general data|physical data|tons? nominal capacity",
+                             title, re.I):
+                continue
+            for row in t.get("rows") or []:
+                cells = DS.row_cells(row)
+                label = (cells[0] or "").strip()
+                # 라벨답지 않은 것(빈칸·너무 김·값뿐)과 값이 없는 행은 건너뛴다
+                if not label or len(label) > 56 or re.match(r"^[\d.,/ –-]+$", label):
+                    continue
+                vals = [c.strip() for c in cells[1:] if (c or "").strip()]
+                if not vals or not DS.plausible_rating_value(vals[0]):
+                    continue
+                if any(re.search(p, label, re.I) for p in known):
+                    continue
+                key = re.sub(r"\s+", " ", label.lower()).strip(" .:")
+                ent = found.setdefault(key, {"label": label, "models": set(),
+                                             "sample": vals[0]})
+                ent["models"].add(model["id"])
+    if not found:
+        print("미채택 라벨이 없다 — 사전이 문서를 전부 덮고 있다.")
+        return 0
+    ranked = sorted(found.values(), key=lambda e: (-len(e["models"]), e["label"]))
+    print("미채택 속성 후보 %d종 (벤더 문서가 사전보다 더 공개하는 것 — 모델 수 순):" % len(ranked))
+    print("%-46s %-5s %s" % ("라벨", "모델", "값 예"))
+    for e in ranked[:40]:
+        print("%-46s %-5d %s" % (e["label"][:44], len(e["models"]), e["sample"][:36]))
+    if len(ranked) > 40:
+        print("… 외 %d종" % (len(ranked) - 40))
+    return 0
+
+
 def verify(model_id, codes):
     doc = load_stored(model_id)
     if doc is None:
@@ -295,9 +348,13 @@ def main(argv=None):
     parser.add_argument("--only", metavar="MODEL_ID")
     parser.add_argument("--propose-class", metavar="EQUIP_ID",
                         help="새 설비 계열의 classes 블록 초안 생성 (스키마 우선 규칙)")
+    parser.add_argument("--propose-features", metavar="EQUIP_ID",
+                        help="문서가 사전보다 더 공개하는 속성 후보 발굴 (스키마 확장)")
     args = parser.parse_args(argv)
     if args.propose_class:
         return propose_class(args.propose_class)
+    if args.propose_features:
+        return propose_features(args.propose_features)
     if args.sync:
         return 1 if sync(only=args.only, write=True) < 0 else 0
     elif args.diff:
