@@ -94,12 +94,19 @@ PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류
 - 신규 6모델 전부 제품 카탈로그 정격 연결 완료(Trailblazer CAT624/635 · Rebel ED19116 ·
   York 기술가이드 2권 · Envistar 2024 · Magnitude CAT632/ED19135). ⚠ Daikin 신형
   카탈로그(CAT 261·639·641)는 표 없는 브로슈어라 ED/구판을 써야 한다.
+- **스키마 적용 전수 감사 완료(2026-08-05)**: 형번 추출 대상 설비는 이제 코드가 아니라
+  **unit-schema.json classes 가 정한다**(하드코딩 제거). 클래스 설비(e5·e9) 42모델 전수 =
+  형번 확정본 24모델 + 무형번 18모델(전부 gap 에 문서 한계 사유 기록 — 통신/설치 문서뿐,
+  정격 카탈로그 미수집). validate `units-none`/`units-unclassed` 정보로 상시 표면화,
+  사유 없는 무형번은 W. 게이트 테스트로 강제.
 - 마지막 커밋: 신규 6모델 정격 카탈로그 연결 (spec-map 9문서 추가)
 
 ### 다음에 할 만한 것
 
 | 할 일 | 메모 |
 |---|---|
+| **형번 클래스 편입 후보 4계열** | 감사에서 확인: e15 인버터(Danfoss FC101 정격표 44+flat 17 — 파워사이즈별), e13 송풍기(ebm-papst 정격표 39 — 시리즈별), e19 전력(Schneider PM 정격표 71), e6/e16 Belimo(variants 48 — 항목/값 구조라 사다리 확장 필요). 절차: `units.py --propose-class` → classes 정의 → 사다리/벤더 파서 |
+| e9 무형번 18모델 정격 카탈로그 | RTAC·RTWD/RTHD·CentraVac·Agility·AGZ-F·WME 등 — 통신 문서뿐이라 제품 카탈로그 수집 필요(짝 규칙) |
 | 빈 계열 8개 채우기 | 냉각탑·보일러·열교환기·조명·방재·승강·보안·환경 — 벤더 발굴부터 |
 | Liebert CRAC 정격 사양 | 통신 레퍼런스엔 없다. Vertiv 제품 카탈로그가 따로 필요 |
 | 「기타」 99개 표 정리 | EMC 시험결과·파라미터 목록이 섞여 있다. 실을지 말지 판단 필요 |

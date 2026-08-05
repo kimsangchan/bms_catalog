@@ -381,6 +381,21 @@ class CuratedUnitDatasetTest(unittest.TestCase):
                 stored and stored.get("units"),
                 "%s: 추출 제안은 있는데 확정본(data/units)이 없다 — units.py --sync" % mid)
 
+    def test_class_equip_models_have_units_or_documented_reason(self):
+        # 스키마 적용 전수 감사의 상시화 — 클래스 설비(e5·e9)의 모든 모델은
+        # ① 확정본 형번이 있거나 ② 없으면 gap 에 문서 한계 사유(형번/정격/카탈로그)가
+        # 적혀 있어야 한다. 조용히 스키마 밖에 남는 모델을 금지한다.
+        schema = U.load_schema()
+        for mid, model in datasets.load_models().items():
+            if model.get("equipId") not in schema["classes"]:
+                continue
+            if U.extraction_records(model, schema):
+                continue
+            gap = model.get("gap") or ""
+            self.assertTrue(
+                any(w in gap for w in ("형번", "정격", "카탈로그")),
+                "%s: 클래스 설비인데 형번도 없고 gap 사유도 없다" % mid)
+
     def test_curated_units_conform_to_schema(self):
         # 확정본의 모든 레코드는 속성 사전(features)에 있는 필드만 쓰고,
         # 값 모양 한계(눌린 다열 덩어리 금지)와 원본 PDF 출처를 지켜야 한다.

@@ -564,8 +564,12 @@ def unit_models(model):
     냉동기(e9)도 같은 구조다 — Daikin AGZ 'Physical Data' 는 첫 행 형번(AGZ031E),
     Trane CGAM 'General data' 는 톤수 열 + 단위 열. 사용자가 냉동기에서 형번·정격이
     안 보인다고 해서 확장했다.
+
+    어느 설비에서 형번을 뽑는지는 코드가 아니라 **속성 사전의 클래스 목록**이
+    정한다 — 새 설비 계열은 classes 에 항목을 더하면 추출도 같이 열린다
+    (스키마 우선 규칙과 같은 정본).
     """
-    if model.get("equipId") not in ("e5", "e9"):
+    if model.get("equipId") not in (unit_schema().get("classes") or {}):
         return []
     out, seen, capacity_units = [], set(), {}
     for table in model.get("specTables") or []:

@@ -203,13 +203,23 @@ def check_curated_units(m, add):
     schema = U.load_schema()
     ids = set(U.field_ids(schema))
     statuses = set(schema.get("statuses") or ())
+    classes = schema.get("classes") or {}
     proposals = U.extraction_records(m, schema)
     # 스키마 우선 규칙 — 형번이 나오는 설비는 클래스(열 구성·라벨·역할)가 사전에
     # 정의돼 있어야 한다. 없으면 sync 가 거부하므로 여기서 원인을 알려 준다.
-    if proposals and m.get("equipId") not in (schema.get("classes") or {}):
+    if proposals and m.get("equipId") not in classes:
         add("E", "units-class",
             "설비 %s 의 스키마 클래스 미정의 — units.py --propose-class %s 초안으로 "
             "unit-schema.json classes 에 먼저 정의" % (m.get("equipId"), m.get("equipId")))
+        return
+    if m.get("equipId") not in classes:
+        # 클래스 밖 설비 — 정격표·형번별 사양(variants)이 있으면 편입 후보로 표면화
+        rating = sum(1 for t in m.get("specTables") or []
+                     if (t.get("kind") or "") == "rating")
+        if rating or m.get("variants"):
+            add("I", "units-unclassed",
+                "클래스 밖 설비(%s)에 정격표 %d개·variants %d개 — 형번 편입 후보"
+                % (m.get("equipId"), rating, len(m.get("variants") or [])))
         return
     path = U.unit_path(m["id"])
     if not os.path.exists(path):
@@ -217,6 +227,14 @@ def check_curated_units(m, add):
             add("E", "units-missing",
                 "형번 추출 제안 %d건인데 확정 데이터셋(data/units)이 없다 — units.py --sync"
                 % len(proposals))
+        else:
+            # 클래스 설비인데 문서에서 형번이 안 나온다 — 사유(gap)가 적혀 있어야 한다
+            gap = m.get("gap") or ""
+            if any(w in gap for w in ("형번", "정격", "카탈로그")):
+                add("I", "units-none", "형번 없음 — 문서 한계가 gap 에 기록돼 있다")
+            else:
+                add("W", "units-none-undoc",
+                    "클래스 설비인데 형번이 없고 gap 에 사유도 없다 — 문서 한계인지 확인")
         return
     doc = json.load(open(path, encoding="utf-8"))
     curated = doc.get("units") or []
