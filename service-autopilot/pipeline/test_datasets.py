@@ -342,6 +342,19 @@ class DatasetBuildTest(unittest.TestCase):
                             model.get("id"), row.get("unitModelNumber"),
                             field, value[:80]))
 
+    def test_point_units_are_short_tokens_not_prose(self):
+        # 오브젝트 목록의 단위 칸에 표 각주 문장('These legacy alarm reporting
+        # objects are obsolete …', Lennox 실사례)이나 범위+기본값(Daikin)이 남으면
+        # 실패한다 — 추출 가드(extract.unit_or_note)가 비고로 옮겨야 한다.
+        import extract
+        for mid, model in datasets.load_models().items():
+            for p in model.get("points") or []:
+                _unit, spill = extract.unit_or_note(p.get("unitRaw") or "")
+                self.assertFalse(
+                    spill, "%s %s-%s 단위 칸에 문장/범위: %r" % (
+                        mid, p.get("type"), p.get("inst"),
+                        (p.get("unitRaw") or "")[:60]))
+
     def test_unit_rows_carry_source_file_for_pdf_page_link(self):
         # 출처 클릭 → 원문 PDF 해당 쪽 열기가 되려면 형번 행마다 원본 파일명이 있어야 한다
         for model in datasets.load_models().values():

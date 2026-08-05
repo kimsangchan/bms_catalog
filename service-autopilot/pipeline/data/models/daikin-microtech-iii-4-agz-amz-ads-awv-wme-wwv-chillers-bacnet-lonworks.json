@@ -29,7 +29,7 @@
    "type": "AI",
    "inst": 1,
    "name": "EntEvapWaterTemp",
-   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The temperature of the fluid entering the evaporator. This data point is also used for Intrinsic Alarming. See “BACnet Intrinsic Alarming” on page 71. · 범위 -40 – 230°F -40 – 110°C Default: NA"
   },
@@ -37,7 +37,7 @@
    "type": "AI",
    "inst": 2,
    "name": "LvgEvapWaterTempUnit",
-   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current temperature of the fluid leaving the evaporator. This data point is also used for Intrinsic Alarming. See “BACnet Intrinsic Alarming” on page 71. · 범위 -40 – 230°F -40 – 110°C Default: NA"
   },
@@ -45,7 +45,7 @@
    "type": "AI",
    "inst": 3,
    "name": "EntCondWaterTemp",
-   "unitRaw": "-40°–230°F -40°–110°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current temperature of the water entering the condenser. · 범위 -40°–230°F -40°–110°C Default: NA"
   },
@@ -53,7 +53,7 @@
    "type": "AI",
    "inst": 4,
    "name": "LvgCondWaterTemp",
-   "unitRaw": "-40°–230°F -40°–110°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current temperature of the water leaving the condenser. · 범위 -40°–230°F -40°–110°C Default: NA"
   },
@@ -69,7 +69,7 @@
    "type": "AI",
    "inst": 6,
    "name": "ChillerCurrent",
-   "unitRaw": "Amp range varies by chiller model Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The average current of the chiller. Compressor cur- rents may be added together to calculate this value. · 범위 Amp range varies by chiller model Default: NA"
   },
@@ -77,7 +77,7 @@
    "type": "AI",
    "inst": 9,
    "name": "C1Comp1Current",
-   "unitRaw": "Amp range varies by chiller model Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The average current of the compressor motor. Multiple analog inputs exist for Compressor Current because of Intrinsic Alarming. Each object gener- ates different alarms for this sensor. However, the Present Value of each object will be comi"
   },
@@ -109,7 +109,7 @@
    "type": "AI",
    "inst": 27,
    "name": "C1Comp1Voltage",
-   "unitRaw": "0 – 15000 VAC Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The average voltage of the compressor motor. BAC- net uses a separate output for each compressor. · 범위 0 – 15000 VAC Default: NA"
   },
@@ -141,7 +141,7 @@
    "type": "AI",
    "inst": 45,
    "name": "C1Comp11Kilowatts",
-   "unitRaw": "0 – 3500 kilowatts Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current power of the compressor motor. BACnet uses a separate variable for each compressor. · 범위 0 – 3500 kilowatts Default: NA"
   },
@@ -173,7 +173,7 @@
    "type": "AI",
    "inst": 63,
    "name": "C1Comp1DischargeTemp",
-   "unitRaw": "-40 – 249.8°F -40 – 121°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current refrigerant temperature discharged from the compressor. BACnet uses a separate object for each compressor/circuit combination. · 범위 -40 – 249.8°F -40 – 121°C Default: NA"
   },
@@ -213,7 +213,7 @@
    "type": "AI",
    "inst": 81,
    "name": "C1Comp1DischRefPres- sure",
-   "unitRaw": "-350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current discharge refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA"
   },
@@ -221,7 +221,7 @@
    "type": "AI",
    "inst": 82,
    "name": "C1Comp2DischRefPres- sure",
-   "unitRaw": "-350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current discharge refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA"
   },
@@ -229,7 +229,7 @@
    "type": "AI",
    "inst": 99,
    "name": "Cond1RefPressure",
-   "unitRaw": "0 – 410. 019 psi (700 psi for R410A) 0 – 4827 kPa (4826 kPa for R410A) Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current condenser pressure. BACnet has three objects for each circuit. The Present Value property of each object is the same for each circuit. BACnet Intrinsic Alarming supports the ability for each of the three objects to generate sepa"
   },
@@ -261,7 +261,7 @@
    "type": "AI",
    "inst": 105,
    "name": "C1Comp1SuctionTemp",
-   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current refrigerant temperature entering the compressor. BACnet uses a separate read-only object for each compressor/circuit combination. · 범위 -40 – 230°F -40 – 110°C Default: NA"
   },
@@ -301,7 +301,7 @@
    "type": "AI",
    "inst": 123,
    "name": "C1Comp1SuctionPressure",
-   "unitRaw": "-350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current suction refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA"
   },
@@ -309,7 +309,7 @@
    "type": "AI",
    "inst": 124,
    "name": "C1Comp2SuctionPressure",
-   "unitRaw": "-350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current suction refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA"
   },
@@ -317,7 +317,7 @@
    "type": "AI",
    "inst": 141,
    "name": "C1EvapRefPressure",
-   "unitRaw": "-349.974 -349.974 psi -2413 - 2413 kPa Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current refrigerant pressure in the evapora- tor. BACnet has four objects for each circuit. The Present Value property of each object is the same for each circuit. BACnet Intrinsic Alarming supports the ability for each of the four obje"
   },
@@ -349,7 +349,7 @@
    "type": "AI",
    "inst": 147,
    "name": "CondWaterFlowRate",
-   "unitRaw": "0-65,535 GPM 0-4134.6 L/S; Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The rate of water flow through the condenser. · 범위 0-65,535 GPM 0-4134.6 L/S; Default: NA"
   },
@@ -357,7 +357,7 @@
    "type": "AI",
    "inst": 148,
    "name": "EvapWaterFlowRate",
-   "unitRaw": "0-65,535 GPM 0-4134.6 L/S; Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The rate of water flow through the evaporator. · 범위 0-65,535 GPM 0-4134.6 L/S; Default: NA"
   },
@@ -373,7 +373,7 @@
    "type": "AI",
    "inst": 150,
    "name": "HeatRecLvgWaterTemp",
-   "unitRaw": "-40° – 230°F -40° – 110°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current heat recovery leaving fluid temperature. · 범위 -40° – 230°F -40° – 110°C Default: NA"
   },
@@ -493,7 +493,7 @@
    "type": "AI",
    "inst": 165,
    "name": "C1Comp1OilFeedPress",
-   "unitRaw": "-5.801473 – 17.54946 psi -40 – 121 kPA Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current Oil Feed Pressure. There is one BACnet object for each compressor. These objects generate the COMPRESSOR SHUTDOWN - Oil Feed Pres- sure Sensor Fault Circuit #n Comp #n alarms. · 범위 -5.801473 – 17.54946 psi -40 – 121 kPA Default:"
   },
@@ -589,7 +589,7 @@
    "type": "AI",
    "inst": 177,
    "name": "HeatRecEntWaterTemp",
-   "unitRaw": "-40° – 230°F -40° – 110°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current heat recovery entering fluid tempera- ture. · 범위 -40° – 230°F -40° – 110°C Default: NA"
   },
@@ -597,7 +597,7 @@
    "type": "AI",
    "inst": 178,
    "name": "C1Co1VfdTemp",
-   "unitRaw": "14 - 302 °F -10 - 150 °C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current compressor VFD heat sink temperature. These objects can be used for Intrinsic Alarming, and only apply to units configured for a VFD. There is one parameter for each compressor. · 범위 14 - 302 °F -10 - 150 °C Default: NA"
   },
@@ -677,7 +677,7 @@
    "type": "AI",
    "inst": 218,
    "name": "C1LiqLineRefTemp",
-   "unitRaw": "-40°–230°F -40°–110°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current liquid line refrigerant temperature for the circuit. · 범위 -40°–230°F -40°–110°C Default: NA"
   },
@@ -693,7 +693,7 @@
    "type": "AI",
    "inst": 224,
    "name": "C1SuctionTemperature",
-   "unitRaw": "-40 – 230°F -40 – 110°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current circuit 1 suction refrigerant temperature. · 범위 -40 – 230°F -40 – 110°C Default: NA"
   },
@@ -733,7 +733,7 @@
    "type": "AI",
    "inst": 250,
    "name": "C1Comp1StatorTemp1",
-   "unitRaw": "-58-392°F -50.0~200.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA"
   },
@@ -741,7 +741,7 @@
    "type": "AI",
    "inst": 251,
    "name": "C1Comp2StatorTemp1",
-   "unitRaw": "-58-392°F -50.0~200.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA"
   },
@@ -749,7 +749,7 @@
    "type": "AI",
    "inst": 256,
    "name": "C1Comp1StatorTemp2",
-   "unitRaw": "-58-392°F -50.0~200.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA"
   },
@@ -757,7 +757,7 @@
    "type": "AI",
    "inst": 257,
    "name": "C1Comp2StatorTemp2",
-   "unitRaw": "-58-392°F -50.0~200.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA"
   },
@@ -765,7 +765,7 @@
    "type": "AI",
    "inst": 262,
    "name": "C1Comp1StatorTemp3",
-   "unitRaw": "-58-392°F -50.0~200.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA"
   },
@@ -773,7 +773,7 @@
    "type": "AI",
    "inst": 263,
    "name": "C1Comp2StatorTemp3",
-   "unitRaw": "-58-392°F -50.0~200.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA"
   },
@@ -781,7 +781,7 @@
    "type": "AI",
    "inst": 268,
    "name": "C1Comp1MotorGapTemp",
-   "unitRaw": "-45-212°F -42.8~100.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current motor gap temperature for the compres- sor. · 범위 -45-212°F -42.8~100.0°C Default: NA"
   },
@@ -789,7 +789,7 @@
    "type": "AI",
    "inst": 269,
    "name": "C1Comp2MotorGapTemp",
-   "unitRaw": "-45-212°F -42.8~100.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current motor gap temperature for the compres- sor. · 범위 -45-212°F -42.8~100.0°C Default: NA"
   },
@@ -797,7 +797,7 @@
    "type": "AI",
    "inst": 274,
    "name": "C1Comp1MotorCaseTemp",
-   "unitRaw": "-45-212°F -42.8~100.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current motor case temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA"
   },
@@ -805,7 +805,7 @@
    "type": "AI",
    "inst": 275,
    "name": "C1Comp2MotorGapTemp",
-   "unitRaw": "-45-212°F -42.8~100.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current motor case temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA"
   },
@@ -813,7 +813,7 @@
    "type": "AI",
    "inst": 280,
    "name": "C1Comp1RotorPumpTemp",
-   "unitRaw": "-45-212°F -42.8~100.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current rotor pump temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA"
   },
@@ -821,7 +821,7 @@
    "type": "AI",
    "inst": 281,
    "name": "C1Comp2RotorPumpTemp",
-   "unitRaw": "-45-212°F -42.8~100.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current rotor pump temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA"
   },
@@ -837,7 +837,7 @@
    "type": "AI",
    "inst": 308,
    "name": "EntWseWaterTemp",
-   "unitRaw": "-40 - 230 °F -40 - 110 °C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current waterside economizer entering water temperature. · 범위 -40 - 230 °F -40 - 110 °C Default: NA"
   },
@@ -845,7 +845,7 @@
    "type": "AI",
    "inst": 370,
    "name": "CtrlBoxTemp",
-   "unitRaw": "-40 - 244 °F -40 - 118 °C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current control panel internal temperature. · 범위 -40 - 244 °F -40 - 118 °C Default: NA"
   },
@@ -853,7 +853,7 @@
    "type": "AI",
    "inst": 371,
    "name": "PwrBoxTemp",
-   "unitRaw": "-40 - 244 °F -40 - 118 °C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current power panel internal temperature. · 범위 -40 - 244 °F -40 - 118 °C Default: NA"
   },
@@ -861,7 +861,7 @@
    "type": "AI",
    "inst": 372,
    "name": "HarmFiltTemp",
-   "unitRaw": "-40 - 244 °F -40 - 118 °C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current harmonic filter internal temperature. · 범위 -40 - 244 °F -40 - 118 °C Default: NA"
   },
@@ -869,7 +869,7 @@
    "type": "AI",
    "inst": 374,
    "name": "C1DischargeSHTemp",
-   "unitRaw": "0 - 50 °F 0 - 27.8 °C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current circuit discharge superheat temperature. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA"
   },
@@ -885,7 +885,7 @@
    "type": "AI",
    "inst": 378,
    "name": "C1CondApproachT",
-   "unitRaw": "0 - 50 °F 0 - 27.8 °C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current circuit condenser approach temperature. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA"
   },
@@ -901,7 +901,7 @@
    "type": "AI",
    "inst": 382,
    "name": "C1\\EvapApproachT",
-   "unitRaw": "0 - 50 °F 0 - 27.8 °C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current circuit evaporator approach tempera- ture. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA"
   },
@@ -917,7 +917,7 @@
    "type": "AI",
    "inst": 386,
    "name": "C1Ev1SuperHeatT",
-   "unitRaw": "0 - 50 °F 0 - 27.8 °C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current circuit evaporator superheat tempera- ture. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA"
   },
@@ -933,7 +933,7 @@
    "type": "AI",
    "inst": 390,
    "name": "C1SubcoolingTemp",
-   "unitRaw": "-40 - 244°F, -40 - 118°C, Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current subcooling temperature for the circuit. · 범위 -40 - 244°F, -40 - 118°C, Default: NA"
   },
@@ -949,7 +949,7 @@
    "type": "AV",
    "inst": 1,
    "name": "ActiveCapacityLimit",
-   "unitRaw": "0 – 100% Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "Measures of the ratio of operating ca- pacity limit to full capacity expressed as a percentage. This value is the lowest of all limits specified by the operator, analog Demand Limit input, or Network Capacity Limit Setpoint. · 범위 0 – 100% D"
   },
@@ -957,7 +957,7 @@
    "type": "AV",
    "inst": 2,
    "name": "ChillerCapacity",
-   "unitRaw": "0 – 100% Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The percent of maximum capacity the chiller is producing under the present operating conditions. At 100%, the chiller may be producing more or less than its nominal rating due to variations in operating conditions. · 범위 0 – 100% Default: NA"
   },
@@ -965,7 +965,7 @@
    "type": "AV",
    "inst": 3,
    "name": "NetworkCapacityLimitPct",
-   "unitRaw": "0 – 100% Default: 100%",
+   "unitRaw": null,
    "unit": null,
    "note": "Sets the maximum capacity level of the chiller. This level may be adjusted, but not above the factory-specified limit. The unit controller only uses this variable if Chiller Local/Network is set to Network (0). Chiller Local/Network can onl"
   },
@@ -973,7 +973,7 @@
    "type": "AV",
    "inst": 4,
    "name": "NetworkCoolTempSetpoint",
-   "unitRaw": "24.98 – 60.08°F -3.9 – 15.6°C Default: 43.88°F / 6.6°C",
+   "unitRaw": null,
    "unit": null,
    "note": "Changes the Cooling setpoint from the network. It sets the temperature of the Leaving Chilled Fluid when the chiller is operating in the Cooling Mode. It cannot be set below the local Cool Set- point. The unit controller only uses this vari"
   },
@@ -981,7 +981,7 @@
    "type": "AV",
    "inst": 5,
    "name": "ActiveLvgWaterTarget",
-   "unitRaw": "15.08 – 149.9°F -9.4 – 65.5°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current setpoint used to control the chiller. The setpoint that is used is based on the operating mode (Ice, Cool or Heat) of the chiller and any “LWT reset” functions that are in effect. See Chiller Mode Output and Chiller Mode Setpoin"
   },
@@ -997,7 +997,7 @@
    "type": "AV",
    "inst": 7,
    "name": "NetworkIceTempSetpoint",
-   "unitRaw": "AWS/AWV/ ADS/WWV/ TWV: 17.6 – 39.2°F -8.0 – 4.0°C AGZ-D/AGZ-E/ AMZ: 15.08 – 38.12°F -9.4 – 3.4°C Default: 24.98°F / 3.9°C",
+   "unitRaw": null,
    "unit": null,
    "note": "Changes the Ice setpoint from the network. It sets the temperature of the Leaving Chilled Fluid when the chiller is operating in the Ice Mode. The unit controller only uses this variable if Chiller Local/Network is set to Remote (0). Chille"
   },
@@ -1229,7 +1229,7 @@
    "type": "AV",
    "inst": 110,
    "name": "CondPump1RunHours",
-   "unitRaw": "0 – 999,999 hours Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The number of hours that the pump mo- tor has been turned on. BACnet uses separate variable for each pump. · 범위 0 – 999,999 hours Default: NA"
   },
@@ -1237,7 +1237,7 @@
    "type": "AV",
    "inst": 111,
    "name": "CondPump2RunHours",
-   "unitRaw": "0 – 999,999 hours Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The number of hours that the pump mo- tor has been turned on. BACnet uses separate variable for each pump. · 범위 0 – 999,999 hours Default: NA"
   },
@@ -1261,7 +1261,7 @@
    "type": "AV",
    "inst": 115,
    "name": "C1Comp1LiftTemp",
-   "unitRaw": "-45 – 212°F -42.8~100.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current lift temperature for the compressor. · 범위 -45 – 212°F -42.8~100.0°C Default: NA"
   },
@@ -1269,7 +1269,7 @@
    "type": "AV",
    "inst": 116,
    "name": "C1Comp2LiftTemp",
-   "unitRaw": "-45 – 212°F -42.8~100.0°C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current lift temperature for the compressor. · 범위 -45 – 212°F -42.8~100.0°C Default: NA"
   },
@@ -1277,7 +1277,7 @@
    "type": "AV",
    "inst": 121,
    "name": "C1Comp1LiftPressure",
-   "unitRaw": "-350 – 350 Psi, -2413 – 2413 kPa Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current lift pressure for the com- pressor. · 범위 -350 – 350 Psi, -2413 – 2413 kPa Default: NA"
   },
@@ -1285,7 +1285,7 @@
    "type": "AV",
    "inst": 122,
    "name": "C1Comp2LiftPressure",
-   "unitRaw": "-350 – 350 Psi, -2413 – 2413 kPa Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The current lift pressure for the com- pressor. · 범위 -350 – 350 Psi, -2413 – 2413 kPa Default: NA"
   },
@@ -1293,7 +1293,7 @@
    "type": "AV",
    "inst": 139,
    "name": "EvRecircTimeRem",
-   "unitRaw": "0 - 300 seconds Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The time remaining on the internal evaporator recirculate timer. · 범위 0 - 300 seconds Default: NA"
   },
@@ -1301,7 +1301,7 @@
    "type": "AV",
    "inst": 140,
    "name": "C1CycleTimeRem",
-   "unitRaw": "0 - 3600 seconds Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "The time remaining on the internal circuit cycle timer. · 범위 0 - 3600 seconds Default: NA"
   },
@@ -1317,7 +1317,7 @@
    "type": "AV",
    "inst": 171,
    "name": "C1LiqLineApproachT",
-   "unitRaw": "-40 - 244 °F -40 - 118 °C Default: NA",
+   "unitRaw": null,
    "unit": null,
    "note": "Indicates the current liquid line refrig- erant approach temperature for the circuit. · 범위 -40 - 244 °F -40 - 118 °C Default: NA"
   },

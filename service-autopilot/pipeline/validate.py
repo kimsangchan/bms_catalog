@@ -18,6 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 sys.path.insert(0, HERE)
 import schema as S  # noqa: E402
+import extract as X  # noqa: E402 — 단위 칸 모양 가드(unit_or_note) 재사용
 
 # 이름에 섞이면 안 되는 조각 — 표 옆 칸이 흘러들어온 흔적.
 # 'Present' 단독은 뺐다. 'Alarm Present'·'Diagnostic Present'는 진짜 포인트 이름이라
@@ -66,6 +67,14 @@ def check_model(m, eq, kg):
     bad = sorted({p["type"] for p in pts if p["type"] not in S.OBJ_TYPES})
     if bad:
         add("E", "bad-type", "표준 밖 오브젝트 타입: %s" % ", ".join(bad))
+
+    # 3a) 단위 칸 문장·범위 침입 — 표 각주(Lennox 'These legacy alarm …')나
+    #     범위+기본값(Daikin '-40 – 230°F … Default: NA')이 단위로 눌린 것.
+    #     추출 가드(extract.unit_or_note)가 비고로 옮기므로 남아 있으면 결함이다.
+    prose = [p for p in pts if X.unit_or_note(p.get("unitRaw") or "")[1]]
+    if prose:
+        add("E", "unit-prose", "단위 칸에 문장/범위 %d건 예: %s = %r"
+            % (len(prose), prose[0].get("name", "")[:24], (prose[0].get("unitRaw") or "")[:40]))
 
     # 3) 단위 정규화 실패
     unk = collections.Counter(p["unitRaw"] for p in pts

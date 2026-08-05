@@ -140,6 +140,32 @@ def _mk_idx(hdr):
     return idx
 
 
+# 단위 칸 모양 가드 — 단위는 짧은 토큰이다. 표 각주 문장(Lennox CORE 'These legacy
+# alarm reporting objects are obsolete …')이나 범위+기본값(Daikin '-40 – 230°F -40 –
+# 110°C Default: NA')이 단위 칸으로 눌려 들어오면 단위가 아니라 비고로 보낸다.
+# 'Seconds since Midnight'(Vertiv)·'mV Ω 0 / 1 °C °F'(Belimo 설정별 단위 나열)처럼
+# 문서가 정말 단위로 적은 표기는 그대로 둔다 — 소문자 낱말 3연속+40자(문장)나
+# 숫자-대시-숫자(범위)+온도단위가 있어야만 옮긴다.
+UNIT_PROSE = re.compile(r"(?:[a-z]{3,}\s+){2}[a-z]{3,}")
+UNIT_RANGE = re.compile(r"\d[\s.°]*[-–][\s.°]*\d")
+
+
+def unit_or_note(u):
+    """(단위, 비고로 보낼 원문) — 단위 칸 값이 단위가 아니면 비고로 옮긴다."""
+    text = (u or "").strip()
+    if not text:
+        return "", ""
+    if len(text) > 40 and UNIT_PROSE.search(text):
+        return "", text
+    if UNIT_RANGE.search(text) and (re.search(r"°\s*[FC]|Default", text) or len(text) > 24):
+        return "", "범위 " + text
+    # 'Default:' 는 단위 칸에 올 낱말이 아니다 — 숫자 범위 없이 문장으로만 적힌
+    # 경우('Amp range varies by chiller model Default: NA', Daikin)도 비고로 보낸다
+    if re.search(r"Default\s*:", text):
+        return "", text
+    return text, ""
+
+
 # 한 문서에 장치가 둘이고 **번호를 다시 쓰는** 경우를 표 제목으로 가른다.
 # JCI VRF 게이트웨이는 실내기 표와 실외기 표가 AI-16 을 각각 다른 뜻으로 쓴다 —
 # 가르지 않으면 뒤 표가 앞 표를 덮어써서 실외기 포인트가 조용히 사라진다.
@@ -320,6 +346,9 @@ def extract_tables(pdf, default_type=None, pages=None):
                         note.append(nt)
                 if 0 <= i_on < len(r) and i_on != i_nm and _c(r[i_on]):
                     note.append("코드 " + _c(r[i_on]))
+                u, spill = unit_or_note(u)
+                if spill:
+                    note.append(spill)
                 rows.append({"type": S.canon_type(typ), "inst": inst,
                              "name": name, "unitRaw": UNIT_HINT.get(u, u or None),
                              "unit": S.canon_unit(UNIT_HINT.get(u, u)),
@@ -412,6 +441,9 @@ def extract_by_section(pdf):
                                     _c(r[i_st]) if 0 <= i_st < len(r) else "",
                                     ("범위 " + _c(r[i_rg])) if 0 <= i_rg < len(r) and _c(r[i_rg]) else "") if x]
                 u = _c(r[i_un]) if 0 <= i_un < len(r) else ""
+                u, spill = unit_or_note(u)
+                if spill:
+                    note.append(spill)
                 rows.append({"type": S.canon_type(typ), "inst": inst, "name": name,
                              "unitRaw": UNIT_HINT.get(u, u or None),
                              "unit": S.canon_unit(UNIT_HINT.get(u, u)),
