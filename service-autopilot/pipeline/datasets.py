@@ -396,11 +396,14 @@ def looks_like_unit_code(text):
 
 
 def unit_role_for(code, title):
-    """TWE=공기측, 표 제목에 condensing=실외/응축, 그 외(옥상형·WSHP)=일체형."""
+    """TWE=공기측, 표 제목에 condensing=실외/응축, EEV kit=팽창밸브 킷,
+    그 외(옥상형·WSHP)=일체형."""
     if re.search(r"\bTWE", code or "", re.I):
         return "airHandler"
     if re.search(r"condensing", title or "", re.I):
         return "condensingUnit"
+    if re.search(r"EEV kit", title or "", re.I):
+        return "eevKit"
     return "packagedUnit"
 
 

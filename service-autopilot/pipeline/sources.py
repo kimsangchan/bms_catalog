@@ -794,6 +794,34 @@ SOURCES = [
         "extractor": "auto",
         "access": "무로그인",
     },
+    {
+        "id": "lg-ahu-comm-kit",
+        "vendor": "LG",
+        "kind": "포인트리스트",
+        "note": "MULTI V/싱글 실외기 연동 AHU 통신 킷 0CAA0-02M — PDB 10절의 "
+                "'Modbus points of PAHCMR000/PAHCMS000' 맵이 포인트 정본"
+                "(환기 RA 제어 킷과 급기 SA 제어 킷이 같은 번호를 재사용 — "
+                "번호 재사용 자동 분리로 두 모델). 'Reserved' 행은 자리표시라 뺀다. "
+                "국내 현장 조우 확률 최상위 벤더. lg.com dam 직링크 무로그인 — "
+                "기본 UA 는 403 이라 브라우저 형태 헤더가 필요하다(Belimo 전례).",
+        "enumerate": "list",
+        "headers": {
+            "Referer": "https://www.lg.com/",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en,ko;q=0.9",
+            "Sec-Fetch-Dest": "document", "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-Site": "same-origin", "Upgrade-Insecure-Requests": "1",
+        },
+        "urls": [
+            "https://www.lg.com/content/dam/channel/wcms/br/business/download/airsolution/202407_Kit%20de%20Comunica__o_AHU_PDB_20240924_030002_.pdf",
+        ],
+        "rename": {
+            "202407_Kit de Comunica__o_AHU_PDB_20240924_030002_.pdf":
+                "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+    },
 ]
 
 

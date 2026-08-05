@@ -316,6 +316,27 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(lht13["cop"], "3.40")
         self.assertEqual(lht13["systemPower"], "12.3")
 
+    def test_lg_ahu_kit_split_and_eev_combinations(self):
+        # LG AHU 통신 킷 — 환기(PAHCMR000)·급기(PAHCMS000) 맵이 같은 레지스터
+        # 번호를 재사용해 구간(sect) 분리로 두 모델이 된다. 형번은 조합 EEV 킷
+        # (문서 호환 'O' 인 것만 — 환기 3종·급기 4종).
+        data = datasets.build_dataset(equip_ids={"e5"})
+        rkit = data["modelMappings"][
+            "lg-ahu-comm-kit-0caa0-02m-multi-v-single-ahu-interface-modbus-pahcmr000"]
+        skit = data["modelMappings"][
+            "lg-ahu-comm-kit-0caa0-02m-multi-v-single-ahu-interface-modbus-pahcms000"]
+
+        self.assertEqual(rkit["counts"]["l3MappingPoints"], 19)
+        self.assertEqual(skit["counts"]["l3MappingPoints"], 28)
+        r_units = {u["unitModelNumber"]: u for u in rkit["unitModels"]}
+        s_units = {u["unitModelNumber"]: u for u in skit["unitModels"]}
+        self.assertEqual(len(r_units), 3)
+        self.assertEqual(len(s_units), 4)
+        self.assertEqual(r_units["PRLK048A0"]["capacityClass"], "3.6–28 kW")
+        self.assertEqual(r_units["PRLK048A0"]["unitRole"], "eevKit")
+        self.assertIn("PRLK594A0", s_units)     # 168 kW 급은 급기 킷만 지원
+        self.assertNotIn("PRLK594A0", r_units)
+
     def test_mitsubishi_pacif013_outdoor_combinations(self):
         # Mitsubishi PAC-IF013 — 설계 가이드라인의 표준 풍량 표(텍스트 층 주입)에서
         # 조합 실외기 시리즈×용량 22건. 한 글자 계열(P200)도 형번 토큰이어야 한다.

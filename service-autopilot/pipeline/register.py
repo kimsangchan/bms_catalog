@@ -113,6 +113,13 @@ OVERRIDE = {
         "controller": "PAC-IF013B/SIF013B",
         "product": "Mr.Slim AHU Interface",
     },
+    # 표지의 'P/No. : MFL…' 부품번호 조각이 제품명으로 잡히고, 포인트가 적어
+    # 장비 판정도 안 된다 — 실외기 연동 AHU 킷이므로 공조기다
+    "LG_AHU_CommKit_0CAA0-02M_PDB.pdf": {
+        "equipId": "e5", "cat": "HVAC.AIR.AHU", "tag": "ahu",
+        "controller": "AHU Comm Kit 0CAA0-02M",
+        "product": "MULTI V·Single AHU Interface",
+    },
 }
 
 # 구간 이름을 사람 말로 — 목차에서 딴 약어를 풀어 쓴다 (LonMark 표준 프로파일)
@@ -123,6 +130,8 @@ SEGWORD = {
     "duplex": "복식(Duplex)",
     "idu": "실내기(IDU)",
     "odu": "실외기(ODU)",
+    "pahcmr000": "환기(RA) 제어 킷 PAHCMR000",
+    "pahcms000": "급기(SA) 제어 킷 PAHCMS000",
 }
 
 
@@ -172,6 +181,15 @@ def plan_one(fname, vendor="Trane"):
               for l in labels]
     if all(l is None for l in labels):
         labels = []
+    # 목차에 라벨이 없으면 구간 제목(sect — 'pahcmr000' 등)에서 유도한다.
+    # LG AHU 킷처럼 표 제목으로만 장치가 갈리는 문서용 (JCI VRF 와 같은 계열).
+    if not labels and len(segs) > 1:
+        sect_labels = []
+        for pts in segs:
+            ss = {p.get("sect") for p in pts if p.get("sect")}
+            sect_labels.append(ss.pop() if len(ss) == 1 else None)
+        if any(sect_labels):
+            labels = sect_labels
     # 프로토콜 이름은 실제 오브젝트 타입에서 딴다 — Modbus 전용 문서를 'BACnet'
     # 이라고 부르면 안 된다.
     allproto = collections.Counter(S.protocol_of(p["type"]) for p in rows)

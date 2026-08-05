@@ -171,9 +171,11 @@ def unit_or_note(u):
 
 
 # 한 문서에 장치가 둘이고 **번호를 다시 쓰는** 경우를 표 제목으로 가른다.
-# JCI VRF 게이트웨이는 실내기 표와 실외기 표가 AI-16 을 각각 다른 뜻으로 쓴다 —
-# 가르지 않으면 뒤 표가 앞 표를 덮어써서 실외기 포인트가 조용히 사라진다.
-SECT_CAPTION = re.compile(r"points for (indoor|outdoor) units", re.I)
+# JCI VRF 게이트웨이는 실내기 표와 실외기 표가 AI-16 을 각각 다른 뜻으로 쓰고,
+# LG AHU 킷은 환기(PAHCMR000)·급기(PAHCMS000) 맵이 같은 레지스터 번호를 재사용한다 —
+# 가르지 않으면 뒤 표가 앞 표를 덮어써서 한쪽 포인트가 조용히 사라진다.
+SECT_CAPTION = re.compile(
+    r"points for (indoor|outdoor) units|Modbus points of (PAHCM[A-Z]\d+)", re.I)
 
 
 def captions(pdf):
@@ -184,7 +186,8 @@ def captions(pdf):
         for b in pg.get_text("blocks"):
             m = SECT_CAPTION.search(re.sub(r"\s+", " ", b[4]))
             if m:
-                out.append((i, b[3], m.group(1).lower()))
+                name = next(g for g in m.groups() if g)
+                out.append((i, b[3], name.lower()))
     return out
 
 
@@ -348,6 +351,9 @@ def extract_tables(pdf, default_type=None, pages=None):
                     name = name.replace(" ", "")
                 if not name or len(name) < 3:
                     continue
+                # 'Reserved' 는 오브젝트가 아니라 주소 자리표시다 (LG AHU 킷 맵)
+                if name.strip().lower() == "reserved":
+                    continue
                 note = [extra_note] if extra_note else []
                 if mb_mode and 0 <= i_bn < len(r) and _c(r[i_bn]):
                     note.append("BACnet " + _c(r[i_bn]))
@@ -382,7 +388,9 @@ def extract_tables(pdf, default_type=None, pages=None):
                              "note": " · ".join(note)[:240],
                              "sect": sect_at(caps, pg.number, t.bbox[1])})
     seen, out = set(), []
-    for r in sorted(rows, key=lambda x: (x["type"], x["inst"])):
+    # 정렬은 구간을 먼저 묶는다 — 번호를 재사용하는 두 장치가 섞이면
+    # split_profiles(번호 재사용 지점에서 자르기)가 조각을 못 만든다.
+    for r in sorted(rows, key=lambda x: (x.get("sect") or "", x["type"], x["inst"])):
         # 구간이 나뉜 문서는 구간까지 넣어 유일성을 본다 — 안 넣으면 실외기 AI-16 이
         # 실내기 AI-16 에 밀려 사라진다.
         k = (r.get("sect"), r["type"], r["inst"]) if r.get("sect") else (r["type"], r["inst"])

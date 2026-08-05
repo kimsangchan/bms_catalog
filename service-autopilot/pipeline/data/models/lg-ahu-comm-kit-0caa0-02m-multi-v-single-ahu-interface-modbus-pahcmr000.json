@@ -1,0 +1,2326 @@
+{
+ "id": "lg-ahu-comm-kit-0caa0-02m-multi-v-single-ahu-interface-modbus-pahcmr000",
+ "equipId": "e5",
+ "vendor": "LG",
+ "model": "AHU Comm Kit 0CAA0-02M — MULTI V·Single AHU Interface (Modbus) · 환기(RA) 제어 킷 PAHCMR000",
+ "name": "AHU Comm Kit 0CAA0-02M MULTI V·Single AHU Interface · 환기(RA) 제어 킷 PAHCMR000",
+ "cat": "HVAC.AIR.AHU",
+ "tag": "ahu",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. Modbus 19점",
+ "has": {
+  "spec": true,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "Modbus",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "MB",
+   "inst": 1,
+   "name": "Operating On / Off",
+   "unitRaw": null,
+   "unit": null,
+   "note": "●"
+  },
+  {
+   "type": "MB",
+   "inst": 3,
+   "name": "All Button Lock",
+   "unitRaw": null,
+   "unit": null,
+   "note": "●"
+  },
+  {
+   "type": "MB",
+   "inst": 4,
+   "name": "Mode Lock",
+   "unitRaw": null,
+   "unit": null,
+   "note": "●"
+  },
+  {
+   "type": "MB",
+   "inst": 5,
+   "name": "Fan Speed Lock",
+   "unitRaw": null,
+   "unit": null,
+   "note": "●"
+  },
+  {
+   "type": "MB",
+   "inst": 6,
+   "name": "Target Temp. Lock",
+   "unitRaw": null,
+   "unit": null,
+   "note": "●"
+  },
+  {
+   "type": "MB",
+   "inst": 7,
+   "name": "Error",
+   "unitRaw": null,
+   "unit": null,
+   "note": "●"
+  },
+  {
+   "type": "MB",
+   "inst": 10001,
+   "name": "Comp Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 10002,
+   "name": "Defrost Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 10003,
+   "name": "Oil Return",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 30001,
+   "name": "Error Code",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 30002,
+   "name": "RA Temp.",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 30004,
+   "name": "Pipe In Temp.",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 30005,
+   "name": "Pipe Out Temp.",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 30006,
+   "name": "Capacity",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 40001,
+   "name": "Operation Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 40002,
+   "name": "Fan Speed",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 40003,
+   "name": "Target Temp.",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 40004,
+   "name": "Target Temp. Upper Range",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  },
+  {
+   "type": "MB",
+   "inst": 40005,
+   "name": "Target Temp. Lower Range",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-"
+  }
+ ],
+ "gap": "MULTI V/싱글 실외기 연동 AHU 통신 킷(환기 RA 온도 제어, PAHCMR000) — 포인트는 PDB 10절 Modbus 맵 19점(코일/디스크리트 1만대/입력 3만대/홀딩 4만대 절대 표기, Reserved 자리표시는 제외). 형번은 조합 EEV 킷 3종(PRLK048A0~396A0, 용량지수 3.6~112 kW). 급기(SA) 제어 킷은 별도 모델(-pahcms000). AHU 열교환기 용량 인덱스 표는 원문표 후보로 본다. 실외기(MULTI V) 자체 정격은 실외기 PDB 가 따로 필요하다.",
+ "extractor": "table",
+ "sourceDoc": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+ "classifiedBy": "표지 제품명 근거: 'Valve'",
+ "crosscheck": {
+  "rate": 1.0,
+  "both": 40,
+  "diff": []
+ },
+ "specTables": [
+  {
+   "title": "3.1 Technical specifications",
+   "page": 5,
+   "orientation": "column",
+   "header": [
+    "Model Application",
+    "",
+    "",
+    "",
+    "PAHCMR000 Return air temperature control",
+    "PAHCMS000 Discharge air temperature control"
+   ],
+   "quantities": [
+    null,
+    null,
+    null,
+    null,
+    "temperature",
+    "temperature"
+   ],
+   "rows": [
+    [
+     "Outdoor unit",
+     "",
+     "",
+     "",
+     "MULTI V, Single split",
+     "MULTI V, Single split"
+    ],
+    [
+     "Dimensions",
+     "Unit",
+     "Width",
+     "mm",
+     "300",
+     "380"
+    ],
+    [
+     "",
+     "",
+     "Depth",
+     "mm",
+     "300",
+     "300"
+    ],
+    [
+     "",
+     "",
+     "Height",
+     "mm",
+     "155",
+     "155"
+    ],
+    [
+     "",
+     "Packed unit",
+     "Width",
+     "mm",
+     "359",
+     "436"
+    ],
+    [
+     "",
+     "",
+     "Depth",
+     "mm",
+     "206",
+     "206"
+    ],
+    [
+     "",
+     "",
+     "Height",
+     "mm",
+     "354",
+     "357"
+    ],
+    [
+     "Weight",
+     "Unit",
+     "",
+     "kg",
+     "6.2",
+     "7.46"
+    ],
+    [
+     "",
+     "Packed unit",
+     "",
+     "kg",
+     "7.00",
+     "8.30"
+    ],
+    [
+     "Casing",
+     "Color",
+     "",
+     "",
+     "Warm grey (RAL 7035)",
+     "Warm grey (RAL 7035)"
+    ],
+    [
+     "",
+     "Material",
+     "",
+     "",
+     "Steel",
+     "Steel"
+    ],
+    [
+     "",
+     "Certification Degree of Protection",
+     "",
+     "",
+     "IP 66 (EN 60529)",
+     "IP 66 (EN 60529)"
+    ],
+    [
+     "",
+     "",
+     "",
+     "",
+     "UL 508 Type 4 / NEMA 4",
+     "UL 508 Type 4 / NEMA 4"
+    ],
+    [
+     "",
+     "",
+     "",
+     "",
+     "IK 08 (EN 50102)",
+     "IK 08 (EN 50102)"
+    ],
+    [
+     "Power supply",
+     "Voltage",
+     "",
+     "V",
+     "220~240",
+     "220~240"
+    ],
+    [
+     "",
+     "Frequency",
+     "",
+     "Hz",
+     "50/60",
+     "50/60"
+    ],
+    [
+     "",
+     "Phase",
+     "",
+     "P",
+     "1",
+     "1"
+    ],
+    [
+     "Current",
+     "Rated",
+     "",
+     "A",
+     "0.1",
+     "0.1"
+    ],
+    [
+     "Composition",
+     "Controller",
+     "",
+     "",
+     "Communication module : 1 EA",
+     "Main Module : 1 EA Communication Module : 1 EA"
+    ],
+    [
+     "",
+     "Terminal block",
+     "Power supply",
+     "",
+     "Screw type (L / N, Ring type)",
+     "Screw type (L / N, Ring type)"
+    ],
+    [
+     "",
+     "",
+     "Communication",
+     "",
+     "Spring push type (Pin type, JOBN153)",
+     "Spring push type (Pin type,JOBN153)"
+    ],
+    [
+     "",
+     "Temp. Sensor",
+     "Liquid pipe",
+     "",
+     "Q'ty : 1 EA (Pin type, 5m, Black)",
+     "Q'ty : 1 EA (Pin type, 5m, Black)"
+    ],
+    [
+     "",
+     "",
+     "Gas pipe",
+     "",
+     "Q'ty : 1 EA (Pin type, 5m, Red)",
+     "Q'ty : 1 EA (Pin type, 5m, Red)"
+    ],
+    [
+     "",
+     "",
+     "Air",
+     "",
+     "Q'ty : 1 EA (Pin type, 5m, Red)",
+     "Q'ty : 1 EA (Pin type, 5m, Red)"
+    ],
+    [
+     "",
+     "Key",
+     "",
+     "EA",
+     "1",
+     "1"
+    ],
+    [
+     "",
+     "Installation Manual",
+     "",
+     "EA",
+     "1",
+     "1"
+    ],
+    [
+     "Wiring connection",
+     "Communication",
+     "",
+     "EA",
+     "3",
+     "6"
+    ],
+    [
+     "",
+     "Universal Input",
+     "",
+     "EA",
+     "4",
+     "12(8*)"
+    ],
+    [
+     "",
+     "Digital Input",
+     "",
+     "EA",
+     "-",
+     "3"
+    ],
+    [
+     "",
+     "Digital Output",
+     "",
+     "EA",
+     "3",
+     "9(2*)"
+    ],
+    [
+     "",
+     "Analogue Output",
+     "",
+     "EA",
+     "-",
+     "6(6*)"
+    ],
+    [
+     "",
+     "NTC(sensors)",
+     "",
+     "EA",
+     "4(1*)",
+     "4(1*)"
+    ],
+    [
+     "",
+     "Remote Controller",
+     "",
+     "EA",
+     "1",
+     "1"
+    ],
+    [
+     "",
+     "EEV Kit",
+     "",
+     "EA",
+     "1",
+     "1"
+    ],
+    [
+     "Product environment operation range",
+     "Ambient Temperature",
+     "",
+     "",
+     "-20 ~ 65 ℃DB",
+     "-20 ~ 65 ℃DB"
+    ],
+    [
+     "",
+     "Humidity",
+     "",
+     "",
+     "0 ~ 98 %",
+     "0 ~ 98 %"
+    ],
+    [
+     "Air temperature",
+     "Cooling(on coil air)",
+     "",
+     "",
+     "14 ~ 26 ℃WB",
+     "14 ~ 26 ℃WB"
+    ],
+    [
+     "",
+     "Heating(on coil air)",
+     "",
+     "",
+     "5 ~ 24 ℃DB",
+     "5 ~ 24 ℃DB"
+    ],
+    [
+     "",
+     "Outdoor unit condition",
+     "",
+     "",
+     "It is same condition as the outside air temperature operation range of outdoor unit PDB.",
+     ""
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "5.1.1 MULTI V",
+   "page": 13,
+   "orientation": "column",
+   "header": [
+    "Capacity index",
+    "",
+    "Heat exchanger capacity (kBtu/h) Cooling",
+    "",
+    "Cooling",
+    "",
+    "Heat exchanger capacity (kW) Cooling",
+    "",
+    "Heating",
+    ""
+   ],
+   "quantities": [
+    "capacity",
+    null,
+    "capacity",
+    null,
+    null,
+    null,
+    "power",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "kBtu/h",
+     "kW",
+     "Min",
+     "Max",
+     "Min",
+     "Max",
+     "Min",
+     "Max",
+     "Min",
+     "Max"
+    ],
+    [
+     "12.0",
+     "3.6",
+     "10.5",
+     "12.0",
+     "11.9",
+     "13.3",
+     "3.1",
+     "3.6",
+     "3.5",
+     "4.0"
+    ],
+    [
+     "15.0",
+     "4.5",
+     "12.1",
+     "15.0",
+     "13.4",
+     "16.7",
+     "3.7",
+     "4.5",
+     "4.1",
+     "5.0"
+    ],
+    [
+     "18.0",
+     "5.6",
+     "15.1",
+     "18.0",
+     "16.8",
+     "20.3",
+     "4.6",
+     "5.6",
+     "5.1",
+     "6.3"
+    ],
+    [
+     "24.0",
+     "7.1",
+     "18.1",
+     "24.0",
+     "20.4",
+     "27.0",
+     "5.7",
+     "7.1",
+     "6.4",
+     "8.0"
+    ],
+    [
+     "28.0",
+     "8.2",
+     "24.1",
+     "28.0",
+     "27.1",
+     "31.4",
+     "7.2",
+     "8.2",
+     "8.1",
+     "9.2"
+    ],
+    [
+     "36.0",
+     "10.6",
+     "28.1",
+     "36.0",
+     "31.5",
+     "40.4",
+     "8.3",
+     "10.6",
+     "9.3",
+     "11.9"
+    ],
+    [
+     "42.0",
+     "12.3",
+     "36.1",
+     "42.0",
+     "40.5",
+     "47.1",
+     "10.7",
+     "12.3",
+     "12.0",
+     "13.8"
+    ],
+    [
+     "48.0",
+     "14.1",
+     "42.1",
+     "48.0",
+     "47.2",
+     "54.1",
+     "12.4",
+     "14.1",
+     "13.9",
+     "15.9"
+    ],
+    [
+     "54.0",
+     "15.8",
+     "48.1",
+     "54.0",
+     "54.2",
+     "61.5",
+     "14.2",
+     "15.8",
+     "16.0",
+     "18.0"
+    ],
+    [
+     "76.0",
+     "22.4",
+     "54.1",
+     "76.0",
+     "61.6",
+     "85.5",
+     "15.9",
+     "22.4",
+     "18.1",
+     "25.2"
+    ],
+    [
+     "96.0",
+     "28.0",
+     "76.1",
+     "96.0",
+     "85.6",
+     "108.0",
+     "22.5",
+     "28.0",
+     "25.3",
+     "31.5"
+    ],
+    [
+     "115.0",
+     "33.6",
+     "96.1",
+     "115.0",
+     "108.1",
+     "129.4",
+     "28.1",
+     "33.6",
+     "31.6",
+     "37.8"
+    ],
+    [
+     "134.0",
+     "39.2",
+     "115.1",
+     "134.0",
+     "129.5",
+     "150.8",
+     "33.7",
+     "39.2",
+     "37.9",
+     "44.1"
+    ],
+    [
+     "153.0",
+     "44.8",
+     "134.1",
+     "153.0",
+     "150.9",
+     "172.1",
+     "39.3",
+     "44.8",
+     "44.2",
+     "50.4"
+    ],
+    [
+     "172.0",
+     "50.4",
+     "153.1",
+     "172.0",
+     "172.2",
+     "193.5",
+     "44.9",
+     "50.4",
+     "50.5",
+     "56.7"
+    ],
+    [
+     "192.0",
+     "56.0",
+     "172.1",
+     "192.0",
+     "193.6",
+     "216.0",
+     "50.5",
+     "56.0",
+     "56.8",
+     "63.0"
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "5.1.2 Single Split",
+   "page": 13,
+   "orientation": "column",
+   "header": [
+    "Capacity index",
+    "",
+    "Heat exchanger capacity (kBtu/h) Cooling",
+    "",
+    "Cooling",
+    "",
+    "Heat exchanger capacity (kW) Cooling",
+    "",
+    "Heating",
+    ""
+   ],
+   "quantities": [
+    "capacity",
+    null,
+    "capacity",
+    null,
+    null,
+    null,
+    "power",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "kBtu/h",
+     "kW",
+     "Min",
+     "Max",
+     "Min",
+     "Max",
+     "Min",
+     "Max",
+     "Min",
+     "Max"
+    ],
+    [
+     "9.0",
+     "2.5",
+     "6.5",
+     "9.0",
+     "9.0",
+     "10.8",
+     "2.0",
+     "2.5",
+     "2.5",
+     "3.2"
+    ],
+    [
+     "12.0",
+     "3.5",
+     "9.1",
+     "12.0",
+     "10.9",
+     "13.7",
+     "2.6",
+     "3.5",
+     "3.3",
+     "4.0"
+    ],
+    [
+     "18.0",
+     "5.0",
+     "12.1",
+     "18.0",
+     "13.8",
+     "19.4",
+     "3.5",
+     "5.0",
+     "4.1",
+     "6.0"
+    ],
+    [
+     "24.0",
+     "7.1",
+     "18.1",
+     "24.0",
+     "19.5",
+     "25.4",
+     "5.1",
+     "7.1",
+     "6.1",
+     "7.5"
+    ],
+    [
+     "30.0",
+     "8.0",
+     "24.1",
+     "30.0",
+     "25.5",
+     "33.8",
+     "7.2",
+     "8.0",
+     "7.6",
+     "9.0"
+    ],
+    [
+     "36.0",
+     "10.0",
+     "30.1",
+     "36.0",
+     "33.9",
+     "40.3",
+     "7.9",
+     "10.0",
+     "9.1",
+     "11.2"
+    ],
+    [
+     "42.0",
+     "12.5",
+     "36.1",
+     "42.0",
+     "40.4",
+     "47.0",
+     "10.1",
+     "12.5",
+     "11.3",
+     "14.0"
+    ],
+    [
+     "48.0",
+     "14.0",
+     "42.1",
+     "48.0",
+     "47.1",
+     "56.2",
+     "12.6",
+     "14.0",
+     "14.1",
+     "15.8"
+    ],
+    [
+     "60.0",
+     "15.0",
+     "48.1",
+     "60.0",
+     "56.3",
+     "67.2",
+     "14.1",
+     "15.0",
+     "15.9",
+     "16.8"
+    ],
+    [
+     "70.0",
+     "19.0",
+     "60.1",
+     "70.0",
+     "67.3",
+     "82.5",
+     "14.9",
+     "19.0",
+     "16.9",
+     "22.4"
+    ],
+    [
+     "85.0",
+     "23.0",
+     "70.1",
+     "85.0",
+     "82.6",
+     "99.8",
+     "19.1",
+     "23.0",
+     "22.5",
+     "27.0"
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "6.1 Capacity Range",
+   "page": 15,
+   "orientation": "column",
+   "header": [
+    "EEV Kit Model",
+    "Capacity index (kW) Minimum",
+    "Maximum",
+    "AHU Communication Kit PAHCMR000",
+    "PAHCMS000",
+    "Connection by ODU system Heat pump",
+    "Heat Recovery"
+   ],
+   "quantities": [
+    null,
+    "power",
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "PRLK048A0",
+     "3.6",
+     "28",
+     "O",
+     "O",
+     "O",
+     "O"
+    ],
+    [
+     "PRLK096A0",
+     "28.1",
+     "56",
+     "O",
+     "O",
+     "O",
+     "O (Max 33.7 kW)"
+    ],
+    [
+     "PRLK396A0",
+     "56.1",
+     "112",
+     "O",
+     "O",
+     "O",
+     "X"
+    ],
+    [
+     "PRLK594A0",
+     "112.1",
+     "168",
+     "X",
+     "O",
+     "O (with PAHCMS000)",
+     "X"
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "Table of SW4",
+   "page": 20,
+   "orientation": "column",
+   "header": [
+    "No",
+    "SW4",
+    "",
+    "",
+    "",
+    "Capacity [kBtu/h]",
+    "",
+    "Capacity [kW]",
+    ""
+   ],
+   "quantities": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    "capacity",
+    null,
+    "power",
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "Dip 1",
+     "Dip 2",
+     "Dip 3",
+     "Dip 4",
+     "MULTI V",
+     "SINGLE",
+     "MULTI V",
+     "SINGLE"
+    ],
+    [
+     "1",
+     "OFF",
+     "OFF",
+     "OFF",
+     "OFF",
+     "12.0",
+     "5.0",
+     "3.5",
+     "1.5"
+    ],
+    [
+     "2",
+     "OFF",
+     "OFF",
+     "OFF",
+     "ON",
+     "15.0",
+     "7.0",
+     "4.5",
+     "2.1"
+    ],
+    [
+     "3",
+     "OFF",
+     "OFF",
+     "ON",
+     "OFF",
+     "18.0",
+     "9.0",
+     "5.6",
+     "2.5"
+    ],
+    [
+     "4",
+     "OFF",
+     "OFF",
+     "ON",
+     "ON",
+     "24.0",
+     "12.0",
+     "7.1",
+     "3.5"
+    ],
+    [
+     "5",
+     "OFF",
+     "ON",
+     "OFF",
+     "OFF",
+     "28.0",
+     "15.0",
+     "8.2",
+     "4.2"
+    ],
+    [
+     "6",
+     "OFF",
+     "ON",
+     "OFF",
+     "ON",
+     "36.0",
+     "18.0",
+     "10.6",
+     "5.0"
+    ],
+    [
+     "7",
+     "OFF",
+     "ON",
+     "ON",
+     "OFF",
+     "42.0",
+     "24.0",
+     "12.3",
+     "7.1"
+    ],
+    [
+     "8",
+     "OFF",
+     "ON",
+     "ON",
+     "ON",
+     "48.0",
+     "30.0",
+     "14.1",
+     "8.0"
+    ],
+    [
+     "9",
+     "ON",
+     "OFF",
+     "OFF",
+     "OFF",
+     "54.0",
+     "36.0",
+     "15.8",
+     "10.0"
+    ],
+    [
+     "10",
+     "ON",
+     "OFF",
+     "OFF",
+     "ON",
+     "76.0",
+     "42.0",
+     "22.4",
+     "12.5"
+    ],
+    [
+     "11",
+     "ON",
+     "OFF",
+     "ON",
+     "OFF",
+     "96.0",
+     "48.0",
+     "28.0",
+     "14.0"
+    ],
+    [
+     "12",
+     "ON",
+     "OFF",
+     "ON",
+     "ON",
+     "115.0",
+     "60.0",
+     "33.6",
+     "15.0"
+    ],
+    [
+     "13",
+     "ON",
+     "ON",
+     "OFF",
+     "OFF",
+     "134.0",
+     "70.0",
+     "39.2",
+     "19.0"
+    ],
+    [
+     "14",
+     "ON",
+     "ON",
+     "OFF",
+     "ON",
+     "153.0",
+     "85.0",
+     "44.8",
+     "23.0"
+    ],
+    [
+     "15",
+     "ON",
+     "ON",
+     "ON",
+     "OFF",
+     "172.0",
+     "Reserved",
+     "50.4",
+     "Reserved"
+    ],
+    [
+     "16",
+     "ON",
+     "ON",
+     "ON",
+     "ON",
+     "192.0",
+     "Reserved",
+     "56.0",
+     "Reserved"
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "1 System",
+   "page": 33,
+   "orientation": "column",
+   "header": [
+    "Voltage (V)",
+    "ODU Capacity Range (%)",
+    "Target Pressure1) (kPa) Cooling Mode",
+    "Heating Mode"
+   ],
+   "quantities": [
+    "voltage",
+    "capacity",
+    "pressure",
+    null
+   ],
+   "rows": [
+    [
+     "0.0",
+     "Operation Off",
+     "-",
+     "-"
+    ],
+    [
+     "4.0",
+     "40",
+     "1039",
+     "2010"
+    ],
+    [
+     "4.5",
+     "40",
+     "1039",
+     "2010"
+    ],
+    [
+     "5.0",
+     "50",
+     "974",
+     "2173"
+    ],
+    [
+     "5.5",
+     "50",
+     "974",
+     "2173"
+    ],
+    [
+     "6.0",
+     "60",
+     "922",
+     "2337"
+    ],
+    [
+     "6.5",
+     "60",
+     "922",
+     "2337"
+    ],
+    [
+     "7.0",
+     "70",
+     "882",
+     "2500"
+    ],
+    [
+     "7.5",
+     "70",
+     "882",
+     "2500"
+    ],
+    [
+     "8.0",
+     "80",
+     "856",
+     "2663"
+    ],
+    [
+     "8.5",
+     "80",
+     "856",
+     "2663"
+    ],
+    [
+     "9.0",
+     "90",
+     "830",
+     "2827"
+    ],
+    [
+     "9.5",
+     "90",
+     "830",
+     "2827"
+    ],
+    [
+     "10.0",
+     "100",
+     "804",
+     "2990"
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "2 System or more",
+   "page": 33,
+   "orientation": "column",
+   "header": [
+    "Voltage (V)",
+    "Total Capacity ratio [%]",
+    "",
+    "",
+    "Each ODU's capacity ratio [%]",
+    "",
+    "",
+    ""
+   ],
+   "quantities": [
+    "voltage",
+    "capacity",
+    null,
+    null,
+    "capacity",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "2 System",
+     "3 System",
+     "4 System",
+     "ODU Master#1",
+     "ODU Master#2",
+     "ODU Master#3",
+     "ODU Master#4"
+    ],
+    [
+     "0.0",
+     "0",
+     "0.0",
+     "0.0",
+     "Operation Off",
+     "Operation Off",
+     "Operation Off",
+     "Operation Off"
+    ],
+    [
+     "2.0",
+     "20",
+     "26.7",
+     "20.0",
+     "40",
+     "0",
+     "40",
+     "0"
+    ],
+    [
+     "2.5",
+     "25",
+     "30.0",
+     "22.5",
+     "50",
+     "0",
+     "50",
+     "0"
+    ],
+    [
+     "3.0",
+     "30",
+     "33.3",
+     "25.0",
+     "60",
+     "0",
+     "60",
+     "0"
+    ],
+    [
+     "3.5",
+     "35",
+     "36.7",
+     "27.5",
+     "70",
+     "0",
+     "70",
+     "0"
+    ],
+    [
+     "4.0",
+     "40",
+     "40.0",
+     "40.0",
+     "40",
+     "40",
+     "40",
+     "40"
+    ],
+    [
+     "4.5",
+     "45",
+     "46.7",
+     "47.5",
+     "40",
+     "50",
+     "40",
+     "50"
+    ],
+    [
+     "5.0",
+     "50",
+     "50.0",
+     "50.0",
+     "50",
+     "50",
+     "50",
+     "50"
+    ],
+    [
+     "5.5",
+     "55",
+     "56.7",
+     "57.5",
+     "50",
+     "60",
+     "50",
+     "60"
+    ],
+    [
+     "6.0",
+     "60",
+     "60.0",
+     "60.0",
+     "60",
+     "60",
+     "60",
+     "60"
+    ],
+    [
+     "6.5",
+     "65",
+     "66.7",
+     "67.5",
+     "60",
+     "70",
+     "60",
+     "70"
+    ],
+    [
+     "7.0",
+     "70",
+     "70.0",
+     "70.0",
+     "70",
+     "70",
+     "70",
+     "70"
+    ],
+    [
+     "7.5",
+     "75",
+     "76.7",
+     "77.5",
+     "70",
+     "80",
+     "70",
+     "80"
+    ],
+    [
+     "8.0",
+     "80",
+     "80.0",
+     "80.0",
+     "80",
+     "80",
+     "80",
+     "80"
+    ],
+    [
+     "8.5",
+     "85",
+     "86.7",
+     "87.5",
+     "80",
+     "90",
+     "80",
+     "90"
+    ],
+    [
+     "9.0",
+     "90",
+     "90.0",
+     "90.0",
+     "90",
+     "90",
+     "90",
+     "90"
+    ],
+    [
+     "9.5",
+     "95",
+     "96.7",
+     "97.5",
+     "90",
+     "100",
+     "90",
+     "100"
+    ],
+    [
+     "10.0",
+     "100",
+     "100.0",
+     "100.0",
+     "100",
+     "100",
+     "100",
+     "100"
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "perf"
+  },
+  {
+   "title": "1 System",
+   "page": 34,
+   "orientation": "column",
+   "header": [
+    "Voltage (V)",
+    "ODU Capacity Range (%)",
+    "Target Pressure1) (kPa) Cooling Mode",
+    "Heating Mode"
+   ],
+   "quantities": [
+    "voltage",
+    "capacity",
+    "pressure",
+    null
+   ],
+   "rows": [
+    [
+     "0.0",
+     "Operation Off",
+     "-",
+     "-"
+    ],
+    [
+     "1.0",
+     "100",
+     "804",
+     "2990"
+    ],
+    [
+     "2.0",
+     "90",
+     "830",
+     "2827"
+    ],
+    [
+     "3.0",
+     "80",
+     "856",
+     "2663"
+    ],
+    [
+     "4.0",
+     "70",
+     "882",
+     "2500"
+    ],
+    [
+     "5.0",
+     "60",
+     "922",
+     "2337"
+    ],
+    [
+     "6.0",
+     "50",
+     "974",
+     "2173"
+    ],
+    [
+     "7.0",
+     "45",
+     "1000",
+     "2108"
+    ],
+    [
+     "8.0",
+     "40",
+     "1039",
+     "2010"
+    ],
+    [
+     "9.0",
+     "Operation Off",
+     "-",
+     "-"
+    ],
+    [
+     "10.0",
+     "Operation Off",
+     "-",
+     "-"
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "<ODU target pressure range at cooling mode>",
+   "page": 36,
+   "orientation": "column",
+   "header": [
+    "Voltage (V)",
+    "ODU Capacity Range (%)",
+    "Target Pressure1) (kPa) Cooling Mode",
+    "Heating Mode"
+   ],
+   "quantities": [
+    "voltage",
+    "capacity",
+    "pressure",
+    null
+   ],
+   "rows": [
+    [
+     "10.0",
+     "100",
+     "804",
+     "2990"
+    ],
+    [
+     "9.5",
+     "95",
+     "830",
+     "2958"
+    ],
+    [
+     "9.0",
+     "90",
+     "856",
+     "2925"
+    ],
+    [
+     "8.5",
+     "85",
+     "882",
+     "2859"
+    ],
+    [
+     "8.0",
+     "80",
+     "908",
+     "2827"
+    ],
+    [
+     "7.5",
+     "75",
+     "935",
+     "2794"
+    ],
+    [
+     "7.0",
+     "70",
+     "948",
+     "2761"
+    ],
+    [
+     "6.5",
+     "65",
+     "974",
+     "2696"
+    ],
+    [
+     "6.0",
+     "60",
+     "1000",
+     "2663"
+    ],
+    [
+     "5.5",
+     "55",
+     "1026",
+     "2631"
+    ],
+    [
+     "5.0",
+     "50",
+     "1052",
+     "2598"
+    ],
+    [
+     "4.5",
+     "45",
+     "1078",
+     "2565"
+    ],
+    [
+     "4.0",
+     "40",
+     "1105",
+     "2500"
+    ],
+    [
+     "3.5",
+     "35",
+     "1131",
+     "2467"
+    ],
+    [
+     "3.0",
+     "30",
+     "1157",
+     "2435"
+    ],
+    [
+     "2.5",
+     "25",
+     "1183",
+     "2402"
+    ],
+    [
+     "2.0",
+     "20",
+     "1209",
+     "2337"
+    ],
+    [
+     "1.5",
+     "15",
+     "1235",
+     "2304"
+    ],
+    [
+     "1.0",
+     "10",
+     "1261",
+     "2271"
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "NTC Thermistor",
+   "page": 38,
+   "orientation": "column",
+   "header": [
+    "Name Thermistor Discharge",
+    "Port NTC RI2/G",
+    "Contents Discharge air thermistor",
+    "Electrical Spec. NTC 10 kΩ, 5 m",
+    "Function Discharge Air temperature sensor"
+   ],
+   "quantities": [
+    null,
+    null,
+    null,
+    null,
+    "temperature"
+   ],
+   "rows": [
+    [
+     "Thermistor Pipe in",
+     "NTC RI3/G",
+     "Pipe in (Liquid) thermistor",
+     "NTC 5 kΩ, 5 m",
+     "Inlet pipe (Liquid) Temp. sensor"
+    ],
+    [
+     "Thermistor Pipe out",
+     "NTC RI4/G",
+     "Pipe out (Gas) thermistor",
+     "NTC 5 kΩ, 5 m",
+     "Outlet pipe (Gas) Temp. sensor"
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "Discharge air temp. controller",
+   "page": 50,
+   "orientation": "column",
+   "header": [
+    "Name a)",
+    "Main Module",
+    "Address to set 1",
+    "Address input method by tact switch of Main module",
+    "Note For the Modbus communication - Please see \"Main Module Address Setting\""
+   ],
+   "quantities": [
+    "current",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "b)",
+     "Communication Module",
+     "00 (Fixed)",
+     "by remote controller",
+     "Please go to \"Address Setting\" of Installer setting. - Function code 02"
+    ],
+    [
+     "c)",
+     "RA temp. Controller #1",
+     "01 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "d)",
+     "RA temp. Controller #2",
+     "02 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "e)",
+     "RA temp. Controller #3",
+     "03 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "f)",
+     "Outdoor Unit",
+     "00 (Fixed)",
+     "by tact switch of outdoor unit.",
+     "The address of outdoor unit should be same as communication Module of PAHCMS000 - Please see \"ODU installation manual\""
+    ],
+    [
+     "g)",
+     "LG Central Controller",
+     "1",
+     "by central controller's installation function",
+     "It should be matched with Main module's address."
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "9. External Diagram",
+   "page": 52,
+   "orientation": "column",
+   "header": [
+    "Name a)",
+    "Main Module",
+    "Address to set 1",
+    "Address input method by tact switch of Main module",
+    "Note For the Modbus communication - Please see \"Main Module Address Setting\""
+   ],
+   "quantities": [
+    "current",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "b)",
+     "Communication Module",
+     "00 (Fixed)",
+     "by remote controller",
+     "Please go to \"Address Setting\" of Installer setting. - Function code 02"
+    ],
+    [
+     "c)",
+     "RA temp. Controller #1",
+     "01 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "d)",
+     "RA temp. Controller #2",
+     "02 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "e)",
+     "RA temp. Controller #3",
+     "03 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "f)",
+     "Outdoor Unit #1",
+     "00 (Fixed)",
+     "by tact switch of outdoor unit.",
+     "The address of outdoor unit should be same as communication Module of PAHCMS000 - Please see \"ODU installation manual\""
+    ],
+    [
+     "g)",
+     "Outdoor Unit #2",
+     "01 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "h)",
+     "Outdoor Unit #3",
+     "02 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "i)",
+     "Outdoor Unit #4",
+     "03 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "j)",
+     "LG Central Controller Of DDC",
+     "1",
+     "by central controller's installation function",
+     "It should be matched with Main module's address."
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "9. External Diagram",
+   "page": 54,
+   "orientation": "column",
+   "header": [
+    "Name a)",
+    "Main Module",
+    "Address to set 1",
+    "Address input method by tact switch of Main module",
+    "Note For the Modbus communication - Please see \"Main Module Address Setting\""
+   ],
+   "quantities": [
+    "current",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "b)",
+     "Communication Module",
+     "00 (Fixed)",
+     "by remote controller",
+     "Please go to \"Address Setting\" of Installer setting. - Function code 02"
+    ],
+    [
+     "c)",
+     "RA temp. Controller #1",
+     "01 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "d)",
+     "RA temp. Controller #2",
+     "02 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "e)",
+     "RA temp. Controller #3",
+     "03 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "f)",
+     "Outdoor Unit",
+     "00 (Fixed)",
+     "by tact switch of outdoor unit.",
+     "The address of outdoor unit should be same as communication Module of PAHCMS000 - Please see \"ODU installation manual\""
+    ],
+    [
+     "g)",
+     "LG Central Controller",
+     "01",
+     "by central controller's installation function",
+     "It should be matched with Main module's address."
+    ],
+    [
+     "h)",
+     "Main Module",
+     "2",
+     "by tact switch of Main module",
+     "For the Modbus communication - Please see \"Main Module Address Setting\""
+    ],
+    [
+     "i)",
+     "Communication Module",
+     "00 (Fixed)",
+     "by remote controller",
+     "Please go to \"Address Setting\" of Installer setting. - Function code 02"
+    ],
+    [
+     "j)",
+     "RA temp. Controller #1",
+     "01 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "k)",
+     "RA temp. Controller #2",
+     "02 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "l)",
+     "RA temp. Controller #3",
+     "03 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "m)",
+     "Outdoor Unit",
+     "00 (Fixed)",
+     "by tact switch of outdoor unit.",
+     "The address of outdoor unit should be same as communication Module of PAHCMS000 - Please see \"ODU installation manual\""
+    ],
+    [
+     "g)",
+     "LG Central Controller",
+     "02",
+     "by central controller's installation function",
+     "It should be matched with Main module's address."
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "PAHCMS000",
+   "page": 55,
+   "orientation": "column",
+   "header": [
+    "Name a)",
+    "Main Module",
+    "Address to set 1",
+    "Address input method by tact switch of Main module",
+    "Note For the Modbus communication - Please see \"Main Module Address Setting\""
+   ],
+   "quantities": [
+    "current",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "b)",
+     "Communication Module",
+     "00 (Fixed)",
+     "by remote controller",
+     "Please go to \"Address Setting\" of Installer setting. - Function code 02"
+    ],
+    [
+     "c)",
+     "RA temp. Controller #1",
+     "01 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "d)",
+     "RA temp. Controller #2",
+     "02 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "e)",
+     "RA temp. Controller #3",
+     "03 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "f)",
+     "Outdoor Unit",
+     "00 (Fixed)",
+     "by tact switch of outdoor unit.",
+     "The address of outdoor unit should be same as communication Module of PAHCMS000 - Please see \"ODU installation manual\""
+    ],
+    [
+     "g)",
+     "LG Central Controller",
+     "1",
+     "by central controller's installation function",
+     "It should be matched with Main module's address."
+    ],
+    [
+     "h)",
+     "DDC",
+     "Don’t care",
+     "",
+     ""
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "9. External Diagram",
+   "page": 57,
+   "orientation": "column",
+   "header": [
+    "Name a)",
+    "Main Module",
+    "Address to set 1",
+    "Address input method by tact switch of Main module",
+    "Note For the Modbus communication - Please see \"Main Module Address Setting\""
+   ],
+   "quantities": [
+    "current",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "b)",
+     "Communication Module",
+     "00 (Fixed)",
+     "by remote controller",
+     "Please go to \"Address Setting\" of Installer setting. - Function code 02"
+    ],
+    [
+     "c)",
+     "RA temp. Controller #1",
+     "01 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "d)",
+     "RA temp. Controller #2",
+     "02 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "e)",
+     "RA temp. Controller #3",
+     "03 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "f)",
+     "Outdoor Unit #1",
+     "00 (Fixed)",
+     "by tact switch of outdoor unit.",
+     "The address of outdoor unit should be same as communication Module of PAHCMS000 - Please see \"ODU installation manual\""
+    ],
+    [
+     "g)",
+     "Outdoor Unit #2",
+     "01 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "h)",
+     "Outdoor Unit #3",
+     "02 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "i)",
+     "Outdoor Unit #4",
+     "03 (Fixed)",
+     "",
+     ""
+    ],
+    [
+     "j)",
+     "LG Central Controller",
+     "1",
+     "by central controller's installation function",
+     "It should be matched with Main module's address."
+    ],
+    [
+     "h)",
+     "DDC",
+     "Don’t care",
+     "",
+     ""
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "9. External Diagram",
+   "page": 59,
+   "orientation": "column",
+   "header": [
+    "Name a)",
+    "Main Module #1",
+    "Address to set 1",
+    "Address input method by tact switch of Main module",
+    "Note For the Modbus communication - Please see \"Main Module Address Setting\""
+   ],
+   "quantities": [
+    "current",
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "b)",
+     "Communication Module #1",
+     "00 (Fixed)",
+     "by remote controller",
+     "Please go to \"Address Setting\" of Installer setting. - Function code 02"
+    ],
+    [
+     "c)",
+     "Main Module #2",
+     "2",
+     "by tact switch of Main module",
+     "For the Modbus communication - Please see \"Main Module Address Setting\""
+    ],
+    [
+     "d)",
+     "Communication Module #2",
+     "00 (Fixed)",
+     "by remote controller",
+     "Please go to \"Address Setting\" of Installer setting. - Function code 02"
+    ],
+    [
+     "e)",
+     "Outdoor Unit #1",
+     "00 (Fixed)",
+     "by tact switch of outdoor unit.",
+     "The address of outdoor unit should be same as communication Module of PAHCMS000 - Please see \"ODU installation manual\""
+    ],
+    [
+     "f)",
+     "Outdoor Unit #2",
+     "00 (Fixed)",
+     "by tact switch of outdoor unit.",
+     "The address of outdoor unit should be same as communication Module of PAHCMS000 - Please see \"ODU installation manual\""
+    ],
+    [
+     "g)",
+     "LG Central Controller",
+     "1",
+     "by central controller's installation function",
+     "It should be matched with Main module's address."
+    ]
+   ],
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "General data — EEV kit combination for PAHCMR000 (PDB)",
+   "header": [
+    "",
+    "3.6–28 kW",
+    "28.1–56 kW",
+    "56.1–112 kW"
+   ],
+   "rows": [
+    [
+     "Model",
+     "PRLK048A0",
+     "PRLK096A0",
+     "PRLK396A0"
+    ]
+   ],
+   "quantities": [],
+   "orientation": "row",
+   "kind": "rating",
+   "page": 15,
+   "source": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf#eevkits"
+  }
+ ],
+ "photo": "data:image/jpeg;base64,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",
+ "photoSource": "LG_AHU_CommKit_0CAA0-02M_PDB.pdf p3"
+}
