@@ -308,6 +308,24 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(lgt36["ieer"], "—")
         self.assertEqual(units["LGT072H4E"]["ieer"], "17.0")
 
+    def test_systemair_geniox_sizes_with_dimensions(self):
+        # Systemair Geniox — 퀵가이드 크기표는 그래픽 조판이라 텍스트 층 주입
+        # (vendor_systemair). 크기별 풍량은 SystemairCAD 선정 SW 전용이라 없고,
+        # 치수(폭·높이·길이 mm)가 문서값이다. 크기 행 사다리의 치수 열 확장 검증.
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"]["systemair-access-geniox-geniox-go-ahu-modbus"]
+        units = {u["unitModelNumber"]: u for u in model["unitModels"]}
+
+        self.assertEqual(len(units), 12)
+        g10 = units["Geniox 10"]
+        self.assertEqual(g10["capacityClass"], "크기 10")
+        self.assertEqual(g10["unitWidth"], "1082")
+        self.assertEqual(g10["units"]["unitWidth"], "mm")
+        self.assertEqual(g10["unitHeight"], "1082")
+        self.assertEqual(g10["unitLength"], "2282")
+        # 포인트는 Modbus 절대 참조 — 3x/4x 주소 충돌(663건)이 살아남아야 한다
+        self.assertGreaterEqual(model["counts"]["l3MappingPoints"], 1800)
+
     def test_carrier_letter_sizes_become_units_with_nominal_capacity(self):
         # Carrier 48/50N — 크기가 한 글자(N~T)이고 톤수는 'NOMINAL CAPACITY (tons)' 행.
         # 치수·커브 표도 같은 제목 낱말을 쓰므로 이 행이 없으면 형번을 만들면 안 된다.

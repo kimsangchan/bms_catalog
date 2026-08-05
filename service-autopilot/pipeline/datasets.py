@@ -334,7 +334,7 @@ def clean_model_label(value):
 def label_unit(label):
     """라벨에 적힌 단위만 뽑는다 — (sq ft)·(%)·CFM·HP·RPM 등. 없는 단위는 지어내지 않는다."""
     text = clean_text(label)
-    m = re.search(r"\(([^)]*(?:%|ft|cfm|btu|mbh|hp|rpm|ton|kw|psi|°f|m³|m3|l/s|cmh)[^)]*)\)",
+    m = re.search(r"\(([^)]*(?:%|ft|cfm|btu|mbh|hp|rpm|ton|kw|psi|°f|m³|m3|l/s|cmh|mm)[^)]*)\)",
                   text, re.I)
     if m and not re.search(r"nominal|standard|oversiz|fins|t/y", m.group(1), re.I):
         return m.group(1).strip()
@@ -493,19 +493,27 @@ def size_row_units(table, model, out, seen):
                  if re.search(r"air\s?f\s?l\s?o\s?w", h or "", re.I)), None)
     cool_i = next((i for i, h in enumerate(header)
                    if re.search(r"cooling power", h or "", re.I)), None)
-    if af_i is None:
+    # 치수 열(Width/Height/Length) — 풍량 없이 치수만 싣는 크기표(Systemair Geniox
+    # 퀵가이드: 크기별 풍량은 선정 SW 전용)도 크기급 유닛으로 편다
+    dim_cols = [(fid, i) for fid, pat in (("unitWidth", r"^width"),
+                                          ("unitHeight", r"^height"),
+                                          ("unitLength", r"^length"))
+                for i, h in enumerate(header) if re.match(pat, h or "", re.I)]
+    if af_i is None and not dim_cols:
         return
     # Max 열 — Swegon 치수 카탈로그는 머리글 자체가 'Max. air flow' 별도 열이고,
     # Envistar 는 부머리글 행(Min/SFPv/Max)에 있다. 머리글 쪽을 먼저 본다.
     sub = rows[0] if rows and not (rows[0][0] or "").strip() else []
-    af_max = next((i for i, h in enumerate(header)
-                   if i > af_i and re.search(r"max\.?\s?air\s?f\s?l\s?o\s?w", h or "", re.I)), None)
-    if af_max is None:
-        af_max = af_i
-        for off in range(0, 4):
-            if af_i + off < len(sub) and re.search(r"max", sub[af_i + off] or "", re.I):
-                af_max = af_i + off
-                break
+    af_max = None
+    if af_i is not None:
+        af_max = next((i for i, h in enumerate(header)
+                       if i > af_i and re.search(r"max\.?\s?air\s?f\s?l\s?o\s?w", h or "", re.I)), None)
+        if af_max is None:
+            af_max = af_i
+            for off in range(0, 4):
+                if af_i + off < len(sub) and re.search(r"max", sub[af_i + off] or "", re.I):
+                    af_max = af_i + off
+                    break
     for cells in rows:
         code = (cells[0] or "").strip()
         if not re.match(r"^\d{2,3}$", code):
@@ -514,29 +522,31 @@ def size_row_units(table, model, out, seen):
         if key in seen:
             continue
         seen.add(key)
-        lo = cells[af_i] if af_i < len(cells) else ""
-        hi = cells[af_max] if af_max != af_i and af_max < len(cells) else ""
-        if not hi and not re.search(r"\d\s*[-–]\s*\d", lo):
-            # Max 열 머리글이 빈칸인 표(Swegon 크기 012) — 오른쪽의 다음 값이 최대값이다.
-            # lo 가 이미 '290 - 1620' 범위면 완결이므로 이웃 값을 붙이지 않는다.
-            for j in range(af_i + 1, min(af_i + 4, len(cells))):
-                if (cells[j] or "").strip():
-                    hi = cells[j]
-                    break
-        if hi == lo:
-            hi = ""
-        airflow = (" – ".join(x for x in (lo, hi) if x)) or "—"
-        cool = (cells[cool_i] if cool_i is not None and cool_i < len(cells) else "") or "—"
+        airflow = "—"
         units = {}
-        if airflow != "—" and label_unit(header[af_i]):
-            units["ratedAirflow"] = label_unit(header[af_i])
-        elif airflow != "—" and af_i < len(sub) and re.search(r"m\s*3\s*/\s*[hs]", sub[af_i] or ""):
-            # 단위가 부머리글 행에 'm 3/h m 3/s' 로 적힌 표 (Swegon) —
-            # 값 한 칸에 두 단위 값이 같이 들어 있다
-            units["ratedAirflow"] = "m³/h·m³/s"
+        if af_i is not None:
+            lo = cells[af_i] if af_i < len(cells) else ""
+            hi = cells[af_max] if af_max != af_i and af_max < len(cells) else ""
+            if not hi and not re.search(r"\d\s*[-–]\s*\d", lo):
+                # Max 열 머리글이 빈칸인 표(Swegon 크기 012) — 오른쪽의 다음 값이 최대값이다.
+                # lo 가 이미 '290 - 1620' 범위면 완결이므로 이웃 값을 붙이지 않는다.
+                for j in range(af_i + 1, min(af_i + 4, len(cells))):
+                    if (cells[j] or "").strip():
+                        hi = cells[j]
+                        break
+            if hi == lo:
+                hi = ""
+            airflow = (" – ".join(x for x in (lo, hi) if x)) or "—"
+            if airflow != "—" and label_unit(header[af_i]):
+                units["ratedAirflow"] = label_unit(header[af_i])
+            elif airflow != "—" and af_i < len(sub) and re.search(r"m\s*3\s*/\s*[hs]", sub[af_i] or ""):
+                # 단위가 부머리글 행에 'm 3/h m 3/s' 로 적힌 표 (Swegon) —
+                # 값 한 칸에 두 단위 값이 같이 들어 있다
+                units["ratedAirflow"] = "m³/h·m³/s"
+        cool = (cells[cool_i] if cool_i is not None and cool_i < len(cells) else "") or "—"
         if cool != "—" and cool_i is not None and label_unit(header[cool_i]):
             units["grossCoolingCapacity"] = label_unit(header[cool_i])
-        out.append({
+        row = {
             "unitModelNumber": "%s %s" % (family, code),
             "unitNumberKind": "capacityClass",
             "unitRole": "packagedUnit",
@@ -550,7 +560,14 @@ def size_row_units(table, model, out, seen):
             "sourcePage": table.get("page"),
             "sourceFile": table.get("source"),
             "selectionStatus": "unit_candidate",
-        })
+        }
+        for fid, col in dim_cols:
+            value = (cells[col] or "").strip() if col < len(cells) else ""
+            if value:
+                row[fid] = value
+                if label_unit(header[col]):
+                    units[fid] = label_unit(header[col])
+        out.append(row)
 
 
 def unit_models(model):
@@ -584,7 +601,7 @@ def unit_models(model):
                 table = dict(table, header=r0[0], rows=r0[1:])
                 h0 = f0
         if (h0 and re.match(r"^siz", h0[0] or "", re.I)
-                and any(re.search(r"air\s?f\s?l\s?o\s?w", h or "", re.I) for h in h0)):
+                and any(re.search(r"air\s?f\s?l\s?o\s?w|^width", h or "", re.I) for h in h0)):
             size_row_units(table, model, out, seen)
             continue
         if (table.get("kind") or "etc") != "rating":
@@ -597,7 +614,7 @@ def unit_models(model):
             # '1행=크기(04~28), 열=풍량·냉방능력' 구조를 모양으로 알아본다
             header0 = row_cells(table.get("header") or [])
             if (header0 and re.match(r"^siz", header0[0] or "", re.I)
-                    and any(re.search(r"air\s?f\s?l\s?o\s?w", h or "", re.I) for h in header0)):
+                    and any(re.search(r"air\s?f\s?l\s?o\s?w|^width", h or "", re.I) for h in header0)):
                 size_row_units(table, model, out, seen)
             continue
         header = row_cells(table.get("header") or [])

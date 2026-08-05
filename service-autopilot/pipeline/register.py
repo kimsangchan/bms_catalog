@@ -100,6 +100,12 @@ OVERRIDE = {
         "controller": "CORE Unit Controller",
         "product": "Enlight·Model L Rooftop",
     },
+    # 표지가 컨트롤러 화면 캡처라 조각('Goox Comfort 1200')이 잡힌다
+    "Systemair_Access_Communication_153831-A011.pdf": {
+        "cat": "HVAC.AIR.AHU", "tag": "ahu",
+        "controller": "Access",
+        "product": "Geniox·Geniox GO AHU",
+    },
 }
 
 # 구간 이름을 사람 말로 — 목차에서 딴 약어를 풀어 쓴다 (LonMark 표준 프로파일)

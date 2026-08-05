@@ -283,6 +283,16 @@ def extract_tables(pdf, default_type=None, pages=None):
             i_ra = idx("register\naddres", "register address", "address")
             i_rt = idx("register\ntype", "register type")
             i_rd = idx("relinquish")
+            # Systemair Access — 'Modbus type'(Input Register (3x)) 과 'Modbus address'
+            # (0041) 가 갈라진 표. 주소만 쓰면 3x/4x/1x 가 겹쳐 663개 주소가 dedupe 로
+            # 조용히 사라진다 — Swegon 참조표기와 같은 절대 참조(타입×10000+주소)로 편다.
+            i_mt = idx("modbus type")
+            i_bn = idx("bacnet")
+            i_fn = idx("function")
+            # EXOL 경로명(VentSettings.SAlaAcknowAll_)은 공백이 없다 — 셀 줄바꿈이
+            # 이름 중간에 공백을 끼워 넣으므로 EXOL 열이 있는 문서에선 걷어낸다
+            exol_doc = any("exol" in h for h in
+                           (re.sub(r"\s+", "", x) for x in hdr))
             # 이 표가 다루는 오브젝트 타입 (섹션 제목에서 온 기본값)
             for r in data[h0 + 1:]:
                 if not r or len(r) <= max(i_id, i_nm, i_ty, i_in):
@@ -301,7 +311,14 @@ def extract_tables(pdf, default_type=None, pages=None):
                 elif pid:
                     typ, inst = pid
                 elif mb_mode and BARE_ID.match(raw_id):
-                    typ, inst = "MB", int(raw_id)
+                    mp = (re.search(r"\(([0134])x\)", _c(r[i_mt]))
+                          if 0 <= i_mt < len(r) else None)
+                    if mp:
+                        typ = "MB"
+                        inst = int(mp.group(1)) * 10000 + int(raw_id)
+                        extra_note = "원표기 %sx%04d" % (mp.group(1), int(raw_id))
+                    else:
+                        typ, inst = "MB", int(raw_id)
                 elif mb_mode and MODBUS_REF.match(raw_id):
                     mr = MODBUS_REF.match(raw_id)
                     typ, inst = "MB", int(mr.group(1)) * 10000 + int(mr.group(2))
@@ -323,9 +340,15 @@ def extract_tables(pdf, default_type=None, pages=None):
                 else:
                     continue
                 name = _c(r[i_nm])
+                if exol_doc and " " in name:
+                    name = name.replace(" ", "")
                 if not name or len(name) < 3:
                     continue
                 note = [extra_note] if extra_note else []
+                if mb_mode and 0 <= i_bn < len(r) and _c(r[i_bn]):
+                    note.append("BACnet " + _c(r[i_bn]))
+                if mb_mode and 0 <= i_fn < len(r) and _c(r[i_fn]):
+                    note.append(_c(r[i_fn]))
                 for i, pfx in ((i_ds, ""), (i_st, ""), (i_rg, "범위 "), (i_rd, "기본 ")):
                     if 0 <= i < len(r) and _c(r[i]):
                         note.append(pfx + _c(r[i]))

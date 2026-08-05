@@ -739,6 +739,36 @@ SOURCES = [
         "extractor": "auto",
         "access": "무로그인",
     },
+    {
+        "id": "systemair-access-geniox",
+        "vendor": "Systemair",
+        "kind": "포인트리스트",
+        "note": "Geniox/Geniox GO 공조기의 Access 컨트롤러 — 통신 매뉴얼 153831 A011 의 "
+                "'Access variable list'(EXOL·Modbus·BACnet 신호 전체)가 포인트 정본. "
+                "Modbus 타입 열(0x/1x/3x/4x)과 주소 열이 갈라져 있어 절대 참조로 편다. "
+                "정격은 Geniox 카탈로그(서술형)+퀵가이드(크기 10~31 치수표) — 크기별 "
+                "풍량은 SystemairCAD 선정 SW 라 공개 표가 없다(AAON 부류). "
+                "⚠ shop.systemair.com 구링크는 'Sales Channel Not Found' 로 죽었다 — "
+                "Azure CDN(stepimassets)과 storyblok 이 현행 배포처.",
+        "enumerate": "list",
+        "urls": [
+            "https://stepimassets.blob.core.windows.net/dsassetsprod/ACCESS_MANUAL_COMMUNICATION_153831_A011.PDF",
+            "https://a.storyblok.com/f/108972/x/bba9a53ffb/unit_geniox_catalogue_global_09_2022.pdf",
+            "https://a.storyblok.com/f/108972/x/202a778fcc/geniox_geniox_go_quickguide.pdf",
+        ],
+        "rename": {
+            "ACCESS_MANUAL_COMMUNICATION_153831_A011.PDF":
+                "Systemair_Access_Communication_153831-A011.pdf",
+            "unit_geniox_catalogue_global_09_2022.pdf":
+                "Systemair_Geniox_Catalogue_2022.pdf",
+            "geniox_geniox_go_quickguide.pdf": "Systemair_Geniox_QuickGuide.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+        # EXOL 경로명이 셀 줄바꿈으로 갈라져 줄 읽기가 짝을 못 만든다 —
+        # 표 인식 결과(공백 제거 후)가 정본이고 대조는 불가.
+        "crosscheck_unreliable": r"Systemair_Access",
+    },
 ]
 
 

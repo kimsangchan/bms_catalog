@@ -46,13 +46,16 @@
   "compressorConfig": {"ko": "압축기 구성", "convUnit": ""},
   "refrigerantCircuits": {"ko": "냉매 회로", "convUnit": ""},
   "condenserFans": {"ko": "응축 팬", "convUnit": ""},
-  "condenserAirflow": {"ko": "응축 풍량", "convUnit": ""}
+  "condenserAirflow": {"ko": "응축 풍량", "convUnit": ""},
+  "unitWidth": {"ko": "유닛 폭", "convUnit": "mm"},
+  "unitHeight": {"ko": "유닛 높이", "convUnit": "mm"},
+  "unitLength": {"ko": "유닛 길이", "convUnit": "mm"}
  },
  "classes": {
   "e5": {
    "ko": "공조기 (AHU·RTU)",
    "table": ["capacityClass", "matchedAirHandler", "ratedAirflow", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer", "ieer", "capacitySteps", "fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"],
-   "detailExtra": ["ieer", "compressorConfig", "capacitySteps", "refrigerantCircuits", "condenserFans", "condenserAirflow"],
+   "detailExtra": ["ieer", "compressorConfig", "capacitySteps", "refrigerantCircuits", "condenserFans", "condenserAirflow", "unitWidth", "unitHeight", "unitLength"],
    "roles": {
     "airHandler": {"ko": "공기측 유닛", "detail": ["fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"]},
     "condensingUnit": {"ko": "실외/응축 유닛", "detail": ["matchedAirHandler", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer"]},
