@@ -1072,7 +1072,7 @@ function renderAhuUnitModelCandidates(m){
     + renderAhuUnitDetail(curUnit, purpose.electricalRows || [], m)
     + sec('전체 Unit Model Number 표', rows.length)
     + '<div class="guide"><b>실제 장비를 고르는 기준표예요</b>'
-    + '<p>현장 장비일람표나 자재승인원에 적힌 형번을 이 표에서 찾아 선택합니다. 선택한 형번의 정격값을 기본값 후보로 쓰고, 오브젝트 목록은 같은 프로파일 문서의 L3 매핑 근거로 씁니다. 문서에 없는 항목의 열은 표시하지 않아요. 상태 배지: <b>자동 추출</b>=문서에서 기계가 옮긴 제안값, <b>확인됨</b>=사람이 원문과 대조해 확정, <b>수기 입력</b>=문서 한계로 직접 채움.</p></div>'
+    + '<p>현장 장비일람표나 자재승인원에 적힌 형번을 이 표에서 찾아 선택합니다. 선택한 형번의 정격값을 기본값 후보로 쓰고, 오브젝트 목록은 같은 프로파일 문서의 L3 매핑 근거로 씁니다. 문서에 없는 항목의 열은 표시하지 않고, <b>척도가 다른 단위는 열을 가릅니다</b> — 단위는 머리글에 있고 열 안은 같은 척도라 그대로 비교·정렬하면 됩니다. 상태 배지: <b>자동 추출</b>=문서에서 기계가 옮긴 제안값, <b>확인됨</b>=사람이 원문과 대조해 확정, <b>수기 입력</b>=문서 한계로 직접 채움.</p></div>'
     + '<div class="uvwt">'
     +   '<button data-uvw="table" aria-pressed="'+(view!=='cards')+'">표로 보기</button>'
     +   '<button data-uvw="cards" aria-pressed="'+(view==='cards')+'">카드로 보기</button>'
@@ -1098,7 +1098,13 @@ function unitStatusBadge(r){
   var s = UNIT_STATUS[r.status||'extracted'] || [r.status, 'ext'];
   return '<span class="ustat '+s[1]+'">'+esc(s[0])+'</span>';
 }
-function unitCols(m){
+// 행에서 그 필드의 유효 단위 — 문서 단위(r.units)가 1순위, 없으면 관례 단위(convUnit)
+function unitEffectiveUnit(r, fid){
+  var v = r[fid];
+  if(!v || v === '—') return null;
+  return (r.units||{})[fid] || unitFeature(fid).convUnit || '';
+}
+function unitCols(m, rows){
   var cls = unitClassOf(m);
   var cols = [
     ['용량대', unitCapacity],
@@ -1108,17 +1114,27 @@ function unitCols(m){
   ];
   (cls.table||[]).forEach(function(fid){
     if(fid === 'capacityClass') return;   // 첫 열(용량대)로 특별 취급
-    cols.push([unitFieldKo(fid, cls),
-               function(r){ return valueWithUnit(r, fid, unitFeature(fid).convUnit||''); }]);
+    // 척도가 다른 값(MBh·Btu/h·kW, CFM·m³/s·m³/h)은 한 열에 섞지 않는다 —
+    // 행에 실제로 나온 단위마다 열을 가르고, 단위는 셀이 아니라 머리글에 올린다
+    // (ETIM 원칙: 속성 하나 = 단위 하나. 열 안은 같은 척도라 비교·정렬이 성립)
+    var units = [];
+    rows.forEach(function(r){
+      var u = unitEffectiveUnit(r, fid);
+      if(u !== null && units.indexOf(u) < 0) units.push(u);
+    });
+    units.forEach(function(u){
+      cols.push([unitFieldKo(fid, cls) + (u ? ' ('+esc(u)+')' : ''),
+                 function(r){
+                   return unitEffectiveUnit(r, fid) === u ? r[fid] : '—';
+                 }]);
+    });
   });
   cols.push(['근거표', unitSourceLink, true]);
   return cols;
 }
-var UNIT_COLS_KEEP = {'용량대':1, 'Unit Model Number':1, '구분':1, '상태':1, '근거표':1};
 function unitTable(rows, m){
-  var active = unitCols(m).filter(function(c){
-    return UNIT_COLS_KEEP[c[0]] || rows.some(function(r){ var v = c[1](r); return v && v !== '—'; });
-  });
+  // 값 없는 열 제거는 unitCols 가 이미 한다 — 단위가 안 나온 필드는 열 자체가 없다
+  var active = unitCols(m, rows);
   return table({header:active.map(function(c){ return c[0]; }),
                 // 세 번째 원소가 true 인 열(상태·근거표)은 조각을 이미 만들어 와서 그대로 낸다
                 rows:rows.map(function(r){ return active.map(function(c){
