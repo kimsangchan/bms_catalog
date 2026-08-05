@@ -86,7 +86,13 @@ def _head_by_range(url, timeout, src):
             if "/" in rng:
                 return 200, int(rng.split("/")[-1])
             # Range 를 무시하고 200 전체 응답을 주는 서버(tahoeweb) — 헤더만 읽고 닫는다
-            return 200, int(r.headers.get("Content-Length") or 0)
+            size = int(r.headers.get("Content-Length") or 0)
+            # 길이 헤더가 아예 없는 동적 생성 서버(Mitsubishi library — PDF 를 즉석
+            # 조립해 attachment 로 내려준다). content-type 이 PDF 면 살아 있는 것으로
+            # 보고 크기 필터를 통과할 답례 크기를 준다 — 실제 크기는 받을 때 잰다.
+            if size == 0 and "pdf" in (r.headers.get("Content-Type") or "").lower():
+                return 200, 10 ** 6
+            return 200, size
     except Exception:
         return 0, 0
 

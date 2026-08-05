@@ -769,6 +769,28 @@ SOURCES = [
         # 표 인식 결과(공백 제거 후)가 정본이고 대조는 불가.
         "crosscheck_unreliable": r"Systemair_Access",
     },
+    {
+        "id": "mitsubishi-pac-if013",
+        "vendor": "Mitsubishi Electric",
+        "kind": "포인트리스트",
+        "note": "Mr.Slim 실외기 연동 AHU 인터페이스 PAC-IF013B-E/PAC-SIF013B-E — "
+                "Modbus 매뉴얼의 코일/입력(30001~)/홀딩(40001~) 레지스터가 포인트 정본"
+                "(Modicon 절대 표기 열을 ID 로 쓴다 — 상대 Address 열을 집으면 겹친다). "
+                "AHU 설계 가이드라인 13쪽에 실외기 용량 사이즈(ZRP/P/SHW/ZM 35~250)별 "
+                "AHU 표준 풍량 최소/최대(m³/h) 표가 있다 — 형번급 근거. "
+                "library.mitsubishielectric.co.uk download_full 직링크(번호 경로라 rename 필수).",
+        "enumerate": "list",
+        "urls": [
+            "https://library.mitsubishielectric.co.uk/pdf/download_full/3004",
+            "https://library.mitsubishielectric.co.uk/pdf/download_full/3879",
+        ],
+        "rename": {
+            "3004": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+            "3879": "Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+    },
 ]
 
 

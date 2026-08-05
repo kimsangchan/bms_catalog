@@ -308,6 +308,22 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(lgt36["ieer"], "—")
         self.assertEqual(units["LGT072H4E"]["ieer"], "17.0")
 
+    def test_mitsubishi_pacif013_outdoor_combinations(self):
+        # Mitsubishi PAC-IF013 — 설계 가이드라인의 표준 풍량 표(텍스트 층 주입)에서
+        # 조합 실외기 시리즈×용량 22건. 한 글자 계열(P200)도 형번 토큰이어야 한다.
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"][
+            "mitsubishi-electric-pac-if013b-sif013b-mr-slim-ahu-interface-modbus"]
+        units = {u["unitModelNumber"]: u for u in model["unitModels"]}
+
+        self.assertEqual(len(units), 22)
+        self.assertEqual(units["ZRP35"]["ratedAirflow"], "372 – 738")
+        self.assertEqual(units["ZRP35"]["units"]["ratedAirflow"], "m³/h")
+        self.assertIn("P200", units)
+        self.assertIn("SHW230", units)
+        # 포인트는 Modbus 절대 참조(코일 1·입력 30001~·홀딩 40001~) 20점
+        self.assertEqual(model["counts"]["l3MappingPoints"], 20)
+
     def test_systemair_geniox_sizes_with_dimensions(self):
         # Systemair Geniox — 퀵가이드 크기표는 그래픽 조판이라 텍스트 층 주입
         # (vendor_systemair). 크기별 풍량은 SystemairCAD 선정 SW 전용이라 없고,

@@ -384,7 +384,9 @@ def value_unit_for_label(rows, pattern, col, unit_col=None):
 # 형번으로 인정하는 토큰 — 문자 계열 + 숫자 2자리 이상 (TTA0724, WHJ150, T/YSC036G3,
 # RN-006 처럼 하이픈이 낀 표기 포함). 'Scroll'(압축기 형식)이나 '1/5, 2/7.5'(압축기
 # 구성) 같은 속성값이 형번으로 오인되지 않게 한다.
-UNIT_CODE_TOKEN = re.compile(r"[A-Z][A-Za-z/\-]{1,8}\d{2,}")
+# 계열 글자 {0,8} — 한 글자 계열(Mitsubishi Mr.Slim 'P200'/'P250')도 형번이다.
+# 'B1B1B1'(RTHD 구성코드)은 숫자가 한 자리씩이라 여전히 안 걸린다.
+UNIT_CODE_TOKEN = re.compile(r"[A-Z][A-Za-z/\-]{0,8}\d{2,}")
 
 
 def looks_like_unit_code(text):
@@ -678,9 +680,11 @@ def unit_models(model):
             pick("matchedAirHandler", r"matched air handler$")
             # 풍량 우선순위: AHRI 정격 → 급기 공칭('Nominal cfm') → 팬 공칭.
             # 맨 뒤 '^CFM$'는 Precedent 패키지 유닛에서 응축 팬 풍량이라 급기 라벨보다 뒤에 둔다.
-            # 'Air ?Flow' — Lennox 는 'AHRI Rated Air Flow (cfm-high/low)' 로 띄어 쓴다
+            # 'Air ?Flow' — Lennox 는 'AHRI Rated Air Flow (cfm-high/low)' 로 띄어 쓴다.
+            # 'Standard air flow volume' 은 Mitsubishi PAC-IF013 가이드라인의 표준 풍량.
             pick("ratedAirflow", r"AHRI Rated Air ?Flow", r"Nominal cfm/AHRI Rated cfm",
-                 r"^Nominal airflow", r"^Nominal CFM$", r"CFM \(Nominal\)", r"^CFM$")
+                 r"^Nominal airflow", r"^Standard air flow volume",
+                 r"^Nominal CFM$", r"CFM \(Nominal\)", r"^CFM$")
             pick("grossCoolingCapacity", r"Gross Cooling Capacity - System",
                  r"^Gross Cooling Capacity$", r"^Gross Cooling Capacity - Btuh",
                  r"^Gross Capacity @ (ARI|AHRI)")

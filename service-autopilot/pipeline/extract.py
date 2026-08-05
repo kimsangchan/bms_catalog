@@ -101,7 +101,8 @@ COL = {
              "parameter", "name"],
     # 'dim' 은 Siemens Climatix — 단위 열 이름이 'Dim' 이다.
     "unit": ["unit", "units", "dim", "einheit", "unité", "unidad"],
-    "desc": ["description", "beschreibung", "descripción"],
+    # 'details' 는 Mitsubishi PAC-IF013 — 설명 열 이름이 'Details' 다
+    "desc": ["description", "details", "beschreibung", "descripción"],
     "range": ["valid range", "range", "bereich"],
     "rw": ["read/write", "read", "r/w", "access", "zugriff"],
     "notes": ["notes", "note", "bemerkung"],
@@ -110,8 +111,11 @@ COL = {
     # 'register' 단독도 받는다 — Danfoss Modbus 모듈 문서가 이렇게 쓴다.
     # BACnet 문서에도 'Register Type' 열이 있지만 그쪽은 ID 열을 먼저 찾으므로
     # 이 별칭까지 오지 않는다. 'modbus' 단독은 Swegon GOLD — ID 열 이름이 'Modbus' 다.
-    "modbus": ["modbus register", "modbus address", "register address",
-               "modbus-register", "address", "register", "modbus"],
+    # 'modicon address'(30001/40001 절대 표기)는 'address'(테이블 내 상대 0,1,2)보다
+    # **앞**이다 — Mitsubishi PAC-IF013 은 두 열이 다 있는데 상대 주소를 집으면
+    # 코일/입력/홀딩끼리 번호가 겹쳐 서로를 덮어쓴다.
+    "modbus": ["modbus register", "modbus address", "modicon address",
+               "register address", "modbus-register", "address", "register", "modbus"],
     # 타입과 번호를 한 칸에 'AI-4' 로 적지 않고 열을 갈라 적는 벤더가 있다
     # (JCI VRF 게이트웨이: 'Object Type'=AI, 'BACnet Instance Number'=4).
     # 이때는 두 열을 합쳐야 오브젝트가 된다 — 아래 split 모드.

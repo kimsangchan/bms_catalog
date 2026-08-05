@@ -106,6 +106,13 @@ OVERRIDE = {
         "controller": "Access",
         "product": "Geniox·Geniox GO AHU",
     },
+    # 표지 제목이 'Modbus manual INTERFACE' 뿐이고 포인트가 20점뿐이라
+    # 장비 판정이 안 된다 — 인터페이스 킷이지만 대상 장비는 공조기다
+    "Mitsubishi_PAC-IF013_Modbus_Manual.pdf": {
+        "equipId": "e5", "cat": "HVAC.AIR.AHU", "tag": "ahu",
+        "controller": "PAC-IF013B/SIF013B",
+        "product": "Mr.Slim AHU Interface",
+    },
 }
 
 # 구간 이름을 사람 말로 — 목차에서 딴 약어를 풀어 쓴다 (LonMark 표준 프로파일)

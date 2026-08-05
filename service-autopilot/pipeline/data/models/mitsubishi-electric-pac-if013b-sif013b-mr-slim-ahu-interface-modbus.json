@@ -1,0 +1,925 @@
+{
+ "id": "mitsubishi-electric-pac-if013b-sif013b-mr-slim-ahu-interface-modbus",
+ "equipId": "e5",
+ "vendor": "Mitsubishi Electric",
+ "model": "PAC-IF013B/SIF013B — Mr.Slim AHU Interface (Modbus)",
+ "name": "PAC-IF013B/SIF013B Mr.Slim AHU Interface",
+ "cat": "HVAC.AIR.AHU",
+ "tag": "ahu",
+ "status": "active",
+ "summary": "공개 통합 포인트 리스트에서 자동 추출했다. Modbus 20점",
+ "has": {
+  "spec": true,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "Modbus",
+   "통합 포인트 리스트 공개",
+   "—",
+   "Points List"
+  ]
+ ],
+ "points": [
+  {
+   "type": "MB",
+   "inst": 1,
+   "name": "Drive ON/OFF",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Read:01 Write:05/15 · 0=OFF / 1=ON • If the interface unit receives other data, received data will be cancelled. · Modbus reg 0"
+  },
+  {
+   "type": "MB",
+   "inst": 30001,
+   "name": "TH11:HEX inlet air temp.",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Read:04 · -39°C-88.5°C (by 0.5°C) · Modbus reg 0"
+  },
+  {
+   "type": "MB",
+   "inst": 30002,
+   "name": "TH1: Target air temp.",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-39°C-88.5°C (by 0.5°C) · Modbus reg 1"
+  },
+  {
+   "type": "MB",
+   "inst": 30003,
+   "name": "TH5: 2-Phase temp.",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-39°C-88.5°C (by 0.5°C) · Modbus reg 2"
+  },
+  {
+   "type": "MB",
+   "inst": 30004,
+   "name": "TH2: Ref. liquid temp.",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-39°C-88.5°C (by 0.5°C) · Modbus reg 3"
+  },
+  {
+   "type": "MB",
+   "inst": 30005,
+   "name": "TH7: Outdoor temp.",
+   "unitRaw": null,
+   "unit": null,
+   "note": "-15°C-46°C (by 1°C) · Modbus reg 4"
+  },
+  {
+   "type": "MB",
+   "inst": 30007,
+   "name": "Error Code (hex)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0x8000=No error 0x8000≠Error Code *1 · Modbus reg 6"
+  },
+  {
+   "type": "MB",
+   "inst": 30008,
+   "name": "Error Code (decimal)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "8000=No error 8000≠Error Code *1 · Modbus reg 7"
+  },
+  {
+   "type": "MB",
+   "inst": 30009,
+   "name": "External Output OUT1: ON/OFF OUT2: Error OUT3: Compressor OUT4: Defrost OUT5: Cooling mode OUT6: Heating mode OUT7: Self protection OUT8: Predefrost",
+   "unitRaw": null,
+   "unit": null,
+   "note": "bit0:OUT1 0=OFF / 1=ON ~~~ bit7:OUT8 e.g.) When only OUT3 is \"ON\", outputs are as follows. bit 7654 3210 Out 0000 0100 → 0x0004\" · Modbus reg 8"
+  },
+  {
+   "type": "MB",
+   "inst": 30010,
+   "name": "Ref.address",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0x0000=address0 0x0001=address1 ~~~~ 0x000F=address15 · Modbus reg 9"
+  },
+  {
+   "type": "MB",
+   "inst": 30011,
+   "name": "Modbus Comms Counter",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Value or a counter which increments upon every valid Modbus command received. 0=0count 1=1count ~~ 65535=65535count • When the counter becomes more than 65535, it's cleared. · Modbus reg 10"
+  },
+  {
+   "type": "MB",
+   "inst": 40001,
+   "name": "Capacity request (from Local controller)",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Read:03 Write: 06/ 16 · OFF, Step1-Step11, Auto step mode • Auto step mode is Read only · Modbus reg 0"
+  },
+  {
+   "type": "MB",
+   "inst": 40002,
+   "name": "Drive Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 (0x0001) = Heating mode, 3 (0x0003) = Cooling mode, 7(0x0007) = Fan mode, 8 (0x0008) = Auto change over • If the interface unit receives other data, received data will be cancelled. · Modbus reg 1"
+  },
+  {
+   "type": "MB",
+   "inst": 40003,
+   "name": "Temperature Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Cooling: 12~30°C Heating: 17~28°C Auto change over: 17~28°C (by 1°C) · Modbus reg 2"
+  },
+  {
+   "type": "MB",
+   "inst": 40004,
+   "name": "Drive ON/OFF",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0=OFF / 1=ON • If the interface unit receives other data, received data will be cancelled. · Modbus reg 3"
+  },
+  {
+   "type": "MB",
+   "inst": 40005,
+   "name": "Error Code (hex) [READ ONLY]",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0x8000=No error 0x8000≠Error Code *2 · Modbus reg 4"
+  },
+  {
+   "type": "MB",
+   "inst": 40006,
+   "name": "Error Code (decimal) [READ ONLY]",
+   "unitRaw": null,
+   "unit": null,
+   "note": "8000=No error 8000≠Error Code *2 · Modbus reg 5"
+  },
+  {
+   "type": "MB",
+   "inst": 40007,
+   "name": "Step status [READ ONLY]",
+   "unitRaw": null,
+   "unit": null,
+   "note": "OFF,Step1-Step11,Auto step mode · Modbus reg 6"
+  },
+  {
+   "type": "MB",
+   "inst": 40008,
+   "name": "Ref.address [READ ONLY]",
+   "unitRaw": null,
+   "unit": null,
+   "note": "0x0000=address0 0x0001=address1 ~~~~ 0x000F=address15 · Modbus reg 7"
+  },
+  {
+   "type": "MB",
+   "inst": 40009,
+   "name": "Modbus Comms Counter [READ ONLY]",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Value or a counter which increments upon every valid Modbus command received. 0=0count 1=1count ~~ 65535=65535count • When the counter becomes more than 65535, it΄s cleared. · Modbus reg 8"
+  }
+ ],
+ "gap": "Mr.Slim 실외기 연동 AHU 인터페이스 킷 — 포인트는 Modbus 매뉴얼의 코일/입력(30001~)/홀딩(40001~) 20점(Modicon 절대 표기). 형번은 설계 가이드라인 13쪽 표준 풍량 표에서 조합 실외기 시리즈×용량(ZRP/P/SHW/ZM 35~250) 22건을 텍스트 층으로 조합(예: ZRP35 = 실외기 PUHZ-ZRP35). 실외기 자체의 냉방능력·전기 정격은 실외기 데이터북이 따로 필요하다. 문서에 제품 실물 사진이 없어(단자대 접사뿐) 사진은 비워 둔다.",
+ "extractor": "table",
+ "sourceDoc": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+ "classifiedBy": "판정 근거 부족 — 사람이 정해야 한다",
+ "crosscheck": {
+  "rate": 1.0,
+  "both": 14,
+  "diff": []
+ },
+ "specTables": [
+  {
+   "title": "2.1 Basic specifications of the interface unit",
+   "page": 2,
+   "orientation": "column",
+   "header": [
+    "Model name Power supply",
+    "PAC-IF013B-E ~/N 230V 50Hz",
+    "PAC-SIF013B-E"
+   ],
+   "quantities": [
+    "power",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "Dimension",
+     "H: 278mm, W: 336mm, D: 69mm",
+     ""
+    ],
+    [
+     "Weight",
+     "2.5kg + Accessories 0.8kg",
+     "2.5kg + Accessories 0.4kg"
+    ]
+   ],
+   "source": "Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "3 System",
+   "page": 3,
+   "orientation": "column",
+   "header": [
+    "Step mode (Input) Manual",
+    "Target temperature ─",
+    "Number of outdoor unit 1",
+    "Intelligent multiple outdoor unit control Not available",
+    "System See (1-1) below."
+   ],
+   "quantities": [
+    null,
+    "temperature",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "",
+     "2-6",
+     "Use",
+     "See (2-1) below."
+    ],
+    [
+     "",
+     "",
+     "",
+     "Not use",
+     "See (1-1) below.*1"
+    ],
+    [
+     "Auto",
+     "Supply air temp. control",
+     "1-5",
+     "Not available",
+     "See (1-2) below."
+    ],
+    [
+     "",
+     "Return air temp. control",
+     "1-5",
+     "Not available",
+     "See (1-3) below."
+    ]
+   ],
+   "source": "Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "Make sure to keep operation range shown at the table below.",
+   "page": 5,
+   "orientation": "column",
+   "header": [
+    "Operation range",
+    "Outdoor temperature",
+    "Cooling Heating",
+    "",
+    "Depend on outdoor unit Depend on outdoor unit"
+   ],
+   "quantities": [
+    null,
+    "temperature",
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "Coil on temperature",
+     "Cooling",
+     "",
+     "15 - 32°C"
+    ],
+    [
+     "",
+     "",
+     "Heating",
+     "Number of outdoor unit: 1 Number of outdoor unit: 2 or more",
+     "0 - 28°C"
+    ],
+    [
+     "",
+     "",
+     "",
+     "",
+     "5 - 28°C"
+    ]
+   ],
+   "source": "Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "기타 — Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf p5",
+   "page": 5,
+   "orientation": "column",
+   "header": [
+    "Set temperature range in Auto step mode *1",
+    "Supply air control",
+    "Cooling Heating",
+    "12 - 30°C 17 - 28°C"
+   ],
+   "quantities": [
+    "temperature",
+    null,
+    null,
+    "temperature"
+   ],
+   "rows": [
+    [
+     "",
+     "Return/Room air temperature control",
+     "Cooling",
+     "19 - 30°C"
+    ],
+    [
+     "",
+     "",
+     "Heating",
+     "17 - 28°C"
+    ],
+    [
+     "",
+     "Auto cooling/heating *2",
+     "",
+     "19 - 28°C"
+    ]
+   ],
+   "source": "Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf",
+   "kind": "etc",
+   "titleRaw": "(2) Set temperature range in Auto step mode"
+  },
+  {
+   "title": "5.1. Input and output",
+   "page": 10,
+   "orientation": "column",
+   "header": [
+    "Inputs Thermistor (Refrigerant)",
+    "Ref. liquid temperature (TH2)",
+    "Availability"
+   ],
+   "quantities": [
+    null,
+    "temperature",
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "2-phase temperature (TH5)",
+     "*1"
+    ],
+    [
+     "Thermistor (Air)",
+     "Coil on temperature (TH11)",
+     ""
+    ],
+    [
+     "",
+     "Target air temperature (TH1) (Supply air or Return/Room air)",
+     ""
+    ],
+    [
+     "Input (Contact signal)",
+     "Forced Comp. OFF*2",
+     ""
+    ],
+    [
+     "",
+     "Fixed operation mode (Cooling/Heating)",
+     ""
+    ],
+    [
+     "",
+     "Capacity request",
+     "7steps"
+    ],
+    [
+     "Input for capacity request (Analog signal)",
+     "0-10V",
+     "11steps"
+    ],
+    [
+     "",
+     "1-5V",
+     "7steps"
+    ],
+    [
+     "",
+     "4-20mA",
+     "7steps"
+    ],
+    [
+     "",
+     "0-10kΩ",
+     "7steps"
+    ],
+    [
+     "Modbus connection",
+     "",
+     ""
+    ],
+    [
+     "Remote controller",
+     "",
+     ""
+    ]
+   ],
+   "source": "Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "Standard air flow volume",
+   "page": 13,
+   "orientation": "column",
+   "header": [
+    "Model capacity of outdoor unit",
+    "ZRP P",
+    "35 –",
+    "50 –",
+    "60 –",
+    "71 –",
+    "100 –",
+    "125 –",
+    "140 –",
+    "200 200",
+    "250 250"
+   ],
+   "quantities": [
+    "capacity",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "SHW",
+     "–",
+     "–",
+     "–",
+     "80",
+     "112",
+     "140",
+     "–",
+     "230",
+     "–"
+    ],
+    [
+     "",
+     "ZM",
+     "35",
+     "50",
+     "60",
+     "71",
+     "100",
+     "125",
+     "140",
+     "–",
+     "–"
+    ],
+    [
+     "Maximum air volume",
+     "[m³/min]",
+     "12.3",
+     "18",
+     "21",
+     "24",
+     "33.6",
+     "42",
+     "48",
+     "67.2",
+     "81"
+    ],
+    [
+     "",
+     "[m³/h]",
+     "738",
+     "1080",
+     "1260",
+     "1440",
+     "2016",
+     "2520",
+     "2880",
+     "4032",
+     "4860"
+    ],
+    [
+     "Minimum air volume",
+     "[m³/min]",
+     "6.2",
+     "8.6",
+     "10.5",
+     "12.2",
+     "16.3",
+     "21.5",
+     "23.0",
+     "32.6",
+     "37.8"
+    ],
+    [
+     "",
+     "[m³/h]",
+     "372",
+     "516",
+     "630",
+     "732",
+     "978",
+     "1290",
+     "1380",
+     "1956",
+     "2268"
+    ]
+   ],
+   "source": "Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "<Nominal capacity>",
+   "page": 13,
+   "orientation": "column",
+   "header": [
+    "Model capacity of outdoor unit",
+    "ZRP P",
+    "35 –",
+    "50 –",
+    "60 –",
+    "71 –",
+    "100 –",
+    "125 –",
+    "140 –",
+    "200 200",
+    "250 250"
+   ],
+   "quantities": [
+    "capacity",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "SHW",
+     "–",
+     "–",
+     "–",
+     "80",
+     "112",
+     "140",
+     "–",
+     "230",
+     "–"
+    ],
+    [
+     "",
+     "ZM",
+     "35",
+     "50",
+     "60",
+     "71",
+     "100",
+     "125",
+     "140",
+     "–",
+     "–"
+    ],
+    [
+     "COOLING (kW)",
+     "",
+     "3.5",
+     "5.0",
+     "6.0",
+     "7.1",
+     "10.0",
+     "12.5",
+     "14.0",
+     "20.0",
+     "25.0"
+    ],
+    [
+     "HEATING (kW)",
+     "",
+     "4.1",
+     "6.0",
+     "7.0",
+     "8.0",
+     "11.2",
+     "14.0",
+     "16.0",
+     "22.4",
+     "27.0"
+    ]
+   ],
+   "source": "Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "성능표 (조건별 조회) — Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf p14",
+   "page": 14,
+   "orientation": "column",
+   "header": [
+    "Model capacity of outdoor unit",
+    "",
+    "ZRP P",
+    "35 –",
+    "50 –",
+    "60 –",
+    "71 –",
+    "100 –",
+    "125 –",
+    "140 –",
+    "200 200",
+    "250 250"
+   ],
+   "quantities": [
+    "capacity",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "",
+     "SHW",
+     "–",
+     "–",
+     "–",
+     "80",
+     "112",
+     "140",
+     "–",
+     "230",
+     "–"
+    ],
+    [
+     "",
+     "",
+     "ZM",
+     "35",
+     "50",
+     "60",
+     "71",
+     "100",
+     "125",
+     "140",
+     "–",
+     "–"
+    ],
+    [
+     "Max. volume [cm3] Pipe length 30m - 1050 1500 1800 2130 3000 3750 4200 6000 7500 20m 1350 1800 2700 3030 3900 4650 5100 7800 9300 10m 1650 2100 3600 3930 4800 5550 6000 9600 11100",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Pipe length",
+     "30m -",
+     "1050",
+     "1500",
+     "1800",
+     "2130",
+     "3000",
+     "3750",
+     "4200",
+     "6000",
+     "7500"
+    ],
+    [
+     "",
+     "",
+     "20m",
+     "1350",
+     "1800",
+     "2700",
+     "3030",
+     "3900",
+     "4650",
+     "5100",
+     "7800",
+     "9300"
+    ],
+    [
+     "",
+     "",
+     "10m",
+     "1650",
+     "2100",
+     "3600",
+     "3930",
+     "4800",
+     "5550",
+     "6000",
+     "9600",
+     "11100"
+    ],
+    [
+     "Min. volume [cm3]",
+     "",
+     "",
+     "350",
+     "500",
+     "600",
+     "710",
+     "1000",
+     "1250",
+     "1400",
+     "2000",
+     "2500"
+    ]
+   ],
+   "source": "Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf",
+   "kind": "perf",
+   "titleRaw": "Make sure to keep the DX coil capacity within the following range. If the piping length is"
+  },
+  {
+   "title": "With a bigger size header, the refrigerant flow velocity decreases and this disturbs the s",
+   "page": 14,
+   "orientation": "column",
+   "header": [
+    "Model capacity of outdoor unit",
+    "ZRP P",
+    "35 –",
+    "50 –",
+    "60 –",
+    "71 –",
+    "100 –",
+    "125 –",
+    "140 –",
+    "200 200",
+    "250 250"
+   ],
+   "quantities": [
+    "capacity",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "SHW",
+     "–",
+     "–",
+     "–",
+     "80",
+     "112",
+     "140",
+     "–",
+     "230",
+     "–"
+    ],
+    [
+     "Max. diameter of header [mm]",
+     "",
+     "{19",
+     "",
+     "",
+     "",
+     "{28",
+     "",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "source": "Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "General data — Mr.Slim outdoor units for AHU (design guideline text)",
+   "header": [
+    "",
+    "35",
+    "50",
+    "60",
+    "71",
+    "100",
+    "125",
+    "140",
+    "200",
+    "250",
+    "200",
+    "250",
+    "80",
+    "112",
+    "140",
+    "230",
+    "35",
+    "50",
+    "60",
+    "71",
+    "100",
+    "125",
+    "140"
+   ],
+   "rows": [
+    [
+     "Model",
+     "ZRP35",
+     "ZRP50",
+     "ZRP60",
+     "ZRP71",
+     "ZRP100",
+     "ZRP125",
+     "ZRP140",
+     "ZRP200",
+     "ZRP250",
+     "P200",
+     "P250",
+     "SHW80",
+     "SHW112",
+     "SHW140",
+     "SHW230",
+     "ZM35",
+     "ZM50",
+     "ZM60",
+     "ZM71",
+     "ZM100",
+     "ZM125",
+     "ZM140"
+    ],
+    [
+     "Standard air flow volume (m³/h)",
+     "372 – 738",
+     "516 – 1080",
+     "630 – 1260",
+     "732 – 1440",
+     "978 – 2016",
+     "1290 – 2520",
+     "1380 – 2880",
+     "1956 – 4032",
+     "2268 – 4860",
+     "1956 – 4032",
+     "2268 – 4860",
+     "732 – 1440",
+     "978 – 2016",
+     "1290 – 2520",
+     "1956 – 4032",
+     "372 – 738",
+     "516 – 1080",
+     "630 – 1260",
+     "732 – 1440",
+     "978 – 2016",
+     "1290 – 2520",
+     "1380 – 2880"
+    ]
+   ],
+   "quantities": [],
+   "orientation": "row",
+   "kind": "rating",
+   "page": 13,
+   "source": "Mitsubishi_PAC-IF013_AHU_Design_Guideline.pdf#airflow"
+  }
+ ]
+}
