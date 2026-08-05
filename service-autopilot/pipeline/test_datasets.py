@@ -107,7 +107,7 @@ class DatasetBuildTest(unittest.TestCase):
         big = units["Manifolded Compressor TTA3004*C*"]
 
         self.assertEqual(big["unitRole"], "condensingUnit")
-        self.assertEqual(big["capacityClass"], "25 Ton")
+        self.assertEqual(big["capacityClass"], "25 Tons")   # 정규화: 'Ton' → 'Tons'
         self.assertEqual(big["matchedAirHandler"], "TWE3004*B*")
         self.assertEqual(big["ratedAirflow"], "8,750")
         self.assertEqual(big["grossCoolingCapacity"], "308,000")
@@ -177,7 +177,7 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(first["units"]["capacitySteps"], "%")
         self.assertEqual(first["units"]["compressorConfig"], "Tons")
         self.assertEqual(first["condenserAirflow"], "14600")
-        self.assertEqual(first["units"]["condenserAirflow"], "cfm")
+        self.assertEqual(first["units"]["condenserAirflow"], "CFM")   # 철자 통일
 
     def test_intellipak_units_merge_general_data_and_continued_tables(self):
         data = datasets.build_dataset(equip_ids={"e5"})
@@ -262,7 +262,7 @@ class DatasetBuildTest(unittest.TestCase):
         dps = units["DPS 003"]
         self.assertEqual(dps["capacityClass"], "3 Tons")
         self.assertEqual(dps["ratedAirflow"], "1125")
-        self.assertEqual(dps["units"]["ratedAirflow"], "cfm")
+        self.assertEqual(dps["units"]["ratedAirflow"], "CFM")   # 철자 통일
         self.assertEqual(dps["eer"], "13.5")
 
     def test_every_e5_model_has_unit_candidates(self):
@@ -299,9 +299,9 @@ class DatasetBuildTest(unittest.TestCase):
 
         self.assertEqual(len(units), 4)
         lgt36 = units["LGT036H4E"]
-        self.assertEqual(lgt36["capacityClass"], "3 Ton")
+        self.assertEqual(lgt36["capacityClass"], "3 Tons")   # 정규화: 'Ton' → 'Tons'
         self.assertEqual(lgt36["ratedAirflow"], "1200/800")
-        self.assertEqual(lgt36["units"]["ratedAirflow"], "cfm-high/low")
+        self.assertEqual(lgt36["units"]["ratedAirflow"], "CFM high/low")
         self.assertEqual(lgt36["grossCoolingCapacity"], "36,600")
         self.assertEqual(lgt36["ahriNetCoolingCapacity"], "36,000")
         self.assertEqual(lgt36["eer"], "13.3")
@@ -458,6 +458,31 @@ class CuratedUnitDatasetTest(unittest.TestCase):
                     self.assertIn(key, ids,
                                   "%s: 추출 필드 %r 가 속성 사전(features)에 없다 — "
                                   "unit-schema.json 에 먼저 정의" % (mid, key))
+
+    def test_curated_notation_is_unified(self):
+        # 표기 통일 게이트 — 정규화 계층(units.normalize_entry)을 지나지 않은
+        # 흔들린 표기(단수 Ton·소문자 cfm·Btuh·Mbh·K Btu·sq. ft.·EER 단위/라벨·
+        # '-' 자리표시)가 확정본에 남으면 실패한다. 척도가 다른 단위
+        # (MBh·Btu/h·kW, CFM·m³/s·m³/h)는 문서 사실이라 허용이다.
+        import glob, json, os, re
+        bad_units = {"cfm", "cfm-high/low", "m3/s", "m3/h",
+                     "sq. ft.", "Sq. Ft.", "Mbh", "K Btu", "Btuh", "Btu"}
+        for path in glob.glob(os.path.join(U.UNITS_DIR, "*.json")):
+            doc = json.load(open(path, encoding="utf-8"))
+            for rec in doc.get("units") or []:
+                code = "%s %s" % (doc.get("modelId"), rec.get("unitModelNumber"))
+                for fid, entry in (rec.get("fields") or {}).items():
+                    value = (entry or {}).get("value") or ""
+                    unit = (entry or {}).get("unit") or ""
+                    self.assertNotIn(unit, bad_units, code + " 단위 표기 미통일: " + unit)
+                    if fid == "capacityClass":
+                        self.assertFalse(value.endswith(" Ton"), code + " 단수 Ton")
+                    if fid in ("eer", "ieer"):
+                        self.assertFalse(unit, code + " EER 단위 표기는 생략이 규칙")
+                        self.assertFalse(re.match(r"^\s*I?EER\s*=", value),
+                                         code + " EER 라벨 혼입")
+                        self.assertFalse(re.match(r"^[-\s]*$", value),
+                                         code + " 자리표시 값")
 
     def test_merge_preserves_verified_and_manual_and_reports_drift(self):
         # 생존 규칙 — 사람 확정본(verified·manual)은 추출이 절대 덮지 않는다.

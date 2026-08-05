@@ -11,6 +11,25 @@
   "valueMaxNumbers": 8,
   "note": "정격 '한 개 값'의 모양 한계 — datasets.plausible_rating_value 와 같은 기준. 넘으면 눌린 다열 덩어리로 보고 검증 오류"
  },
+ "normalize": {
+  "unitSpelling": {
+   "cfm": "CFM",
+   "cfm-high/low": "CFM high/low",
+   "m3/s": "m³/s",
+   "m3/h": "m³/h",
+   "sq. ft.": "sq ft",
+   "Sq. Ft.": "sq ft",
+   "Mbh": "MBh",
+   "K Btu": "MBh",
+   "Btuh": "Btu/h",
+   "Btu": "Btu/h"
+  },
+  "notes": {
+   "unitSpelling": "같은 단위의 철자 흔들림만 통일한다 — 척도가 다른 단위는 절대 섞지 않는다. 'K Btu'와 'MBh'는 둘 다 천 Btu/h 로 같은 척도, 냉방능력의 'Btu' 단독 표기는 시간당(Btu/h) 관례 축약",
+   "capacityClass": "'N Ton' → 'N Tons' 표기 통일. 톤수가 아닌 크기급('크기 04')은 그대로 둔다",
+   "eerIeer": "EER·IEER 는 정의 단위(Btu/h per W)라 단위 표기를 생략해 통일한다. 값 앞의 'EER ='/'IEER =' 라벨 중복은 걷어내고, '-' 자리표시는 값 없음으로 본다. 'Up to N'(캐비닛 상한)·'A/B'(전원·조건 병기)·각주 (d)(e) 는 문서 의미라 유지"
+  }
+ },
  "features": {
   "capacityClass": {"ko": "용량대", "convUnit": ""},
   "matchedAirHandler": {"ko": "조합 공조기", "convUnit": ""},

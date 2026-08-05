@@ -25,6 +25,7 @@
 import argparse
 import json
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -56,11 +57,32 @@ def unit_key(rec):
     return "%s@p%s" % (rec.get("unitModelNumber"), page)
 
 
+def normalize_entry(fid, value, unit, schema):
+    """표기 정규화 계층 — 값의 의미는 절대 바꾸지 않고 표기 흔들림만 통일한다.
+
+    규칙의 정본은 unit-schema.json 의 normalize 블록이다 (PIM 의
+    취입→정규화→확정 순서). 척도가 다른 단위는 섞지 않는다.
+    """
+    rules = schema.get("normalize") or {}
+    value = (value or "").strip()
+    if fid == "capacityClass":
+        value = re.sub(r"^(\d+(?:\.\d+)?)\s*Ton$", r"\1 Tons", value)
+    if fid in ("eer", "ieer"):
+        unit = ""  # 정의 단위(Btu/h per W) — 표기 생략 통일
+        value = re.sub(r"^\s*I?EER\s*=\s*", "", value)
+        value = re.sub(r",\s*I?EER\s*=\s*", ", ", value)
+        if re.match(r"^[-\s]+$", value):
+            value = ""  # '-' 자리표시 = 값 없음
+    if unit:
+        unit = (rules.get("unitSpelling") or {}).get(unit, unit)
+    return value, unit
+
+
 def extraction_records(model, schema):
     """datasets.unit_models 의 평평한 제안 행 → 확정본 레코드 모양.
 
     값이 없는 필드('—')는 저장하지 않는다 — 확정본에는 사실만 두고
-    빈칸 채우기는 화면 어댑터가 한다.
+    빈칸 채우기는 화면 어댑터가 한다. 표기는 normalize_entry 로 통일한다.
     """
     ids = field_ids(schema)
     out = []
@@ -70,8 +92,11 @@ def extraction_records(model, schema):
             value = row.get(fid)
             if not value or value == "—":
                 continue
+            value, unit = normalize_entry(
+                fid, value, (row.get("units") or {}).get(fid), schema)
+            if not value:
+                continue
             entry = {"value": value}
-            unit = (row.get("units") or {}).get(fid)
             if unit:
                 entry["unit"] = unit
             fields[fid] = entry
