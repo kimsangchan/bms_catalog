@@ -729,12 +729,15 @@ SOURCES = [
             "https://www.lennox.com/dA/c72228c74f/ehb_lgt_abox_2411.pdf",
             # 제품 실물 사진용 — EHB 는 그라데이션·코일 일러스트뿐이라 브로슈어에서 딴다
             "https://www.lennox.com/dA/ec2cbef5a8/37J51_Enlight+Brochure+454B.pdf",
+            # 대용량 히트펌프 13~20톤 EHB — LHT156/180/240 형번·난방 성능(COP)
+            "https://www.lennox.com/dA/3b7b5ae321/ehb_lht_cbox_2411.pdf",
         ],
         # dA 해시 경로라 파일명이 문서번호뿐이다 — 표지 문서번호·제품명으로 바꿔 적는다
         "rename": {
             "508112-02a.pdf": "Lennox_CORE_BACnet_SetupGuide_508112-02.pdf",
             "ehb_lgt_abox_2411.pdf": "Lennox_Enlight_LGT_EHB_210977.pdf",
             "37J51_Enlight+Brochure+454B.pdf": "Lennox_Enlight_Brochure_37J51.pdf",
+            "ehb_lht_cbox_2411.pdf": "Lennox_Enlight_LHT_EHB_2411.pdf",
         },
         "extractor": "auto",
         "access": "무로그인",

@@ -51,6 +51,10 @@
   "unitWidth": {"ko": "유닛 폭", "convUnit": "mm"},
   "unitHeight": {"ko": "유닛 높이", "convUnit": "mm"},
   "unitLength": {"ko": "유닛 길이", "convUnit": "mm"},
+  "seer": {"ko": "SEER", "convUnit": ""},
+  "seer2": {"ko": "SEER2", "convUnit": ""},
+  "heatingCapacity": {"ko": "난방능력", "convUnit": "Btu/h"},
+  "cop": {"ko": "COP", "convUnit": ""},
   "systemPower": {"ko": "시스템 소비전력", "convUnit": "kW"},
   "soundRating": {"ko": "소음 정격", "convUnit": "dB"},
   "refrigerantCharge": {"ko": "냉매 충전량", "convUnit": ""},
@@ -60,7 +64,7 @@
   "e5": {
    "ko": "공조기 (AHU·RTU)",
    "table": ["capacityClass", "matchedAirHandler", "ratedAirflow", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer", "ieer", "systemPower", "soundRating", "capacitySteps", "fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"],
-   "detailExtra": ["ieer", "compressorConfig", "capacitySteps", "refrigerantCircuits", "condenserFans", "condenserAirflow", "refrigerantCharge", "refrigerantControl", "unitWidth", "unitHeight", "unitLength"],
+   "detailExtra": ["ieer", "seer", "seer2", "heatingCapacity", "cop", "compressorConfig", "capacitySteps", "refrigerantCircuits", "condenserFans", "condenserAirflow", "refrigerantCharge", "refrigerantControl", "unitWidth", "unitHeight", "unitLength"],
    "roles": {
     "airHandler": {"ko": "공기측 유닛", "detail": ["fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"]},
     "condensingUnit": {"ko": "실외/응축 유닛", "detail": ["matchedAirHandler", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer"]},

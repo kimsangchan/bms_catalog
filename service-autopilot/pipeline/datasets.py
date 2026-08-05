@@ -438,9 +438,10 @@ UNIT_FIELD_PICKS = {
     "grossCoolingCapacity": [r"Gross Cooling Capacity - System",
                              r"^Gross Cooling Capacity$", r"^Gross Cooling Capacity - Btuh",
                              r"^Gross Capacity @ (ARI|AHRI)"],
-    # Lennox 는 'Net Cooling Capacity (Btuh)' — 각주 1이 AHRI 인증 표기다
+    # Lennox 는 'Net Cooling Capacity (Btuh)'/'- Btuh' — 각주 1이 AHRI 인증 표기다
     "ahriNetCoolingCapacity": [r"AHRI Net Cooling Capacity",
-                               r"^(ARI|AHRI) net capacity", r"^Net Cooling Capacity \(Btuh\)"],
+                               r"^(ARI|AHRI) net capacity", r"^Net Cooling Capacity \(Btuh\)",
+                               r"^Net Cooling Capacity - Btuh"],
     # 'EER1, 7' 처럼 각주 번호가 붙는 표기(Rebel)까지 받는다
     "eer": [r"Matched Air Handler \(EER\)", r"System \(EER\)", r"^EER(?![A-Za-z])"],
     "ieer": [r"^IEER(?![A-Za-z])"],
@@ -452,6 +453,11 @@ UNIT_FIELD_PICKS = {
     "capacitySteps": [r"Unit Capacity Steps", r"^Staging"],
     # 아래 4종은 --propose-features 발굴로 채택 (2026-08-05) — 여러 벤더가
     # 사전보다 더 공개하던 속성이다
+    "seer": [r"^SEER \(Btuh"],
+    "seer2": [r"^SEER2"],
+    # 히트펌프(Lennox LHT)의 난방 성능 — 냉방 절의 값과 라벨이 겹치지 않는다
+    "heatingCapacity": [r"^Total High Heat Capacity"],
+    "cop": [r"^C\.O\.P\."],
     "systemPower": [r"^System power \(KW\)", r"^Total Unit Power"],
     "soundRating": [r"Sound Rating Number", r"^Outdoor Sound Rating"],
     "refrigerantCharge": [r"^lbs of R-"],

@@ -67,7 +67,7 @@ def normalize_entry(fid, value, unit, schema):
     value = (value or "").strip()
     if fid == "capacityClass":
         value = re.sub(r"^(\d+(?:\.\d+)?)\s*Ton$", r"\1 Tons", value)
-    if fid in ("eer", "ieer"):
+    if fid in ("eer", "ieer", "seer", "seer2"):
         unit = ""  # 정의 단위(Btu/h per W) — 표기 생략 통일
         value = re.sub(r"^\s*I?EER\s*=\s*", "", value)
         value = re.sub(r",\s*I?EER\s*=\s*", ", ", value)

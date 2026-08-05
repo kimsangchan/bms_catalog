@@ -297,7 +297,7 @@ class DatasetBuildTest(unittest.TestCase):
             "lennox-core-unit-controller-enlight-model-l-rooftop-bacnet"]
         units = {u["unitModelNumber"]: u for u in model["unitModels"]}
 
-        self.assertEqual(len(units), 4)
+        self.assertEqual(len(units), 7)   # LGT 4(3~6톤) + LHT 3(13~20톤 히트펌프)
         lgt36 = units["LGT036H4E"]
         self.assertEqual(lgt36["capacityClass"], "3 Tons")   # 정규화: 'Ton' → 'Tons'
         self.assertEqual(lgt36["ratedAirflow"], "1200/800")
@@ -306,7 +306,15 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(lgt36["ahriNetCoolingCapacity"], "36,000")
         self.assertEqual(lgt36["eer"], "13.3")
         self.assertEqual(lgt36["ieer"], "—")
+        self.assertEqual(lgt36["seer"], "17.8")
         self.assertEqual(units["LGT072H4E"]["ieer"], "17.0")
+        # 히트펌프(LHT)는 난방 성능까지 — 문서 라벨 표기가 LGT 와 달라도(- Btuh)
+        # 유연 패턴이 받는다
+        lht13 = units["LHT156H4M"]
+        self.assertEqual(lht13["capacityClass"], "13 Tons")
+        self.assertEqual(lht13["heatingCapacity"], "144,000")
+        self.assertEqual(lht13["cop"], "3.40")
+        self.assertEqual(lht13["systemPower"], "12.3")
 
     def test_mitsubishi_pacif013_outdoor_combinations(self):
         # Mitsubishi PAC-IF013 — 설계 가이드라인의 표준 풍량 표(텍스트 층 주입)에서
