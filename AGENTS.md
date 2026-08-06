@@ -1,10 +1,17 @@
 # AGENTS.md — solution-planning
 
-이 파일은 저장소 루트(`D:\_solutions\Neuros\solution-planning`)에 있어 **AGENTS.md 호환 에이전트
-(Codex 등)가 세션마다 자동으로 읽는다.** 상세는 중복하지 않고 하위 문서를 가리킨다.
+이 파일은 저장소 루트(`D:\_solutions\Neuros\solution-planning`)의 **크로스툴 단일 원본**이다.
+Claude Code는 `CLAUDE.md`의 `@import`로, Codex·Antigravity·Cursor는 네이티브로 읽는다.
+프로젝트 표준·네비게이션만 담고 얇게 유지한다(≤ ~4KB). **상태·다음할일은 여기 쓰지 않는다.**
 
 > ⚠ 이 저장소는 형제 폴더 `NEUROS`(SCADA/BMS 본체)와 **별개의 git 저장소**다.
 > NEUROS·ICT 작업 지침(`../CLAUDE.md`)은 여기 적용되지 않는다.
+
+## 세션 시작 — 먼저 이것부터
+
+1. `NEXT.md`의 `NEXT-ACTION` 마커 블록을 읽는다 — 그게 지금 할 일이다.
+   (Claude Code는 SessionStart 훅이 자동 주입한다. 훅 없는 툴은 직접 연다.)
+2. 지난 이력·현재 규모가 필요할 때만 `WORKLOG.md`를 본다.
 
 ## 무엇을 만들고 있나
 
@@ -16,10 +23,12 @@
 산출물은 벤더 공개 문서(PDF)에서 기계로 뽑은 **모델별 오브젝트 목록 + 정격 사양**이고,
 보는 화면은 오프라인 단일 HTML(`service-autopilot/review/equip-catalog.html`)이다.
 
-## 먼저 읽을 것
+## 네비게이션 (무엇이 어디에)
 
 | 문서 | 내용 |
 |---|---|
+| `NEXT.md` | **다음 할 일 — 단일 출처** |
+| `WORKLOG.md` | 현재 상태·히스토리 (핸드오프 로그) |
 | `service-autopilot/pipeline/README.md` | **필독.** 수집→추출→대조→검증→빌드 전 과정, 문서 두 종류의 차이, 벤더별 함정 |
 | `service-autopilot/README.md` | 기획 산출물 인덱스와 스코프 정정 경위 |
 | `service-autopilot/decision-log.md` | 결정과 기각 대안 (D-001~) |
@@ -71,44 +80,3 @@ PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류
 6. 커밋 메시지는 **한글**. 제목에 `[기능]`·`[개선]`·`[수정]` 을 붙이고, 본문에
    **무엇이 왜 틀렸는지**를 적는다 (다음 사람이 같은 함정을 밟지 않도록).
 7. push 는 지시받았을 때만 한다.
-
-## 지금 상태 (2026-08-04)
-
-- 모델 **95건** · 오브젝트 **24,376점** · 정격 사양 **76모델** · `validate.py` 오류 0 · 계열 10/19
-- **형번 데이터가 확정 데이터셋(골든 레코드) 구조로 전환** — 추출은 제안, 정본은
-  `pipeline/data/units/<모델>.json`(23모델 360건). 속성 사전 `data/unit-schema.json`
-  (ETIM식: 공유 features + 설비 클래스별 열·라벨·역할 — 냉동기는 응축 코일·팬 라벨).
-  새 벤더 등록 후 **`units.py --sync` 필수**, 검수 승격 `--verify`. 화면은 확정본만
-  읽고 상태 배지(자동 추출/확인됨/수기 입력)·표↔카드 토글(카드=시리즈 대표 사진)이 있다.
-- 글로벌 공조기 커버리지(e5 15모델) — **수집 대기열 완료**: 리더 4사 전부(Trane·
-  Daikin·JCI/York·Carrier) + 미국 AAON·Lennox + 유럽 Swegon·IV Produkt·
-  **Systemair**(Access Modbus 1,897점 — 절대참조로 997점 구제, Geniox 크기 12형번+
-  치수) + 일본 **Mitsubishi**(PAC-IF013 킷 20점, 조합 실외기 22형번). 다음 e5 확장은
-  실외기 데이터북·대용량 EHB 등 기존 모델 심화가 후보.
-- 공조기(e5) 9모델(Trane 6 + Daikin MicroTech·JCI Simplicity SE·Siemens Climatix) —
-  8모델 형번·정격 후보 완료(형번 133건·전기 특성 373행 — York 32·Rebel 13 포함,
-  Envistar 만 미지원: 카탈로그 표 제목이 각주 조각). 신규 6모델 사진·근거 문서 연결 완료.
-- 형번·정격 작업 화면이 **냉동기(e9)까지 확장** — Daikin AGZ 16·Trane CGAM 14×3·
-  Ascend·Sintesis 등 형번 후보 118건(전체 251건). 게이트는 "형번이 실제로 뽑힌 모델".
-- 냉동기(e9)에 Daikin MicroTech 3모델(AGZ·AWV·WME 계열 등) 추가
-- 신규 6모델 전부 제품 카탈로그 정격 연결 완료(Trailblazer CAT624/635 · Rebel ED19116 ·
-  York 기술가이드 2권 · Envistar 2024 · Magnitude CAT632/ED19135). ⚠ Daikin 신형
-  카탈로그(CAT 261·639·641)는 표 없는 브로슈어라 ED/구판을 써야 한다.
-- **스키마 적용 전수 감사 완료(2026-08-05)**: 형번 추출 대상 설비는 이제 코드가 아니라
-  **unit-schema.json classes 가 정한다**(하드코딩 제거). 클래스 설비(e5·e9) 42모델 전수 =
-  형번 확정본 24모델 + 무형번 18모델(전부 gap 에 문서 한계 사유 기록 — 통신/설치 문서뿐,
-  정격 카탈로그 미수집). validate `units-none`/`units-unclassed` 정보로 상시 표면화,
-  사유 없는 무형번은 W. 게이트 테스트로 강제.
-- 마지막 커밋: 신규 6모델 정격 카탈로그 연결 (spec-map 9문서 추가)
-
-### 다음에 할 만한 것
-
-| 할 일 | 메모 |
-|---|---|
-| **형번 클래스 편입 후보 4계열** | 감사에서 확인: e15 인버터(Danfoss FC101 정격표 44+flat 17 — 파워사이즈별), e13 송풍기(ebm-papst 정격표 39 — 시리즈별), e19 전력(Schneider PM 정격표 71), e6/e16 Belimo(variants 48 — 항목/값 구조라 사다리 확장 필요). 절차: `units.py --propose-class` → classes 정의 → 사다리/벤더 파서 |
-| e9 무형번 18모델 정격 카탈로그 | RTAC·RTWD/RTHD·CentraVac·Agility·AGZ-F·WME 등 — 통신 문서뿐이라 제품 카탈로그 수집 필요(짝 규칙) |
-| 빈 계열 8개 채우기 | 냉각탑·보일러·열교환기·조명·방재·승강·보안·환경 — 벤더 발굴부터 |
-| Liebert CRAC 정격 사양 | 통신 레퍼런스엔 없다. Vertiv 제품 카탈로그가 따로 필요 |
-| 「기타」 99개 표 정리 | EMC 시험결과·파라미터 목록이 섞여 있다. 실을지 말지 판단 필요 |
-| 용어 사전 보강 | `data/spec-terms.json` 87개. 실제 데이터에 나온 용어만 넣는다 |
-| PostgreSQL 적재 | `07-api-contract.md` 의 `bes_*` 스키마. R-1~R-12 개정 반영 후 |
