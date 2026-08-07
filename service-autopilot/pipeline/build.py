@@ -16,15 +16,84 @@ OUT = os.path.join(ROOT, "review", "equip-catalog.html")
 TPL = os.path.join(ROOT, "evidence", "gen2.py")   # 화면 템플릿은 gen2.py 안의 HTML을 재사용
 sys.path.insert(0, HERE)
 
+PUBLIC_MENU_EQUIP_IDS = {
+    "e5", "e6", "e7", "e8",
+    "e9", "e10", "e11", "e12",
+    "e13", "e14", "e15", "e16",
+    "e19", "e20",
+}
+PUBLIC_MODEL_EQUIP_IDS = {"e5"}
+
 DOM_ORDER = ["공기측 설비", "열원·수측 설비", "반송·구동", "계측·제어", "전력 설비",
              "조명·차양", "방재", "승강", "보안·출입", "환경·공기질", "급배수·위생"]
+
+
+def clean_label(text):
+    return " ".join(str(text or "").replace("™", "").replace("®", "").split())
+
+
+def selector_label(model):
+    """모델 선택 버튼용 짧은 이름.
+
+    원본 모델명은 컨트롤러명이 앞에 오는 경우가 많아, 버튼에서는 제조사와 실제
+    장비 제품군을 먼저 보이게 한다. 원본 model/name 필드는 그대로 보존한다.
+    """
+    vendor = clean_label(model.get("vendor"))
+    raw = clean_label(model.get("model"))
+    raw_no_proto = clean_label(
+        raw.replace("(BACnet)", "").replace("(LonTalk)", "").replace("(Modbus)", ""))
+
+    if model.get("id") == "aaon-vccx2-rn-rq-series-rooftop-bacnet":
+        return "AAON RN/RQ Rooftop · VCCX2"
+
+    parts = [clean_label(x) for x in raw_no_proto.split("—", 1)]
+    if len(parts) == 2:
+        controller, product = parts
+        product = product.replace(" Series ", " ").replace(" Series", "")
+        label = "%s %s · %s" % (vendor, product, controller)
+    else:
+        label = "%s %s" % (vendor, raw_no_proto)
+    return clean_label(label)
+
+
+def model_subtype(model):
+    """공조기 아래에서 서로 다른 장비군을 한 단계 더 구분한다."""
+    if model.get("equipId") != "e5":
+        return ""
+    text = " ".join([
+        model.get("id") or "",
+        model.get("vendor") or "",
+        model.get("model") or "",
+        model.get("cat") or "",
+        model.get("tag") or "",
+    ]).lower()
+    if "interface" in text or "comm kit" in text or "pac-if" in text:
+        return "AHU 인터페이스 / 외부 공조기 연동"
+    if "wshp" in text:
+        return "RTU / WSHP"
+    if "rooftop" in text or ".rtu" in text:
+        return "RTU / Rooftop"
+    if "split system" in text or ".split" in text:
+        return "Split system / AHU 연동"
+    if any(w in text for w in ("gold", "geniox", "iv produkt", "climatix")):
+        return "Modular AHU / 전용 컨트롤러"
+    if "intellipak" in text:
+        return "Packaged AHU"
+    return "AHU / 기타"
+
+
+def load_json(path):
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
 
 
 def load():
     equips = []
     for f in sorted(glob.glob(os.path.join(DATA, "equips", "*.json")),
                     key=lambda p: int(os.path.basename(p)[1:-5])):
-        e = json.load(open(f, encoding="utf-8"))
+        e = load_json(f)
+        if e["id"] not in PUBLIC_MENU_EQUIP_IDS:
+            continue
         equips.append({
             "id": e["id"], "no": e["no"], "title": e["title"], "domain": e["domain"],
             "head": e.get("tagSummary", ""), "notes": e.get("notes", []),
@@ -34,15 +103,19 @@ def load():
         })
     models = {}
     docs_by_model = {}
-    for d in json.load(open(os.path.join(DATA, "docs.json"), encoding="utf-8")):
+    for d in load_json(os.path.join(DATA, "docs.json")):
         docs_by_model.setdefault(d["modelId"], []).append(
             [d["kind"], d["title"], d["publisher"], d["docNo"], d["issued"], d["url"], d["status"]])
     for f in sorted(glob.glob(os.path.join(DATA, "models", "*.json"))):
-        m = json.load(open(f, encoding="utf-8"))
+        m = load_json(f)
+        if m["equipId"] not in PUBLIC_MODEL_EQUIP_IDS:
+            continue
         base = m["id"].rsplit("-idu", 1)[0].rsplit("-odu", 1)[0]
         models.setdefault(m["equipId"], []).append({
             "id": m["id"], "equipId": m["equipId"],
             "vendor": m["vendor"], "model": m["model"], "name": m["name"],
+            "selectorLabel": selector_label(m),
+            "modelSubtype": model_subtype(m),
             "cat": m["cat"], "tag": m["tag"], "status": m.get("status", "active"),
             "summary": m.get("summary", ""), "has": m.get("has", {}),
             "spec": m.get("spec", []), "comm": m.get("comm", []), "io": m.get("io", []),
@@ -69,10 +142,9 @@ def load():
                 m["specFromName"] = src["name"]
     for v in models.values():
         v.sort(key=lambda x: (x["vendor"], x["model"]))
-    l3 = json.load(open(os.path.join(DATA, "l3-status.json"), encoding="utf-8"))
+    l3 = load_json(os.path.join(DATA, "l3-status.json"))
     # 용어 사전 — 영문 사양 이름을 한글·설명·시뮬레이터 쓰임새로 옮긴다
-    terms = json.load(open(os.path.join(DATA, "spec-terms.json"),
-                           encoding="utf-8"))["terms"]
+    terms = load_json(os.path.join(DATA, "spec-terms.json"))["terms"]
     return equips, models, l3, terms
 
 
@@ -84,7 +156,7 @@ def load_purpose_dataset():
     """
     import datasets
 
-    raw = datasets.build_dataset()
+    raw = datasets.build_dataset(PUBLIC_MODEL_EQUIP_IDS)
     out = {}
     for mid, m in raw["modelMappings"].items():
         out[mid] = {
@@ -117,7 +189,7 @@ def main():
     src = open(TPL, encoding="utf-8").read()
     html = src[src.index('HTML = r"""') + len('HTML = r"""'):src.rindex('"""')]
     # 형번 속성 사전 — 화면 열·라벨·역할 구성의 정본 (설비 클래스별)
-    unit_schema = json.load(open(os.path.join(DATA, "unit-schema.json"), encoding="utf-8"))
+    unit_schema = load_json(os.path.join(DATA, "unit-schema.json"))
     data = {"equips": equips, "models": models, "l3": l3,
             "domOrder": DOM_ORDER, "terms": terms, "purpose": purpose,
             "unitSchema": unit_schema}

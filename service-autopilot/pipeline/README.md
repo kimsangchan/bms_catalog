@@ -149,6 +149,7 @@ python rebuild.py --run                      # 추출 규칙을 고쳤을 때 �
 python normalize.py && python validate.py && python build.py
 python datasets.py                           # 템플릿·시뮬레이터·매핑용 데이터셋 생성
 python datasets.py --equip e5                # 공조기만 다시 생성
+python export_units.py                       # 형번 정격 CSV(long/wide) 생성
 ```
 
 ## 새 벤더 추가 절차 (체크리스트)
@@ -228,6 +229,8 @@ data/
 ├─ unit-schema.json     형번 속성 사전 — ETIM식 공유 사전(features)+설비 클래스별 세트
 ├─ units/<모델>.json     형번 확정 데이터셋(골든 레코드) — 화면·빌드의 정본
 ├─ datasets/            목적별 생성 데이터셋 (템플릿·시뮬레이터·매핑)
+│  ├─ unit-models-wide.csv  형번 1행 = 시뮬레이터·BMS 매핑 입력용
+│  └─ unit-models-long.csv  형번×속성 1행 = 품질점검·필드 매핑용
 ├─ docs.json            문서 메타 (출처·상태)
 ├─ known-good.json      정답 대조셋 (사람 확인분) — 교차 대조가 주 방어선
 ├─ l3-status.json       계열별 확보 현황

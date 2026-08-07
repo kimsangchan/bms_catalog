@@ -35,6 +35,9 @@
   "capacityClass": {"ko": "용량대", "convUnit": ""},
   "matchedAirHandler": {"ko": "조합 공조기", "convUnit": ""},
   "ratedAirflow": {"ko": "정격 풍량", "convUnit": "CFM"},
+  "ecodesignAirflow": {"ko": "Ecodesign 풍량", "convUnit": "m³/h"},
+  "sfp15Airflow": {"ko": "SFP 1.5 / 150 Pa 풍량", "convUnit": "m³/h"},
+  "sfp20Airflow": {"ko": "SFP 2.0 / 200 Pa 풍량", "convUnit": "m³/h"},
   "grossCoolingCapacity": {"ko": "냉방능력", "convUnit": "Btu/h"},
   "ahriNetCoolingCapacity": {"ko": "AHRI 냉방능력", "convUnit": "Btu/h"},
   "eer": {"ko": "EER", "convUnit": ""},
@@ -58,13 +61,15 @@
   "systemPower": {"ko": "시스템 소비전력", "convUnit": "kW"},
   "soundRating": {"ko": "소음 정격", "convUnit": "dB"},
   "refrigerantCharge": {"ko": "냉매 충전량", "convUnit": ""},
-  "refrigerantControl": {"ko": "팽창 장치", "convUnit": ""}
+  "refrigerantControl": {"ko": "팽창 장치", "convUnit": ""},
+  "cabinetSize": {"ko": "캐비닛", "convUnit": ""},
+  "airflowConfiguration": {"ko": "기류 구성", "convUnit": ""}
  },
  "classes": {
   "e5": {
    "ko": "공조기 (AHU·RTU)",
-   "table": ["capacityClass", "matchedAirHandler", "ratedAirflow", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer", "ieer", "systemPower", "soundRating", "capacitySteps", "fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"],
-   "detailExtra": ["ieer", "seer", "seer2", "heatingCapacity", "cop", "compressorConfig", "capacitySteps", "refrigerantCircuits", "condenserFans", "condenserAirflow", "refrigerantCharge", "refrigerantControl", "unitWidth", "unitHeight", "unitLength"],
+   "table": ["capacityClass", "matchedAirHandler", "ratedAirflow", "ecodesignAirflow", "sfp15Airflow", "sfp20Airflow", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer", "ieer", "systemPower", "soundRating", "cabinetSize", "airflowConfiguration", "capacitySteps", "fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"],
+   "detailExtra": ["ieer", "seer", "seer2", "heatingCapacity", "cop", "cabinetSize", "airflowConfiguration", "compressorConfig", "capacitySteps", "refrigerantCircuits", "condenserFans", "condenserAirflow", "refrigerantCharge", "refrigerantControl", "unitWidth", "unitHeight", "unitLength"],
    "roles": {
     "airHandler": {"ko": "공기측 유닛", "detail": ["fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"]},
     "condensingUnit": {"ko": "실외/응축 유닛", "detail": ["matchedAirHandler", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer"]},

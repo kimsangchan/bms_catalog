@@ -29,20 +29,41 @@ AHU_PROFILE = [
     {"name": "환기온도", "include": r"return.*air.*temp", "exclude": r"setpoint|sp\b"},
     {"name": "외기온도", "include": r"outdoor.*air.*temperature|outside.*air.*temperature|outdoortemp",
      "exclude": r"flow|enthalpy|humidity|setpoint|sp\b|enable|min"},
-    {"name": "급기정압", "include": r"(?:supply|discharge).*static.*pressure|duct.*static",
+    {"name": "혼합공기온도", "include": r"mixed.*air.*temp|mix.*air.*tmp", "exclude": r"problem|fault|setpoint|sp\b"},
+    {"name": "급기습도", "include": r"supply.*air.*(?:relative )?humidity|supply.*humidity|sply.*hum",
+     "exclude": r"setpoint|sp\b|abs"},
+    {"name": "환기습도", "include": r"return.*air.*(?:relative )?humidity|return.*humidity|space.*rh|room.*hum",
+     "exclude": r"setpoint|sp\b|abs"},
+    {"name": "급기 정압", "include": r"(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
      "exclude": r"setpoint|sp\b"},
+    {"name": "급기 풍량", "include": r"supply.*air.*flow|supplyflow|supply.*flow|nvooa?flow",
+     "exclude": r"setpoint|sp\b|min|max|outdoor|return|exhaust|percent"},
+    {"name": "환기 CO2", "include": r"(?:return|space|room).*co2|carbon dioxide",
+     "exclude": r"setpoint|sp\b|limit"},
     {"name": "급기온도 설정값", "include": r"(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint"},
-    {"name": "급기정압 설정값", "include": r"static.*pressure.*setpoint"},
-    {"name": "팬 지령/상태", "include": r"fan.*(?:command|status|speed|frequency)|(?:supply|return).*fan",
-     "exclude": r"type|configuration|identifier"},
-    {"name": "외기댐퍼", "include": r"outdoor.*air.*damper|outside.*air.*damper",
+    {"name": "급기 정압 설정값", "include": r"static.*pressure.*setpoint|ductstaticsp|duct.*static.*sp"},
+    {"name": "급기팬 주파수 지령", "include": r"sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:command|speed|frequency|setpoint)|nci.*supplyfan",
+     "exclude": r"type|configuration|identifier|status|hours|runtime"},
+    {"name": "환기팬 주파수 지령", "include": r"(?:return|exhaust|ret).*fan.*(?:cap|speed|freq).*netin|(?:return|exhaust).*fan.*(?:command|speed|frequency|setpoint)",
+     "exclude": r"type|configuration|identifier|status|hours|runtime"},
+    {"name": "냉수밸브 개도", "include": r"chilled.*water.*valve|cool.*valve|cooling.*valve",
+     "exclude": r"type|configuration|identifier|enable|setpoint|sp\b"},
+    {"name": "온수밸브 개도", "include": r"hot.*water.*valve|heat.*valve|heating.*valve|mod gas heat valve",
+     "exclude": r"type|configuration|identifier|enable|setpoint|sp\b"},
+    {"name": "외기댐퍼 개도", "include": r"econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
      "exclude": r"minimum|min|setpoint|sp\b"},
+    {"name": "환기댐퍼 개도", "include": r"return.*air.*damper|return.*damper|return bypass"},
+    {"name": "배기댐퍼 개도", "include": r"exhaust.*damper|exh.*damper"},
+    {"name": "가습 지령", "include": r"humid.*(?:command|enable|output|setpoint)|humiditysp"},
+    {"name": "필터 차압", "include": r"dirtyfilter|dirty.*filter|filter.*(?:pressure|alarm|switch)|differential.*pressure"},
+    {"name": "동결 방지 경보", "include": r"freeze.*(?:fault|alarm|switch)|frost.*alarm|low.*temp.*alarm"},
+    {"name": "운전 모드", "include": r"appliccmd|application.*mode|hvac mode|unit.*(?:state|mode)|currentstate",
+     "exclude": r"alarm|problem|fault|type|configuration|identifier"},
+    {"name": "외기냉방 모드", "include": r"econo.*(?:status|enable|mode)|economizer.*(?:status|enable|mode)|free.*cool"},
     {"name": "냉수·냉방", "include": r"cool(?:ing)?|chilled.*water|cooling.*capacity",
      "exclude": r"type|configuration|identifier|enable|setpoint|sp\b"},
     {"name": "온수·난방", "include": r"heat(?:ing)?|hot.*water",
      "exclude": r"type|configuration|identifier|enable|setpoint|sp\b"},
-    {"name": "필터/차압", "include": r"filter|differential.*pressure"},
-    {"name": "경보/고장", "include": r"alarm|fault|emergency|freeze|lockout"},
 ]
 
 VIEW_PROFILES = {"e5": AHU_PROFILE}
@@ -156,6 +177,13 @@ def find_template_candidates(equip_id, points):
             score = 0
             low = text.lower()
             typ = clean_text(point.get("type")).upper()
+            point_name = clean_text(point.get("name")).lower()
+            if rule["name"] == "운전 모드" and point_name in {"appliccmd", "nviapplicmode"}:
+                score += 100
+            if typ in {"AV", "BV", "MSV", "NVI", "NCI"} and re.search(
+                r"지령|설정값|개도|모드", rule["name"]
+            ):
+                score += 35
             if "출력(send)" in low or typ in {"AI", "BI"}:
                 score += 30
             if re.search(r"\bstatus\b|active|position|temperature|capacity", low):
@@ -164,6 +192,8 @@ def find_template_candidates(equip_id, points):
                 score -= 20
             if re.search(r"setpoint|configuration|type identifier|enable|min", low):
                 score -= 15
+            if re.search(r"alarm|problem|fault", low) and re.search(r"경보|필터", rule["name"]):
+                score += 20
             matches.append((score, point))
         if not matches:
             continue
@@ -303,6 +333,123 @@ def summarize_table(table, terms):
     return out
 
 
+TABLE_EVIDENCE_RULES = [
+    {
+        "name": "minimumOutdoorAir",
+        "label": "최소 외기량",
+        "category": "air",
+        "simulatorUse": "core",
+        "kinds": {"rating", "perf"},
+        "title": r"minimum outdoor air|minimum ventilation|ASHRAE Standard 62",
+    },
+    {
+        "name": "externalStaticPressure",
+        "label": "기외정압",
+        "category": "air",
+        "simulatorUse": "core",
+        "kinds": {"perf"},
+        "title": r"external static pressure",
+    },
+    {
+        "name": "heatingCoilCapacity",
+        "label": "난방능력",
+        "category": "thermal",
+        "simulatorUse": "core",
+        "kinds": {"perf", "rating"},
+        "title": r"hot water heating coil capacity|steam heating coil capacity",
+    },
+    {
+        "name": "heatingCapacityEvidence",
+        "label": "난방능력",
+        "category": "thermal",
+        "simulatorUse": "core",
+        "kinds": {"perf", "rating"},
+        "title": r"heating capacities|heating capacity|natural gas heating capacities|gas fired heating capacities",
+        "text": r"\bMBH\b|\bkW\b|heat input|heat output|electric heat|gas heat|capacity",
+    },
+    {
+        "name": "fanMotorPowerEvidence",
+        "label": "팬 모터",
+        "category": "air",
+        "simulatorUse": "core",
+        "kinds": {"perf", "rating"},
+        "title": r"fan motor limitations|fan motors|electrical service sizing data.*fan motors",
+        "text": r"\bHP\b|\bBHP\b|\bBkW\b|horsepower|motor",
+    },
+    {
+        "name": "electricalFlaLra",
+        "label": "전류",
+        "category": "electrical",
+        "simulatorUse": "core",
+        "kinds": {"rating", "perf", "etc"},
+        "title": r"electrical data|electrical characteristics|electrical service sizing data|electrical connection",
+        "text": r"\bFLA\b|\bLRA\b|\bMCA\b|\bMOP\b|volts|voltage|phase|[0-9]\s*V|Hz|fuse",
+    },
+    {
+        "name": "filterPressureDrop",
+        "label": "필터 차압",
+        "category": "air",
+        "simulatorUse": "condition",
+        "kinds": {"perf", "rating", "etc"},
+        "title": r"static pressure drop through accessories|component pressure drops|final filters|pre filters|filter.*pressure drop|filter conversions",
+        "text": r"filter|pressure drop",
+    },
+    {
+        "name": "cabinetCasing",
+        "label": "케이싱",
+        "category": "construction",
+        "simulatorUse": "condition",
+        "kinds": {"rating", "dim", "etc"},
+        "title": r"\bcabinet\b|casing|insulation",
+        "text": r"cabinet|casing|insulation|thermal|double-wall|foam|panel",
+    },
+]
+
+
+def table_numeric_range(table):
+    texts = []
+    texts.extend(clean_text(h) for h in table.get("header") or [])
+    for row in table.get("rows") or []:
+        texts.extend(row_cells(row))
+    ns = numbers(texts)
+    if not ns:
+        return ""
+    lo, hi = min(ns), max(ns)
+    return fmt_num(lo) if lo == hi else "%s – %s" % (fmt_num(lo), fmt_num(hi))
+
+
+def table_evidence_inputs(model):
+    out = []
+    for table in model.get("specTables") or []:
+        kind = table.get("kind") or "etc"
+        title = clean_text(table.get("title"))
+        table_text = " ".join(
+            [title]
+            + [clean_text(h) for h in table.get("header") or []]
+            + [clean_text(c) for row in table.get("rows") or [] for c in row_cells(row)]
+        )
+        for rule in TABLE_EVIDENCE_RULES:
+            if kind not in rule["kinds"]:
+                continue
+            if not re.search(rule["title"], title, re.I):
+                continue
+            if rule.get("text") and not re.search(rule["text"], table_text, re.I):
+                continue
+            out.append({
+                "name": rule["name"],
+                "label": rule["label"],
+                "valueRange": table_numeric_range(table),
+                "unit": "",
+                "condition": title,
+                "evidence": "%s p%s" % (table.get("source", ""), table.get("page", "")),
+                "simulatorUse": rule["simulatorUse"],
+                "category": rule["category"],
+                "sourceKind": "tableEvidence",
+                "sourceTableKind": kind,
+            })
+    return out
+
+
 def simulator_inputs(model, terms):
     rows = []
     rows.extend(spec_rows_from_flat(model.get("spec"), terms, "flat"))
@@ -312,6 +459,7 @@ def simulator_inputs(model, terms):
     for table in model.get("specTables") or []:
         if (table.get("kind") or "etc") == "rating":
             rows.extend(summarize_table(table, terms))
+    rows.extend(table_evidence_inputs(model))
     return rows
 
 
@@ -381,6 +529,33 @@ def value_unit_for_label(rows, pattern, col, unit_col=None):
                     unit = candidate
             return value, unit
     return "", ""
+
+
+def header_group_starts(header):
+    """행방향 표의 병합 머리글 시작 열.
+
+    Rebel 물리 데이터처럼 'Small cabinet, 빈칸, 빈칸, Medium cabinet…' 조판은
+    값 행도 같은 방식으로 첫 열에만 적는다. 전파 범위는 다음 머리글 시작 전까지다.
+    """
+    return [idx for idx, cell in enumerate(header[1:], start=1) if clean_text(cell)]
+
+
+def value_unit_for_label_in_group(rows, pattern, col, header, unit_col=None):
+    value, unit = value_unit_for_label(rows, pattern, col, unit_col=unit_col)
+    if value:
+        return value, unit
+    starts = header_group_starts(header)
+    if not starts:
+        return "", ""
+    start = None
+    for candidate in starts:
+        if candidate <= col:
+            start = candidate
+        else:
+            break
+    if start is None or start == col:
+        return "", ""
+    return value_unit_for_label(rows, pattern, start, unit_col=unit_col)
 
 
 # 형번으로 인정하는 토큰 — 문자 계열 + 숫자 2자리 이상 (TTA0724, WHJ150, T/YSC036G3,
@@ -465,6 +640,8 @@ UNIT_FIELD_PICKS = {
     "soundRating": [r"Sound Rating Number", r"^Outdoor Sound Rating"],
     "refrigerantCharge": [r"^lbs of R-"],
     "refrigerantControl": [r"^Refrigerant control$"],
+    "cabinetSize": [r"^Cabinet$"],
+    "airflowConfiguration": [r"^Configuration$"],
 }
 
 
@@ -524,6 +701,29 @@ def capacity_units_from_table(table, model, merged):
                         unit["units"][field] = measure
 
 
+def is_swegon_quick_table(table):
+    return bool(re.search(r"Swegon_AHU_QuickGuide\.pdf", table.get("source") or "", re.I))
+
+
+def clean_swegon_size(code):
+    return re.sub(r"\s+", " ", (code or "").strip())
+
+
+def swegon_quick_family(table, code):
+    page = table.get("page")
+    group = " ".join(row_cells(table.get("groupHeader") or []))
+    is_top = bool(re.search(r"\bTop\b", code or "", re.I))
+    if page == 4:
+        return "GOLD RX Top" if is_top else "GOLD RX"
+    if page == 5 and re.search(r"Sections", group, re.I):
+        return "GOLD CX Sections"
+    if page == 5:
+        return "GOLD PX Top" if is_top else "GOLD PX"
+    if page == 6:
+        return "GOLD CX Top" if is_top else "GOLD CX Longest section"
+    return "GOLD"
+
+
 def size_row_units(table, model, out, seen):
     """행=크기 코드(04~28), 열=풍량·냉방능력인 표 (IV Produkt Envistar).
 
@@ -534,6 +734,9 @@ def size_row_units(table, model, out, seen):
     header = row_cells(table.get("header") or [])
     rows = [row_cells(r) for r in table.get("rows") or []]
     src = table.get("source") or ""
+    swegon_quick = is_swegon_quick_table(table)
+    if re.search(r"Swegon", src, re.I) and not swegon_quick:
+        return
     family = ("Envistar" if "Envistar" in src
               else unit_family_for(model, table.get("title") or ""))
     af_i = next((i for i, h in enumerate(header)
@@ -546,6 +749,8 @@ def size_row_units(table, model, out, seen):
                                           ("unitHeight", r"^height"),
                                           ("unitLength", r"^length"))
                 for i, h in enumerate(header) if re.match(pat, h or "", re.I)]
+    if swegon_quick:
+        af_i = 1
     if af_i is None and not dim_cols:
         return
     # Max 열 — Swegon 치수 카탈로그는 머리글 자체가 'Max. air flow' 별도 열이고,
@@ -561,16 +766,33 @@ def size_row_units(table, model, out, seen):
                 if af_i + off < len(sub) and re.search(r"max", sub[af_i + off] or "", re.I):
                     af_max = af_i + off
                     break
+    title = table.get("title") or ""
+    source = table.get("source") or ""
+    needs_qualifier = bool(re.search(r"IVProdukt", "%s %s" % (source, title), re.I))
+    qualifier = ""
+    if needs_qualifier:
+        if re.search(r"quickguide", source, re.I):
+            qualifier = "quick p%s" % table.get("page")
+        elif re.search(r"dimensioning|catalogue|catalog", source, re.I):
+            qualifier = "catalog p%s" % table.get("page")
+        else:
+            qualifier = "p%s" % table.get("page")
     for cells in rows:
-        code = (cells[0] or "").strip()
-        if not re.match(r"^\d{2,3}$", code):
+        code = clean_swegon_size(cells[0]) if swegon_quick else (cells[0] or "").strip()
+        code_pattern = r"^\d{2,3}\+?(?:\s+Top)?$" if swegon_quick else r"^\d{2,3}$"
+        if not re.match(code_pattern, code):
             continue
-        key = (family, code, table.get("page"))
+        row_family = swegon_quick_family(table, code) if swegon_quick else family
+        unit_model_number = "%s %s" % (row_family, code)
+        key = (unit_model_number, table.get("page"))
         if key in seen:
             continue
         seen.add(key)
         airflow = "—"
         units = {}
+        ecodesign_airflow = "—"
+        sfp15_airflow = "—"
+        sfp20_airflow = "—"
         if af_i is not None:
             lo = cells[af_i] if af_i < len(cells) else ""
             hi = cells[af_max] if af_max != af_i and af_max < len(cells) else ""
@@ -590,18 +812,39 @@ def size_row_units(table, model, out, seen):
                 # 단위가 부머리글 행에 'm 3/h m 3/s' 로 적힌 표 (Swegon) —
                 # 값 한 칸에 두 단위 값이 같이 들어 있다
                 units["ratedAirflow"] = "m³/h·m³/s"
+        if swegon_quick and len(cells) > 5:
+            ecodesign_airflow = (cells[1] or "").strip() or "—"
+            sfp15_airflow = (cells[3] or "").strip() or "—"
+            sfp20_airflow = (cells[5] or "").strip() or "—"
+            airflow = ecodesign_airflow
+            for fid, value in (
+                ("ratedAirflow", airflow),
+                ("ecodesignAirflow", ecodesign_airflow),
+                ("sfp15Airflow", sfp15_airflow),
+                ("sfp20Airflow", sfp20_airflow),
+            ):
+                if value != "—":
+                    units[fid] = "m³/h"
         cool = (cells[cool_i] if cool_i is not None and cool_i < len(cells) else "") or "—"
         if cool != "—" and cool_i is not None and label_unit(header[cool_i]):
             units["grossCoolingCapacity"] = label_unit(header[cool_i])
+        if not swegon_quick:
+            unit_model_number = "%s %s" % (family, code)
+        if qualifier:
+            unit_model_number = "%s · %s" % (unit_model_number, qualifier)
         row = {
-            "unitModelNumber": "%s %s" % (family, code),
+            "unitModelNumber": unit_model_number,
             "unitNumberKind": "capacityClass",
             "unitRole": "packagedUnit",
             "capacityClass": "크기 %s" % code,
             "matchedAirHandler": "—", "ratedAirflow": airflow,
+            "ecodesignAirflow": ecodesign_airflow,
+            "sfp15Airflow": sfp15_airflow,
+            "sfp20Airflow": sfp20_airflow,
             "grossCoolingCapacity": cool, "ahriNetCoolingCapacity": "—",
             "eer": "—", "coilFaceArea": "—", "coilRowsFpi": "—",
             "fanMotorHp": "—", "fanMotorRpm": "—",
+            "airflowConfiguration": row_family if swegon_quick else "—",
             "units": units,
             "sourceTable": table.get("title") or "",
             "sourcePage": table.get("page"),
@@ -615,6 +858,79 @@ def size_row_units(table, model, out, seen):
                 if label_unit(header[col]):
                     units[fid] = label_unit(header[col])
         out.append(row)
+
+
+def base_continued_title(title):
+    text = clean_text(title)
+    text = re.sub(r"\s*\(?continued\)?\s*$", "", text, flags=re.I)
+    return re.sub(r"\s+", " ", text).strip().lower()
+
+
+def is_continued_title(title):
+    return bool(re.search(r"\(?continued\)?\s*$", clean_text(title), re.I))
+
+
+def merge_continued_unit_rows(rows):
+    """Merge split Physical/General Data tables without mixing different configurations.
+
+    Some catalogs put the same Unit Model Number across a base table and a following
+    "(Continued)" table. Those rows are one record. Repeated model names from different
+    configuration tables are left separate because their values can legitimately conflict.
+    """
+    by_base = {}
+    consumed = set()
+    for idx, row in enumerate(rows):
+        title = row.get("sourceTable") or ""
+        if is_continued_title(title):
+            continue
+        key = (row.get("unitModelNumber"), base_continued_title(title))
+        by_base[key] = idx
+
+    merged = [dict(row) for row in rows]
+    for idx, row in enumerate(rows):
+        title = row.get("sourceTable") or ""
+        if not is_continued_title(title):
+            continue
+        key = (row.get("unitModelNumber"), base_continued_title(title))
+        base_idx = by_base.get(key)
+        if base_idx is None:
+            continue
+        base = merged[base_idx]
+        conflict = False
+        for field, value in row.items():
+            if field in {
+                "unitModelNumber", "unitNumberKind", "unitRole", "selectionStatus",
+                "sourceTable", "sourcePage", "sourceFile", "units",
+            }:
+                continue
+            if not value or value == "—":
+                continue
+            old = base.get(field)
+            if old and old != "—" and old != value:
+                conflict = True
+                break
+        if conflict:
+            continue
+        for field, value in row.items():
+            if field in {
+                "unitModelNumber", "unitNumberKind", "unitRole", "selectionStatus",
+                "sourceTable", "sourcePage", "sourceFile", "units",
+            }:
+                continue
+            if value and value != "—" and (not base.get(field) or base.get(field) == "—"):
+                base[field] = value
+        base_units = dict(base.get("units") or {})
+        for fid, unit in (row.get("units") or {}).items():
+            base_units.setdefault(fid, unit)
+        base["units"] = base_units
+        if "continued" not in clean_text(base.get("sourceTable")).lower():
+            base["sourceTable"] = "%s + continued p%s" % (
+                base.get("sourceTable") or "",
+                row.get("sourcePage") or "",
+            )
+        consumed.add(idx)
+
+    return [row for idx, row in enumerate(merged) if idx not in consumed]
 
 
 def unit_models(model):
@@ -645,7 +961,7 @@ def unit_models(model):
         if h0 and not (h0[0] or "").strip() and r0:
             f0 = row_cells(r0[0])
             if f0 and re.match(r"^siz", f0[0] or "", re.I):
-                table = dict(table, header=r0[0], rows=r0[1:])
+                table = dict(table, header=r0[0], rows=r0[1:], groupHeader=h0)
                 h0 = f0
         if (h0 and re.match(r"^siz", h0[0] or "", re.I)
                 and any(re.search(r"air\s?f\s?l\s?o\s?w|^width", h or "", re.I) for h in h0)):
@@ -707,14 +1023,14 @@ def unit_models(model):
             capacity_units_from_table(table, model, capacity_units)
             continue
         for col, code in code_cols:
-            if code in seen:
+            if code in seen and not is_continued_title(title):
                 continue
             seen.add(code)
             fields, units = {}, {}
 
             def pick(field, *patterns):
                 for pattern in patterns:
-                    value, unit = value_unit_for_label(rows, pattern, col)
+                    value, unit = value_unit_for_label_in_group(rows, pattern, col, header)
                     if value:
                         fields[field] = value
                         if unit:
@@ -748,7 +1064,7 @@ def unit_models(model):
                             sourceFile=table.get("source"),
                             selectionStatus="unit_candidate"))
     out.extend(capacity_units.values())
-    return out
+    return merge_continued_unit_rows(out)
 
 
 _UNIT_SCHEMA = None
@@ -1020,11 +1336,102 @@ def electrical_rows(model):
     return out
 
 
+def load_unit_schema():
+    return load_json(os.path.join(DATA, "unit-schema.json"))
+
+
+def unit_model_simulator_inputs(units, schema):
+    features = schema.get("features") or {}
+    rows = []
+    for unit in units or []:
+        code = unit.get("unitModelNumber") or ""
+        unit_map = unit.get("units") or {}
+        source = unit.get("source") or {
+            "file": unit.get("sourceFile"),
+            "page": unit.get("sourcePage"),
+            "table": unit.get("sourceTable"),
+        }
+        for field_id, feature in features.items():
+            if "fields" in unit:
+                entry = (unit.get("fields") or {}).get(field_id) or {}
+                value = entry.get("value")
+                unit_label = entry.get("unit")
+            else:
+                value = unit.get(field_id)
+                unit_label = unit_map.get(field_id)
+            if value in (None, ""):
+                continue
+            if value == "—":
+                continue
+            rows.append({
+                "name": field_id,
+                "fieldId": field_id,
+                "label": feature.get("ko") or field_id,
+                "value": value,
+                "unit": unit_label or feature.get("convUnit") or "",
+                "condition": "형번 %s" % code,
+                "evidence": "%s p%s" % (source.get("file") or "", source.get("page") or ""),
+                "simulatorUse": "core",
+                "category": "unitModel",
+                "sourceKind": "unitModel",
+                "unitModelNumber": code,
+                "sourceTable": source.get("table") or "",
+            })
+    return rows
+
+
+ELECTRICAL_INPUT_LABELS = {
+    "voltage": "전압",
+    "phase": "상수",
+    "fanVoltage": "전압",
+    "fanPhase": "상수",
+    "fanFla": "전류",
+    "fanLra": "기동전류",
+    "compressor1Rla": "전류",
+    "compressor1Lra": "기동전류",
+    "compressor2Rla": "전류",
+    "compressor2Lra": "기동전류",
+    "mca": "최소 회선 용량 (MCA)",
+    "mop": "최대 차단기 용량 (MOP)",
+    "motorHp": "팬 모터",
+}
+
+
+def electrical_simulator_inputs(rows):
+    out = []
+    for row in rows or []:
+        code = row.get("unitModelNumber") or ""
+        for field_id, label in ELECTRICAL_INPUT_LABELS.items():
+            value = row.get(field_id)
+            if value in (None, ""):
+                continue
+            out.append({
+                "name": field_id,
+                "fieldId": field_id,
+                "label": label,
+                "value": value,
+                "unit": "HP" if field_id == "motorHp" else "",
+                "condition": "형번 %s · %s" % (code, row.get("motorSet") or ""),
+                "evidence": row.get("source") or "",
+                "simulatorUse": "core",
+                "category": "electrical",
+                "sourceKind": "electrical",
+                "unitModelNumber": code,
+                "sourceTable": row.get("sourceTable") or "",
+                "sourcePage": row.get("sourcePage"),
+                "sourceFile": row.get("sourceFile"),
+            })
+    return out
+
+
 SIM_REQUIREMENT_RULES = {
     "급기 풍량": {"field": r"\bCFM\b|air ?flow|풍량"},
     "환기 풍량": {"field": r"\bCFM\b|air ?flow|풍량"},
-    "최소 외기량": {"field": r"outdoor air.*flow|minimum.*flow|oa.*flow"},
-    "기외정압": {"field": r"static pressure|^esp$|정압"},
+    "최소 외기량": {
+        "field": r"minimumOutdoorAir|outdoor air.*(?:flow|volume)|minimum.*flow|oa.*flow",
+        "context": r"minimum|outdoor|ventilation|ASHRAE|standard 62",
+    },
+    "기외정압": {"field": r"externalStaticPressure|external static pressure|static pressure|^esp$|정압"},
     "급기팬 형식·모터출력": {
         "field": r"\b(?:hp|kw|bhp)\b|motor.*power|fan.*motor.*(?:hp|kw)",
         "exclude": r"tons|phase|volts|amps|mca|mop|rpm",
@@ -1039,24 +1446,33 @@ SIM_REQUIREMENT_RULES = {
         "exclude": r"tons|air ?flow|entering water temperature",
     },
     "온수코일 능력": {
-        "field": r"heating capacity|난방.*능력|능력",
+        "field": r"heatingCoilCapacity|heating capacity|heating coil capacity|난방.*능력|능력",
         "context": r"hot water|heating|온수|난방",
         "exclude": r"tons|air ?flow|entering water temperature|gross cooling|net cooling",
     },
     "냉수·온수 유량": {"field": r"water.*flow|flow.*water|gpm|lpm|유량"},
     "코일 열수·핀피치": {"field": r"rows/fpi|fins per inch|코일 열수"},
     "코일 정면풍속": {"field": r"face area|face velocity|면풍속"},
-    "필터 형식·효율·차압": {"field": r"filter|pressure drop|efficiency|필터|차압"},
+    "필터 형식·효율·차압": {"field": r"filterPressureDrop|filter|pressure drop|필터|차압"},
     "가습 방식·가습량": {"field": r"humid|가습"},
     "열회수 유무·효율": {"field": r"energy recovery|heat recovery|efficiency|열회수"},
     "케이싱·단열": {"field": r"cabinet|casing|insulation|케이싱|단열"},
-    "전원": {"field": r"voltage|volts|phase|hz|mca|mop|electrical|전압|상수"},
+    "전원": {"field": r"electricalFlaLra|voltage|volts|phase|hz|mca|mop|electrical|전압|상수"},
 }
 
 
 def requirement_match_rank(req_name, item):
     label = clean_text(item.get("label"))
     name = clean_text(item.get("name")).lower()
+    source_rank = {
+        "unitModel": 0,
+        "electrical": 0,
+        "flat": 1,
+        "variant": 1,
+        "rating": 2,
+        "perf": 3,
+        "tableEvidence": 4,
+    }.get(item.get("sourceKind"), 9)
     if req_name == "전원":
         order = [
             ("전압", r"volt|voltage"),
@@ -1067,8 +1483,8 @@ def requirement_match_rank(req_name, item):
         ]
         for idx, (ko, pat) in enumerate(order):
             if label == ko or re.search(pat, name):
-                return idx
-    return 99
+                return source_rank * 100 + idx
+    return source_rank * 100 + 99
 
 
 def simulator_requirement_mappings(requirements, inputs):
@@ -1093,7 +1509,7 @@ def simulator_requirement_mappings(requirements, inputs):
                 continue
             matches.append(item)
         matches.sort(key=lambda item: requirement_match_rank(req["name"], item))
-        if any((item.get("sourceKind") in {"flat", "variant"}) for item in matches):
+        if any((item.get("sourceKind") in {"flat", "variant", "unitModel", "electrical"}) for item in matches):
             status = "matched"
         elif matches:
             status = "candidate"
@@ -1150,6 +1566,7 @@ def load_models(equip_ids=None):
 
 def build_dataset(equip_ids=None):
     terms = load_terms()
+    unit_schema = load_unit_schema()
     equips = load_equips()
     if equip_ids:
         equips = {k: v for k, v in equips.items() if k in equip_ids}
@@ -1181,11 +1598,15 @@ def build_dataset(equip_ids=None):
     for model_id, model in sorted(models.items()):
         candidates = find_template_candidates(model.get("equipId"), model.get("points") or [])
         mapped = mapping_points(model.get("points") or [], candidates)
-        sim = simulator_inputs(model, terms)
         refs = reference_tables(model)
         # 화면·산출물은 확정 데이터셋(data/units)만 읽는다 — 추출은 units.py 의 제안 원천
         units = load_curated_units(model)
         electrical = electrical_rows(model)
+        sim = (
+            unit_model_simulator_inputs(units, unit_schema)
+            + electrical_simulator_inputs(electrical)
+            + simulator_inputs(model, terms)
+        )
         equip_template = data["equipmentTemplates"].get(model.get("equipId"), {})
         template_mappings = template_point_mappings(
             model.get("equipId"),

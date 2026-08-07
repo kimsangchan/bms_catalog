@@ -505,7 +505,9 @@ SOURCES = [
         "kind": "카탈로그·데이터시트",
         "note": "Daikin Applied 제품 카탈로그 — 신규 등록한 통신 맵 모델의 정격 공백을 메운다. "
                 "CAT 624(Trailblazer AGZ-E 30~241톤)·CAT 635(AGZ-F R-32 30~230톤)·"
-                "CAT 261(Rebel DPS 옥상형 3~31톤)·ED 19116(Rebel 물리 데이터 시트). "
+                "CAT 261(Rebel DPS 옥상형 3~31톤)·ED 19116(Rebel 물리 데이터 시트)·"
+                "CAT 262(Maverick II MPS)·CAT 861(Self-Contained SWP)·"
+                "CAT 218-4(RoofPak Air Handler). "
                 "tahoeweb 직링크 — HEAD 405 는 collect.py 가 GET 으로 폴백.",
         "enumerate": "list",
         "urls": [
@@ -517,6 +519,12 @@ SOURCES = [
             "Rebel%20-%20CAT%20261.pdf/",
             "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
             "Rebel%20Physical%20Data%20Sheet.pdf/",
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "Maverick%20II%20-%20CAT%20262.pdf/",
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "Self-Contained%20SWP%20-%20CAT%20861%20(pub%203-3-25).pdf/",
+            "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
+            "RoofPak%20Air%20Handler%20-%20CAT%20218-4%20(published%201-23-22).pdf/",
             # WME 는 신형 카탈로그(CAT 639·641)가 표 없는 브로슈어라 쓸모가 없었다 —
             # 표가 있는 구판 카탈로그(CAT 632)와 엔지니어링 데이터(ED 19135)를 쓴다.
             "https://tahoeweb.daikinapplied.com/api/general/DownloadDocumentByName/media/"
@@ -529,6 +537,11 @@ SOURCES = [
             "CAT635-4.pdf": "Daikin_CAT635-4_Trailblazer_AGZ-F_Catalog.pdf",
             "Rebel - CAT 261.pdf": "Daikin_CAT261_Rebel_DPS_Catalog.pdf",
             "Rebel Physical Data Sheet.pdf": "Daikin_ED-19116_Rebel_Physical_Data.pdf",
+            "Maverick II - CAT 262.pdf": "Daikin_CAT262_Maverick-II_MPS_Catalog.pdf",
+            "Self-Contained SWP - CAT 861 (pub 3-3-25).pdf":
+                "Daikin_CAT861_Self-Contained_SWP_Catalog.pdf",
+            "RoofPak Air Handler - CAT 218-4 (published 1-23-22).pdf":
+                "Daikin_CAT218-4_RoofPak_AirHandler_Catalog.pdf",
             "CAT632.pdf": "Daikin_CAT632-5_Magnitude_WME-C_Catalog.pdf",
             "ED19135.pdf": "Daikin_ED-19135_Magnitude_WME-D_EngData.pdf",
         },

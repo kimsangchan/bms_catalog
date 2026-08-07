@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
+import build
 import datasets
 import units as U
 
@@ -63,22 +64,135 @@ class DatasetBuildTest(unittest.TestCase):
             len(template["simulatorSpecRequirements"]),
         )
         by_name = {item["requirementName"]: item for item in model["simulatorRequirementMappings"]}
-        self.assertEqual(by_name["급기 풍량"]["status"], "candidate")
+        self.assertEqual(by_name["급기 풍량"]["status"], "matched")
         self.assertTrue(by_name["급기 풍량"]["matchedInputs"])
+
+    def test_ahu_unit_ratings_feed_simulator_requirement_mappings(self):
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"][
+            "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet"]
+        by_name = {item["requirementName"]: item for item in model["simulatorRequirementMappings"]}
+
+        airflow = by_name["급기 풍량"]
+        self.assertEqual(airflow["status"], "matched")
+        self.assertEqual(airflow["matchedInputs"][0]["sourceKind"], "unitModel")
+        self.assertEqual(airflow["matchedInputs"][0]["fieldId"], "ratedAirflow")
+
+        fan = by_name["급기팬 형식·모터출력"]
+        self.assertEqual(fan["status"], "matched")
+        self.assertEqual(fan["matchedInputs"][0]["fieldId"], "fanMotorHp")
+
+        coil = by_name["코일 열수·핀피치"]
+        self.assertEqual(coil["status"], "matched")
+        self.assertEqual(coil["matchedInputs"][0]["fieldId"], "coilRowsFpi")
+
+    def test_ahu_electrical_rows_feed_power_requirement(self):
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"]["trane-symbio-700-odyssey-lontalk-scc"]
+        by_name = {item["requirementName"]: item for item in model["simulatorRequirementMappings"]}
+
+        power = by_name["전원"]
+        self.assertEqual(power["status"], "matched")
+        self.assertEqual(power["matchedInputs"][0]["sourceKind"], "electrical")
+        self.assertIn(power["matchedInputs"][0]["name"], {"voltage", "phase", "fanFla", "mca", "mop"})
+
+    def test_ahu_table_evidence_fills_clear_candidate_gaps(self):
+        data = datasets.build_dataset(equip_ids={"e5"})
+        daikin = data["modelMappings"][
+            "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet"]
+        trane = data["modelMappings"]["trane-symbio-700-odyssey-lontalk-scc"]
+        carrier = data["modelMappings"][
+            "carrier-comfortlink-48-50n-weatherexpert-rooftop-75-150-ton-bacnet-co"]
+        aaon = data["modelMappings"]["aaon-vccx2-rn-rq-series-rooftop-bacnet"]
+        swegon = data["modelMappings"]["swegon-iqlogic-gold-rx-px-cx-sd-ahu-modbus"]
+        intellipak = data["modelMappings"]["trane-symbio-800-intellipak-lontalk-scc"]
+
+        daikin_by_name = {item["requirementName"]: item for item in daikin["simulatorRequirementMappings"]}
+        trane_by_name = {item["requirementName"]: item for item in trane["simulatorRequirementMappings"]}
+        carrier_by_name = {item["requirementName"]: item for item in carrier["simulatorRequirementMappings"]}
+        aaon_by_name = {item["requirementName"]: item for item in aaon["simulatorRequirementMappings"]}
+        swegon_by_name = {item["requirementName"]: item for item in swegon["simulatorRequirementMappings"]}
+        intellipak_by_name = {item["requirementName"]: item for item in intellipak["simulatorRequirementMappings"]}
+
+        minimum_oa = daikin_by_name["최소 외기량"]
+        self.assertEqual(minimum_oa["status"], "candidate")
+        self.assertIn(minimum_oa["matchedInputs"][0]["sourceKind"], {"rating", "tableEvidence"})
+        self.assertRegex(
+            minimum_oa["matchedInputs"][0]["condition"].lower(),
+            r"minimum outdoor air|minimum ventilation",
+        )
+
+        daikin_power = daikin_by_name["전원"]
+        self.assertEqual(daikin_power["status"], "candidate")
+        self.assertEqual(daikin_power["matchedInputs"][0]["sourceKind"], "tableEvidence")
+        self.assertIn("electrical", daikin_power["matchedInputs"][0]["condition"].lower())
+
+        daikin_filter = daikin_by_name["필터 형식·효율·차압"]
+        self.assertNotEqual(
+            daikin_filter["matchedInputs"][0]["name"] if daikin_filter["matchedInputs"] else "",
+            "Steady state efficiency",
+        )
+
+        esp = trane_by_name["기외정압"]
+        self.assertEqual(esp["status"], "candidate")
+        self.assertEqual(esp["matchedInputs"][0]["sourceKind"], "tableEvidence")
+        self.assertIn("external static pressure", esp["matchedInputs"][0]["condition"].lower())
+
+        heat = trane_by_name["온수코일 능력"]
+        self.assertEqual(heat["status"], "candidate")
+        self.assertEqual(heat["matchedInputs"][0]["sourceKind"], "tableEvidence")
+        self.assertIn("heating coil capacity", heat["matchedInputs"][0]["condition"].lower())
+
+        carrier_filter = carrier_by_name["필터 형식·효율·차압"]
+        self.assertEqual(carrier_filter["status"], "candidate")
+        self.assertEqual(carrier_filter["matchedInputs"][0]["sourceKind"], "tableEvidence")
+        self.assertIn("pressure", carrier_filter["matchedInputs"][0]["condition"].lower())
+
+        carrier_fan = carrier_by_name["급기팬 형식·모터출력"]
+        self.assertEqual(carrier_fan["status"], "candidate")
+        self.assertIn(carrier_fan["matchedInputs"][0]["sourceKind"], {"rating", "tableEvidence"})
+        self.assertRegex(carrier_fan["matchedInputs"][0]["condition"].lower(), r"fan motor|fan and drive")
+
+        aaon_heat = aaon_by_name["온수코일 능력"]
+        self.assertEqual(aaon_heat["status"], "candidate")
+        self.assertIn("heating capacities", aaon_heat["matchedInputs"][0]["condition"].lower())
+
+        swegon_power = swegon_by_name["전원"]
+        self.assertEqual(swegon_power["status"], "candidate")
+        self.assertEqual(swegon_power["matchedInputs"][0]["sourceTableKind"], "etc")
+        self.assertIn("electrical connection", swegon_power["matchedInputs"][0]["condition"].lower())
+
+        cabinet = intellipak_by_name["케이싱·단열"]
+        self.assertEqual(cabinet["status"], "candidate")
+        self.assertEqual(cabinet["matchedInputs"][0]["sourceTableKind"], "etc")
+        self.assertIn("cabinet", cabinet["matchedInputs"][0]["condition"].lower())
+
+    def test_ahu_template_mapping_covers_airside_controls(self):
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"][
+            "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet"]
+        by_name = {item["templateName"]: item for item in model["templatePointMappings"]}
+
+        self.assertEqual(by_name["급기 정압"]["matchedPoint"]["name"], "DuctStatPress")
+        self.assertEqual(by_name["급기 정압 설정값"]["matchedPoint"]["name"], "DuctStaticSP")
+        self.assertEqual(by_name["급기팬 주파수 지령"]["matchedPoint"]["name"], "SupFanCapNetIn")
+        self.assertEqual(by_name["외기댐퍼 개도"]["matchedPoint"]["name"], "EconCapacity")
+        self.assertEqual(by_name["필터 차압"]["matchedPoint"]["name"], "DirtyFilterSw")
+        self.assertEqual(by_name["운전 모드"]["matchedPoint"]["name"], "ApplicCmd")
 
     def test_ahu_simulator_requirement_mapping_does_not_force_weak_matches(self):
         data = datasets.build_dataset(equip_ids={"e5"})
         model = data["modelMappings"]["trane-symbio-700-odyssey-lontalk-scc"]
         by_name = {item["requirementName"]: item for item in model["simulatorRequirementMappings"]}
 
-        # 문서에 정말 없는 값은 후보를 지어내면 안 된다
-        self.assertEqual(by_name["기외정압"]["status"], "missing")
-        self.assertEqual(by_name["온수코일 능력"]["status"], "missing")
+        # 표 제목으로 확인되는 값은 후보로만 올리고, 정격값처럼 확정하지 않는다
+        self.assertEqual(by_name["기외정압"]["status"], "candidate")
+        self.assertEqual(by_name["온수코일 능력"]["status"], "candidate")
         # 급기팬 모터출력은 원래 missing 이었지만 용어 사전에 'Motor HP' 를 넣은 뒤
         # TWE 표의 실제 값(2–3 HP)이 후보로 잡힌다 — 사전 보강의 의도된 결과다
         fan = by_name["급기팬 형식·모터출력"]
-        self.assertEqual(fan["status"], "candidate")
-        self.assertEqual(fan["matchedInputs"][0]["name"], "Motor HP - Standard/Oversized")
+        self.assertEqual(fan["status"], "matched")
+        self.assertEqual(fan["matchedInputs"][0]["fieldId"], "fanMotorHp")
 
     def test_power_requirement_prefers_voltage_over_phase(self):
         data = datasets.build_dataset(equip_ids={"e5"})
@@ -250,6 +364,56 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(zj["eer"], "12.2")
         self.assertEqual(zj["grossCoolingCapacity"], "36000")
 
+    def test_york_continued_physical_data_merges_into_same_unit_model(self):
+        model = datasets.load_models({"e5"})[
+            "johnson-controls-york-simplicity-se-smart-equipment-york-rooftop-units-modbus"]
+        units = {item["unitModelNumber"]: item for item in datasets.unit_models(model)}
+
+        zj = units["ZJ078"]
+        self.assertEqual(zj["ratedAirflow"], "2500")
+        self.assertEqual(zj["grossCoolingCapacity"], "76000")
+        self.assertEqual(zj["fanMotorHp"], "1/3")
+        self.assertEqual(zj["sourcePage"], 17)
+        self.assertIn("continued p18", zj["sourceTable"])
+
+        zf = units["ZF102"]
+        self.assertEqual(zf["ratedAirflow"], "3300")
+        self.assertEqual(zf["grossCoolingCapacity"], "98800")
+        self.assertEqual(zf["fanMotorHp"], "3/4")
+        self.assertEqual(zf["sourcePage"], 23)
+        self.assertIn("continued p24", zf["sourceTable"])
+
+    def test_size_row_catalogs_qualify_repeated_size_codes(self):
+        models = datasets.load_models({"e5"})
+        mid = "siemens-climatix-pol908-iv-produkt-ahu-application-bacnet"
+        rows = datasets.unit_models(models[mid])
+        codes = [item["unitModelNumber"] for item in rows]
+        self.assertEqual(len(codes), len(set(codes)), mid)
+        self.assertTrue(any(" · " in code for code in codes), mid)
+
+    def test_swegon_quickguide_keeps_condition_airflows_in_one_unit_row(self):
+        model = datasets.load_models({"e5"})[
+            "swegon-iqlogic-gold-rx-px-cx-sd-ahu-modbus"]
+        rows = datasets.unit_models(model)
+        codes = [item["unitModelNumber"] for item in rows]
+        self.assertEqual(len(codes), len(set(codes)))
+        self.assertNotIn("GOLD 004", codes)
+
+        rx = {item["unitModelNumber"]: item for item in rows}["GOLD RX 004"]
+        self.assertEqual(rx["ratedAirflow"], "290 - 1620")
+        self.assertEqual(rx["ecodesignAirflow"], "290 - 1620")
+        self.assertEqual(rx["sfp15Airflow"], "1356")
+        self.assertEqual(rx["sfp20Airflow"], "1620")
+        self.assertEqual(rx["airflowConfiguration"], "GOLD RX")
+        self.assertEqual(rx["units"]["ratedAirflow"], "m³/h")
+        self.assertEqual(rx["units"]["ecodesignAirflow"], "m³/h")
+
+        self.assertIn("GOLD RX Top 004 Top", codes)
+        self.assertIn("GOLD PX 004", codes)
+        self.assertIn("GOLD PX Top 004 Top", codes)
+        self.assertIn("GOLD CX Sections 035", codes)
+        self.assertIn("GOLD CX Longest section 035", codes)
+
     def test_rebel_size_codes_get_family_prefix_from_title(self):
         # Rebel 물리 데이터 — 첫 행이 '003' 같은 크기 코드뿐이라 제목의 'Model DPS'
         # 제품군을 붙여 형번으로 만든다. EER 은 'EER1, 7' 각주 표기.
@@ -258,12 +422,27 @@ class DatasetBuildTest(unittest.TestCase):
             "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet"]
         units = {item["unitModelNumber"]: item for item in model["unitModels"]}
 
-        self.assertEqual(len(units), 13)
+        self.assertEqual(len([code for code in units if code.startswith("DPS ")]), 13)
         dps = units["DPS 003"]
         self.assertEqual(dps["capacityClass"], "3 Tons")
         self.assertEqual(dps["ratedAirflow"], "1125")
         self.assertEqual(dps["units"]["ratedAirflow"], "CFM")   # 철자 통일
         self.assertEqual(dps["eer"], "13.5")
+        # Rebel 물리 데이터는 캐비닛 병합 셀로 팬 모터 범위를 한 번만 적는다.
+        # 같은 캐비닛의 뒤 형번에도 같은 값을 전파해야 한다.
+        self.assertEqual(units["DPS 004"]["fanMotorHp"], "1.3 / 2.3 / 4.0")
+        self.assertEqual(units["DPS 010"]["fanMotorHp"], "4.0 / 8.0")
+        self.assertEqual(units["DPS 025"]["fanMotorHp"], "2.0 / 3.0 / 5.0 / 7.5 / 10.0 / 15.0 / 20.0")
+
+    def test_daikin_microtech_ahu_catalogs_add_non_rebel_unit_families(self):
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"][
+            "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet"]
+        units = {item["unitModelNumber"]: item for item in model["unitModels"]}
+
+        self.assertGreater(len(units), 13)
+        self.assertTrue(any(code.startswith("MPS ") for code in units))
+        self.assertTrue(any(code.startswith("SWP-J ") for code in units))
 
     def test_every_e5_model_has_unit_candidates(self):
         # 재발 방지 게이트 — 공조기 모델은 형번·정격 카드가 반드시 1개 이상이어야 한다.
@@ -286,6 +465,18 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(rn6["units"]["ratedAirflow"], "CFM")
         self.assertEqual(rn6["eer"], "Up to 13.2")
         self.assertEqual(rn6["ieer"], "Up to 22.5")
+        self.assertEqual(rn6["cabinetSize"], "A")
+        self.assertEqual(rn6["airflowConfiguration"], "Vertical")
+
+    def test_model_selector_label_keeps_vendor_and_product_family(self):
+        _equips, models, _l3, _terms = build.load()
+        ahu_models = {m["id"]: m for m in models["e5"]}
+        aaon = ahu_models["aaon-vccx2-rn-rq-series-rooftop-bacnet"]
+
+        self.assertEqual(aaon["selectorLabel"], "AAON RN/RQ Rooftop · VCCX2")
+        self.assertIn("VCCX2", aaon["selectorLabel"])
+        self.assertIn("AAON", aaon["selectorLabel"])
+        self.assertIn("RN/RQ", aaon["selectorLabel"])
 
     def test_lennox_general_data_text_yields_units(self):
         # Lennox Enlight LGT — EHB 표 인식은 구간 라벨(General Data·Cooling

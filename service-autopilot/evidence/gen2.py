@@ -85,11 +85,14 @@ aside button{display:grid;grid-template-columns:1fr auto;gap:6px;width:100%;text
 aside button:hover{background:var(--sel)}
 aside button[aria-current="true"]{background:var(--sel);border-left-color:var(--accent);font-weight:600}
 aside button i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--faint)}
+aside button.sub{padding-left:24px;font-size:11.7px;color:var(--dim)}
+aside button.sub[aria-current="true"]{color:var(--ink)}
 
 main{min-width:0;display:flex;flex-direction:column}
 .hd{padding:14px 18px 0}
 .hd .dom{font-size:10.5px;letter-spacing:.07em;color:var(--faint);font-weight:700}
 .hd h1{font-size:19px;letter-spacing:-.02em;margin:3px 0 6px;font-weight:650}
+.hd .subttl{font-size:12px;color:var(--accent);font-weight:650;margin:-2px 0 6px}
 .hd .tag{font-size:12px;color:var(--dim);line-height:1.85}
 .hd .tag .ok{color:var(--accent)}
 .hd .tag .no{color:var(--warn)}
@@ -358,7 +361,7 @@ nav .sm{color:var(--accent)}
 "use strict";
 var D = JSON.parse(document.getElementById('data').textContent);
 var nav = document.getElementById('nav'), main = document.getElementById('main'), q = document.getElementById('q');
-var cur = 'home', tab = 'md', mi = 0, kindF = '', gradeF = '', term = '';
+var cur = 'home', tab = 'md', mi = 0, kindF = '', gradeF = '', term = '', subF = '';
 var vsel = 0;   // 고른 형번 (variants) — 모델을 바꾸면 0 으로 되돌린다
 var ssel = 0;   // 고른 사양 표
 var usel = {};  // 모델 ID → 고른 Unit Model Number 후보
@@ -402,17 +405,32 @@ function buildNav(){
       var ns = (D.models[e.id]||[]).filter(hasSpec).length;
       h += '<button data-id="'+e.id+'">'+esc(e.title)+'<i>'+e.np+(nm?' · M'+nm:'')
          + (ns?' · <b class="sm">S'+ns+'</b>':'')+'</i></button>';
+      if(e.id==='e5' && nm){
+        modelSubtypes(e.id).forEach(function(g){
+          h += '<button class="sub" data-id="'+e.id+'" data-sub="'+esc(g.name)+'">└ '
+             + esc(g.name)+'<i>M'+g.count+'</i></button>';
+        });
+      }
     });
   });
   nav.innerHTML = h;
   nav.querySelectorAll('button').forEach(function(b){
-    b.addEventListener('click',function(){ cur=b.dataset.id; tab=defaultTab(cur); mi=0; vsel=0; ssel=0; mview='unit'; pageOf={}; kindF=''; gradeF=''; render(); });
+    b.addEventListener('click',function(){ cur=b.dataset.id; subF=b.dataset.sub||''; tab=defaultTab(cur); mi=0; vsel=0; ssel=0; mview='unit'; pageOf={}; kindF=''; gradeF=''; render(); });
   });
 }
 function markNav(){ nav.querySelectorAll('button').forEach(function(b){
-  b.setAttribute('aria-current', b.dataset.id===cur ? 'true':'false'); }); }
+  b.setAttribute('aria-current', b.dataset.id===cur && (b.dataset.sub||'')===subF ? 'true':'false'); }); }
 function defaultTab(eid){
   return (D.models[eid]||[]).length ? 'md' : 'pt';
+}
+
+function modelSubtypes(eid){
+  var groups = {};
+  (D.models[eid]||[]).forEach(function(m){
+    var name = m.modelSubtype || '기타';
+    groups[name] = (groups[name]||0) + 1;
+  });
+  return Object.keys(groups).map(function(name){return {name:name, count:groups[name]};});
 }
 
 // ── 표
@@ -619,9 +637,11 @@ function row(k,t,d,r){
 }
 
 function renderEquip(e){
-  var models = D.models[e.id]||[], l3 = D.l3[e.id];
+  var allModels = D.models[e.id]||[], l3 = D.l3[e.id];
+  var models = subF ? allModels.filter(function(m){ return (m.modelSubtype||'기타')===subF; }) : allModels;
   if(tab==='md' && !models.length) tab = 'pt';
   var h = '<div class="hd"><div class="dom">'+esc(e.domain)+'</div><h1>'+esc(e.title)+'</h1>'
+        + (subF ? '<div class="subttl">'+esc(subF)+'</div>' : '')
         + '<div class="tag">'+fmt(e.head)+'</div></div>';
   h += '<div class="tabs">'
      + tb('md','모델',models.length) + tb('pt','포인트',e.np) + tb('sp','사양',e.ns) + '</div>';
@@ -658,20 +678,9 @@ function renderModels(models, l3){
   if(models.length>1){
     // 모델이 20건을 넘으면 이름 전체가 길어 고르기 어렵다.
     // 공통 앞머리(제조사·컨트롤러)를 떼고 **다른 부분만** 보이게 한다.
-    var pre = models.length > 1 ? commonPrefix(models.map(function(x){return x.model;})) : '';
+    var pre = models.length > 1 ? commonPrefix(models.map(function(x){return x.selectorLabel || x.model;})) : '';
     h += (pre ? '<div class="mpre">'+esc(pre.replace(/[\s—·-]+$/,''))+'</div>' : '')
-       + '<div class="mlist">' + models.map(function(x,i){
-      // 프로토콜은 오른쪽 배지로 따로 보여주므로 이름에서는 뺀다 (중복 표기 방지)
-      var lbl = x.model.slice(pre.length).replace(/^[\s—·-]+/,'')
-                 .replace(/\s*\((BACnet|LonTalk|Modbus)\)\s*$/i,'') || x.model;
-      var pr = (x.comm||[]).map(function(c){return c[0];});
-      var tail = pr.length ? '<span class="mpr">'+esc(pr.join('·'))+'</span>' : '';
-      var n = (x.points||[]).length, sn = specCount(x);
-      var th = x.photo ? '<img class="mth" src="'+x.photo+'" alt="">' : '';
-      return '<button data-mi="'+i+'" aria-pressed="'+(i===mi)+'">'+th+esc(lbl)+tail
-           + (n ? '<span class="mn">'+n+'</span>' : '')
-           + (sn ? '<span class="ms">원문표 '+sn+'</span>' : '') + '</button>';
-    }).join('') + '</div>';
+       + '<div class="mlist">' + models.map(function(x,i){ return modelButton(x, i, pre); }).join('') + '</div>';
   }
   // 형번을 골랐으면 그 형번 사진을, 아니면 제품군 사진을 보여 준다.
   var vphoto = (m.variants||[])[Math.min(vsel,(m.variants||[]).length-1)];
@@ -1108,6 +1117,12 @@ function renderAhuUnitModelCandidates(m){
     + sec('전체 Unit Model Number 표', rows.length)
     + '<div class="guide"><b>실제 장비를 고르는 기준표예요</b>'
     + '<p>현장 장비일람표나 자재승인원에 적힌 형번을 이 표에서 찾아 선택합니다. 선택한 형번의 정격값을 기본값 후보로 쓰고, 오브젝트 목록은 같은 프로파일 문서의 L3 매핑 근거로 씁니다. 문서에 없는 항목의 열은 표시하지 않고, <b>척도가 다른 단위는 열을 가릅니다</b> — 단위는 머리글에 있고 열 안은 같은 척도라 그대로 비교·정렬하면 됩니다. 상태 배지: <b>자동 추출</b>=문서에서 기계가 옮긴 제안값, <b>확인됨</b>=사람이 원문과 대조해 확정, <b>수기 입력</b>=문서 한계로 직접 채움.</p></div>'
+    + '<div class="qrow"><span class="qsrc">Unit Model Number rating CSV: wide = simulator/BMS defaults, long = field QA/mapping</span>'
+    + csvBtn('unitwide'+m.id, safeName(m.vendor+'_'+m.model)+'_unit-model-ratings_wide.csv',
+             unitWideCsvHeader(m, rows), unitWideCsvRows(m, rows), 'Unit ratings wide CSV')
+    + csvBtn('unitlong'+m.id, safeName(m.vendor+'_'+m.model)+'_unit-model-ratings_long.csv',
+             unitLongCsvHeader(), unitLongCsvRows(m, rows), 'Unit ratings long CSV')
+    + '</div>'
     + '<div class="uvwt">'
     +   '<button data-uvw="table" aria-pressed="'+(view!=='cards')+'">표로 보기</button>'
     +   '<button data-uvw="cards" aria-pressed="'+(view==='cards')+'">카드로 보기</button>'
@@ -1138,6 +1153,82 @@ function unitEffectiveUnit(r, fid){
   var v = r[fid];
   if(!v || v === '—') return null;
   return (r.units||{})[fid] || unitFeature(fid).convUnit || '';
+}
+function unitCsvFeatureOrder(m){
+  var cls = unitClassOf(m);
+  var features = (D.unitSchema||{}).features || {};
+  var out = [];
+  function add(fid){
+    if(features[fid] && out.indexOf(fid) < 0) out.push(fid);
+  }
+  (cls.table||[]).forEach(add);
+  (cls.detailExtra||[]).forEach(add);
+  Object.keys(features).forEach(add);
+  return out;
+}
+function unitCsvBaseHeader(){
+  return ['modelId','equipmentId','vendor','model','unitModelNumber','unitNumberKind',
+          'unitRole','status','sourceFile','sourcePage','sourceTable'];
+}
+function unitCsvBaseRow(m, r){
+  return [m.id||'', m.equipId||'', m.vendor||'', m.model||'', unitCode(r),
+          r.unitNumberKind||'', unitRole(r), r.status||'', r.sourceFile||'',
+          r.sourcePage||'', r.sourceTable||''];
+}
+function unitWideCsvHeader(m, rows){
+  var h = unitCsvBaseHeader();
+  unitCsvFeatureOrder(m).forEach(function(fid){
+    h.push(fid);
+    h.push(fid+'Unit');
+  });
+  return h;
+}
+
+function modelButton(x, i, pre){
+  // 프로토콜은 오른쪽 배지로 따로 보여주므로 이름에서는 뺀다 (중복 표기 방지)
+  var base = x.selectorLabel || x.model;
+  var lbl = base.slice(pre.length).replace(/^[\s—·-]+/,'')
+             .replace(/\s*\((BACnet|LonTalk|Modbus)\)\s*$/i,'') || base;
+  var pr = (x.comm||[]).map(function(c){return c[0];});
+  var tail = pr.length ? '<span class="mpr">'+esc(pr.join('·'))+'</span>' : '';
+  var n = (x.points||[]).length, sn = specCount(x);
+  var th = x.photo ? '<img class="mth" src="'+x.photo+'" alt="">' : '';
+  return '<button data-mi="'+i+'" aria-pressed="'+(i===mi)+'">'+th+esc(lbl)+tail
+       + (n ? '<span class="mn">'+n+'</span>' : '')
+       + (sn ? '<span class="ms">원문표 '+sn+'</span>' : '') + '</button>';
+}
+
+function unitWideCsvRows(m, rows){
+  var fids = unitCsvFeatureOrder(m);
+  return rows.map(function(r){
+    var row = unitCsvBaseRow(m, r);
+    fids.forEach(function(fid){
+      var v = r[fid];
+      row.push((v && v !== '—') ? v : '');
+      row.push((v && v !== '—') ? ((r.units||{})[fid] || unitFeature(fid).convUnit || '') : '');
+    });
+    return row;
+  });
+}
+function unitLongCsvHeader(){
+  return unitCsvBaseHeader().concat(['fieldId','fieldKo','value','unit']);
+}
+function unitLongCsvRows(m, rows){
+  var fids = unitCsvFeatureOrder(m);
+  var out = [];
+  rows.forEach(function(r){
+    fids.forEach(function(fid){
+      var v = r[fid];
+      if(!v || v === '—') return;
+      out.push(unitCsvBaseRow(m, r).concat([
+        fid,
+        unitFieldKo(fid, unitClassOf(m)),
+        v,
+        (r.units||{})[fid] || unitFeature(fid).convUnit || ''
+      ]));
+    });
+  });
+  return out;
 }
 function unitCols(m, rows){
   var cls = unitClassOf(m);
