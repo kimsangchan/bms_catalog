@@ -432,6 +432,10 @@ function modelSubtypes(eid){
   });
   return Object.keys(groups).map(function(name){return {name:name, count:groups[name]};});
 }
+function visibleModels(eid){
+  var allModels = D.models[eid] || [];
+  return subF ? allModels.filter(function(m){ return (m.modelSubtype||'기타')===subF; }) : allModels;
+}
 
 // ── 표
 // 표가 길면 나눠 그린다. 1,537행짜리 오브젝트 목록을 한 번에 그리면
@@ -637,8 +641,8 @@ function row(k,t,d,r){
 }
 
 function renderEquip(e){
-  var allModels = D.models[e.id]||[], l3 = D.l3[e.id];
-  var models = subF ? allModels.filter(function(m){ return (m.modelSubtype||'기타')===subF; }) : allModels;
+  var l3 = D.l3[e.id];
+  var models = visibleModels(e.id);
   if(tab==='md' && !models.length) tab = 'pt';
   var h = '<div class="hd"><div class="dom">'+esc(e.domain)+'</div><h1>'+esc(e.title)+'</h1>'
         + (subF ? '<div class="subttl">'+esc(subF)+'</div>' : '')
@@ -1905,13 +1909,13 @@ function wire(){
     b.addEventListener('click',function(){ mview=b.dataset.mview; pageOf={}; render(); });});
   main.querySelectorAll('.ucard').forEach(function(b){
     b.addEventListener('click',function(){
-      var models = D.models[cur] || [], m = models[Math.min(mi, models.length-1)];
+      var models = visibleModels(cur), m = models[Math.min(mi, models.length-1)];
       if(m) usel[m.id] = +b.dataset.ui;
       render();
     });});
   main.querySelectorAll('.uvwt button').forEach(function(b){
     b.addEventListener('click',function(){
-      var models = D.models[cur] || [], m = models[Math.min(mi, models.length-1)];
+      var models = visibleModels(cur), m = models[Math.min(mi, models.length-1)];
       if(m) uvw[m.id] = b.dataset.uvw;
       re();   // 보기 방식만 바뀌고 보던 자리는 그대로
     });});

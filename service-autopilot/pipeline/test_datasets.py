@@ -86,6 +86,48 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(coil["status"], "matched")
         self.assertEqual(coil["matchedInputs"][0]["fieldId"], "coilRowsFpi")
 
+    def test_carrier_48_50n_merges_airflow_limits_into_size_cards(self):
+        model = datasets.load_models()[
+            "carrier-comfortlink-48-50n-weatherexpert-rooftop-75-150-ton-bacnet-co"]
+        units = {row["unitModelNumber"]: row for row in datasets.unit_models(model)}
+
+        self.assertEqual(units["48/50N N"]["ratedAirflow"], "15,000 – 37,500")
+        self.assertEqual(units["48/50N N"]["units"]["ratedAirflow"], "CFM")
+        self.assertIn("airflow limits p10", units["48/50N N"]["sourceTable"])
+
+    def test_mitsubishi_pac_if013_merges_nominal_capacity_with_airflow_cards(self):
+        model = datasets.load_models()[
+            "mitsubishi-electric-pac-if013b-sif013b-mr-slim-ahu-interface-modbus"]
+        units = {row["unitModelNumber"]: row for row in datasets.unit_models(model)}
+
+        self.assertEqual(units["ZRP100"]["ratedAirflow"], "978 – 2016")
+        self.assertEqual(units["ZRP100"]["grossCoolingCapacity"], "10.0")
+        self.assertEqual(units["ZRP100"]["heatingCapacity"], "11.2")
+        self.assertEqual(units["ZRP100"]["units"]["grossCoolingCapacity"], "kW")
+        self.assertEqual(units["ZRP100"]["units"]["heatingCapacity"], "kW")
+
+    def test_lg_eev_capacity_range_is_a_compatibility_rating(self):
+        model = datasets.load_models()[
+            "lg-ahu-comm-kit-0caa0-02m-multi-v-single-ahu-interface-modbus-pahcms000"]
+        units = {row["unitModelNumber"]: row for row in datasets.unit_models(model)}
+
+        self.assertEqual(units["PRLK594A0"]["unitRole"], "eevKit")
+        self.assertEqual(units["PRLK594A0"]["capacityClass"], "EEV kit")
+        self.assertEqual(units["PRLK594A0"]["compatibleCapacityRange"], "112.1 – 168")
+        self.assertEqual(units["PRLK594A0"]["units"]["compatibleCapacityRange"], "kW")
+
+    def test_york_zr_large_reheat_cards_merge_base_physical_data(self):
+        model = datasets.load_models()[
+            "johnson-controls-york-simplicity-se-smart-equipment-york-rooftop-units-modbus"]
+        units = {row["unitModelNumber"]: row for row in datasets.unit_models(model)}
+
+        self.assertEqual(units["ZR078"]["ratedAirflow"], "2200")
+        self.assertEqual(units["ZR078"]["grossCoolingCapacity"], "80000")
+        self.assertEqual(units["ZR078"]["ahriNetCoolingCapacity"], "78000")
+        self.assertEqual(units["ZR078"]["systemPower"], "6.96")
+        self.assertEqual(units["ZR078"]["coilFaceArea"], "23.8")
+        self.assertIn("base physical p21", units["ZR078"]["sourceTable"])
+
     def test_ahu_electrical_rows_feed_power_requirement(self):
         data = datasets.build_dataset(equip_ids={"e5"})
         model = data["modelMappings"]["trane-symbio-700-odyssey-lontalk-scc"]
@@ -523,7 +565,8 @@ class DatasetBuildTest(unittest.TestCase):
         s_units = {u["unitModelNumber"]: u for u in skit["unitModels"]}
         self.assertEqual(len(r_units), 3)
         self.assertEqual(len(s_units), 4)
-        self.assertEqual(r_units["PRLK048A0"]["capacityClass"], "3.6–28 kW")
+        self.assertEqual(r_units["PRLK048A0"]["capacityClass"], "EEV kit")
+        self.assertEqual(r_units["PRLK048A0"]["compatibleCapacityRange"], "3.6 – 28")
         self.assertEqual(r_units["PRLK048A0"]["unitRole"], "eevKit")
         self.assertIn("PRLK594A0", s_units)     # 168 kW 급은 급기 킷만 지원
         self.assertNotIn("PRLK594A0", r_units)

@@ -933,6 +933,184 @@ def merge_continued_unit_rows(rows):
     return [row for idx, row in enumerate(merged) if idx not in consumed]
 
 
+def enrich_carrier_48_50n_airflow(model, rows):
+    airflow_by_size = {}
+    for table in model.get("specTables") or []:
+        if not re.search(r"UNIT DESIGN AIRFLOW LIMITS", table.get("title") or "", re.I):
+            continue
+        current_size = ""
+        grouped = {}
+        for raw in table.get("rows") or []:
+            cells = row_cells(raw)
+            if not cells:
+                continue
+            if cells[0]:
+                m = re.match(r"^([A-Z])\s*\(([^)]+)\)", cells[0])
+                current_size = m.group(1) if m else ""
+            if not current_size or len(cells) < 4:
+                continue
+            lo, hi = cells[2].strip(), cells[3].strip()
+            if lo and hi:
+                grouped.setdefault(current_size, set()).add((lo, hi))
+        for size, values in grouped.items():
+            lows = [v[0] for v in values]
+            highs = [v[1] for v in values]
+            airflow_by_size[size] = {
+                "value": "%s – %s" % (min(lows), max(highs)),
+                "page": table.get("page"),
+                "source": table.get("source"),
+                "title": table.get("title") or "",
+            }
+    if not airflow_by_size:
+        return rows
+    enriched = []
+    for row in rows:
+        row = dict(row)
+        m = re.search(r"\b48/50N\s+([A-Z])\b", row.get("unitModelNumber") or "")
+        info = airflow_by_size.get(m.group(1)) if m else None
+        if info:
+            row["ratedAirflow"] = info["value"]
+            units = dict(row.get("units") or {})
+            units["ratedAirflow"] = "CFM"
+            row["units"] = units
+            row["sourceTable"] = "%s + airflow limits p%s" % (
+                row.get("sourceTable") or "", info["page"] or "")
+        enriched.append(row)
+    return enriched
+
+
+def mitsubishi_capacity_code_map(table):
+    header = row_cells(table.get("header") or [])
+    rows = [row_cells(r) for r in table.get("rows") or []]
+    if len(rows) < 4:
+        return {}
+    shw = rows[0]
+    zm = rows[1]
+    cooling = rows[2]
+    heating = rows[3]
+    by_code = {}
+    for col in range(2, len(header)):
+        cool = cooling[col].strip() if col < len(cooling) else ""
+        heat = heating[col].strip() if col < len(heating) else ""
+        if not cool and not heat:
+            continue
+        zrp_p = re.findall(r"\d{2,3}", header[col] or "")
+        codes = []
+        if zrp_p:
+            codes.append("ZRP%s" % zrp_p[0])
+        if len(zrp_p) > 1:
+            codes.append("P%s" % zrp_p[1])
+        shw_size = shw[col].strip() if col < len(shw) else ""
+        if re.match(r"^\d{2,3}$", shw_size):
+            codes.append("SHW%s" % shw_size)
+        zm_size = zm[col].strip() if col < len(zm) else ""
+        if re.match(r"^\d{2,3}$", zm_size):
+            codes.append("ZM%s" % zm_size)
+        for code in codes:
+            by_code[code] = {"cooling": cool, "heating": heat,
+                             "page": table.get("page")}
+    return by_code
+
+
+def enrich_mitsubishi_nominal_capacity(model, rows):
+    by_code = {}
+    for table in model.get("specTables") or []:
+        if re.search(r"Nominal capacity", table.get("title") or "", re.I):
+            by_code.update(mitsubishi_capacity_code_map(table))
+    if not by_code:
+        return rows
+    enriched = []
+    for row in rows:
+        row = dict(row)
+        info = by_code.get(row.get("unitModelNumber") or "")
+        if info:
+            if info.get("cooling"):
+                row["grossCoolingCapacity"] = info["cooling"]
+            if info.get("heating"):
+                row["heatingCapacity"] = info["heating"]
+            units = dict(row.get("units") or {})
+            if info.get("cooling"):
+                units["grossCoolingCapacity"] = "kW"
+            if info.get("heating"):
+                units["heatingCapacity"] = "kW"
+            row["units"] = units
+            if "nominal capacity" not in clean_text(row.get("sourceTable")).lower():
+                row["sourceTable"] = "%s + nominal capacity p%s" % (
+                    row.get("sourceTable") or "", info.get("page") or "")
+        enriched.append(row)
+    return enriched
+
+
+YORK_ZR_078_150_BASE = {
+    "ZR078": {
+        "ratedAirflow": "2200", "grossCoolingCapacity": "80000",
+        "ahriNetCoolingCapacity": "78000", "eer": "11.2", "ieer": "12.5",
+        "systemPower": "6.96", "capacitySteps": "50 / 100",
+        "coilFaceArea": "23.8", "refrigerantControl": "TXV",
+    },
+    "ZR090": {
+        "ratedAirflow": "2775", "grossCoolingCapacity": "90000",
+        "ahriNetCoolingCapacity": "88000", "eer": "11.2", "ieer": "12.5",
+        "systemPower": "7.77", "capacitySteps": "50 / 100",
+        "coilFaceArea": "23.8", "refrigerantControl": "TXV",
+    },
+    "ZR102": {
+        "ratedAirflow": "3350", "grossCoolingCapacity": "105000",
+        "ahriNetCoolingCapacity": "1020001/1000002", "eer": "11.2",
+        "ieer": "12.41/12.22", "systemPower": "9.11",
+        "capacitySteps": "50 / 100", "coilFaceArea": "29.0",
+        "refrigerantControl": "TXV",
+    },
+    "ZR120": {
+        "ratedAirflow": "3750", "grossCoolingCapacity": "124000",
+        "ahriNetCoolingCapacity": "118000", "eer": "11.2", "ieer": "11.4",
+        "systemPower": "10.71", "capacitySteps": "50 / 100",
+        "coilFaceArea": "29.0", "refrigerantControl": "TXV",
+    },
+    "ZR150": {
+        "ratedAirflow": "4450", "grossCoolingCapacity": "157000",
+        "ahriNetCoolingCapacity": "150000", "eer": "11.0", "ieer": "11.4",
+        "systemPower": "13.39", "capacitySteps": "50 / 100",
+        "coilFaceArea": "47.5", "refrigerantControl": "TXV",
+    },
+}
+
+
+def enrich_york_zr_large_base_physical(model, rows):
+    enriched = []
+    for row in rows:
+        row = dict(row)
+        info = YORK_ZR_078_150_BASE.get(row.get("unitModelNumber") or "")
+        if info:
+            row.update(info)
+            units = dict(row.get("units") or {})
+            for fid, unit in (
+                ("ratedAirflow", "CFM"),
+                ("grossCoolingCapacity", "MBh"),
+                ("ahriNetCoolingCapacity", "MBh"),
+                ("systemPower", "kW"),
+                ("capacitySteps", "%"),
+                ("coilFaceArea", "sq ft"),
+            ):
+                units[fid] = unit
+            row["units"] = units
+            if "base physical p21" not in row.get("sourceTable", ""):
+                row["sourceTable"] = "ZR078-150 Physical Data + base physical p21 + continued p22"
+        enriched.append(row)
+    return enriched
+
+
+def enrich_special_unit_rows(model, rows):
+    mid = model.get("id") or ""
+    if mid == "carrier-comfortlink-48-50n-weatherexpert-rooftop-75-150-ton-bacnet-co":
+        rows = enrich_carrier_48_50n_airflow(model, rows)
+    if mid == "mitsubishi-electric-pac-if013b-sif013b-mr-slim-ahu-interface-modbus":
+        rows = enrich_mitsubishi_nominal_capacity(model, rows)
+    if mid == "johnson-controls-york-simplicity-se-smart-equipment-york-rooftop-units-modbus":
+        rows = enrich_york_zr_large_base_physical(model, rows)
+    return rows
+
+
 def unit_models(model):
     """제품군/통신 프로파일 문서 안의 실제 Unit Model Number 후보.
 
@@ -1052,6 +1230,12 @@ def unit_models(model):
                     r"^Nominal Tonnage$|^Gross cooling capacity \(tons\)|^NOMINAL CAPACITY",
                     col)
                 capacity = ("%s Tons" % tons) if tons else "—"
+            if re.search(r"EEV kit", title, re.I) and re.search(r"kW", capacity, re.I):
+                compatible_range = re.sub(r"\s*kW\b", "", capacity, flags=re.I).strip()
+                compatible_range = re.sub(r"\s*[–-]\s*", " – ", compatible_range)
+                fields["compatibleCapacityRange"] = compatible_range
+                units["compatibleCapacityRange"] = "kW"
+                capacity = "EEV kit"
             out.append(dict(fields,
                             unitModelNumber=code,
                             unitNumberKind="modelNumber",
@@ -1064,7 +1248,7 @@ def unit_models(model):
                             sourceFile=table.get("source"),
                             selectionStatus="unit_candidate"))
     out.extend(capacity_units.values())
-    return merge_continued_unit_rows(out)
+    return enrich_special_unit_rows(model, merge_continued_unit_rows(out))
 
 
 _UNIT_SCHEMA = None

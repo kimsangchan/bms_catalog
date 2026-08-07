@@ -33,6 +33,7 @@
  },
  "features": {
   "capacityClass": {"ko": "용량대", "convUnit": ""},
+  "compatibleCapacityRange": {"ko": "호환 용량 범위", "convUnit": "kW"},
   "matchedAirHandler": {"ko": "조합 공조기", "convUnit": ""},
   "ratedAirflow": {"ko": "정격 풍량", "convUnit": "CFM"},
   "ecodesignAirflow": {"ko": "Ecodesign 풍량", "convUnit": "m³/h"},
@@ -68,13 +69,13 @@
  "classes": {
   "e5": {
    "ko": "공조기 (AHU·RTU)",
-   "table": ["capacityClass", "matchedAirHandler", "ratedAirflow", "ecodesignAirflow", "sfp15Airflow", "sfp20Airflow", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer", "ieer", "systemPower", "soundRating", "cabinetSize", "airflowConfiguration", "capacitySteps", "fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"],
+   "table": ["capacityClass", "compatibleCapacityRange", "matchedAirHandler", "ratedAirflow", "ecodesignAirflow", "sfp15Airflow", "sfp20Airflow", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer", "ieer", "systemPower", "soundRating", "cabinetSize", "airflowConfiguration", "capacitySteps", "fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"],
    "detailExtra": ["ieer", "seer", "seer2", "heatingCapacity", "cop", "cabinetSize", "airflowConfiguration", "compressorConfig", "capacitySteps", "refrigerantCircuits", "condenserFans", "condenserAirflow", "refrigerantCharge", "refrigerantControl", "unitWidth", "unitHeight", "unitLength"],
    "roles": {
     "airHandler": {"ko": "공기측 유닛", "detail": ["fanMotorHp", "fanMotorRpm", "coilFaceArea", "coilRowsFpi"]},
     "condensingUnit": {"ko": "실외/응축 유닛", "detail": ["matchedAirHandler", "grossCoolingCapacity", "ahriNetCoolingCapacity", "eer"]},
     "packagedUnit": {"ko": "일체형(패키지) 유닛", "detail": ["grossCoolingCapacity", "ahriNetCoolingCapacity", "eer", "fanMotorHp"]},
-    "eevKit": {"ko": "팽창밸브 킷(EEV)", "detail": []}
+    "eevKit": {"ko": "팽창밸브 킷(EEV)", "detail": ["compatibleCapacityRange"]}
    }
   },
   "e9": {
