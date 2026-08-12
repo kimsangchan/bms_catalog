@@ -31,7 +31,9 @@
    "name": "Drive ON/OFF",
    "unitRaw": null,
    "unit": null,
-   "note": "Read:01 Write:05/15 · 0=OFF / 1=ON • If the interface unit receives other data, received data will be cancelled. · Modbus reg 0"
+   "note": "Read:01 Write:05/15 · 0=OFF / 1=ON • If the interface unit receives other data, received data will be cancelled. · Modbus reg 0",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MB",
@@ -39,7 +41,9 @@
    "name": "TH11:HEX inlet air temp.",
    "unitRaw": null,
    "unit": null,
-   "note": "Read:04 · -39°C-88.5°C (by 0.5°C) · Modbus reg 0"
+   "note": "Read:04 · -39°C-88.5°C (by 0.5°C) · Modbus reg 0",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MB",
@@ -47,7 +51,9 @@
    "name": "TH1: Target air temp.",
    "unitRaw": null,
    "unit": null,
-   "note": "-39°C-88.5°C (by 0.5°C) · Modbus reg 1"
+   "note": "-39°C-88.5°C (by 0.5°C) · Modbus reg 1",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MB",
@@ -55,7 +61,9 @@
    "name": "TH5: 2-Phase temp.",
    "unitRaw": null,
    "unit": null,
-   "note": "-39°C-88.5°C (by 0.5°C) · Modbus reg 2"
+   "note": "-39°C-88.5°C (by 0.5°C) · Modbus reg 2",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MB",
@@ -63,7 +71,9 @@
    "name": "TH2: Ref. liquid temp.",
    "unitRaw": null,
    "unit": null,
-   "note": "-39°C-88.5°C (by 0.5°C) · Modbus reg 3"
+   "note": "-39°C-88.5°C (by 0.5°C) · Modbus reg 3",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MB",
@@ -71,7 +81,9 @@
    "name": "TH7: Outdoor temp.",
    "unitRaw": null,
    "unit": null,
-   "note": "-15°C-46°C (by 1°C) · Modbus reg 4"
+   "note": "-15°C-46°C (by 1°C) · Modbus reg 4",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MB",
@@ -79,7 +91,9 @@
    "name": "Error Code (hex)",
    "unitRaw": null,
    "unit": null,
-   "note": "0x8000=No error 0x8000≠Error Code *1 · Modbus reg 6"
+   "note": "0x8000=No error 0x8000≠Error Code *1 · Modbus reg 6",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MB",
@@ -87,7 +101,9 @@
    "name": "Error Code (decimal)",
    "unitRaw": null,
    "unit": null,
-   "note": "8000=No error 8000≠Error Code *1 · Modbus reg 7"
+   "note": "8000=No error 8000≠Error Code *1 · Modbus reg 7",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MB",
@@ -95,7 +111,9 @@
    "name": "External Output OUT1: ON/OFF OUT2: Error OUT3: Compressor OUT4: Defrost OUT5: Cooling mode OUT6: Heating mode OUT7: Self protection OUT8: Predefrost",
    "unitRaw": null,
    "unit": null,
-   "note": "bit0:OUT1 0=OFF / 1=ON ~~~ bit7:OUT8 e.g.) When only OUT3 is \"ON\", outputs are as follows. bit 7654 3210 Out 0000 0100 → 0x0004\" · Modbus reg 8"
+   "note": "bit0:OUT1 0=OFF / 1=ON ~~~ bit7:OUT8 e.g.) When only OUT3 is \"ON\", outputs are as follows. bit 7654 3210 Out 0000 0100 → 0x0004\" · Modbus reg 8",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MB",
@@ -103,7 +121,9 @@
    "name": "Ref.address",
    "unitRaw": null,
    "unit": null,
-   "note": "0x0000=address0 0x0001=address1 ~~~~ 0x000F=address15 · Modbus reg 9"
+   "note": "0x0000=address0 0x0001=address1 ~~~~ 0x000F=address15 · Modbus reg 9",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MB",
@@ -111,7 +131,9 @@
    "name": "Modbus Comms Counter",
    "unitRaw": null,
    "unit": null,
-   "note": "Value or a counter which increments upon every valid Modbus command received. 0=0count 1=1count ~~ 65535=65535count • When the counter becomes more than 65535, it's cleared. · Modbus reg 10"
+   "note": "Value or a counter which increments upon every valid Modbus command received. 0=0count 1=1count ~~ 65535=65535count • When the counter becomes more than 65535, it's cleared. · Modbus reg 10",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MB",
@@ -119,7 +141,9 @@
    "name": "Capacity request (from Local controller)",
    "unitRaw": null,
    "unit": null,
-   "note": "Read:03 Write: 06/ 16 · OFF, Step1-Step11, Auto step mode • Auto step mode is Read only · Modbus reg 0"
+   "note": "Read:03 Write: 06/ 16 · OFF, Step1-Step11, Auto step mode • Auto step mode is Read only · Modbus reg 0",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 6
   },
   {
    "type": "MB",
@@ -127,7 +151,9 @@
    "name": "Drive Mode",
    "unitRaw": null,
    "unit": null,
-   "note": "1 (0x0001) = Heating mode, 3 (0x0003) = Cooling mode, 7(0x0007) = Fan mode, 8 (0x0008) = Auto change over • If the interface unit receives other data, received data will be cancelled. · Modbus reg 1"
+   "note": "1 (0x0001) = Heating mode, 3 (0x0003) = Cooling mode, 7(0x0007) = Fan mode, 8 (0x0008) = Auto change over • If the interface unit receives other data, received data will be cancelled. · Modbus reg 1",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 6
   },
   {
    "type": "MB",
@@ -135,7 +161,9 @@
    "name": "Temperature Setpoint",
    "unitRaw": null,
    "unit": null,
-   "note": "Cooling: 12~30°C Heating: 17~28°C Auto change over: 17~28°C (by 1°C) · Modbus reg 2"
+   "note": "Cooling: 12~30°C Heating: 17~28°C Auto change over: 17~28°C (by 1°C) · Modbus reg 2",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 6
   },
   {
    "type": "MB",
@@ -143,7 +171,9 @@
    "name": "Drive ON/OFF",
    "unitRaw": null,
    "unit": null,
-   "note": "0=OFF / 1=ON • If the interface unit receives other data, received data will be cancelled. · Modbus reg 3"
+   "note": "0=OFF / 1=ON • If the interface unit receives other data, received data will be cancelled. · Modbus reg 3",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 6
   },
   {
    "type": "MB",
@@ -151,7 +181,9 @@
    "name": "Error Code (hex) [READ ONLY]",
    "unitRaw": null,
    "unit": null,
-   "note": "0x8000=No error 0x8000≠Error Code *2 · Modbus reg 4"
+   "note": "0x8000=No error 0x8000≠Error Code *2 · Modbus reg 4",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 6
   },
   {
    "type": "MB",
@@ -159,7 +191,9 @@
    "name": "Error Code (decimal) [READ ONLY]",
    "unitRaw": null,
    "unit": null,
-   "note": "8000=No error 8000≠Error Code *2 · Modbus reg 5"
+   "note": "8000=No error 8000≠Error Code *2 · Modbus reg 5",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 6
   },
   {
    "type": "MB",
@@ -167,7 +201,9 @@
    "name": "Step status [READ ONLY]",
    "unitRaw": null,
    "unit": null,
-   "note": "OFF,Step1-Step11,Auto step mode · Modbus reg 6"
+   "note": "OFF,Step1-Step11,Auto step mode · Modbus reg 6",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 6
   },
   {
    "type": "MB",
@@ -175,7 +211,9 @@
    "name": "Ref.address [READ ONLY]",
    "unitRaw": null,
    "unit": null,
-   "note": "0x0000=address0 0x0001=address1 ~~~~ 0x000F=address15 · Modbus reg 7"
+   "note": "0x0000=address0 0x0001=address1 ~~~~ 0x000F=address15 · Modbus reg 7",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 6
   },
   {
    "type": "MB",
@@ -183,7 +221,9 @@
    "name": "Modbus Comms Counter [READ ONLY]",
    "unitRaw": null,
    "unit": null,
-   "note": "Value or a counter which increments upon every valid Modbus command received. 0=0count 1=1count ~~ 65535=65535count • When the counter becomes more than 65535, it΄s cleared. · Modbus reg 8"
+   "note": "Value or a counter which increments upon every valid Modbus command received. 0=0count 1=1count ~~ 65535=65535count • When the counter becomes more than 65535, it΄s cleared. · Modbus reg 8",
+   "sourceFile": "Mitsubishi_PAC-IF013_Modbus_Manual.pdf",
+   "sourcePage": 6
   }
  ],
  "gap": "Mr.Slim 실외기 연동 AHU 인터페이스 킷 — 포인트는 Modbus 매뉴얼의 코일/입력(30001~)/홀딩(40001~) 20점(Modicon 절대 표기). 형번은 설계 가이드라인 13쪽 표준 풍량 표에서 조합 실외기 시리즈×용량(ZRP/P/SHW/ZM 35~250) 22건을 텍스트 층으로 조합(예: ZRP35 = 실외기 PUHZ-ZRP35). 실외기 자체의 냉방능력·전기 정격은 실외기 데이터북이 따로 필요하다. 문서에 제품 실물 사진이 없어(단자대 접사뿐) 사진은 비워 둔다.",

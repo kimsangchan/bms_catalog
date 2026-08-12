@@ -604,7 +604,7 @@ SOURCES = [
     },
     {
         "id": "jci-simplicity-se",
-        "vendor": "Johnson Controls / York",
+        "vendor": "Johnson Controls / YORK",
         "kind": "포인트리스트",
         "note": "York 옥상형(RTU) Smart Equipment(Simplicity SE) 포인트 매핑 기술 부록 — "
                 "BACnet OID 와 Modbus 레지스터가 한 표에 병기된다(펌웨어 v1072, 문서 "

@@ -170,6 +170,11 @@ def unit_or_note(u):
     return text, ""
 
 
+def point_source(pdf, page_no):
+    """오브젝트 행의 원문 위치. page_no 는 사람이 보는 1-base 쪽 번호."""
+    return {"sourceFile": os.path.basename(pdf), "sourcePage": page_no}
+
+
 # 한 문서에 장치가 둘이고 **번호를 다시 쓰는** 경우를 표 제목으로 가른다.
 # JCI VRF 게이트웨이는 실내기 표와 실외기 표가 AI-16 을 각각 다른 뜻으로 쓰고,
 # LG AHU 킷은 환기(PAHCMR000)·급기(PAHCMS000) 맵이 같은 레지스터 번호를 재사용한다 —
@@ -246,6 +251,7 @@ def extract_tables(pdf, default_type=None, pages=None):
             hdr = [_c(c).lower() for c in data[h0]]
             idx = _mk_idx(hdr)
             i_id = idx(*COL["id"])
+            i_bac_oid = idx("bacoid", "bac oid")
             # 진단 알람도 BACnet 오브젝트다 — Ascend 문서는 이름 열을 'Diagnostic Name'
             # 으로 쓰는데, 이걸 못 알아봐서 알람 BI 488점을 통째로 놓쳤었다.
             i_nm = idx(*COL["name"])
@@ -296,6 +302,11 @@ def extract_tables(pdf, default_type=None, pages=None):
             i_mt = idx("modbus type")
             i_bn = idx("bacnet")
             i_fn = idx("function")
+            i_mb_scale = idx("modbus scale factor", "scale factor")
+            i_mb_bool = idx("modbus boolean flag", "boolean flag")
+            i_mb_signed = idx("modbus signed flag", "signed flag")
+            i_mb_offset = idx("modbus offset", "offset")
+            i_mb_writable = idx("modbus writable flag", "writable flag")
             # EXOL 경로명(VentSettings.SAlaAcknowAll_)은 공백이 없다 — 셀 줄바꿈이
             # 이름 중간에 공백을 끼워 넣으므로 EXOL 열이 있는 문서에선 걷어낸다
             exol_doc = any("exol" in h for h in
@@ -313,6 +324,7 @@ def extract_tables(pdf, default_type=None, pages=None):
                 raw_id = _c(r[i_id]) if i_id >= 0 else ""
                 pid = parse_objid(raw_id)
                 extra_note = ""
+                extra_fields = {}
                 if split:
                     typ, inst = split
                 elif pid:
@@ -343,7 +355,21 @@ def extract_tables(pdf, default_type=None, pages=None):
                     # 만든다. 같은 행의 Modbus 주소를 레지스터 포인트로 취입하고
                     # BACnet OID 는 비고에 남긴다 (타입은 LIT-12011950 참조).
                     typ, inst = "MB", int(_c(r[i_mb]))
-                    extra_note = "BACnet OID %s (타입 열 없음)" % raw_id
+                    extra_note = "BACnet OID %s (object type not in source)" % raw_id
+                    extra_fields = {
+                        "bacOid": int(raw_id),
+                        "modbusRegister": int(_c(r[i_mb])),
+                    }
+                    if 0 <= i_mb_scale < len(r) and _c(r[i_mb_scale]) and _c(r[i_mb_scale]) != "#N/A":
+                        extra_fields["modbusScaleFactor"] = _c(r[i_mb_scale])
+                    if 0 <= i_mb_bool < len(r) and _c(r[i_mb_bool]).isdigit():
+                        extra_fields["modbusBooleanFlag"] = int(_c(r[i_mb_bool]))
+                    if 0 <= i_mb_signed < len(r) and _c(r[i_mb_signed]) and _c(r[i_mb_signed]) != "#N/A":
+                        extra_fields["modbusSignedFlag"] = _c(r[i_mb_signed])
+                    if 0 <= i_mb_offset < len(r) and _c(r[i_mb_offset]).isdigit():
+                        extra_fields["modbusOffset"] = int(_c(r[i_mb_offset]))
+                    if 0 <= i_mb_writable < len(r) and _c(r[i_mb_writable]).isdigit():
+                        extra_fields["modbusWritableFlag"] = int(_c(r[i_mb_writable]))
                 else:
                     continue
                 name = _c(r[i_nm])
@@ -386,6 +412,8 @@ def extract_tables(pdf, default_type=None, pages=None):
                              "name": name, "unitRaw": UNIT_HINT.get(u, u or None),
                              "unit": S.canon_unit(UNIT_HINT.get(u, u)),
                              "note": " · ".join(note)[:240],
+                             **point_source(pdf, pg.number + 1),
+                             **extra_fields,
                              "sect": sect_at(caps, pg.number, t.bbox[1])})
     seen, out = set(), []
     # 정렬은 구간을 먼저 묶는다 — 번호를 재사용하는 두 장치가 섞이면
@@ -482,6 +510,7 @@ def extract_by_section(pdf):
                 rows.append({"type": S.canon_type(typ), "inst": inst, "name": name,
                              "unitRaw": UNIT_HINT.get(u, u or None),
                              "unit": S.canon_unit(UNIT_HINT.get(u, u)),
+                             **point_source(pdf, i + 1),
                              "note": " · ".join(note)[:240]})
     seen, out = set(), []
     for r in sorted(rows, key=lambda x: (x["type"], x["inst"])):
@@ -544,6 +573,7 @@ def extract_lontalk(pdf, keep_order=False):
                 typ = "NCI" if name[:3].lower() == "nci" else "NV"
                 rows.append({"type": typ, "inst": int(rid), "name": name,
                              "unitRaw": None, "unit": None, "note": " · ".join(note)[:240]})
+                rows[-1].update(point_source(pdf, pg.number + 1))
     seq = rows if keep_order else sorted(rows, key=lambda x: (x["type"], x["inst"]))
     seen, out = set(), []
     for r in seq:

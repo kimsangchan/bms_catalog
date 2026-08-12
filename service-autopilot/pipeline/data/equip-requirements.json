@@ -1,0 +1,350 @@
+{
+  "version": 1,
+  "description": "설비별 요구 항목 정의 — 무엇을 뽑을지 문서를 열기 전에 정한다. 추출·검증·채점의 기준.",
+  "rules": [
+    "① 요구 먼저. 설비(하위형식 포함) 착수 전 여기에 프로파일이 없으면 수집·추출을 시작하지 않는다.",
+    "② 쓰임 없으면 항목이 아니다. 모든 항목에 usedBy(어느 계산에 들어가나)와 why 를 적는다. 못 적으면 넣지 않는다.",
+    "③ 하위형식이 다르면 다른 설비다. RTU(직팽 패키지)와 AHU(냉수·온수코일)는 계산식이 달라 프로파일을 나눈다.",
+    "④ features 는 unit-schema.json 에 정의된 id 만 쓴다. 빈 배열은 '사전에 아직 없음 = 신설 과제'라는 뜻이다.",
+    "⑤ 채점은 이 파일 기준으로만 한다. 여기 없는 값을 많이 뽑았다고 잘한 것이 아니고, 여기 있는 값이 비면 미완이다.",
+    "⑥ 표에서 정량으로 얻어지는 것만 채운다. 본문 서술·곡선 그래프에만 있는 값은 지어내지 말고 값을 비운 채 항목만 남기고 사유를 적는다 (requirements.py --probe 가 판정, data/requirement-availability.json 에 기록).",
+    "⑦ 요구 항목과 템플릿은 Haystack protos 와 대조해 근거를 남긴다. haystack.py --diff <설비> 로 대조하고, 표준에 없는 항목은 왜 필요한지 벤더 원문 근거를 적는다. 손으로 쓴 목록은 RTU 에 냉수코일을 요구하는 사고를 낸다 — 정격에서 한 번, 오브젝트에서 또 한 번 났다. 단 Haystack 은 운영 데이터 온톨로지지 명판 정격 카탈로그가 아니다: 719 defs 중 protos 에 rated·design·capacity 가 한 건도 없고 is:number 수치 속성은 7개뿐이며 장비 능력은 coolingCapacity(tagOn chiller) 하나다. 그래서 정격 요구 항목은 대조로 나오지 않는다 — 규칙 ②의 계산식(energyModel) 기준으로 정한다."
+  ],
+  "grades": {
+    "필수": "없으면 해당 계산 항을 아예 못 돌린다",
+    "권장": "없으면 기본값·추정으로 대체해야 한다 (오차 원인)",
+    "참고": "계산에 직접 안 쓰지만 선정·검토에 쓴다"
+  },
+  "profiles": {
+    "e5.rtu": {
+      "equipId": "e5",
+      "title": "루프탑 패키지 (RTU) — 직팽식",
+      "match": {
+        "catPrefix": [
+          "HVAC.AIR.RTU",
+          "HVAC.AIR.SPLIT"
+        ]
+      },
+      "matchNote": "catPrefix 는 접두 최장일치라 HVAC.AIR.RTU.WSHP(수열원 히트펌프 2모델)도 여기로 온다 — 맞다. WSHP 의 nviCWFlow·nvoCWPump·nvoCWTemp 는 응축수 루프이지 냉수코일이 아니다. HVAC.AIR.SPLIT(Trane IntelliCore RAUK 1모델)은 접두로는 안 걸려서 명시로 넣었다: 압축기 2회로·Cooling Capacity Enable 을 갖는 직팽이라 계산식이 RTU 와 같다.",
+      "note": "냉수·온수코일이 없다. AHU 요구 항목을 그대로 쓰면 없는 부품을 찾게 된다(2026-08-11 실제 사고).",
+      "energyModel": {
+        "cooling": "냉방 전력 = 냉방부하 ÷ COP(부분부하)",
+        "fan": "팬 전력 = 풍량 × 정압 ÷ 팬효율 (부분풍량은 팬법칙으로 3제곱)",
+        "heating": "난방 = 난방부하 ÷ 연소효율(가스) 또는 COP(히트펌프)",
+        "oa": "외기부하 = 최소외기량 × 엔탈피차"
+      },
+      "items": [
+        {
+          "id": "coolingCapacity",
+          "name": "정격 냉방능력 (총·AHRI순)",
+          "unit": "kW 또는 MBh",
+          "grade": "필수",
+          "usedBy": [
+            "cooling"
+          ],
+          "why": "압축기 전력 = 부하 ÷ COP 의 기준 용량",
+          "features": [
+            "grossCoolingCapacity",
+            "ahriNetCoolingCapacity",
+            "capacityClass"
+          ],
+          "sourceHint": "Performance Data · Cooling Capacity · General Data 표",
+          "searchTerms": [
+            "cooling capacity",
+            "gross cooling",
+            "net cooling",
+            "performance data",
+            "general data"
+          ]
+        },
+        {
+          "id": "coolingPower",
+          "name": "정격 소비전력 또는 EER",
+          "unit": "kW 또는 EER",
+          "grade": "필수",
+          "usedBy": [
+            "cooling"
+          ],
+          "why": "정격점 COP. 용량만으로는 전력이 안 나온다",
+          "features": [
+            "systemPower",
+            "eer"
+          ],
+          "sourceHint": "AHRI 성능표 · Efficiency 표",
+          "searchTerms": [
+            "ahri",
+            "efficiency",
+            "total power",
+            "unit power",
+            "input kw"
+          ]
+        },
+        {
+          "id": "partLoadEfficiency",
+          "name": "부분부하 효율 (IEER·SEER)",
+          "unit": "—",
+          "grade": "필수",
+          "usedBy": [
+            "cooling"
+          ],
+          "why": "연간 운전의 대부분이 부분부하다. 정격 EER만 쓰면 소비량이 크게 틀린다",
+          "features": [
+            "ieer",
+            "seer",
+            "seer2"
+          ],
+          "sourceHint": "AHRI 성능표 · Efficiency 표",
+          "searchTerms": [
+            "ieer",
+            "seer",
+            "part load",
+            "integrated energy"
+          ]
+        },
+        {
+          "id": "compressorStaging",
+          "name": "압축기 형식·단수·회로수",
+          "unit": "—",
+          "grade": "권장",
+          "usedBy": [
+            "cooling"
+          ],
+          "why": "2단·디지털·인버터에 따라 부분부하 곡선 모양이 다르다",
+          "features": [
+            "capacitySteps",
+            "compressorConfig",
+            "refrigerantCircuits"
+          ],
+          "sourceHint": "General Data · Compressor 항",
+          "searchTerms": [
+            "compressor",
+            "refrigerant circuit",
+            "stages of cooling"
+          ]
+        },
+        {
+          "id": "supplyAirflow",
+          "name": "정격 급기 풍량 (최소·최대)",
+          "unit": "CMH 또는 CFM",
+          "grade": "필수",
+          "usedBy": [
+            "fan",
+            "oa"
+          ],
+          "why": "팬 동력과 외기 혼합비의 기준",
+          "features": [
+            "ratedAirflow"
+          ],
+          "sourceHint": "General Data · Nominal cfm",
+          "searchTerms": [
+            "nominal cfm",
+            "supply air",
+            "airflow",
+            "cfm"
+          ]
+        },
+        {
+          "id": "fanPerformanceGrid",
+          "name": "팬 성능 격자 (풍량 × 정압 → 축동력)",
+          "unit": "CFM × in.wg → BHP·RPM",
+          "grade": "필수",
+          "usedBy": [
+            "fan"
+          ],
+          "kind": "curve",
+          "why": "팬 전력은 스칼라 정격이 아니라 조회표다. 설계 풍량·설계 정압을 넣어 BHP 를 읽는다. 정압 하나를 대표값으로 고르면 부분부하 거동이 통째로 사라진다",
+          "features": [],
+          "storage": "형번당 스칼라가 아니라 격자다 — unit-schema features 로는 담기지 않는다. 참조표(referenceTables)로 보관하고 시뮬레이터가 보간해 쓴다",
+          "sourceHint": "Evaporator/Supply Fan Performance 표 — 열=정압 구간, 행=CFM, 칸=RPM·Hz·BHP",
+          "searchTerms": [
+            "fan performance",
+            "blower performance",
+            "external static",
+            "static pressure",
+            "bhp"
+          ]
+        },
+        {
+          "id": "ratingCondition",
+          "name": "정격 측정 조건 (AHRI 규격·정압 기준)",
+          "unit": "—",
+          "grade": "권장",
+          "usedBy": [
+            "cooling"
+          ],
+          "why": "냉방능력이 어떤 조건에서 잰 값인지 모르면 설계 조건으로 보정할 수 없다. 원문 각주에 있다 (Trane p25 'Rating conditions are 95°F … minimum external static pressure as determined by rating standard')",
+          "features": [],
+          "storage": "모델 단위 메타 (형번마다 다르지 않다)",
+          "sourceHint": "성능표 각주 · AHRI Standard 340/360·365 표기",
+          "searchTerms": [
+            "ahri standard",
+            "rating conditions",
+            "certified to ahri"
+          ]
+        },
+        {
+          "id": "supplyFanMotor",
+          "name": "급기팬 모터출력·가변속 여부",
+          "unit": "kW / —",
+          "grade": "필수",
+          "usedBy": [
+            "fan"
+          ],
+          "why": "모터 정격이 팬 동력 상한이고, 가변속 여부가 부분부하 절감을 좌우한다",
+          "features": [
+            "fanMotorHp",
+            "fanMotorRpm",
+            "fanDriveType"
+          ],
+          "sourceHint": "Fan/Motor Data · Supply Fan 항",
+          "searchTerms": [
+            "supply fan",
+            "blower motor",
+            "motor hp",
+            "direct drive",
+            "belt drive",
+            "variable frequency",
+            "vfd"
+          ]
+        },
+        {
+          "id": "heating",
+          "name": "난방 방식·입열량·출열량 (또는 난방능력·COP)",
+          "unit": "kW / MBh",
+          "grade": "필수",
+          "usedBy": [
+            "heating"
+          ],
+          "why": "겨울 소비량 전체. 가스는 입열×효율, 히트펌프는 능력÷COP 로 갈린다",
+          "features": [
+            "heatingCapacity",
+            "heatingInput",
+            "cop"
+          ],
+          "sourceHint": "Gas Heat Data · Heating Capacity · Heat Pump Performance",
+          "searchTerms": [
+            "gas heat",
+            "heating capacity",
+            "heating performance",
+            "heat pump",
+            "input btuh",
+            "furnace",
+            "heating input"
+          ]
+        },
+        {
+          "id": "outdoorAir",
+          "name": "최소 외기량·이코노마이저 유무",
+          "unit": "CMH 또는 % / —",
+          "grade": "필수",
+          "usedBy": [
+            "oa"
+          ],
+          "why": "외기 도입량이 냉난방 부하에 직접 더해진다. 이코노마이저가 있으면 중간기 냉방이 줄어든다",
+          "features": [
+            "minOutdoorAir",
+            "economizer"
+          ],
+          "sourceHint": "Economizer · Outdoor Air · Ventilation 옵션 표",
+          "searchTerms": [
+            "economizer",
+            "outdoor air",
+            "ventilation",
+            "outside air"
+          ]
+        },
+        {
+          "id": "electrical",
+          "name": "전원 V/φ/Hz · MCA/MOP",
+          "unit": "V/φ/Hz · A",
+          "grade": "권장",
+          "usedBy": [
+            "electrical"
+          ],
+          "why": "전기 용량 검토용. 소비량 계산에는 부차적이나 현장 적용에 필요하다",
+          "features": [
+            "supplyVoltage",
+            "mca",
+            "mop"
+          ],
+          "sourceHint": "Electrical Data 표 (모델×전압 격자)",
+          "searchTerms": [
+            "electrical data",
+            "minimum circuit ampacity",
+            "maximum overcurrent",
+            "mca",
+            "mop"
+          ]
+        },
+        {
+          "id": "refrigerant",
+          "name": "냉매 종류·충전량",
+          "unit": "— / kg",
+          "grade": "참고",
+          "usedBy": [],
+          "why": "장비 선정·법규 검토. 계산에는 안 쓴다",
+          "features": [
+            "refrigerantCharge",
+            "refrigerantControl"
+          ],
+          "sourceHint": "General Data · Refrigerant 항",
+          "searchTerms": [
+            "refrigerant charge",
+            "r-410a",
+            "r-454b",
+            "refrigerant"
+          ]
+        },
+        {
+          "id": "evaporatorCoil",
+          "name": "증발기 코일 면적·열수",
+          "unit": "m² / row·FPI",
+          "grade": "참고",
+          "usedBy": [],
+          "why": "정면풍속 점검용. 상세 코일 모델을 쓸 때만 필요하다",
+          "features": [
+            "coilFaceArea",
+            "coilRowsFpi"
+          ],
+          "sourceHint": "General Data · Evaporator Coil 항",
+          "searchTerms": [
+            "evaporator coil",
+            "coil face area",
+            "fins per inch",
+            "face area"
+          ]
+        }
+      ],
+      "designInputs": [
+        {
+          "name": "설계 기외정압",
+          "unit": "in.wg 또는 Pa",
+          "why": "덕트 저항으로 프로젝트마다 정한다. 원문에도 선정 예제의 Summer Design Conditions 로 나온다 (Trane SS-PRC028AA p19 'External Static Pressure: 0.77 in.wg')",
+          "note": "장비 DB 대상이 아니라 시뮬레이터 입력 파라미터"
+        },
+        {
+          "name": "설계 풍량",
+          "unit": "CMH 또는 CFM",
+          "why": "존 부하로 정한다",
+          "note": "장비는 허용 범위만 준다"
+        },
+        {
+          "name": "설계 외기량",
+          "unit": "CMH 또는 %",
+          "why": "환기 기준(인원·면적)으로 산출",
+          "note": "장비는 최대 도입 가능량만 준다"
+        }
+      ]
+    },
+    "e5.ahu": {
+      "equipId": "e5",
+      "title": "공조기 (AHU) — 냉수·온수코일",
+      "match": {
+        "catPrefix": "HVAC.AIR.AHU"
+      },
+      "matchNote": "이 접두가 '냉수코일 있음'의 대용물은 아니다. 여기 걸리는 8모델 중 LG AHU 통신킷 2건·Mitsubishi PAC-IF013B 1건은 직팽(DX) 인터페이스킷이다 — 통신 포인트 쪽은 data/equip-templates.json 의 appliesWhen 으로 갈라 두었다. trane-symbio-800-intellipak 2모델은 패키지 옥상형이라 cat 재검토 대상이다(이번 범위 밖).",
+      "pending": "정격 요구 항목 미정. 지금 data/equips/e5.json specTables 16행(냉수코일 능력·온수코일 능력·코일 열수·핀피치·가습 방식)이 계열 한 벌로 RTU 까지 채점하고 있다 — 그 정격 레인을 e5.rtu/e5.ahu 로 가르는 것은 별도 작업이다. 여기 items 를 비워 두면 requirements.py --check 가 경고로 계속 띄운다(규칙 ① 미충족 표시).",
+      "items": []
+    }
+  }
+}

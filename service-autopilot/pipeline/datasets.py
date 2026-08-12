@@ -4,9 +4,12 @@
 원본 JSON은 벤더 문서를 최대한 보존한다. 여기서는 BMS 템플릿과 시뮬레이터가 바로
 쓰기 쉽도록 같은 정보를 세 등급으로 나눠 생성한다.
 
-  1. equipmentTemplates  장비 종류별 L2 템플릿
-  2. modelMappings       모델별 L3 원문 매핑 + L2 후보 + 시뮬레이터 입력
-  3. referenceTables     성능표·치수·부속 참고표 목록
+  1. equipmentTemplates  장비 계열별 시뮬레이터 요구 사양 + 쓰는 템플릿 프로파일 id
+  2. templateProfiles    **하위형식별** L2 템플릿 (e5.rtu · e5.ahu). 정본은
+                         data/equip-templates.json — 계열 한 벌로 두면 직팽 RTU 를
+                         냉수코일 AHU 체크리스트로 채점하게 된다 (2026-08-11 사고)
+  3. modelMappings       모델별 L3 원문 매핑 + L2 후보 + 시뮬레이터 입력
+  4. referenceTables     성능표·치수·부속 참고표 목록
 
 실행:
   python datasets.py
@@ -17,56 +20,19 @@ import glob
 import json
 import os
 import re
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 OUT = os.path.join(DATA, "datasets")
+sys.path.insert(0, HERE)
+import requirements as RQ  # noqa: E402 — 모델→프로파일 결합 함수를 여기 하나만 쓴다
 
-
-AHU_PROFILE = [
-    {"name": "급기온도", "include": r"(?:supply|discharge).*air.*temp|discharge.*temp",
-     "exclude": r"setpoint|sp\b|reheat|refrigerant"},
-    {"name": "환기온도", "include": r"return.*air.*temp", "exclude": r"setpoint|sp\b"},
-    {"name": "외기온도", "include": r"outdoor.*air.*temperature|outside.*air.*temperature|outdoortemp",
-     "exclude": r"flow|enthalpy|humidity|setpoint|sp\b|enable|min"},
-    {"name": "혼합공기온도", "include": r"mixed.*air.*temp|mix.*air.*tmp", "exclude": r"problem|fault|setpoint|sp\b"},
-    {"name": "급기습도", "include": r"supply.*air.*(?:relative )?humidity|supply.*humidity|sply.*hum",
-     "exclude": r"setpoint|sp\b|abs"},
-    {"name": "환기습도", "include": r"return.*air.*(?:relative )?humidity|return.*humidity|space.*rh|room.*hum",
-     "exclude": r"setpoint|sp\b|abs"},
-    {"name": "급기 정압", "include": r"(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
-     "exclude": r"setpoint|sp\b"},
-    {"name": "급기 풍량", "include": r"supply.*air.*flow|supplyflow|supply.*flow|nvooa?flow",
-     "exclude": r"setpoint|sp\b|min|max|outdoor|return|exhaust|percent"},
-    {"name": "환기 CO2", "include": r"(?:return|space|room).*co2|carbon dioxide",
-     "exclude": r"setpoint|sp\b|limit"},
-    {"name": "급기온도 설정값", "include": r"(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint"},
-    {"name": "급기 정압 설정값", "include": r"static.*pressure.*setpoint|ductstaticsp|duct.*static.*sp"},
-    {"name": "급기팬 주파수 지령", "include": r"sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:command|speed|frequency|setpoint)|nci.*supplyfan",
-     "exclude": r"type|configuration|identifier|status|hours|runtime"},
-    {"name": "환기팬 주파수 지령", "include": r"(?:return|exhaust|ret).*fan.*(?:cap|speed|freq).*netin|(?:return|exhaust).*fan.*(?:command|speed|frequency|setpoint)",
-     "exclude": r"type|configuration|identifier|status|hours|runtime"},
-    {"name": "냉수밸브 개도", "include": r"chilled.*water.*valve|cool.*valve|cooling.*valve",
-     "exclude": r"type|configuration|identifier|enable|setpoint|sp\b"},
-    {"name": "온수밸브 개도", "include": r"hot.*water.*valve|heat.*valve|heating.*valve|mod gas heat valve",
-     "exclude": r"type|configuration|identifier|enable|setpoint|sp\b"},
-    {"name": "외기댐퍼 개도", "include": r"econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
-     "exclude": r"minimum|min|setpoint|sp\b"},
-    {"name": "환기댐퍼 개도", "include": r"return.*air.*damper|return.*damper|return bypass"},
-    {"name": "배기댐퍼 개도", "include": r"exhaust.*damper|exh.*damper"},
-    {"name": "가습 지령", "include": r"humid.*(?:command|enable|output|setpoint)|humiditysp"},
-    {"name": "필터 차압", "include": r"dirtyfilter|dirty.*filter|filter.*(?:pressure|alarm|switch)|differential.*pressure"},
-    {"name": "동결 방지 경보", "include": r"freeze.*(?:fault|alarm|switch)|frost.*alarm|low.*temp.*alarm"},
-    {"name": "운전 모드", "include": r"appliccmd|application.*mode|hvac mode|unit.*(?:state|mode)|currentstate",
-     "exclude": r"alarm|problem|fault|type|configuration|identifier"},
-    {"name": "외기냉방 모드", "include": r"econo.*(?:status|enable|mode)|economizer.*(?:status|enable|mode)|free.*cool"},
-    {"name": "냉수·냉방", "include": r"cool(?:ing)?|chilled.*water|cooling.*capacity",
-     "exclude": r"type|configuration|identifier|enable|setpoint|sp\b"},
-    {"name": "온수·난방", "include": r"heat(?:ing)?|hot.*water",
-     "exclude": r"type|configuration|identifier|enable|setpoint|sp\b"},
-]
-
-VIEW_PROFILES = {"e5": AHU_PROFILE}
+# 템플릿(화면 행)과 매칭 룰(정규식)은 data/equip-templates.json 에 같이 있다.
+# 전에는 행이 data/equips/e5.json(23행), 룰이 여기 AHU_PROFILE(25룰)로 갈라져 있어
+# 룰 2개('냉수·냉방'·'온수·난방')가 화면에 아예 안 나왔다. 더 나쁜 것은 e5 한 벌로
+# RTU 와 AHU 를 함께 채점한 것이다 — 직팽 RTU 에 없는 냉수·온수밸브를 '필수'로 물었다.
+TEMPLATES = os.path.join(DATA, "equip-templates.json")
 
 POINT_TIER_HELP = {
     "template": "L2 템플릿 후보 — BMS 기본 화면에 먼저 올릴 포인트",
@@ -121,7 +87,51 @@ def fmt_num(value):
     return str(int(value)) if value == int(value) else ("%g" % value)
 
 
-def template_points(equip):
+_TEMPLATE_CACHE = {}
+
+
+def load_template_profiles():
+    """하위형식별 템플릿 프로파일 — data/equip-templates.json."""
+    if "d" not in _TEMPLATE_CACHE:
+        _TEMPLATE_CACHE["d"] = load_json(TEMPLATES).get("profiles") or {}
+    return _TEMPLATE_CACHE["d"]
+
+
+def template_profile_ids(equip_id):
+    """이 계열에 템플릿 프로파일이 있나 — 없으면 빈 목록."""
+    return sorted(pid for pid, p in load_template_profiles().items()
+                  if p.get("equipId") == equip_id)
+
+
+def template_profile_for(model):
+    """모델 → 템플릿 프로파일 id.
+
+    결합 규칙(catPrefix)은 requirements.profile_for() 하나만 쓴다. 여기서 다시 적으면
+    규칙이 두 벌이 되고, 그 어긋남이 이번 사고의 재현 조건이다.
+
+    프로파일이 안 붙으면 조용히 빈 목록을 돌려주지 않고 **오류로 세운다**. 예전에는
+    VIEW_PROFILES.get(...) or [] 로 흘려보내서, 프로파일이 없는 모델이 화면에서 통째로
+    '없음'이 되어도 테스트가 못 잡았다.
+    """
+    equip_id = model.get("equipId")
+    ids = template_profile_ids(equip_id)
+    if not ids:
+        return None                     # 템플릿 자체가 없는 계열 — 후보 0 이 정상
+    pid = RQ.profile_for(model)
+    if pid not in ids:
+        raise ValueError(
+            "템플릿 프로파일 미해결: %s (계열 %s · cat=%s · 요구 프로파일=%s). "
+            "data/equip-requirements.json 의 match 와 data/equip-templates.json 의 "
+            "프로파일 id 를 맞춰라." % (model.get("id"), equip_id, model.get("cat"), pid))
+    return pid
+
+
+def markdown_template_points(equip):
+    """아직 하위형식 프로파일이 없는 계열의 임시 템플릿 — 마크다운 표 그대로.
+
+    08-equip-spec-tag-catalog.md → migrate.py → data/equips/*.json 경로로 온 행이라
+    하위형식 구분이 없다. 모델이 붙는 계열은 반드시 equip-templates.json 으로 옮긴다.
+    """
     rows = []
     for table in equip.get("pointTables") or []:
         for row in table.get("rows") or []:
@@ -137,6 +147,17 @@ def template_points(equip):
                 "grade": cells[5],
                 "datasetTier": "template",
             })
+    return rows
+
+
+def template_points(profile_id):
+    """프로파일의 화면 행. 매칭 룰(match)은 화면에 안 싣고 여기서 떼어 낸다."""
+    profile = load_template_profiles().get(profile_id) or {}
+    rows = []
+    for row in profile.get("templatePoints") or []:
+        item = {k: v for k, v in row.items() if k != "match"}
+        item["datasetTier"] = "template"
+        rows.append(item)
     return rows
 
 
@@ -160,13 +181,29 @@ def point_text(point):
     return "%s %s" % (point.get("name") or "", point.get("note") or "")
 
 
-def find_template_candidates(equip_id, points):
-    profile = VIEW_PROFILES.get(equip_id) or []
+def find_template_candidates(profile_id, points):
+    """프로파일의 행 순서대로 원문 포인트를 하나씩 집는다(먼저 온 행이 이긴다).
+
+    행 순서가 곧 우선순위다 — 구체적인 행(냉수밸브)을 추상적인 행(냉방 지령)보다
+    앞에 두면 추상 행이 남은 것만 집는다. equip-templates.json 의 배열 순서를 함부로
+    바꾸지 마라.
+    """
+    prof = load_template_profiles().get(profile_id) or {}
+    profile = prof.get("templatePoints") or []
+    common = prof.get("excludeCommon") or ""
     picked = []
     seen_names = set()
-    for rule in profile:
+    for row in profile:
+        rule = dict(row.get("match") or {}, name=row["name"])
+        if not rule.get("include"):
+            continue
         include = re.compile(rule["include"], re.I)
-        exclude = re.compile(rule.get("exclude", r"$^"), re.I)
+        parts = [rule["exclude"]] if rule.get("exclude") else []
+        # 알람 라벨 제외는 행마다 베끼지 않고 프로파일에 한 벌 둔다.
+        # 경보를 실제로 찾는 행(keepAlarm)만 뺀다.
+        if common and not row.get("keepAlarm"):
+            parts.append(common)
+        exclude = re.compile("|".join(parts) if parts else r"$^", re.I)
         matches = []
         for point in points:
             if point.get("name") in seen_names:
@@ -210,10 +247,10 @@ def find_template_candidates(equip_id, points):
     return picked
 
 
-def template_point_mappings(equip_id, template_rows, points):
+def template_point_mappings(profile_id, template_rows, points):
     candidates = {
         item["templateName"]: item
-        for item in find_template_candidates(equip_id, points)
+        for item in find_template_candidates(profile_id, points)
     }
     out = []
     for row in template_rows:
@@ -225,6 +262,10 @@ def template_point_mappings(equip_id, template_rows, points):
             "grade": row["grade"],
             "role": row["role"],
             "tags": row["tags"],
+            "haystack": row.get("haystack"),
+            # 적용성 — 물리적으로 없을 수 있는 부품은 등급이 아니라 이 칸으로 말한다.
+            # 여기 값이 있으면 missing 을 '미충족'으로 읽으면 안 된다.
+            "appliesWhen": row.get("appliesWhen"),
             "status": "matched" if candidate else "missing",
             "matchedPoint": None,
         }
@@ -269,6 +310,15 @@ def mapping_points(points, template_candidates):
             "unit": point.get("unit"),
             "unitRaw": point.get("unitRaw"),
             "note": point.get("note", ""),
+            "sourceFile": point.get("sourceFile"),
+            "sourcePage": point.get("sourcePage"),
+            "bacOid": point.get("bacOid"),
+            "modbusRegister": point.get("modbusRegister"),
+            "modbusScaleFactor": point.get("modbusScaleFactor"),
+            "modbusBooleanFlag": point.get("modbusBooleanFlag"),
+            "modbusSignedFlag": point.get("modbusSignedFlag"),
+            "modbusOffset": point.get("modbusOffset"),
+            "modbusWritableFlag": point.get("modbusWritableFlag"),
             "datasetTier": tier,
             "tierDescription": POINT_TIER_HELP[tier],
         })
@@ -1765,22 +1815,39 @@ def build_dataset(equip_ids=None):
             "reference": "성능표·치수·부속·배선 참고자료",
         },
         "equipmentTemplates": {},
+        "templateProfiles": {},
         "modelMappings": {},
     }
 
     for equip_id, equip in sorted(equips.items(), key=lambda item: item[1].get("no", 999)):
-        tpoints = template_points(equip)
         sreqs = simulator_requirements(equip)
-        data["equipmentTemplates"][equip_id] = {
+        entry = {
             "id": equip_id,
             "title": equip.get("title"),
             "domain": equip.get("domain"),
-            "templatePoints": tpoints,
             "simulatorSpecRequirements": sreqs,
         }
+        pids = template_profile_ids(equip_id)
+        if pids:
+            # 하위형식마다 포인트가 다르다 — 계열 한 벌을 여기 두면 다시 RTU 를 냉수코일
+            # AHU 로 채점하게 된다. 행 목록은 templateProfiles 에만 둔다.
+            entry["templateProfileIds"] = pids
+            for pid in pids:
+                profile = load_template_profiles()[pid]
+                data["templateProfiles"][pid] = {
+                    "id": pid,
+                    "equipId": equip_id,
+                    "title": profile.get("title"),
+                    "basis": profile.get("basis"),
+                    "templatePoints": template_points(pid),
+                }
+        else:
+            entry["templatePoints"] = markdown_template_points(equip)
+        data["equipmentTemplates"][equip_id] = entry
 
     for model_id, model in sorted(models.items()):
-        candidates = find_template_candidates(model.get("equipId"), model.get("points") or [])
+        profile_id = template_profile_for(model)
+        candidates = find_template_candidates(profile_id, model.get("points") or [])
         mapped = mapping_points(model.get("points") or [], candidates)
         refs = reference_tables(model)
         # 화면·산출물은 확정 데이터셋(data/units)만 읽는다 — 추출은 units.py 의 제안 원천
@@ -1792,9 +1859,11 @@ def build_dataset(equip_ids=None):
             + simulator_inputs(model, terms)
         )
         equip_template = data["equipmentTemplates"].get(model.get("equipId"), {})
+        template_profile = data["templateProfiles"].get(profile_id, {})
         template_mappings = template_point_mappings(
-            model.get("equipId"),
-            equip_template.get("templatePoints", []),
+            profile_id,
+            template_profile.get("templatePoints")
+            or equip_template.get("templatePoints", []),
             model.get("points") or [],
         )
         simulator_mappings = simulator_requirement_mappings(
@@ -1804,6 +1873,7 @@ def build_dataset(equip_ids=None):
         data["modelMappings"][model_id] = {
             "id": model_id,
             "equipmentId": model.get("equipId"),
+            "templateProfileId": profile_id,
             "vendor": model.get("vendor"),
             "model": model.get("model"),
             "name": model.get("name"),
@@ -1834,6 +1904,7 @@ def write_outputs(data):
     files = {
         "catalog-dataset.json": data,
         "equipment-templates.json": data["equipmentTemplates"],
+        "template-profiles.json": data["templateProfiles"],
         "model-mappings.json": data["modelMappings"],
     }
     for name, content in files.items():
@@ -1846,8 +1917,12 @@ def write_outputs(data):
 
 def main(argv=None):
     parser = argparse.ArgumentParser()
-    parser.add_argument("--equip", action="append", help="장비 ID(e5 등). 생략하면 전체")
+    parser.add_argument("--equip", action="append", help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
+    if args.equip:
+        print("오류: datasets.py --equip 는 공용 산출물을 부분 데이터로 덮어써서 금지됐다.")
+        print("      전체 재생성만 허용한다: PYTHONIOENCODING=utf-8 python datasets.py")
+        return 2
     data = build_dataset(set(args.equip) if args.equip else None)
     files = write_outputs(data)
     print("데이터셋 생성 완료: %s" % ", ".join(files))
@@ -1856,4 +1931,4 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

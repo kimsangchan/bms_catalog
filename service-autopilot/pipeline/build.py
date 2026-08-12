@@ -127,7 +127,16 @@ def load():
             "docs": docs_by_model.get(m["id"]) or docs_by_model.get(base) or [],
             "points": [{"inst": p["inst"], "type": p["type"],
                         "unitDisp": p.get("unitRaw") or "—", "name": p["name"],
-                        "note": p.get("note", "")} for p in m.get("points", [])],
+                        "note": p.get("note", ""),
+                        "sourceFile": p.get("sourceFile"),
+                        "sourcePage": p.get("sourcePage"),
+                        "bacOid": p.get("bacOid"),
+                        "modbusRegister": p.get("modbusRegister"),
+                        "modbusScaleFactor": p.get("modbusScaleFactor"),
+                        "modbusBooleanFlag": p.get("modbusBooleanFlag"),
+                        "modbusSignedFlag": p.get("modbusSignedFlag"),
+                        "modbusOffset": p.get("modbusOffset"),
+                        "modbusWritableFlag": p.get("modbusWritableFlag")} for p in m.get("points", [])],
         })
     # 사양 참조 풀기 — 같은 제품의 다른 프로토콜 판은 사양을 공유한다.
     # 데이터에는 참조만 두고(중복 방지), 화면에 낼 때 실제 값을 채운다.

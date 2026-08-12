@@ -118,3 +118,31 @@
 - 근거: 폐쇄망 현장은 중앙 API를 호출할 수 없다(NEUROS 자체가 폐쇄망 단일 JAR 배포). 번들이 권한 시드를 덮어쓰면 권한상승 경로가 되므로 스키마에서 제거(T-11), 사내 경로 노출 차단(T-12).
 - 버린 대안: ⑴ 현장에서 중앙 API 직접 호출 ⑵ 서명 없는 파일 반입
 - 상태: 가정 채택 (A-10)
+
+## D-015: BMS 템플릿을 하위형식 프로파일로 가른다 (e5.rtu / e5.ahu)
+
+- 날짜: 2026-08-11
+- 결정: 계열 한 벌이던 BMS 기본화면 템플릿을 **하위형식 프로파일**로 가르고, 새 파일
+  `pipeline/data/equip-templates.json` 에 **화면 행 + 매칭 정규식을 같은 행**에 둔다.
+  프로파일 id 는 `equip-requirements.json` 과 글자 그대로 같게 하고(`e5.rtu`·`e5.ahu`),
+  **모델→프로파일 결합은 `requirements.profile_for()` 하나만** 쓴다(catPrefix 복제 금지).
+- 근거: e5 템플릿이 '냉수밸브 개도'·'온수밸브 개도'를 **필수**로 박아 두었는데 직팽 RTU 에는
+  그 밸브가 없다. 원문으로 확인 — Trane RT-PRC023AY(228p)·York ZF/ZJ/ZR(194p+102p)·
+  Lennox Enlight LGT/LHT 에 "chilled" 0회. 실측 매칭도 RTU 0/9 였고, AHU 쪽 2/8 마저
+  Swegon `Active alarm 93`·Systemair `Ala…CoolerValveStatus` 알람 비트 오매칭이었다.
+  규칙(코드 `AHU_PROFILE` 25룰)과 행(데이터 `e5.json` 23행)이 갈라져 있어 룰 2개가
+  화면에 아예 안 나오는 어긋남도 같은 뿌리다.
+- 버린 대안:
+  ⑴ `data/equips/e5.json` 을 손으로 갈라 고치기 — 이 파일은 `migrate.py` 가
+     `08-equip-spec-tag-catalog.md` 에서 매번 덮어쓰는 **생성물**이라 표준 실행 한 번에 날아간다.
+     마크다운에 표를 둘로 써도 migrate 의 표 분류가 하위형식 라벨을 못 실어 나른다.
+  ⑵ 새 파일에 `catPrefix` 를 다시 적기 — 규칙이 두 벌이 되는 순간이 이번 사고의 재현 조건이다.
+  ⑶ `equip-requirements.json` 에 포인트를 합치기 — 정격(스칼라)과 통신 포인트는 축이 달라
+     `check()` 를 두 갈래로 쪼개야 하고 파일 이름과 내용이 어긋난다.
+- 부수 결정: 물리적 부재는 **등급이 아니라 `appliesWhen`(적용성)** 으로 적는다. 밸브를
+  삭제하지 않는다 — 냉수코일 구성 RTU 가 실재한다(Daikin `ClgType`=3 Chilled Water,
+  AAON RN 냉수코일, Daikin RoofPak). 등급으로 누르면 반대 방향 오류가 난다.
+- 상태: 확정
+- 검증: `test_datasets.py` 게이트 5건(프로파일 id 집합 일치 · e5 17모델 전부 결합 · RTU 밸브
+  비필수 + appliesWhen 존재 · 항목별 Haystack 근거 · 미해결 시 예외). 69 tests pass,
+  `validate.py` 오류 0, `requirements.py --check` 오류 0.

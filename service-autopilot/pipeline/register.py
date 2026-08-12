@@ -220,7 +220,11 @@ def plan_one(fname, vendor="Trane"):
             "ede": False, "spec": [], "io": [], "elec": None,
             "comm": [[k, "통합 포인트 리스트 공개", "—", "Points List"] for k in proto],
             "points": [{k: p.get(k) for k in
-                        ("type", "inst", "name", "unitRaw", "unit", "note")} for p in pts],
+                        ("type", "inst", "name", "unitRaw", "unit", "note",
+                         "sourceFile", "sourcePage", "bacOid", "modbusRegister",
+                         "modbusScaleFactor", "modbusBooleanFlag",
+                         "modbusSignedFlag", "modbusOffset",
+                         "modbusWritableFlag")} for p in pts],
             "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
             "extractor": "table", "sourceDoc": fname,
             "classifiedBy": why,

@@ -1,0 +1,1531 @@
+{
+  "version": 1,
+  "description": "요구 항목이 '표에서 정량으로' 얻어지는지 원문에서 확인한 결과. not-in-table 은 값을 채우지 않고 항목만 남긴다.",
+  "profiles": {
+    "e5.rtu": {
+      "title": "루프탑 패키지 (RTU) — 직팽식",
+      "items": {
+        "compressorStaging": {
+          "name": "압축기 형식·단수·회로수",
+          "grade": "권장",
+          "fill": 21.8,
+          "models": {
+            "aaon-vccx2-rn-rq-series-rooftop-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "AAON_RN_Series_IOM_R454B.pdf",
+                  "page": 54,
+                  "title": "TABLE 21 — ACCEPTABLE MICROCHANNEL AIR-COOLED CONDENSER COIL LIQUID SU",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 42,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "AAON_RN_Series_IOM_R454B.pdf",
+                  "page": 45,
+                  "title": "",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 32,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "compressor"
+              ]
+            },
+            "carrier-comfortlink-48-50n-weatherexpert-rooftop-75-150-ton-bacnet-co": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Carrier_48-50N-6PD_WeatherExpert_ProductData.pdf",
+                  "page": 15,
+                  "title": "48/50N SIZES N-T (75-150 TONS NOMINAL CAPACITY)",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 24,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Carrier_48-50N-6PD_WeatherExpert_ProductData.pdf",
+                  "page": 14,
+                  "title": "STAGING SEQUENCES (cont) SIZE P, Q STAGING SEQUENCE WITH DIGITAL COMPR",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 29,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Carrier_48-50N-6PD_WeatherExpert_ProductData.pdf",
+                  "page": 14,
+                  "title": "SIZE R, S, T STAGING SEQUENCE WITH DIGITAL COMPRESSOR (120-150 TON NOM",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 47,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "compressor"
+              ]
+            },
+            "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Daikin_CAT218-4_RoofPak_AirHandler_Catalog.pdf",
+                  "page": 45,
+                  "title": "Table 13: RDS 708B, 800C, and 802C—unit coil data",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 77,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "compressor"
+              ]
+            },
+            "johnson-controls-york-simplicity-se-smart-equipment-york-rooftop-units-modbus": {
+              "status": "not-in-table",
+              "evidence": [],
+              "reason": "낱말은 원문에 있으나 숫자 칸이 있는 표의 제목·머리글에서 찾지 못했다 — 본문 서술이나 곡선 그래프일 수 있다"
+            },
+            "lennox-core-unit-controller-enlight-model-l-rooftop-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 20,
+                  "title": "",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 145,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 30,
+                  "title": "",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 75,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 30,
+                  "title": "1 Extremes of operating range are plus and minus 10% of line voltage. ",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 75,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 31,
+                  "title": "",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 75,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "compressor"
+              ]
+            },
+            "trane-symbio-700-odyssey-lontalk-scc": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "SS-PRC028AA-EN_06262022.pdf",
+                  "page": 46,
+                  "title": "Table 29. Gross cooling capacities (MBH) one compressor - 25 tons TTA3",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 86,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "SS-PRC028AA-EN_06262022.pdf",
+                  "page": 44,
+                  "title": "Table 27. Gross cooling capacities (MBH) one compressor - 20 tons TTA2",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 86,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "SS-PRC028AA-EN_06262022.pdf",
+                  "page": 40,
+                  "title": "Table 23. Gross Cooling Capacities (MBH) one compressor - 15 Tons TTA1",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 86,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "SS-PRC028AA-EN_06262022.pdf",
+                  "page": 36,
+                  "title": "Table 19. Gross cooling capacities (MBH) one compressor - 10 tons TTA1",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 86,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "compressor"
+              ]
+            },
+            "trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-dac": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 197,
+                  "title": "Table 160. Electrical characteristics — compressor motor and condenser",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 336,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 201,
+                  "title": "Table 168. Electrical characteristics — compressor motor and condenser",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 345,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 31,
+                  "title": "Table 6. General data — 6 to 10 tons — standard efficiency",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 154,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 33,
+                  "title": "Table 7. General data — 3 to 5 tons — high efficiency",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 155,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "compressor"
+              ]
+            },
+            "trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-scc": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 197,
+                  "title": "Table 160. Electrical characteristics — compressor motor and condenser",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 336,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 201,
+                  "title": "Table 168. Electrical characteristics — compressor motor and condenser",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 345,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 31,
+                  "title": "Table 6. General data — 6 to 10 tons — standard efficiency",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 154,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 33,
+                  "title": "Table 7. General data — 3 to 5 tons — high efficiency",
+                  "terms": [
+                    "compressor"
+                  ],
+                  "numCells": 155,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "compressor"
+              ]
+            }
+          },
+          "summary": {
+            "table": 7,
+            "weak": 0,
+            "notInTable": 1
+          },
+          "verdict": "정량 가능 — 추출 대상"
+        },
+        "externalStaticPressure": {
+          "name": "기외정압 (ESP)",
+          "grade": "필수",
+          "fill": 0.0,
+          "models": {
+            "aaon-vccx2-rn-rq-series-rooftop-bacnet": {
+              "status": "not-in-table",
+              "evidence": [],
+              "reason": "낱말은 원문에 있으나 숫자 칸이 있는 표의 제목·머리글에서 찾지 못했다 — 본문 서술이나 곡선 그래프일 수 있다"
+            },
+            "carrier-comfortlink-48-50n-weatherexpert-rooftop-75-150-ton-bacnet-co": {
+              "status": "not-in-table",
+              "evidence": [],
+              "reason": "낱말은 원문에 있으나 숫자 칸이 있는 표의 제목·머리글에서 찾지 못했다 — 본문 서술이나 곡선 그래프일 수 있다"
+            },
+            "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Daikin_CAT218-4_RoofPak_AirHandler_Catalog.pdf",
+                  "page": 77,
+                  "title": "Table 35: Additional back return static pressure, 30\" airfoil return f",
+                  "terms": [
+                    "static pressure"
+                  ],
+                  "numCells": 12,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "static pressure"
+              ]
+            },
+            "johnson-controls-york-simplicity-se-smart-equipment-york-rooftop-units-modbus": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "York_ZF-ZJ-ZR_3-12.5t_TechGuide_6046560-YTG-B-0921.pdf",
+                  "page": 97,
+                  "title": "ZJ078 (6.5 Ton) Bottom Duct",
+                  "terms": [
+                    "external static",
+                    "static pressure"
+                  ],
+                  "numCells": 9,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "York_ZF-ZJ-ZR_3-12.5t_TechGuide_6046560-YTG-B-0921.pdf",
+                  "page": 97,
+                  "title": "ZJ090 (7.5 Ton) Bottom Duct",
+                  "terms": [
+                    "external static",
+                    "static pressure"
+                  ],
+                  "numCells": 10,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "York_ZF-ZJ-ZR_3-12.5t_TechGuide_6046560-YTG-B-0921.pdf",
+                  "page": 97,
+                  "title": "ZJ102 (8.5 Ton) Bottom Duct",
+                  "terms": [
+                    "external static",
+                    "static pressure"
+                  ],
+                  "numCells": 8,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "York_ZF-ZJ-ZR_3-12.5t_TechGuide_6046560-YTG-B-0921.pdf",
+                  "page": 94,
+                  "title": "ZJ078 (6.5 Ton) Side Duct",
+                  "terms": [
+                    "external static",
+                    "static pressure"
+                  ],
+                  "numCells": 7,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "external static",
+                "static pressure"
+              ]
+            },
+            "lennox-core-unit-controller-enlight-model-l-rooftop-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 27,
+                  "title": "",
+                  "terms": [
+                    "static pressure"
+                  ],
+                  "numCells": 543,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 28,
+                  "title": "",
+                  "terms": [
+                    "static pressure"
+                  ],
+                  "numCells": 424,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 29,
+                  "title": "POWER EXHAUST FAN PERFORMANCE",
+                  "terms": [
+                    "static pressure",
+                    "fan performance"
+                  ],
+                  "numCells": 16,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LHT_EHB_2411.pdf",
+                  "page": 24,
+                  "title": "",
+                  "terms": [
+                    "static pressure"
+                  ],
+                  "numCells": 830,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "fan performance",
+                "static pressure"
+              ]
+            },
+            "trane-symbio-700-odyssey-lontalk-scc": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "SS-PRC028AA-EN_06262022.pdf",
+                  "page": 72,
+                  "title": "External Static Pressure (Inches of Water Gauge)",
+                  "terms": [
+                    "external static",
+                    "static pressure"
+                  ],
+                  "numCells": 22,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "SS-PRC028AA-EN_06262022.pdf",
+                  "page": 68,
+                  "title": "External Static Pressure (Inches of Water Gauge)",
+                  "terms": [
+                    "external static",
+                    "static pressure"
+                  ],
+                  "numCells": 18,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "SS-PRC028AA-EN_06262022.pdf",
+                  "page": 77,
+                  "title": "Table 60. Evaporator fan performance —TWE3004KB — constant volume air ",
+                  "terms": [
+                    "fan performance"
+                  ],
+                  "numCells": 104,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "SS-PRC028AA-EN_06262022.pdf",
+                  "page": 75,
+                  "title": "External Static Pressure (Inches of Water Gauge)",
+                  "terms": [
+                    "external static",
+                    "static pressure"
+                  ],
+                  "numCells": 154,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "external static",
+                "fan performance",
+                "static pressure"
+              ]
+            },
+            "trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-dac": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 83,
+                  "title": "Table 47. Multispeed direct drive evaporator fan performance 3 to 5 to",
+                  "terms": [
+                    "external static",
+                    "static pressure",
+                    "fan performance"
+                  ],
+                  "numCells": 45,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 85,
+                  "title": "Table 48. Multispeed direct drive evaporator fan performance 3 to 5 to",
+                  "terms": [
+                    "external static",
+                    "static pressure",
+                    "fan performance"
+                  ],
+                  "numCells": 45,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 81,
+                  "title": "Table 46. Multispeed direct drive evaporator fan performance 3 to 5 to",
+                  "terms": [
+                    "external static",
+                    "static pressure",
+                    "fan performance"
+                  ],
+                  "numCells": 45,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 69,
+                  "title": "Table 40. Multispeed direct drive evaporator fan performance 3 to 5 to",
+                  "terms": [
+                    "external static",
+                    "static pressure",
+                    "fan performance"
+                  ],
+                  "numCells": 45,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "external static",
+                "fan performance",
+                "static pressure"
+              ]
+            },
+            "trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-scc": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 83,
+                  "title": "Table 47. Multispeed direct drive evaporator fan performance 3 to 5 to",
+                  "terms": [
+                    "external static",
+                    "static pressure",
+                    "fan performance"
+                  ],
+                  "numCells": 45,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 85,
+                  "title": "Table 48. Multispeed direct drive evaporator fan performance 3 to 5 to",
+                  "terms": [
+                    "external static",
+                    "static pressure",
+                    "fan performance"
+                  ],
+                  "numCells": 45,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 81,
+                  "title": "Table 46. Multispeed direct drive evaporator fan performance 3 to 5 to",
+                  "terms": [
+                    "external static",
+                    "static pressure",
+                    "fan performance"
+                  ],
+                  "numCells": 45,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 69,
+                  "title": "Table 40. Multispeed direct drive evaporator fan performance 3 to 5 to",
+                  "terms": [
+                    "external static",
+                    "static pressure",
+                    "fan performance"
+                  ],
+                  "numCells": 45,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "external static",
+                "fan performance",
+                "static pressure"
+              ]
+            }
+          },
+          "summary": {
+            "table": 6,
+            "weak": 0,
+            "notInTable": 2
+          },
+          "verdict": "정량 가능 — 추출 대상"
+        },
+        "heating": {
+          "name": "난방 방식·입열량·출열량 (또는 난방능력·COP)",
+          "grade": "필수",
+          "fill": 2.0,
+          "models": {
+            "aaon-vccx2-rn-rq-series-rooftop-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "AAON_RN_Series_IOM_R454B.pdf",
+                  "page": 90,
+                  "title": "TABLE 37 — ELECTRIC AND GAS HEATING CAPACITIES",
+                  "terms": [
+                    "gas heat"
+                  ],
+                  "numCells": 55,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "gas heat"
+              ]
+            },
+            "carrier-comfortlink-48-50n-weatherexpert-rooftop-75-150-ton-bacnet-co": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Carrier_48-50N-6PD_WeatherExpert_ProductData.pdf",
+                  "page": 43,
+                  "title": "COMPONENT PRESSURE DROPS (in. wg) SIZES N, P, Q (75-105 TON NOMINAL CA",
+                  "terms": [
+                    "gas heat"
+                  ],
+                  "numCells": 186,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Carrier_48-50N-6PD_WeatherExpert_ProductData.pdf",
+                  "page": 22,
+                  "title": "OPERATING WEIGHTS OF OPTIONS AND ACCESSORIES (lb)",
+                  "terms": [
+                    "gas heat"
+                  ],
+                  "numCells": 111,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "gas heat"
+              ]
+            },
+            "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Daikin_ED-19116_Rebel_Physical_Data.pdf",
+                  "page": 2,
+                  "title": "Physical Data Rebel® Physical Data — Model DPS 003 – 028",
+                  "terms": [
+                    "heating performance",
+                    "heat pump"
+                  ],
+                  "numCells": 222,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Daikin_ED-19116_Rebel_Physical_Data.pdf",
+                  "page": 3,
+                  "title": "Rebel® Physical Data — Model DPS 003 – 028",
+                  "terms": [
+                    "gas heat",
+                    "heat pump"
+                  ],
+                  "numCells": 101,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Daikin_ED-19116_Rebel_Physical_Data.pdf",
+                  "page": 3,
+                  "title": "1. Includes standard cooling coil",
+                  "terms": [
+                    "gas heat",
+                    "heat pump"
+                  ],
+                  "numCells": 52,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Daikin_ED-19116_Rebel_Physical_Data.pdf",
+                  "page": 3,
+                  "title": "Weight (lbs.)",
+                  "terms": [
+                    "heat pump"
+                  ],
+                  "numCells": 61,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "gas heat",
+                "heat pump",
+                "heating performance"
+              ]
+            },
+            "johnson-controls-york-simplicity-se-smart-equipment-york-rooftop-units-modbus": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "York_ZF-ZJ-ZR_3-12.5t_TechGuide_6046560-YTG-B-0921.pdf",
+                  "page": 19,
+                  "title": "ZR037-061 Two Stage Gas Heat Physical Data",
+                  "terms": [
+                    "gas heat",
+                    "heating performance"
+                  ],
+                  "numCells": 171,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "York_ZF-ZJ-ZR_3-12.5t_TechGuide_6046560-YTG-B-0921.pdf",
+                  "page": 15,
+                  "title": "ZJ037-061 Two Stage Gas Heat Physical Data",
+                  "terms": [
+                    "gas heat",
+                    "heating performance"
+                  ],
+                  "numCells": 159,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "gas heat",
+                "heating performance"
+              ]
+            },
+            "lennox-core-unit-controller-enlight-model-l-rooftop-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 26,
+                  "title": "",
+                  "terms": [
+                    "gas heat"
+                  ],
+                  "numCells": 748,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 25,
+                  "title": "",
+                  "terms": [
+                    "gas heat"
+                  ],
+                  "numCells": 361,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 27,
+                  "title": "",
+                  "terms": [
+                    "gas heat"
+                  ],
+                  "numCells": 543,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 28,
+                  "title": "",
+                  "terms": [
+                    "gas heat"
+                  ],
+                  "numCells": 424,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "gas heat"
+              ]
+            },
+            "trane-symbio-700-odyssey-lontalk-scc": {
+              "status": "not-in-table",
+              "evidence": [],
+              "reason": "낱말은 원문에 있으나 숫자 칸이 있는 표의 제목·머리글에서 찾지 못했다 — 본문 서술이나 곡선 그래프일 수 있다"
+            },
+            "trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-dac": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 184,
+                  "title": "Table 151. Gas fired heating capacities — standard efficiency — 3 to 1",
+                  "terms": [
+                    "heating input"
+                  ],
+                  "numCells": 120,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 31,
+                  "title": "Table 6. General data — 6 to 10 tons — standard efficiency",
+                  "terms": [
+                    "heating performance",
+                    "heating input"
+                  ],
+                  "numCells": 154,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 34,
+                  "title": "Table 7. General data — 3 to 5 tons — high efficiency (continued)",
+                  "terms": [
+                    "heating performance",
+                    "heating input"
+                  ],
+                  "numCells": 141,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 29,
+                  "title": "Table 5. General data — 3 to 5 tons — standard efficiency",
+                  "terms": [
+                    "heating performance",
+                    "heating input"
+                  ],
+                  "numCells": 95,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "heating input",
+                "heating performance"
+              ]
+            },
+            "trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-scc": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 184,
+                  "title": "Table 151. Gas fired heating capacities — standard efficiency — 3 to 1",
+                  "terms": [
+                    "heating input"
+                  ],
+                  "numCells": 120,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 31,
+                  "title": "Table 6. General data — 6 to 10 tons — standard efficiency",
+                  "terms": [
+                    "heating performance",
+                    "heating input"
+                  ],
+                  "numCells": 154,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 34,
+                  "title": "Table 7. General data — 3 to 5 tons — high efficiency (continued)",
+                  "terms": [
+                    "heating performance",
+                    "heating input"
+                  ],
+                  "numCells": 141,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 29,
+                  "title": "Table 5. General data — 3 to 5 tons — standard efficiency",
+                  "terms": [
+                    "heating performance",
+                    "heating input"
+                  ],
+                  "numCells": 95,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "heating input",
+                "heating performance"
+              ]
+            }
+          },
+          "summary": {
+            "table": 7,
+            "weak": 0,
+            "notInTable": 1
+          },
+          "verdict": "정량 가능 — 추출 대상"
+        },
+        "outdoorAir": {
+          "name": "최소 외기량·이코노마이저 유무",
+          "grade": "필수",
+          "fill": 0.0,
+          "models": {
+            "aaon-vccx2-rn-rq-series-rooftop-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "AAON_RN_Series_IOM_R454B.pdf",
+                  "page": 31,
+                  "title": "",
+                  "terms": [
+                    "outside air"
+                  ],
+                  "numCells": 6,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "AAON_RN_Series_IOM_R454B.pdf",
+                  "page": 31,
+                  "title": "",
+                  "terms": [
+                    "outside air"
+                  ],
+                  "numCells": 6,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "outside air"
+              ]
+            },
+            "carrier-comfortlink-48-50n-weatherexpert-rooftop-75-150-ton-bacnet-co": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Carrier_48-50N-6PD_WeatherExpert_ProductData.pdf",
+                  "page": 17,
+                  "title": "48/50N SIZES N-T (75-150 TONS NOMINAL CAPACITY) (cont)",
+                  "terms": [
+                    "economizer",
+                    "outside air"
+                  ],
+                  "numCells": 13,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "economizer",
+                "outside air"
+              ]
+            },
+            "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Daikin_ED-19116_Rebel_Physical_Data.pdf",
+                  "page": 3,
+                  "title": "Rebel® Physical Data — Model DPS 003 – 028",
+                  "terms": [
+                    "economizer"
+                  ],
+                  "numCells": 101,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Daikin_ED-19116_Rebel_Physical_Data.pdf",
+                  "page": 3,
+                  "title": "1. Includes standard cooling coil",
+                  "terms": [
+                    "economizer"
+                  ],
+                  "numCells": 52,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Daikin_CAT218-4_RoofPak_AirHandler_Catalog.pdf",
+                  "page": 13,
+                  "title": "Table 2: Ventilation airflow measurement range",
+                  "terms": [
+                    "ventilation"
+                  ],
+                  "numCells": 8,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "economizer",
+                "outside air",
+                "ventilation"
+              ]
+            },
+            "johnson-controls-york-simplicity-se-smart-equipment-york-rooftop-units-modbus": {
+              "status": "weak",
+              "evidence": [
+                {
+                  "file": "York_ZF-ZJ-ZR_3-12.5t_TechGuide_6046560-YTG-B-0921.pdf",
+                  "page": 11,
+                  "title": "Field Installed Accessories - Fresh Air",
+                  "terms": [
+                    "economizer",
+                    "outside air"
+                  ],
+                  "numCells": 28,
+                  "where": "본문 칸만",
+                  "strong": false
+                },
+                {
+                  "file": "York_ZJ-ZR-ZF_15-25t_TechGuide_5168277-YTG-K-0119.pdf",
+                  "page": 100,
+                  "title": "ZJ/ZR/ZF180-300 Unit Clearances",
+                  "terms": [
+                    "economizer"
+                  ],
+                  "numCells": 9,
+                  "where": "본문 칸만",
+                  "strong": false
+                }
+              ],
+              "terms": [
+                "economizer",
+                "outside air"
+              ],
+              "reason": "낱말이 표 본문 칸에만 있다 — 그 표의 주제가 아닐 수 있다. 사람이 원문을 봐야 한다"
+            },
+            "lennox-core-unit-controller-enlight-model-l-rooftop-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 32,
+                  "title": "Model Number Net Shipping lbs. kg lbs. kg 036 Base Unit 630 286 691 31",
+                  "terms": [
+                    "economizer",
+                    "outdoor air"
+                  ],
+                  "numCells": 40,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 18,
+                  "title": "",
+                  "terms": [
+                    "economizer",
+                    "outdoor air"
+                  ],
+                  "numCells": 21,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "economizer",
+                "outdoor air"
+              ]
+            },
+            "trane-symbio-700-odyssey-lontalk-scc": {
+              "status": "not-in-table",
+              "evidence": [],
+              "reason": "낱말은 원문에 있으나 숫자 칸이 있는 표의 제목·머리글에서 찾지 못했다 — 본문 서술이나 곡선 그래프일 수 있다"
+            },
+            "trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-dac": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 183,
+                  "title": "Fan Performance",
+                  "terms": [
+                    "economizer"
+                  ],
+                  "numCells": 459,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 182,
+                  "title": "Fan Performance",
+                  "terms": [
+                    "economizer"
+                  ],
+                  "numCells": 355,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 218,
+                  "title": "Table 176. Factory installed options (fiops)/accessory net weights (lb",
+                  "terms": [
+                    "economizer",
+                    "outside air"
+                  ],
+                  "numCells": 121,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 21,
+                  "title": "4. In order to select the correct unit which meets the building’s requ",
+                  "terms": [
+                    "economizer",
+                    "outside air"
+                  ],
+                  "numCells": 8,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "economizer",
+                "outside air"
+              ]
+            },
+            "trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-scc": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 183,
+                  "title": "Fan Performance",
+                  "terms": [
+                    "economizer"
+                  ],
+                  "numCells": 459,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 182,
+                  "title": "Fan Performance",
+                  "terms": [
+                    "economizer"
+                  ],
+                  "numCells": 355,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 218,
+                  "title": "Table 176. Factory installed options (fiops)/accessory net weights (lb",
+                  "terms": [
+                    "economizer",
+                    "outside air"
+                  ],
+                  "numCells": 121,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 21,
+                  "title": "4. In order to select the correct unit which meets the building’s requ",
+                  "terms": [
+                    "economizer",
+                    "outside air"
+                  ],
+                  "numCells": 8,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "economizer",
+                "outside air"
+              ]
+            }
+          },
+          "summary": {
+            "table": 6,
+            "weak": 1,
+            "notInTable": 1
+          },
+          "verdict": "정량 가능 — 추출 대상"
+        },
+        "electrical": {
+          "name": "전원 V/φ/Hz · MCA/MOP",
+          "grade": "권장",
+          "fill": 0.0,
+          "models": {
+            "aaon-vccx2-rn-rq-series-rooftop-bacnet": {
+              "status": "not-in-table",
+              "evidence": [],
+              "reason": "낱말은 원문에 있으나 숫자 칸이 있는 표의 제목·머리글에서 찾지 못했다 — 본문 서술이나 곡선 그래프일 수 있다"
+            },
+            "carrier-comfortlink-48-50n-weatherexpert-rooftop-75-150-ton-bacnet-co": {
+              "status": "not-in-table",
+              "evidence": [],
+              "reason": "낱말은 원문에 있으나 숫자 칸이 있는 표의 제목·머리글에서 찾지 못했다 — 본문 서술이나 곡선 그래프일 수 있다"
+            },
+            "daikin-microtech-iii-4-rebel-roofpak-maverick-ii-rooftop-self-contained-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Daikin_CAT218-4_RoofPak_AirHandler_Catalog.pdf",
+                  "page": 99,
+                  "title": "Electrical Data Table 36: Supply, exhaust and return fan motors, RPS 0",
+                  "terms": [
+                    "electrical data"
+                  ],
+                  "numCells": 485,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "electrical data"
+              ]
+            },
+            "johnson-controls-york-simplicity-se-smart-equipment-york-rooftop-units-modbus": {
+              "status": "weak",
+              "evidence": [
+                {
+                  "file": "York_ZF-ZJ-ZR_3-12.5t_TechGuide_6046560-YTG-B-0921.pdf",
+                  "page": 86,
+                  "title": "Power Exhaust Specifications",
+                  "terms": [
+                    "mca"
+                  ],
+                  "numCells": 30,
+                  "where": "본문 칸만",
+                  "strong": false
+                },
+                {
+                  "file": "York_ZJ-ZR-ZF_15-25t_TechGuide_5168277-YTG-K-0119.pdf",
+                  "page": 67,
+                  "title": "Power Exhaust Specifications",
+                  "terms": [
+                    "mca"
+                  ],
+                  "numCells": 26,
+                  "where": "본문 칸만",
+                  "strong": false
+                }
+              ],
+              "terms": [
+                "mca"
+              ],
+              "reason": "낱말이 표 본문 칸에만 있다 — 그 표의 주제가 아닐 수 있다. 사람이 원문을 봐야 한다"
+            },
+            "lennox-core-unit-controller-enlight-model-l-rooftop-bacnet": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 30,
+                  "title": "",
+                  "terms": [
+                    "electrical data",
+                    "maximum overcurrent",
+                    "mca"
+                  ],
+                  "numCells": 75,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 30,
+                  "title": "1 Extremes of operating range are plus and minus 10% of line voltage. ",
+                  "terms": [
+                    "electrical data",
+                    "maximum overcurrent",
+                    "mca"
+                  ],
+                  "numCells": 75,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 31,
+                  "title": "",
+                  "terms": [
+                    "electrical data",
+                    "maximum overcurrent",
+                    "mca"
+                  ],
+                  "numCells": 75,
+                  "where": "제목·머리글",
+                  "strong": true
+                },
+                {
+                  "file": "Lennox_Enlight_LGT_EHB_210977.pdf",
+                  "page": 31,
+                  "title": "1 Extremes of operating range are plus and minus 10% of line voltage. ",
+                  "terms": [
+                    "electrical data",
+                    "maximum overcurrent",
+                    "mca"
+                  ],
+                  "numCells": 45,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "electrical data",
+                "maximum overcurrent",
+                "mca"
+              ]
+            },
+            "trane-symbio-700-odyssey-lontalk-scc": {
+              "status": "table",
+              "evidence": [
+                {
+                  "file": "SS-PRC028AA-EN_06262022.pdf",
+                  "page": 98,
+                  "title": "Table 78. Unit wiring with electric heat (single point connection) — 6",
+                  "terms": [
+                    "mca"
+                  ],
+                  "numCells": 79,
+                  "where": "제목·머리글",
+                  "strong": true
+                }
+              ],
+              "terms": [
+                "mca",
+                "mop"
+              ]
+            },
+            "trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-dac": {
+              "status": "weak",
+              "evidence": [
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 201,
+                  "title": "Table 167. Unit wiring with electric heat (single point connection) — ",
+                  "terms": [
+                    "mca"
+                  ],
+                  "numCells": 84,
+                  "where": "본문 칸만",
+                  "strong": false
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 200,
+                  "title": "Table 167. Unit wiring with electric heat (single point connection) — ",
+                  "terms": [
+                    "mca"
+                  ],
+                  "numCells": 214,
+                  "where": "본문 칸만",
+                  "strong": false
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 194,
+                  "title": "Table 159. Unit wiring with electric heat (single point connection) — ",
+                  "terms": [
+                    "mca"
+                  ],
+                  "numCells": 279,
+                  "where": "본문 칸만",
+                  "strong": false
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 199,
+                  "title": "Table 165. Unit wiring — high efficiency",
+                  "terms": [
+                    "mca"
+                  ],
+                  "numCells": 139,
+                  "where": "본문 칸만",
+                  "strong": false
+                }
+              ],
+              "terms": [
+                "mca"
+              ],
+              "reason": "낱말이 표 본문 칸에만 있다 — 그 표의 주제가 아닐 수 있다. 사람이 원문을 봐야 한다"
+            },
+            "trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-scc": {
+              "status": "weak",
+              "evidence": [
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 201,
+                  "title": "Table 167. Unit wiring with electric heat (single point connection) — ",
+                  "terms": [
+                    "mca"
+                  ],
+                  "numCells": 84,
+                  "where": "본문 칸만",
+                  "strong": false
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 200,
+                  "title": "Table 167. Unit wiring with electric heat (single point connection) — ",
+                  "terms": [
+                    "mca"
+                  ],
+                  "numCells": 214,
+                  "where": "본문 칸만",
+                  "strong": false
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 194,
+                  "title": "Table 159. Unit wiring with electric heat (single point connection) — ",
+                  "terms": [
+                    "mca"
+                  ],
+                  "numCells": 279,
+                  "where": "본문 칸만",
+                  "strong": false
+                },
+                {
+                  "file": "RT-PRC023AY-EN_12202022.pdf",
+                  "page": 199,
+                  "title": "Table 165. Unit wiring — high efficiency",
+                  "terms": [
+                    "mca"
+                  ],
+                  "numCells": 139,
+                  "where": "본문 칸만",
+                  "strong": false
+                }
+              ],
+              "terms": [
+                "mca"
+              ],
+              "reason": "낱말이 표 본문 칸에만 있다 — 그 표의 주제가 아닐 수 있다. 사람이 원문을 봐야 한다"
+            }
+          },
+          "summary": {
+            "table": 3,
+            "weak": 3,
+            "notInTable": 2
+          },
+          "verdict": "정량 가능 — 추출 대상"
+        }
+      }
+    }
+  }
+}

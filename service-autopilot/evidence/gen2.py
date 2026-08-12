@@ -862,24 +862,39 @@ function renderModels(models, l3){
   if(m.points.length){
     var pts = m.points.filter(function(p){return p.inst;});
     var hasNote = m.points.some(function(p){return p.note;});
-    var head = hasNote ? ['인스턴스','종류','단위','오브젝트명','값 범위 · 상태']
-                       : ['인스턴스','종류','단위','오브젝트명'];
+    var hasSrc = m.points.some(function(p){return p.sourceFile && p.sourcePage;});
+    var hasModbusMeta = m.points.some(function(p){return p.bacOid || p.modbusScaleFactor || p.modbusSignedFlag || p.modbusWritableFlag !== undefined;});
+    var head = ['인스턴스','종류','단위','오브젝트명'];
+    if(hasModbusMeta) head = head.concat(['BACOid','Scale','Signed','Writable']);
+    if(hasNote) head.push('값 범위 · 상태');
+    if(hasSrc) head.push('출처');
     var rows = m.points.map(function(p){
-      return hasNote ? [p.inst||'', p.type, p.unitDisp, p.name, p.note||'']
-                     : [p.inst, p.type, p.unitDisp, p.name];
+      var r = [esc(p.inst||''), esc(p.type), esc(p.unitDisp), esc(p.name)];
+      if(hasModbusMeta) r = r.concat([
+        esc(p.bacOid||''), esc(p.modbusScaleFactor||''),
+        esc(p.modbusSignedFlag||''), esc(p.modbusWritableFlag === undefined ? '' : p.modbusWritableFlag)
+      ]);
+      if(hasNote) r.push(esc(p.note||''));
+      if(hasSrc) r.push(srcLink(p.sourceFile, p.sourcePage,
+        p.sourceFile ? (p.sourceFile + (p.sourcePage ? ' p'+p.sourcePage : '')) : ''));
+      return r;
     });
     // 매핑 자동화에 실제로 쓰이는 건 이 표다 — 뽑아 갈 수 있어야 한다.
     // 화면 표기(unitDisp)가 아니라 원문 단위와 정규 단위를 함께 넣는다.
     h += sec('제조사 원문 오브젝트 목록', pts.length)
        + '<div class="qrow"><span class="qsrc">인스턴스 번호까지 문서에 확정된 L3 전체 목록</span>'
        + csvBtn('pt'+m.id, safeName(m.vendor+'_'+m.model)+'_오브젝트목록.csv',
-                ['type','instance','name','unit','unitRaw','note'],
+                ['type','instance','name','unit','unitRaw','bacOid','modbusRegister','modbusScaleFactor','modbusBooleanFlag','modbusSignedFlag','modbusOffset','modbusWritableFlag','sourceFile','sourcePage','note'],
                 m.points.map(function(p){
-                  return [p.type, p.inst||'', p.name, p.unit||'', p.unitRaw||'', p.note||'']; }),
+                  return [p.type, p.inst||'', p.name, p.unit||'', p.unitRaw||'',
+                          p.bacOid||'', p.modbusRegister||'', p.modbusScaleFactor||'',
+                          p.modbusBooleanFlag||'', p.modbusSignedFlag||'',
+                          p.modbusOffset||'', p.modbusWritableFlag === undefined ? '' : p.modbusWritableFlag,
+                          p.sourceFile||'', p.sourcePage||'', p.note||'']; }),
                 '오브젝트 목록 CSV')
        + '</div>'
        + kindChips([{header:head, rows:rows}])
-       + table({header:head, rows:rows});
+       + table({header:head, rows:rows, raw:true});
   }
   h += sec('근거 문서', m.docs.length)
      + table({header:['종류','제목','발행자','문서번호','발행','경로','상태'],
@@ -915,7 +930,12 @@ function hasUnitWorkspace(m){
 
 // 공조기 운영 화면은 L3 원문 전체가 아니라 L2 기본 화면에서 시작한다.
 // 아래 규칙은 "화면 후보를 먼저 보여 주는" 얇은 계층이고, 원문 목록은 그대로 보존한다.
-// 다른 설비는 VIEW_PROFILES에 패턴을 추가해서 같은 방식으로 확장한다.
+//
+// ⚠ 이 목록은 renderAhuOperatorView() 전용 폴백이고 **지금은 도달하지 않는다** —
+//   e5 모델은 purpose 데이터가 항상 있어 renderAhuPurposeWorkspace 가 먼저 돌아간다.
+//   그래서 옛 목록(냉수·온수 밸브 포함)을 그대로 두었다. 되살릴 때는 여기 규칙을 베끼지
+//   말고 pipeline/data/equip-templates.json 의 하위형식 프로파일(e5.rtu·e5.ahu)을 써라.
+//   RTU 에는 냉수·온수 밸브가 없다 (2026-08-11 사고, pipeline/README.md 참고).
 var VIEW_PROFILES = {
   ahu: [
     ['급기온도', /(?:supply|discharge).*air.*temp|discharge.*temp/i],
@@ -1004,24 +1024,39 @@ function renderSimulatorInputPanel(m, p){
 function renderObjectPointPanel(m){
   var pts = (m.points||[]).filter(function(p){return p.inst;});
   var hasNote = (m.points||[]).some(function(p){return p.note;});
-  var head = hasNote ? ['인스턴스','종류','단위','오브젝트명','값 범위 · 상태']
-                     : ['인스턴스','종류','단위','오브젝트명'];
+  var hasSrc = (m.points||[]).some(function(p){return p.sourceFile && p.sourcePage;});
+  var hasModbusMeta = (m.points||[]).some(function(p){return p.bacOid || p.modbusScaleFactor || p.modbusSignedFlag || p.modbusWritableFlag !== undefined;});
+  var head = ['인스턴스','종류','단위','오브젝트명'];
+  if(hasModbusMeta) head = head.concat(['BACOid','Scale','Signed','Writable']);
+  if(hasNote) head.push('값 범위 · 상태');
+  if(hasSrc) head.push('출처');
   var rows = (m.points||[]).map(function(p){
-    return hasNote ? [p.inst||'', p.type, p.unitDisp, p.name, p.note||'']
-                   : [p.inst, p.type, p.unitDisp, p.name];
+    var r = [esc(p.inst||''), esc(p.type), esc(p.unitDisp), esc(p.name)];
+    if(hasModbusMeta) r = r.concat([
+      esc(p.bacOid||''), esc(p.modbusScaleFactor||''),
+      esc(p.modbusSignedFlag||''), esc(p.modbusWritableFlag === undefined ? '' : p.modbusWritableFlag)
+    ]);
+    if(hasNote) r.push(esc(p.note||''));
+    if(hasSrc) r.push(srcLink(p.sourceFile, p.sourcePage,
+      p.sourceFile ? (p.sourceFile + (p.sourcePage ? ' p'+p.sourcePage : '')) : ''));
+    return r;
   });
   return sec('제조사 원문 오브젝트 목록', pts.length)
     + '<div class="guide"><b>L3 전체 포인트예요</b>'
     + '<p>BMS 자동 매핑과 시운전에 필요한 제조사 원문 오브젝트 목록입니다. 운영 화면에 전부 올리는 목록이 아니라, 상세 매핑의 원천입니다.</p></div>'
     + '<div class="qrow"><span class="qsrc">인스턴스 번호까지 문서에 확정된 L3 전체 목록</span>'
     + csvBtn('pt'+m.id, safeName(m.vendor+'_'+m.model)+'_오브젝트목록.csv',
-             ['type','instance','name','unit','unitRaw','note'],
+             ['type','instance','name','unit','unitRaw','bacOid','modbusRegister','modbusScaleFactor','modbusBooleanFlag','modbusSignedFlag','modbusOffset','modbusWritableFlag','sourceFile','sourcePage','note'],
              (m.points||[]).map(function(p){
-               return [p.type, p.inst||'', p.name, p.unit||'', p.unitRaw||'', p.note||'']; }),
+               return [p.type, p.inst||'', p.name, p.unit||'', p.unitRaw||'',
+                       p.bacOid||'', p.modbusRegister||'', p.modbusScaleFactor||'',
+                       p.modbusBooleanFlag||'', p.modbusSignedFlag||'',
+                       p.modbusOffset||'', p.modbusWritableFlag === undefined ? '' : p.modbusWritableFlag,
+                       p.sourceFile||'', p.sourcePage||'', p.note||'']; }),
              '오브젝트 목록 CSV')
     + '</div>'
     + kindChips([{header:head, rows:rows}])
-    + table({header:head, rows:rows});
+    + table({header:head, rows:rows, raw:true});
 }
 
 function renderDocsPanel(m){

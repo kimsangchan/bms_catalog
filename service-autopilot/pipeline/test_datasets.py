@@ -1,20 +1,138 @@
 # -*- coding: utf-8 -*-
+import glob
+import os
+import io
+import json
+from pathlib import Path
+from contextlib import redirect_stdout
 import unittest
 
 import build
 import datasets
+import extract
+import haystack
+import requirements as RQ
 import units as U
+
+RAW = os.path.join(datasets.DATA, "raw")
 
 
 class DatasetBuildTest(unittest.TestCase):
     def test_ahu_template_has_template_simulator_and_mapping_layers(self):
+        # 전에는 equipmentTemplates['e5'].templatePoints 한 벌(23행)이었다. 그게 RTU 를
+        # 냉수코일 AHU 체크리스트로 채점한 원인이라 하위형식 프로파일로 갈랐다.
         data = datasets.build_dataset(equip_ids={"e5"})
         ahu = data["equipmentTemplates"]["e5"]
 
-        self.assertGreaterEqual(len(ahu["templatePoints"]), 20)
+        self.assertEqual(ahu["templateProfileIds"], ["e5.ahu", "e5.rtu"])
+        self.assertNotIn("templatePoints", ahu)   # 계열 한 벌은 더 이상 없다
         self.assertGreaterEqual(len(ahu["simulatorSpecRequirements"]), 10)
+        for pid in ("e5.rtu", "e5.ahu"):
+            self.assertGreaterEqual(len(data["templateProfiles"][pid]["templatePoints"]), 20)
         self.assertIn("modelMappings", data)
         self.assertTrue(data["modelMappings"])
+
+    def test_template_profile_ids_match_requirement_profile_ids(self):
+        """게이트 — 두 파일의 프로파일 id 집합이 같아야 한다.
+
+        매치 규칙(catPrefix)은 equip-requirements.json 에만 있고 결합은
+        requirements.profile_for() 하나만 쓴다. id 가 어긋나면 모델이 조용히 템플릿
+        없이 흘러가므로 여기서 세운다.
+        """
+        tpl = set(datasets.load_template_profiles())
+        req = set(RQ.profiles())
+
+        self.assertEqual(tpl, req)
+        self.assertEqual(tpl, {"e5.rtu", "e5.ahu"})
+        for pid, prof in datasets.load_template_profiles().items():
+            self.assertNotIn("match", prof, "%s: 매치 규칙을 여기 복제하면 규칙이 두 벌이 된다" % pid)
+
+    def test_datasets_cli_rejects_partial_overwrite(self):
+        """공용 산출물을 부분 데이터로 덮어쓰는 --equip 재발 방지."""
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            code = datasets.main(["--equip", "e5"])
+
+        self.assertEqual(code, 2)
+        self.assertIn("--equip", buf.getvalue())
+
+    def test_extracted_points_carry_pdf_page_source(self):
+        """모델별 오브젝트 목록도 행 단위로 원문 PDF 쪽을 들고 있어야 한다."""
+        pdf = os.path.join(RAW, "AAON_VCCX2_Technical_Guide.pdf")
+        if not os.path.exists(pdf):
+            self.skipTest("raw PDF 없음: " + pdf)
+
+        points, _how = extract.extract(pdf)
+
+        self.assertTrue(points)
+        self.assertTrue(all(p.get("sourceFile") for p in points[:20]))
+        self.assertTrue(all(isinstance(p.get("sourcePage"), int) for p in points[:20]))
+        self.assertEqual(points[0]["sourceFile"], "AAON_VCCX2_Technical_Guide.pdf")
+
+    def test_model_and_dataset_points_preserve_pdf_page_source(self):
+        model = datasets.load_models()["aaon-vccx2-rn-rq-series-rooftop-bacnet"]
+        self.assertTrue(model["points"][0].get("sourceFile"))
+        self.assertIsInstance(model["points"][0].get("sourcePage"), int)
+
+        data = datasets.build_dataset(equip_ids={"e5"})
+        mapped = data["modelMappings"]["aaon-vccx2-rn-rq-series-rooftop-bacnet"]["l3MappingPoints"]
+        self.assertTrue(mapped[0].get("sourceFile"))
+        self.assertIsInstance(mapped[0].get("sourcePage"), int)
+
+    def test_haystack_diff_reads_template_profiles_before_legacy_rows(self):
+        """haystack --diff e5 가 옛 23행 pointTables 가 아니라 하위형식 프로파일을 본다."""
+        rows = haystack.template_rows("e5", haystack.load_equip("e5"))
+        names = {r["name"] for r in rows}
+
+        self.assertGreaterEqual(len(rows), 60)
+        self.assertIn("e5.rtu/실내온도", names)
+        self.assertIn("e5.ahu/냉수밸브 개도", names)
+
+    def test_every_e5_model_resolves_to_a_template_profile(self):
+        """프로파일 미해결이 조용히 후보 0 이 되지 않는지 — 전에는 `or []` 로 흘렀다."""
+        seen = {}
+        for path in glob.glob(os.path.join(datasets.DATA, "models", "*.json")):
+            model = datasets.load_json(path)
+            if model.get("equipId") != "e5":
+                continue
+            seen[model["id"]] = datasets.template_profile_for(model)
+
+        self.assertEqual(len(seen), 17)
+        self.assertFalse([k for k, v in seen.items() if v is None])
+        self.assertEqual(
+            seen["trane-symbio-800-intellicore-split-system-rauk-bacnet"], "e5.rtu")
+        self.assertEqual(
+            seen["trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-scc"], "e5.rtu")
+        self.assertEqual(seen["swegon-iqlogic-gold-rx-px-cx-sd-ahu-modbus"], "e5.ahu")
+        with self.assertRaises(ValueError):
+            datasets.template_profile_for({"id": "x", "equipId": "e5", "cat": "HVAC.WATER.PUMP"})
+
+    def test_rtu_template_drops_water_valves_from_required_points(self):
+        """이번 사고의 회귀 테스트 — RTU 에 없는 부품을 '필수'로 물지 않는다."""
+        rows = {r["name"]: r
+                for r in datasets.load_template_profiles()["e5.rtu"]["templatePoints"]}
+
+        for name in ("냉수밸브 개도", "온수밸브 개도"):
+            self.assertNotEqual(rows[name]["grade"], "필수")
+            self.assertTrue(rows[name].get("appliesWhen"),
+                            "%s: 삭제가 아니라 적용성 조건으로 남겨야 한다" % name)
+        # 그 자리를 대신하는 것 (Haystack 의 cool cmd / heat cmd)
+        for name in ("냉방 지령", "난방 지령"):
+            self.assertEqual(rows[name]["grade"], "필수")
+            self.assertIn("cmd", rows[name]["haystack"])
+        # AHU 쪽 밸브는 그대로 필수 — 실제로 있는 부품이다
+        ahu = {r["name"]: r
+               for r in datasets.load_template_profiles()["e5.ahu"]["templatePoints"]}
+        self.assertEqual(ahu["냉수밸브 개도"]["grade"], "필수")
+        self.assertEqual(ahu["온수밸브 개도"]["grade"], "필수")
+
+    def test_every_template_point_carries_a_haystack_basis(self):
+        for pid, prof in datasets.load_template_profiles().items():
+            for row in prof["templatePoints"]:
+                self.assertTrue(row.get("haystack") or row.get("handMade"),
+                                "%s/%s: Haystack proto 근거가 없다" % (pid, row["name"]))
+                self.assertTrue(row.get("match", {}).get("include"),
+                                "%s/%s: 매칭 규칙이 없다" % (pid, row["name"]))
 
     def test_model_dataset_separates_l2_candidates_from_l3_mapping(self):
         data = datasets.build_dataset(equip_ids={"e5"})
@@ -38,12 +156,16 @@ class DatasetBuildTest(unittest.TestCase):
         candidates = {item["templateName"]: item["sourceName"] for item in model["templatePointCandidates"]}
 
         self.assertEqual(candidates["외기온도"], "nvoOutdoorTemp")
-        self.assertEqual(candidates["냉수·냉방"], "nvoCoolPrimary")
+        # 전 이름은 '냉수·냉방'이었다 — datasets.py 에만 있고 템플릿에는 없던 유령 룰이라
+        # 화면에 안 나왔다. 직팽 RTU 의 실제 신호이므로 '냉방 지령'으로 정직하게 고쳤다.
+        self.assertEqual(candidates["냉방 지령"], "nvoCoolPrimary")
 
     def test_ahu_model_exposes_every_template_point_with_match_status(self):
         data = datasets.build_dataset(equip_ids={"e5"})
-        template = data["equipmentTemplates"]["e5"]
         model = data["modelMappings"]["trane-symbio-700-odyssey-lontalk-scc"]
+        # 이 모델은 RTU 다. 계열(e5) 한 벌이 아니라 하위형식 템플릿과 길이가 맞아야 한다.
+        self.assertEqual(model["templateProfileId"], "e5.rtu")
+        template = data["templateProfiles"]["e5.rtu"]
 
         self.assertEqual(
             len(model["templatePointMappings"]),
@@ -845,6 +967,30 @@ class CuratedUnitDatasetTest(unittest.TestCase):
 
         self.assertFalse(any("inducer" in s.lower() or "power exhaust" in s.lower()
                              for s in sources))
+
+    def test_jci_simplicity_modbus_mapping_preserves_scale_and_bac_oid(self):
+        model = json.loads(Path(
+            "data/models/johnson-controls-york-simplicity-se-smart-equipment-york-rooftop-units-modbus.json"
+        ).read_text(encoding="utf-8"))
+        net_st = next(p for p in model["points"] if p["inst"] == 1)
+
+        # 정본 문서(5177447-UTS-A-1215)에는 오브젝트 타입·단위 열이 없어 한때
+        # type='MB' · unit=None 이었다. Premier Start-Up 가이드(5586996-JSG-A-520)의
+        # Table 32 를 Object ID 로 이어 타입·단위를 채웠다 — vendor_jci.py 참고.
+        # 이름·레지스터는 여전히 정본 문서가 기준이다(보강이 덮지 않는다).
+        self.assertEqual(net_st["type"], "AV")
+        self.assertEqual(net_st["name"], "Net Override Space Temp")
+        self.assertEqual(net_st.get("unit"), "°F")
+        self.assertEqual(net_st.get("unitRaw"), "°F")
+        self.assertEqual(
+            net_st.get("typeSource"),
+            "JCI_SunPremier_25-50t_StartUp_5586996-JSG-A-520.pdf")
+        self.assertEqual(net_st.get("bacOid"), 29526)
+        self.assertEqual(net_st.get("modbusRegister"), 1)
+        self.assertEqual(net_st.get("modbusScaleFactor"), "X10")
+        self.assertEqual(net_st.get("modbusSignedFlag"), "Signed")
+        self.assertEqual(net_st.get("modbusWritableFlag"), 1)
+        self.assertEqual(net_st.get("sourcePage"), 15)
 
 
 if __name__ == "__main__":

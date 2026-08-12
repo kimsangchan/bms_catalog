@@ -32,12 +32,9 @@ def points_of(pdf, model_id):
 
     한 문서를 여러 모델이 나눠 쓰는 경우(-scc/-dac, -idu/-odu) 접미사로 구간을 고른다.
     """
-    fam = E.classify(pdf)
-    rows = (E.extract_lontalk(pdf, keep_order=True) if fam == "lontalk"
-            else E.extract(pdf)[0])
-    xc = C.compare(pdf, table_rows=rows)
+    rows, xc, _fam = R.read(pdf)
     segs = E.split_profiles(rows)
-    order = ["-scc", "-idu"], ["-dac", "-odu"]
+    order = ["-scc", "-idu", "pahcmr000"], ["-dac", "-odu", "pahcms000"]
     if len(segs) == 2:
         if any(model_id.endswith(s) for s in order[0]):
             return segs[0], xc
@@ -65,7 +62,11 @@ def main(argv):
               % (m["id"], before, len(pts), xc["rate"] * 100, xc["both"], mark))
         if run:
             m["points"] = [{k: p.get(k) for k in
-                            ("type", "inst", "name", "unitRaw", "unit", "note")} for p in pts]
+                            ("type", "inst", "name", "unitRaw", "unit", "note",
+                             "sourceFile", "sourcePage", "bacOid", "modbusRegister",
+                             "modbusScaleFactor", "modbusBooleanFlag",
+                             "modbusSignedFlag", "modbusOffset",
+                             "modbusWritableFlag")} for p in pts]
             # 소스가 '교차 대조 불가'로 표시한 문서는 그 표시를 유지한다 —
             # 등록기와 같은 규칙을 써야 재추출이 표시를 지우지 않는다.
             why = R.unreliable_reason(src)

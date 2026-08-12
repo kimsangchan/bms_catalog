@@ -1,0 +1,1174 @@
+{
+ "version": 1,
+ "description": "설비 하위형식별 BMS 기본화면 템플릿 — '화면에 먼저 올릴 포인트'와 '모델 원문 포인트를 거기 붙이는 규칙'을 같은 행에 둔다.",
+ "rules": [
+  "① 모델→프로파일 결합 규칙(catPrefix)은 여기 적지 않는다. data/equip-requirements.json 의 match 하나만 쓰고 requirements.profile_for() 가 유일한 결합 함수다. 여기에 catPrefix 를 다시 적는 순간 규칙이 두 벌이 되고, 그 어긋남이 'RTU 를 냉수코일 AHU 체크리스트로 채점'한 이번 사고의 재현 조건이다.",
+  "② 프로파일 id 는 equip-requirements.json 과 글자 그대로 같다(e5.rtu · e5.ahu). 한쪽에만 있는 id 는 test_datasets.py 의 게이트 테스트가 막는다.",
+  "③ 행 하나가 규칙 하나다. 화면 행(name·objectType·unit·role·tags·grade)과 원문 매칭 정규식(match.include/exclude)을 같은 행에 둔다. 전에는 행은 data/equips/e5.json(23행), 규칙은 datasets.py AHU_PROFILE(25룰)로 갈라져 있어 룰 2개가 화면에 안 나왔다.",
+  "④ 등급은 두 축의 곱으로만 매긴다 — 계산식 영향(why·usedBy) × 벤더 실제 노출률(exposure). '필수'는 그 프로파일 모델 과반에 실제로 있어야 한다. Haystack 의 mandatory 는 태그 공존 규칙이지 포인트 필수 표시가 아니므로 등급 근거가 아니다.",
+  "⑤ 물리적으로 없는 부품은 등급으로 누르지 않는다 — appliesWhen(적용성)에 조건을 적는다. RTU 에 냉수밸브를 '필수'로 박아 둔 것이 이번 사고다. 삭제도 답이 아니다(냉수코일 구성 RTU 가 실재한다).",
+  "⑥ haystack 칸에는 어느 proto 에서 왔는지 적는다. proto 가 없으면 haystack 을 null 로 두고 handMade 에 사유를 적는다.",
+  "⑦ exposure 는 실측값이다 — data/models/*.json 의 원문 포인트를 이 행의 match 로 훑은 수. 지어내지 않는다. 등급을 바꾼 행에만 적는다.",
+  "⑧ 매칭 제외어에 \\b 를 붙인다. 'fault' 를 맨몸으로 쓰면 Daikin 주석의 'Default: NA' 에 걸려 그 포인트가 통째로 사라진다(실제로 39점이 그랬다)."
+ ],
+ "grades": {
+  "필수": "없으면 해당 계산 항을 아예 못 돌린다. 그 프로파일 모델 과반 노출이 하한선이다",
+  "권장": "없으면 기본값·추정으로 대체해야 한다 (오차 원인)",
+  "선택": "계산에 직접 안 들어간다. 운영·표시·검증용",
+  "_주": "data/equip-requirements.json 은 '참고'를 쓴다. 그쪽은 정격(스칼라 값) 축이고 여기는 통신 포인트 축이라 어휘를 억지로 합치지 않았다 — 합치려면 두 파일의 축부터 정리해야 한다."
+ },
+ "profiles": {
+  "e5.rtu": {
+   "equipId": "e5",
+   "title": "루프탑 패키지(RTU·직팽) — BMS 기본화면",
+   "basis": "냉방은 압축기, 난방은 가스·전기히터다. 코일 밸브가 아니라 '냉방/난방 지령(%)'과 '단수'가 부하 신호다. 원문 확인: Trane RT-PRC023AY(228p) chilled 0회·모델번호 T=DX Cooling / Y=DX Cooling, Gas Heat, York ZF/ZJ/ZR(194p+102p) chilled 0회·2 stages of cooling + Two Stage Natural Gas, Lennox Enlight LGT/LHT(각 42p) chilled 0회.",
+   "excludeCommon": "active alarm|alarm point|alarm status|alarm setting|ala[a-z]*status|\\bbad [a-z]|sensor error|alarm limit|alarm delay",
+   "excludeCommonNote": "모든 행에 덧붙이는 제외어 — 알람 라벨·고장센서 라벨. Swegon 'Active alarm 93', Systemair 'AlaSignalErrorFeedbackCoolerValveStatus__', AAON 'Bad Carbon Dioxide Sensor' 같은 것이 값 포인트로 확정 표시되고 있었다. 경보를 실제로 찾는 행은 keepAlarm=true 로 뺀다.",
+   "templatePoints": [
+    {
+     "name": "급기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`discharge`✓ `air`✓ `temp`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point sensor temp",
+     "why": "급기-환기 온도차 × 풍량 = 코일 부하. 없으면 냉방·난방 항을 못 돌린다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "(?:supply|discharge).*air.*temp|discharge.*temp",
+      "exclude": "setpoint|sp\\b|reheat|refrigerant"
+     }
+    },
+    {
+     "name": "환기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`return`✓ `air`✓ `temp`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ return duct equip ▸ air return point sensor temp",
+     "why": "코일 입구 조건. 혼합공기 계산과 외기부하 분리에 쓴다",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "oa"
+     ],
+     "match": {
+      "include": "return.*air.*temp|\\bra temp",
+      "exclude": "setpoint|sp\\b"
+     }
+    },
+    {
+     "name": "외기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`outside`✓ `air`✓ `temp`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ outside duct equip ▸ air outside point sensor temp",
+     "why": "외기부하 = 외기량 × 엔탈피차 의 기준. 응축온도·COP 보정에도 쓴다",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "oa"
+     ],
+     "match": {
+      "include": "outdoor.*air.*temperature|outside.*air.*temperature|outdoortemp|outdoor temp",
+      "exclude": "flow|enthalpy|humidity|setpoint|sp\\b|enable|min|dew"
+     }
+    },
+    {
+     "name": "실내온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`zone`✓ `air`✓ `temp`✓ `sensor`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ thermostat equip ▸ air sensor temp zone",
+     "why": "RTU 는 실내온도로 제어한다. 부하 추정의 출발점이며 급기온도만으로는 실내 부하를 못 나눈다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "exposure": "우리 23행에 아예 빠져 있던 항목. 근거: Trane nvoSpaceTemp, Lennox AI:239 Space Temperature, AAON AI:12 Space Temperature, Daikin AI:3 SpaceTemp, York MB:135 Operational Space Temp",
+     "match": {
+      "include": "space.*temp|zone.*temp|room.*temp|indoor.*air.*temp|spacetemp|roomtmp",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|offset|sensor error|failure|override|limit|unocc|setpt|dew|humid|source"
+     }
+    },
+    {
+     "name": "혼합공기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`mixed`✓ `air`✓ `temp`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ mixed duct equip ▸ air mixed point sensor temp",
+     "why": "코일 입구 실측. 외기·환기 혼합비 검증에 쓴다",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "oa"
+     ],
+     "match": {
+      "include": "mixed.*air.*temp|mix.*air.*tmp",
+      "exclude": "problem|\\bfault\\b|setpoint|sp\\b"
+     }
+    },
+    {
+     "name": "배기 온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`exhaust`✓ `air`✓ `temp`✓",
+     "grade": "선택",
+     "haystack": "ahu ▸ exhaust duct equip ▸ air exhaust point sensor temp",
+     "why": "열회수 효율 (SA-OA)/(RA-OA) 의 나머지 한 변. 열회수 지령만 있고 이 값이 없으면 회수량을 추정으로 채워야 한다",
+     "usedBy": [
+      "oa"
+     ],
+     "exposure": "RTU 노출이 낮아 선택이다 — Trane nvoERLvgExhTemp·Daikin AI:17 EREAT 뿐. AHU 쪽은 Swegon MB:30067 EA-D Temperature, Systemair AAIExhaustAirTemp 로 더 흔하다",
+     "match": {
+      "include": "(?:exhaust|extract)[ ._-]*air[ ._-]*temp|erlvgexhtemp|\\bereat\\b|ea[ ._-]*d?[ ._-]*temperature|ea duct temperature",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|sensor error|failure|type|configuration|heat ?sink|regulation"
+     }
+    },
+    {
+     "name": "급기습도",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "tags": "`discharge`✓ `air`✓ `humidity`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge humidity point sensor",
+     "why": "제습·재열 판정. 잠열 부하 분리에 쓴다",
+     "usedBy": [
+      "cooling"
+     ],
+     "match": {
+      "include": "supply.*air.*(?:relative )?humidity|supply.*humidity|sply.*hum|\\bsa[ ._-]*humidity",
+      "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
+     }
+    },
+    {
+     "name": "환기습도",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "tags": "`return`✓ `air`✓ `humidity`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ return duct equip ▸ air humidity point return sensor",
+     "why": "실내 잠열 부하와 혼합 엔탈피",
+     "usedBy": [
+      "cooling"
+     ],
+     "match": {
+      "include": "return.*air.*(?:relative )?humidity|return.*humidity|space.*rh|room.*hum|(?:extract|\\bea)[ ._-]*humidity",
+      "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
+     }
+    },
+    {
+     "name": "외기 엔탈피",
+     "objectType": "AI",
+     "unit": "kJ/kg",
+     "role": "sensor",
+     "tags": "`outside`✓ `air`✓ `enthalpy`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ outside duct equip ▸ air enthalpy outside point sensor",
+     "why": "엔탈피 이코노마이저 판정과 외기부하 직접항. 온도만으로는 습한 외기를 들이는 오판을 못 막는다",
+     "usedBy": [
+      "oa",
+      "cooling"
+     ],
+     "exposure": "AAON AI:145 Outdoor Enthalpy, York MB:155 Outdoor Air Enthalpy, Trane nvoOAEnthalpy, Siemens AI:57226 OutEnth, Systemair AOutdoorEnthalpy",
+     "match": {
+      "include": "(?:outdoor|outside|oa).*enthalpy|nvooaenthalpy|outenth",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|switch|changeover|type|configuration|diff"
+     }
+    },
+    {
+     "name": "급기 정압",
+     "objectType": "AI",
+     "unit": "Pa",
+     "role": "sensor",
+     "tags": "`discharge`✓ `static`★ `pressure`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point pressure sensor",
+     "why": "팬 동력 = 풍량 × 정압 / 효율. 팬 전력의 직접 입력",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
+      "exclude": "setpoint|sp\\b"
+     }
+    },
+    {
+     "name": "외기 풍량",
+     "objectType": "AI",
+     "unit": "CMH",
+     "role": "sensor",
+     "tags": "`outside`✓ `air`✓ `flow`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ ventilation duct equip ▸ air flow point sensor ventilation",
+     "why": "외기부하 = 외기량 × 엔탈피차 의 '량'. 댐퍼 개도만으로는 풍량이 안 나온다",
+     "usedBy": [
+      "oa"
+     ],
+     "exposure": "Trane nvoOAFlow, Daikin AV:42 OAFlow, York MB:262 Outdoor Air Flow, AAON AI:25 Outdoor Airflow. 전에는 이 값이 '급기 풍량' 규칙의 nvooa?flow 에 잘못 걸려 급기로 계상됐다",
+     "match": {
+      "include": "(?:outdoor|outside|ventilation|fresh)[ ._-]*air.*flow|\\boaflow\\b|nvooaflow|outdoor airflow",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|station|minimum|\\bmin\\b|\\bmax\\b|percent|type|configuration|bad |sensor"
+     }
+    },
+    {
+     "name": "급기 풍량",
+     "objectType": "AI",
+     "unit": "CMH",
+     "role": "sensor",
+     "tags": "`discharge`✓ `air`✓ `flow`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge flow point sensor",
+     "why": "코일 부하 = 풍량 × 엔탈피차. 팬 동력의 기준량",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "fan"
+     ],
+     "match": {
+      "include": "supply.*air.*flow|supplyflow|supply.*flow",
+      "exclude": "setpoint|sp\\b|min|max|outdoor|outside|return|exhaust|percent"
+     }
+    },
+    {
+     "name": "환기 CO2",
+     "objectType": "AI",
+     "unit": "ppm",
+     "role": "sensor",
+     "tags": "`return`✓ `air`✓ `co2`✓ `concentration`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ return duct equip ▸ air co2 concentration point return sensor",
+     "why": "요구제어환기(DCV)의 외기량 결정 신호",
+     "usedBy": [
+      "oa"
+     ],
+     "match": {
+      "include": "(?:return|space|room).*co2|carbon dioxide",
+      "exclude": "setpoint|sp\\b|limit|bad |sensor error|\\balarm\\b|\\bfault\\b"
+     }
+    },
+    {
+     "name": "급기온도 설정값",
+     "objectType": "AV",
+     "unit": "℃",
+     "role": "sp",
+     "tags": "`discharge`✓ `air`✓ `temp`✓ `sp`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point sp temp",
+     "why": "제어 목표. 실제 급기온도와의 차가 곧 미달·초과 판정",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint"
+     }
+    },
+    {
+     "name": "급기 정압 설정값",
+     "objectType": "AV",
+     "unit": "Pa",
+     "role": "sp",
+     "tags": "`discharge`✓ `static`★ `pressure`✓ `sp`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point pressure sp",
+     "why": "정압 리셋 여부 판정 — 팬 절전량의 근거",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "static.*pressure.*setpoint|ductstaticsp|duct.*static.*sp"
+     }
+    },
+    {
+     "name": "급기팬 주파수 지령",
+     "objectType": "AO",
+     "unit": "Hz",
+     "role": "cmd",
+     "tags": "`discharge`✓ `fan`✓ `vfd`✓ `freq`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ discharge duct equip ▸ fan-motor equip ▸ cmd freq point vfd",
+     "why": "팬 동력 ∝ 회전수³. 있으면 부분부하 팬 전력을 직접 얻는다",
+     "usedBy": [
+      "fan"
+     ],
+     "exposure": "필수 → 권장 강등. RTU 는 정속·다단 팬이 많아 주파수 지령을 안 내는 모델이 대부분이다(Daikin SupFanCapNetIn 등 소수). '필수'로 두면 영원히 미충족이라 규칙 ④ 위반이다",
+     "match": {
+      "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:command|speed|frequency|setpoint)|nci.*supplyfan",
+      "exclude": "type|configuration|identifier|status|hours|runtime"
+     }
+    },
+    {
+     "name": "환기팬 주파수 지령",
+     "objectType": "AO",
+     "unit": "Hz",
+     "role": "cmd",
+     "tags": "`return`✓ `fan`✓ `vfd`✓ `freq`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ return duct equip ▸ fan-motor equip ▸ cmd fan freq point return vfd",
+     "why": "환기팬 전력. 급배기 균형에도 쓴다",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "(?:return|exhaust|ret).*fan.*(?:cap|speed|freq).*netin|(?:return|exhaust).*fan.*(?:command|speed|frequency|setpoint)",
+      "exclude": "type|configuration|identifier|status|hours|runtime"
+     }
+    },
+    {
+     "name": "외기댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`outside`✓ `air`✓ `damper`✓ `position`★",
+     "grade": "필수",
+     "haystack": "ahu ▸ outside duct equip ▸ damper-actuator equip ▸ cmd damper outside point",
+     "why": "외기 도입량 결정. 외기부하 계산항의 유일한 조작량",
+     "usedBy": [
+      "oa"
+     ],
+     "match": {
+      "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
+      "exclude": "minimum|min|setpoint|sp\\b|bypass|bp ?damper"
+     },
+     "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다"
+    },
+    {
+     "name": "환기댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`return`✓ `air`✓ `damper`✓ `position`★",
+     "grade": "선택",
+     "haystack": "ahu ▸ return duct equip ▸ damper-actuator equip ▸ cmd damper point return",
+     "why": "혼합비 검증용. 외기댐퍼와 연동이라 단독으로는 계산에 안 쓴다",
+     "usedBy": [],
+     "exposure": "권장 → 선택 강등. RTU 에서 실제 노출이 거의 없다(AAON Return Bypass 정도)",
+     "match": {
+      "include": "return.*air.*damper|return.*damper|return bypass",
+      "exclude": "\\balarm\\b|\\bfault\\b|active alarm"
+     }
+    },
+    {
+     "name": "배기댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`exhaust`✓ `air`✓ `damper`✓ `position`★",
+     "grade": "권장",
+     "haystack": "ahu ▸ exhaust duct equip ▸ damper-actuator equip ▸ cmd damper exhaust point",
+     "why": "배기량 = 급기 - 외기 균형. 실내 압력과 열회수 배기측 유량",
+     "usedBy": [
+      "oa"
+     ],
+     "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEREABPDamper(열회수 배기 '바이패스' 댐퍼)를 배기댐퍼로 확정 표시하고 있었다 — 회수를 우회시키는 댐퍼라 뜻이 정반대다",
+     "match": {
+      "include": "exhaust.*damper|exh.*damper",
+      "exclude": "bypass|bp ?damper|\\balarm\\b|\\bfault\\b|active alarm|ala[a-z]*status|manual"
+     }
+    },
+    {
+     "name": "열회수 지령·상태",
+     "objectType": "AO/BO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`heatWheel`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ cmd heatWheel point",
+     "why": "외기부하를 회수율만큼 깎는다. 없으면 겨울 외기부하를 통째로 과대계상한다",
+     "usedBy": [
+      "oa",
+      "heating"
+     ],
+     "exposure": "Daikin AI:15 ERWheelSpd(%)·MSV:37 ERWhlOnOff, Trane nvoERStatus, Siemens AI:5922 HrecPos. exclude 에 bypass·preheat·leaving 을 넣어 같은 ER 접두의 다른 포인트와 갈랐다",
+     "match": {
+      "include": "(?:heat ?wheel|energy recovery|heat recovery|hrec|rotary exchanger|erwheel|erwhl)[a-z]*(?:speed|spd|output|position|pos|cmd|command|on ?off|status|capacity|signal|level)|erstatus|hrecpos",
+      "exclude": "\\balarm\\b|\\bfault\\b|defrost|frost|hours|trip|year|setpoint|sp\\b|failure|sensor|bypass|preheat|leaving|exhaust temp|motor ?speed"
+     }
+    },
+    {
+     "name": "필터 차압",
+     "objectType": "AI/BI",
+     "unit": "Pa",
+     "role": "sensor",
+     "tags": "`filter`✓ `pressure`✓ `sensor`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ filter point sensor  (Haystack proto 에는 물리량이 없다 — 차압/스위치 구분은 우리 규정)",
+     "why": "필터 막힘 → 정압 상승 → 팬 전력 상승. 열화 추적",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "dirtyfilter|dirty.*filter|filter.*(?:pressure|alarm|switch)|differential.*pressure"
+     },
+     "keepAlarm": true
+    },
+    {
+     "name": "동결 방지 경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`freezeStat`✓ `sensor`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ freezeStat point sensor",
+     "why": "코일 동결 보호. 계산에는 안 들어가고 정지 원인 판별에 쓴다",
+     "usedBy": [],
+     "exposure": "exclude 에 suct(흡입)를 넣었다. Siemens LowSuctAlm3(냉매 저압흡입 경보)이 동결 경보로 잡히고 있었다 — 둘은 다른 고장이다",
+     "match": {
+      "include": "freeze.*(?:fault|alarm|switch)|frost.*alarm|low.*temp.*alarm",
+      "exclude": "suct|refrigerant|control mode|setpoint|evaporation|evaporator"
+     },
+     "keepAlarm": true
+    },
+    {
+     "name": "운전 모드",
+     "objectType": "MSO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`hvacMode`✓ `sp`✓  (Haystack 은 sp, 우리는 cmd 로 쓴다)",
+     "grade": "필수",
+     "haystack": "ahu ▸ hvacMode point sp",
+     "why": "정지/냉방/난방/송풍/외기냉방. 어느 계산항을 켤지 고르는 스위치",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "fan",
+      "oa"
+     ],
+     "match": {
+      "include": "appliccmd|application.*mode|hvac mode|unit.*(?:state|mode)|currentstate|operation.*mode|drive mode",
+      "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier"
+     }
+    },
+    {
+     "name": "외기냉방 모드",
+     "objectType": "BV",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`economizing`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ cmd economizing point",
+     "why": "기계냉방을 끄고 외기로 식히는 구간. 냉방 전력이 0 이 되는 조건",
+     "usedBy": [
+      "cooling",
+      "oa"
+     ],
+     "match": {
+      "include": "econo.*(?:status|enable|mode)|economizer.*(?:status|enable|mode)|free.*cool",
+      "exclude": "setpoint|sp\\b|config|type|identifier|limit"
+     },
+     "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다"
+    },
+    {
+     "name": "압축기 단수 상태",
+     "objectType": "AI/BI",
+     "unit": "단",
+     "role": "sensor",
+     "tags": "`cool`✓ `run`✓ `stage`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ duct equip ▸ coolingCoil equip ▸ cmd cool point run stage",
+     "why": "부분부하 COP(IEER)는 단수별로 다르다. 단수를 모르면 정격 COP 로만 계산해 부분부하 전력을 과소평가한다",
+     "usedBy": [
+      "cooling"
+     ],
+     "exposure": "AAON AI:44 A1 Compressor Signal, Trane nvoCprsrsRunning, Lennox AO:115 Compressor Enable Control, York MB:101 C1 Stage Enabled, Daikin AV:163 GenCondStages, Trane RAUK BI:10111 Compressor 1A Status",
+     "match": {
+      "include": "compressor.*(?:running|status|enable|signal)|cprsrsrunning|stage.*enabled|comp.*stage|gencondstages|compcfg",
+      "exclude": "\\balarm\\b|\\bfault\\b|lockout|failure|hours|run ?time|starts|setpoint|type|configuration|delay|dehum|freeze|freezing"
+     }
+    },
+    {
+     "name": "난방 단수 상태",
+     "objectType": "AI/BI",
+     "unit": "단",
+     "role": "sensor",
+     "tags": "`heat`✓ `run`✓ `stage`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ duct equip ▸ heatingCoil equip ▸ cmd heat point run stage",
+     "why": "가스 입열 = 단수 × 단당 입열. 연료 소비의 직접 입력",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "York MB:264 Staged Heating Command·MB:349~351 Gas Valve 1~3 Input, Carrier AV:2003 heat run. Daikin MSV:119 HtgType 은 구성 열거지 단수가 아니다",
+     "match": {
+      "include": "heat.*stage.*(?:command|status|enabled|output)|staged heating|gas valve.*(?:input|output)|heat.*run.*stage|maxhtgstages|heating stage [0-9].*command|heat run",
+      "exclude": "\\balarm\\b|\\bfault\\b|lockout|failure|run ?time|hours|delay|setpoint|type|configuration"
+     }
+    },
+    {
+     "name": "냉방 지령",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`cool`✓ `cmd`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ cmd cool point",
+     "why": "냉방 전력 = 부하 ÷ COP 의 부하측 신호. 직팽 RTU 에서 냉수밸브 자리를 대신하는 값이며, 없으면 부분부하 거동이 통째로 사라진다",
+     "usedBy": [
+      "cooling"
+     ],
+     "exposure": "AAON AI:34 Modulating Cooling Position(note: Current percentage of the Modulating Chilled Water Signal), Lennox AI:247 Cool Primary, Trane nvoCoolPrimary, Daikin AV:1 ClgCapacity, Carrier AV:9006 cool demand level, York MB:263 Staged Cooling Command, Trane RAUK AV:10139 Cooling Capacity Enable",
+     "match": {
+      "include": "cool.*(?:capacity|demand|primary|command|position)|(?:clg|cool)cap|cool.*enable|coolenable|modulating cooling|staged cooling",
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma"
+     }
+    },
+    {
+     "name": "난방 지령",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`heat`✓ `cmd`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ cmd heat point",
+     "why": "가스 입열·전기히터 입력·히트펌프 능력÷COP 의 부하측 신호. RTU 에서 온수밸브 자리를 대신한다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "AAON AI:35 Modulating Heat Position(note: Modulating Heating signal, Hot Water or SCR heat — 한 오브젝트가 온수밸브와 SCR 히터를 함께 담는다), Lennox AI:245 Heat Primary·AI:246 Heat Secondary, Trane nvoHeatPrimary, Daikin AV:2 HtgCapacity, Carrier AV:9036 heat demand level, York MB:264 Staged Heating Command",
+     "match": {
+      "include": "heat.*(?:capacity|demand|primary|secondary|command|position)|(?:htg|heat)cap|heat.*enable|heatenable|modulating heat",
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma"
+     }
+    },
+    {
+     "name": "가습 지령",
+     "objectType": "AO/BO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`humidifier`✓ `cmd`✓",
+     "grade": "선택",
+     "haystack": "ahu ▸ humidifier equip ▸ cmd enable humidifier point / cmd humidifier point run  (Haystack 에 변조(%) proto 는 없다 — 우리 AO % 는 초과분)",
+     "why": "가습 열량. RTU 에는 가습기가 거의 없다",
+     "usedBy": [],
+     "exposure": "include 에서 setpoint 를 뺐다. 전에는 Trane nciSpaceHumSP·Lennox Dehumidification Setpoint 같은 설정값이 '가습 지령'으로 확정 표시됐다",
+     "match": {
+      "include": "humid.*(?:command|enable|output)|humidifier",
+      "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit"
+     }
+    },
+    {
+     "name": "냉수밸브 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`chilled`✓ `water`✓ `valve`✓ `cool`✓ `cmd`✓ `position`★",
+     "grade": "선택",
+     "appliesWhen": "냉수코일 구성일 때만. 판정 근거는 벤더 구성 태그다 — Daikin MicroTech MSV:113 ClgType = 3(Chilled Water), AAON RN 냉수코일 사양(Brochure p3-4 'Available as a chilled water … air handling unit', IOM Table 29 Chilled Water Coil Connection Sizes). 직팽 RTU 에는 밸브가 물리적으로 없다.",
+     "haystack": "ahu ▸ duct equip ▸ coolingCoil equip ▸ chilled cmd cool point valve water",
+     "why": "냉수 구성일 때의 코일 부하 조작량. 직팽 구성에서는 '냉방 지령'이 이 자리를 대신한다",
+     "usedBy": [
+      "cooling"
+     ],
+     "exposure": "필수 → 선택 + appliesWhen. 실측 RTU 0/9 매칭. AHU 2/8 도 Swegon 'Active alarm 93'·Systemair 'AlaSignalErrorFeedbackCoolerValveStatus__' 로 둘 다 알람 비트 오매칭이었다 — 두 '필수' 포인트의 실질 매칭은 17모델 중 0 이었다",
+     "match": {
+      "include": "chilled.*water.*valve|cool.*valve|cooling.*valve",
+      "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting"
+     }
+    },
+    {
+     "name": "온수밸브 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`hot`✓ `water`✓ `valve`✓ `heat`✓ `cmd`✓ `position`★",
+     "grade": "선택",
+     "appliesWhen": "온수·증기코일 구성일 때만. 판정 근거는 Daikin MicroTech MSV:119 HtgType = 6(SteamWtr), AAON RN 'Hot water or steam heating coils'(Brochure p4), Daikin RoofPak CAT218-4 p11/p15 Hot Water Heat·Steam Coils. 가스·전기 난방 RTU 에는 밸브가 없다.",
+     "haystack": "ahu ▸ duct equip ▸ heatingCoil equip ▸ cmd heat hot point valve water",
+     "why": "온수 구성일 때의 코일 부하 조작량. 가스·전기 구성에서는 '난방 지령'과 '난방 단수'가 이 자리를 대신한다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "필수 → 선택 + appliesWhen. include 에서 'mod gas heat valve' 를 뺐고 exclude 에 reheat·hot gas·rev acting 을 넣었다. 전에는 AAON 'Mod Hot Gas Reheat Valve Position'(핫가스 재열밸브)과 York 'HW Heat Valve Rev Acting'(역작동 설정 플래그)이 온수밸브로 확정 표시됐다",
+     "match": {
+      "include": "hot.*water.*valve|heat.*valve|heating.*valve",
+      "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
+     }
+    }
+   ]
+  },
+  "e5.ahu": {
+   "equipId": "e5",
+   "title": "공조기(AHU) — BMS 기본화면",
+   "basis": "냉수·온수 코일 구성이 기본이라 기존 23행을 그대로 둔다. 다만 우리 AHU 8모델 중 LG AHU 통신킷 2건·Mitsubishi PAC-IF 1건은 직팽(DX) 인터페이스라 코일 밸브가 없다 — 그래서 밸브 두 행에 appliesWhen 을 달고, 추상 냉방·난방 지령을 함께 둔다.",
+   "excludeCommon": "active alarm|alarm point|alarm status|alarm setting|ala[a-z]*status|\\bbad [a-z]|sensor error|alarm limit|alarm delay",
+   "excludeCommonNote": "모든 행에 덧붙이는 제외어 — 알람 라벨·고장센서 라벨. Swegon 'Active alarm 93', Systemair 'AlaSignalErrorFeedbackCoolerValveStatus__', AAON 'Bad Carbon Dioxide Sensor' 같은 것이 값 포인트로 확정 표시되고 있었다. 경보를 실제로 찾는 행은 keepAlarm=true 로 뺀다.",
+   "templatePoints": [
+    {
+     "name": "급기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`discharge`✓ `air`✓ `temp`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point sensor temp",
+     "why": "급기-환기 온도차 × 풍량 = 코일 부하",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "(?:supply|discharge).*air.*temp|discharge.*temp",
+      "exclude": "setpoint|sp\\b|reheat|refrigerant"
+     }
+    },
+    {
+     "name": "환기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`return`✓ `air`✓ `temp`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ return duct equip ▸ air return point sensor temp",
+     "why": "코일 입구 조건. 혼합공기 계산과 외기부하 분리",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "oa"
+     ],
+     "match": {
+      "include": "return.*air.*temp|\\bra temp",
+      "exclude": "setpoint|sp\\b"
+     }
+    },
+    {
+     "name": "외기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`outside`✓ `air`✓ `temp`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ outside duct equip ▸ air outside point sensor temp",
+     "why": "외기부하 = 외기량 × 엔탈피차 의 기준",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "oa"
+     ],
+     "match": {
+      "include": "outdoor.*air.*temperature|outside.*air.*temperature|outdoortemp|outdoor temp",
+      "exclude": "flow|enthalpy|humidity|setpoint|sp\\b|enable|min|dew"
+     }
+    },
+    {
+     "name": "실내온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`zone`✓ `air`✓ `temp`✓ `sensor`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ thermostat equip ▸ air sensor temp zone",
+     "why": "실내 부하 추정의 출발점. 급기온도만으로는 존 부하를 못 나눈다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "exposure": "Siemens AI:1882 RoomTmpCOM, Swegon MB:30081 Room temperature 1, Systemair AAIRoomTemp1, Trane nvoSpaceTemp",
+     "match": {
+      "include": "space.*temp|zone.*temp|room.*temp|indoor.*air.*temp|spacetemp|roomtmp",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|offset|sensor error|failure|override|limit|unocc|setpt|dew|humid|source"
+     }
+    },
+    {
+     "name": "혼합공기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`mixed`✓ `air`✓ `temp`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ mixed duct equip ▸ air mixed point sensor temp",
+     "why": "코일 입구 실측. 외기·환기 혼합비 검증",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "oa"
+     ],
+     "match": {
+      "include": "mixed.*air.*temp|mix.*air.*tmp",
+      "exclude": "problem|\\bfault\\b|setpoint|sp\\b"
+     }
+    },
+    {
+     "name": "배기 온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`exhaust`✓ `air`✓ `temp`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ exhaust duct equip ▸ air exhaust point sensor temp",
+     "why": "열회수 효율 (SA-OA)/(RA-OA) 의 나머지 한 변",
+     "usedBy": [
+      "oa"
+     ],
+     "exposure": "Swegon MB:30067 EA-D Temperature·MB:30080 EA duct temperature, Systemair AAIExhaustAirTemp__, Trane nvoERLvgExhTemp",
+     "match": {
+      "include": "(?:exhaust|extract)[ ._-]*air[ ._-]*temp|erlvgexhtemp|\\bereat\\b|ea[ ._-]*d?[ ._-]*temperature|ea duct temperature",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|sensor error|failure|type|configuration|heat ?sink|regulation"
+     }
+    },
+    {
+     "name": "급기습도",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "tags": "`discharge`✓ `air`✓ `humidity`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge humidity point sensor",
+     "why": "제습·재열 판정. 잠열 부하 분리",
+     "usedBy": [
+      "cooling"
+     ],
+     "match": {
+      "include": "supply.*air.*(?:relative )?humidity|supply.*humidity|sply.*hum|\\bsa[ ._-]*humidity",
+      "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
+     }
+    },
+    {
+     "name": "환기습도",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "tags": "`return`✓ `air`✓ `humidity`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ return duct equip ▸ air humidity point return sensor",
+     "why": "실내 잠열 부하와 혼합 엔탈피",
+     "usedBy": [
+      "cooling"
+     ],
+     "match": {
+      "include": "return.*air.*(?:relative )?humidity|return.*humidity|space.*rh|room.*hum|(?:extract|\\bea)[ ._-]*humidity",
+      "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
+     }
+    },
+    {
+     "name": "외기 엔탈피",
+     "objectType": "AI",
+     "unit": "kJ/kg",
+     "role": "sensor",
+     "tags": "`outside`✓ `air`✓ `enthalpy`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ outside duct equip ▸ air enthalpy outside point sensor",
+     "why": "엔탈피 이코노마이저 판정과 외기부하 직접항",
+     "usedBy": [
+      "oa",
+      "cooling"
+     ],
+     "exposure": "Siemens AI:57226 OutEnth, Systemair MB:30639 AOutdoorEnthalpy_, Trane nvoOAEnthalpy",
+     "match": {
+      "include": "(?:outdoor|outside|oa).*enthalpy|nvooaenthalpy|outenth",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|switch|changeover|type|configuration|diff"
+     }
+    },
+    {
+     "name": "급기 정압",
+     "objectType": "AI",
+     "unit": "Pa",
+     "role": "sensor",
+     "tags": "`discharge`✓ `static`★ `pressure`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point pressure sensor",
+     "why": "팬 동력 = 풍량 × 정압 / 효율",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
+      "exclude": "setpoint|sp\\b"
+     }
+    },
+    {
+     "name": "외기 풍량",
+     "objectType": "AI",
+     "unit": "CMH",
+     "role": "sensor",
+     "tags": "`outside`✓ `air`✓ `flow`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ ventilation duct equip ▸ air flow point sensor ventilation",
+     "why": "외기부하 = 외기량 × 엔탈피차 의 '량'",
+     "usedBy": [
+      "oa"
+     ],
+     "exposure": "Trane nvoOAFlow, Swegon MB:30237 ReCO outdoor air flow 2",
+     "match": {
+      "include": "(?:outdoor|outside|ventilation|fresh)[ ._-]*air.*flow|\\boaflow\\b|nvooaflow|outdoor airflow",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|station|minimum|\\bmin\\b|\\bmax\\b|percent|type|configuration|bad |sensor"
+     }
+    },
+    {
+     "name": "급기 풍량",
+     "objectType": "AI",
+     "unit": "CMH",
+     "role": "sensor",
+     "tags": "`discharge`✓ `air`✓ `flow`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge flow point sensor",
+     "why": "코일 부하 = 풍량 × 엔탈피차. 팬 동력의 기준량",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "fan"
+     ],
+     "match": {
+      "include": "supply.*air.*flow|supplyflow|supply.*flow",
+      "exclude": "setpoint|sp\\b|min|max|outdoor|outside|return|exhaust|percent"
+     }
+    },
+    {
+     "name": "환기 CO2",
+     "objectType": "AI",
+     "unit": "ppm",
+     "role": "sensor",
+     "tags": "`return`✓ `air`✓ `co2`✓ `concentration`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ return duct equip ▸ air co2 concentration point return sensor",
+     "why": "요구제어환기(DCV)의 외기량 결정 신호",
+     "usedBy": [
+      "oa"
+     ],
+     "match": {
+      "include": "(?:return|space|room).*co2|carbon dioxide",
+      "exclude": "setpoint|sp\\b|limit|bad |sensor error|\\balarm\\b|\\bfault\\b"
+     }
+    },
+    {
+     "name": "급기온도 설정값",
+     "objectType": "AV",
+     "unit": "℃",
+     "role": "sp",
+     "tags": "`discharge`✓ `air`✓ `temp`✓ `sp`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point sp temp",
+     "why": "제어 목표. 실제 급기온도와의 차가 미달·초과 판정",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint"
+     }
+    },
+    {
+     "name": "급기 정압 설정값",
+     "objectType": "AV",
+     "unit": "Pa",
+     "role": "sp",
+     "tags": "`discharge`✓ `static`★ `pressure`✓ `sp`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point pressure sp",
+     "why": "정압 리셋 여부 — 팬 절전량의 근거",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "static.*pressure.*setpoint|ductstaticsp|duct.*static.*sp"
+     }
+    },
+    {
+     "name": "급기팬 주파수 지령",
+     "objectType": "AO",
+     "unit": "Hz",
+     "role": "cmd",
+     "tags": "`discharge`✓ `fan`✓ `vfd`✓ `freq`✓ `cmd`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ discharge duct equip ▸ fan-motor equip ▸ cmd freq point vfd",
+     "why": "팬 동력 ∝ 회전수³. AHU 는 인버터 급기팬이 표준이라 필수를 유지한다",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:command|speed|frequency|setpoint)|nci.*supplyfan",
+      "exclude": "type|configuration|identifier|status|hours|runtime"
+     }
+    },
+    {
+     "name": "환기팬 주파수 지령",
+     "objectType": "AO",
+     "unit": "Hz",
+     "role": "cmd",
+     "tags": "`return`✓ `fan`✓ `vfd`✓ `freq`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ return duct equip ▸ fan-motor equip ▸ cmd fan freq point return vfd",
+     "why": "환기팬 전력. 급배기 균형",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "(?:return|exhaust|ret).*fan.*(?:cap|speed|freq).*netin|(?:return|exhaust).*fan.*(?:command|speed|frequency|setpoint)",
+      "exclude": "type|configuration|identifier|status|hours|runtime"
+     }
+    },
+    {
+     "name": "외기댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`outside`✓ `air`✓ `damper`✓ `position`★",
+     "grade": "필수",
+     "haystack": "ahu ▸ outside duct equip ▸ damper-actuator equip ▸ cmd damper outside point",
+     "why": "외기 도입량 결정. 외기부하 계산항의 유일한 조작량",
+     "usedBy": [
+      "oa"
+     ],
+     "match": {
+      "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
+      "exclude": "minimum|min|setpoint|sp\\b|bypass|bp ?damper"
+     },
+     "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다"
+    },
+    {
+     "name": "환기댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`return`✓ `air`✓ `damper`✓ `position`★",
+     "grade": "권장",
+     "haystack": "ahu ▸ return duct equip ▸ damper-actuator equip ▸ cmd damper point return",
+     "why": "혼합비 검증. 외기댐퍼와 연동",
+     "usedBy": [
+      "oa"
+     ],
+     "match": {
+      "include": "return.*air.*damper|return.*damper|return bypass",
+      "exclude": "\\balarm\\b|\\bfault\\b|active alarm"
+     }
+    },
+    {
+     "name": "배기댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`exhaust`✓ `air`✓ `damper`✓ `position`★",
+     "grade": "권장",
+     "haystack": "ahu ▸ exhaust duct equip ▸ damper-actuator equip ▸ cmd damper exhaust point",
+     "why": "배기량 = 급기 - 외기 균형. 실내 압력과 열회수 배기측 유량",
+     "usedBy": [
+      "oa"
+     ],
+     "exposure": "exclude 에 bypass·ala*status 를 넣었다. Trane 이 nvoEREABPDamper(열회수 배기 바이패스), Systemair 가 AlaManualControlDamperExhaustStatus__(수동제어 알람)을 배기댐퍼로 확정 표시하고 있었다",
+     "match": {
+      "include": "exhaust.*damper|exh.*damper",
+      "exclude": "bypass|bp ?damper|\\balarm\\b|\\bfault\\b|active alarm|ala[a-z]*status|manual"
+     }
+    },
+    {
+     "name": "열회수 지령·상태",
+     "objectType": "AO/BO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`heatWheel`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ cmd heatWheel point",
+     "why": "외기부하를 회수율만큼 깎는다. 없으면 겨울 외기부하를 과대계상한다",
+     "usedBy": [
+      "oa",
+      "heating"
+     ],
+     "exposure": "Siemens AI:5922 HrecPos·AI:11521 HrecS1Pos, Trane nvoERStatus",
+     "match": {
+      "include": "(?:heat ?wheel|energy recovery|heat recovery|hrec|rotary exchanger|erwheel|erwhl)[a-z]*(?:speed|spd|output|position|pos|cmd|command|on ?off|status|capacity|signal|level)|erstatus|hrecpos",
+      "exclude": "\\balarm\\b|\\bfault\\b|defrost|frost|hours|trip|year|setpoint|sp\\b|failure|sensor|bypass|preheat|leaving|exhaust temp|motor ?speed"
+     }
+    },
+    {
+     "name": "필터 차압",
+     "objectType": "AI/BI",
+     "unit": "Pa",
+     "role": "sensor",
+     "tags": "`filter`✓ `pressure`✓ `sensor`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ filter point sensor  (Haystack proto 에 물리량이 없다 — 차압/스위치 구분은 우리 규정)",
+     "why": "필터 막힘 → 정압 상승 → 팬 전력 상승",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "dirtyfilter|dirty.*filter|filter.*(?:pressure|alarm|switch)|differential.*pressure"
+     },
+     "keepAlarm": true
+    },
+    {
+     "name": "동결 방지 경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`freezeStat`✓ `sensor`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ freezeStat point sensor",
+     "why": "냉수·온수 코일 동결 보호. AHU 에서는 실제 코일 동결이라 RTU 보다 중요하다",
+     "usedBy": [],
+     "exposure": "exclude 에 suct 를 넣었다. Siemens LowSuctAlm3(냉매 저압흡입)이 동결 경보로 잡히고 있었다",
+     "match": {
+      "include": "freeze.*(?:fault|alarm|switch)|frost.*alarm|low.*temp.*alarm",
+      "exclude": "suct|refrigerant|control mode|setpoint|evaporation|evaporator"
+     },
+     "keepAlarm": true
+    },
+    {
+     "name": "운전 모드",
+     "objectType": "MSO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`hvacMode`✓ `sp`✓  (Haystack 은 sp, 우리는 cmd 로 쓴다)",
+     "grade": "필수",
+     "haystack": "ahu ▸ hvacMode point sp",
+     "why": "정지/냉방/난방/송풍/외기냉방. 어느 계산항을 켤지 고르는 스위치",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "fan",
+      "oa"
+     ],
+     "exposure": "include 에 operation mode·drive mode 를 넣었다. LG MB:40001 Operation Mode·Mitsubishi MB:40002 Drive Mode 가 안 잡히고 있었다",
+     "match": {
+      "include": "appliccmd|application.*mode|hvac mode|unit.*(?:state|mode)|currentstate|operation.*mode|drive mode",
+      "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier"
+     }
+    },
+    {
+     "name": "외기냉방 모드",
+     "objectType": "BV",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`economizing`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ cmd economizing point",
+     "why": "기계냉방을 끄고 외기로 식히는 구간. 냉방 전력이 0 이 되는 조건",
+     "usedBy": [
+      "cooling",
+      "oa"
+     ],
+     "match": {
+      "include": "econo.*(?:status|enable|mode)|economizer.*(?:status|enable|mode)|free.*cool",
+      "exclude": "setpoint|sp\\b|config|type|identifier|limit"
+     },
+     "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다"
+    },
+    {
+     "name": "냉수밸브 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`chilled`✓ `water`✓ `valve`✓ `cool`✓ `cmd`✓ `position`★",
+     "grade": "필수",
+     "appliesWhen": "냉수코일 구성. 우리 AHU 8모델 중 LG AHU 통신킷 2건·Mitsubishi PAC-IF013B 1건은 직팽(DX) 인터페이스라 해당 없다 — 그 3건은 '냉방 지령'으로 본다.",
+     "haystack": "ahu ▸ duct equip ▸ coolingCoil equip ▸ chilled cmd cool point valve water",
+     "why": "냉수 코일 부하 조작량. 냉수 계통 유량·환수온도와 직접 연결된다",
+     "usedBy": [
+      "cooling"
+     ],
+     "exposure": "exclude 에 알람 라벨을 넣었다. Swegon 'Active alarm 93', Systemair 'AlaSignalErrorFeedbackCoolerValveStatus__' 가 확정으로 잡히고 있었다 — 실제 값은 Swegon MB:30127 CHX-1 Valve output, Systemair MB:30586 AAIFeedbackCoolerValve__ 다",
+     "match": {
+      "include": "chilled.*water.*valve|cool.*valve|cooling.*valve|feedbackcoolervalve",
+      "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting"
+     }
+    },
+    {
+     "name": "온수밸브 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`hot`✓ `water`✓ `valve`✓ `heat`✓ `cmd`✓ `position`★",
+     "grade": "필수",
+     "appliesWhen": "온수·증기코일 구성. 직팽 AHU 인터페이스킷 3건과 전기히터 구성에는 해당 없다.",
+     "haystack": "ahu ▸ duct equip ▸ heatingCoil equip ▸ cmd heat hot point valve water",
+     "why": "온수 코일 부하 조작량. 보일러 계통 부하와 직접 연결된다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "include 에서 'mod gas heat valve' 를 뺐다(가스 모듈레이팅 밸브는 '난방 지령'이다). 실제 값은 Swegon MB:30376 AYC Heat, valve output",
+     "match": {
+      "include": "hot.*water.*valve|heat.*valve|heating.*valve",
+      "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
+     }
+    },
+    {
+     "name": "압축기 단수 상태",
+     "objectType": "AI/BI",
+     "unit": "단",
+     "role": "sensor",
+     "tags": "`cool`✓ `run`✓ `stage`✓ `cmd`✓",
+     "grade": "선택",
+     "appliesWhen": "직팽(DX) 코일 또는 DX 인터페이스킷 구성일 때만.",
+     "haystack": "ahu ▸ duct equip ▸ coolingCoil equip ▸ cmd cool point run stage",
+     "why": "DX 구성 AHU 의 부분부하 COP 보간",
+     "usedBy": [
+      "cooling"
+     ],
+     "exposure": "Swegon MB:10109 COOL DX compressor 1 output, Trane nvoCprsrsRunning, Mitsubishi MB:40007 Step status. 냉수 AHU 에는 없는 것이 정상이라 선택이다",
+     "match": {
+      "include": "compressor.*(?:running|status|enable|signal|output)|cprsrsrunning|stage.*enabled|comp.*stage|step status|capacity request",
+      "exclude": "\\balarm\\b|\\bfault\\b|lockout|failure|hours|run ?time|starts|setpoint|type|configuration|delay|dehum|freeze|freezing"
+     }
+    },
+    {
+     "name": "냉방 지령",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`cool`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ cmd cool point",
+     "why": "밸브 개도를 안 내고 시퀀스 출력(%)만 내는 AHU 가 있다. 직팽 인터페이스킷에서는 이것이 유일한 냉방 신호다",
+     "usedBy": [
+      "cooling"
+     ],
+     "exposure": "Trane nvoCoolPrimary, Siemens MSO:30094 CoolingCmdDxSt, Swegon MB:30392 AYC Chilled water cool demand. 유럽형 Systemair AY1/AY3/AY10 Sequence_ 는 어느 것이 냉방인지 문서에 정의가 없어 근거로 쓰지 않았다(gap)",
+     "match": {
+      "include": "cool.*(?:capacity|demand|primary|command|position)|(?:clg|cool)cap|cool.*enable|coolenable|modulating cooling|staged cooling",
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma"
+     }
+    },
+    {
+     "name": "난방 지령",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`heat`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ cmd heat point",
+     "why": "전기히터·시퀀스 출력형 AHU 의 난방 신호. 직팽 인터페이스킷에서는 이것이 유일한 난방 신호다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "Trane nvoHeatPrimary, Siemens MSO:11590 ElectricalHtgCmdStSt",
+     "match": {
+      "include": "heat.*(?:capacity|demand|primary|secondary|command|position)|(?:htg|heat)cap|heat.*enable|heatenable|modulating heat",
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma"
+     }
+    },
+    {
+     "name": "가습 지령",
+     "objectType": "AO/BO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`humidifier`✓ `cmd`✓",
+     "grade": "선택",
+     "haystack": "ahu ▸ humidifier equip ▸ cmd enable humidifier point / cmd humidifier point run  (Haystack 에 변조(%) proto 는 없다 — 우리 AO % 는 초과분)",
+     "why": "가습 열량. 증기·기화식에 따라 전력이 크게 다르다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "include 에서 setpoint 를 뺐다. Swegon 'Active alarm 189' 등 알람 비트가 가습 지령으로 잡히고 있었다",
+     "match": {
+      "include": "humid.*(?:command|enable|output)|humidifier",
+      "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit"
+     }
+    }
+   ]
+  }
+ }
+}

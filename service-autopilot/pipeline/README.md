@@ -17,6 +17,124 @@ sources.py ─► collect.py ─┬─► extract.py ─► register.py ─► n
                                문서→사진                                        형번별 실물
 ```
 
+## ★ 규칙 0 — 요구 항목을 먼저 정한다 (`data/equip-requirements.json`)
+
+**문서를 열기 전에 무엇을 뽑을지 정한다.** 이 순서를 어기면 안 쓰는 값을 잔뜩 모으고
+정작 필요한 값이 빈다. 실제로 그랬다 — RTU 8모델에서 기외정압 0% · 난방 2% ·
+최소외기량 0% 인데 치수·부속 표는 수백 개를 모았다.
+
+더 나빴던 것은 **채점표 자체가 틀렸다는 것**이다. e5 요구 항목이 한국식 맞춤 AHU
+기준(냉수코일 능력·코일 열수·가습 방식)이라, 냉수코일이 **없는** 직팽식 RTU 를
+없는 부품으로 채점했다. `matched 59 / missing 1,162` (4.6%) 는 그렇게 나온 숫자다.
+
+```
+equip-requirements.json  ──►  수집·추출  ──►  채점(--report)  ──►  룰 수정
+   무엇을 뽑을지 먼저            그것만 찾는다      비면 어디서 찾을지 알려준다
+```
+
+| 규칙 | 내용 | 기계 강제 |
+|---|---|---|
+| **① 요구 먼저** | 설비(하위형식 포함) 착수 전 프로파일이 없으면 수집·추출을 시작하지 않는다 | `requirements.py --check` 경고 |
+| **② 쓰임 없으면 항목이 아니다** | 모든 항목에 `usedBy`(어느 계산에 들어가나)와 `why` 를 적는다. 못 적으면 넣지 않는다 | `--check` 오류 |
+| **③ 하위형식이 다르면 다른 설비다** | RTU(직팽 패키지)와 AHU(냉수·온수코일)는 계산식이 달라 프로파일을 나눈다 | `match.catPrefix` |
+| **④ 사전 우선** | `features` 는 `unit-schema.json` 에 있는 id 만. 빈 배열 = **사전 신설 과제** | `--check` 오류 |
+| **⑤ 채점은 이 파일 기준** | 여기 없는 값을 많이 뽑았다고 잘한 게 아니고, 여기 있는 값이 비면 미완이다 | `--report` 채움률 |
+| **⑥ 표에서 정량으로 얻어지는 것만** | 본문 서술·곡선 그래프에만 있는 값은 **값을 비운 채 항목만 남기고** 사유를 적는다 | `--probe` 판정 |
+| **⑦ 표준과 대조해 근거를 남긴다** | 요구 항목·템플릿 행은 Haystack protos 와 대조한다. 표준에 없는 항목은 왜 필요한지 근거를 적는다 | `haystack.py --diff` (게이트 아님) |
+
+규칙 ⑥ 의 판정은 사람이 아니라 `--probe` 가 먼저 한다. 원문을 훑어 **낱말이 숫자 칸
+있는 표의 제목·머리글·첫 열에 있는가**를 본다 — 본문 칸에 스쳐 지나간 것으로 인정하면
+선적중량표가 '이코노마이저 표'가 된다(실측 오탐). 결과는 모델별 세 가지다.
+
+| 판정 | 뜻 | 다음 행동 |
+|---|---|---|
+| `table` | 표 제목·머리글에 있고 숫자 칸이 충분하다 | **추출 대상** — 근거 문서·쪽·표 제목이 리포트에 찍힌다 |
+| `weak` | 표 본문 칸에만 있다 | 사람이 원문을 봐야 한다 (`verify_req.py`) |
+| `not-in-table` | 숫자 표에서 못 찾았다 | **값을 비우고 항목만 남긴다** — 곡선 그래프·서술일 수 있다 |
+
+⚠ 낱말 검색은 **낱말 경계**로 한다. 부분문자열로 찾으면 `esp` 가 `especially` 에 걸려
+브로슈어가 1순위로 올라온다(2026-08-11 첫 육안검사에서 실제로 그랬다). 숫자 밀도
+(쪽당 40자 이상)도 함께 본다 — 값이 실린 쪽은 숫자가 빽빽하고 홍보 쪽은 낱말만 맞는다.
+
+프로파일에는 **계산식(`energyModel`)을 함께 적는다.** 항목이 왜 필요한지가 식에서
+나오기 때문이다 — 예: 팬 전력 = 풍량 × 정압 ÷ 효율 이므로 정압이 없으면 팬 동력을
+못 구한다. 도메인을 모르는 사람도 식을 보면 무엇이 빠졌는지 판단할 수 있다.
+
+```bash
+python requirements.py --check                    # 정의가 성립하나 (게이트)
+python requirements.py --report --profile e5.rtu  # 항목별 채움률 + 못 찾은 것의 '찾을 곳'
+python requirements.py --gaps                     # 비어 있는 필수 항목만
+python requirements.py --probe --profile e5.rtu   # 빈 항목이 표에서 정량으로 얻어지나
+python verify_req.py --profile e5.rtu             # 요구항목 기준 육안검사 화면
+```
+
+새 설비 착수 순서는 **프로파일 작성 → 수집 → 추출 → `--report` → 육안검사 → 룰 수정**
+반복이다. 「새 벤더 추가 절차」의 1번보다 이것이 먼저다.
+
+### 규칙 ⑦ — 요구 항목과 템플릿은 Haystack protos 와 대조한다
+
+**왜.** 손으로 쓴 목록은 근거가 사람 머릿속에만 남아서 틀려도 아무도 모른다. 같은 사고가
+**두 번** 났다 — 정격에서 한 번(냉수코일 능력·코일 열수를 직팽 RTU 에 요구, `matched
+59 / missing 1,162`), 오브젝트에서 또 한 번(e5 템플릿이 '냉수밸브 개도'·'온수밸브 개도'를
+**필수**로 박아 두었는데 RTU 에는 그 밸브가 물리적으로 없다). 둘 다 "우리가 그렇게 정했다"
+말고는 근거가 없었다.
+
+**어떻게.** 표준이 정한 것을 근거로 삼는다. Haystack def 의 `children`(=protos)은 그 설비가
+가질 수 있는 구성을 태그로 적어 둔 것이라, 대조하면 세 무더기로 기계적으로 갈린다.
+
+```bash
+python haystack.py --equips              # 어느 def 가 protos 를 갖고 있나
+python haystack.py --protos ahu          # 표준이 말하는 구성 전개 (ahu = leaf 241)
+python haystack.py --diff e5             # 우리 템플릿 ↔ 표준 대조
+```
+
+| 대조 결과 | 뜻 | 해야 할 일 |
+|---|---|---|
+| 표준에도 있음 | 근거가 표준에 있다 | 항목에 proto 경로를 근거로 적는다 |
+| 애매 (동점·겹침 약함) | 태그로는 못 가른다 | 사람이 정한다. 억지로 붙이지 않는다 |
+| 우리에만 있음 | 표준에 짝이 없다 | **근거를 따로 대야 한다** — 벤더 원문 쪽·오브젝트 번호를 적는다 |
+| 표준에만 있음 | 누락 **후보** | 추가 지시가 아니다. protos 는 조합적 완전열거라 실물에 없는 것이 섞여 있다 |
+
+대조는 이름이 아니라 **태그 겹침**으로 한다. 그래서 '냉수밸브 개도'가 7개 덕트의 코일과
+동점으로 걸리는 것을 잡아냈다 — 태그 `position` 이 Haystack def 가 아니라서 위치를 못 가른
+것이고, 곧 템플릿이 "어느 덕트의 코일인지"를 말하지 않은 채 필수로 박혀 있었다는 뜻이다.
+
+⚠ **이 대조가 답하지 않는 것 둘.** ①`rtu.children` 은 `ahu.children` 과 키 단위로 완전히
+같다 — RTU/AHU 분리 근거는 여기서 못 찾고 벤더 원문·실측에서 대야 한다. ②`mandatory` 는
+태그 공존 규칙이지 포인트 필수 표시가 아니다 — **등급은 대조로 나오지 않는다.**
+
+#### 한계 — Haystack 은 운영 데이터 온톨로지지 명판 정격 카탈로그가 아니다
+
+정격 레인(규칙 ②의 `energyModel` 입력)은 이 대조로 정할 수 **없다.** 표준 자체에 자리가
+없기 때문이다. 719 defs 전수 확인 결과다.
+
+| 확인한 것 | 실제 | 그래서 |
+|---|---|---|
+| `is: number` 수치 속성 | **7개뿐** — `area`·`coolingCapacity`·`duration`·`geoElevation`·`int`·`maxVal`·`minVal` | 장비 정격은 사실상 자리가 없다 |
+| 그중 장비 능력 | `coolingCapacity` **하나**, 게다가 `tagOn: chiller` | AHU·RTU·팬에는 붙지도 않는다 |
+| `rated`·`design` | 있지만 **마커**다 (`rated` doc: *"from the equipment data plate or cut sheet"*) | "이건 명판값이다" 꼬리표만 달 뿐, **어떤 명판값을 요구할지는 말하지 않는다** |
+| protos 안의 정격 | `rated`·`design`·`capacity` 포함 proto **0건** (719 def 전수) | `--diff` 는 원리적으로 정격 항목을 못 내놓는다 |
+
+⚠ "capacity 태그가 아예 없다"고 적으면 다음 사람이 `coolingCapacity` 를 grep 해서 찾고
+문서를 못 믿게 된다. 정확히는 **하나 있는데 chiller 전용이고 값의 자리가 아니라 태그**다.
+
+→ **정격 요구 항목은 Haystack 만으로 정할 수 없다. 계산식 기반 정의가 여전히 필요하다** —
+규칙 ②(`usedBy`·`why`)와 `energyModel` 이 그 자리를 대신한다. 대조는 **오브젝트(포인트)
+레인에만** 근거를 대 준다. 두 레인의 근거 출처가 다르다는 것을 섞지 마라.
+
+#### `data/haystack/defs.json` — 출처와 받는 법
+
+```bash
+curl -L https://project-haystack.org/download/defs.json -o data/haystack/defs.json
+```
+
+Haystack **3.0** · 719 defs · 317,774 B · SHA-256
+`13647d9cbeea02f0c0752445170174a942c2ea7fba458639b46688ce869304c7` (2026-08-11 대조 일치).
+⚠ `curl -I`(HEAD)는 **404** 를 돌려준다 — 이 서버는 그 경로에 HEAD 를 안 받는다. GET(`-L`)으로
+받아야 한다. 살아 있는지 확인한다고 HEAD 를 쳐 보고 "URL 이 죽었다"고 판단하지 마라.
+표준 원본이므로 **손으로 고치지 않는다.** PDF 가 아니라 317 KB 텍스트라 저장소에 함께 두되,
+D-008 과 같은 방식으로 출처·SHA-256 을 남겨 재현 가능하게 한다.
+
 ## 문서가 두 종류다
 
 | | 통합 포인트 리스트 | 카탈로그·데이터시트 |
@@ -148,7 +266,7 @@ python crosscheck.py --all                   # 교차 대조 (표 인식 vs 줄 
 python rebuild.py --run                      # 추출 규칙을 고쳤을 때 기존 모델 재추출
 python normalize.py && python validate.py && python build.py
 python datasets.py                           # 템플릿·시뮬레이터·매핑용 데이터셋 생성
-python datasets.py --equip e5                # 공조기만 다시 생성
+# 주의: datasets.py --equip 는 공용 산출물을 부분 데이터로 덮어써서 금지됐다
 python export_units.py                       # 형번 정격 CSV(long/wide) 생성
 ```
 
@@ -291,13 +409,114 @@ unit-schema.json (속성 사전)      datasets.unit_models (추출 = 제안)
 4. 새 속성이 필요하면 features 사전에 먼저 추가한다 (규칙 ②).
 5. `units.py --sync` → 화면 확인 → 원문 대조 후 `--verify` 승격.
 
-`datasets/` 산출물은 세 파일이다.
+`datasets/` 산출물은 네 파일이다.
 
 | 파일 | 내용 |
 |---|---|
-| `equipment-templates.json` | 장비 종류별 L2 템플릿. BMS 화면/자동 매핑의 기준 포인트와 시뮬레이터 요구 사양 |
+| `equipment-templates.json` | 장비 계열별 시뮬레이터 요구 사양 + 이 계열이 쓰는 템플릿 프로파일 id |
+| `template-profiles.json` | **하위형식별** BMS 기본화면 템플릿(`e5.rtu`·`e5.ahu`). 화면 행의 정본 |
 | `model-mappings.json` | 모델별 L3 원문 포인트 전체, L2 후보, 시뮬레이터 입력 후보, 참고표 목록 |
-| `catalog-dataset.json` | 위 두 파일을 합친 전체 번들 |
+| `catalog-dataset.json` | 위 세 파일을 합친 전체 번들 |
+
+### 하위형식 프로파일 — 왜 `data/equips/e5.json` 이 아니라 별도 파일인가
+
+**2026-08-11 사고.** e5 템플릿이 '냉수밸브 개도'·'온수밸브 개도'를 **필수**로 박아 두었는데
+직팽 RTU 에는 그 밸브가 물리적으로 없다. 정격 쪽에서 "RTU 를 냉수코일 AHU 체크리스트로
+채점"하던 것과 같은 구조의 오류다. 원문 확인 결과 Trane RT-PRC023AY(228p)·York
+ZF/ZJ/ZR(194p+102p)·Lennox Enlight LGT/LHT 에 "chilled" 가 **0회**다. 실측 매칭도
+RTU 0/9, AHU 2/8 인데 그 2건마저 Swegon `Active alarm 93`·Systemair
+`AlaSignalErrorFeedbackCoolerValveStatus__` 라는 **알람 비트 오매칭**이었다.
+
+고칠 곳은 세 군데였다.
+
+1. **행과 룰이 갈라져 있었다.** 화면 행은 `data/equips/e5.json` 의 `pointTables`(23행),
+   매칭 정규식은 `datasets.py` 의 `AHU_PROFILE`(25룰). 룰 2개('냉수·냉방'·'온수·난방')는
+   대응 행이 없어 화면에 아예 안 나왔다 — 코드가 이미 `cool cmd`/`heat cmd` 추상이
+   필요해서 몰래 룰을 덧댄 것이다.
+2. **결합 함수가 안 불리고 있었다.** `requirements.profile_for()` 가 이미 있는데
+   `datasets.py` 는 `equipId`(계열)를 키로 썼다. `equip-requirements.json` 은 e5.rtu 로
+   갈라 놓았는데 데이터셋·화면은 계열 한 벌이었다.
+3. **미해결이 조용히 후보 0 이 됐다.** `VIEW_PROFILES.get(...) or []` 라서 프로파일이
+   없는 모델은 오류 없이 화면이 통째로 '없음'이 됐다.
+
+**`data/equips/e5.json` 을 고치면 안 되는 이유:** 이 파일은 `migrate.py` 가
+`08-equip-spec-tag-catalog.md` 5절에서 매번 다시 만드는 **생성물**이다. 손편집은 표준 실행
+(`migrate.py && normalize.py && validate.py && build.py`) 한 번에 날아간다. 게다가 migrate 의
+표 분류는 머리글만 보므로 마크다운에 RTU/AHU 두 표를 써도 하위형식 라벨을 못 실어 나른다.
+
+그래서 새 파일 **`data/equip-templates.json`** 을 만들었다.
+
+| 규칙 | 내용 |
+|---|---|
+| 결합 규칙은 한 벌 | `match.catPrefix` 는 `equip-requirements.json` 에만 쓴다. 템플릿 파일에 다시 적으면 규칙이 두 벌이 되고 그게 이 사고의 재현 조건이다. 결합은 `requirements.profile_for()` 하나뿐 |
+| id 는 두 파일이 같다 | `e5.rtu`·`e5.ahu`. 게이트 테스트(`test_template_profile_ids_match_requirement_profile_ids`)가 집합 일치를 강제 |
+| 행 = 룰 | 화면 행과 매칭 정규식이 같은 행에 있다. 다시는 23행 vs 25룰로 벌어지지 않는다 |
+| 미해결은 오류 | `datasets.template_profile_for()` 가 예외를 던진다. 빈 목록으로 흘려보내지 않는다 |
+| 적용성은 등급이 아니다 | 물리적으로 없는 부품은 `appliesWhen` 에 조건을 적는다. 밸브를 **삭제하지도 않는다** — 냉수코일 구성 RTU 가 실재한다(Daikin `ClgType` MSV:113=3 Chilled Water, AAON RN 냉수코일 사양) |
+| 행 순서 = 우선순위 | `find_template_candidates` 는 앞 행이 집은 포인트를 뒤 행에 안 준다. 구체적인 행(냉수밸브)을 추상적인 행(냉방 지령)보다 **앞**에 둔다 |
+
+**RTU 에서 밸브 자리를 대신하는 것.** Haystack 이 이미 답을 갖고 있다 — `coolingCoil` 아래
+`chilled water valve cool cmd`(냉수 변형)와 `cool run stage cmd`(단수 변형)가 형제이고,
+그 위 AHU 직속에 둘을 덮는 추상 `cool cmd`/`heat cmd` 가 따로 있다. 그 추상이 실물이라는
+결정적 근거가 AAON VCCX2 다 — `AI:34 Modulating Cooling Position` 의 note 가
+*"Current percentage of the Modulating **Chilled Water** Signal"*, `AI:35 Modulating Heat
+Position` 이 *"Modulating Heating signal (**Hot Water or SCR heat**)"* 다. **한 오브젝트가
+냉수밸브와 SCR 전기히터를 함께 담는다** — 우리가 냉수/온수 밸브로 쪼갠 것 자체가 벤더
+데이터 모델과 어긋나 있었다.
+
+**등급은 두 축의 곱으로만 매긴다.** ①계산식 영향(`why`·`usedBy`) × ②벤더 실제 노출률.
+`필수` 는 그 프로파일 모델 **과반 노출**이 하한선이다. Haystack 의 `mandatory` 는 등급 근거가
+**아니다** — 719 defs 중 13개(ahu·equip·point·site…)에만 붙고 doc 이 *"Requires that the
+marker be applied to dicts which use the marker's subtypes"* 즉 **태그 공존 규칙**이다.
+`ahu` 의 21개 proto 에는 우선순위 표시가 아예 없다.
+
+**매처 함정 두 가지** (고치기 전에 매칭률이 부풀어 있었다):
+
+- `fault` 를 맨몸으로 제외어에 쓰면 Daikin 주석의 `Default: NA` 에 걸린다. 그 한 글자 때문에
+  Daikin 285점 중 39점이 통째로 후보에서 사라졌다. **제외어에는 `\b` 를 붙인다.**
+  ⚠ 단 JSON 안에서는 `\\b` 로 써야 한다 — `\b` 는 백스페이스 이스케이프다(위 「사양 용어
+  사전」 절의 같은 함정). 이번에도 한 번 밟았고 파싱해 `\x08` 인지 확인해서 잡았다.
+- Swegon(3,362점)·Systemair(1,897점)는 알람 비트에도 값 포인트와 같은 문구가 들어간다.
+  `Active alarm 80` 이 '급기온도'로 확정 표시되고 있었다. 프로파일의 `excludeCommon` 에
+  알람 라벨을 한 벌 두고, 경보를 실제로 찾는 행만 `keepAlarm: true` 로 뺀다.
+
+**분리 전후 실측** (e5 17모델):
+
+| | 전 | 후 |
+|---|---|---|
+| 템플릿 행 | 계열 한 벌 23행 | e5.rtu 32행 · e5.ahu 31행 |
+| matched 셀 | 192 / 391 | 277 / 536 |
+| 냉수밸브 개도 | RTU 0/9 · AHU 2/8(둘 다 알람 오매칭) | RTU 조건부(선택) · AHU 2/8 실값(Swegon `Xzone cool, input level`, Systemair `AAIFeedbackCoolerValve__`) |
+| 온수밸브 개도 | 17모델 전부 오매칭 | RTU 조건부 · AHU 1/8 실값(Swegon `AYC Heat, valve output`) |
+| 알람 라벨 오매칭 | 15행 (Swegon 8 · Systemair 7) | 0행 (`필터 차압`·`동결 방지 경보` 제외) |
+
+> 이 표의 "후" 수치가 커진 것은 행이 늘어서다. **행별로 보면 오히려 떨어진 칸이 있고 그게
+> 정상이다** — 가습 지령 5건이 `matched`(설정값 오매칭) → `missing` 으로 내려갔다.
+> 매처를 고치면 수치가 떨어지는 것을 회귀로 오판하지 마라.
+
+**아직 안 한 것** (다음 사람에게):
+
+- **정격 레인이 그대로다.** `datasets.simulator_requirements()` 는 여전히 `e5.json` 의
+  specTables 16행(냉수코일 능력·코일 열수·핀피치)으로 RTU 를 채점한다. 같은 모델 화면에서
+  포인트는 RTU 기준, 정격은 AHU 기준이라 기준이 엇갈린다. `equip-requirements.json` 의
+  `e5.ahu` 는 `items: []` 이고 `pending` 에 사유를 적어 두었다 — `requirements.py --check`
+  가 경고로 계속 띄운다.
+- **계열 '포인트' 탭은 아직 마크다운 23행이다.** 화면 상단의 계열 탭은 `e5.json` 을 직접
+  읽으므로 옛 목록을 그린다. 모델 상세의 BMS 기본화면 패널은 2026-07-31 커밋
+  (`4560a6c`)에서 **의도적으로 숨겨져** 있어(`availableModelViews` 가 `bms`·`sim` 을 안
+  내보낸다) 이번 변경은 데이터셋에만 보인다. 화면에 되살리려면 그 커밋의 판단부터 확인할 것.
+- `evidence/gen2.py` 의 JS `VIEW_PROFILES.ahu`(12룰)는 `renderAhuOperatorView()` 전용
+  폴백인데, e5 모델은 `purpose` 가 항상 있어 도달하지 않는다. 죽은 코드라 손대지 않고
+  주석만 달았다.
+- `HVAC.AIR.SPLIT`(Trane IntelliCore RAUK)은 `e5.rtu` 로 보낸다 — 압축기 2회로·
+  `Cooling Capacity Enable` 을 갖는 직팽이라 계산식이 RTU 와 같다. `catPrefix` 를 목록으로
+  받게 한 이유가 이것이다. `HVAC.AIR.RTU.WSHP` 2모델은 접두 최장일치로 자동으로 온다
+  (`nviCWFlow`·`nvoCWPump` 는 **응축수 루프**이지 냉수코일이 아니다).
+- `trane-symbio-800-intellipak` 2모델이 `HVAC.AIR.AHU` 로 분류돼 있으나 IntelliPak 은
+  패키지 옥상형이다. 분류 재검토 대상(이번 범위 밖).
+- Systemair Geniox 의 `AY1Sequence_`·`AY3Sequence_`·`AY10Sequence_`(%)가 각각 난방/회수/
+  냉방 중 무엇인지 `Systemair_Access_Communication_153831-A011.pdf` p25~26 에 **이름만 있고
+  정의가 없다.** 추측해 채우지 말 것 — 그래서 냉방·난방 지령 행의 근거에서 뺐다.
 
 `model-mappings.json` 에서 바로 봐야 하는 필드는 둘이다.
 

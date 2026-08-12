@@ -31,7 +31,9 @@
    "name": "RelPos",
    "unitRaw": null,
    "unit": null,
-   "note": "Relative Position in % Overridden = true, if the gear is disengaged"
+   "note": "Relative Position in % Overridden = true, if the gear is disengaged",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "AI",
@@ -39,7 +41,9 @@
    "name": "AbsPos",
    "unitRaw": null,
    "unit": null,
-   "note": "Absolute Position in degree or mm The unit depends on the device: [°] for actuators with rotary movement [mm] for actuators with linear movement Overridden = true, if the gear is disengaged"
+   "note": "Absolute Position in degree or mm The unit depends on the device: [°] for actuators with rotary movement [mm] for actuators with linear movement Overridden = true, if the gear is disengaged",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "AI",
@@ -47,7 +51,9 @@
    "name": "SpAnalog",
    "unitRaw": null,
    "unit": null,
-   "note": "Analog Setpoint in % Shows the setpoint in % if actuator is control by analog signal (SpSource MV[122] is analog(1)) If SpSource MV[122] is Bus(2) then Out Of Service is TRUE _ _"
+   "note": "Analog Setpoint in % Shows the setpoint in % if actuator is control by analog signal (SpSource MV[122] is analog(1)) If SpSource MV[122] is Bus(2) then Out Of Service is TRUE _ _",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "AI",
@@ -55,7 +61,9 @@
    "name": "Sens1Analog",
    "unitRaw": null,
    "unit": null,
-   "note": "Sensor 1 as analog value in V / Ω / – / °C / °F Current value of sensor 1 in case Sensor1Type MV[220] is Active If Sens1Type MV[220] is not Active(2) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+   "note": "Sensor 1 as analog value in V / Ω / – / °C / °F Current value of sensor 1 in case Sensor1Type MV[220] is Active If Sens1Type MV[220] is not Active(2) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "AI",
@@ -63,7 +71,9 @@
    "name": "Sens2Analog",
    "unitRaw": null,
    "unit": null,
-   "note": "Sensor 2 as analog value in V / Ω / – / °C / °F Current value of sensor 2 in case Sensor2 Type MV[221] is Active(2) If Sens2 Type MV[221] is not Active(2) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+   "note": "Sensor 2 as analog value in V / Ω / – / °C / °F Current value of sensor 2 in case Sensor2 Type MV[221] is Active(2) If Sens2 Type MV[221] is not Active(2) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "AO",
@@ -71,7 +81,9 @@
    "name": "SpRel",
    "unitRaw": null,
    "unit": null,
-   "note": "Relative Setpoint in % Setpoint for actuator between 0 and Max AV[98] if controlled via bus If SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+   "note": "Relative Setpoint in % Setpoint for actuator between 0 and Max AV[98] if controlled via bus If SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "AV",
@@ -79,7 +91,9 @@
    "name": "Max",
    "unitRaw": null,
    "unit": null,
-   "note": "Max Setpoint in % Max has to be ≥ 30%"
+   "note": "Max Setpoint in % Max has to be ≥ 30%",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "AV",
@@ -87,7 +101,9 @@
    "name": "Bus Watchdog",
    "unitRaw": null,
    "unit": null,
-   "note": "Timeout for Bus Watchdog in s 0 = watchdog deactivated If the Present Value is not ZERO, the implementation tracks write _ procedures to Present Value of AO[1] and MO[1] _ If the Present Value of AO[1] or MO[1] is written, the timer is rese"
+   "note": "Timeout for Bus Watchdog in s 0 = watchdog deactivated If the Present Value is not ZERO, the implementation tracks write _ procedures to Present Value of AO[1] and MO[1] _ If the Present Value of AO[1] or MO[1] is written, the timer is rese",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "BI",
@@ -95,7 +111,9 @@
    "name": "Sens1Switch",
    "unitRaw": null,
    "unit": null,
-   "note": "_ Sensor 1 as Switch Indicates value on sensor 1 in case Sensor1Type MV[220] is Switch(5) If Sens1Type MV[220] is not Switch(5) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+   "note": "_ Sensor 1 as Switch Indicates value on sensor 1 in case Sensor1Type MV[220] is Switch(5) If Sens1Type MV[220] is not Switch(5) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "BI",
@@ -103,7 +121,9 @@
    "name": "Sens2Switch",
    "unitRaw": null,
    "unit": null,
-   "note": "Sensor 2 as Switch Indicates value on sensor 1 in case Sensor2Type MV[221] is Switch(5) If Sens2Type MV[221] is not Switch(5) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+   "note": "Sensor 2 as Switch Indicates value on sensor 1 in case Sensor2Type MV[221] is Switch(5) If Sens2Type MV[221] is not Switch(5) or SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "BI",
@@ -111,7 +131,9 @@
    "name": "BusTermination",
    "unitRaw": null,
    "unit": null,
-   "note": "Bus Termination Indicates if bus termination (120 Ω) is enabled. Bus termination can be set with the configuration tools."
+   "note": "Bus Termination Indicates if bus termination (120 Ω) is enabled. Bus termination can be set with the configuration tools.",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "BI",
@@ -119,7 +141,9 @@
    "name": "SummaryStatus",
    "unitRaw": null,
    "unit": null,
-   "note": "Summary Status Summary of all Status (MI[106], MI[110])"
+   "note": "Summary Status Summary of all Status (MI[106], MI[110])",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 4
   },
   {
    "type": "MSI",
@@ -127,7 +151,9 @@
    "name": "InternalActivity",
    "unitRaw": null,
    "unit": null,
-   "note": "_ Internal Activity Test: Internal test running, activated by bus"
+   "note": "_ Internal Activity Test: Internal test running, activated by bus",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MSI",
@@ -135,7 +161,9 @@
    "name": "StatusActuator",
    "unitRaw": null,
    "unit": null,
-   "note": "Status Actuator Actuator cannot move: Mechanical overload e.g. blocked actuator, etc. Gear disengaged: Button is pressed Mechanical travel increased: The actuator has been moved outside the adapted working range"
+   "note": "Status Actuator Actuator cannot move: Mechanical overload e.g. blocked actuator, etc. Gear disengaged: Button is pressed Mechanical travel increased: The actuator has been moved outside the adapted working range",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MSI",
@@ -143,7 +171,9 @@
    "name": "StatusDevice",
    "unitRaw": null,
    "unit": null,
-   "note": "Status Device Indicates general status about the device Bus Watchdog triggered: Timeout for Bus Watchdog expired"
+   "note": "Status Device Indicates general status about the device Bus Watchdog triggered: Timeout for Bus Watchdog expired",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MSO",
@@ -151,7 +181,9 @@
    "name": "Override",
    "unitRaw": null,
    "unit": null,
-   "note": "Override Control Override the setpoint (SpRel AO[1] or analog signal) with defined values"
+   "note": "Override Control Override the setpoint (SpRel AO[1] or analog signal) with defined values",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MSV",
@@ -159,7 +191,9 @@
    "name": "Command",
    "unitRaw": null,
    "unit": null,
-   "note": "Initiate Function Initiation of actuator functions for service and test. After command is sent, value returns to None(1). With Reset(4) all status in StatusActuator MI[106] can be reset"
+   "note": "Initiate Function Initiation of actuator functions for service and test. After command is sent, value returns to None(1). With Reset(4) all status in StatusActuator MI[106] can be reset",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MSV",
@@ -167,7 +201,9 @@
    "name": "SpSource",
    "unitRaw": null,
    "unit": null,
-   "note": "Setpoint Source If Analog(1) then actuator is controlled by analog signal 0...10 V on wire 3. If Bus(2) then setpoint via bus SpRel AO[1]"
+   "note": "Setpoint Source If Analog(1) then actuator is controlled by analog signal 0...10 V on wire 3. If Bus(2) then setpoint via bus SpRel AO[1]",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MSV",
@@ -175,7 +211,9 @@
    "name": "Sens1Type",
    "unitRaw": null,
    "unit": null,
-   "note": "Sensor 1 Type If SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+   "note": "Sensor 1 Type If SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 5
   },
   {
    "type": "MSV",
@@ -183,7 +221,9 @@
    "name": "Sens2Type",
    "unitRaw": null,
    "unit": null,
-   "note": "Sensor 2 Type If SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _"
+   "note": "Sensor 2 Type If SpSource MV[122] is Analog(1) then Out Of Service is TRUE _ _",
+   "sourceFile": "belimo_BACnet_Interface-description_PR_V3_4_en-gb.pdf",
+   "sourcePage": 5
   }
  ],
  "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",

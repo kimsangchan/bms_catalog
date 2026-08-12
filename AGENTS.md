@@ -67,6 +67,12 @@ PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류
 
 ## 반드시 지킬 것
 
+0. **요구 항목을 먼저 정하고 문서를 연다** (`data/equip-requirements.json`, `requirements.py`).
+   설비 하위형식마다 "무엇을 왜 뽑는지"와 계산식을 적은 프로파일이 없으면 수집을 시작하지
+   않는다. 순서를 어겨서 RTU 를 **냉수코일 AHU 체크리스트로 채점**한 사고가 있었다
+   (기외정압 0%·난방 2% 인데 치수 표만 수백 개). 목록은 `haystack.py --diff <설비>` 로
+   Haystack protos 와 대조해 근거를 남긴다 — 단 정격은 표준에 없어 계산식으로 정한다.
+   상세는 pipeline/README 「규칙 0」.
 1. **문서에 적힌 것만 적는다.** 값을 지어내지 않는다. 모르면 모른다고 `gap` 에 적는다.
    추측으로 채운 값은 시뮬레이터가 그대로 믿어 버린다.
 2. **원문 바이너리를 저장소에 넣지 않는다** (D-008). `pipeline/data/raw/` 는 gitignore 되어 있다.

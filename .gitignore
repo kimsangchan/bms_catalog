@@ -10,10 +10,20 @@ __pycache__/
 *.pyc
 .venv/
 
+# 검증·검토용 생성 HTML — 원문 쪽 그림을 인라인으로 넣어 20MB 를 넘는다.
+# 스크립트로 언제든 다시 만든다 (verify.py · verify_req.py). 배포 산출물인
+# equip-catalog.html 만 저장소에 둔다.
+service-autopilot/review/spec-verify.html
+service-autopilot/review/req-verify-*.html
+
+# 벤더 문서 포털 조사 스냅샷 — Fluid Topics API 로 재조회 가능 (sources.py 주석 참고)
+service-autopilot/pipeline/data/haystack/_*.json
+
 # 임시
 *.tmp
 *.bak
 data/tmp.json
+service-autopilot/pipeline/tmp-*.png
 
 # 브라우저 자동화 세션 로그 (Playwright MCP) — 산출물 아님
 .playwright-mcp/
