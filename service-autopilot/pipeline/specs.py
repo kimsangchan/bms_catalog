@@ -120,6 +120,78 @@ def caption(pg, table_bbox, limit=90):
     return txt[:limit]
 
 
+# 각주 마커 — '1' 뿐 아니라 '4,5' 처럼 쉼표로 여럿 붙는다 (York 실측).
+FOOTNOTE_MARK = re.compile(r"^\d{1,2}(,\d{1,2})*$")
+FOOTNOTE_RATIO = 0.85          # 본문 크기의 이 비율 미만이면 위첨자로 본다
+
+
+def _page_spans(pg):
+    out = []
+    for b in pg.get_text("dict")["blocks"]:
+        for ln in b.get("lines", []):
+            row = [s for s in ln.get("spans", []) if s["text"].strip()]
+            if row:
+                out.append(row)
+    return out
+
+
+def strip_footnotes(pg, tab, data, lines=None):
+    """표 셀에 붙은 각주 위첨자를 떼어낸다.
+
+    카탈로그는 각주 번호를 본문보다 작은 글씨로 값 뒤에 붙인다. `t.extract()` 는
+    글자 크기를 버리고 문자열만 이어 붙이므로 'EER 12.2¹/12.0²' 가 '12.21/12.02'
+    가 된다 — **그럴듯해 보여서 눈으로는 못 잡는다** (York EER/IEER 42건 실측,
+    2026-08-11 발견). 시뮬레이터는 12.21 을 그대로 믿는다.
+
+    ⚠ 값만 보고 판단하면 안 된다 — 'Fins per inch 23' 은 두 자리 모두 본문
+    크기인 진짜 23 이다. 갈라내는 것은 **글자 크기**뿐이다.
+
+    각주를 실제로 떼어낸 칸만 바꾼다 (나머지는 원래 추출값 그대로 — 영향 최소화).
+    """
+    if lines is None:            # 쪽에 표가 여럿이면 호출자가 한 번만 읽어 넘긴다
+        lines = _page_spans(pg)
+    bb = tab.bbox
+    inside = [ln for ln in lines
+              if any(bb[0] - 1 <= (s["bbox"][0] + s["bbox"][2]) / 2 <= bb[2] + 1
+                     and bb[1] - 1 <= (s["bbox"][1] + s["bbox"][3]) / 2 <= bb[3] + 1
+                     for s in ln)]
+    sizes = collections.Counter(round(s["size"], 1) for ln in inside for s in ln)
+    if not sizes:
+        return data
+    body = max(sizes, key=lambda k: (sizes[k], k))
+    small = body * FOOTNOTE_RATIO
+
+    def cell_text(cbb):
+        got, dropped = [], False
+        for ln in inside:
+            parts = []
+            for s in ln:
+                cx = (s["bbox"][0] + s["bbox"][2]) / 2
+                cy = (s["bbox"][1] + s["bbox"][3]) / 2
+                if not (cbb[0] - 0.5 <= cx <= cbb[2] + 0.5
+                        and cbb[1] - 0.5 <= cy <= cbb[3] + 0.5):
+                    continue
+                if s["size"] < small and FOOTNOTE_MARK.match(s["text"].strip()):
+                    dropped = True
+                    continue
+                parts.append(s["text"])
+            if parts:
+                got.append("".join(parts))
+        return (" ".join(got).strip() if dropped else None)
+
+    out = [list(r) for r in data]
+    for i, row in enumerate(tab.rows):
+        if i >= len(out):
+            break
+        for j, cbb in enumerate(row.cells):
+            if cbb is None or j >= len(out[i]):
+                continue
+            fixed = cell_text(cbb)
+            if fixed:
+                out[i][j] = fixed
+    return out
+
+
 def extract_specs(pdf, max_pages=None):
     """문서 → 사양 표 목록"""
     import fitz
@@ -132,8 +204,14 @@ def extract_specs(pdf, max_pages=None):
             tabs = pg.find_tables()
         except Exception:
             continue
+        page_lines = None
         for t in tabs.tables:
-            data = t.extract()
+            try:
+                if page_lines is None:
+                    page_lines = _page_spans(pg)
+                data = strip_footnotes(pg, t, t.extract(), page_lines)
+            except Exception:
+                data = t.extract()
             if len(data) < 3 or len(data[0]) < 2:
                 continue
             header, rows = merge_header(data)
@@ -143,8 +221,16 @@ def extract_specs(pdf, max_pages=None):
             orient = looks_like_spec(header, rows)
             if not orient:
                 continue
-            key = (tuple(header), len(rows), rows[0][0] if rows[0] else "")
-            if key in seen:            # 같은 표가 여러 쪽에 이어지면 한 번만
+            # 같은 표가 여러 쪽에 이어지면 한 번만. 다만 **다른 표를 같은 표로 보면
+            # 통째로 버려진다.** 머리글이 'Component | Models' 처럼 일반명인 카탈로그가
+            # 있어서 첫 칸(rows[0][0])만으로는 갈리지 않는다 — York ZJ078-150(p17)과
+            # ZR078-150(p21)이 머리글·행수(48)·첫 칸('')까지 같아 p21 정격표 5모델이
+            # 조용히 사라져 있었다(2026-08-11 발견).
+            # 표를 가르는 실체는 **모델 행 전체**와 첫 구역 이름이다.
+            key = (tuple(header), len(rows),
+                   tuple(rows[0]) if rows else (),
+                   rows[1][0] if len(rows) > 1 and rows[1] else "")
+            if key in seen:
                 continue
             seen.add(key)
             # 물리량은 속성이 적힌 쪽에서 읽는다 — 전치형은 첫 열이 속성이다
