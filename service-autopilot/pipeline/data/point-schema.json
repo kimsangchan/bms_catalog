@@ -1,0 +1,587 @@
+{
+ "version": 1,
+ "description": "오브젝트(포인트) 속성 사전 — unit-schema.json(정격)과 같은 방식의 '사전 우선' 게이트를 포인트 쪽에 세운다. 구조는 두 층이다. ① 공통 의미(common·provenance): 어느 프로토콜이든 뜻이 같은 것 — 이름·단위·범위·상태·읽기쓰기·적용·비고·출처. ② 프로토콜 블록(blocks): bacnet·modbus·n2·lon·yorktalk·logix·elink — 주소·타입처럼 프로토콜마다 어휘가 다른 것. 블록으로 나누는 이유: (1) 문서마다 지원 프로토콜이 다르다 — YorkTalk 구형 13건은 N2+YorkTalk뿐이고 BACnet·LON·Modbus 열이 아예 없다. Native는 BACnet+Modbus+N2, YPAL은 LON+N2, ECO2는 BACnet+Modbus, YZD는 Modbus+Logix다. (2) 한 포인트가 여러 프로토콜 주소를 동시에 갖는다 — E-Link/GPIC형은 한 행에 BACnet·LON·N2·Modbus 4종 주소가 나란히 온다. 평면 이름으로는 이 동시성이 modbus* 6종 같은 접두 필드 증식으로 나타났고 18종까지 불어났다. (3) 같은 열 이름이 계통마다 다른 뜻을 담는다('BACnet Object Name'이 Typ-Ins형에선 York Talk 좌표) — 블록을 나눠야 '어느 프로토콜의 무엇'인지 경로가 말해 준다. 포인트 레코드 모양: 최상위 키는 common·provenance의 필드, 프로토콜 주소는 블록명 하위 객체(예: {\"name\":…, \"bacnet\":{\"objectType\":\"AV\",\"instance\":29}, \"modbus\":{\"address\":1,…}}). 경로 표기는 'bacnet.instance' 식이다.",
+ "statuses": {
+  "extracted": "자동 추출 — 검수 전 제안값. 재추출이 자유롭게 갱신한다",
+  "verified": "사람 확인 — 재추출이 절대 덮어쓰지 않는다 (추출이 달라지면 드리프트 경고만)",
+  "manual": "수기 입력 — 문서 한계로 추출이 못 만드는 값을 사람이 직접 채웠다. 재추출이 건드리지 않는다"
+ },
+ "rules": {
+  "dictionaryFirst": "포인트 레코드의 모든 키는 이 사전(common·provenance·blocks)에 정의된 경로만 허용 — 사전 밖 필드는 검증 오류. 새 열을 만나면 순서는 ① provenance.sourceColumns 에 원문 보존 ② 이 사전에 등재 ③ 그다음에야 필드 승격이다. unit-schema 규칙 ④와 같은 원리: 사전 없이 필드가 자라게 두면 지금의 평면 18종이 재현된다",
+  "emptyMeansAbsent": "'' · '_' 단독 · '-' · 'N/A' 셀은 값이 아니다 — 필드를 만들지 않는다. 열이 존재해도 전 행 공란이면(E-Link/YorkTalk 13건의 'GPIC Object Type') 그 열로는 어떤 필드도 만들지 않는다 — 열 존재 ≠ 값 존재",
+  "reservedSlotNotAPoint": "이름 계열 열이 전부 빈 예약 슬롯 행(E-Link 는 P03~P84 를 사용 여부와 무관하게 할당)은 포인트로 저장하지 않는다 — 세면 포인트 수가 2~4배 부풀려진다(p2Oiy 325행 중 이름 128행). 빈 판정 기준 열은 계통마다 달라(ISN LINC 만 / DESCRIPTION 만 / 둘 다) 공통 규칙이 불가능하다 — 취입 어댑터가 계통별로 정하고 그 근거를 남긴다",
+  "valueShape": {
+   "nameMaxLen": 120,
+   "stateCodePattern": "^-?\\d+$",
+   "bacnetInstanceRange": [
+    0,
+    4194302
+   ],
+   "addressNonNegative": true,
+   "note": "name 이 120자를 넘으면 설명 문단이 이름에 눌러붙은 의심(경고) — Belimo Modbus 추출본에서 실제로 발생했다. states[].code 는 정수 문자열, bacnet.instance 는 BACnet 22비트 인스턴스 한계, 주소는 음수 금지"
+  },
+  "columnGuards": [
+   {
+    "column": "BACnet Object Name",
+    "trap": "E-Link/Typ-Ins형 5건에서는 이 열이 이름이 아니라 York Talk 좌표('YT2 S01 P35')다. GPIC형에서만 실제 이름('REM LEAVING CHW TEMP SP')이다",
+    "route": "GPIC형 → bacnet.objectName / Typ-Ins형 → yorktalk.coord. 이름(name)은 Typ-Ins형에선 반드시 'Point List Description' 열에서",
+    "gate": "bacnet.objectName 값이 '^YT\\d+ S\\d+ P\\d+$' 꼴이면 검증 오류 — 예전 '이름 자리에 벤더 코드'(59.5%→99.8%) 사고와 같은 유형을 값 모양으로 차단한다"
+   },
+   {
+    "column": "York Talk Point Type",
+    "trap": "YorkTalk 13건에서는 포인트 종별('A. Control'·'A. Monitor'·'D. Monitor'·'Code Monitor')이지만, Typ-Ins형(HryI9 2쪽)에서는 같은 머리글 아래 값이 'AV29'(BACnet 타입+인스턴스)다 — 머리글 문자열로 열을 정하면 두 계통이 충돌한다",
+    "route": "값 모양으로 판정: 'A./D./Code' 꼴 → yorktalk.pointType, '^(AV|BV|AI|BI|AO|BO|MSV)\\d+$' 꼴 → bacnet.objectType + bacnet.instance",
+    "gate": "yorktalk.pointType 은 허용값 4종 밖이면 검증 오류"
+   },
+   {
+    "column": "BACnet (YZD-Logix)",
+    "trap": "값 'BO0001'의 접두 문자가 BACnet 의미가 아니다 — (4xxxx→B / 0xxxx→A) × (쓰기→O / 읽기→I) 인코딩이라 °F 아날로그 설정값이 'BO'로 적혀 있다. 범용 타입 파서(schema.py canon_type)에 태우면 온도 설정값이 Binary Output 으로 기록된다",
+    "route": "bacnet.* 승격 전면 금지. 원문은 provenance.sourceColumns 에 보존하고, 해석은 modbus.refClass(레지스터 대역에서)와 readWrite(밴드 행에서)로만 파생한다",
+    "gate": "YZD-Logix 계통 문서에서 bacnet 블록이 생성되면 검증 오류"
+   },
+   {
+    "column": "GPIC Object Type",
+    "trap": "E-Link/YorkTalk 13건 전부에서 열은 있으나 값이 전 행 비어 있다 — 열 존재만 보고 매핑하면 35모델의 타입이 전부 null 이 된다",
+    "route": "값이 있을 때만(GPIC형) elink.gpicType. YorkTalk 계통의 타입은 'York Talk Point Type' → yorktalk.pointType 에서",
+    "gate": "rules.emptyMeansAbsent 적용 — 공란 열로 필드 생성 금지"
+   },
+   {
+    "column": "Enum Set (코드표 참조형)",
+    "trap": "SC-EQ 코드표 머리글에 '*NOTE: for BACnet MSV values add 1 to number' — 코드표 숫자를 BACnet MSV 상태값으로 그대로 옮기면 전 상태가 1씩 어긋난다. E-Link YT Operation Code 표에도 동일 문구가 있다 — 상태 코드 기준이 프로토콜마다 다르다",
+    "route": "states[].code 는 코드표 원문 숫자 그대로, BACnet 쪽 보정은 bacnet.msvOffset 에 분리 기록(노트가 있으면 1). statesRef('See SC.1')는 코드표를 푼 뒤에도 남긴다",
+    "gate": "참조형 코드표를 풀어 states 를 채운 포인트에 bacnet 블록이 있으면 msvOffset 기록 의무 — 없으면 경고"
+   },
+   {
+    "column": "MODBUS Scale",
+    "trap": "어휘가 'X10'/'x10'/'Div 10'/'X 1'/'N/A'/'*'(사용자 설정)로 흩어지고 곱/나눗 방향이 표기만으로 확정되지 않는다 — 원표기만 믿으면 시뮬레이터가 곱할 자리에서 나눈다",
+    "route": "scaleRaw(원표기 그대로) + scale(수치, 정의 고정: 공학값 = 원시값 × scale) + scaleUserConfigurable('*') 3필드로 분리",
+    "gate": "modbus.scale 은 scaleRaw 동반 없이 저장 금지. 어휘→수치 변환표가 문서 노트로 확정되기 전엔 scale 을 비워 두고 scaleRaw 만 채운다"
+   },
+   {
+    "column": "MODBUS Address",
+    "trap": "SC-EQ 는 4자리 0채움('0001'), YMAE-15 는 0부터(0,1,2…) — 0-base/1-base 가 문서마다 다르다. 틀리면 전 레지스터가 1칸 어긋난다",
+    "route": "modbus.address(정수) + modbus.addressBase('0'|'1'|'unknown') 짝으로 저장, 원표기는 sourceColumns",
+    "gate": "modbus.address 기록 시 addressBase 동반 의무 — 판정 못 했으면 'unknown'으로 명시"
+   }
+  ],
+  "artifactCleanupFirst": {
+   "ko": "게이트 전에 조판 아티팩트를 먼저 지운다",
+   "note": "PDF 표 인식이 밑줄 글리프를 별도 조각으로 뱉어 셀값이 '_ _ YT2 S02 P04' · '_ SNVT_lev_percent _' 처럼 온다. 앵커 정규식(^…$) 게이트를 그 앞에 걸면 오염된 값이 **그냥 통과한다** — 최후 방어선이 무력해진다. 순서: 원문 보존(sourceColumns) → 아티팩트 제거 → 게이트 → 필드 배치."
+  }
+ },
+ "common": {
+  "name": {
+   "ko": "포인트 이름",
+   "shape": "string",
+   "note": "사람이 읽는 긴 이름. 출처 열: 'Long Name (BACnet Object Description)'(SC-EQ·YMAE) / 'POINT LIST DESCRIPTION'(E-Link 3계통) / 'Description'(YZD). 괄호로 딸려 오는 상태 의미('(0=outside air, 1=return air)')는 states 로 분리하고 이름에서 뗀다. Typ-Ins형의 'BACnet Object Name' 열을 이름으로 쓰면 안 된다 — rules.columnGuards 참조 ⚠ Native/Panel(YPAL·ECO2) 계통에는 긴 이름 열이 아예 없다. 'PANEL DISPLAYED NAME' 은 shortName 이고, 이를 name 으로 승격하지 않는다 — 승격하면 다른 계통의 name(사람이 읽는 설명문)과 성격이 달라진다. 이 계통은 name 을 비우고 gaps 에 '문서에 긴 이름 열 없음'을 적는다."
+  },
+  "shortName": {
+   "ko": "짧은 이름(패널 니모닉)",
+   "shape": "string",
+   "note": "출처 열: 'ISN LINC Descriptive Text'(YorkTalk — 문서에 따라 전 행 공란) / 'YPAL·ECO2 PANEL DISPLAYED NAME'. 문서가 안 주면 만들지 않는다 — name 에서 축약 생성 금지"
+  },
+  "pointKind": {
+   "ko": "포인트 종별(파생)",
+   "shape": "enum",
+   "values": [
+    "analog",
+    "binary",
+    "code"
+   ],
+   "note": "문서 원문이 아니라 정규화 파생 — yorktalk.pointType('A. Control'·'A. Monitor'→analog, 'D. Control'·'D. Monitor'→binary, 'Code Monitor'→code)·bacnet.objectType 에서 만든다. 근거 없는 판정 금지 — 못 정하면 비워 둔다."
+  },
+  "unitIP": {
+   "ko": "단위(야드파운드)",
+   "shape": "string",
+   "note": "정규화 값. 원표기는 unitIPRaw. 출처 열: 'IP Units'/'ENG UNITS Imperial'(표기 변형 다수)"
+  },
+  "unitIPRaw": {
+   "ko": "단위 원표기(야드파운드)",
+   "shape": "string"
+  },
+  "unitSI": {
+   "ko": "단위(SI)",
+   "shape": "string",
+   "note": "정규화 값. 원표기는 unitSIRaw. E-Link 문서 다수는 SI 열이 아예 없다 — 그때는 만들지 않는다(gap)"
+  },
+  "unitSIRaw": {
+   "ko": "단위 원표기(SI)",
+   "shape": "string"
+  },
+  "rangeIP": {
+   "ko": "값 범위(야드파운드)",
+   "shape": "object {min, max}",
+   "note": "YMAE-15 계통만 준다('IP Min/Max Value') — 시뮬레이터 값 클램핑에 쓸 수 있는 유일한 출처. 다른 계통에서 지어 넣지 않는다"
+  },
+  "rangeSI": {
+   "ko": "값 범위(SI)",
+   "shape": "object {min, max}",
+   "note": "출처 열 'SI Min Value'/'SI Max Values'(원문 오타 그대로의 열 이름)"
+  },
+  "states": {
+   "ko": "상태 열거",
+   "shape": "array [{code, label}]",
+   "note": "code 는 문서 코드표·인라인 열거의 원문 숫자 그대로(문자열). BACnet MSV 보정은 bacnet.msvOffset 에 분리 — 여기서 미리 더해 두면 안 된다. 출처: 'Enum Set' 인라인('0=Off, 1=On')·코드표 해석·이름 괄호"
+  },
+  "statesRef": {
+   "ko": "상태 코드표 참조",
+   "shape": "string",
+   "note": "미해결 참조('See SC.1 on Status Codes') 보존. 코드표를 풀어 states 를 채운 뒤에도 남긴다 — 어느 표에서 왔는지 추적용"
+  },
+  "readWrite": {
+   "ko": "읽기/쓰기",
+   "shape": "enum",
+   "values": [
+    "R",
+    "W",
+    "R/W"
+   ],
+   "note": "출처: 'READ WRITE' 열(Native/Panel — 명시 열을 주는 유일한 계통) / YZD 밴드 행('Setpoint write data' 등) / 보조 문서. 문서가 명시하지 않으면 비워 둔다 — BACnet 타입에서 추측 금지"
+  },
+  "availability": {
+   "ko": "형번 적용(표준/옵션)",
+   "shape": "object {code, raw, column}",
+   "note": "code 는 S(표준)/O(옵션)/N(미제공). 출처: 'Availability' 열(Native/Panel) 또는 1~10 형번 행렬(그때 column 에 행렬 열 번호). 번호↔형번 대응표는 대부분 문서에 없다('Product Code Listing Summary' 별도 문서) — 대응을 모르면 column 만 남기고 형번 배정은 gap. 4BMl 처럼 범례 밖 숫자('1','4')는 raw 로만 보존"
+  },
+  "group": {
+   "ko": "그룹(밴드)",
+   "shape": "string",
+   "note": "열이 아니라 밴드 행에서 물려받는다 — YZD 'System 1 OptiView read data', Typ-Ins 'SECTION 2' 등. 밴드를 상태로 물고 내려가지 않으면 이 정보가 사라진다"
+  },
+  "note": {
+   "ko": "비고",
+   "shape": "string",
+   "note": "출처: 'Notes'(SC-EQ)·'COMMENTS'(Native/Panel). 자유 텍스트만 — 구조 정보(주소·SNVT·범위)를 여기 눌러 담지 않는다(기존 추출본의 나쁜 습관)"
+  }
+ },
+ "provenance": {
+  "sourceFile": {
+   "ko": "출처 파일",
+   "shape": "string"
+  },
+  "sourcePage": {
+   "ko": "출처 쪽",
+   "shape": "int"
+  },
+  "sourceColumns": {
+   "ko": "원문 열 보존",
+   "shape": "object {원문 열 머리글: 원문 셀값}",
+   "note": "매핑이 틀렸다고 밝혀졌을 때 되돌아가는 유일한 길 — 이 저장소는 매핑 오류를 여러 번 겪었다(이름 자리 벤더 코드 59.5%→99.8%). 열 머리글은 쪽마다 흔들려도('ENG BPAGE REF' 오타 포함) 정규화하지 말고 표기 그대로 둔다. YZD 'BACnet' 열, 16진 함수코드('0x06'), 4자리 주소('0001'), 1~10 행렬 원본이 여기 산다"
+  },
+  "srcRef": {
+   "ko": "문서 내 행 참조",
+   "shape": "string",
+   "note": "출처: 'Item Ref Num'(Native)·'ITEM REF NUM'(Panel)·'Count'(YZD — BACnet 열 인스턴스−1과 일치하는 중복 정보라 검증용으로만)"
+  },
+  "status": {
+   "ko": "상태",
+   "shape": "enum",
+   "values": [
+    "extracted",
+    "verified",
+    "manual"
+   ],
+   "note": "포인트 레코드 단위. 의미는 statuses 참조 — unit-schema 와 동일"
+  },
+  "gaps": {
+   "ko": "문서가 안 주는 것",
+   "shape": "array [필드 경로]",
+   "note": "모르면 모른다고 적는 자리 — 예: Native 계통은 'BACnet Object Instance'만 주고 타입 열이 없다 → gaps: ['bacnet.objectType']. 추측으로 채우면 시뮬레이터가 그대로 믿는다"
+  },
+  "family": {
+   "ko": "문서 계통",
+   "shape": "enum",
+   "values": [
+    "SC-EQ",
+    "YMAE-15",
+    "E-Link/BACnet(GPIC)",
+    "E-Link/BACnet(Typ-Ins)",
+    "E-Link/YorkTalk",
+    "Native",
+    "Native/Panel",
+    "YZD-Logix"
+   ],
+   "required": true,
+   "note": "**columnGuards 의 절반이 계통 조건부다** — 'YZD 문서에서 bacnet 블록 생성은 오류'·'GPIC형과 Typ-Ins형의 라우팅이 다르다' 같은 규칙은 레코드가 출신 계통을 모르면 강제할 수 없다. 초안에 이 자리가 없어 가드 3개가 작동 불능이었다(2026-08-12 검증). 계통은 취입할 때 어댑터가 적는다."
+  }
+ },
+ "blocks": {
+  "bacnet": {
+   "ko": "BACnet",
+   "description": "BACnet 오브젝트 주소·이름. SC-EQ·YMAE·E-Link/BACnet·Native·ECO2 계통이 준다. YZD-Logix 의 'BACnet' 열은 이 블록에 넣지 않는다(columnGuards)",
+   "fields": {
+    "objectType": {
+     "ko": "오브젝트 타입",
+     "shape": "enum",
+     "values": [
+      "AI",
+      "AO",
+      "AV",
+      "BI",
+      "BO",
+      "BV",
+      "MSI",
+      "MSO",
+      "MSV",
+      "MI",
+      "MO",
+      "MV",
+      "Dev",
+      "NC",
+      "SV",
+      "LAV",
+      "TL",
+      "Sched",
+      "Cal",
+      "Loop",
+      "EE",
+      "SO",
+      "CO"
+     ],
+     "note": "'BACnet Object & Instance'('AV1') 파싱 분리. Native 계통은 타입 열 자체가 없다 → provenance.gaps 에 기록. YZD 인코딩('BO0001')의 승격은 오류. ⚠ **이 목록을 여기서 새로 정하지 않는다** — schema.py 가 BACNET_TYPES 와 TYPE_ALIAS(MI→MSI·MO→MSO·MV→MSV)를 이미 갖고 있고 기존 24,423점이 그 기준으로 들어와 있다. 사전을 따로 만들면 두 벌이 되어 어긋난다. JCI 문서는 멀티스테이트를 MV 로 적는다(SC-EQ 205회·Typ-Ins 80회) — TYPE_ALIAS 가 이미 MSV 로 통일한다. ⚠ 기존 24,423점의 type 값 중 **MB 8,688 · NV 994 · NCI 378 · '—' 105 (합 10,165점)은 여기 없는 것이 맞다** — MB 는 Modbus 행 표식, NV·NCI 는 LonTalk 네트워크 변수, '—' 는 타입 미상이다. aliases.type 이 값에 따라 modbus/lon/gaps 로 라우팅한다. 이 목록과 대조해 '사전 밖'이라 판단하면 안 된다.",
+     "normalize": {
+      "MI": "MSI",
+      "MO": "MSO",
+      "MV": "MSV"
+     },
+     "authority": "schema.py 의 BACNET_TYPES · TYPE_ALIAS 가 정본"
+    },
+    "instance": {
+     "ko": "인스턴스 번호",
+     "shape": "int",
+     "note": "0~4194302(BACnet 22비트 한계)"
+    },
+    "objectName": {
+     "ko": "오브젝트 이름(Object_Name)",
+     "shape": "string",
+     "note": "출처: 'Short Name (BACnet Object Name)'(SC-EQ·YMAE) / 'BACnet Object Name'(GPIC형만) / 'BACnet Name'(Native·ECO2). YT 좌표 꼴('YT2 S01 P35')이 들어오면 오류 — columnGuards"
+    },
+    "oid": {
+     "ko": "오브젝트 식별자(OID) 원값",
+     "shape": "int",
+     "note": "JCI SE 매핑표처럼 타입 없이 32비트 OID 숫자만 줄 때 보존(예: 29526). 타입·인스턴스 분해는 확실할 때만"
+    },
+    "msvOffset": {
+     "ko": "MSV 상태값 오프셋",
+     "shape": "int",
+     "note": "코드표 숫자→BACnet MSV 상태값 보정. 'for BACnet MSV values add 1 to number' 노트가 있으면 1. MSV 값 = states[].code + msvOffset. 상태 코드 기준이 프로토콜마다 달라서 states 에 합쳐 두면 안 된다"
+    },
+    "objectTypeSource": {
+     "ko": "타입 보강 출처",
+     "shape": "string",
+     "note": "오브젝트 타입을 원문이 아닌 다른 문서에서 보강했을 때 그 문서명(기존 평면 필드 typeSource 의 새 자리)"
+    }
+   }
+  },
+  "modbus": {
+   "ko": "Modbus",
+   "description": "Modbus 레지스터 주소·배율·데이터형. SC-EQ·YMAE·Native·ECO2·E-Link/BACnet·YZD 계통이 준다",
+   "fields": {
+    "address": {
+     "ko": "레지스터 주소",
+     "shape": "int",
+     "note": "정수 정규화 — 원표기('0001', '40001')는 sourceColumns 에. addressBase 동반 의무"
+    },
+    "addressBase": {
+     "ko": "주소 기준",
+     "shape": "enum",
+     "values": [
+      "0",
+      "1",
+      "unknown"
+     ],
+     "note": "0-base(YMAE)/1-base 가 문서마다 다르다 — 판정 못 했으면 'unknown'으로 명시하고 넘어가지 않는다"
+    },
+    "refClass": {
+     "ko": "레지스터 종류",
+     "shape": "enum",
+     "values": [
+      "coil",
+      "discrete-input",
+      "input-register",
+      "holding-register"
+     ],
+     "note": "출처: 'Modbus References'(ECO2 — 이 열은 다른 계통에 없다) / YZD 레지스터 번호 대역(4xxxx→holding, 0xxxx→coil)"
+    },
+    "scale": {
+     "ko": "배율(수치)",
+     "shape": "number",
+     "note": "정의 고정: 공학값 = 원시값 × scale. 어휘('X10'/'Div 10')→수치 변환표가 문서 노트로 확정되기 전엔 비워 두고 scaleRaw 만 채운다 — 방향을 틀리면 시뮬레이터가 100배 틀린다"
+    },
+    "scaleRaw": {
+     "ko": "배율 원표기",
+     "shape": "string",
+     "note": "'X10'/'x10'/'Div 10'/'X 1'/'N/A'/'*' 그대로. scale 저장 시 동반 의무"
+    },
+    "scaleUserConfigurable": {
+     "ko": "배율 사용자 설정 가능",
+     "shape": "bool",
+     "note": "E-Link NOTES 의 '*' 표기 — 배율을 현장에서 바꿀 수 있다는 뜻이라 고정 수치로 취급하면 안 된다"
+    },
+    "dataType": {
+     "ko": "데이터형",
+     "shape": "enum",
+     "values": [
+      "Signed",
+      "Unsigned"
+     ],
+     "note": "출처: 'MODBUS Data Type'(SC-EQ·YMAE)·'Modbus Data Type Supported'(Native) ⚠ 실측 208점: Signed 178 · **UnSigned 27**(대문자 S) · '0' 3. 대소문자를 normalize 로 흡수하고, '0' 처럼 뜻을 모르는 값은 강제로 맞추지 말고 sourceColumns 보존 + gaps 기록.",
+     "normalize": {
+      "UnSigned": "Unsigned",
+      "unsigned": "Unsigned",
+      "signed": "Signed"
+     }
+    },
+    "functionCodes": {
+     "ko": "지원 함수코드",
+     "shape": "array [int]",
+     "note": "10진 정수 목록으로 통일 — YMAE 는 16진('0x06'), ECO2 는 10진 목록이라 원표기는 sourceColumns 에 두고 여기선 수치만"
+    },
+    "booleanFlag": {
+     "ko": "불리언 여부",
+     "shape": "int",
+     "note": "JCI SE 매핑표의 Boolean 열(0/1) — 문서가 준 그대로"
+    },
+    "offset": {
+     "ko": "오프셋",
+     "shape": "number",
+     "note": "JCI SE 매핑표의 Offset 열 — 공학값 변환의 가산항"
+    },
+    "writable": {
+     "ko": "쓰기 가능 플래그",
+     "shape": "int",
+     "note": "JCI SE 매핑표의 Writable 열(0/1). 공통 readWrite 와 별개로 문서가 준 그대로 보존 — 둘이 어긋나면 그게 신호다"
+    }
+   }
+  },
+  "n2": {
+   "ko": "Metasys N2",
+   "description": "Metasys N2 주소. 거의 전 계통이 준다 — YorkTalk 구형 13건에서는 유일한 네트워크 주소원이다",
+   "fields": {
+    "pointType": {
+     "ko": "N2 포인트 타입",
+     "shape": "enum",
+     "values": [
+      "ADF",
+      "ADI",
+      "BD"
+     ],
+     "note": "'ADF n'(아날로그 float)/'ADI n'(아날로그 정수·코드)/'BD n'(바이너리)에서 접두를 분리. 허용값 밖은 원문 보존 후 경고"
+    },
+    "address": {
+     "ko": "N2 주소 번호",
+     "shape": "int",
+     "note": "'ADF 1'의 숫자부. 7Lqu 처럼 Master(ADF 1~)/Subordinate(ADF 44~) 대역이 탭으로 갈리는 문서가 있다 — 병합 판정은 취입 정책"
+    }
+   }
+  },
+  "lon": {
+   "ko": "LonWorks",
+   "description": "LON 네트워크 변수. SC-EQ·E-Link/BACnet·YPAL 계통 + Trane LonTalk 기존 취입분이 준다",
+   "fields": {
+    "nvName": {
+     "ko": "네트워크 변수명",
+     "shape": "string",
+     "note": "출처: 'LON Profile Name'/'LON Object Name'. GPIC형·SC-EQ 는 뜻이 있는 이름('nvoLvgCHWTemp'), Typ-Ins형은 York Talk 페이지를 기계 인코딩한 값('nvoYTS01p035')이라 이름으로 쓰면 안 된다 — 보존만 한다"
+    },
+    "direction": {
+     "ko": "방향/종별",
+     "shape": "enum",
+     "values": [
+      "nvi",
+      "nvo",
+      "nci"
+     ],
+     "note": "nvName 접두에서 파생(입력/출력/설정 프로퍼티). 기존 평면 type 'NV'/'NCI'(Trane LonTalk 취입분)의 새 자리"
+    },
+    "nvIndex": {
+     "ko": "NV 인덱스",
+     "shape": "int",
+     "note": "Trane LonTalk 취입분이 inst 에 담아 온 NV 순번의 새 자리 — JCI 문서에는 없는 필드"
+    },
+    "snvtType": {
+     "ko": "SNVT 형식명",
+     "shape": "string",
+     "note": "'SNVT_temp_p'. E-Link 문서에서 쪽마다 깨진다('SNVT temp p _ _') — 복원은 get_text() 대조로, 밑줄 단순 치환 금지"
+    },
+    "snvtIndex": {
+     "ko": "SNVT 표준 번호",
+     "shape": "int",
+     "note": "'SNVT_temp_p (105)'의 105"
+    }
+   }
+  },
+  "yorktalk": {
+   "ko": "York Talk",
+   "description": "York Talk 프로토콜 좌표계. E-Link/YorkTalk 구형 13건의 본체이고, Typ-Ins형에서는 'BACnet Object Name' 열에 좌표가 숨어 들어온다",
+   "fields": {
+    "pageRef": {
+     "ko": "엔지니어링 페이지 번호",
+     "shape": "string",
+     "note": "'P03'~'P84'. 이 계통의 행 키이자 예약 슬롯 식별자 — 이름 없는 슬롯은 포인트로 저장 금지(rules.reservedSlotNotAPoint). 코드표 첫 행에도 P-참조가 하나씩 있어 'P\\d+ = 포인트' 규칙은 오탐한다"
+    },
+    "asciiPageRef": {
+     "ko": "ASCII 페이지 번호",
+     "shape": "string",
+     "note": "= ENG PAGE REF − 2. 문서가 준 값 그대로 — 계산으로 채우지 않는다"
+    },
+    "pointType": {
+     "ko": "York Talk 포인트 종별",
+     "shape": "enum",
+     "values": [
+      "A. Control",
+      "A. Monitor",
+      "D. Control",
+      "D. Monitor",
+      "Code Monitor"
+     ],
+     "note": "YorkTalk 계통의 실제 타입원(GPIC Object Type 열은 전부 공란). 같은 머리글에 'AV29'가 오면 bacnet 으로 라우팅 — columnGuards ⚠ 'D. Control'(기동·정지·부하 명령)을 빠뜨리면 13건 전부에서 140행이 저장 불가가 된다 — 초안이 실제로 그랬다(2026-08-12 검증)."
+    },
+    "coord": {
+     "ko": "York Talk 좌표",
+     "shape": "string",
+     "note": "'YT2 S01 P35' — Typ-Ins형 'BACnet Object Name' 열의 실체. bacnet.objectName 에 절대 넣지 않는다"
+    },
+    "charPos": {
+     "ko": "전문 내 문자 위치",
+     "shape": "object {start, end}",
+     "note": "아날로그는 구간('8 - 11'→{8,11}), 디지털은 단일 위치('115'→{115,115})"
+    }
+   }
+  },
+  "logix": {
+   "ko": "Allen-Bradley Logix",
+   "description": "ControlLogix PLC 태그 — YZD-Logix 1건만 갖는 5번째 프로토콜 축",
+   "fields": {
+    "tag": {
+     "ko": "Logix 태그명",
+     "shape": "string",
+     "note": "밑줄 아티팩트 복원 필요('SP RemLeavingChilledSP _' → 원문 'SP_RemLeavingChilledSP') — get_text() 대조로 판정"
+    }
+   }
+  },
+  "elink": {
+   "ko": "E-Link 게이트웨이",
+   "description": "E-Link 게이트웨이 내부 오브젝트 모델. 과제 지시의 6블록에 더한 7번째 블록 — GPIC 타입('AV.1'·'SC.1')은 게이트웨이 내부 식별자지 현장 프로토콜이 아니라서 bacnet 에 섞으면 진짜 BACnet 타입과 충돌한다",
+   "fields": {
+    "gpicType": {
+     "ko": "GPIC 오브젝트 타입",
+     "shape": "string",
+     "note": "'AV.1'·'AI.16'·'BV.26'·'SC.1'. GPIC형 11건에만 값이 있다 — YorkTalk 13건은 열만 있고 전 행 공란(columnGuards)"
+    }
+   }
+  }
+ },
+ "aliases": {
+  "_note": "기존 평면 필드(24,423점) → 새 경로. auto=true 는 기계 단순 이동 가능, false 는 값·문서 맥락에 따른 라우팅이 필요하다. 마이그레이터는 이 표만 읽고 변환하고, 변환 전후 포인트 수·값 대조(회귀)를 반드시 돈다",
+  "type": {
+   "new": "bacnet.objectType",
+   "auto": false,
+   "note": "값 라우팅: AI/AO/AV/BI/BO/BV/MSI/MSO/MSV/NC → bacnet.objectType · 'MB' → 필드 없음(Modbus 행 표식이었다 — modbus.address 존재가 대체) · 'NV'/'NCI' → lon.direction(nvi/nvo 는 name 접두로 재판정) · '—'/기타(EE·CO·SO·TL 등 벤더 표기) → sourceColumns 보존 + provenance.gaps 실측 분포(24,423점): BACnet 타입 14종 14,258 · MB 8,688 · NV 994 · NCI 378 · '—' 105. 라우팅 코드는 이 다섯 갈래를 전부 처리해야 한다."
+  },
+  "inst": {
+   "new": "bacnet.instance",
+   "auto": false,
+   "note": "type 과 짝으로 라우팅: BACnet 행 → bacnet.instance · 'MB' 행 → modbus.address(addressBase 는 unknown 으로 명시) · NV/NCI 행 → lon.nvIndex"
+  },
+  "name": {
+   "new": "name",
+   "auto": false,
+   "note": "기본은 그대로. 단 LON 문서(type NV/NCI)는 name 이 NV 이름('nciBldgStaticSP')이므로 lon.nvName 으로 옮기고, 사람이 읽는 이름은 note 의 '·' 뒤 설명에서 회수한다"
+  },
+  "note": {
+   "new": "note",
+   "auto": true,
+   "note": "이동은 그대로. 추출기가 note 에 눌러 담은 구조 정보('BACnet OID 29526 → Modbus reg 1', 'SNVT press p')는 이관 후 별도 패스로 각 블록 필드에 회수하고 남는 자유 텍스트만 남긴다"
+  },
+  "sourceFile": {
+   "new": "sourceFile",
+   "auto": true,
+   "note": "provenance 로 소속만 정리 — 이름·값 불변"
+  },
+  "sourcePage": {
+   "new": "sourcePage",
+   "auto": true,
+   "note": "provenance 로 소속만 정리 — 이름·값 불변"
+  },
+  "unitRaw": {
+   "new": "unitIPRaw | unitSIRaw",
+   "auto": false,
+   "note": "기존 단일 열은 단위계 미상 — 단위 어휘로 판정(°F·PSI·CFM→IP / °C·kPa·l/h→SI / %·PPM 등 중립→양쪽 동일 기재) 후 배치. 판정 불가면 sourceColumns 에만 남기고 gap"
+  },
+  "unit": {
+   "new": "unitIP | unitSI",
+   "auto": false,
+   "note": "unitRaw 와 같은 판정을 따른다"
+  },
+  "bacOid": {
+   "new": "bacnet.oid",
+   "auto": true
+  },
+  "modbusRegister": {
+   "new": "modbus.address",
+   "auto": true,
+   "note": "addressBase 판정 전이므로 'unknown' 동반"
+  },
+  "modbusScaleFactor": {
+   "new": "modbus.scaleRaw",
+   "auto": true,
+   "note": "수치화(modbus.scale)는 어휘 방향 확정 후 별도 패스"
+  },
+  "modbusBooleanFlag": {
+   "new": "modbus.booleanFlag",
+   "auto": true
+  },
+  "modbusSignedFlag": {
+   "new": "modbus.dataType",
+   "auto": false,
+   "note": "modbus.dataType 로 이동. ⚠ 초안은 '값이 이미 Signed/Unsigned' 라고 적었으나 실측 208점은 Signed 178 · **UnSigned 27**(대문자 S) · '0' 3 이다. 대소문자는 dataType.normalize 가 흡수하고, '0' 은 뜻을 모르므로 강제 변환하지 말고 sourceColumns 보존 + gaps 기록."
+  },
+  "modbusOffset": {
+   "new": "modbus.offset",
+   "auto": true
+  },
+  "modbusWritableFlag": {
+   "new": "modbus.writable",
+   "auto": true
+  },
+  "readWrite": {
+   "new": "readWrite",
+   "auto": true
+  },
+  "typeSource": {
+   "new": "bacnet.objectTypeSource",
+   "auto": true,
+   "note": "타입을 보강한 별도 문서명 — provenance 가 아니라 bacnet 블록에 두는 이유는 보강 대상이 bacnet.objectType 하나뿐이라서다"
+  },
+  "states": {
+   "new": "states",
+   "auto": true,
+   "note": "{code,label} 모양 동일. 단 코드표 참조형에서 온 값이면 bacnet.msvOffset 확인(columnGuards)"
+  }
+ },
+ "nonPointColumns": {
+  "firmwareHistory": {
+   "columns": "Item | Ref. | Version | Rev | Date | YORK P N | Checksum/Chksum | Baud | COMMENTS",
+   "route": "포인트가 아니라 개정이력표다 — 모델 메타 firmware[] {version, date, partNo, checksum, baud, comment} 로 분리한다. 이 표가 포인트 표와 한 그리드로 병합돼 계통 오분류를 일으킨 원인이었다"
+  },
+  "notesRows": {
+   "columns": "표 하단 NOTES 1~10 행",
+   "route": "포인트 행이 아니다 — 걸러서 모델 메타로. 단 배율 '*'(사용자 설정)·'(95)=NO UNITS' 같은 해석 규칙이 여기 있으니 버리지 않는다"
+  },
+  "bandRows": {
+   "columns": "'Setpoint write data' / 'Digital write data' / 'System 1 OptiView read data' / 'SECTION 2'",
+   "route": "열이 아니라 구분 행 — 상태로 물고 내려가며 readWrite·group 을 부여한다"
+  },
+  "codeTables": {
+   "columns": "SC.1~SC.12 · YT Operation Code 등 상태 코드표",
+   "route": "포인트가 아니라 states 해석용 부속표 — statesRef 를 풀 때 쓴다. 'add 1 to number' 노트는 bacnet.msvOffset 으로"
+  }
+ },
+ "notes": {
+  "recordShape": "포인트 1건 = 공통 필드(최상위) + 프로토콜 블록(하위 객체) + provenance. 블록은 문서가 준 것만 생성한다 — YorkTalk 구형 포인트에 bacnet 블록이 있으면 그 자체가 오류 신호다",
+  "modelBoundary": "모델 블록 경계는 'Tab:' 바닥글만 신뢰한다(쪽 바닥글 번호는 엑셀 인쇄 잔재로 못 믿는다). 탭 병합은 문서마다 정반대(VJ52 완전 중복 vs 7Lqu 주소 대역 연결)라 자동 판정 불가 — 취입 시 문서별 사람 판정을 기록한다",
+  "gatewayCompat": "게이트웨이 호환성은 문서 단위가 아니라 블록 단위다(S3FYA 블록1 'MG Only') — 모델 메타에서 다루고 포인트 사전 소관이 아니다",
+  "scope": "이 사전은 필드 정의와 게이트 규칙만 담는다. 어느 열이 어느 필드로 가는지의 계통별 어댑터 매핑은 취입 코드 소관이되, columnGuards 에 걸리는 함정 열은 여기 정의가 우선한다"
+ }
+}
