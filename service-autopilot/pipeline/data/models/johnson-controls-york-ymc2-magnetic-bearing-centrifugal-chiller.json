@@ -1,0 +1,8226 @@
+{
+ "id": "johnson-controls-york-ymc2-magnetic-bearing-centrifugal-chiller",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YMC2 Magnetic Bearing Centrifugal Chiller",
+ "name": "YMC2 Magnetic Bearing Centrifugal Chiller",
+ "cat": "HVAC.PLANT.CHILLER.CENTRIFUGAL",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 2건 · 판 2개에서 취입 — 오브젝트 185점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "E-Link/BACnet(GPIC) · SC-EQ",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "LON",
+   "E-Link/BACnet(GPIC) · SC-EQ",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "Modbus",
+   "E-Link/BACnet(GPIC) · SC-EQ",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "N2",
+   "E-Link/BACnet(GPIC) · SC-EQ",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "E-Link",
+   "E-Link/BACnet(GPIC)",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "York Talk",
+   "E-Link/BACnet(GPIC)",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+ "interfaces": [
+  {
+   "id": "ymc2-bas-sc-eq-rev2-11",
+   "label": "YMC2 Points List SC-EQ (Rev 2.11) OptiView Based Equipment",
+   "family": "SC-EQ",
+   "protocols": [
+    "bacnet",
+    "lon",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+   "pointCount": 112,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Remote Leaving Chilled Liquid Setpoint",
+      "shortName": "REM LEAVING CHL TEMP SP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviCoolSetPt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Input Current Limit Setpoint",
+      "shortName": "REMOTE INPUT CURRENT SP",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviCapacityLimit",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Heating Setpoint",
+      "shortName": "REM HEATING SP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "modbus": {
+       "address": 3,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviHeatSetPt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Run/Stop [0=Stop, 1=Run]",
+      "shortName": "REM RUN STOP CMD",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviChillerEnable",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Units",
+      "shortName": "Units",
+      "states": [
+       {
+        "code": "0",
+        "label": "IP (English)"
+       },
+       {
+        "code": "1",
+        "label": "SI (Metric)"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 65001
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 201
+      },
+      "modbus": {
+       "address": 65001,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV65001"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature",
+      "shortName": "LEAVING CH LIQ TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLvgCHWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Chilled Liquid Temperature",
+      "shortName": "ENTERING CH LIQ TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 6,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEntCHWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Liquid Temperature",
+      "shortName": "LEAVING COND WATER TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLvgCNDTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Condenser Liquid Temperature",
+      "shortName": "ENTERING COND WATER TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 8,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEntCNDTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure",
+      "shortName": "EVAPORATOR PRESSURE",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure",
+      "shortName": "CONDENSER PRESSURE",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 10,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCondPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature",
+      "shortName": "DISCHARGE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoDischTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Refrigerant Temperature",
+      "shortName": "EVAP REFRIGERANT TEMP",
+      "note": "Enable point when Evaporator Refrigerant Temperature Sensor is Enabled",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapRefTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase A Output Current (RMS)",
+      "shortName": "VSD PHASE A OUTPUT CURRENT",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDCurrent_A",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_amp"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase B Output Current (RMS)",
+      "shortName": "VSD PHASE B OUTPUT CURRENT",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDCurrent_B",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_amp"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase C Output Current (RMS)",
+      "shortName": "VSD PHASE C OUTPUT CURRENT",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDCurrent_C",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_amp"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L1 Input Current (RMS)",
+      "shortName": "VSD RMS INPUT CURRENT L1",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoInputCur_L1",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_amp"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L2 Input Current (RMS)",
+      "shortName": "VSD RMS INPUT CURRENT L2",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoInputCur_L2",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_amp"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L3 Input Current (RMS)",
+      "shortName": "VSD RMS INPUT CURRENT L3",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 19,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoInputCur_L3",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_amp"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Setpoint - Selected",
+      "shortName": "LEAVING CH LIQ TEMP ACT SP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 20,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoActiveSetpt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Input Current Limit",
+      "shortName": "INPUT CURRENT LMT ACTIVE",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 21,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoActInptCurLmt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Saturation Temperature",
+      "shortName": "EVAP SATURATION TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 22,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapSatTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Saturation Temperature",
+      "shortName": "COND SATURATION TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 23,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCondSatTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Input % Full Load Amps",
+      "shortName": "INPUT CURRENT PCT FLA",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 24
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 24,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoPctInputCurr",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Refrigerant Level",
+      "shortName": "COND REFRIGERANT LEVEL",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 25
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 25,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoRefLvlPos",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Operating Hours",
+      "shortName": "OPERATING HOURS",
+      "unitIP": "Hr",
+      "unitSI": "Hr"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 26,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoRunHours",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_time_hours"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Number Of Starts",
+      "shortName": "NUMBER OF STARTS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 27,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoSystemStarts",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Gas Bypass Command",
+      "shortName": "HOT GAS BYPASS VLV CMD",
+      "note": "Enable point when Hot Gas Bypass is Enabled",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 28
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 28,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoHtGasBypasCmd",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor % Full Load Amps",
+      "shortName": "MOTOR CURRENT PCT FLA",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 29
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "modbus": {
+       "address": 29,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoPctMotorCurr",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Run [0=Off, 1=On]",
+      "shortName": "COMPR MOTOR STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoOnOff",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Pump [0=Off, 1=On]",
+      "shortName": "CH LIQ PUMP STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 66,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCHPump",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Cooling System [0=Off, 1=On]",
+      "shortName": "VSD COOLING SYS STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCoolSysStat",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Run Permissive [0=Off, 1=On]",
+      "shortName": "RUN PERMISSIVE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "modbus": {
+       "address": 68,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoRunPermissive",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Flow Switch [0=Open, 1=Closed]",
+      "shortName": "CH LIQ FLOW SWITCH STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "modbus": {
+       "address": 69,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCHFlowSwitch",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Flow Switch [0=Open, 1=Closed]",
+      "shortName": "CND FLOW SWITCH STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "modbus": {
+       "address": 70,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCNDFlowSwitch",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Level Control Valve Mode [0=Auto,1=Manual]",
+      "shortName": "COND REF LEVEL CNTRL MODE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Auto"
+       },
+       {
+        "code": "1",
+        "label": "Manual"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "modbus": {
+       "address": 71,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoRefLvlCtlMode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Pump [0=Off, 1=On]",
+      "shortName": "CND LIQ PUMP STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "modbus": {
+       "address": 72,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCNDLPump",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Operation Code",
+      "shortName": "UNIT OPERATION CODE",
+      "statesRef": "See SC.1 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Operation Code AV",
+      "shortName": "UNIT OPERATION CODE AV",
+      "statesRef": "See SC.1 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 401
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 30,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoOperCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Safety Fault Code",
+      "shortName": "UNIT SAFETY FAULT CODE",
+      "statesRef": "See SC.2 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Safety Fault Code AV",
+      "shortName": "UNIT SAFETY FAULT CODE AV",
+      "statesRef": "See SC.2 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 402
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoSafetyCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Cycling Fault Code",
+      "shortName": "UNIT CYCLING FAULT CODE",
+      "statesRef": "See SC.3 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Cycling Fault Code AV",
+      "shortName": "UNIT CYCLING FAULT CODE AV",
+      "statesRef": "See SC.3 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 403
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 32,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCyclingFault",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Warning Code",
+      "shortName": "UNIT WARNING CODE",
+      "statesRef": "See SC.4 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Warning Code AV",
+      "shortName": "UNIT WARNING CODE AV",
+      "statesRef": "See SC.4 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 404
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 33,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoWarnFault",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Control Source",
+      "shortName": "UNIT CONTROL SOURCE",
+      "statesRef": "0=Local 1=ISN (BAS) 2=Analog 3=Digital 4=Modem 5=Remote"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 5
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV5",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Control Source AV",
+      "shortName": "UNIT CONTROL SOURCE AV",
+      "statesRef": "0=Local 1=ISN (BAS) 2=Analog 3=Digital 4=Modem 5=Remote"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 405
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "modbus": {
+       "address": 34,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoUnitCtrlSrce",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Modified Run Code",
+      "shortName": "UNIT MODIFIED RUN CODE",
+      "statesRef": "See SC.12 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 6
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV6",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Modified Run Code AV",
+      "shortName": "UNIT MODIFIED RUN CODE AV",
+      "statesRef": "See SC.12 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 406
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "modbus": {
+       "address": 35,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoModRunFault",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Start Inhibit Code",
+      "shortName": "UNIT START INHIBIT CODE",
+      "statesRef": "See SC.13 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 7
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV7",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Start Inhibit Code AV",
+      "shortName": "UNIT START INHIBIT CODE AV",
+      "statesRef": "See SC.13 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 407
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "modbus": {
+       "address": 36,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoInhibitFault",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Internal Fault Code",
+      "shortName": "UNIT INTERNAL FAULT CODE",
+      "statesRef": "See SC.14 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 8
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV8",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Internal Fault Code AV",
+      "shortName": "UNIT INTERNAL FAULT CODE AV",
+      "statesRef": "See SC.14 on Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 408
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 8
+      },
+      "modbus": {
+       "address": 37,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoInternalFault",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VGD Control State",
+      "shortName": "VGD CONTROL STATE",
+      "note": "(Mod A Chillers only)",
+      "statesRef": "1 = Probing or Capacity Control 2 = Stall Reacting 3 = Stall Waiting 4 = Surge Reacting 5 = Surge Waiting 6 = Sensor Override 7 = [Unused] 8 = PRV Position Override"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 30
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "modbus": {
+       "address": 40,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoVGDCntrlState",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VGD Stall Count",
+      "shortName": "VGD STALL COUNT",
+      "note": "(Mod A Chillers only)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 31
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "modbus": {
+       "address": 41,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoVGDStallCnt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Anti-Surge Minimum Frequency",
+      "shortName": "ACTIVE ANTI SURGE MIN FREQ",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 32
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "modbus": {
+       "address": 42,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoAntiSurMinFq",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_freq_hz"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Output Voltage",
+      "shortName": "VSD OUTPUT VOLTAGE",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 34
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "modbus": {
+       "address": 44,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDOutputVolt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_volt"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Input Power",
+      "shortName": "VSD INPUT POWER",
+      "unitIP": "kW",
+      "unitSI": "kW"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 35
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "modbus": {
+       "address": 45,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDInputPower",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_power_kilo"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Input Kilowatt Hours",
+      "shortName": "VSD INPUT KWH",
+      "unitIP": "kWh",
+      "unitSI": "kWh"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 36
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "modbus": {
+       "address": 46,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoVSDKWH",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_elec_kwh"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD DC Bus Voltage",
+      "shortName": "VSD DC BUS VOLTAGE",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 37
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "modbus": {
+       "address": 47,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDDCBusVolt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_volt"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L1 Input Voltage (RMS)",
+      "shortName": "VSD INPUT VOLTAGE L1",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 38
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "modbus": {
+       "address": 48,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoInputVoltL1",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_volt"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Surge Count",
+      "shortName": "SURGE COUNT"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 39
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "modbus": {
+       "address": 49,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoSurgeCount",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Output Frequency",
+      "shortName": "VSD OUTPUT FREQUENCY",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 40
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "modbus": {
+       "address": 50,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDOutFreq",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_freq_hz"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L2 Input Voltage (RMS)",
+      "shortName": "VSD INPUT VOLTAGE L2",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 41
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "modbus": {
+       "address": 51,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoInputVoltL2",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_volt"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L3 Input Voltage (RMS)",
+      "shortName": "VSD INPUT VOLTAGE L3",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 42
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "modbus": {
+       "address": 52,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoInputVoltL3",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_volt"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Level Control Valve Command",
+      "shortName": "COND LVL CTRL VLV CMD",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 43
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 43
+      },
+      "modbus": {
+       "address": 53,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCondLvlCtlVlv",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "MBC Levitation Mode [0=Off, 1=On]",
+      "shortName": "MBC LEVITATION MODE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 26
+      },
+      "modbus": {
+       "address": 86,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLevitateMode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "MBC Rotation Mode [0=Off, 1=On]",
+      "shortName": "MBC ROTATION MODE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 27
+      },
+      "modbus": {
+       "address": 87,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoRotateMode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Housing Temp",
+      "shortName": "MOTOR HOUSING TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 48
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 48
+      },
+      "modbus": {
+       "address": 105,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoMtrHsgTmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Cooling Valve Command",
+      "shortName": "MOTOR COOLING VALVE CMD",
+      "note": "(Mod A FAB comp & Mod B chillers)",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 107
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 50
+      },
+      "modbus": {
+       "address": 107,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoMtrCoolVlvCmd",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Internal Ambient Temperature 2",
+      "shortName": "VSD INTERNAL AMBIENT TEMP 2",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 108
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 51
+      },
+      "modbus": {
+       "address": 108,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDInterTmp2",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Average Motor Winding Temperature",
+      "shortName": "MTR WINDING AVG TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 109
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 52
+      },
+      "modbus": {
+       "address": 109,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoAvgMWindTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Internal Ambient Temperature 1",
+      "shortName": "VSD INTERNAL AMBIENT TEMP 1",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 110
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 53
+      },
+      "modbus": {
+       "address": 110,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDInterTmp1",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VGD Position",
+      "shortName": "VGD POSITION",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 111
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 54
+      },
+      "modbus": {
+       "address": 111,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVGDPosition",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Pre Rotation Vanes (PRV) Position",
+      "shortName": "PRE ROTATION VANES POS",
+      "note": "(Mod A chiller FAA comp only)",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 112
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 55
+      },
+      "modbus": {
+       "address": 112,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoPRVPosition",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Active Level Setpoint",
+      "shortName": "COND REFRIGERANT LEVEL SP",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 113
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 56
+      },
+      "modbus": {
+       "address": 113,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoRefLvlSP",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Drop Leg Refrigerant Temperature",
+      "shortName": "DROP LEG REFRIG TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 114
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 57
+      },
+      "modbus": {
+       "address": 114,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoDropLegTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L1 Voltage Total Harmonic Distortion",
+      "shortName": "VSD L1 VOLTAGE THD",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 115
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 58
+      },
+      "modbus": {
+       "address": 115,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDL1VoltTHD",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L2 Voltage Total Harmonic Distortion",
+      "shortName": "VSD L2 VOLTAGE THD",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 116
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 59
+      },
+      "modbus": {
+       "address": 116,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDL2VoltTHD",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L3 Voltage Total Harmonic Distortion",
+      "shortName": "VSD L3 VOLTAGE THD",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 117
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 60
+      },
+      "modbus": {
+       "address": 117,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDL3VoltTHD",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L1 Input Current Total Demand Distortion",
+      "shortName": "VSD L1 INPUT CURRENT TDD",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 118
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 61
+      },
+      "modbus": {
+       "address": 118,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDL1CurrTDD",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L2 Input Current Total Demand Distortion",
+      "shortName": "VSD L2 INPUT CURRENT TDD",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 119
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 62
+      },
+      "modbus": {
+       "address": 119,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDL2CurrTDD",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L3 Input Current Total Demand Distortion",
+      "shortName": "VSD L3 INPUT CURRENT TDD",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 120
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 63
+      },
+      "modbus": {
+       "address": 120,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDL3CurrTDD",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Input Kilowatt Hours Low",
+      "shortName": "INPUT KWH LO",
+      "note": "Input Kilowatt Hours = (Input Kilowatt Hours Offset x 10,000) + Input Kilowatt Hours Low kWh Lo = kWh % 10000 (integer modulus)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 121
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 64
+      },
+      "modbus": {
+       "address": 121,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoKWHLo",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_elec_kwh"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Input Kilowatt Hours Offset",
+      "shortName": "INPUT KWH OFFSET",
+      "note": "Input Kilowatt Hours = (Input Kilowatt Hours Offset x 10,000) + Input Kilowatt Hours Low kWh Offset = kWh / 10000 (integer divide)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 122
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 65
+      },
+      "modbus": {
+       "address": 122,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoKWHOffset",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_elec_kwh"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Operating Hours Low",
+      "shortName": "OPERATING HOURS LO",
+      "note": "Operating Hours = (Operating Hours Offset x 10,000) + Operating Hours Low Hours Lo = Hours % 10000 (integer modulus)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 123
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 66
+      },
+      "modbus": {
+       "address": 123,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoOpHrLo",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_time_hour"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Operating Hours Offset",
+      "shortName": "OPERATING HOURS OFFSET",
+      "note": "Operating Hours = (Operating Hours Offset x 10,000) + Operating Hours Low Hours Offset = Hours / 10000 (integer divide)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 124
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 67
+      },
+      "modbus": {
+       "address": 124,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoOpHrOffset",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_time_hour"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "MBC Motor Speed",
+      "shortName": "MBC MOTOR SPEED",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 125
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 68
+      },
+      "modbus": {
+       "address": 125,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoMotorSpeedHz",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_freq_hz"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "MBC Landing Counter",
+      "shortName": "MBC LANDING COUNTER",
+      "note": "(Mod A chillers only)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 126
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 69
+      },
+      "modbus": {
+       "address": 126,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoLandingCountr",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Minimum PRV Position",
+      "shortName": "ACTIVE MIN PRV POS",
+      "note": "(Mod A chiller FAA comp only)",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 127
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 70
+      },
+      "modbus": {
+       "address": 127,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoAntiSurMinPos",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "UPS Battery Voltage",
+      "shortName": "UPS BATTERY VOLTAGE",
+      "note": "Mod B Chillers only",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 137
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 80
+      },
+      "modbus": {
+       "address": 147,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoUPSBattVolt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_volt"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase A Rectifier Baseplate Temperature",
+      "shortName": "VSD PH A REC BASEPLATE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 138
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 81
+      },
+      "modbus": {
+       "address": 148,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDRecBaseAT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase B Rectifier Baseplate Temperature",
+      "shortName": "VSD PH B REC BASEPLATE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 139
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 82
+      },
+      "modbus": {
+       "address": 149,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDRecBaseBT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase C Rectifier Baseplate Temperature",
+      "shortName": "VSD PH C REC BASEPLATE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 140
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 83
+      },
+      "modbus": {
+       "address": 150,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDRecBaseCT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase A Inverter Baseplate Temperature",
+      "shortName": "VSD PH A INV BASEPLATE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 141
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 84
+      },
+      "modbus": {
+       "address": 151,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDInvBaseAT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase B Inverter Baseplate Temperature",
+      "shortName": "VSD PH B INV BASEPLATE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 142
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 85
+      },
+      "modbus": {
+       "address": 152,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDInvBaseBT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase C Inverter Baseplate Temperature",
+      "shortName": "VSD PH C INV BASEPLATE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 143
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 86
+      },
+      "modbus": {
+       "address": 153,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDInvBaseCT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Small Temp Difference",
+      "shortName": "EVAP SMALL TEMP DIFF",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 144
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 87
+      },
+      "modbus": {
+       "address": 190,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapSmTmpDiff",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Small Temp Difference",
+      "shortName": "COND SMALL TEMP DIFF",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 145
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 88
+      },
+      "modbus": {
+       "address": 191,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCondSmTmpDiff",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Superheat",
+      "shortName": "DISCHARGE SUPERHEAT",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 146
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 89
+      },
+      "modbus": {
+       "address": 192,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoDschSuperheat",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Subcooler Effectiveness",
+      "shortName": "SUBCOOLLER EFFECTIVENESS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 147
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 90
+      },
+      "modbus": {
+       "address": 193,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoSubcoolerEff",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count_f"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Subcooling Temperature",
+      "shortName": "SUBCOOLING TEMP",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 148
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 91
+      },
+      "modbus": {
+       "address": 194,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoSubcoolingTmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Delta P / P",
+      "shortName": "DELTA P DIV P"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 149
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 92
+      },
+      "modbus": {
+       "address": 195,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoDeltaPdivP",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count_f"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Head Pressure",
+      "shortName": "HEAD PRESSURE",
+      "unitIP": "PSID",
+      "unitSI": "kPaD"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 150
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 93
+      },
+      "modbus": {
+       "address": 196,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoHeadPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Run/Stop Control Source [0=Local, 1=BAS, 2=Hardwire]",
+      "shortName": "RUN STOP CTRL SOURCE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "BAS"
+       },
+       {
+        "code": "2",
+        "label": "Hardwire"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 10
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV10",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Run/Stop Control Source AV [0=Local, 1=BAS, 2=Hardwire]",
+      "shortName": "RUN STOP CTRL SOURCE AV",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "BAS"
+       },
+       {
+        "code": "2",
+        "label": "Hardwire"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 421
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 21
+      },
+      "modbus": {
+       "address": 197,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoRunStopSrce",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling Setp Control Source [0=Local, 1=BAS, 2=0-10 Volts, 3=4",
+      "shortName": "COOL SETP CTRL SOURCE",
+      "statesRef": "0=Local 1=BAS 2=0-10 Volts 3=4-20 mA 4=PWM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 11
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV11",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling Setp Control Source AV [0=Local, 1=BAS, 2=0-10 Volts,",
+      "shortName": "3COOL SETP CTRL SOURCE AV",
+      "statesRef": "0=Local 1=BAS 2=0-10 Volts 3=4-20 mA 4=PWM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 422
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 22
+      },
+      "modbus": {
+       "address": 198,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCoolSetpSrce",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating Setp Control Source [0=Local, 1=BAS, 2=0-10 Volts, 3=4",
+      "shortName": "HEAT SETP CTRL SOURCE",
+      "statesRef": "0=Local 1=BAS 2=0-10 Volts 3=4-20 mA 4=PWM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 12
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV12",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating Setp Control Source AV [0=Local, 1=BAS, 2=0-10 Volts,",
+      "shortName": "HEAT SETP CTRL SOURCE AV",
+      "statesRef": "0=Local 1=BAS 2=0-10 Volts 3=4-20 mA 4=PWM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 423
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 23
+      },
+      "modbus": {
+       "address": 199,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoHeatSetpSrce",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Current Limit Control Source [0=Local, 1=BAS, 2=0-10 Volts, 3=4",
+      "shortName": "CURR LIM CTRL SOURCE",
+      "statesRef": "0=Local 1=BAS 2=0-10 Volts 3=4-20 mA 4=PWM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 13
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV13",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    },
+    {
+     "common": {
+      "name": "Current Limit Control Source AV [0=Local, 1=BAS, 2=0-10 Volts,",
+      "shortName": "CURR LIM CTRL SOURCE AV",
+      "statesRef": "0=Local 1=BAS 2=0-10 Volts 3=4-20 mA 4=PWM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 424
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 24
+      },
+      "modbus": {
+       "address": 200,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCurrLimSrce",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf",
+      "sourcePage": 4,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "ymc2-bas-sc-eq-rev2-11"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev 2.11"
+   },
+   "sourcePages": [
+    1,
+    4
+   ],
+   "excluded": {
+    "reserved": 76
+   }
+  },
+  {
+   "id": "ymc2-optiviewbas-revk-05b",
+   "label": "YMC2 OptiView E-Link (Rev K_05b) OptiView Based Equipment",
+   "family": "E-Link/BACnet(GPIC)",
+   "protocols": [
+    "bacnet",
+    "elink",
+    "lon",
+    "modbus",
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+   "pointCount": 73,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Remote Leaving Chilled Liquid Setpoint",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1,
+       "objectName": "REM LEAVING CH LIQ TEMP SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "lon": {
+       "nvName": "nviCoolSetPt",
+       "direction": "nvi",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AV.1"
+      },
+      "yorktalk": {
+       "pageRef": "P03"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0001"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Input Current Limit Setpoint",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2,
+       "objectName": "REM INPUT CURRENT LIM SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "lon": {
+       "nvName": "nviCapacityLimit",
+       "direction": "nvi",
+       "snvtType": "SNVT_lev_percent"
+      },
+      "elink": {
+       "gpicType": "AV.2"
+      },
+      "yorktalk": {
+       "pageRef": "P04"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0002"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Run/Stop",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ],
+      "unitIPRaw": "0 / 1",
+      "unitSIRaw": "0 / 1",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1,
+       "objectName": "REM RUN STOP CMD"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nviChillerEnable",
+       "direction": "nvi",
+       "snvtType": "SNVT_switch"
+      },
+      "elink": {
+       "gpicType": "BV.1"
+      },
+      "yorktalk": {
+       "pageRef": "P07"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0061"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5,
+       "objectName": "LEAVING CH LIQ TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoLvgCHWTemp",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AI.1"
+      },
+      "yorktalk": {
+       "pageRef": "P11"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0005"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Chilled Liquid Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6,
+       "objectName": "ENTERING CH LIQ TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 6,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoEntCHWTemp",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AI.2"
+      },
+      "yorktalk": {
+       "pageRef": "P12"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0006"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Liquid Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7,
+       "objectName": "LEAVING COND WATER TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoLvgCNDTemp",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AI.3"
+      },
+      "yorktalk": {
+       "pageRef": "P13"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0007"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Condenser Liquid Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8,
+       "objectName": "ENTERING COND WATER TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 8,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoEntCNDTemp",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AI.4"
+      },
+      "yorktalk": {
+       "pageRef": "P14"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0008"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure",
+      "unitIPRaw": "PSIG",
+      "unitSIRaw": "kPaG",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 9,
+       "objectName": "EVAPORATOR PRESSURE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoEvapPress",
+       "direction": "nvo",
+       "snvtType": "SNVT_press"
+      },
+      "elink": {
+       "gpicType": "AI.5"
+      },
+      "yorktalk": {
+       "pageRef": "P15"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0009"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure",
+      "unitIPRaw": "PSIG",
+      "unitSIRaw": "kPaG",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 10,
+       "objectName": "CONDENSER PRESSURE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 10,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoCondPress",
+       "direction": "nvo",
+       "snvtType": "SNVT_press"
+      },
+      "elink": {
+       "gpicType": "AI.6"
+      },
+      "yorktalk": {
+       "pageRef": "P16"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0010"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11,
+       "objectName": "DISCHARGE TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoDischTemp",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AI.7"
+      },
+      "yorktalk": {
+       "pageRef": "P17"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0011"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Refrigerant Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12,
+       "objectName": "EVAP REFRIGERANT TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoEvapRefTemp",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AI.8"
+      },
+      "yorktalk": {
+       "pageRef": "P18"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0012"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase A Output Current (RMS)",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13,
+       "objectName": "VSD PHASE A OUTPUT CURRENT"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoVSDCurrent_A",
+       "direction": "nvo",
+       "snvtType": "SNVT_amp"
+      },
+      "elink": {
+       "gpicType": "AI.53"
+      },
+      "yorktalk": {
+       "pageRef": "P19"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0013"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase B Output Current (RMS)",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14,
+       "objectName": "VSD PHASE B OUTPUT CURRENT"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoVSDCurrent_B",
+       "direction": "nvo",
+       "snvtType": "SNVT_amp"
+      },
+      "elink": {
+       "gpicType": "AI.54"
+      },
+      "yorktalk": {
+       "pageRef": "P20"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0014"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase C Output Current (RMS)",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15,
+       "objectName": "VSD PHASE C OUTPUT CURRENT"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoVSDCurrent_C",
+       "direction": "nvo",
+       "snvtType": "SNVT_amp"
+      },
+      "elink": {
+       "gpicType": "AI.55"
+      },
+      "yorktalk": {
+       "pageRef": "P21"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0015"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L1 Input Current (RMS)",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 17,
+       "objectName": "VSD RMS INPUT CURRENT L1"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "X10 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoInputCur_L1",
+       "direction": "nvo",
+       "snvtType": "SNVT_amp"
+      },
+      "elink": {
+       "gpicType": "AI.79"
+      },
+      "yorktalk": {
+       "pageRef": "P23"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0017"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L2 Input Current (RMS)",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 18,
+       "objectName": "VSD RMS INPUT CURRENT L2"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoInputCur_L2",
+       "direction": "nvo",
+       "snvtType": "SNVT_amp"
+      },
+      "elink": {
+       "gpicType": "AI.80"
+      },
+      "yorktalk": {
+       "pageRef": "P24"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0018"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L3 Input Current (RMS)",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 19,
+       "objectName": "VSD RMS INPUT CURRENT L3"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 19,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoInputCur_L3",
+       "direction": "nvo",
+       "snvtType": "SNVT_amp"
+      },
+      "elink": {
+       "gpicType": "AI.81"
+      },
+      "yorktalk": {
+       "pageRef": "P25"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0019"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Setpoint - Selected",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 20,
+       "objectName": "LEAVING CH LIQ TEMP ACT SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 20,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoActiveSetpt",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AV.1"
+      },
+      "yorktalk": {
+       "pageRef": "P26"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0020"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Input Current Limit",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21,
+       "objectName": "INPUT CURRENT LMT ACTIVE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 21,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoInptCurLmtAct",
+       "direction": "nvo",
+       "snvtType": "SNVT_lev_percent"
+      },
+      "elink": {
+       "gpicType": "AV.20"
+      },
+      "yorktalk": {
+       "pageRef": "P27"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0021"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Saturation Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22,
+       "objectName": "EVAP SATURATION TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 22,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoEvapSatTemp",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AV.6"
+      },
+      "yorktalk": {
+       "pageRef": "P28"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0022"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Saturation Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23,
+       "objectName": "COND SATURATION TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 23,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoCondSatTemp",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AV.7"
+      },
+      "yorktalk": {
+       "pageRef": "P29"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0023"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Input % Full Load Amps (use for control see note 7 below)",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 24,
+       "objectName": "INPUT CURRENT PCT FLA"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 24,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoActInputCur",
+       "direction": "nvo",
+       "snvtType": "SNVT_lev_percent"
+      },
+      "elink": {
+       "gpicType": "AI.97"
+      },
+      "yorktalk": {
+       "pageRef": "P30"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0024"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Refrigerant Level",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 25,
+       "objectName": "COND REFRIGERANT LEVEL"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 25,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoRefLvlPos",
+       "direction": "nvo",
+       "snvtType": "SNVT_lev_percent"
+      },
+      "elink": {
+       "gpicType": "AI.35"
+      },
+      "yorktalk": {
+       "pageRef": "P31"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0025"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Operating Hours",
+      "unitIPRaw": "Hr",
+      "unitIP": "h",
+      "unitSIRaw": "Hr",
+      "unitSI": "h",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26,
+       "objectName": "OPERATING HOURS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 26,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoRunHours",
+       "direction": "nvo",
+       "snvtType": "SNVT_time_hours"
+      },
+      "elink": {
+       "gpicType": "AV.15"
+      },
+      "yorktalk": {
+       "pageRef": "P32"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0026"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Number Of Starts",
+      "unitIPRaw": "count*",
+      "unitSIRaw": "count*",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 27,
+       "objectName": "NUMBER OF STARTS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 27,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoSystemStarts",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "AV.16"
+      },
+      "yorktalk": {
+       "pageRef": "P33"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0027"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Gas Bypass Command (Hot Gas Bypass Option only)",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=O,3=O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 28,
+       "objectName": "HOT GAS BYPASS VLV CMD"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 28,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoHtGasBypasCmd",
+       "direction": "nvo",
+       "snvtType": "SNVT_lev_percent"
+      },
+      "elink": {
+       "gpicType": "AO.1"
+      },
+      "yorktalk": {
+       "pageRef": "P34"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0028"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor % Full Load Amps (Do NOT use for control see note 7 below)",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 29,
+       "objectName": "MOTOR CURRENT PCT FLA"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "modbus": {
+       "address": 29,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoActMtrCapacit",
+       "direction": "nvo",
+       "snvtType": "SNVT_lev_percent"
+      },
+      "elink": {
+       "gpicType": "AI.11"
+      },
+      "yorktalk": {
+       "pageRef": "P35"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0029"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Run",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "unitIPRaw": "0 / 1",
+      "unitSIRaw": "0 / 1",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5,
+       "objectName": "COMPR MOTOR STATUS"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoOnOff",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch"
+      },
+      "elink": {
+       "gpicType": "BO.1"
+      },
+      "yorktalk": {
+       "pageRef": "P36"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0065"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Pump",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "unitIPRaw": "0 / 1",
+      "unitSIRaw": "0 / 1",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6,
+       "objectName": "CH LIQ PUMP STAT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 66,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoCHPump",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch"
+      },
+      "elink": {
+       "gpicType": "BO.2"
+      },
+      "yorktalk": {
+       "pageRef": "P37"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0066"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Cooling System",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "unitIPRaw": "0 / 1",
+      "unitSIRaw": "0 / 1",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7,
+       "objectName": "VSD COOLING SYS STAT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoCoolSysStat",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch"
+      },
+      "elink": {
+       "gpicType": "BI.38"
+      },
+      "yorktalk": {
+       "pageRef": "P38"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0067"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Run Permissive",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "unitIPRaw": "0 / 1",
+      "unitSIRaw": "0 / 1",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 8,
+       "objectName": "RUN PERMISSIVE"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "modbus": {
+       "address": 68,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoRunPermissive",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch"
+      },
+      "elink": {
+       "gpicType": "BI.4"
+      },
+      "yorktalk": {
+       "pageRef": "P39"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0068"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Flow Switch",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ],
+      "unitIPRaw": "0 / 1",
+      "unitSIRaw": "0 / 1",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 9,
+       "objectName": "CH LIQ FLOW SWITCH STAT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "modbus": {
+       "address": 69,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoCHFlowSwitch",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch"
+      },
+      "elink": {
+       "gpicType": "BI.1"
+      },
+      "yorktalk": {
+       "pageRef": "P40"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0069"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Flow Switch",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ],
+      "unitIPRaw": "0 / 1",
+      "unitSIRaw": "0 / 1",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 10,
+       "objectName": "CND FLOW SWITCH STAT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "modbus": {
+       "address": 70,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoCNDFlowSwitch",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch"
+      },
+      "elink": {
+       "gpicType": "BI.2"
+      },
+      "yorktalk": {
+       "pageRef": "P41"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0070"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Level Control Valve Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Auto"
+       },
+       {
+        "code": "1",
+        "label": "Manual"
+       }
+      ],
+      "unitIPRaw": "0 / 1",
+      "unitSIRaw": "0 / 1",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 11,
+       "objectName": "COND REF LEVEL CNTRL MODE"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "modbus": {
+       "address": 71,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoRefLvlCtlMode",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch"
+      },
+      "elink": {
+       "gpicType": "BV.22"
+      },
+      "yorktalk": {
+       "pageRef": "P42"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0071"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Operation Code",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1,
+       "alternates": [
+        "AV401"
+       ],
+       "objectName": "UNIT OPERATION CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 30,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoOperCode",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "SC.1"
+      },
+      "yorktalk": {
+       "pageRef": "P56"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1 /AV401",
+       "MODBUS Address": "0030"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Safety Fault Code",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2,
+       "alternates": [
+        "AV402"
+       ],
+       "objectName": "UNIT SAFETY FAULT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoSafetyCode",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "SC.2"
+      },
+      "yorktalk": {
+       "pageRef": "P57"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2 /AV402",
+       "MODBUS Address": "0031"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Cycling Fault Code",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3,
+       "alternates": [
+        "AV403"
+       ],
+       "objectName": "UNIT CYCLING FAULT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 32,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoCyclingFault",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "SC.3"
+      },
+      "yorktalk": {
+       "pageRef": "P58"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3 /AV403",
+       "MODBUS Address": "0032"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Warning Code",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4,
+       "alternates": [
+        "AV404"
+       ],
+       "objectName": "UNIT WARNING CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 33,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoWarnFault",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "SC.4"
+      },
+      "yorktalk": {
+       "pageRef": "P59"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4 /AV404",
+       "MODBUS Address": "0033"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Control Source [0=Local, 1=ISN (BAS), 2=Analog, 3=Digital, 4=Modem]",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 5,
+       "alternates": [
+        "AV405"
+       ],
+       "objectName": "UNIT CONTROL SOURCE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "modbus": {
+       "address": 34,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoUnitCtrlSrce",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "SC.5"
+      },
+      "yorktalk": {
+       "pageRef": "P60"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV5 /AV405",
+       "MODBUS Address": "0034"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Modified Run Code",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 6,
+       "alternates": [
+        "AV406"
+       ],
+       "objectName": "UNIT MOD RUN CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "modbus": {
+       "address": 35,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoModRunFault",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "SC.12"
+      },
+      "yorktalk": {
+       "pageRef": "P61"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV6 /AV406",
+       "MODBUS Address": "0035"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Start Inhibit Code",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 7,
+       "alternates": [
+        "AV407"
+       ],
+       "objectName": "UNIT START INHIBIT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "modbus": {
+       "address": 36,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoInhibitFault",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "SC.13"
+      },
+      "yorktalk": {
+       "pageRef": "P62"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV7 /AV407",
+       "MODBUS Address": "0036"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Internal Fault Code",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 8,
+       "alternates": [
+        "AV408"
+       ],
+       "objectName": "UNIT INTERNAL FAULT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 8
+      },
+      "modbus": {
+       "address": 37,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoInternalFault",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "SC.14"
+      },
+      "yorktalk": {
+       "pageRef": "P63"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV8 /AV408",
+       "MODBUS Address": "0037"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VGD Control State (Mod A Chillers only)",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S,2=S,3=N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 30,
+       "objectName": "VGD CONTROL STATE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "modbus": {
+       "address": 40,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "lon": {
+       "nvName": "nvoVGDCntrlState",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "AV.90"
+      },
+      "yorktalk": {
+       "pageRef": "P66"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0040"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VGD Stall Count (Mod A Chillers only)",
+      "unitIPRaw": "count*",
+      "unitSIRaw": "count*",
+      "availability": {
+       "raw": "1=S,2=S,3=N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 31,
+       "objectName": "VGD STALL COUNT"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "modbus": {
+       "address": 41,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "lon": {
+       "nvName": "nvoVGDStallCnt",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "AV.91"
+      },
+      "yorktalk": {
+       "pageRef": "P67"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0041"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Anti-Surge Minimum Frequency",
+      "unitIPRaw": "Hz",
+      "unitIP": "Hz",
+      "unitSIRaw": "Hz",
+      "unitSI": "Hz",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 32,
+       "objectName": "ACTIVE ANTI SURGE MIN FREQ"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "modbus": {
+       "address": 42,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoAntiSurMinFq",
+       "direction": "nvo",
+       "snvtType": "SNVT_freq_hz"
+      },
+      "elink": {
+       "gpicType": "AV.101"
+      },
+      "yorktalk": {
+       "pageRef": "P68"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0042"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Output Voltage",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 34,
+       "objectName": "VSD OUTPUT VOLTAGE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "modbus": {
+       "address": 44,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoVSDOutputVolt",
+       "direction": "nvo",
+       "snvtType": "SNVT_volt"
+      },
+      "elink": {
+       "gpicType": "AI.51"
+      },
+      "yorktalk": {
+       "pageRef": "P70"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0044"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Input Power",
+      "unitIPRaw": "kW",
+      "unitIP": "kW",
+      "unitSIRaw": "kW",
+      "unitSI": "kW",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 35,
+       "objectName": "VSD INPUT POWER"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "modbus": {
+       "address": 45,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoVSDInputPower",
+       "direction": "nvo",
+       "snvtType": "SNVT_power_kilo"
+      },
+      "elink": {
+       "gpicType": "AV.71"
+      },
+      "yorktalk": {
+       "pageRef": "P71"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0045"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Input Kilowatt Hours",
+      "unitIPRaw": "kWh",
+      "unitIP": "kWh",
+      "unitSIRaw": "kWh",
+      "unitSI": "kWh",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 36,
+       "objectName": "VSD INPUT KWH"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "modbus": {
+       "address": 46,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoVSDKWH",
+       "direction": "nvo",
+       "snvtType": "SNVT_elec_kwh"
+      },
+      "elink": {
+       "gpicType": "AV.72"
+      },
+      "yorktalk": {
+       "pageRef": "P72"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0046"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD DC Bus Voltage",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 37,
+       "objectName": "VSD DC BUS VOLTAGE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "modbus": {
+       "address": 47,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoVSDDCBusVolt",
+       "direction": "nvo",
+       "snvtType": "SNVT_volt"
+      },
+      "elink": {
+       "gpicType": "AI.56"
+      },
+      "yorktalk": {
+       "pageRef": "P73"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0047"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L1 Input Voltage (RMS)",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 38,
+       "objectName": "VSD INPUT VOLTAGE L1"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "modbus": {
+       "address": 48,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoInputVoltL1",
+       "direction": "nvo",
+       "snvtType": "SNVT_volt"
+      },
+      "elink": {
+       "gpicType": "AI.73"
+      },
+      "yorktalk": {
+       "pageRef": "P74"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0048"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Surge Count",
+      "unitIPRaw": "count*",
+      "unitSIRaw": "count*",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 39,
+       "objectName": "SURGE COUNT"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "modbus": {
+       "address": 49,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoSurgeCount",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "AV.75"
+      },
+      "yorktalk": {
+       "pageRef": "P75"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0049"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Output Frequency",
+      "unitIPRaw": "Hz",
+      "unitIP": "Hz",
+      "unitSIRaw": "Hz",
+      "unitSI": "Hz",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 40,
+       "objectName": "VSD OUTPUT FREQUENCY"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "modbus": {
+       "address": 50,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoVSDOutFreq",
+       "direction": "nvo",
+       "snvtType": "SNVT_freq_hz"
+      },
+      "elink": {
+       "gpicType": "AI.52"
+      },
+      "yorktalk": {
+       "pageRef": "P76"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0050"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L2 Input Voltage (RMS)",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 41,
+       "objectName": "VSD INPUT VOLTAGE L2"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "modbus": {
+       "address": 51,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoInputVoltL2",
+       "direction": "nvo",
+       "snvtType": "SNVT_volt"
+      },
+      "elink": {
+       "gpicType": "AI.74"
+      },
+      "yorktalk": {
+       "pageRef": "P77"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0051"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD L3 Input Voltage (RMS)",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 42,
+       "objectName": "VSD INPUT VOLTAGE L3"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "modbus": {
+       "address": 52,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoInputVoltL3",
+       "direction": "nvo",
+       "snvtType": "SNVT_volt"
+      },
+      "elink": {
+       "gpicType": "AI.75"
+      },
+      "yorktalk": {
+       "pageRef": "P78"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0052"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Level Control Valve Command",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 43,
+       "objectName": "COND LVL CTRL VLV CMD"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 43
+      },
+      "modbus": {
+       "address": 53,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoCondLvlCtlVlv",
+       "direction": "nvo",
+       "snvtType": "SNVT_lev_percent"
+      },
+      "elink": {
+       "gpicType": "AO.50"
+      },
+      "yorktalk": {
+       "pageRef": "P79"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0053"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "MBC Levitation Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "unitIPRaw": "0 / 1",
+      "unitSIRaw": "0 / 1",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 26,
+       "objectName": "MBC LEVITATION MODE"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 26
+      },
+      "modbus": {
+       "address": 86,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoLevitateMode",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch"
+      },
+      "elink": {
+       "gpicType": "BI.45"
+      },
+      "yorktalk": {
+       "pageRef": "P81"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0086"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "MBC Rotation Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "unitIPRaw": "0 / 1",
+      "unitSIRaw": "0 / 1",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 27,
+       "objectName": "MBC ROTATION MODE"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 27
+      },
+      "modbus": {
+       "address": 87,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoRotateMode",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch"
+      },
+      "elink": {
+       "gpicType": "BI.53"
+      },
+      "yorktalk": {
+       "pageRef": "P82"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0087"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Housing Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 105,
+       "objectName": "MOTOR HOUSING TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 48
+      },
+      "modbus": {
+       "address": 105,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoMtrHsgTmp",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AI.49"
+      },
+      "yorktalk": {
+       "pageRef": "P11"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0105"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Cooling Valve Command (Mod A FAB comp & Mod B chillers)",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=N,2=S,3=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 107,
+       "objectName": "MOTOR COOLING VALVE CMD"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 50
+      },
+      "modbus": {
+       "address": 107,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoMtrCoolVlvCmd",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AO.2"
+      },
+      "yorktalk": {
+       "pageRef": "P13"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0107"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Internal Ambient Temperature 2",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 108,
+       "objectName": "VSD INTERNAL AMBIENT TEMP 2"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 51
+      },
+      "modbus": {
+       "address": 108,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoVSDInterTmp2",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AI.96"
+      },
+      "yorktalk": {
+       "pageRef": "P14"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0108"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Average Motor Winding Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 109,
+       "objectName": "MTR WINDING AVG TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 52
+      },
+      "modbus": {
+       "address": 109,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoAvgMWindTemp",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AI.48"
+      },
+      "yorktalk": {
+       "pageRef": "P15"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0109"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Internal Ambient Temperature 1",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 110,
+       "objectName": "VSD INTERNAL AMBIENT TEMP 1"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 53
+      },
+      "modbus": {
+       "address": 110,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoVSDInterTmp1",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AI.58"
+      },
+      "yorktalk": {
+       "pageRef": "P16"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0110"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "VGD Position",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 111,
+       "objectName": "VGD POSITION"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 54
+      },
+      "modbus": {
+       "address": 111,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoVGDPosition",
+       "direction": "nvo",
+       "snvtType": "SNVT_lev_percent"
+      },
+      "elink": {
+       "gpicType": "AI.32"
+      },
+      "yorktalk": {
+       "pageRef": "P17"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0111"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Pre Rotation Vanes (PRV) Position (Mod A chillers FAA comp only)",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=N,3=N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 112,
+       "objectName": "PRE ROTATION VANE POS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 55
+      },
+      "modbus": {
+       "address": 112,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoPRVPosition",
+       "direction": "nvo",
+       "snvtType": "SNVT_lev_percent"
+      },
+      "elink": {
+       "gpicType": "AI.50"
+      },
+      "yorktalk": {
+       "pageRef": "P18"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0112"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Active Level Setpoint",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 113,
+       "objectName": "COND REFRIGERANT LEVEL SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 56
+      },
+      "modbus": {
+       "address": 113,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoRefLvlSP",
+       "direction": "nvo",
+       "snvtType": "SNVT_lev_percent"
+      },
+      "elink": {
+       "gpicType": "AV.42"
+      },
+      "yorktalk": {
+       "pageRef": "P19"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0113"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Drop Leg Refrigerant Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 114,
+       "objectName": "DROP LEG REFRIG TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 57
+      },
+      "modbus": {
+       "address": 114,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoDropLegTemp",
+       "direction": "nvo",
+       "snvtType": "SNVT_temp_p"
+      },
+      "elink": {
+       "gpicType": "AI.10"
+      },
+      "yorktalk": {
+       "pageRef": "P20"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0114"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Input Kilowatt Hours Low (LV and MV SSS only) (see note 11)",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 121,
+       "objectName": "INPUT KWH LO"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 64
+      },
+      "modbus": {
+       "address": 121,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoKWHLo",
+       "direction": "nvo",
+       "snvtType": "SNVT_elec_kwh",
+       "snvtIndex": 13
+      },
+      "elink": {
+       "gpicType": "N/A"
+      },
+      "yorktalk": {
+       "pageRef": "P27"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0121"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Input Kilowatt Hours Offset (LV and MV SSS only) (see note 11)",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 122,
+       "objectName": "INPUT KWH OFFSET"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 65
+      },
+      "modbus": {
+       "address": 122,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoKWHOffset",
+       "direction": "nvo",
+       "snvtType": "SNVT_elec_kwh",
+       "snvtIndex": 13
+      },
+      "elink": {
+       "gpicType": "N/A"
+      },
+      "yorktalk": {
+       "pageRef": "P28"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0122"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Operating Hours Low (see note 12)",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 123,
+       "objectName": "OPERATING HOURS LO"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 66
+      },
+      "modbus": {
+       "address": 123,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoOpHrLo",
+       "direction": "nvo",
+       "snvtType": "SNVT_time_hour",
+       "snvtIndex": 124
+      },
+      "elink": {
+       "gpicType": "N/A"
+      },
+      "yorktalk": {
+       "pageRef": "P29"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0123"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Operating Hours Offset (see note 12)",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 124,
+       "objectName": "OPERATING HOURS OFFSET"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 67
+      },
+      "modbus": {
+       "address": 124,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoOpHrOffset",
+       "direction": "nvo",
+       "snvtType": "SNVT_time_hour",
+       "snvtIndex": 124
+      },
+      "elink": {
+       "gpicType": "N/A"
+      },
+      "yorktalk": {
+       "pageRef": "P30"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0124"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "MBC Motor Speed",
+      "unitIPRaw": "Hz",
+      "unitIP": "Hz",
+      "unitSIRaw": "Hz",
+      "unitSI": "Hz",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 125,
+       "objectName": "MBC MOTOR SPEED"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 68
+      },
+      "modbus": {
+       "address": 125,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoMotorSpeedHz",
+       "direction": "nvo",
+       "snvtType": "SNVT_freq_hz"
+      },
+      "elink": {
+       "gpicType": "AI.121"
+      },
+      "yorktalk": {
+       "pageRef": "P31"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0125"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "MBC Landing Counter (Mod A chillers only)",
+      "unitIPRaw": "count*",
+      "unitSIRaw": "count*",
+      "availability": {
+       "raw": "1=S,2=S,3=N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 126,
+       "objectName": "MBC LANDING COUNTER"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 69
+      },
+      "modbus": {
+       "address": 126,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoLandingCountr",
+       "direction": "nvo",
+       "snvtType": "SNVT_count"
+      },
+      "elink": {
+       "gpicType": "AI.122"
+      },
+      "yorktalk": {
+       "pageRef": "P32"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0126"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Minimum PRV Position (Mod A chillers FAA comp only)",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=N,3=N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 127,
+       "objectName": "ANTI SURGE MIN PRV POS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 70
+      },
+      "modbus": {
+       "address": 127,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoAntiSurMinPos",
+       "direction": "nvo",
+       "snvtType": "SNVT_lev_percent"
+      },
+      "elink": {
+       "gpicType": "AV.102"
+      },
+      "yorktalk": {
+       "pageRef": "P33"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMC2-OptiviewBAS(RevK-05b).pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0127"
+      },
+      "interfaceId": "ymc2-optiviewbas-revk-05b"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev K 05b"
+   },
+   "sourcePages": [
+    1,
+    3
+   ],
+   "excluded": {
+    "reserved": 91,
+    "notes": 30,
+    "revision": 4,
+    "codeTable": 14
+   }
+  }
+ ],
+ "crosscheck": {
+  "fam": "lontalk",
+  "segments": 2,
+  "table": 185,
+  "raw": 0,
+  "both": 0,
+  "same": 0,
+  "diff": [],
+  "rate": 0.0,
+  "verified": {}
+ },
+ "tags": [
+  "chiller",
+  "chiller-centrifugal"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'YMC2 Magnetic Bearing Centrifugal Chiller' 의 낱말 (압축 방식·응축 방식)"
+}

@@ -653,6 +653,83 @@ Trane 은 문서번호 계열이 갈린다 — 통신 맵 `BAS-PTS`, 냉동기 `
 
 VRF 2건(JCI Smart Gateway)만 남았다 — 카탈로그를 아직 못 찾았다.
 
+## ★ 포인트는 모델이 아니라 **인터페이스**에 속한다 (D-016)
+
+한 제품이 포인트 리스트를 여러 판 낸다. YK 냉동기 하나가 SC-EQ · OptiView
+E-Link(EM/SSS) · OptiView E-Link(VSD) · Micropanel II 로 문서 4건이고, 판마다
+주소가 다르다. 그래서 모델 레코드는 이렇게 생겼다.
+
+```
+data/models/<모델>.json
+  interfaces: [ { id, label, family, protocols, revision{doc,firmware,block},
+                  sourceFile, sourcePages, appliesTo, pointCount, excluded, gaps,
+                  points: [ point-schema 레코드 … ] } ]
+```
+
+- **모델 = 제품**, 인터페이스 = 그 제품이 내보내는 목록의 판.
+- 한 문서가 여러 제품을 덮으면(`YCAJ, YCAZ, YCWZ …`) **주 제품에만** 붙이고
+  나머지는 `appliesTo` 로 밝힌다. 같은 1,000점을 제품 수만큼 복제하지 않는다.
+- 평면 `points[]` 는 옛 추출본이다. 게이트는 새 형식에만 걸고 옛 것은
+  `points-legacy` 정보로 남은 이관 분량을 보여 준다(`validate.py`).
+- 사전 밖 필드는 오류다. 실제로 `bacnet.alternates`(’MV1 /AV401’ 병기)가
+  파서에만 있고 사전에 없어 게이트에 걸렸다 — 등재하고 나서 통과했다.
+
+왜 평면으로 두면 안 되나: 어느 행이 어느 판인지 알려 주는 열이 **원문에 없다.**
+E-Link `7Lqu5` 는 1~4쪽이 Standard Starter, 5~8쪽이 Solid State Starter 인데
+표 안에는 그 구분이 없다. 한 배열로 합치는 순간 되돌릴 수 없다.
+
+업계도 같은 자리를 노드로 둔다 — BTL 등재는 제품마다 시험 펌웨어를 붙이고,
+LonMark XIF 의 열쇠는 모델이 아니라 프로그램 ID, KNX 카탈로그 엔트리 하나는
+1..n 제품 × 애플리케이션 프로그램 버전으로 갈린다.
+
+### 판을 가르는 기준은 **주소 대역**이다
+
+한 문서 안에 표 블록이 여럿일 때 제목으로는 못 가른다 — 실측 20건 중 대부분이
+제목 없는 블록이다. 대신 주소가 말해 준다.
+
+| 원문 | 판정 | 왜 |
+|---|---|---|
+| `1~43` → `101~135` → `205~243` | **같은 판** | E-Link 가 한 목록을 Section 1·2·3 으로 나눠 싣는다. 쪽만 넘어간 것 |
+| `1~43` → `1~43` | **별개 판** | 한 장치의 목록이 같은 주소를 두 번 쓸 수 없다 (보드·스타터·스타일이 다른 판) |
+
+실측: 문서 56건 → 판 84개. YK Micropanel II 3판(보드별) · YS/YN OptiView 4판
+(제품 2 × 스타터 2) · YCAS 6판(스타일 3 × 主/從). 판정 사유는 인터페이스의
+`note` 에 문장으로 남는다.
+
+### 한 문서가 덮는 다른 제품은 **별칭 모델**로 세운다
+
+`YCAJ, YCAZ, YCWZ, YCWJ …` 처럼 제목이 제품을 나열하면 목록은 주 제품에만 붙이고
+(복제하면 한쪽만 고쳐지는 날이 온다) 나머지는 `interfaces[].appliesTo` 에 적는다.
+그러면 `YCWJ` 로 찾을 길이 없어지므로, 코드마다 `aliasOf` 만 가진 모델을 세운다 —
+포인트를 복제하지 않고 **어느 모델의 어느 판이 덮는지**만 가리킨다(실측 10건).
+
+### 설비 분류는 제품명의 낱말에서 온다
+
+JCI 카탈로그 제품명이 이미 압축·응축 방식을 밝힌다(`YCAS Air Cooled Screw Chiller`).
+그걸 읽어 `cat` 4단계(`HVAC.PLANT.CHILLER.SCREW`)와 Haystack 태그
+(`chiller-rotaryScrew` · `airCooling`)를 붙인다. **문서에 없는 것은 만들지 않는다** —
+이름에 방식이 안 적힌 4건은 `HVAC.PLANT.CHILLER` 로 남는다.
+⚠ 스크롤은 Haystack 4 에 `chiller-scroll` 이 **없다**. 태그를 지어내지 않고 cat 에만
+넣고 gap 에 적었다.
+
+### JCI 취입 (`ingest_jci.py`)
+
+```bash
+PYTHONIOENCODING=utf-8 python ingest_jci.py --route    # 계통 판정만
+PYTHONIOENCODING=utf-8 python ingest_jci.py --apply    # 문서 파싱 → 모델 생성 (수십 분)
+PYTHONIOENCODING=utf-8 python ingest_jci.py --refresh  # 규칙만 다시 적용 (몇 초)
+```
+
+`--refresh` 는 저장된 포인트에서 유도되는 것만 다시 만든다 — 판 분리·덮는 제품·
+설비 분류·통신표·별칭. **규칙을 고칠 때마다 문서 56건을 다시 읽을 이유가 없다**
+(30분 대 몇 초).
+
+계통 판정은 **표 머리글**로 한다. 페이지 글자 흐름(`get_text`)으로 찾으면 안 된다 —
+머리글 칸이 여러 줄이면 열끼리 뒤섞여 `ENG PAGE REF` 가
+`ENG | PAGE Object Object & | Object` 로 온다(그래서 21건이 '표식 없음'이었다).
+E-Link 표식은 파서의 `ANCHOR` 가 아니라 **소유 조건**(ENG/ASCII PAGE REF 열)을 쓴다 —
+ANCHOR 는 표를 찾는 그물이라 SC-EQ 머리글까지 걸린다(18건 오검출).
+
 ## 같은 제품의 다른 프로토콜 판은 사양을 **참조**한다
 
 Belimo 는 같은 기기를 BACnet 판과 Modbus 판으로 낸다. 사양은 같으므로 복제하지

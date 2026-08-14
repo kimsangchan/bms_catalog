@@ -1,0 +1,1949 @@
+{
+ "id": "johnson-controls-york-cr-optiview",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "CR (OptiView)",
+ "name": "CR (OptiView)",
+ "cat": "HVAC.PLANT.CHILLER",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 1건 · 판 1개에서 취입 — 오브젝트 48점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "LON",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "Modbus",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "N2",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+ "interfaces": [
+  {
+   "id": "cr-bas-sc-eq-rev1-3",
+   "label": "CR Points List SC-EQ (Rev 1.3) OptiView Based Equipment",
+   "family": "SC-EQ",
+   "protocols": [
+    "bacnet",
+    "lon",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+   "pointCount": 48,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Remote Leaving Chilled Liquid Setpoint",
+      "shortName": "REM LEAVING CHL TEMP SP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviCoolSetPt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Current Limit Setpoint",
+      "shortName": "REMOTE CURRENT SP",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviCapacityLimit",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTlevpercent"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Start/Stop [Stop / Start]",
+      "shortName": "REM START STOP CMD",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Start"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviChillerEnable",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Variable Speed Drive Fixed Speed [Auto/Fixed]",
+      "shortName": "VSD FIXED SPEED SELECT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Auto"
+       },
+       {
+        "code": "1",
+        "label": "Fixed"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 3
+      },
+      "modbus": {
+       "address": 63,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviVSDFixedSpd",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature",
+      "shortName": "LEAVING CH LIQ TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLvgCHWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Chilled Liquid Temperature",
+      "shortName": "ENTERING CHW TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 6,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEntCHWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure PSIG",
+      "shortName": "EVAPORATOR PRESSURE PSIG",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapPressPSIA",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTpressp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure PSIA",
+      "shortName": "EVAPORATOR PRESSURE PSIA",
+      "unitIP": "PSIA",
+      "unitSI": "kPaA"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapPressPSIG",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTpressp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure PSIG",
+      "shortName": "CONDENSER PRESSURE PSIG",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 8,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCondPressPSIA",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTpressp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure PSIA",
+      "shortName": "CONDENSER PRESSURE PSIA",
+      "unitIP": "PSIA",
+      "unitSI": "kPaA"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 8,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCondPressPSIG",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTpressp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pressure Differential",
+      "shortName": "OIL PRESSURE DIFERENTIAL",
+      "unitIP": "PSID",
+      "unitSI": "kPaD"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoOilDiffPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTpressp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Condenser Liquid Temperature",
+      "shortName": "ENTERING COND WATER TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 10,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEntCNDTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Liquid Temperature",
+      "shortName": "LEAVING COND WATER TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLvgCNDTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Current Percent FLA",
+      "shortName": "MOTOR CURRENT PCT FLA",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoActualCapacit",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTlevpercent"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Variable Speed Drive Phase A Current",
+      "shortName": "VSD PHASE A MOTOR CURRENT",
+      "note": "VSD only",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCurrentA",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTamp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Solid State Starter Phase A Current",
+      "shortName": "PHASE A MOTOR CURRENT",
+      "note": "SSS only",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCurrentA",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTamp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Variable Speed Drive Phase B Current",
+      "shortName": "VSD PHASE B MOTOR CURRENT",
+      "note": "VSD only",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCurrentB",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTamp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Solid State Starter Phase B Current",
+      "shortName": "PHASE B MOTOR CURRENT",
+      "note": "SSS only",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCurrentB",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTamp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Variable Speed Drive Phase C Current",
+      "shortName": "VSD PHASE C MOTOR CURRENT",
+      "note": "VSD only",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCurrentC",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTamp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Solid State Starter Phase C Current",
+      "shortName": "PHASE C MOTOR CURRENT",
+      "note": "SSS only",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCurrentC",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTamp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Solid State Starter Phase A Voltage",
+      "shortName": "PHASE AB LINE VOLTS",
+      "note": "SSS only",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 16,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVoltageA",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTvolt"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Solid State Starter Phase B Voltage",
+      "shortName": "PHASE BC LINE VOLTS",
+      "note": "SSS only",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVoltageB",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTvolt"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Solid State Starter Phase C Voltage",
+      "shortName": "PHASE CA LINE VOLTS",
+      "note": "SSS only",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVoltageC",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTvolt"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Setpoint - Selected",
+      "shortName": "LEAVING CH LIQ TEMP ACT SP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 19,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoActiveSetpt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Current Limit Setpoint - Selected",
+      "shortName": "MOTOR CURRENT ACTUAL SP",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 20,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCapacityLimit",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Saturation Temp",
+      "shortName": "EVAP SATURATION TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 21,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapSatTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Saturation Temp",
+      "shortName": "COND SATURATION TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 22,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCondSatTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature",
+      "shortName": "DISCHARGE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 23,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoDischTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Sump Temperature",
+      "shortName": "OIL SUMP TEMPERATURE",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 24
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 24,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoOilSumpTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Purge Pressure",
+      "shortName": "PURGE PRESSURE",
+      "unitIP": "PSIA",
+      "unitSI": "kPaA"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 25
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 25,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoPurgePress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTpress"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Operating Hours",
+      "shortName": "ACCUM OPERATING HOURS",
+      "unitIP": "Hr",
+      "unitSI": "Hr"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 26,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoRunHours",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtimehour"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit System Starts",
+      "shortName": "ACCUM SYSTEM STARTS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 27,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoSystemStarts",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTcount"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Run Contacts",
+      "shortName": "COMPR MOTOR STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoOnOff",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Vent Line Solenoid",
+      "shortName": "VENT LINE SOLENOID",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 66,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVentLineSolnd",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Pump",
+      "shortName": "CHW PUMP STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCHPump",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Panel Stop Switch [Start enabled / Stop]",
+      "shortName": "STOP SWITCH STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Start Enabled"
+       },
+       {
+        "code": "1",
+        "label": "Stop"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "modbus": {
+       "address": 68,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoPanelStopSw",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Flow Switch",
+      "shortName": "CHW FLOW SWITCH STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "modbus": {
+       "address": 69,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCHFlowSwitch",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Refrigerant Type",
+      "shortName": "REFRIGERANT TYPE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Low Pressure"
+       },
+       {
+        "code": "1",
+        "label": "High Pressure"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "modbus": {
+       "address": 70,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoRefrigType",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Adaptive Capacity Control Valid Surge Map",
+      "shortName": "ACC VALVE SURGE MAP",
+      "note": "VSD only",
+      "states": [
+       {
+        "code": "0",
+        "label": "False"
+       },
+       {
+        "code": "1",
+        "label": "True"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "modbus": {
+       "address": 77,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoACCVSM",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Adaptive Capacity Control New Surge Point",
+      "shortName": "ACC NEW SURGE POINT",
+      "note": "VSD only",
+      "states": [
+       {
+        "code": "0",
+        "label": "False"
+       },
+       {
+        "code": "1",
+        "label": "True"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 18
+      },
+      "modbus": {
+       "address": 78,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoACCNSP",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Variable Speed Drive Water Pump Relay",
+      "shortName": "VSD COOL PUMP RUN RELAY",
+      "note": "VSD only",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "modbus": {
+       "address": 79,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDWtrPumpRly",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Harmonic Filter Installed",
+      "shortName": "VSD HARMONIC FILTER INST",
+      "note": "VSD only",
+      "states": [
+       {
+        "code": "0",
+        "label": "False"
+       },
+       {
+        "code": "1",
+        "label": "True"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "modbus": {
+       "address": 80,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoHarmonicFltr",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Adaptive Capacity Control Surge Type",
+      "shortName": "ACC SURGE DETECTION TYPE",
+      "note": "VSD only",
+      "statesRef": "0=Delta P/P 1=Current"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 21
+      },
+      "modbus": {
+       "address": 81,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoACCSurgeType",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Operation Code",
+      "shortName": "UNIT OPERATION CODE",
+      "statesRef": "See SC.1 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Operation Code AV",
+      "shortName": "UNIT OPERATION CODE AV",
+      "statesRef": "See SC.1 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 401
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 30,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoOperCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTcount"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Safety Fault Code",
+      "shortName": "UNIT SAFETY FAULT CODE",
+      "statesRef": "See SC.2 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Safety Fault Code AV",
+      "shortName": "UNIT SAFETY FAULT CODE AV",
+      "statesRef": "See SC.2 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 402
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoSafetyCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTcount"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Cycling Fault Code",
+      "shortName": "UNIT CYCLING FAULT CODE",
+      "statesRef": "See SC.3 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_CR-BAS-SC-EQ-Rev1.3.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "cr-bas-sc-eq-rev1-3"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev 1.3"
+   },
+   "sourcePages": [
+    1,
+    1
+   ],
+   "excluded": {
+    "reserved": 15
+   }
+  }
+ ],
+ "crosscheck": {
+  "fam": "lontalk",
+  "segments": 6,
+  "table": 48,
+  "raw": 0,
+  "both": 0,
+  "same": 0,
+  "diff": [],
+  "rate": 0.0,
+  "verified": {}
+ },
+ "tags": [
+  "chiller"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'CR (OptiView)' 의 낱말 (압축 방식·응축 방식)"
+}

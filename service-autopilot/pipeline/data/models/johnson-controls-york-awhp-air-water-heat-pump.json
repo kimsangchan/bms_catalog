@@ -1,0 +1,6980 @@
+{
+ "id": "johnson-controls-york-awhp-air-water-heat-pump",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "AWHP Air Water Heat Pump",
+ "name": "AWHP Air Water Heat Pump",
+ "cat": "HVAC.PLANT.CHILLER",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 1건 · 판 3개에서 취입 — 오브젝트 186점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "N2",
+   "E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 3판"
+  ],
+  [
+   "York Talk",
+   "E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 3판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_AWHP-AirWaterHeatPump.pdf",
+ "interfaces": [
+  {
+   "id": "awhp-airwaterheatpump-p1",
+   "label": "AWHP Air Water Heat Pump E-Link (Rev C) Non-OptiView Based Equipment — 구간 1",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+   "pointCount": 77,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Chilled Liquid Set Point (If 99 Then Local Set Point)",
+      "shortName": "LCHW TEMP.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "asciiPageRef": "P01",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "% Load Limit (Heating and Cooling)",
+      "shortName": "%LOAD.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "asciiPageRef": "P02",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Unit"
+       },
+       {
+        "code": "1",
+        "label": "Pd"
+       },
+       {
+        "code": "2",
+        "label": "Cl"
+       },
+       {
+        "code": "3",
+        "label": "Hp"
+       },
+       {
+        "code": "4",
+        "label": "Hr"
+       },
+       {
+        "code": "5",
+        "label": "Hj"
+       },
+       {
+        "code": "6",
+        "label": "Hp+Cr"
+       }
+      ],
+      "shortName": "MODE",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P05",
+       "asciiPageRef": "P03",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating Set Point (If 99 Then Local Set Point)",
+      "shortName": "LHTW TEMP.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P06",
+       "asciiPageRef": "P04",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Start/Stop Unit",
+      "shortName": "START",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "asciiPageRef": "P05",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "S.C. Load (1=Load)",
+      "shortName": "SC LOAD",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P08",
+       "asciiPageRef": "P06",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "S.C. Unload (1=Unload)",
+      "shortName": "SC UNLOAD",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P09",
+       "asciiPageRef": "P07",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Send History Buffer",
+      "shortName": "HISTORY",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P10",
+       "asciiPageRef": "P08",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Temp",
+      "shortName": "LCHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Liquid Temp",
+      "shortName": "LHTW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "asciiPageRef": "P10",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 12,
+        "end": 15
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Ambient Temp",
+      "shortName": "OA.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Suction Pressure",
+      "shortName": "SUCT.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Pressure",
+      "shortName": "DISC.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "asciiPageRef": "P13",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 24,
+        "end": 27
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pressure",
+      "shortName": "OIL.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Air Coil Discharge Press",
+      "shortName": "ACRD.PR",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Heatpump Suction Temp",
+      "shortName": "HPSUCT.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Temp",
+      "shortName": "OIL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temp",
+      "shortName": "DSCH.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Air Coil Defrost Left Temp",
+      "shortName": "ACDL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Air Coil Defrost Right Temp",
+      "shortName": "ACDR.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Amps",
+      "shortName": "FL.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Total Run Hours",
+      "shortName": "RUN.HOURS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Total Number Of Starts",
+      "shortName": "START.CNT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 67
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Run Time Since Last Start ( in seconds )",
+      "shortName": "RT.LSTART",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "yorktalk": {
+       "pageRef": "P26",
+       "asciiPageRef": "P24",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 68,
+        "end": 71
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Run Time In Current Mode ( in seconds )",
+      "shortName": "RT.CMODE",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "asciiPageRef": "P25",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 72,
+        "end": 75
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Time To Defrost ( in seconds )",
+      "shortName": "DEFST.TM",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "asciiPageRef": "P26",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 76,
+        "end": 79
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cold Liquid Set Point (Actual)",
+      "shortName": "LCHW ACT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "asciiPageRef": "P27",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 80,
+        "end": 83
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Liquid Set Point (Actual)",
+      "shortName": "LHTW ACT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P30",
+       "asciiPageRef": "P28",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 84,
+        "end": 87
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Water Temp Cutout",
+      "shortName": "LWTCUTOUT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "yorktalk": {
+       "pageRef": "P31",
+       "asciiPageRef": "P29",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 88,
+        "end": 91
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Ambient Temp Cutout",
+      "shortName": "LOWAMBCO.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "yorktalk": {
+       "pageRef": "P32",
+       "asciiPageRef": "P30",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 92,
+        "end": 95
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "High Ambient Cutout",
+      "shortName": "HIAMBCO.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "yorktalk": {
+       "pageRef": "P33",
+       "asciiPageRef": "P31",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 96,
+        "end": 99
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot High Limit Temp",
+      "shortName": "HHLT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "yorktalk": {
+       "pageRef": "P34",
+       "asciiPageRef": "P32",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 100,
+        "end": 103
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys Run",
+      "shortName": "RUN.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys Alarm",
+      "shortName": "ALM.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "LLC/LLHR Valve Open",
+      "shortName": "LLC-LLHR",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "asciiPageRef": "P36",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 110,
+        "end": 110
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "LLHP Valve Open",
+      "shortName": "LLHP.VLV",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "asciiPageRef": "P37",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 111,
+        "end": 111
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "HGL Valve Open",
+      "shortName": "HGL.VLV",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P40",
+       "asciiPageRef": "P38",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 112,
+        "end": 112
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "HGR Valve Open",
+      "shortName": "HGR.VLV",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "asciiPageRef": "P39",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 113,
+        "end": 113
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "LI Valve Open",
+      "shortName": "LI.VLV",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P42",
+       "asciiPageRef": "P40",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 114,
+        "end": 114
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-1 0=Water Cooling 1=Brine Cooling",
+      "shortName": "DIP1.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P43",
+       "asciiPageRef": "P41",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 115,
+        "end": 115
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-2 0=Standard Amb 1=Low Ambient",
+      "shortName": "DIP2.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P44",
+       "asciiPageRef": "P42",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 116,
+        "end": 116
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-3 0=Local Mode 1=Remote Mode",
+      "shortName": "DIP3.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P45",
+       "asciiPageRef": "P43",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 117,
+        "end": 117
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-4 0=Partwind 1=Star/delta",
+      "shortName": "DIP4.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P46",
+       "asciiPageRef": "P44",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 118,
+        "end": 118
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-5 0=Imperial Units 1=S.I. Units",
+      "shortName": "DIP5.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P47",
+       "asciiPageRef": "P45",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 119,
+        "end": 119
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-6 0=S.C. Disabled 1=S.C. Enabled",
+      "shortName": "DIP6.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P48",
+       "asciiPageRef": "P46",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 120,
+        "end": 120
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-7 0=Not Used 1=Not Used",
+      "shortName": "DIP7.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P49",
+       "asciiPageRef": "P47",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 121,
+        "end": 121
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-8 0=R134a 1=R22",
+      "shortName": "DIP8.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P50",
+       "asciiPageRef": "P48",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 122,
+        "end": 122
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cold Liquid Pump Contact",
+      "shortName": "CLD LIQ.PMP",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "yorktalk": {
+       "pageRef": "P51",
+       "asciiPageRef": "P49",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 123,
+        "end": 123
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Liquid Pump Contact",
+      "shortName": "HOT LIQ.PMP",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P52",
+       "asciiPageRef": "P50",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 124,
+        "end": 124
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cold Flow Switch",
+      "shortName": "CLD LIQ.FS",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P53",
+       "asciiPageRef": "P51",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 125,
+        "end": 125
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Flow Switch",
+      "shortName": "HOT LIQ.FS",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P54",
+       "asciiPageRef": "P52",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 126,
+        "end": 126
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooler Condenser Heaters",
+      "shortName": "CLR-CND.HTR",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P55",
+       "asciiPageRef": "P53",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 127,
+        "end": 127
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys Mode Code",
+      "shortName": "MODE.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "asciiPageRef": "P54",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 128,
+        "end": 128
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys Operational Code",
+      "shortName": "OPER.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "asciiPageRef": "P55",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 129,
+        "end": 129
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys Fault Code",
+      "shortName": "FAULT.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "asciiPageRef": "P56",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 130,
+        "end": 130
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Capacity Step",
+      "shortName": "STAGES.NUM",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Last Mode Code",
+      "shortName": "LSTMD.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys Fan 1",
+      "shortName": "FAN1",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P61",
+       "asciiPageRef": "P59",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 133,
+        "end": 133
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys Fan 2 0=OFF 1=ON 2=REV",
+      "shortName": "FAN2",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P62",
+       "asciiPageRef": "P60",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 134,
+        "end": 134
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys Fan 3",
+      "shortName": "FAN3",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P63",
+       "asciiPageRef": "P61",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 135,
+        "end": 135
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys Fan 4 0=OFF 1=ON 2=REV",
+      "shortName": "FAN4",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P64",
+       "asciiPageRef": "P62",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 136,
+        "end": 136
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Capacity Code",
+      "shortName": "CAP CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P65",
+       "asciiPageRef": "P63",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 137,
+        "end": 137
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Pressure Cutout Heatpump",
+      "shortName": "LPC HP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "yorktalk": {
+       "pageRef": "P66",
+       "asciiPageRef": "P64",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 138,
+        "end": 141
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "High Pressure Cutout Cooling",
+      "shortName": "HPC CL",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "yorktalk": {
+       "pageRef": "P67",
+       "asciiPageRef": "P65",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 142,
+        "end": 145
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "High Pressure Cutout Heatpump Heatrec",
+      "shortName": "HPC HP.HR",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "yorktalk": {
+       "pageRef": "P68",
+       "asciiPageRef": "P66",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 146,
+        "end": 149
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "High Pressure Unload Cooling",
+      "shortName": "HPUL CL",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "yorktalk": {
+       "pageRef": "P69",
+       "asciiPageRef": "P67",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 150,
+        "end": 153
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "High Pressure Unload Heatpump Heatrec",
+      "shortName": "HPUL HP.HR",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "yorktalk": {
+       "pageRef": "P70",
+       "asciiPageRef": "P68",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 154,
+        "end": 157
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Current Unload",
+      "shortName": "AMP UNLD",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "yorktalk": {
+       "pageRef": "P71",
+       "asciiPageRef": "P69",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 158,
+        "end": 161
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fan Control Discharge Pressure",
+      "shortName": "FAN CTRL.DP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "yorktalk": {
+       "pageRef": "P72",
+       "asciiPageRef": "P70",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 162,
+        "end": 165
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fan ON/OFF Pressure Diff",
+      "shortName": "FAN SS.DP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "yorktalk": {
+       "pageRef": "P73",
+       "asciiPageRef": "P71",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 166,
+        "end": 169
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Pressure Cutout Cooling Heatrec",
+      "shortName": "LPC CL.HR",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "yorktalk": {
+       "pageRef": "P74",
+       "asciiPageRef": "P72",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 170,
+        "end": 173
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Heatpump Suction Temp Injection",
+      "shortName": "HPSCT INJT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "yorktalk": {
+       "pageRef": "P75",
+       "asciiPageRef": "P73",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 174,
+        "end": 177
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "High Discharge Temp Cutout",
+      "shortName": "HTC DSCHT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "yorktalk": {
+       "pageRef": "P76",
+       "asciiPageRef": "P74",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 178,
+        "end": 181
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Defrost Initiation Temp",
+      "shortName": "DFRST INT.TP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "yorktalk": {
+       "pageRef": "P77",
+       "asciiPageRef": "P75",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 182,
+        "end": 185
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Defrost Initiation Time",
+      "shortName": "DFRST INT.TM",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "yorktalk": {
+       "pageRef": "P78",
+       "asciiPageRef": "P76",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 186,
+        "end": 189
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Defrost Termination Time",
+      "shortName": "DFRST TER.TM",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 43
+      },
+      "yorktalk": {
+       "pageRef": "P79",
+       "asciiPageRef": "P77",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 190,
+        "end": 193
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Load Permissive",
+      "shortName": "LD PERM",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 25
+      },
+      "yorktalk": {
+       "pageRef": "P80",
+       "asciiPageRef": "P78",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 194,
+        "end": 194
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p1"
+     }
+    }
+   ],
+   "revision": {
+    "block": "구간 1"
+   },
+   "sourcePages": [
+    1,
+    2
+   ],
+   "excluded": {
+    "reserved": 60,
+    "revision": 6,
+    "codeTable": 3
+   },
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(1~43)"
+  },
+  {
+   "id": "awhp-airwaterheatpump-p2",
+   "label": "AWHP Air Water Heat Pump E-Link (Rev C) Non-OptiView Based Equipment — 구간 2",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+   "pointCount": 78,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Chilled Liquid Set Point (If 99 Then Local Set Point)",
+      "shortName": "LCHW TEMP.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "asciiPageRef": "P01",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "% Load Limit (Heating and Cooling)",
+      "shortName": "%LOAD.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "asciiPageRef": "P02",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "S.C. Heating",
+      "states": [
+       {
+        "code": "0",
+        "label": "Unload"
+       },
+       {
+        "code": "1",
+        "label": "Balance"
+       },
+       {
+        "code": "2",
+        "label": "Load"
+       }
+      ],
+      "shortName": "SC H.LD.UNLD",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P05",
+       "asciiPageRef": "P03",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating Set Point (If 99 Then Local Set Point)",
+      "shortName": "LHTW TEMP.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P06",
+       "asciiPageRef": "P04",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Start/Stop Unit",
+      "shortName": "START",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "asciiPageRef": "P05",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "S.C. Cooling Load (1=Load)",
+      "shortName": "SC CL.LD",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P08",
+       "asciiPageRef": "P06",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "S.C. Cooling Unload (1=Unload)",
+      "shortName": "SC CL.UNLD",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P09",
+       "asciiPageRef": "P07",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Send History Buffer",
+      "shortName": "HISTORY",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P10",
+       "asciiPageRef": "P08",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Temp",
+      "shortName": "LCHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Liquid Temp",
+      "shortName": "LHTW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "asciiPageRef": "P10",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 12,
+        "end": 15
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Ambient Temp",
+      "shortName": "OA.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Suction Pressure",
+      "shortName": "C1SUCT.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Discharge Pressure",
+      "shortName": "C1DISC.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "asciiPageRef": "P13",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 24,
+        "end": 27
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Oil Pressure",
+      "shortName": "C1 OIL.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Air Coil Right Discharge Press",
+      "shortName": "S1 ACRD.PR",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Air Coil Left Discharge Press EEV Only",
+      "shortName": "S1 ACLD.PR",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Oil Temp",
+      "shortName": "C1 OIL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Discharge Temp",
+      "shortName": "C1 DSCH.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Air Coil Defrost Left Temp",
+      "shortName": "S1 ACDL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Air Coil Defrost Right Temp",
+      "shortName": "S1 ACDR.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Air Coil Suction Temp Left EEV Only",
+      "shortName": "S1 ACSL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Air Coil Suction Temp Right EEV Only",
+      "shortName": "S1 ACSR.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Compressor Amps",
+      "shortName": "C1 FL.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 67
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Total Run Hours",
+      "shortName": "C1 RUN.HOURS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "yorktalk": {
+       "pageRef": "P26",
+       "asciiPageRef": "P24",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 68,
+        "end": 71
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Total Number Of Starts",
+      "shortName": "C1 START.CNT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "asciiPageRef": "P25",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 72,
+        "end": 75
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Run Time In Current Mode",
+      "shortName": "S1 RT.CMODE",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "asciiPageRef": "P26",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 76,
+        "end": 79
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Run Time In Last Mode",
+      "shortName": "S1 RT.LMODE",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "asciiPageRef": "P27",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 80,
+        "end": 83
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Time To Defrost",
+      "shortName": "S1 DEFST.TM",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P30",
+       "asciiPageRef": "P28",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 84,
+        "end": 87
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Cold Liquid Set Point (Actual)",
+      "shortName": "LCHW ACT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "yorktalk": {
+       "pageRef": "P31",
+       "asciiPageRef": "P29",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 88,
+        "end": 91
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Liquid Set Point (Actual)",
+      "shortName": "LHTW ACT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "yorktalk": {
+       "pageRef": "P32",
+       "asciiPageRef": "P30",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 92,
+        "end": 95
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Water Temp Cutout",
+      "shortName": "LWTCUTOUT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "yorktalk": {
+       "pageRef": "P33",
+       "asciiPageRef": "P31",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 96,
+        "end": 99
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Ambient Temp Cutout",
+      "shortName": "LOWAMBCO.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "yorktalk": {
+       "pageRef": "P34",
+       "asciiPageRef": "P32",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 100,
+        "end": 103
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Hight Ambient Cutout",
+      "shortName": "HIAMBCO.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "yorktalk": {
+       "pageRef": "P35",
+       "asciiPageRef": "P33",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 104,
+        "end": 107
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Sys Run",
+      "shortName": "S1 RUN.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Sys Alarm",
+      "shortName": "S1 ALM.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 LLC/LLHR Valve Open",
+      "shortName": "S1 LLC-LLHR",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "asciiPageRef": "P36",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 110,
+        "end": 110
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 LLHP Valve Open",
+      "shortName": "S1 LLHP.VLV",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "asciiPageRef": "P37",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 111,
+        "end": 111
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 DCVPR Valve Open",
+      "shortName": "S1 DCVPR.VLV",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P40",
+       "asciiPageRef": "P38",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 112,
+        "end": 112
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 LI Valve Open",
+      "shortName": "S1 LI.VLV",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "asciiPageRef": "P39",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 113,
+        "end": 113
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-1 0=Water Cooling 1=Brine Cooling",
+      "shortName": "DIP1.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P43",
+       "asciiPageRef": "P41",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 115,
+        "end": 115
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-2 0=Standard Amb 1=Low Ambient",
+      "shortName": "DIP2.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P44",
+       "asciiPageRef": "P42",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 116,
+        "end": 116
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-3 0=Local Mode 1=Remote Mode",
+      "shortName": "DIP3.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P45",
+       "asciiPageRef": "P43",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 117,
+        "end": 117
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-4 0=Partwind 1=Star/delta",
+      "shortName": "DIP4.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P46",
+       "asciiPageRef": "P44",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 118,
+        "end": 118
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-5 0=Imperial Units 1=S.I. Units",
+      "shortName": "DIP5.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P47",
+       "asciiPageRef": "P45",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 119,
+        "end": 119
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-6 0=S.C. Disabled 1=S.C. Enabled",
+      "shortName": "DIP6.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P48",
+       "asciiPageRef": "P46",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 120,
+        "end": 120
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-7 0=Elec EV 1=Thermal EV",
+      "shortName": "DIP7.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P49",
+       "asciiPageRef": "P47",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 121,
+        "end": 121
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sw1-8 0=R134a 1=R22",
+      "shortName": "DIP8.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P50",
+       "asciiPageRef": "P48",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 122,
+        "end": 122
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Cold Liquid Pump Contact",
+      "shortName": "CLD LIQ.PMP",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "yorktalk": {
+       "pageRef": "P51",
+       "asciiPageRef": "P49",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 123,
+        "end": 123
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Liquid Pump Contact",
+      "shortName": "HOT LIQ.PMP",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P52",
+       "asciiPageRef": "P50",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 124,
+        "end": 124
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Cold Flow Switch",
+      "shortName": "CLD LIQ.FS",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P53",
+       "asciiPageRef": "P51",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 125,
+        "end": 125
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Flow Switch",
+      "shortName": "HOT LIQ.FS",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P54",
+       "asciiPageRef": "P52",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 126,
+        "end": 126
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooler Condenser Heaters",
+      "shortName": "CLR-CND.HTR",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P55",
+       "asciiPageRef": "P53",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 127,
+        "end": 127
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Sys Mode Code",
+      "shortName": "S1 MODE.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "asciiPageRef": "P54",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 128,
+        "end": 128
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Sys Operational Code",
+      "shortName": "S1 OPER.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "asciiPageRef": "P55",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 129,
+        "end": 129
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Sys Fault Code",
+      "shortName": "S1FAULT.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "asciiPageRef": "P56",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 130,
+        "end": 130
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Capacity Step",
+      "shortName": "S1STAGES.NUM",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Last Mode Code",
+      "shortName": "S1LSTMD.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Sys Fan 1",
+      "shortName": "S1 FAN1",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P61",
+       "asciiPageRef": "P59",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 133,
+        "end": 133
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Sys Fan 2 0=OFF 1=ON 2=REV",
+      "shortName": "S1 FAN2",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P62",
+       "asciiPageRef": "P60",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 134,
+        "end": 134
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Sys Fan 3",
+      "shortName": "S1 FAN3",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P63",
+       "asciiPageRef": "P61",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 135,
+        "end": 135
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "No1 Sys Fan 4 0=OFF 1=ON 2=REV",
+      "shortName": "S1 FAN4",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P64",
+       "asciiPageRef": "P62",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 136,
+        "end": 136
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Capacity Code",
+      "shortName": "CAP CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P65",
+       "asciiPageRef": "P63",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 137,
+        "end": 137
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Pressure Cutout Heatpump",
+      "shortName": "LPC HP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "yorktalk": {
+       "pageRef": "P66",
+       "asciiPageRef": "P64",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 138,
+        "end": 141
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "High Pressure Cutout Cooling",
+      "shortName": "HPC CL",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "yorktalk": {
+       "pageRef": "P67",
+       "asciiPageRef": "P65",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 142,
+        "end": 145
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "High Pressure Cutout Heatpump Heatrec",
+      "shortName": "HPC HP.HR",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "yorktalk": {
+       "pageRef": "P68",
+       "asciiPageRef": "P66",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 146,
+        "end": 149
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "High Pressure Unload Cooling",
+      "shortName": "HPUL CL",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "yorktalk": {
+       "pageRef": "P69",
+       "asciiPageRef": "P67",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 150,
+        "end": 153
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "High Pressure Unload Heatpump Heatrec",
+      "shortName": "HPUL HP.HR",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "yorktalk": {
+       "pageRef": "P70",
+       "asciiPageRef": "P68",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 154,
+        "end": 157
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Current Unload",
+      "shortName": "AMP UNLD",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "yorktalk": {
+       "pageRef": "P71",
+       "asciiPageRef": "P69",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 158,
+        "end": 161
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Fan Control Discharge Pressure",
+      "shortName": "FAN CTRL.DP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "yorktalk": {
+       "pageRef": "P72",
+       "asciiPageRef": "P70",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 162,
+        "end": 165
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Fan ON/OFF Pressure Diff",
+      "shortName": "FAN SS.DP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "yorktalk": {
+       "pageRef": "P73",
+       "asciiPageRef": "P71",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 166,
+        "end": 169
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Pressure Cutout Cooling Heatrec",
+      "shortName": "LPC CL.HR",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "yorktalk": {
+       "pageRef": "P74",
+       "asciiPageRef": "P72",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 170,
+        "end": 173
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "High Discharge Injection Temp",
+      "shortName": "HDSCH ITEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "yorktalk": {
+       "pageRef": "P75",
+       "asciiPageRef": "P73",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 174,
+        "end": 177
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "High Discharge Temp Cutout",
+      "shortName": "HTC DSCHT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "yorktalk": {
+       "pageRef": "P76",
+       "asciiPageRef": "P74",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 178,
+        "end": 181
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Defrost Initiation Temp",
+      "shortName": "DFRST INT.TP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "yorktalk": {
+       "pageRef": "P77",
+       "asciiPageRef": "P75",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 182,
+        "end": 185
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Defrost Initiation Time",
+      "shortName": "DFRST INT.TM",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "yorktalk": {
+       "pageRef": "P78",
+       "asciiPageRef": "P76",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 186,
+        "end": 189
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Defrost Termination Time",
+      "shortName": "DFRST TER.TM",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 43
+      },
+      "yorktalk": {
+       "pageRef": "P79",
+       "asciiPageRef": "P77",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 190,
+        "end": 193
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Load Permissive Cold",
+      "shortName": "LD PERM.COLD",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 25
+      },
+      "yorktalk": {
+       "pageRef": "P80",
+       "asciiPageRef": "P78",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 194,
+        "end": 194
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Load Permissive Hot",
+      "shortName": "LD PERM.HOT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 26
+      },
+      "yorktalk": {
+       "pageRef": "P81",
+       "asciiPageRef": "P79",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 195,
+        "end": 195
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p2"
+     }
+    }
+   ],
+   "revision": {
+    "block": "구간 2"
+   },
+   "sourcePages": [
+    5,
+    6
+   ],
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(1~43)"
+  },
+  {
+   "id": "awhp-airwaterheatpump-p3",
+   "label": "AWHP Air Water Heat Pump E-Link (Rev C) Non-OptiView Based Equipment — 구간 3",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+   "pointCount": 31,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "No2 Suction Pressure",
+      "shortName": "C2SUCT.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 51
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Discharge Pressure",
+      "shortName": "C2DISC.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 52
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "asciiPageRef": "P13",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 24,
+        "end": 27
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Oil Pressure",
+      "shortName": "C2 OIL.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 53
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Air Coil Right Discharge Press",
+      "shortName": "S2 ACRD.PR",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 54
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Air Coil Left Discharge Press EEV Only",
+      "shortName": "S2 ACLD.PR",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 55
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Oil Temp",
+      "shortName": "C2 OIL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 56
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Discharge Temp",
+      "shortName": "C2 DSCH.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 57
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Air Coil Defrost Left Temp",
+      "shortName": "S2 ACDL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 58
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Air Coil Defrost Right Temp",
+      "shortName": "S2 ACDR.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 59
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Air Coil Suction Temp Left EEV Only",
+      "shortName": "S2 ACSL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 60
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Air Coil Suction Temp Right EEV Only",
+      "shortName": "S2 ACSR.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 61
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Compressor Amps",
+      "shortName": "C2 FL.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 62
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 67
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Total Run Hours",
+      "shortName": "C2 RUN.HOURS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 63
+      },
+      "yorktalk": {
+       "pageRef": "P26",
+       "asciiPageRef": "P24",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 68,
+        "end": 71
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Total Number Of Starts",
+      "shortName": "C2 START.CNT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 64
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "asciiPageRef": "P25",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 72,
+        "end": 75
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Run Time In Current Mode",
+      "shortName": "S2 RT.CMODE",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 65
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "asciiPageRef": "P26",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 76,
+        "end": 79
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Run Time In Last Mode",
+      "shortName": "S2 RT.LMODE",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 66
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "asciiPageRef": "P27",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 80,
+        "end": 83
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Time To Defrost",
+      "shortName": "S2 DEFST.TM",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 67
+      },
+      "yorktalk": {
+       "pageRef": "P30",
+       "asciiPageRef": "P28",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 84,
+        "end": 87
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Sys Run",
+      "shortName": "S2 RUN.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 34
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Sys Alarm",
+      "shortName": "S2 ALM.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 35
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 LLC/LLHR Valve Open",
+      "shortName": "S2 LLC-LLHR",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 36
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "asciiPageRef": "P36",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 110,
+        "end": 110
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 LLHP Valve Open",
+      "shortName": "S2 LLHP.VLV",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 37
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "asciiPageRef": "P37",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 111,
+        "end": 111
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 DCVPR Valve Open",
+      "shortName": "S2 DCVPR.VLV",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 38
+      },
+      "yorktalk": {
+       "pageRef": "P40",
+       "asciiPageRef": "P38",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 112,
+        "end": 112
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 LI Valve Open",
+      "shortName": "S2 LI.VLV",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 39
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "asciiPageRef": "P39",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 113,
+        "end": 113
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Sys Operational Code",
+      "shortName": "S2 OPER.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "asciiPageRef": "P55",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 129,
+        "end": 129
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Sys Fault Code",
+      "shortName": "S2FAULT.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "asciiPageRef": "P56",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 130,
+        "end": 130
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Capacity Step",
+      "shortName": "S2STAGES.NUM",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Last Mode Code",
+      "shortName": "S2LSTMD.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Sys Fan 1",
+      "shortName": "S2 FAN1",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P61",
+       "asciiPageRef": "P59",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 133,
+        "end": 133
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Sys Fan 2 0=OFF 1=ON 2=REV",
+      "shortName": "S2 FAN2",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P62",
+       "asciiPageRef": "P60",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 134,
+        "end": 134
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Sys Fan 3",
+      "shortName": "S2 FAN3",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P63",
+       "asciiPageRef": "P61",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 135,
+        "end": 135
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "No2 Sys Fan 4 0=OFF 1=ON 2=REV",
+      "shortName": "S2 FAN4",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P64",
+       "asciiPageRef": "P62",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 136,
+        "end": 136
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AWHP-AirWaterHeatPump.pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "awhp-airwaterheatpump-p3"
+     }
+    }
+   ],
+   "revision": {
+    "block": "구간 3"
+   },
+   "sourcePages": [
+    9,
+    10
+   ],
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(12~67)"
+  }
+ ],
+ "crosscheck": {
+  "unverifiable": "BACnet 타입·인스턴스를 가진 포인트가 0/186 뿐이라 줄 읽기 경로가 짝을 만들 수 없다 (이 문서의 주소 축: n2, yorktalk)"
+ },
+ "tags": [
+  "chiller",
+  "heatPump"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'AWHP Air Water Heat Pump' 의 낱말 (압축 방식·응축 방식)"
+}

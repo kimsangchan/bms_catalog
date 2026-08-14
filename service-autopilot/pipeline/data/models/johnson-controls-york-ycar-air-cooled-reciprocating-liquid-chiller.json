@@ -1,0 +1,3370 @@
+{
+ "id": "johnson-controls-york-ycar-air-cooled-reciprocating-liquid-chiller",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YCAR Air Cooled Reciprocating Liquid Chiller",
+ "name": "YCAR Air Cooled Reciprocating Liquid Chiller",
+ "cat": "HVAC.PLANT.CHILLER.RECIP",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 1건 · 판 2개에서 취입 — 오브젝트 93점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "N2",
+   "E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "York Talk",
+   "E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 2판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+ "interfaces": [
+  {
+   "id": "ycaraircooledrecip-revj-01-p1",
+   "label": "YCAR Air Cooled Reciprocating E-Link (Rev_J_01) Non-OptiView Based Equipment — 구간 1",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+   "pointCount": 59,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Setpoint",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "asciiPageRef": "P01",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "ISN Current Limit",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "asciiPageRef": "P02",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Start / Stop Command",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "asciiPageRef": "P05",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "History Buffer Request",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P10",
+       "asciiPageRef": "P08",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temp",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Chilled Liquid Temp",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "asciiPageRef": "P10",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 12,
+        "end": 15
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Mixed Chilled Liquid Temp",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Suction Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Ambient Air Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Oil Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Oil Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Suction Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Discharge Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 % Full Load Amps",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Total Run Hours",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Total Number of Starts",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Anti-Recycle Timer",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Anti-Coincident Timer",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 67
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Oil Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "yorktalk": {
+       "pageRef": "P26",
+       "asciiPageRef": "P24",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 68,
+        "end": 71
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Oil Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "asciiPageRef": "P25",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 72,
+        "end": 75
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Suction Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "asciiPageRef": "P26",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 76,
+        "end": 79
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Discharge Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "asciiPageRef": "P27",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 80,
+        "end": 83
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2% Full Load Amps",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P30",
+       "asciiPageRef": "P28",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 84,
+        "end": 87
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Total Run Hours",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "yorktalk": {
+       "pageRef": "P31",
+       "asciiPageRef": "P29",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 88,
+        "end": 91
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Total Number of Starts",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "yorktalk": {
+       "pageRef": "P32",
+       "asciiPageRef": "P30",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 92,
+        "end": 95
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Anti-Recycle Timer",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "yorktalk": {
+       "pageRef": "P33",
+       "asciiPageRef": "P31",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 96,
+        "end": 99
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Cooler Inlet Refrigerant Temp (R-407c Drop-in)",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "yorktalk": {
+       "pageRef": "P34",
+       "asciiPageRef": "P32",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 100,
+        "end": 103
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Cooler Inlet Refrigerant Temp (R-407c Drop-in)",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "yorktalk": {
+       "pageRef": "P35",
+       "asciiPageRef": "P33",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 104,
+        "end": 107
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Run",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Alarm",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Heater Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "asciiPageRef": "P36",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 110,
+        "end": 110
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pump Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "asciiPageRef": "P37",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 111,
+        "end": 111
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Liquid Line Solenoid Valve Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P42",
+       "asciiPageRef": "P40",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 114,
+        "end": 114
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Hot Gas Bypass Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P43",
+       "asciiPageRef": "P41",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 115,
+        "end": 115
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Liquid Line Solenoid Valve Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P46",
+       "asciiPageRef": "P44",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 118,
+        "end": 118
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Hot Gas Bypass Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P47",
+       "asciiPageRef": "P45",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 119,
+        "end": 119
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "S1-1 Cooling Type: 0=Water, 1=Glycol",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P50",
+       "asciiPageRef": "P48",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 122,
+        "end": 122
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "S1-2 Ambient Ctrl: 0=Standard, 1=Low Ambient",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "yorktalk": {
+       "pageRef": "P51",
+       "asciiPageRef": "P49",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 123,
+        "end": 123
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "S1-3 Refrigerant Type: 0=R-407c, 1=R-22",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P52",
+       "asciiPageRef": "P50",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 124,
+        "end": 124
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "*Sys 1 Operational Code",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "asciiPageRef": "P54",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 128,
+        "end": 128
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "*Sys 1 Fault Code",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "asciiPageRef": "P55",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 129,
+        "end": 129
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "*Sys 2 Operational Code",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "asciiPageRef": "P56",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 130,
+        "end": 130
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "*Sys 2 Fault Code",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Compressor Load Stage",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Condenser Fan Stages Running (0-6)",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P61",
+       "asciiPageRef": "P59",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 133,
+        "end": 133
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Compressor Load Stage",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P62",
+       "asciiPageRef": "P60",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 134,
+        "end": 134
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Condenser Fan Stages Running (0-6)",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P63",
+       "asciiPageRef": "P61",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 135,
+        "end": 135
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Lead Compressor Number",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P64",
+       "asciiPageRef": "P62",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 136,
+        "end": 136
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Setpoint",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "yorktalk": {
+       "pageRef": "P66",
+       "asciiPageRef": "P64",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 138,
+        "end": 141
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Leaving Chilled Liquid Temp Cutout",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "yorktalk": {
+       "pageRef": "P67",
+       "asciiPageRef": "P65",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 142,
+        "end": 145
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Ambient Temperature Cutout",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "yorktalk": {
+       "pageRef": "P68",
+       "asciiPageRef": "P66",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 146,
+        "end": 149
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "High Ambient Temperature Cutout",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "yorktalk": {
+       "pageRef": "P69",
+       "asciiPageRef": "P67",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 150,
+        "end": 153
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Suction Pressure Cutout",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "yorktalk": {
+       "pageRef": "P70",
+       "asciiPageRef": "P68",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 154,
+        "end": 157
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "High Discharge Pressure Cutout",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "yorktalk": {
+       "pageRef": "P71",
+       "asciiPageRef": "P69",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 158,
+        "end": 161
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Leaving Chilled Liquid Setpoint",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "yorktalk": {
+       "pageRef": "P72",
+       "asciiPageRef": "P70",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 162,
+        "end": 165
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Saturated Suction Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "yorktalk": {
+       "pageRef": "P73",
+       "asciiPageRef": "P71",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 166,
+        "end": 169
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling Range",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "yorktalk": {
+       "pageRef": "P74",
+       "asciiPageRef": "P72",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 170,
+        "end": 173
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Suction Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "yorktalk": {
+       "pageRef": "P76",
+       "asciiPageRef": "P74",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 178,
+        "end": 181
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Saturated Suction Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "yorktalk": {
+       "pageRef": "P78",
+       "asciiPageRef": "P76",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 186,
+        "end": 189
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p1"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev J 01",
+    "block": "구간 1"
+   },
+   "sourcePages": [
+    1,
+    2
+   ],
+   "excluded": {
+    "reserved": 71,
+    "revision": 6,
+    "headerGlitch": 1,
+    "codeTable": 2
+   },
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(1~42)"
+  },
+  {
+   "id": "ycaraircooledrecip-revj-01-p2",
+   "label": "YCAR Air Cooled Reciprocating E-Link (Rev_J_01) Non-OptiView Based Equipment — 구간 2",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+   "pointCount": 34,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Sys 3 Suction Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 51
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Oil Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 54
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Oil Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 55
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Suction Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 56
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Discharge Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 57
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3% Full Load Amps",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 58
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Total Run Hours",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 59
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Total # of Starts",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 60
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Anti-Recycle Timer",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 61
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Oil Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 63
+      },
+      "yorktalk": {
+       "pageRef": "P26",
+       "asciiPageRef": "P24",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 68,
+        "end": 71
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Oil Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 64
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "asciiPageRef": "P25",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 72,
+        "end": 75
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Suction Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 65
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "asciiPageRef": "P26",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 76,
+        "end": 79
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Discharge Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 66
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "asciiPageRef": "P27",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 80,
+        "end": 83
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4% Full Load Amps",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 67
+      },
+      "yorktalk": {
+       "pageRef": "P30",
+       "asciiPageRef": "P28",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 84,
+        "end": 87
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Total Run Hours",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 68
+      },
+      "yorktalk": {
+       "pageRef": "P31",
+       "asciiPageRef": "P29",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 88,
+        "end": 91
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Total # of Starts",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 69
+      },
+      "yorktalk": {
+       "pageRef": "P32",
+       "asciiPageRef": "P30",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 92,
+        "end": 95
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Anti-Recycle Timer",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 70
+      },
+      "yorktalk": {
+       "pageRef": "P33",
+       "asciiPageRef": "P31",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 96,
+        "end": 99
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Cooler Inlet Refrigerant Temp (407c Drop-in)",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 71
+      },
+      "yorktalk": {
+       "pageRef": "P34",
+       "asciiPageRef": "P32",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 100,
+        "end": 103
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Cooler Inlet Refrigerant Temp (407c Drop-in)",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 72
+      },
+      "yorktalk": {
+       "pageRef": "P35",
+       "asciiPageRef": "P33",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 104,
+        "end": 107
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Liquid Line Solenoid Valve Status",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 40
+      },
+      "yorktalk": {
+       "pageRef": "P42",
+       "asciiPageRef": "P40"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "sourceColumns": {
+       "York Talk Character Position": "Position"
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Hot Gas Bypass Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 41
+      },
+      "yorktalk": {
+       "pageRef": "P43",
+       "asciiPageRef": "P41",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 115,
+        "end": 115
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Liquid Line Solenoid Valve Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 44
+      },
+      "yorktalk": {
+       "pageRef": "P46",
+       "asciiPageRef": "P44",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 118,
+        "end": 118
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Hot Gas Bypass Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 45
+      },
+      "yorktalk": {
+       "pageRef": "P47",
+       "asciiPageRef": "P45",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 119,
+        "end": 119
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Operational Code",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "asciiPageRef": "P54",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 128,
+        "end": 128
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Fault Code",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "asciiPageRef": "P55",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 129,
+        "end": 129
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Operational Code",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "asciiPageRef": "P56",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 130,
+        "end": 130
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Fault Code",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Compressor Load Stages",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Condenser Fan Stages Running (0 - 6)",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P61",
+       "asciiPageRef": "P59",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 133,
+        "end": 133
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Compressor Load Stages",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P62",
+       "asciiPageRef": "P60",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 134,
+        "end": 134
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Condenser Fan Stages Running (0 - 6)",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P63",
+       "asciiPageRef": "P61",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 135,
+        "end": 135
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 3 Saturated Suction Temp.",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 80
+      },
+      "yorktalk": {
+       "pageRef": "P73",
+       "asciiPageRef": "P71",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 166,
+        "end": 169
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Suction Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 83
+      },
+      "yorktalk": {
+       "pageRef": "P76",
+       "asciiPageRef": "P74",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 178,
+        "end": 181
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 4 Saturated Suction Temp.",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 85
+      },
+      "yorktalk": {
+       "pageRef": "P78",
+       "asciiPageRef": "P76",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 186,
+        "end": 189
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YCARAirCooledRecip(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ycaraircooledrecip-revj-01-p2"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev J 01",
+    "block": "구간 2"
+   },
+   "sourcePages": [
+    5,
+    6
+   ],
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(11~85)"
+  }
+ ],
+ "crosscheck": {
+  "unverifiable": "BACnet 타입·인스턴스를 가진 포인트가 0/93 뿐이라 줄 읽기 경로가 짝을 만들 수 없다 (이 문서의 주소 축: n2, yorktalk)"
+ },
+ "tags": [
+  "chiller",
+  "chiller-reciprocal",
+  "airCooling"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'YCAR Air Cooled Reciprocating Liquid Chiller' 의 낱말 (압축 방식·응축 방식)"
+}

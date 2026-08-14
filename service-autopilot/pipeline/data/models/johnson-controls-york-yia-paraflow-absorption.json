@@ -1,0 +1,1432 @@
+{
+ "id": "johnson-controls-york-yia-paraflow-absorption",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YIA ParaFlow Absorption",
+ "name": "YIA ParaFlow Absorption",
+ "cat": "HVAC.PLANT.CHILLER.ABSORPTION",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 1건 · 판 1개에서 취입 — 오브젝트 34점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "LON",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "Modbus",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "N2",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+ "interfaces": [
+  {
+   "id": "yia-bas-sc-eq-rev1-1",
+   "label": "YIA Points List SC-EQ (Rev 1.1) OptiView Based Equipment",
+   "family": "SC-EQ",
+   "protocols": [
+    "bacnet",
+    "lon",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+   "pointCount": 34,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Remote Leaving Chilled Liquid Setpoint",
+      "shortName": "REM LEAVING CHW TEMP SP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviCoolSetPt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Load Limit Setpoint",
+      "shortName": "REM LOAD LIMIT SP",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviCapacityLimit",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTlevpercent"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Run/Stop [0=Stop, 1=Run]",
+      "shortName": "REM RUN STOP CMD",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviChillerEnable",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temperature",
+      "shortName": "LEAVING CHW TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLvgCHWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Chilled Water Temperature",
+      "shortName": "ENTERING CHW TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 6,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEntCHWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Generator Shell Pressure",
+      "shortName": "GENERATOR PRESSURE",
+      "unitIP": "mmHg",
+      "unitSI": "mmHg"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoShellPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTpress"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Water Temperature",
+      "shortName": "LEAVING COND WATER TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 10,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLvgCondWtrTmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Condenser Water Temperature",
+      "shortName": "ENTERING COND WATER TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoRtnCondWtrTmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Automatic Decrystallization Temperature",
+      "shortName": "AUTO DECRYSTLZATION TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoAutoDecrysTmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Refrigerant Temperature Leaving the Condenser",
+      "shortName": "REFRIG TEMP LEAVING COND",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoRefTmpLvCond",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Steam / Hot Water Supply Temperature",
+      "shortName": "STEAM HOT WATER SUP TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoStmHWSupTmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Steam Supply Pressure (steam units only)",
+      "shortName": "STEAM SUPPLY PRESSURE",
+      "unitIP": "PSIA",
+      "unitSI": "kPaA"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoStmHWSupPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTpress"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Steam / Hot Water Actuator Valve Position",
+      "shortName": "STEAM HT WTR ACT VLV POS",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 16,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoStmHWActPos",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTlevpercent"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Purge Pump Service Interval Setpoint - Hours",
+      "shortName": "PURGE PMP SERV INTRVL SP",
+      "unitIP": "Hr",
+      "unitSI": "Hr"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoPurgPmpSrvInt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtimehour"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Leaving Chilled Water Setpoint",
+      "shortName": "LEAVING CHW TEMP ACT SP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 19,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoActiveSetpt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Refrigerant Temperature",
+      "shortName": "REFRIGERANT TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 21,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoRefrigTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Strong Solution Temperature",
+      "shortName": "STRONG SOLUTION TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 22,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoStrongSoluTmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtempp"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Strong Solution Concentation %",
+      "shortName": "STRONG SOLUTION CONC",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 23,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoStrongSoluCon",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTlevpercent"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Total Operating Hours",
+      "shortName": "ACCUM OPERATING HOURS",
+      "unitIP": "Hr",
+      "unitSI": "Hr"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 26,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoUnitOpHrs",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTtimehour"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Refrigerant Pump Motor Status [0=Off, 1=On]",
+      "shortName": "REFRIG MOTOR STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoRefrigMotStat",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Water Pump Status [0=Off, 1=On]",
+      "shortName": "COND MOTOR STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 66,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCondMotStat",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Water Pump Status [0=Off, 1=On]",
+      "shortName": "CHW PUMP STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCHWPump",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Solution / Absorber Pump Motor Status [0=Off, 1=On]",
+      "shortName": "SOLU ABSORB PMP MTR STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "modbus": {
+       "address": 70,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoSoluAbsMotSta",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Purge Pump Motor Status [0=Off, 1=On]",
+      "shortName": "PURGE PMP MTR STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "modbus": {
+       "address": 72,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoPurgMotStat",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Refrigerant Stabilizer Solenoid Valve Status [0=Off, 1=On]",
+      "shortName": "REFRIG STAB SOL VLV STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "modbus": {
+       "address": 74,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoRefrStabVlSta",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Refrigerant Level Float Switch Status [0=Open, 1=Closed]",
+      "shortName": "REFRIG LVL FLO SW STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "modbus": {
+       "address": 77,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoRefrLvlFltSta",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVTswitch"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Operational Code",
+      "shortName": "OPERATIONAL CODE",
+      "statesRef": "See SC.1 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 30,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoOperCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1",
+       "LON SNVT Type": "SNVTcount"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Shutdown Code",
+      "shortName": "SAFETY SHUTDOWN CODE",
+      "statesRef": "See SC.2 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoSafetyCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2",
+       "LON SNVT Type": "SNVTcount"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cycling Shutdown Code",
+      "shortName": "CYCLING SHUTDOWN CODE",
+      "statesRef": "See SC.3 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 32,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCyclingFault",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3",
+       "LON SNVT Type": "SNVTcount"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Warning Message Code",
+      "shortName": "WARNING MESSAGE CODE",
+      "statesRef": "See SC.4 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 33,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoWarnFault",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4",
+       "LON SNVT Type": "SNVTcount"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Control Source [0=Local, 1=ISN (BAS), 2=Analog, 3=Digital",
+      "shortName": "UNIT CONTROL SOURCE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "ISN"
+       },
+       {
+        "code": "2",
+        "label": "Analog"
+       },
+       {
+        "code": "3",
+        "label": "Digital"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "modbus": {
+       "address": 34,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoUnitConSource",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV5",
+       "LON SNVT Type": "SNVTcount"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Control Status Code",
+      "shortName": "UNIT CONTROL STATUS CODE",
+      "statesRef": "See SC.12 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "modbus": {
+       "address": 35,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoUnitConStat",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV6",
+       "LON SNVT Type": "SNVTcount"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Inhibit Fault Code",
+      "shortName": "UNIT INHIBIT FAULT CODE",
+      "statesRef": "See SC.13 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "modbus": {
+       "address": 36,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoUnitInhibFlt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV7",
+       "LON SNVT Type": "SNVTcount"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Internal Fault Code",
+      "shortName": "UNIT INTERNAL FAULT CODE",
+      "statesRef": "See SC.14 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 8
+      },
+      "modbus": {
+       "address": 37,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoUnitInternFlt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV8",
+       "LON SNVT Type": "SNVTcount"
+      },
+      "interfaceId": "yia-bas-sc-eq-rev1-1"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev 1.1"
+   },
+   "sourcePages": [
+    1,
+    1
+   ],
+   "excluded": {
+    "reserved": 27
+   }
+  }
+ ],
+ "crosscheck": {
+  "fam": "lontalk",
+  "segments": 1,
+  "table": 34,
+  "raw": 0,
+  "both": 0,
+  "same": 0,
+  "diff": [],
+  "rate": 0.0,
+  "verified": {}
+ },
+ "tags": [
+  "chiller",
+  "chiller-absorption"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'YIA ParaFlow Absorption' 의 낱말 (압축 방식·응축 방식)"
+}

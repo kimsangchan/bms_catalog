@@ -1,0 +1,7722 @@
+{
+ "id": "johnson-controls-york-yvwa-variable-speed-screw-chiller",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YVWA Variable Speed Screw Chiller",
+ "name": "YVWA Variable Speed Screw Chiller",
+ "cat": "HVAC.PLANT.CHILLER.SCREW",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 2건 · 판 2개에서 취입 — 오브젝트 168점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "E-Link/BACnet(Typ-Ins) · SC-EQ",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "LON",
+   "E-Link/BACnet(Typ-Ins) · SC-EQ",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "Modbus",
+   "E-Link/BACnet(Typ-Ins) · SC-EQ",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "N2",
+   "E-Link/BACnet(Typ-Ins) · SC-EQ",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "York Talk",
+   "E-Link/BACnet(Typ-Ins)",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+ "interfaces": [
+  {
+   "id": "yvwa-bas-sc-eq-rev2-1",
+   "label": "YVWA BAS SC-EQ (Rev 2.1)​ Non-OptiView Based Equipment",
+   "family": "SC-EQ",
+   "protocols": [
+    "bacnet",
+    "lon",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+   "pointCount": 80,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Read/Write Points"
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Chilled Liquid Setpoint",
+      "shortName": "REM CHILLED LIQ SETPOINT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviCoolSetPt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Current Limit Setpoint",
+      "shortName": "REM CURRENT LIMIT SETP",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviCapacityLimit",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Heating Setpoint",
+      "shortName": "REM HEATING SETPOINT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 4
+      },
+      "modbus": {
+       "address": 4,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviHeatSetPt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Start / Stop Command [0=Stop, 1=Run]",
+      "shortName": "REM START STOP CMD",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviChillerEnable",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Operating Mode [0=Chiller, 1=Heatpump]",
+      "shortName": "REM OPERATING MODE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Chiller"
+       },
+       {
+        "code": "1",
+        "label": "Heatpump"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 3
+      },
+      "modbus": {
+       "address": 63,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviOperatingMode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "History Buffer 1 Request [0=Live Data, 1=History 1 Data]",
+      "shortName": "HISTORY REQUEST",
+      "states": [
+       {
+        "code": "0",
+        "label": "Live Data"
+       },
+       {
+        "code": "1",
+        "label": "History 1 Data"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 4
+      },
+      "modbus": {
+       "address": 64,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviHistRequest",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Read Points"
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temp",
+      "shortName": "LEAVING CHILLED LIQ TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLvgCHWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Chilled Liquid Temp",
+      "shortName": "ENTERING CHILLED LIQ TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 6,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEntCHWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Internal Ambient Temp",
+      "shortName": "VSD INT AMBIENT TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDInternalT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Liquid Temp",
+      "shortName": "LEAVING COND LIQ TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 8,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLvgCNDTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Discharge Temperature",
+      "shortName": "SYS 1 DISCH TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1DischTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Condenser Liquid Temp",
+      "shortName": "ENTERING COND LIQ TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEntCNDTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Oil Pressure",
+      "shortName": "SYS 1 OIL PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1OilPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Evaporator Pressure",
+      "shortName": "SYS 1 EVAP PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1EvapPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Discharge Pressure",
+      "shortName": "SYS 1 DISCH PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1DischPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Compressor % Full Load Amps",
+      "shortName": "SYS 1 COMP PCT FLA",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1CompPctFLA",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Total Run Hours",
+      "shortName": "SYS 1 HOURS",
+      "unitIP": "Hr",
+      "unitSI": "Hr"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 16,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1RunHours",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_time_hour"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Total Number of Starts",
+      "shortName": "SYS 1 STARTS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1SysStarts",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Highest Motor Temp",
+      "shortName": "SYS 1 HIGHEST MOTOR TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1MtrTempHi",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Highest Motor Temp",
+      "shortName": "SYS 2 HIGHEST MOTOR TEMP",
+      "availability": "If two compressor unit",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 19,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2MtrTempHi",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Economizer Temperature",
+      "shortName": "SYS 1 ECON TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 20,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEconTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Oil Pressure",
+      "shortName": "SYS 2 OIL PRESS",
+      "availability": "If two compressor unit",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 21,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2OilPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Evaporator Pressure",
+      "shortName": "SYS 2 EVAP PRESS",
+      "availability": "If two compressor unit",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 22,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2EvapPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Discharge Pressure",
+      "shortName": "SYS 2 DISCH PRESS",
+      "availability": "If two compressor unit",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 23,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2DischPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Compressor % Full Load Amps",
+      "shortName": "SYS 2 COMP PCT FLA",
+      "availability": "If two compressor unit",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 24
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 24,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2CompPctFLA",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Total Run Hours",
+      "shortName": "SYS 2 HOURS",
+      "availability": "If two compressor unit",
+      "unitIP": "Hr",
+      "unitSI": "Hr"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 25
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 25,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2RunHours",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_time_hour"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Total Number of Starts",
+      "shortName": "SYS 2 STARTS",
+      "availability": "If two compressor unit"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 26,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2SysStarts",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Output Frequency",
+      "shortName": "VSD OUTPUT FREQUENCY",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 27,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDOutFreq",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_freq_hz"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Condenser Level Control Valve % Open",
+      "shortName": "SYS 1 COND LEVEL VALVE PCT",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 28
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 28,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1CNDLvlVCmd",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Condenser Level Control Valve % Open",
+      "shortName": "SYS 2 COND LEVEL VALVE PCT",
+      "availability": "If two compressor unit",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 29
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "modbus": {
+       "address": 29,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2CNDLvlVCmd",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Run",
+      "shortName": "CHILLER RUN",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoChillerRun",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Alarm [0=No Alarm,1 = Alarm]",
+      "shortName": "CHILLER ALARM",
+      "note": "0=No Alarm, 1=Alarm Active",
+      "states": [
+       {
+        "code": "0",
+        "label": "No Alarm"
+       },
+       {
+        "code": "1",
+        "label": "Alarm Active"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 66,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoChillerAlarm",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Aux Coolant Pump",
+      "shortName": "VSD AUX COOLANT PUMP",
+      "availability": "If coolant aux pump control is Enabled",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDAuxCoolPmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator/Condenser Pump Status",
+      "shortName": "EVAP COND PUMP STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "modbus": {
+       "address": 68,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapCNDPump",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Compressor Run Status",
+      "shortName": "SYS 1 COMP RUN STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "modbus": {
+       "address": 69,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1CompRun",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Compressor Run Status",
+      "shortName": "SYS 2 COMP RUN STATUS",
+      "availability": "If two compressor unit",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "modbus": {
+       "address": 70,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2CompRun",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 VI Step Solenoid Valve 1 Status",
+      "shortName": "SYS 1 VI STEP SOL VALVE 1 STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "modbus": {
+       "address": 71,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1VIStepSol1",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 VI Step Solenoid Valve 1 Status",
+      "shortName": "SYS 2 VI STEP SOL VALVE 1 STATUS",
+      "availability": "If two compressor unit",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "modbus": {
+       "address": 72,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2VIStepSol1",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 VI Step Solenoid Valve 2 Status",
+      "shortName": "SYS 1 VI STEP SOL VALVE 2 STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "modbus": {
+       "address": 73,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1VIStepSol2",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 VI Step Solenoid Valve 2 Status",
+      "shortName": "SYS 2 VI STEP SOL VALVE 2 STATUS",
+      "availability": "If two compressor unit",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "modbus": {
+       "address": 74,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2VIStepSol2",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Oil Level Switch Status",
+      "shortName": "SYS 1 OIL LEVEL SWITCH STATUS",
+      "availability": "If oil level option is Enabled",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "modbus": {
+       "address": 75,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1OilLvlSwtch",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Oil Level Switch Status",
+      "shortName": "SYS 2 OIL LEVEL SWITCH STATUS",
+      "availability": "If oil level option is Enabled and two compressor unit",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 16
+      },
+      "modbus": {
+       "address": 76,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2OilLvlSwtch",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Liquid Refrigerant Injection Valve Status",
+      "shortName": "SYS 1 LIQ REF INJ VALVE STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "modbus": {
+       "address": 77,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1LiqRefInjV",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Liquid Refrigerant Injection Valve Status",
+      "shortName": "SYS 2 LIQ REF INJ VALVE STATUS",
+      "availability": "If two compressor unit",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 18
+      },
+      "modbus": {
+       "address": 78,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2LiqRefInjV",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling Type [0=Water, 1=Glycol]",
+      "shortName": "COOLING TYPE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Water"
+       },
+       {
+        "code": "1",
+        "label": "Glycol"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "modbus": {
+       "address": 79,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCoolingType",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Local Remote Control Mode [0=Local,1=Remote]",
+      "shortName": "LOCAL REMOTE CONTROL MODE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "Remote"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "modbus": {
+       "address": 80,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLocRemCtrlMde",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Display Units [0=Imperial,1=SI]",
+      "shortName": "DISPLAY UNITS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Imperial"
+       },
+       {
+        "code": "1",
+        "label": "SI"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 21
+      },
+      "modbus": {
+       "address": 81,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoDisplayUnits",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Hot Gas Bypass Valve Status",
+      "shortName": "SYS 1 HOT GAS BYPASS VALVE STA",
+      "note": "TIf hot gas option is Enabled",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 22
+      },
+      "modbus": {
+       "address": 82,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1HtGasBypVlv",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Hot Gas Bypass Valve Status",
+      "shortName": "SYS 2 HOT GAS BYPASS VALVE STA",
+      "availability": "If hot gas option is Enabled and two compressor Tunit",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 23
+      },
+      "modbus": {
+       "address": 83,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2HtGasBypVlv",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Heatpump [0=No, 1=Yes]",
+      "shortName": "HEATPUMP",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "1",
+        "label": "Yes"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 24
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 24
+      },
+      "modbus": {
+       "address": 84,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoHeatpump",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Operational Code",
+      "shortName": "SYS 1 OPERATIONAL CODE",
+      "statesRef": "See Status Codes Tab (Op Code)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Operational Code AV",
+      "shortName": "SYS 1 OPERATIONAL CODE AV",
+      "statesRef": "See Status Codes Tab (Op Code)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 501
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 30,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1OperCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Fault Code",
+      "shortName": "SYS 1 FAULT CODE",
+      "availability": "If two compressor unit",
+      "statesRef": "See Status Codes Tab (2 Comp Fault Code)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Fault Code AV",
+      "shortName": "SYS 1 FAULT CODE AV",
+      "availability": "If two compressor unit",
+      "statesRef": "See Status Codes Tab (2 Comp Fault Code)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 502
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1FaultCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Code",
+      "shortName": "FAULT CODE",
+      "availability": "If one compressor unit",
+      "statesRef": "See Status Codes Tab (1 Comp Fault Code)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Code AV",
+      "shortName": "FAULT CODE AV",
+      "availability": "If one compressor unit",
+      "statesRef": "See Status Codes Tab (1 Comp Fault Code)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 502
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoFaultCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Operational Code",
+      "shortName": "SYS 2 OPERATIONAL CODE",
+      "availability": "If two compressor unit",
+      "statesRef": "See Status Codes Tab (Op Code)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Operational Code AV",
+      "shortName": "SYS 2 OPERATIONAL CODE AV",
+      "availability": "If two compressor unit",
+      "statesRef": "See Status Codes Tab (Op Code)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 503
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 32,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2OperCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Fault Code",
+      "shortName": "SYS 2 FAULT CODE",
+      "availability": "If two compressor unit",
+      "statesRef": "See Status Codes Tab (2 Comp Fault Code)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Fault Code AV",
+      "shortName": "SYS 2 FAULT CODE AV",
+      "availability": "If two compressor unit",
+      "statesRef": "See Status Codes Tab (2 Comp Fault Code)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 504
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 33,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2FaultCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Lead System Number",
+      "shortName": "LEAD SYSTEM NUMBER"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 409
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 9
+      },
+      "modbus": {
+       "address": 38,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLeadSysNumber",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Local Leaving Chilled/Condenser Liquid Setpoint",
+      "shortName": "LOCAL LVG CHILL COND LIQ SETP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 30
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "modbus": {
+       "address": 40,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLocLCHWTSetp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Leaving Chilled/Condenser Liquid Temp Cutout",
+      "shortName": "LOW LEAVING CHILL COND LIQ CUT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 31
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "modbus": {
+       "address": 41,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLoLCHWTCut",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Economizer Valve % Open",
+      "shortName": "SYS 1 ECON VALVE PCT",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 32
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "modbus": {
+       "address": 42,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1EconVlvPct",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Economizer Valve % Open",
+      "shortName": "SYS 2 ECON VALVE PCT",
+      "availability": "If two compressor unit",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 33
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "modbus": {
+       "address": 43,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2EconVlvPct",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Economizer Temperature",
+      "shortName": "SYS 2 ECON TEMP",
+      "availability": "If two compressor unit",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 34
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "modbus": {
+       "address": 44,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2EconTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD DC Bus Voltage",
+      "shortName": "VSD DC BUS VOLT",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 35
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "modbus": {
+       "address": 45,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDDCBusVolt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_volt"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Leaving Chilled/Condenser Liquid Setpoint",
+      "shortName": "REM LVG CHILL COND LIQ SETP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 36
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "modbus": {
+       "address": 46,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoRemLCHWTSetp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Subcooled Liquid Refrigerant Temperature",
+      "shortName": "SYS 1 SUBCOOLED LIQ REF TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 37
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "modbus": {
+       "address": 47,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1SubcoolingT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling/Heating Range",
+      "shortName": "COOLING HEATING RANGE",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 38
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "modbus": {
+       "address": 48,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCoolHeatRange",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Economizer Pressure",
+      "shortName": "SYS 1 ECON PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 39
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "modbus": {
+       "address": 49,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1EconPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Economizer Pressure",
+      "shortName": "SYS 2 ECON PRESS",
+      "availability": "If two compressor unit",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 40
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "modbus": {
+       "address": 50,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2EconPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Discharge Temperature",
+      "shortName": "SYS 2 DISCH TEMP",
+      "availability": "If two compressor unit",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 41
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "modbus": {
+       "address": 51,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2DischTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Subcooled Liquid Refrigerant Temperature",
+      "shortName": "SYS 2 SUBCOOLED LIQ REF TEMP",
+      "availability": "If two compressor unit",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 42
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "modbus": {
+       "address": 52,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2SubcoolingT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Lockout",
+      "shortName": "SYS 1 LOCKOUT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 25
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 25
+      },
+      "modbus": {
+       "address": 85,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1Lockout",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Lockout",
+      "shortName": "SYS 2 LOCKOUT",
+      "availability": "If two compressor unit",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 26
+      },
+      "modbus": {
+       "address": 86,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2Lockout",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Economizer Drain Solenoid Valve",
+      "shortName": "SYS 1 ECON DRAIN VALVE",
+      "availability": "If compressor type is CTS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 27
+      },
+      "modbus": {
+       "address": 87,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1EconDrnVlv",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Economizer Drain Solenoid Valve",
+      "shortName": "SYS 2 ECON DRAIN VALVE",
+      "availability": "If compressor type is CTS and two compressor unit",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 28
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 28
+      },
+      "modbus": {
+       "address": 88,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2EconDrnVlv",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvwa-bas-sc-eq-rev2-1"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev 2.1"
+   },
+   "sourcePages": [
+    1,
+    2
+   ],
+   "excluded": {
+    "reserved": 10
+   }
+  },
+  {
+   "id": "yvwa-bas",
+   "label": "YVWA BAS E-Link Non-OptiView Based Equipment",
+   "family": "E-Link/BACnet(Typ-Ins)",
+   "protocols": [
+    "bacnet",
+    "lon",
+    "modbus",
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_YVWA-BAS.pdf",
+   "pointCount": 88,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Remote Chilled Liquid Setpoint",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "lon": {
+       "nvName": "nviYTS01p003",
+       "direction": "nvi",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "coord": "YT2 S01 P03"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0001"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Current Limit Setpoint",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "lon": {
+       "nvName": "nviYTS01p004",
+       "direction": "nvi",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "coord": "YT2 S01 P04"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0002"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Heating Setpoint",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 4
+      },
+      "modbus": {
+       "address": 4,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "lon": {
+       "nvName": "nviYTS01p006",
+       "direction": "nvi",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P06",
+       "coord": "YT2 S01 P06"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0004"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Start/Stop Command",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nviYTS01p007",
+       "direction": "nvi",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "coord": "YT2 S01 P07"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0061"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Operating Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Chiller"
+       },
+       {
+        "code": "1",
+        "label": "Heatpump"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 3
+      },
+      "modbus": {
+       "address": 63,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nviYTS01p009",
+       "direction": "nvi",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P09",
+       "coord": "YT2 S01 P09"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0063"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "History Buffer 1 Request",
+      "states": [
+       {
+        "code": "0",
+        "label": "Live Data"
+       },
+       {
+        "code": "1",
+        "label": "History 1 Data"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 4
+      },
+      "modbus": {
+       "address": 64,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nviYTS01p010",
+       "direction": "nvi",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P10",
+       "coord": "YT2 S01 P10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0064"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p011",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "coord": "YT2 S01 P11"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0005"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Chilled Liquid Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 6,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p012",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "coord": "YT2 S01 P12"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0006"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Internal Ambient Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p013",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "coord": "YT2 S01 P13"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0007"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Liquid Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 8,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p014",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "coord": "YT2 S01 P14"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0008"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Discharge Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p015",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "coord": "YT2 S01 P15"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0009"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Condenser Liquid Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p017",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "coord": "YT2 S01 P17"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0011"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Oil Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p018",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "coord": "YT2 S01 P18"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0012"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Evaporator Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p019",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "coord": "YT2 S01 P19"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0013"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Discharge Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p020",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "coord": "YT2 S01 P20"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0014"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Compressor % Full Load Amps",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p021",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "coord": "YT2 S01 P21"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0015"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Total Run Hours",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 16,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p022",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "coord": "YT2 S01 P22"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0016"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Total Number of Starts",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p023",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "coord": "YT2 S01 P23"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0017"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Highest Motor Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p024",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "coord": "YT2 S01 P24"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0018"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Highest Motor Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 19,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p025",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "coord": "YT2 S01 P25"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0019"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Economizer Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 20,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p026",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P26",
+       "coord": "YT2 S01 P26"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0020"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Oil Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 21,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p027",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "coord": "YT2 S01 P27"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0021"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Evaporator Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 22,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p028",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "coord": "YT2 S01 P28"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0022"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Discharge Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 23,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p029",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "coord": "YT2 S01 P29"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0023"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Compressor % Full Load Amps",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 24
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 24,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p030",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P30",
+       "coord": "YT2 S01 P30"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0024"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Total Run Hours",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 25
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 25,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p031",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P31",
+       "coord": "YT2 S01 P31"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0025"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Total Number of Starts",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 26,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p032",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P32",
+       "coord": "YT2 S01 P32"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0026"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Output Frequency",
+      "unitIPRaw": "Hz",
+      "unitIP": "Hz",
+      "unitSIRaw": "Hz",
+      "unitSI": "Hz",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 27,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p033",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P33",
+       "coord": "YT2 S01 P33"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0027"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Condenser Level Control Valve % Open",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 28
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 28,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p034",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P34",
+       "coord": "YT2 S01 P34"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0028"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Condenser Level Control Valve % Open",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 29
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "modbus": {
+       "address": 29,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p035",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P35",
+       "coord": "YT2 S01 P35"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0029"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Run",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p036",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "coord": "YT2 S01 P36"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0065"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Alarm",
+      "states": [
+       {
+        "code": "0",
+        "label": "No Alarm"
+       },
+       {
+        "code": "1",
+        "label": "Alarm"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 66,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p037",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "coord": "YT2 S01 P37"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0066"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Aux Coolant Pump",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p038",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "coord": "YT2 S01 P38"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0067"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator/Condenser Pump Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "modbus": {
+       "address": 68,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p039",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "coord": "YT2 S01 P39"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0068"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Compressor Run Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "modbus": {
+       "address": 69,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p040",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P40",
+       "coord": "YT2 S01 P40"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0069"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Compressor Run Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "modbus": {
+       "address": 70,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p041",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "coord": "YT2 S01 P41"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0070"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 VI Step Solenoid Valve 1 Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "modbus": {
+       "address": 71,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p042",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P42",
+       "coord": "YT2 S01 P42"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0071"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 VI Step Solenoid Valve 1 Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "modbus": {
+       "address": 72,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p043",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P43",
+       "coord": "YT2 S01 P43"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0072"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 VI Step Solenoid Valve 2 Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "modbus": {
+       "address": 73,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p044",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P44",
+       "coord": "YT2 S01 P44"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0073"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 VI Step Solenoid Valve 2 Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "modbus": {
+       "address": 74,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p045",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P45",
+       "coord": "YT2 S01 P45"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0074"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Oil Level Switch Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "modbus": {
+       "address": 75,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p046",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P46",
+       "coord": "YT2 S01 P46"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0075"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Oil Level Switch Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 16
+      },
+      "modbus": {
+       "address": 76,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p047",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P47",
+       "coord": "YT2 S01 P47"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0076"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Liquid Refrigerant Injection Valve Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "modbus": {
+       "address": 77,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p048",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P48",
+       "coord": "YT2 S01 P48"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0077"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Liquid Refrigerant Injection Valve Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 18
+      },
+      "modbus": {
+       "address": 78,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p049",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P49",
+       "coord": "YT2 S01 P49"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0078"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling Type",
+      "states": [
+       {
+        "code": "0",
+        "label": "Water"
+       },
+       {
+        "code": "1",
+        "label": "Glycol"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "modbus": {
+       "address": 79,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p050",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P50",
+       "coord": "YT2 S01 P50"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0079"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Local Remote Control Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "Remote"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "modbus": {
+       "address": 80,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p051",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P51",
+       "coord": "YT2 S01 P51"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0080"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Display Units",
+      "states": [
+       {
+        "code": "0",
+        "label": "Imperial"
+       },
+       {
+        "code": "1",
+        "label": "SI"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 21
+      },
+      "modbus": {
+       "address": 81,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p052",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P52",
+       "coord": "YT2 S01 P52"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0081"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Hot Gas Bypass Valve Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 22
+      },
+      "modbus": {
+       "address": 82,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p053",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P53",
+       "coord": "YT2 S01 P53"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0082"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Hot Gas Bypass Valve Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 23
+      },
+      "modbus": {
+       "address": 83,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p054",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P54",
+       "coord": "YT2 S01 P54"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0083"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Heatpump",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "1",
+        "label": "Yes"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 24
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 24
+      },
+      "modbus": {
+       "address": 84,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p055",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P55",
+       "coord": "YT2 S01 P55"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0084"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Operational Code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 30,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p056",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "coord": "YT2 S01 P56"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1",
+       "MODBUS Address": "0030"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Fault Code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p057",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "coord": "YT2 S01 P57"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2",
+       "MODBUS Address": "0031"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Operational Code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 32,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p058",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "coord": "YT2 S01 P58"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3",
+       "MODBUS Address": "0032"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Fault Code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 33,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p059",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "coord": "YT2 S01 P59"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4",
+       "MODBUS Address": "0033"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Lead System Number",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 9
+      },
+      "modbus": {
+       "address": 38,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p064",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P64",
+       "coord": "YT2 S01 P64"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV9",
+       "MODBUS Address": "0038"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Local Leaving Chilled/Condenser Liquid Setpoint",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 30
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 11
+      },
+      "modbus": {
+       "address": 40,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p066",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P66",
+       "coord": "YT2 S01 P66"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0040"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Leaving Chilled/Condenser Liquid Temp Cutout",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 31
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 12
+      },
+      "modbus": {
+       "address": 41,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p067",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P67",
+       "coord": "YT2 S01 P67"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0041"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Economizer Valve % Open",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 32
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 13
+      },
+      "modbus": {
+       "address": 42,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p068",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P68",
+       "coord": "YT2 S01 P68"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0042"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Economizer Valve % Open",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 33
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 14
+      },
+      "modbus": {
+       "address": 43,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p069",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P69",
+       "coord": "YT2 S01 P69"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0043"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Economizer Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 34
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 15
+      },
+      "modbus": {
+       "address": 44,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p070",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P70",
+       "coord": "YT2 S01 P70"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0044"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD DC Bus Voltage",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 35
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 16
+      },
+      "modbus": {
+       "address": 45,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p071",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P71",
+       "coord": "YT2 S01 P71"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0045"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Leaving Chilled/Condenser Liquid Setpoint",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 36
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 17
+      },
+      "modbus": {
+       "address": 46,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p072",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P72",
+       "coord": "YT2 S01 P72"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0046"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Drop Leg Refrigerant Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=O,3=O,4=O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 37
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 18
+      },
+      "modbus": {
+       "address": 47,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p073",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P73",
+       "coord": "YT2 S01 P73"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0047"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling/Heating Range",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 38
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 19
+      },
+      "modbus": {
+       "address": 48,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p074",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P74",
+       "coord": "YT2 S01 P74"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0048"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Economizer Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 39
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 20
+      },
+      "modbus": {
+       "address": 49,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p075",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P75",
+       "coord": "YT2 S01 P75"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0049"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Economizer Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 40
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 21
+      },
+      "modbus": {
+       "address": 50,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p076",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P76",
+       "coord": "YT2 S01 P76"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0050"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Discharge Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 41
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 22
+      },
+      "modbus": {
+       "address": 51,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p077",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P77",
+       "coord": "YT2 S01 P77"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0051"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Drop Leg Refrigerant Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=O,3=O,4=O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 42
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 23
+      },
+      "modbus": {
+       "address": 52,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p078",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P78",
+       "coord": "YT2 S01 P78"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0052"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Lockout",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 25
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 25
+      },
+      "modbus": {
+       "address": 85,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p080",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P80",
+       "coord": "YT2 S01 P80"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0085"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Lockout",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 26
+      },
+      "modbus": {
+       "address": 86,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p081",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P81",
+       "coord": "YT2 S01 P81"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0086"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Economizer Drain Solenoid Valve",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 27
+      },
+      "modbus": {
+       "address": 87,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p082",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P82",
+       "coord": "YT2 S01 P82"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0087"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Economizer Drain Solenoid Valve",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 28
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 28
+      },
+      "modbus": {
+       "address": 88,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p083",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P83",
+       "coord": "YT2 S01 P83"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0088"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Available",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 29
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 29
+      },
+      "modbus": {
+       "address": 89,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p084",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P84",
+       "coord": "YT2 S01 P84"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "York Talk 2 (eLink) Board: 031-02478, 031-03478"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0089"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Head Pressure Valve Command (HPC enabled)",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=N,2=N,3=N,4=O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 105
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 48
+      },
+      "modbus": {
+       "address": 105,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p011",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "coord": "YT2 S02 P11"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0105"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Head Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=N,2=N,3=N,4=O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 106
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 49
+      },
+      "modbus": {
+       "address": 106,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p012",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "coord": "YT2 S02 P12"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0106"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Head Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=N,2=N,3=N,4=O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 107
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 50
+      },
+      "modbus": {
+       "address": 107,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p013",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "coord": "YT2 S02 P13"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0107"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Option Indicator",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 105
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 34
+      },
+      "modbus": {
+       "address": 165,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p036",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "coord": "YT2 S02 P36"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0165"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Aux Coolant Pump Option",
+      "states": [
+       {
+        "code": "0",
+        "label": "Disabled"
+       },
+       {
+        "code": "1",
+        "label": "Enabled"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 115
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 44
+      },
+      "modbus": {
+       "address": 175,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p046",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P46",
+       "coord": "YT2 S02 P46"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0175"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Level Option",
+      "states": [
+       {
+        "code": "0",
+        "label": "Disabled"
+       },
+       {
+        "code": "1",
+        "label": "Enabled"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 116
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 45
+      },
+      "modbus": {
+       "address": 176,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p047",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P47",
+       "coord": "YT2 S02 P47"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0176"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Gas Bypass Option",
+      "states": [
+       {
+        "code": "0",
+        "label": "Disabled"
+       },
+       {
+        "code": "1",
+        "label": "Enabled"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 117
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 46
+      },
+      "modbus": {
+       "address": 177,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p048",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P48",
+       "coord": "YT2 S02 P48"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0177"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Type",
+      "states": [
+       {
+        "code": "0",
+        "label": "WTS"
+       },
+       {
+        "code": "1",
+        "label": "CTS"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 118
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 47
+      },
+      "modbus": {
+       "address": 178,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p049",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P49",
+       "coord": "YT2 S02 P49"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0178"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 1",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 119
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 48
+      },
+      "modbus": {
+       "address": 179,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p050",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P50",
+       "coord": "YT2 S02 P50"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0179"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 2",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 120
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 49
+      },
+      "modbus": {
+       "address": 180,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p051",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P51",
+       "coord": "YT2 S02 P51"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 4,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0180"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 3",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 121
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 50
+      },
+      "modbus": {
+       "address": 181,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p052",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P52",
+       "coord": "YT2 S02 P52"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 4,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0181"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 4",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 122
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 51
+      },
+      "modbus": {
+       "address": 182,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p053",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P53",
+       "coord": "YT2 S02 P53"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 4,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0182"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 5",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 123
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 52
+      },
+      "modbus": {
+       "address": 183,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p054",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P54",
+       "coord": "YT2 S02 P54"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 4,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0183"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 6",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 124
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 53
+      },
+      "modbus": {
+       "address": 184,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p055",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P55",
+       "coord": "YT2 S02 P55"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 4,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0184"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Units",
+      "states": [
+       {
+        "code": "0",
+        "label": "Imperial"
+       },
+       {
+        "code": "1",
+        "label": "Metric"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=S,3=S,4=S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 129
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 58
+      },
+      "modbus": {
+       "address": 189,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p084",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P84",
+       "coord": "YT2 S02 P84"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWA-BAS.pdf",
+      "sourcePage": 4,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0189"
+      },
+      "interfaceId": "yvwa-bas"
+     }
+    }
+   ],
+   "sourcePages": [
+    1,
+    4
+   ],
+   "excluded": {
+    "reserved": 76,
+    "notes": 10,
+    "revision": 6
+   },
+   "note": "블록 1·2 를 한 판으로 묶었다 — 주소 대역이 이어진다(1~129)"
+  }
+ ],
+ "crosscheck": {
+  "fam": "lontalk",
+  "segments": 3,
+  "table": 166,
+  "raw": 0,
+  "both": 0,
+  "same": 0,
+  "diff": [],
+  "rate": 0.0,
+  "verified": {}
+ },
+ "tags": [
+  "chiller",
+  "chiller-rotaryScrew"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'YVWA Variable Speed Screw Chiller' 의 낱말 (압축 방식·응축 방식)"
+}

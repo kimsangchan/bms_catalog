@@ -1,0 +1,6711 @@
+{
+ "id": "johnson-controls-york-yst-steam-turbine-centrifugal-chiller",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YST Steam Turbine Centrifugal Chiller",
+ "name": "YST Steam Turbine Centrifugal Chiller",
+ "cat": "HVAC.PLANT.CHILLER.CENTRIFUGAL",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 2건 · 판 2개에서 취입 — 오브젝트 147점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "E-Link/BACnet(GPIC) · SC-EQ",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "LON",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "Modbus",
+   "E-Link/BACnet(GPIC) · SC-EQ",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "N2",
+   "E-Link/BACnet(GPIC) · SC-EQ",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "E-Link",
+   "E-Link/BACnet(GPIC)",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "York Talk",
+   "E-Link/BACnet(GPIC)",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+ "interfaces": [
+  {
+   "id": "yst-bas-sc-eq-rev1-2",
+   "label": "YST Points List SC-EQ (Rev 1.2) OptiView Based Equipment",
+   "family": "SC-EQ",
+   "protocols": [
+    "bacnet",
+    "lon",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+   "pointCount": 74,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Remote Leaving Chilled Liquid Setpoint",
+      "shortName": "REM LEAVING CHW TEMP SP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviCoolSetPt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Horsepower Limit Setpoint",
+      "shortName": "TURBINE HP LIMIT SP",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nviTrbnHPLim",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Run/Stop [0=Stop, 1=Run]",
+      "shortName": "REM RUN STOP CMD",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviChillerEnable",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Units",
+      "shortName": "Units",
+      "states": [
+       {
+        "code": "0",
+        "label": "IP (English)"
+       },
+       {
+        "code": "1",
+        "label": "SI (Metric)"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 65001
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 201
+      },
+      "modbus": {
+       "address": 65001,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV65001"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature",
+      "shortName": "LEAVING CHW TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLvgCHWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Chilled Liquid Temperature",
+      "shortName": "ENTERING CHW TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 6,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoentCHWtemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure",
+      "shortName": "EVAPORATOR PRESSURE",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure",
+      "shortName": "CONDENSER PRESSURE",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 8,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCondPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Oil Pressure",
+      "shortName": "COMPR OIL COMP DIF PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCompOilDPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Condenser Liquid Temperature",
+      "shortName": "ENTERING COND WATER TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 10,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEntCndWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Liquid Temperature",
+      "shortName": "LEAVING COND WATER TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLvgCndWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Inlet Steam Temperature",
+      "shortName": "TURBINE INLET STEAM TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoTrbnInStmTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Inlet Steam Pressure",
+      "shortName": "TURBINE INLET STEAM PRES",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoTrbnInStmPres",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Supply Oil Temperature",
+      "shortName": "TURBINE SUPPLY OIL TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoTrbnSupOilTmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Supply Oil Pressure",
+      "shortName": "TURBINE SUPPLY OIL PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoTrbnSupOilPr",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine First Stage Steam Pressure",
+      "shortName": "TURBINE 1ST STG STM PRES",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 16,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoTrbnStg1Press",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Speed",
+      "shortName": "TURBINE SPEED",
+      "unitIP": "RPM",
+      "unitSI": "RPM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoTrbnSpeed",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_rpm"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Exhaust Steam Pressure",
+      "shortName": "TURBINE EXHAUST STM PRES",
+      "unitIP": "PSIA",
+      "unitSI": "kPa"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoTrbnExhPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature Setpoint - Local",
+      "shortName": "LEAVING CHW TEMP ACT SP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 19,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoActiveSetpt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor PRV Position",
+      "shortName": "COMPRESSOR PRV POSITION",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 20,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCmprPRVPos",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Evaporator Saturation Temperature",
+      "shortName": "EVAP SATURATION TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 21,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapSatTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Condenser Saturation Temperature",
+      "shortName": "COND SATURATION TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 22,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCondSatTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Discharge Temperature",
+      "shortName": "DISCHARGE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 23,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCmprDischTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Sump Oil Temperature",
+      "shortName": "OIL SUMP TEMPERATURE",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 24
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 24,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCmprOilTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Subcooler Refrigerant Level",
+      "shortName": "SUBCOOLER REFRIG LEVEL",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 25
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 25,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoSubCRefrLvl",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Accumulated Operating Hours",
+      "shortName": "ACCUM OPERATING HOURS",
+      "unitIP": "Hr",
+      "unitSI": "Hr"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 26,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoRunHours",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_time_hour"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Accumulated System Starts",
+      "shortName": "ACCUM SYSTEM STARTS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 27,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoSystemStarts",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Sump Oil Transducer Pressure",
+      "shortName": "OIL SUMP PRESSURE",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 28
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 28,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCmprSOTPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Pump Oil Transducer Pressure",
+      "shortName": "OIL PUMP PRESSURE",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 29
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "modbus": {
+       "address": 29,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCmprPOTPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Panel Rocker Switch - Run",
+      "shortName": "PANEL ROCKER SW RUN",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoPanelRun",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Panel Rocker Switch - Stop / Reset",
+      "shortName": "PANEL ROCKER SW STOP",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 66,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoPanelStopSw",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Pump Start Contacts",
+      "shortName": "CHW LIQ PUMP STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCHWLiqPmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Pump Start Contacts",
+      "shortName": "COND LIQ PUMP STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "modbus": {
+       "address": 68,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCondLiqPmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Flow Switch Contacts",
+      "shortName": "CHW FLOW SWITCH STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "modbus": {
+       "address": 69,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCLqFlowSwitch",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Flow Switch Contacts",
+      "shortName": "COND LIQ FLOW SW STAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "modbus": {
+       "address": 70,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCondLiqFloSW",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Refrigerant High Pressure Cutout",
+      "shortName": "COND REFRIG HI PRESS CO",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "modbus": {
+       "address": 71,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCondRefHiPCO",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Oil Heater Contactor",
+      "shortName": "COMP OIL HEATER CONT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "modbus": {
+       "address": 72,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCmprOilHtrCon",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Oil Return Solenoid Valve",
+      "shortName": "COMP OIL RETURN SOL VLV",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "modbus": {
+       "address": 73,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCmprOilRetVlv",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Oil Cooler Water Solenoid Valve",
+      "shortName": "COMP OIL COOLER W SOL VL",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "modbus": {
+       "address": 74,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCmprOilClWVlv",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Variable Speed Oil Pump Run Contacts",
+      "shortName": "COMP VAR SPD OIL PMP RUN",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "modbus": {
+       "address": 75,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCmprOilVSDCon",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Variable Speed Oil Pump Auxiliary Contacts",
+      "shortName": "COMP VAR SPD OIL PMP AUX",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 16
+      },
+      "modbus": {
+       "address": 76,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCmprOilVSDAux",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Liquid Injection Solenoid Valve",
+      "shortName": "COMPR LIQ INJ SOL VLV",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "modbus": {
+       "address": 77,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCondLiqInjVlv",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor High Speed Thrust Solenoid",
+      "shortName": "COMPR HS THRUST SOL",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 18
+      },
+      "modbus": {
+       "address": 78,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoComprHSThrst",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Closed Limit Switch",
+      "shortName": "CLOSED LIMIT SWITCH",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "modbus": {
+       "address": 79,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCloseLimitSW",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Mode Ready To Start Contacts",
+      "shortName": "REM MODE READY TO START",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "modbus": {
+       "address": 80,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoRemModeReady",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Rotating Contacts",
+      "shortName": "TURBINE ROTATING CONT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 22
+      },
+      "modbus": {
+       "address": 82,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoTrbnRotateCon",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Trip Solenoid Valve",
+      "shortName": "TURBINE TRIP SOL VLV",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 23
+      },
+      "modbus": {
+       "address": 83,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoTrbnTripVlvSo",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Trip Valve Closed Limit Switch",
+      "shortName": "TURBINE TRIP VLV CLO LS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 24
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 24
+      },
+      "modbus": {
+       "address": 84,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoTrbnTripVlvCL",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Operation Code",
+      "shortName": "UNIT OPERATION CODE",
+      "statesRef": "See SC.1 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 30,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoOperCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Safety Shutdown Code",
+      "shortName": "UNIT SAFETY FAULT CODE",
+      "statesRef": "See SC.2 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoSafetyCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Cycling Shutdown Code",
+      "shortName": "UNIT CYCLING FAULT CODE",
+      "statesRef": "See SC.3 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 32,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoCyclingFault",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Alarm / Warning Code",
+      "shortName": "UNIT WARNING FAULT CODE",
+      "statesRef": "See SC.4 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 33,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoWarnFault",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Control Source [0=Local, 1=ISN (BAS), 2=Analog, 3=Digital, 4=Modem]",
+      "shortName": "UNIT CONTROL SOURCE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "ISN"
+       },
+       {
+        "code": "2",
+        "label": "Analog"
+       },
+       {
+        "code": "3",
+        "label": "Digital"
+       },
+       {
+        "code": "4",
+        "label": "Modem"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "modbus": {
+       "address": 34,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoControlMode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV5",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Status Code",
+      "shortName": "TURBINE STATUS CODE",
+      "statesRef": "See SC.7 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "modbus": {
+       "address": 35,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoTurbinStat",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV6",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Modified Run Fault Code",
+      "shortName": "UNIT MODIF RUN FLT CODE",
+      "statesRef": "See SC.12 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "modbus": {
+       "address": 36,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoUnitModRunFlt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV7",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Inhibit Fault Code",
+      "shortName": "UNIT INHIBIT FAULT CODE",
+      "statesRef": "See SC.13 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 8
+      },
+      "modbus": {
+       "address": 37,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoUnitInhibFlt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV8",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Internal Fault Code",
+      "shortName": "UNIT INTERNAL FAULT CODE",
+      "statesRef": "See SC.14 on Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 9
+      },
+      "modbus": {
+       "address": 38,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoUnitInternFlt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV9",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "High Speed Thrust Bearing Proximity Position",
+      "shortName": "THRUST BEARING PROX POS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 30
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "modbus": {
+       "address": 40,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoHSBrngProxPos",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_length_mil"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "High Speed Thrust Bearing Proximity Reference",
+      "shortName": "THRUST BEARING PROX REF"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 31
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "modbus": {
+       "address": 41,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoHSBrngProxRef",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_length_mil"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Governor End Bearing Temperature",
+      "shortName": "TURBINE GOV END BRG TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 32
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "modbus": {
+       "address": 42,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoTrbnGoveBTmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Shaft End Bearing Temperature",
+      "shortName": "TURBINE SHF END BRG TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 33
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "modbus": {
+       "address": 43,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoTrbnShafEBTmp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Hotwell Condensate Level",
+      "shortName": "HOTWELL CONDENSATE LVL",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 34
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "modbus": {
+       "address": 44,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoHWCondsatelvl",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Refrigerant Liquid Temperature",
+      "shortName": "EVAP REFRIG LIQ TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 35
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "modbus": {
+       "address": 45,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapRefrLiqT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Refrigerant Liquid Temperature",
+      "shortName": "COND REFRIG LIQ TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 36
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "modbus": {
+       "address": 46,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCondRefrLiqT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Flow Sensor",
+      "shortName": "CHILL LIQ FLOW SENSOR",
+      "unitIP": "GPM",
+      "unitSI": "LPM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 37
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "modbus": {
+       "address": 47,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoChilLiqFloSen",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Flow Sensor",
+      "shortName": "COND LIQ FLOW SENSOR",
+      "unitIP": "GPM",
+      "unitSI": "LPM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 38
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "modbus": {
+       "address": 48,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCondLiqFloSen",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Steam Flow Sensor",
+      "shortName": "STEAM FLOW SENSOR",
+      "unitIP": "Lb/Hr",
+      "unitSI": "Kg/Hr"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 39
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "modbus": {
+       "address": 49,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoSteamFlowSen",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Hotgas Bypass Valve Position",
+      "shortName": "HOTGAS BYPASS VLV POS",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 40
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "modbus": {
+       "address": 50,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoHotBypVlvPos",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Governor Valve Position",
+      "shortName": "GOVERNOR VLV POS",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 41
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "modbus": {
+       "address": 51,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoGovernVlvPos",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Slow Roll Time Remaining",
+      "shortName": "SLOW ROLL TIME REMAINING",
+      "unitIP": "Min",
+      "unitSI": "Min"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 43
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 43
+      },
+      "modbus": {
+       "address": 53,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoSlowTimeRem",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_time_min"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Auxiliary Oil Pump Contactor",
+      "shortName": "TURBINE AUX OIL PMP CONT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 26
+      },
+      "modbus": {
+       "address": 86,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoTrbnAOPCon",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Auxiliary Oil Pump Contactor Auxiliary Contact",
+      "shortName": "TURBINE AUX OIL PMP CONA",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 27
+      },
+      "modbus": {
+       "address": 87,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoTrbnAOPACon",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Oil Cooler Water Solenoid Valve",
+      "shortName": "TURBINE OIL CLRW SOL VLV",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 28
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 28
+      },
+      "modbus": {
+       "address": 88,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoTrbnOCWSolVlv",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    },
+    {
+     "common": {
+      "name": "Alarm Horn",
+      "shortName": "ALARM HORN",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 29
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 29
+      },
+      "modbus": {
+       "address": 89,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoAlarmHorn",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-BAS-SC-EQ-Rev1.2.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yst-bas-sc-eq-rev1-2"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev 1.2"
+   },
+   "sourcePages": [
+    1,
+    2
+   ],
+   "excluded": {
+    "reserved": 9
+   }
+  },
+  {
+   "id": "yst-optiview-revk-03",
+   "label": "YST OptiView E-Link (Rev_K_03) OptiView Based Equipment",
+   "family": "E-Link/BACnet(GPIC)",
+   "protocols": [
+    "bacnet",
+    "elink",
+    "modbus",
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+   "pointCount": 73,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature Setpoint",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1,
+       "objectName": "REM LEAVING CHW TEMP SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "elink": {
+       "gpicType": "AV.1"
+      },
+      "yorktalk": {
+       "pageRef": "P03"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0001",
+       "LON SNVT Type": "nviCoolSetPt"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Horsepower Limit Setpoint (% of available range)",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2,
+       "objectName": "TURBINE HP LIMIT SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "elink": {
+       "gpicType": "AV.2"
+      },
+      "yorktalk": {
+       "pageRef": "P04"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0002",
+       "LON SNVT Type": "nviTrbnHPLim"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "START STOP",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1,
+       "objectName": "REM START STOP CMD"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BV.1"
+      },
+      "yorktalk": {
+       "pageRef": "P07"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0061",
+       "LON SNVT Type": "nviChillerEnable"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5,
+       "objectName": "LEAVING CHW TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AI 1"
+      },
+      "yorktalk": {
+       "pageRef": "P11"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0005",
+       "LON SNVT Type": "nvoLvgCHWTemp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Chilled Liquid Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6,
+       "objectName": "ENTERING CHW TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 6,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AI.2"
+      },
+      "yorktalk": {
+       "pageRef": "P12"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0006",
+       "LON SNVT Type": "nvoentCHWtemp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Evaporator Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7,
+       "objectName": "EVAPORATOR PRESSURE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AI.5"
+      },
+      "yorktalk": {
+       "pageRef": "P13"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0007",
+       "LON SNVT Type": "nvoEvapPress"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Condenser Pressure PSIG",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8,
+       "objectName": "CONDENSER PRESSURE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 8,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AI.6"
+      },
+      "yorktalk": {
+       "pageRef": "P14"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0008",
+       "LON SNVT Type": "nvoCondPress"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Oil Pressure PSIG",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 9,
+       "objectName": "COMPR OIL COMP DIF PRESS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AV.14"
+      },
+      "yorktalk": {
+       "pageRef": "P15"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0009",
+       "LON SNVT Type": "nvoCompOilDPress"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Condenser Liquid Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 10,
+       "objectName": "ENTERING COND WATER TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 10,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "elink": {
+       "gpicType": "AI.4"
+      },
+      "yorktalk": {
+       "pageRef": "P16"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0010",
+       "LON SNVT Type": "nvoEntCndWTemp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Liquid Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11,
+       "objectName": "LEAVING COND WATER TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "elink": {
+       "gpicType": "AI.3"
+      },
+      "yorktalk": {
+       "pageRef": "P17"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0011",
+       "LON SNVT Type": "nvoLvgCndWTemp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Inlet Steam Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12,
+       "objectName": "TURBINE INLET STEAM TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "elink": {
+       "gpicType": "AI.12"
+      },
+      "yorktalk": {
+       "pageRef": "P18"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0012",
+       "LON SNVT Type": "nvoTrbnInStmTemp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Inlet Steam Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13,
+       "objectName": "TURBINE INLET STEAM PRES"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "elink": {
+       "gpicType": "AI.13"
+      },
+      "yorktalk": {
+       "pageRef": "P19"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0013",
+       "LON SNVT Type": "nvoTrbnInStmPres"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Supply Oil Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14,
+       "objectName": "TURBINE SUPPLY OIL TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "elink": {
+       "gpicType": "AI.16"
+      },
+      "yorktalk": {
+       "pageRef": "P20"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0014",
+       "LON SNVT Type": "nvoTrbnSupOilTmp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Supply Oil Pressure PSIG",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15,
+       "objectName": "TURBINE SUPPLY OIL PRESS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "elink": {
+       "gpicType": "AI.17"
+      },
+      "yorktalk": {
+       "pageRef": "P21"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0015",
+       "LON SNVT Type": "nvoTrbnSupOilPr"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine First Stage Steam Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 16,
+       "objectName": "TURBINE 1ST STG STM PRES"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 16,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "elink": {
+       "gpicType": "AI.14"
+      },
+      "yorktalk": {
+       "pageRef": "P22"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0016",
+       "LON SNVT Type": "nvoTrbnStg1Press"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Speed",
+      "unitIPRaw": "RPM",
+      "unitIP": "rpm",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 17,
+       "objectName": "TURBINE SPEED"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "elink": {
+       "gpicType": "AI.11"
+      },
+      "yorktalk": {
+       "pageRef": "P23"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0017",
+       "LON SNVT Type": "nvoTrbnSpeed"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Exhaust Steam Pressure PSIA",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 18,
+       "objectName": "TURBINE EXHAUST STM PRES"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AI.15"
+      },
+      "yorktalk": {
+       "pageRef": "P24"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0018",
+       "LON SNVT Type": "nvoTrbnExhPress"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature Setpoint - Local",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 19,
+       "objectName": "LEAVING CHW TEMP ACT SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 19,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AV.18"
+      },
+      "yorktalk": {
+       "pageRef": "P25"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0019",
+       "LON SNVT Type": "nvoActiveSetpt"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor PRV Position",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 20,
+       "objectName": "COMPRESSOR PRV POSITION"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 20,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AI.50"
+      },
+      "yorktalk": {
+       "pageRef": "P26"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0020",
+       "LON SNVT Type": "nvoCmprPRVPos"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Evaporator Saturation Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21,
+       "objectName": "EVAP SATURATION TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 21,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AV.6"
+      },
+      "yorktalk": {
+       "pageRef": "P27"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0021",
+       "LON SNVT Type": "nvoEvapSatTemp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Condenser Saturation Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22,
+       "objectName": "COND SATURATION TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 22,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AV.7"
+      },
+      "yorktalk": {
+       "pageRef": "P28"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0022",
+       "LON SNVT Type": "nvoCondSatTemp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Discharge Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23,
+       "objectName": "DISCHARGE TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 23,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AI.7"
+      },
+      "yorktalk": {
+       "pageRef": "P29"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0023",
+       "LON SNVT Type": "nvoCmprDischTemp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Sump Oil Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 24,
+       "objectName": "OIL SUMP TEMPERATURE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 24,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "AI.32"
+      },
+      "yorktalk": {
+       "pageRef": "P30"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0024",
+       "LON SNVT Type": "nvoCmprOilTemp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Subcooler Refrigerant Level",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 25,
+       "objectName": "SUBCOOLER REFRIG LEVEL"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 25,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "elink": {
+       "gpicType": "AI.35"
+      },
+      "yorktalk": {
+       "pageRef": "P31"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0025",
+       "LON SNVT Type": "nvoSubCRefrLvl"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Accumulated Operating Hours",
+      "unitIPRaw": "hrs",
+      "unitIP": "h",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26,
+       "objectName": "ACCUM OPERATING HOURS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 26,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "elink": {
+       "gpicType": "AV.15"
+      },
+      "yorktalk": {
+       "pageRef": "P32"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0026",
+       "LON SNVT Type": "nvoRunHours"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Accumulated System Starts",
+      "unitIPRaw": "count",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 27,
+       "objectName": "ACCUM SYSTEM STARTS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 27,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "elink": {
+       "gpicType": "AV.16"
+      },
+      "yorktalk": {
+       "pageRef": "P33"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0027",
+       "LON SNVT Type": "nvoSystemStarts"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Sump Oil Transducer Pressure PSIG",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 28,
+       "objectName": "OIL SUMP PRESSURE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 28,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "AI.30"
+      },
+      "yorktalk": {
+       "pageRef": "P34"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0028",
+       "LON SNVT Type": "nvoCmprSOTPress"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Pump Oil Transducer Pressure PSIG",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 29,
+       "objectName": "OIL PUMP PRESSURE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "modbus": {
+       "address": 29,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AI.31"
+      },
+      "yorktalk": {
+       "pageRef": "P35"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0029",
+       "LON SNVT Type": "nvoCmprPOTPress"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Panel Rocker Switch - Run",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5,
+       "objectName": "PANEL ROCKER SW RUN"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.1"
+      },
+      "yorktalk": {
+       "pageRef": "P36"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0065",
+       "LON SNVT Type": "nvoPanelRun"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Panel Rocker Switch - Stop / Reset",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6,
+       "objectName": "PANEL ROCKER SW STOP"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 66,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BI.4"
+      },
+      "yorktalk": {
+       "pageRef": "P37"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0066",
+       "LON SNVT Type": "nvoPanelStopSw"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Pump Start Contacts",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7,
+       "objectName": "CHW LIQ PUMP STAT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.2"
+      },
+      "yorktalk": {
+       "pageRef": "P38"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0067",
+       "LON SNVT Type": "nvoCHWLiqPmp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Pump Start Contacts",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 8,
+       "objectName": "COND LIQ PUMP STAT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "modbus": {
+       "address": 68,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.3"
+      },
+      "yorktalk": {
+       "pageRef": "P39"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0068",
+       "LON SNVT Type": "nvoCondLiqPmp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Flow Switch Contacts",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 9,
+       "objectName": "CHW FLOW SWITCH STAT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "modbus": {
+       "address": 69,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BI.1"
+      },
+      "yorktalk": {
+       "pageRef": "P40"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0069",
+       "LON SNVT Type": "nvoCLqFlowSwitch"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Flow Switch Contacts",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 10,
+       "objectName": "COND LIQ FLOW SW STAT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "modbus": {
+       "address": 70,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BI.2"
+      },
+      "yorktalk": {
+       "pageRef": "P41"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0070",
+       "LON SNVT Type": "nvoCondLiqFloSW"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Refrigerant High Pressure Cutout",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 11,
+       "objectName": "COND REFRIG HI PRESS CO"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "modbus": {
+       "address": 71,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BI.3"
+      },
+      "yorktalk": {
+       "pageRef": "P42"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0071",
+       "LON SNVT Type": "nvoCondRefHiPCO"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Oil Heater Contactor",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 12,
+       "objectName": "COMP OIL HEATER CONT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "modbus": {
+       "address": 72,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.11"
+      },
+      "yorktalk": {
+       "pageRef": "P43"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0072",
+       "LON SNVT Type": "nvoCmprOilHtrCon"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Oil Return Solenoid Valve",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 13,
+       "objectName": "COMP OIL RETURN SOL VLV"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "modbus": {
+       "address": 73,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.12"
+      },
+      "yorktalk": {
+       "pageRef": "P44"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0073",
+       "LON SNVT Type": "nvoCmprOilRetVlv"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Oil Cooler Water Solenoid Valve",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 14,
+       "objectName": "COMP OIL COOLER W SOL VL"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "modbus": {
+       "address": 74,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.27"
+      },
+      "yorktalk": {
+       "pageRef": "P45"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0074",
+       "LON SNVT Type": "nvoCmprOilClWVlv"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Variable Speed Oil Pump Run Contacts",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 15,
+       "objectName": "COMP VAR SPD OIL PMP RUN"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "modbus": {
+       "address": 75,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.10"
+      },
+      "yorktalk": {
+       "pageRef": "P46"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0075",
+       "LON SNVT Type": "nvoCmprOilVSDCon"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Variable Speed Oil Pump Auxiliary Contacts",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 16,
+       "objectName": "COMP VAR SPD OIL PMP AUX"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 16
+      },
+      "modbus": {
+       "address": 76,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BI.30"
+      },
+      "yorktalk": {
+       "pageRef": "P47"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0076",
+       "LON SNVT Type": "nvoCmprOilVSDAux"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Liquid Injection Solenoid Valve",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 17,
+       "objectName": "COMPR LIQ INJ SOL VLV"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "modbus": {
+       "address": 77,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.14"
+      },
+      "yorktalk": {
+       "pageRef": "P48"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0077",
+       "LON SNVT Type": "nvoCondLiqInjVlv"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor High Speed Thrust Solenoid",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 18,
+       "objectName": "COMPR HS THRUST SOL"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 18
+      },
+      "modbus": {
+       "address": 78,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.13"
+      },
+      "yorktalk": {
+       "pageRef": "P49"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0078",
+       "LON SNVT Type": "nvoComprHSThrst"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Closed Limit Switch",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 19,
+       "objectName": "CLOSED LIMIT SWITVH"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "modbus": {
+       "address": 79,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BI.40"
+      },
+      "yorktalk": {
+       "pageRef": "P50"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0079",
+       "LON SNVT Type": "nvoCloseLimitSW"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Mode Ready To Start Contacts",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 20,
+       "objectName": "REM MODE READY TO START"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "modbus": {
+       "address": 80,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.4"
+      },
+      "yorktalk": {
+       "pageRef": "P51"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0080",
+       "LON SNVT Type": "nvoRemModeReady"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Rotating Contacts",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 22,
+       "objectName": "TURBINE ROTATING CONT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 22
+      },
+      "modbus": {
+       "address": 82,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BI.29"
+      },
+      "yorktalk": {
+       "pageRef": "P53"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0082",
+       "LON SNVT Type": "nvoTrbnRotateCon"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Trip Solenoid Valve",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 23,
+       "objectName": "TURBINE TRIP SOL VLV"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 23
+      },
+      "modbus": {
+       "address": 83,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.1"
+      },
+      "yorktalk": {
+       "pageRef": "P54"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0083",
+       "LON SNVT Type": "nvoTrbnTripVlvSo"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Trip Valve Closed Limit Switch",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 24,
+       "objectName": "TURBINE TRIP VLV CLO LS"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 24
+      },
+      "modbus": {
+       "address": 84,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BI.41"
+      },
+      "yorktalk": {
+       "pageRef": "P55"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0084",
+       "LON SNVT Type": "nvoTrbnTripVlvCL"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Operation Code",
+      "unitIPRaw": "enum",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1,
+       "objectName": "UNIT OPERATION CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 30,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "SC.1"
+      },
+      "yorktalk": {
+       "pageRef": "P56"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1",
+       "MODBUS Address": "0030",
+       "LON SNVT Type": "nvoOperCode"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Safety Shutdown Code",
+      "unitIPRaw": "enum",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2,
+       "objectName": "UNIT SAFETY FAULT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "SC.2"
+      },
+      "yorktalk": {
+       "pageRef": "P57"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2",
+       "MODBUS Address": "0031",
+       "LON SNVT Type": "nvoSafetyCode"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Cycling Shutdown Code",
+      "unitIPRaw": "enum",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3,
+       "objectName": "UNIT CYCLING FAULT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 32,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "SC.3"
+      },
+      "yorktalk": {
+       "pageRef": "P58"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3",
+       "MODBUS Address": "0032",
+       "LON SNVT Type": "nvoCyclingFault"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Alarm / Warning Code",
+      "unitIPRaw": "enum",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4,
+       "objectName": "UNIT WARNING FAULT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 33,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "SC.4"
+      },
+      "yorktalk": {
+       "pageRef": "P59"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4",
+       "MODBUS Address": "0033",
+       "LON SNVT Type": "nvoWarnFault"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Control Source",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "ISN"
+       },
+       {
+        "code": "2",
+        "label": "Analog"
+       },
+       {
+        "code": "3",
+        "label": "Digital"
+       },
+       {
+        "code": "4",
+        "label": "Modem"
+       }
+      ],
+      "unitIPRaw": "enum",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 5,
+       "objectName": "UNIT CONTROL SOURCE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "modbus": {
+       "address": 34,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "SC.5"
+      },
+      "yorktalk": {
+       "pageRef": "P60"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV5",
+       "MODBUS Address": "0034",
+       "LON SNVT Type": "nvoControlMode"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "TurbineStatus Code",
+      "unitIPRaw": "enum",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 6,
+       "objectName": "TURBINE STATUS CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "modbus": {
+       "address": 35,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "SC.7"
+      },
+      "yorktalk": {
+       "pageRef": "P61"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV6",
+       "MODBUS Address": "0035",
+       "LON SNVT Type": "nvoTurbinStat"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Modified Run Fault Code",
+      "unitIPRaw": "enum",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 7,
+       "objectName": "UNIT MODIF RUN FLT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "modbus": {
+       "address": 36,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "SC.12"
+      },
+      "yorktalk": {
+       "pageRef": "P62"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV7",
+       "MODBUS Address": "0036",
+       "LON SNVT Type": "nvoUnitModRunFlt"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Inhibit Fault Code",
+      "unitIPRaw": "enum",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 8,
+       "objectName": "UNIT INHIBIT FAULT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 8
+      },
+      "modbus": {
+       "address": 37,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "SC.13"
+      },
+      "yorktalk": {
+       "pageRef": "P63"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV8",
+       "MODBUS Address": "0037",
+       "LON SNVT Type": "nvoUnitInhibFlt"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Internal Fault Code",
+      "unitIPRaw": "enum"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 9,
+       "objectName": "UNIT INTERNAL FAULT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 9
+      },
+      "modbus": {
+       "address": 38,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "SC.14"
+      },
+      "yorktalk": {
+       "pageRef": "P64"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV9",
+       "MODBUS Address": "0038",
+       "LON SNVT Type": "nvoUnitInternFlt"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "High Speed Thrust Bearing Proximity Position",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 30,
+       "objectName": "THRUST BEARING PROX POS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "modbus": {
+       "address": 40,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "AI.33"
+      },
+      "yorktalk": {
+       "pageRef": "P66"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0040",
+       "LON SNVT Type": "nvoHSBrngProxPos"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "High Speed Thrust Bearing Proximity Reference",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 31,
+       "objectName": "THRUST BEARING PROX REF"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "modbus": {
+       "address": 41,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "AV.40"
+      },
+      "yorktalk": {
+       "pageRef": "P67"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0041",
+       "LON SNVT Type": "nvoHSBrngProxRef"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Governor End Bearing Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 32,
+       "objectName": "TURBINE GOV END BRG TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "modbus": {
+       "address": 42,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "AI.18"
+      },
+      "yorktalk": {
+       "pageRef": "P68"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0042",
+       "LON SNVT Type": "nvoTrbnGoveBTmp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Shaft End Bearing Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 33,
+       "objectName": "TURBINE SHF END BRG TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "modbus": {
+       "address": 43,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "AI.19"
+      },
+      "yorktalk": {
+       "pageRef": "P69"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0043",
+       "LON SNVT Type": "nvoTrbnShafEBTmp"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Hotwell Condensate Level",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 34,
+       "objectName": "HOTWELL CONDENSATE LVL"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "modbus": {
+       "address": 44,
+       "addressBase": "unknown",
+       "scaleRaw": "X 10"
+      },
+      "elink": {
+       "gpicType": "AI.24"
+      },
+      "yorktalk": {
+       "pageRef": "P70"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0044",
+       "LON SNVT Type": "nvoHWCondsatelvl"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Refrigerant Liquid Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 35,
+       "objectName": "EVAP REFRIG LIQ TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "modbus": {
+       "address": 45,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "elink": {
+       "gpicType": "AI.8"
+      },
+      "yorktalk": {
+       "pageRef": "P71"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0045",
+       "LON SNVT Type": "nvoEvapRefrLiqT"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Refrigerant Liquid Temperature",
+      "unitIPRaw": "ºF",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 36,
+       "objectName": "COND REFRIG LIQ TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "modbus": {
+       "address": 46,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "elink": {
+       "gpicType": "AI.10"
+      },
+      "yorktalk": {
+       "pageRef": "P72"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0046",
+       "LON SNVT Type": "nvoCondRefrLiqT"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Flow Sensor (GPM)",
+      "unitIPRaw": "GPM",
+      "unitIP": "gpm",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 37,
+       "objectName": "CHILL LIQ FLOW SENSOR"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "modbus": {
+       "address": 47,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "elink": {
+       "gpicType": "AI.25"
+      },
+      "yorktalk": {
+       "pageRef": "P73"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0047",
+       "LON SNVT Type": "nvoChilLiqFloSen"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Flow Sensor (GPM)",
+      "unitIPRaw": "GPM",
+      "unitIP": "gpm",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 38,
+       "objectName": "COND LIQ FLOW SENSOR"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "modbus": {
+       "address": 48,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "elink": {
+       "gpicType": "AI.26"
+      },
+      "yorktalk": {
+       "pageRef": "P74"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0048",
+       "LON SNVT Type": "nvoCondLiqFloSen"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Steam Flow Sensor (lb/hr)",
+      "unitIPRaw": "lb/hr",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 39,
+       "objectName": "STEAM FLOW SENSOR"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "modbus": {
+       "address": 49,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "elink": {
+       "gpicType": "AI.27"
+      },
+      "yorktalk": {
+       "pageRef": "P75"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0049",
+       "LON SNVT Type": "nvoSteamFlowSen"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Hotgas Bypass Valve Position",
+      "unitIPRaw": "%",
+      "unitIP": "percent"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 40,
+       "objectName": "HOTGAS BYPASS VLV POS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "modbus": {
+       "address": 50,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "AO.3"
+      },
+      "yorktalk": {
+       "pageRef": "P76"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0050",
+       "LON SNVT Type": "nvoHotBypVlvPos"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Governor Valve Position",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 41,
+       "objectName": "GOVERNOR VLV POS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "modbus": {
+       "address": 51,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "AO.5"
+      },
+      "yorktalk": {
+       "pageRef": "P77"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0051",
+       "LON SNVT Type": "nvoGovernVlvPos"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Slow Roll Time Remaining",
+      "unitIPRaw": "Min",
+      "unitIP": "min",
+      "availability": {
+       "raw": "1=N,2=N,3=N,4=N,5=O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 43,
+       "objectName": "SLOW ROLL TIME REMAINING"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 43
+      },
+      "modbus": {
+       "address": 53,
+       "addressBase": "unknown",
+       "scaleRaw": "X 1"
+      },
+      "elink": {
+       "gpicType": "AV.99"
+      },
+      "yorktalk": {
+       "pageRef": "P79"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0053",
+       "LON SNVT Type": "nvoSlowTimeRem"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Auxiliary Oil Pump Contactor",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 26,
+       "objectName": "TURBINE AUX OIL PMP CONT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 26
+      },
+      "modbus": {
+       "address": 86,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.28"
+      },
+      "yorktalk": {
+       "pageRef": "P81"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0086",
+       "LON SNVT Type": "nvoTrbnAOPCon"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Auxiliary Oil Pump Contactor Auxiliary Contact",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 27,
+       "objectName": "TURBINE AUX OIL PMP CONA"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 27
+      },
+      "modbus": {
+       "address": 87,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BI.42"
+      },
+      "yorktalk": {
+       "pageRef": "P82"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0087",
+       "LON SNVT Type": "nvoTrbnAOPACon"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Turbine Oil Cooler Water Solenoid Valve",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 28,
+       "objectName": "TURBINE OIL CLRW SOL VLV"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 28
+      },
+      "modbus": {
+       "address": 88,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.26"
+      },
+      "yorktalk": {
+       "pageRef": "P83"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0088",
+       "LON SNVT Type": "nvoTrbnOCWSolVlv"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    },
+    {
+     "common": {
+      "name": "Alarm Horn",
+      "unitIPRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 29,
+       "objectName": "ALARM HORN"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 29
+      },
+      "modbus": {
+       "address": 89,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "elink": {
+       "gpicType": "BO.29"
+      },
+      "yorktalk": {
+       "pageRef": "P84"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YST-Optiview(RevK-03).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0089",
+       "LON SNVT Type": "nvoAlarmHorn"
+      },
+      "gaps": [
+       "SNVT 표기 해석 불가"
+      ],
+      "interfaceId": "yst-optiview-revk-03"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev K 03"
+   },
+   "sourcePages": [
+    1,
+    2
+   ],
+   "excluded": {
+    "reserved": 9,
+    "notes": 10,
+    "revision": 6,
+    "codeTable": 2
+   }
+  }
+ ],
+ "crosscheck": {
+  "fam": "lontalk",
+  "segments": 2,
+  "table": 147,
+  "raw": 0,
+  "both": 0,
+  "same": 0,
+  "diff": [],
+  "rate": 0.0,
+  "verified": {}
+ },
+ "tags": [
+  "chiller",
+  "chiller-centrifugal"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'YST Steam Turbine Centrifugal Chiller' 의 낱말 (압축 방식·응축 방식)"
+}

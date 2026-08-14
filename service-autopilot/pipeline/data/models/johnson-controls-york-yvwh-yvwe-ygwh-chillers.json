@@ -1,0 +1,1949 @@
+{
+ "id": "johnson-controls-york-yvwh-yvwe-ygwh-chillers",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YVWH·YVWE·YGWH Chillers",
+ "name": "YVWH·YVWE·YGWH Chillers",
+ "cat": "HVAC.PLANT.CHILLER",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 1건 · 판 1개에서 취입 — 오브젝트 57점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "Modbus",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "N2",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+ "interfaces": [
+  {
+   "id": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0",
+   "label": "YVWH, YVWE, YGWH BAS SC-EQ (Rev 1.0) Non-OptiView Based Equipment",
+   "family": "SC-EQ",
+   "protocols": [
+    "bacnet",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+   "pointCount": 57,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Read/Write Points"
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Start/Stop START|STOP",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Start"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 200,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Run Mode RUN MODE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Cool"
+       },
+       {
+        "code": "1",
+        "label": "ice storage"
+       },
+       {
+        "code": "2",
+        "label": "heat pump"
+       },
+       {
+        "code": "3",
+        "label": "remote"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 201,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1",
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Setpoint AC LEAVING CHILLED LIQUID SETPOINT AC",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 202,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Setpoint ICS LEAVING CHILLED LIQUID SETPOINT ICS",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 203,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Heat Liquid Setpoint HP LEAVING HEAT LIQUID SETPOINT HP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "modbus": {
+       "address": 209,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Heat Liquid Setpoint High Temperature HP LEAVING HEAT LIQUID SETPOINT HTHP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 4
+      },
+      "modbus": {
+       "address": 204,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Over Current Percent AC OVER CURRENT PERCENT AC",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 210,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Over Current Percent ICS OVER CURRENT PERCENT ICS",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 211,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Over Current Percent HP OVER CURRENT PERCENT HP",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 212,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Read Points"
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault FAULT",
+      "states": [
+       {
+        "code": "0",
+        "label": "no fault"
+       },
+       {
+        "code": "1",
+        "label": "fault exist"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 2
+      },
+      "modbus": {
+       "address": 205,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Time Limitation TIME LIMITATION",
+      "states": [
+       {
+        "code": "0",
+        "label": "no time limitation"
+       },
+       {
+        "code": "1",
+        "label": "time limitation"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 3
+      },
+      "modbus": {
+       "address": 206,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Preheat PREHEAT",
+      "states": [
+       {
+        "code": "0",
+        "label": "no preheat"
+       },
+       {
+        "code": "1",
+        "label": "preheat"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 4
+      },
+      "modbus": {
+       "address": 207,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Control Mode CONTROL MODE",
+      "states": [
+       {
+        "code": "0",
+        "label": "local"
+       },
+       {
+        "code": "1",
+        "label": "remote"
+       },
+       {
+        "code": "2",
+        "label": "communication"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 208,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2",
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Digital Output SYS 1 DIGITAL OUTPUT",
+      "statesRef": "See Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 100,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Digital Input SYS 1 DIGITAL INPUT",
+      "statesRef": "See Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 101,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Liquid Temperature LEAVING CONDENSER LIQUID TEMPERATURE",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 120,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Condenser Liquid Temperature RETURN CONDENSER LIQUID TEMPERATURE",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 102,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature LEAVING CHILLED LIQUID TEMPERATURE",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 121,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Chilled Liquid Temperature RETURN CHILLED LIQUID TEMPERATURE",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 103,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Discharge Temperature SYS 1 DISCHARGE TEMPERATURE",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 104,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure EVAPORATOR PRESSURE",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 105,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure CONDENSER PRESSURE",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 106,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Oil Pressure SYS 1 OIL PRESSURE",
+      "unitIP": "PSIG",
+      "unitSI": "kPaG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 107,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Motor Current SYS 1 MOTOR CURRENT",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 108,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Digital Input Fault SYS 1 DIGITAL INPUT FAULT",
+      "statesRef": "See Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "modbus": {
+       "address": 114,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Analog Input Fault SYS 1 ANALOG INPUT FAULT",
+      "statesRef": "See Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "modbus": {
+       "address": 115,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Fault SYS 1 FAULT",
+      "statesRef": "See Status Codes"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "modbus": {
+       "address": 116,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Water Pump Work Hours WATER PUMP WORK HOURS",
+      "unitIP": "Hours",
+      "unitSI": "Hours"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 111,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Compressor Work Hours SYS 1 COMPRESSOR WORK HOURS",
+      "unitIP": "Hours",
+      "unitSI": "Hours"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 110,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Percent FLA SYS 1 PERCENT FLA",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 24
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 113,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Saturation Temperature EVAPORATOR SATURATION TEMPERATURE",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 25
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 117,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Saturation Temperature CONDENSER SATURATION TEMPERATURE",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 118,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Discharge Superheat DISCHARGE SUPERHEAT",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 119,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Motor Temperature A SYS 1 MOTOR TEMPERATURE A",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 28
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 140,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Motor Temperature B SYS 1 MOTOR TEMPERATURE B",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 29
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 141,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Motor Temperature C SYS 1 MOTOR TEMPERATURE C",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 30
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 142,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Liquid Level LIQUID LEVEL",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 31
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 109,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Level Control AO LEVEL CONTROL AO",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 32
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 112,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Level Setpoint LEVEL SETPOINT",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 33
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 122,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Level Control Pb LEVEL CONTROL PB",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 34
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "modbus": {
+       "address": 123,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Level Control Tn LEVEL CONTROL TN",
+      "unitIP": "Sec",
+      "unitSI": "Sec"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 35
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "modbus": {
+       "address": 124,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Level Control Period LEVEL CONTROL PERIOD",
+      "unitIP": "Sec",
+      "unitSI": "Sec"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 36
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "modbus": {
+       "address": 125,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# VSD Run Status SYS 1 VSD RUN STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "No Communication"
+       },
+       {
+        "code": "1",
+        "label": "Forward Running"
+       },
+       {
+        "code": "2",
+        "label": "Reverse Running"
+       },
+       {
+        "code": "3",
+        "label": "Stopped"
+       },
+       {
+        "code": "4",
+        "label": "Tuned"
+       },
+       {
+        "code": "5",
+        "label": "Fault"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 8
+      },
+      "modbus": {
+       "address": 126,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3",
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# VSD Frequency Command SYS 1 FREQUENCY COMMAND",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 38
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "modbus": {
+       "address": 127,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# VSD Frequency Running SYS 1 VSD FREQUENCY RUNNING",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 39
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "modbus": {
+       "address": 128,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# VSD BUS Voltage SYS 1 VSD BUS VOLTAGE",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 40
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "modbus": {
+       "address": 129,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# VSD Output Voltage SYS 1 VSD OUTPUT VOLTAGE",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 41
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "modbus": {
+       "address": 130,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# VSD Output Current SYS 1 VSD OUTPUT CURRENT",
+      "unitIP": "Amps",
+      "unitSI": "Amps"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 42
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "modbus": {
+       "address": 131,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# VSD Output Power SYS 1 VSD OUTPUT POWER",
+      "unitIP": "kW",
+      "unitSI": "kW"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 43
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "modbus": {
+       "address": 132,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# VSD Heatsink Temperature SYS 1 VSD HEATSINK TEMPERATURE",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 44
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "modbus": {
+       "address": 133,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# VSD Fault Code SYS 1 VSD FAULT CODE"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 45
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 9
+      },
+      "modbus": {
+       "address": 134,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "1# Fail Rate SYS 1 FAIL RATE",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 46
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "modbus": {
+       "address": 135,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Command Period VSD COMMAND PERIOD",
+      "unitIP": "Sec",
+      "unitSI": "Sec"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 47
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "modbus": {
+       "address": 136,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Pb VSD PB",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 48
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "modbus": {
+       "address": 137,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Tn VSD TN",
+      "unitIP": "Sec",
+      "unitSI": "Sec"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 49
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "modbus": {
+       "address": 138,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "-"
+      },
+      "interfaceId": "yvwh-yvwe-ygwh-bas-sc-eq-rev1-0"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev 1.0"
+   },
+   "sourcePages": [
+    1,
+    1
+   ],
+   "appliesTo": [
+    "YVWH",
+    "YVWE",
+    "YGWH"
+   ]
+  }
+ ],
+ "crosscheck": {
+  "fam": "lontalk",
+  "segments": 1,
+  "table": 55,
+  "raw": 0,
+  "both": 0,
+  "same": 0,
+  "diff": [],
+  "rate": 0.0,
+  "verified": {}
+ },
+ "tags": [
+  "chiller"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'YVWH·YVWE·YGWH Chillers' 의 낱말 (압축 방식·응축 방식)"
+}

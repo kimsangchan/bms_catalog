@@ -17,6 +17,127 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 ELIB = "https://elibrary.tranetechnologies.com/public/commercial-hvac/Literature/"
 ELIB_CATALOG = ELIB + "Product%20Catalog/"
 
+# JCI/York BAS 포인트 리스트 56건 — docs.johnsoncontrols.com khub.
+# 목록의 출처는 문서 카탈로그 스냅샷(data/haystack/_jci_docs.json, 9,142건)에서
+# 포인트 리스트 계통만 고른 것이다. khub URL 은 끝이 전부 'content' 라 원 이름
+# 기준 rename 이 성립하지 않는다 → collect.local_name 이 **URL 전체**도 열쇠로 받는다.
+# (문서ID, 사이트, 저장 이름) 한 줄 = 문서 하나.
+JCI_BAS_POINTS = [
+    ("ZVOgU4MVClTr1wstBh3m2A", "chillers",
+     "JCI_AWHP-AirWaterHeatPump.pdf"),   # AWHP Air Water Heat Pump E-Link (Rev C) Non-OptiView Based Equipment
+    ("OQCjzS3A0ZVQ9QBqSlanSQ", "chillers",
+     "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf"),   # Basildon Recip II E-Link (Rev_J_01) Non-OptiView Based Equipment
+    ("BIOPM0nRZnUk75tsUSvUTA", "chillers",
+     "JCI_CR-BAS-SC-EQ-Rev1.3.pdf"),   # CR Points List SC-EQ (Rev 1.3) OptiView Based Equipment
+    ("bu7Kg~7kuuMB61HkthX_2A", "chillers",
+     "JCI_ECO2-IPU-LONandN2verJ-03.pdf"),   # YPAL (ECO2) LON and N2 E-Link Point Maps. The ECO2 product has Native BACnet M
+    ("q6LHnNOzMSDLOmZUbI44Ug", "chillers",
+     "JCI_ECO2-IPU-NativeBACnetModbus.pdf"),   # Series 100 ​IPU 1 Native BACnet and Modbus
+    ("5wtWGe_rjmetBNFyP2PvFQ", "chillers",
+     "JCI_Frick-LS-RWBScrew(RevJ-01).pdf"),   # Frick LS Screw E-Link (Rev_J_01) RWB Microboard only. For the latest points ma
+    ("Mw_EYd3yJkMrpOG1qLIzGw", "chillers",
+     "JCI_FrickQuantum3-4(RevJ-01).pdf"),   # Frick Quantum E-Link (Rev_J_01) For pre 2000 Quantum panels only. For later ve
+    ("4BMl7oBe1jFhGRpk35DAvQ", "chillers",
+     "JCI_RecipChillers(RevJ-02).pdf"),   # YCAJ, YCAZ, YCWZ, YCWJ, YCRJ, YCWK, YCRR Reciprocating Chiller E-Link (Rev_J_0
+    ("47mW1GA_AXbFLIz2QICYeQ", "chillers",
+     "JCI_Scroll-BAS-SC-EQRev2.4.pdf"),   # Scroll BAS SC-EQ (Rev 2.4​) Non-OptiView Based Equipment
+    ("oBPJz4ijvAYm6msOUI4wyg", "chillers",
+     "JCI_ScrollBAS.pdf"),   # YCRL, YCUL, YCAL, YLAA, YLPA, YLUA, YCWL Scroll BAS E-Link Non-OptiView Based 
+    ("PqH6~F3kNniq~6xHrGxQAQ", "chillers",
+     "JCI_ScrollNative.pdf"),   # YCAL, YCUL, YCWL, YLAA, YLUA Scroll Data Map Native BACnet and N2 Modbus
+    ("38yjzoNRyJnOMntX63dCBA", "ductedsystems",
+     "JCI_Sunline3000(RevJ-01).pdf"),   # Sunline 3000 Rooftop E-Link (Rev_J_01) Non-OptiView Based Equipment
+    ("7Lqu5MKCH2OtvX7jbB1SnQ", "chillers",
+     "JCI_YCARAirCooledRecip(RevJ-01).pdf"),   # YCAR Air Cooled Reciprocating E-Link (Rev_J_01) Non-OptiView Based Equipment
+    ("CBGzdc1y3fiy~RrOPBYfjQ", "chillers",
+     "JCI_YCASAir-CooledScrew(RevJ-03).pdf"),   # YCAS Air Cooled Screw E-Link (Rev_J_03) Non-OptiView Based Equipment
+    ("F5MxE~19WRFrMvSKgqKvYA", "chillers",
+     "JCI_YCAV-YCIV-BAS-(RevK-03g).pdf"),   # YCAV and YCIV 1/2 and 3/4 Compressor Models E-Link (Rev K _03g) Non-OptiView B
+    ("DsvsbvlZNgkCrndB1NvZpg", "chillers",
+     "JCI_YCAV-YCIVNative.pdf"),   # YCAV, YCIV Native BACnet, Modbus, N2 Data Map
+    ("VJ52N97ZFmW0I2WpA8dC3A", "chillers",
+     "JCI_YCWS-YCRS-Water-CooledScrew-F(RevJ-01).pdf"),   # YCWS and YCRS Water Cooled Screw E-Link (Rev_J_01) Non-OptiView Based Equipmen
+    ("ryVLb5Rnf89iVUfsCgygZw", "chillers",
+     "JCI_YD-BAS-SC-EQ-Rev2.4.pdf"),   # YD Points List SC-EQ (Rev 2.4)​ OptiView Based Equipment
+    ("l7pWhFILYevobk9HZKrdBw", "chillers",
+     "JCI_YD-OptiviewBAS(RevK-06f).pdf"),   # YD OptiView E-Link (Rev K_06f) OptiView Based Equipment
+    ("z3TBb3eYKkbj5mmf9_7e1w", "chillers",
+     "JCI_YGED-YB-MicroPanel-II-(RevJ-01).pdf"),   # YG and YB Micropanel with 1065 Boards E-Link (Rev_J_01) Non-OptiView Based Equ
+    ("MgPyIEusbCBvjQ2NPPH0uw", "chillers",
+     "JCI_YIA-BAS-SC-EQ-Rev1.1.pdf"),   # YIA Points List SC-EQ (Rev 1.1) OptiView Based Equipment
+    ("9LF9qQ7NhF9Hi4mdLkiTHg", "chillers",
+     "JCI_YK-BAS-SC-EQ-Rev2.9.pdf"),   # YK Points List SC-EQ (Rev 2.9) OptiView Based Equipment
+    ("eGZ6QFSLFZ_wTujNgwRGEA", "chillers",
+     "JCI_YK-MicroPanel-II-(RevJ-01).pdf"),   # YK Micropanel II with 1065 Boards NOT OptiView E-Link (Rev_J_01) Non-OptiView 
+    ("9K1_I8TTfuZWaiBiiZxM8w", "chillers",
+     "JCI_YK-OptiviewBAS(RevK-04d)EM-SSS.pdf"),   # YK OptiView BAS E-Link (Rev K_04d) EM and SSS Data Maps OptiView Based Equipme
+    ("Fgue2zdfR4thfSDzUfAyHQ", "chillers",
+     "JCI_YK-OptiviewBAS(RevK-04d)VSD.pdf"),   # YK OptiView BAS E-Link (Rev K_04d) VSD Data Maps​ OptiView Based Equipment
+    ("WBwYCBJ~KihreRSMUxcxcQ", "chillers",
+     "JCI_YKEP-BAS-SC-EQ-Rev2.9.pdf"),   # YKEP Points List SC-EQ (Rev 2.9​) OptiView Based Equipment
+    ("dYgzQbcqoLyEPCfcDOnVUA", "chillers",
+     "JCI_YKEP-OptiviewBASEM-SSS.pdf"),   # YKEP OptiView BAS EM and SSS E-Link (Rev K_01) OptiView Based Equipment
+    ("Aa7Qo2V_pQ9Etr5UT7EJ4Q", "chillers",
+     "JCI_YKEP-OptiviewBASVSD(RevK-01).pdf"),   # YKEP OptiView BAS VSD E-Link (Rev K_01) OptiView Based Equipment
+    ("cCyKNapISIvyShxh1Z~l5g", "chillers",
+     "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf"),   # YMAE Points List Two-Pipe Equipment
+    ("DAKAK2ryzuHrZbBA1Ny6_A", "chillers",
+     "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf"),   # YMAE Points List Four-Pipe Equipment
+    ("5I6BffzkZybYzhNWLkSq1w", "chillers",
+     "JCI_YMC2-BAS-SC-EQ-Rev2.11.pdf"),   # YMC2 Points List SC-EQ (Rev 2.11) OptiView Based Equipment
+    ("gk4oFkQpP27Gpe5ruu31kA", "chillers",
+     "JCI_YMC2-OptiviewBAS(RevK-05b).pdf"),   # YMC2 OptiView E-Link (Rev K_05b) OptiView Based Equipment
+    ("ISru5gO~hseNJRaG8uHiHg", "chillers",
+     "JCI_YR-(OptiView)-BAS-SC-EQ-Rev1.2.pdf"),   # YR (OptiView) Points List SE-EQ (Rev 1.2) OptiView Based Equipment
+    ("qYwF7xrXqmQnYAS5BD78MA", "chillers",
+     "JCI_YR-OptiView(RevK-03).pdf"),   # YR OptiView E-Link (Rev_K_03) OptiView Based Equipment
+    ("S3FYA_47fO460A0f3Oha9w", "chillers",
+     "JCI_YS-RotaryScrew(RevJ-02).pdf"),   # YS Rotary Screw with 'older' 940 or 1065 board E-Link (Rev_J_02) Non-OptiView 
+    ("ozVCeJT3qZBg4EZG7eobIQ", "chillers",
+     "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf"),   # YS with Heat Pump option using Unified Screw firmware. OptiView Based Equipmen
+    ("hSI0v36JJxo5NkdS0gNL0w", "chillers",
+     "JCI_YS-YN-BAS-SC-EQ-Rev2.3.pdf"),   # YS and YN Points List SC-EQ (Rev 2.3) OptiView Based Equipment
+    ("eJKAA5RbxwVvTPF__h2dHA", "chillers",
+     "JCI_YS-YN-OptiView(RevK-03).pdf"),   # YS and YN OptiView E-Link (Rev_K_03) OptiView Based Equipment
+    ("xvSi0e3Kwnf7B~5daaWaOw", "chillers",
+     "JCI_YSAA-BAS.pdf"),   # YSAA BAS (ISN) E-Link Non-OptiView Based Equipment
+    ("p4EqvB3xJO6bhqQzS114Tw", "chillers",
+     "JCI_YSAANative.pdf"),   # YSAA Native BACnet MS/TP, Modbus, N2 Data Map
+    ("xdkEW8x~Tlf_XJgFpLpcbA", "chillers",
+     "JCI_YST-BAS-SC-EQ-Rev1.2.pdf"),   # YST Points List SC-EQ (Rev 1.2) OptiView Based Equipment
+    ("gb8ypitRHG4X5jrdL35ABQ", "chillers",
+     "JCI_YST-Optiview(RevK-03).pdf"),   # YST OptiView E-Link (Rev_K_03) OptiView Based Equipment
+    ("qySCXKFcGaJK93xZ8jJBmA", "chillers",
+     "JCI_YT-BAS-SC-EQ-Rev2.5.pdf"),   # YT Points List SC-EQ (Rev 2.5) OptiView Based Equipment
+    ("4hfGvwkP0RBfYstZASUP3Q", "chillers",
+     "JCI_YT-MicroPanel-I-II-(RevJ-01).pdf"),   # YT Micropanel I and II with 776,940 and 1065 Boards E-Link (Rev_J_01) Non-Opti
+    ("p2OiyENC3XS2iIF4~nNx7Q", "chillers",
+     "JCI_YT-OptiView(RevK-03b).pdf"),   # YT OptiView E-Link (Rev K_03b) OptiView Based Equipment
+    ("Cxf1tNmYudSglP~8DcXK7g", "chillers",
+     "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf"),   # YVAA Style B BAS SC-EQ (Rev 1.8) Non-OptiView Based Equipment
+    ("nHwkT9FiUp_csGrw6Q~_wA", "chillers",
+     "JCI_YVAA-YVFA-YAGK(YT3)BAS-SC-EQRev1.8.pdf"),   # YVAA, YVFA, YAGK (YT3) BAS SC-EQ (Rev1.8) Non-OptiView Based Equipment
+    ("HryI9wyjlbuFpbuVIk9XrA", "chillers",
+     "JCI_YVAA-YVFA-YAGK-BAS-E-Link2021-04-16.pdf"),   # YVAA, YVFA, YAGK BAS E-Link Non-OptiView Based Equipment
+    ("v3G3YemU0Ic3bTVhJD0MOw", "chillers",
+     "JCI_YVAA-YVFA-YAGK-BAS-SC-EQ-Rev2.16.pdf"),   # YVAA, YVFA, YAGK BAS SC-EQ (Rev 2.16)​​ Non-OptiView Based Equipment
+    ("Ul95oD3_Tkawi3qW9DkIug", "chillers",
+     "JCI_YVAA-YVFA-YAGKNative.pdf"),   # YVAA, YVFA, YAGK Native BACnet and Modbus N2 Data Map
+    ("QO052Dm251t6v1FTiH8_iQ", "chillers",
+     "JCI_YVAM-BAS-SC-EQ-Rev1.5.pdf"),   # YVAM Points List SC-EQ (Rev 1.5) OptiView Based Equipment
+    ("GBppk5iQWBiKzUyxqfeOFA", "chillers",
+     "JCI_YVWA-BAS-SC-EQ-Rev2.1.pdf"),   # YVWA BAS SC-EQ (Rev 2.1)​ Non-OptiView Based Equipment
+    ("zbueaePe6Wu3YKVBu~fp3A", "chillers",
+     "JCI_YVWA-BAS.pdf"),   # YVWA BAS E-Link Non-OptiView Based Equipment
+    ("TWAOtmjMD~xxMBlTMLA2QQ", "chillers",
+     "JCI_YVWH-YVWE-YGWH-BAS-SC-EQ-Rev1.0.pdf"),   # YVWH, YVWE, YGWH BAS SC-EQ (Rev 1.0) Non-OptiView Based Equipment
+    ("ZAyi0nhZO6~_x09W4LLALw", "chillers",
+     "JCI_YZ-BAS-SC-EQ-Rev1.7.pdf"),   # YZ Points List SC-EQ (Rev 1.7) OptiView Based Equipment
+    ("RNezPwBMi1SWkNtA2cBRwg", "chillers",
+     "JCI_YZD-BAS-HMI-Rev1.4.pdf"),   # YZD BAS Protocol List Rev 1.4
+]
+_JCI_KHUB = "https://docs.johnsoncontrols.com/%s/api/khub/documents/%s/content"
+
 SOURCES = [
     {
         "id": "trane-points-list",
@@ -834,6 +955,23 @@ SOURCES = [
         },
         "extractor": "auto",
         "access": "무로그인",
+    },
+    {
+        "id": "jci-york-bas-points",
+        "vendor": "Johnson Controls / YORK",
+        "kind": "포인트리스트",
+        "note": "York 냉동기·루프탑 BAS 포인트 리스트 56건. 한 제품이 계통별로 여러 판을 갖는다 "
+                "— YK 하나가 SC-EQ·OptiView E-Link(EM/SSS·VSD)·Micropanel II 로 4건이다. "
+                "계통마다 표 구조와 함정이 달라 파서를 vendor_jci_sceq·_elink·_native·_yzd "
+                "넷으로 갈랐다. 취입은 ingest_jci.py.",
+        "enumerate": "list",
+        "urls": [_JCI_KHUB % (site, i) for i, site, _n in JCI_BAS_POINTS],
+        "rename": {_JCI_KHUB % (site, i): n for i, site, n in JCI_BAS_POINTS},
+        "extractor": "vendor",
+        "access": "무로그인",
+        # 계통 대부분이 Modbus·N2·LON 주소만 주거나(BACnet 타입 열이 없거나) 한 행에 네
+        # 프로토콜을 함께 실어, 줄 읽기 경로가 (타입, 인스턴스) 짝을 만들 수 없다.
+        "crosscheck_unreliable": r"JCI_",
     },
 ]
 

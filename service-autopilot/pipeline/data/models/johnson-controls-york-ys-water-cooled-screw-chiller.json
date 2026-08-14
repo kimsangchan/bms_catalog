@@ -1,0 +1,7221 @@
+{
+ "id": "johnson-controls-york-ys-water-cooled-screw-chiller",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YS Water Cooled Screw Chiller",
+ "name": "YS Water Cooled Screw Chiller",
+ "cat": "HVAC.PLANT.CHILLER.SCREW",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 2건 · 판 4개에서 취입 — 오브젝트 167점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "N2",
+   "E-Link/BACnet(GPIC) · E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 4판"
+  ],
+  [
+   "York Talk",
+   "E-Link/BACnet(GPIC) · E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 4판"
+  ],
+  [
+   "BACnet",
+   "E-Link/BACnet(GPIC)",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "E-Link",
+   "E-Link/BACnet(GPIC)",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "LON",
+   "E-Link/BACnet(GPIC)",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "Modbus",
+   "E-Link/BACnet(GPIC)",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+ "interfaces": [
+  {
+   "id": "ys-rotaryscrew-revj-02-p1",
+   "label": "YS Rotary Screw with \"older\" 940 or 1065 board E-Link (Rev_J_02) Non-OptiView Based Equipment — 구간 1",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+   "pointCount": 30,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temp Setpoint",
+      "shortName": "LCHW TEMP.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "asciiPageRef": "P01",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Current Limit Setpoint",
+      "shortName": "%CURRENT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "asciiPageRef": "P02",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Start/Stop",
+      "shortName": "START",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "asciiPageRef": "P05",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temp",
+      "shortName": "LCHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Chilled Water Temp",
+      "shortName": "ECHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "asciiPageRef": "P10",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 12,
+        "end": 15
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure",
+      "shortName": "EVAP.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure",
+      "shortName": "COND.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pressure",
+      "shortName": "OIL.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "asciiPageRef": "P13",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 24,
+        "end": 27
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Condenser Water Temp",
+      "shortName": "ECDW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Water Temp",
+      "shortName": "LCDW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Percent Motor Current",
+      "shortName": "%CURRENT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Actual Leaving Chilled Water Temp Setpoint",
+      "shortName": "ACT-LCHW.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Reset Range",
+      "shortName": "RMT-RANGE",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Leaving Chilled Water Temp Setpoint",
+      "shortName": "RMT-LCHW.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Local Current Limit Setpoint",
+      "shortName": "LCL-CLMT%.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Current Limit Setpoint",
+      "shortName": "RMT-CLMT%.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Pulldown Time",
+      "shortName": "PDN-TIME.MIN",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Pulldown Current Limit Setpoint",
+      "shortName": "PDN-CLMT%.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 67
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Saturation Temp",
+      "shortName": "EVAPSAT.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "asciiPageRef": "P25",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 72,
+        "end": 75
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Saturation Temp",
+      "shortName": "CONDSAT.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "asciiPageRef": "P26",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 76,
+        "end": 79
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temp",
+      "shortName": "DISCH.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "asciiPageRef": "P27",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 80,
+        "end": 83
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Temperature",
+      "shortName": "OIL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P30",
+       "asciiPageRef": "P28",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 84,
+        "end": 87
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Keyswitch Position (ON=Remote, OFF=Local)",
+      "shortName": "KEY.SWITCH",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Motor Status",
+      "shortName": "CMP-MTR.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "OIl Pump Status",
+      "shortName": "OIL-PMP.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "asciiPageRef": "P39",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 113,
+        "end": 113
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Water Pump Contact Status (used to subordinate pump into panel)",
+      "shortName": "CHW-PMP.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P42",
+       "asciiPageRef": "P40",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 114,
+        "end": 114
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Shutdown Contact (ON whenever Safety Contact is Closed)",
+      "shortName": "SAFETY.SHDN",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P43",
+       "asciiPageRef": "P41",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 115,
+        "end": 115
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cycling Shutdown Contact (ON whenever Cycling Contact is Closed)",
+      "shortName": "CYCLING.SHDN",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P44",
+       "asciiPageRef": "P42",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 116,
+        "end": 116
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Shutdown Code (0-255, see list)",
+      "shortName": "SAFETY.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cycling Shutdown Code (0-255, see list)",
+      "shortName": "CYCLING.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p1"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev J 02",
+    "block": "구간 1"
+   },
+   "sourcePages": [
+    1,
+    2
+   ],
+   "excluded": {
+    "reserved": 124,
+    "revision": 11,
+    "codeTable": 5
+   },
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(1~24)"
+  },
+  {
+   "id": "ys-rotaryscrew-revj-02-p2",
+   "label": "YS Rotary Screw with \"older\" 940 or 1065 board E-Link (Rev_J_02) Non-OptiView Based Equipment — 구간 2",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+   "pointCount": 45,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temp Setpoint",
+      "shortName": "LCHW TEMP.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "asciiPageRef": "P01",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Current Setpoint",
+      "shortName": "%CURRENT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "asciiPageRef": "P02",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Start/Stop",
+      "shortName": "START",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "asciiPageRef": "P05",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Frozen/Live Data Source",
+      "shortName": "HISTORY",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P08",
+       "asciiPageRef": "P06",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temp",
+      "shortName": "LCHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Chilled Water Temp",
+      "shortName": "ECHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "asciiPageRef": "P10",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 12,
+        "end": 15
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure",
+      "shortName": "EVAP.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure",
+      "shortName": "COND.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Differential Oil Pressure",
+      "shortName": "OIL.DP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "asciiPageRef": "P13",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 24,
+        "end": 27
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Condenser Water Temp",
+      "shortName": "ECDW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Water Temp",
+      "shortName": "LCDW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Percent Motor Current (SSS models Only)",
+      "shortName": "%CURRENT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase A Motor Current (SSS models Only)",
+      "shortName": "PHASE A.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase B Motor Current (SSS models Only)",
+      "shortName": "PHASE B.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase C Motor Current (SSS models Only)",
+      "shortName": "PHASE C.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase A-B Line Voltage (SSS models Only)",
+      "shortName": "A-B.VOLTS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase B-C Line Voltage (SSS models Only)",
+      "shortName": "B-C.VOLTS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase C-A Line Voltage (SSS models Only)",
+      "shortName": "C-A.VOLTS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temp Actual Setpoint",
+      "shortName": "LCHW ACT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 37
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Current Limit Setpoint",
+      "shortName": "%CURR ACT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "yorktalk": {
+       "pageRef": "P26",
+       "asciiPageRef": "P24",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 68,
+        "end": 71
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Saturation Temp",
+      "shortName": "EVAPSAT.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "asciiPageRef": "P25",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 72,
+        "end": 75
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Saturation Temp",
+      "shortName": "CONDSAT.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "asciiPageRef": "P26",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 76,
+        "end": 79
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temp",
+      "shortName": "DISCH.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "asciiPageRef": "P27",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 80,
+        "end": 83
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Temperature",
+      "shortName": "OIL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P30",
+       "asciiPageRef": "P28",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 84,
+        "end": 87
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Differential Filter Pressure",
+      "shortName": "FILTER.DP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "yorktalk": {
+       "pageRef": "P31",
+       "asciiPageRef": "P29",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 88,
+        "end": 91
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Accumulated Operating Hours",
+      "shortName": "RUN.HOURS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "yorktalk": {
+       "pageRef": "P32",
+       "asciiPageRef": "P30",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 92,
+        "end": 95
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Accumulated System Starts",
+      "shortName": "START.COUNT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "yorktalk": {
+       "pageRef": "P33",
+       "asciiPageRef": "P31",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 96,
+        "end": 99
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Minimum Current limit Setpoint",
+      "shortName": "MINCURLIM.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "yorktalk": {
+       "pageRef": "P34",
+       "asciiPageRef": "P32",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 100,
+        "end": 103
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Percent Slide Valve",
+      "shortName": "%SLIDE.VALVE",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "yorktalk": {
+       "pageRef": "P35",
+       "asciiPageRef": "P33",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 104,
+        "end": 107
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Motor Status",
+      "shortName": "COMPR.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Line Solenoid Status",
+      "shortName": "OIL SOL.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Water Pump Status",
+      "shortName": "CHWPUMP.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "asciiPageRef": "P36",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 110,
+        "end": 110
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Start Switch Status",
+      "shortName": "STARTSW.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "asciiPageRef": "P37",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 111,
+        "end": 111
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Water Flow Switch Status",
+      "shortName": "CHWFLSW.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P40",
+       "asciiPageRef": "P38",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 112,
+        "end": 112
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Eductor Solenoid Status",
+      "shortName": "EDUCSOL.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "asciiPageRef": "P39",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 113,
+        "end": 113
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Oil Separator Status",
+      "shortName": "OIL SEP.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P42",
+       "asciiPageRef": "P40",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 114,
+        "end": 114
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Freeze Relay Status",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P43",
+       "asciiPageRef": "P41",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 115,
+        "end": 115
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Ice Store Enable",
+      "shortName": "ICESTORE.ENA",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P55",
+       "asciiPageRef": "P53",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 127,
+        "end": 127
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Anti-Recycle Time Left",
+      "shortName": "AR TIME.MIN",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "asciiPageRef": "P54",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 128,
+        "end": 128
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Operating Mode (Local, Remote, Service)",
+      "shortName": "OPRMODE.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "asciiPageRef": "P55",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 129,
+        "end": 129
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Operation Code",
+      "shortName": "OPER.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "asciiPageRef": "P56",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 130,
+        "end": 130
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Shutdown Code",
+      "shortName": "SAFETY.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Cycling Shutdown Code",
+      "shortName": "CYCLING.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Water Restart Offset",
+      "shortName": "LWT RST.OFF",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "yorktalk": {
+       "pageRef": "P66",
+       "asciiPageRef": "P64",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 138,
+        "end": 141
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Differential Seal Oil Pressure",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "yorktalk": {
+       "pageRef": "P67",
+       "asciiPageRef": "P65",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 142,
+        "end": 145
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p2"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev J 02",
+    "block": "구간 2"
+   },
+   "sourcePages": [
+    5,
+    6
+   ],
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(1~31)"
+  },
+  {
+   "id": "ys-rotaryscrew-revj-02-p3",
+   "label": "YS Rotary Screw with \"older\" 940 or 1065 board E-Link (Rev_J_02) Non-OptiView Based Equipment — 구간 3",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+   "pointCount": 47,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temp Setpoint",
+      "shortName": "LCHW TEMP.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "asciiPageRef": "P01",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Current Setpoint",
+      "shortName": "%CURRENT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "asciiPageRef": "P02",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Start/Stop",
+      "shortName": "START",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "asciiPageRef": "P05",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Frozen/Live Data Source",
+      "shortName": "HISTORY",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P08",
+       "asciiPageRef": "P06",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temp",
+      "shortName": "LCHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Chilled Water Temp",
+      "shortName": "ECHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "asciiPageRef": "P10",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 12,
+        "end": 15
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure",
+      "shortName": "EVAP.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure",
+      "shortName": "COND.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Differential Oil Pressure",
+      "shortName": "OIL.DP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "asciiPageRef": "P13",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 24,
+        "end": 27
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Condenser Water Temp",
+      "shortName": "ECDW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Water Temp",
+      "shortName": "LCDW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Percent Motor Current",
+      "shortName": "%CURRENT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase A Motor Current (SSS models Only)",
+      "shortName": "PHASE A.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase B Motor Current (SSS models Only)",
+      "shortName": "PHASE B.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase C Motor Current (SSS models Only)",
+      "shortName": "PHASE C.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase A-B Line Voltage (SSS models Only)",
+      "shortName": "A-B.VOLTS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase B-C Line Voltage (SSS models Only)",
+      "shortName": "B-C.VOLTS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase C-A Line Voltage (SSS models Only)",
+      "shortName": "C-A.VOLTS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temp Actual Setpoint",
+      "shortName": "LCHW ACT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 37
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Current Limit Setpoint",
+      "shortName": "%CURR ACT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "yorktalk": {
+       "pageRef": "P26",
+       "asciiPageRef": "P24",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 68,
+        "end": 71
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Saturation Temp",
+      "shortName": "EVAPSAT.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "asciiPageRef": "P25",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 72,
+        "end": 75
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Saturation Temp",
+      "shortName": "CONDSAT.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "asciiPageRef": "P26",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 76,
+        "end": 79
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temp",
+      "shortName": "DISCH.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "asciiPageRef": "P27",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 80,
+        "end": 83
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Temperature",
+      "shortName": "OIL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P30",
+       "asciiPageRef": "P28",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 84,
+        "end": 87
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Differential Filter Pressure",
+      "shortName": "FILTER.DP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "yorktalk": {
+       "pageRef": "P31",
+       "asciiPageRef": "P29",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 88,
+        "end": 91
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Accumulated Operating Hours",
+      "shortName": "RUN.HOURS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "yorktalk": {
+       "pageRef": "P32",
+       "asciiPageRef": "P30",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 92,
+        "end": 95
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Accumulated System Starts",
+      "shortName": "START.COUNT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "yorktalk": {
+       "pageRef": "P33",
+       "asciiPageRef": "P31",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 96,
+        "end": 99
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Minimum Current limit Setpoint",
+      "shortName": "MINCURLIM.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "yorktalk": {
+       "pageRef": "P34",
+       "asciiPageRef": "P32",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 100,
+        "end": 103
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Percent Slide Valve",
+      "shortName": "%SLIDE.VALVE",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "yorktalk": {
+       "pageRef": "P35",
+       "asciiPageRef": "P33",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 104,
+        "end": 107
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Motor Status",
+      "shortName": "COMPR.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Line Solenoid Status",
+      "shortName": "OIL SOL.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Water Pump Status",
+      "shortName": "CHWPUMP.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "asciiPageRef": "P36",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 110,
+        "end": 110
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Start Switch Status",
+      "shortName": "STARTSW.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "asciiPageRef": "P37",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 111,
+        "end": 111
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Water Flow Switch Status",
+      "shortName": "CHWFLSW.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P40",
+       "asciiPageRef": "P38",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 112,
+        "end": 112
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Eductor Solenoid Status",
+      "shortName": "EDUCSOL.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "asciiPageRef": "P39",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 113,
+        "end": 113
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Oil Separator Status",
+      "shortName": "OIL SEP.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P42",
+       "asciiPageRef": "P40",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 114,
+        "end": 114
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Freeze Relay Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=O,2=S,3=S,4=S,5=S,6=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P43",
+       "asciiPageRef": "P41",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 115,
+        "end": 115
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pump Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=O,2=S,3=S,4=S,5=S,6=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P44",
+       "asciiPageRef": "P42",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 116,
+        "end": 116
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Flow Switch Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=S,5=S,6=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P45",
+       "asciiPageRef": "P43",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 117,
+        "end": 117
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Ice Store Enable",
+      "shortName": "ICESTORE.ENA",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P55",
+       "asciiPageRef": "P53",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 127,
+        "end": 127
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Anti-Recycle Time Left",
+      "shortName": "AR TIME.MIN",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "asciiPageRef": "P54",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 128,
+        "end": 128
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Operating Mode (Local, Remote, Service)",
+      "shortName": "OPRMODE.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "asciiPageRef": "P55",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 129,
+        "end": 129
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Operation Code",
+      "shortName": "OPER.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "asciiPageRef": "P56",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 130,
+        "end": 130
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Shutdown Code",
+      "shortName": "SAFETY.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Cycling Shutdown Code",
+      "shortName": "CYCLING.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Water Restart Offset",
+      "shortName": "LWT RST.OFF",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "yorktalk": {
+       "pageRef": "P66",
+       "asciiPageRef": "P64",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 138,
+        "end": 141
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Seal Oil Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=S,4=S,5=S,6=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "yorktalk": {
+       "pageRef": "P67",
+       "asciiPageRef": "P65",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 142,
+        "end": 145
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-RotaryScrew(RevJ-02).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "ys-rotaryscrew-revj-02-p3"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev J 02",
+    "block": "구간 3"
+   },
+   "sourcePages": [
+    9,
+    10
+   ],
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(1~31)"
+  },
+  {
+   "id": "ys-unifiedoptiview-revk-03-beta",
+   "label": "YS with Heat Pump option using Unified Screw firmware. OptiView Based Equipment. This is not a standard Elink configuration and as such, will require a special quote from the JCI SIS center in...",
+   "family": "E-Link/BACnet(GPIC)",
+   "protocols": [
+    "bacnet",
+    "elink",
+    "lon",
+    "modbus",
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+   "pointCount": 45,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Setpoint",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1,
+       "objectName": "REM LEAVING CHW TEMP SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "lon": {
+       "nvName": "nviCoolSetPt",
+       "direction": "nvi",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AV.1"
+      },
+      "yorktalk": {
+       "pageRef": "P03"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0001",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Current Limit Setpoint",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2,
+       "objectName": "MOTOR CURRENT REMOTE SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "lon": {
+       "nvName": "nviCapacityLimit",
+       "direction": "nvi",
+       "snvtIndex": 81
+      },
+      "elink": {
+       "gpicType": "AV.2"
+      },
+      "yorktalk": {
+       "pageRef": "P04"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0002",
+       "LON SNVT Type": "SNVTlevpercent (81)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Heated Liquid Setpoint (CondLvgTemp Setpoint 90-140F)",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 3,
+       "objectName": "HOT WATER REMOTE SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "modbus": {
+       "address": 3,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "lon": {
+       "nvName": "nviHeatSetPt",
+       "direction": "nvi",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AV.4"
+      },
+      "yorktalk": {
+       "pageRef": "P05"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0003",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Operational Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Cooling"
+       },
+       {
+        "code": "1",
+        "label": "Heating"
+       },
+       {
+        "code": "2",
+        "label": "Cool&Heat"
+       }
+      ],
+      "unitIPRaw": "index*",
+      "unitSIRaw": "index*",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 4,
+       "objectName": "OPERATIONAL MODE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 4
+      },
+      "modbus": {
+       "address": 4,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "lon": {
+       "nvName": "nviOperationMode",
+       "direction": "nvi",
+       "snvtIndex": 8
+      },
+      "elink": {
+       "gpicType": "AV.3"
+      },
+      "yorktalk": {
+       "pageRef": "P06"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0004",
+       "LON SNVT Type": "SNVTcount (8)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Start/Stop [Stop/Start]",
+      "unitIPRaw": "0 /1",
+      "unitSIRaw": "0 /1",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1,
+       "objectName": "REM START STOP CMD"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nviChillerEnable",
+       "direction": "nvi",
+       "snvtIndex": 95
+      },
+      "elink": {
+       "gpicType": "BV.1"
+      },
+      "yorktalk": {
+       "pageRef": "P07"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0061",
+       "LON SNVT Type": "SNVTswitch (95)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5,
+       "objectName": "LEAVING CHW TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoLvgCHWTemp",
+       "direction": "nvo",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AI.1"
+      },
+      "yorktalk": {
+       "pageRef": "P11"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0005",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Chilled Liquid Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6,
+       "objectName": "ENTERING CHW TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 6,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoEntCHWTemp",
+       "direction": "nvo",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AI.2"
+      },
+      "yorktalk": {
+       "pageRef": "P12"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0006",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "kPA",
+      "unitSI": "kPa",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7,
+       "objectName": "EVAPORATOR PRESSURE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoEvapPress",
+       "direction": "nvo",
+       "snvtIndex": 30
+      },
+      "elink": {
+       "gpicType": "AI.5"
+      },
+      "yorktalk": {
+       "pageRef": "P13"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0007",
+       "LON SNVT Type": "SNVTpress (30)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "kPA",
+      "unitSI": "kPa",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8,
+       "objectName": "CONDENSER PRESSURE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 8,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoCondPress",
+       "direction": "nvo",
+       "snvtIndex": 30
+      },
+      "elink": {
+       "gpicType": "AI.6"
+      },
+      "yorktalk": {
+       "pageRef": "P14"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0008",
+       "LON SNVT Type": "SNVTpress (30)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pressure Differential",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "kPA",
+      "unitSI": "kPa",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 9,
+       "objectName": "OIL DIFERENTIAL PRESSURE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoOilDiffPress",
+       "direction": "nvo",
+       "snvtIndex": 30
+      },
+      "elink": {
+       "gpicType": "AV.14"
+      },
+      "yorktalk": {
+       "pageRef": "P15"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0009",
+       "LON SNVT Type": "SNVTpress (30)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Condenser Liquid Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 10,
+       "objectName": "ENTERING COND WATER TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 10,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoEntCNDTemp",
+       "direction": "nvo",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AI.4"
+      },
+      "yorktalk": {
+       "pageRef": "P16"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0010",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Liquid Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11,
+       "objectName": "LEAVING COND WATER TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoLvgCNDTemp",
+       "direction": "nvo",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AI.3"
+      },
+      "yorktalk": {
+       "pageRef": "P17"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0011",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Current Percent FLA",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12,
+       "objectName": "MOTOR CURRENT PCT FLA"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoActualCapacit",
+       "direction": "nvo",
+       "snvtIndex": 81
+      },
+      "elink": {
+       "gpicType": "AI.11"
+      },
+      "yorktalk": {
+       "pageRef": "P18"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0012",
+       "LON SNVT Type": "SNVTlevpercent (81)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "SSS Phase A Current",
+      "unitIPRaw": "amps",
+      "unitIP": "A",
+      "unitSIRaw": "amps",
+      "unitSI": "A",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13,
+       "objectName": "PHASE A MOTOR CURRENT"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoCurrentA",
+       "direction": "nvo",
+       "snvtIndex": 1
+      },
+      "elink": {
+       "gpicType": "AI.16"
+      },
+      "yorktalk": {
+       "pageRef": "P19"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0013",
+       "LON SNVT Type": "SNVTamp (1)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "SSS Phase B Current",
+      "unitIPRaw": "amps",
+      "unitIP": "A",
+      "unitSIRaw": "amps",
+      "unitSI": "A",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14,
+       "objectName": "PHASE B MOTOR CURRENT"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoCurrentB",
+       "direction": "nvo",
+       "snvtIndex": 1
+      },
+      "elink": {
+       "gpicType": "AI.17"
+      },
+      "yorktalk": {
+       "pageRef": "P20"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0014",
+       "LON SNVT Type": "SNVTamp (1)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "SSS Phase C Current",
+      "unitIPRaw": "amps",
+      "unitIP": "A",
+      "unitSIRaw": "amps",
+      "unitSI": "A",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15,
+       "objectName": "PHASE C MOTOR CURRENT"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoCurrentC",
+       "direction": "nvo",
+       "snvtIndex": 1
+      },
+      "elink": {
+       "gpicType": "AI.18"
+      },
+      "yorktalk": {
+       "pageRef": "P21"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0015",
+       "LON SNVT Type": "SNVTamp (1)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "SSS Phase A Voltage",
+      "unitIPRaw": "volts",
+      "unitIP": "V",
+      "unitSIRaw": "volts",
+      "unitSI": "V",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 16,
+       "objectName": "PHASE A_B LINE VOLTS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 16,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoVoltageA",
+       "direction": "nvo",
+       "snvtIndex": 44
+      },
+      "elink": {
+       "gpicType": "AI.13"
+      },
+      "yorktalk": {
+       "pageRef": "P22"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0016",
+       "LON SNVT Type": "SNVTvolt (44)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "SSS Phase B Voltage",
+      "unitIPRaw": "volts",
+      "unitIP": "V",
+      "unitSIRaw": "volts",
+      "unitSI": "V",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 17,
+       "objectName": "PHASE B_C LINE VOLTS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoVoltageB",
+       "direction": "nvo",
+       "snvtIndex": 44
+      },
+      "elink": {
+       "gpicType": "AI.14"
+      },
+      "yorktalk": {
+       "pageRef": "P23"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0017",
+       "LON SNVT Type": "SNVTvolt (44)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "SSS Phase C Voltage",
+      "unitIPRaw": "volts",
+      "unitIP": "V",
+      "unitSIRaw": "volts",
+      "unitSI": "V",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 18,
+       "objectName": "PHASE C_A LINE VOLTS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoVoltageC",
+       "direction": "nvo",
+       "snvtIndex": 44
+      },
+      "elink": {
+       "gpicType": "AI.15"
+      },
+      "yorktalk": {
+       "pageRef": "P24"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0018",
+       "LON SNVT Type": "SNVTvolt (44)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Setpoint - Active",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 19,
+       "objectName": "LEAVING CHW TEMP ACT SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 19,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoActiveSetpt",
+       "direction": "nvo",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AV.1"
+      },
+      "yorktalk": {
+       "pageRef": "P25"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0019",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Current Limit Setpoint - Selected",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 20,
+       "objectName": "MOTOR CURRENT ACTUAL SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 20,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoCapacityLimit",
+       "direction": "nvo",
+       "snvtIndex": 81
+      },
+      "elink": {
+       "gpicType": "AV.20"
+      },
+      "yorktalk": {
+       "pageRef": "P26"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0020",
+       "LON SNVT Type": "SNVTlevpercent (81)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Saturation Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21,
+       "objectName": "EVAP SATURATION TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 21,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoEvapSatTemp",
+       "direction": "nvo",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AV.6"
+      },
+      "yorktalk": {
+       "pageRef": "P27"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0021",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Saturation Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22,
+       "objectName": "COND SATURATION TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 22,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoCondSatTemp",
+       "direction": "nvo",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AV.7"
+      },
+      "yorktalk": {
+       "pageRef": "P28"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0022",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23,
+       "objectName": "DISCHARGE TEMP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 23,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoDischTemp",
+       "direction": "nvo",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AI.7"
+      },
+      "yorktalk": {
+       "pageRef": "P29"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0023",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 24,
+       "objectName": "OIL SUMP TEMPERATURE"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 24,
+       "addressBase": "unknown",
+       "scaleRaw": "X10"
+      },
+      "lon": {
+       "nvName": "nvoSumpOilTemp",
+       "direction": "nvo",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AI.41"
+      },
+      "yorktalk": {
+       "pageRef": "P30"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0024",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Operating Hours",
+      "unitIPRaw": "hr",
+      "unitIP": "h",
+      "unitSIRaw": "hr",
+      "unitSI": "h",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26,
+       "objectName": "ACCUM OPERATING HOURS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 26,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoRunHours",
+       "direction": "nvo",
+       "snvtIndex": 124
+      },
+      "elink": {
+       "gpicType": "AV.15"
+      },
+      "yorktalk": {
+       "pageRef": "P32"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0026",
+       "LON SNVT Type": "SNVTtimehour (124)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit System Starts",
+      "unitIPRaw": "count*",
+      "unitSIRaw": "count*",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 27,
+       "objectName": "ACCUM SYSTEM STARTS"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 27,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoSystemStarts",
+       "direction": "nvo",
+       "snvtIndex": 8
+      },
+      "elink": {
+       "gpicType": "AV.16"
+      },
+      "yorktalk": {
+       "pageRef": "P33"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0027",
+       "LON SNVT Type": "SNVTcount (8)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Run Contacts",
+      "unitIPRaw": "0 /1",
+      "unitSIRaw": "0 /1",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5,
+       "objectName": "COMPR MOTOR STATUS"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoOnOff",
+       "direction": "nvo",
+       "snvtIndex": 95
+      },
+      "elink": {
+       "gpicType": "BO.1"
+      },
+      "yorktalk": {
+       "pageRef": "P36"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0065",
+       "LON SNVT Type": "SNVTswitch (95)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Return Solenoid",
+      "unitIPRaw": "0 /1",
+      "unitSIRaw": "0 /1",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6,
+       "objectName": "OIL RETURN SOLENOID"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 66,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoOilReturnSol",
+       "direction": "nvo",
+       "snvtIndex": 95
+      },
+      "elink": {
+       "gpicType": "BO.12"
+      },
+      "yorktalk": {
+       "pageRef": "P37"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0066",
+       "LON SNVT Type": "SNVTswitch (95)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Pump",
+      "unitIPRaw": "0 /1",
+      "unitSIRaw": "0 /1",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7,
+       "objectName": "CHW PUMP STAT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoCHLPump",
+       "direction": "nvo",
+       "snvtIndex": 95
+      },
+      "elink": {
+       "gpicType": "BO.2"
+      },
+      "yorktalk": {
+       "pageRef": "P38"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0067",
+       "LON SNVT Type": "SNVTswitch (95)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Panel Stop Switch [Start enabled/Stop]",
+      "unitIPRaw": "0 /1",
+      "unitSIRaw": "0 /1",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 8,
+       "objectName": "STOP SWITCH STATUS"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "modbus": {
+       "address": 68,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoPanelStopSw",
+       "direction": "nvo",
+       "snvtIndex": 95
+      },
+      "elink": {
+       "gpicType": "BI.4"
+      },
+      "yorktalk": {
+       "pageRef": "P39"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0068",
+       "LON SNVT Type": "SNVTswitch (95)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Liquid Flow Switch",
+      "unitIPRaw": "0 /1",
+      "unitSIRaw": "0 /1",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 9,
+       "objectName": "CHW FLOW SWITCH STAT"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "modbus": {
+       "address": 69,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoCHFlowSwitch",
+       "direction": "nvo",
+       "snvtIndex": 95
+      },
+      "elink": {
+       "gpicType": "BI.1"
+      },
+      "yorktalk": {
+       "pageRef": "P40"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0069",
+       "LON SNVT Type": "SNVTswitch (95)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Separator Oil Switch",
+      "unitIPRaw": "0 /1",
+      "unitSIRaw": "0 /1",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 11,
+       "objectName": "LOW SEPARATOR OIL SWITCH"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "modbus": {
+       "address": 71,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoLowSepOilSw",
+       "direction": "nvo",
+       "snvtIndex": 95
+      },
+      "elink": {
+       "gpicType": "BI.35"
+      },
+      "yorktalk": {
+       "pageRef": "P42"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0071",
+       "LON SNVT Type": "SNVTswitch (95)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Ice Storage Mode [Disabled/Enabled]",
+      "unitIPRaw": "0 / 1",
+      "unitSIRaw": "0 / 1",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 24,
+       "objectName": "ICE STORAGE MODE"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 24
+      },
+      "modbus": {
+       "address": 84,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoIceStoragMode",
+       "direction": "nvo",
+       "snvtIndex": 95
+      },
+      "elink": {
+       "gpicType": "BV.26"
+      },
+      "yorktalk": {
+       "pageRef": "P55"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0084",
+       "LON SNVT Type": "SNVTswitch (95)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Operation Code",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1,
+       "alternates": [
+        "AV401"
+       ],
+       "objectName": "UNIT OPERATION CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 30,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoOperCode",
+       "direction": "nvo",
+       "snvtIndex": 8
+      },
+      "elink": {
+       "gpicType": "SC.1"
+      },
+      "yorktalk": {
+       "pageRef": "P56"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1 /AV401",
+       "MODBUS Address": "0030",
+       "LON SNVT Type": "SNVTcount (8)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Safety Fault Code",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2,
+       "alternates": [
+        "AV402"
+       ],
+       "objectName": "UNIT SAFETY FAULT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoSafetyCode",
+       "direction": "nvo",
+       "snvtIndex": 8
+      },
+      "elink": {
+       "gpicType": "SC.2"
+      },
+      "yorktalk": {
+       "pageRef": "P57"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2 /AV402",
+       "MODBUS Address": "0031",
+       "LON SNVT Type": "SNVTcount (8)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Cycling Fault Code",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3,
+       "alternates": [
+        "AV403"
+       ],
+       "objectName": "UNIT CYCLING FAULT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 32,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoCyclingFault",
+       "direction": "nvo",
+       "snvtIndex": 8
+      },
+      "elink": {
+       "gpicType": "SC.3"
+      },
+      "yorktalk": {
+       "pageRef": "P58"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3 /AV403",
+       "MODBUS Address": "0032",
+       "LON SNVT Type": "SNVTcount (8)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Warning Fault Code",
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4,
+       "alternates": [
+        "AV404"
+       ],
+       "objectName": "UNIT WARNING FAULT CODE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 33,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoWarnFault",
+       "direction": "nvo",
+       "snvtIndex": 8
+      },
+      "elink": {
+       "gpicType": "SC.4"
+      },
+      "yorktalk": {
+       "pageRef": "P59"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4 /AV404",
+       "MODBUS Address": "0033",
+       "LON SNVT Type": "SNVTcount (8)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Control Source",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "ISN"
+       },
+       {
+        "code": "2",
+        "label": "Analog"
+       },
+       {
+        "code": "3",
+        "label": "Digital"
+       },
+       {
+        "code": "4",
+        "label": "Modem"
+       }
+      ],
+      "unitIPRaw": "enum*",
+      "unitSIRaw": "enum*",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 5,
+       "alternates": [
+        "AV405"
+       ],
+       "objectName": "UNIT CONTROL SOURCE"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "modbus": {
+       "address": 34,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoUnitCtrlSrce",
+       "direction": "nvo",
+       "snvtIndex": 8
+      },
+      "elink": {
+       "gpicType": "SC.5"
+      },
+      "yorktalk": {
+       "pageRef": "P60"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV5 /AV405",
+       "MODBUS Address": "0034",
+       "LON SNVT Type": "SNVTcount (8)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Anti-Recycle Time Remaining",
+      "unitIPRaw": "min",
+      "unitIP": "min",
+      "unitSIRaw": "min",
+      "unitSI": "min",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 35,
+       "objectName": "ANTI RECYCLE TIME REMAIN"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "modbus": {
+       "address": 45,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoAntiRecycle",
+       "direction": "nvo",
+       "snvtIndex": 123
+      },
+      "elink": {
+       "gpicType": "AV.19"
+      },
+      "yorktalk": {
+       "pageRef": "P71"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0045",
+       "LON SNVT Type": "SNVTtimemin (123)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Seal Pressure Differential PSID",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "kPA",
+      "unitSI": "kPa",
+      "availability": {
+       "raw": "1=N",
+       "code": "N",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 37,
+       "objectName": "SEAL PRESS DIFFERENTIAL"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "modbus": {
+       "address": 47,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoSealDP",
+       "direction": "nvo",
+       "snvtIndex": 30
+      },
+      "elink": {
+       "gpicType": "AV.55"
+      },
+      "yorktalk": {
+       "pageRef": "P73"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0047",
+       "LON SNVT Type": "SNVTpress (30)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Pressure Differential PSID",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "kPA",
+      "unitSI": "kPa",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 38,
+       "objectName": "FILTER PRESS DIFFERENT"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "modbus": {
+       "address": 48,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoFilterDP",
+       "direction": "nvo",
+       "snvtIndex": 30
+      },
+      "elink": {
+       "gpicType": "AV.54"
+      },
+      "yorktalk": {
+       "pageRef": "P74"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0048",
+       "LON SNVT Type": "SNVTpress (30)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Heated Liquid Setpoint - Active",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=N",
+       "code": "N",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 39,
+       "objectName": "LEAV COND HW TEMP ACT SP"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "modbus": {
+       "address": 49,
+       "addressBase": "unknown",
+       "scaleRaw": "X1 *",
+       "scaleUserConfigurable": true
+      },
+      "lon": {
+       "nvName": "nvoActiveHeatSP",
+       "direction": "nvo",
+       "snvtIndex": 105
+      },
+      "elink": {
+       "gpicType": "AV.40"
+      },
+      "yorktalk": {
+       "pageRef": "P75"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0049",
+       "LON SNVT Type": "SNVTtempp (105)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Minimum Load Control Motor FLA Limit",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 41,
+       "objectName": "MIN LOAD CTL MTR FLA LIM"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "modbus": {
+       "address": 51,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoMinLoadFLALim",
+       "direction": "nvo",
+       "snvtIndex": 81
+      },
+      "elink": {
+       "gpicType": "AV.56"
+      },
+      "yorktalk": {
+       "pageRef": "P77"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0051",
+       "LON SNVT Type": "SNVTlevpercent (81)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    },
+    {
+     "common": {
+      "name": "Slide Valve Position",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=O",
+       "code": "O",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 42,
+       "objectName": "SLIDE VALVE POSITION"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "modbus": {
+       "address": 52,
+       "addressBase": "unknown",
+       "scaleRaw": "X1"
+      },
+      "lon": {
+       "nvName": "nvoSlide ValvePos",
+       "direction": "nvo",
+       "snvtIndex": 81
+      },
+      "elink": {
+       "gpicType": "AI.37"
+      },
+      "yorktalk": {
+       "pageRef": "P78"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YS-UnifiedOptiView(RevK-03)BETA.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(GPIC)",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0052",
+       "LON SNVT Type": "SNVTlevpercent (81)"
+      },
+      "gaps": [
+       "SNVT 이름 밑줄 복원 실패 — 번호만 신뢰"
+      ],
+      "interfaceId": "ys-unifiedoptiview-revk-03-beta"
+     }
+    }
+   ],
+   "sourcePages": [
+    1,
+    2
+   ],
+   "excluded": {
+    "reserved": 37,
+    "notes": 10,
+    "revision": 3,
+    "codeTable": 4
+   }
+  }
+ ],
+ "crosscheck": {
+  "unverifiable": "BACnet 타입·인스턴스를 가진 포인트가 45/167 뿐이라 줄 읽기 경로가 짝을 만들 수 없다 (이 문서의 주소 축: bacnet, elink, lon, modbus, n2, yorktalk)"
+ },
+ "tags": [
+  "chiller",
+  "chiller-rotaryScrew",
+  "waterCooling"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'YS Water Cooled Screw Chiller' 의 낱말 (압축 방식·응축 방식)"
+}

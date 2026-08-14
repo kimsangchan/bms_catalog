@@ -1,0 +1,4215 @@
+{
+ "id": "johnson-controls-york-yvaa-variable-speed-drive-screw-chiller",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YVAA Variable Speed Drive Screw Chiller",
+ "name": "YVAA Variable Speed Drive Screw Chiller",
+ "cat": "HVAC.PLANT.CHILLER.SCREW",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 1건 · 판 1개에서 취입 — 오브젝트 105점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "LON",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "Modbus",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "N2",
+   "SC-EQ",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+ "interfaces": [
+  {
+   "id": "yvaa-styleb-bas-sc-eq-rev1-8",
+   "label": "YVAA Style B BAS SC-EQ (Rev 1.8) Non-OptiView Based Equipment",
+   "family": "SC-EQ",
+   "protocols": [
+    "bacnet",
+    "lon",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+   "pointCount": 105,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Remote Cooling Setpoint",
+      "shortName": "REMOTE COOLING SETP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviCoolSetPt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Current Limit Setpoint",
+      "shortName": "REM CURRENT LIMIT SETP",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviCapacityLimit",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Sound Limit",
+      "shortName": "REMOTE SOUND LIMIT",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "modbus": {
+       "address": 3,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviSoundLimit",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Start / Stop Command [0=Stop, 1=Run]",
+      "shortName": "REM START STOP CMD",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nviChillerEnable",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Units",
+      "shortName": "Units",
+      "states": [
+       {
+        "code": "0",
+        "label": "IP (English)"
+       },
+       {
+        "code": "1",
+        "label": "SI (Metric)"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 65001
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 201
+      },
+      "modbus": {
+       "address": 65001,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV65001"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temp",
+      "shortName": "LEAVING CHILLED LIQ TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLvgCHWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Chilled Liquid Temp",
+      "shortName": "ENTERING CHILLED LIQ TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 6,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEntCHWTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Internal Ambient Temp",
+      "shortName": "VSD INT AMBIENT TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDInternalT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Condenser Temperature",
+      "shortName": "SYS 1 COND TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 8,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1CondTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Discharge Temperature",
+      "shortName": "SYS 1 DISCH TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1DischTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Outside Ambient Air Temperature",
+      "shortName": "OUTSIDE AMBIENT AIR TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 10,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoOutsdAirTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Eductor Temperature",
+      "shortName": "SYS 1 EDUCTOR TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1EductorTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Oil Pressure",
+      "shortName": "SYS 1 OIL PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1OilPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Suction Pressure",
+      "shortName": "SYS 1 SUCT PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1SuctPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Discharge Pressure",
+      "shortName": "SYS 1 DISCH PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1DischPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Compressor % Full Load Amps",
+      "shortName": "SYS 1 COMP PCT FLA",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1CompPctFLA",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Total Run Hours",
+      "shortName": "SYS 1 HOURS",
+      "unitIP": "Hr",
+      "unitSI": "Hr"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 16,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1RunHours",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_time_hour"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Total Number of Starts",
+      "shortName": "SYS 1 STARTS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1SysStarts",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Eductor Temperature",
+      "shortName": "SYS 2 EDUCTOR TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 20,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2EductorTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Oil Pressure",
+      "shortName": "SYS 2 OIL PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 21,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2OilPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Suction Pressure",
+      "shortName": "SYS 2 SUCT PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 22,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2SuctPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Discharge Pressure",
+      "shortName": "SYS 2 DISCH PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 23,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2DischPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Compressor % Full Load Amps",
+      "shortName": "SYS 2 COMP PCT FLA",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 24
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 24,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2CompPctFLA",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Total Run Hours",
+      "shortName": "SYS 2 HOURS",
+      "unitIP": "Hr",
+      "unitSI": "Hr"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 25
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 25,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2RunHours",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_time_hour"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Total Number of Starts",
+      "shortName": "SYS 2 STARTS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 26,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2SysStarts",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Output Frequency",
+      "shortName": "VSD OUTPUT FREQUENCY",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 27,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDOutFreq",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_freq_hz"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Condenser Drain Valve Command",
+      "shortName": "SYS 1 COND DRAIN VALVE CMD",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 28
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 28,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1CNDDrnValve",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Condenser Drain Valve Command",
+      "shortName": "SYS 2 COND DRAIN VALVE CMD",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 29
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "modbus": {
+       "address": 29,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2CNDDrnValve",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Run",
+      "shortName": "CHILLER RUN",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoChillerRun",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Heater Status",
+      "shortName": "EVAPORATOR HEATER STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapHeater",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pump Status",
+      "shortName": "EVAPORATOR PUMP STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "modbus": {
+       "address": 68,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapPump",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Compressor Run Status",
+      "shortName": "SYS 1 COMP RUN STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "modbus": {
+       "address": 69,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1CompRun",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Compressor Run Status",
+      "shortName": "SYS 2 COMP RUN STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "modbus": {
+       "address": 70,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2CompRun",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 VI Step Solenoid Valve 1 Status",
+      "shortName": "SYS 1 VI STEP SOL VALVE 1 STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "modbus": {
+       "address": 71,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1VIStepSol1",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 VI Step Solenoid Valve 1 Status",
+      "shortName": "SYS 2 VI STEP SOL VALVE 1 STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "modbus": {
+       "address": 72,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2VIStepSol1",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 VI Step Solenoid Valve 2 Status",
+      "shortName": "SYS 1 VI STEP SOL VALVE 2 STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "modbus": {
+       "address": 73,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1VIStepSol2",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 VI Step Solenoid Valve 2 Status",
+      "shortName": "SYS 2 VI STEP SOL VALVE 2 STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "modbus": {
+       "address": 74,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2VIStepSol2",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Alarm",
+      "shortName": "SYS 1 ALARM",
+      "states": [
+       {
+        "code": "0",
+        "label": "No Alarm"
+       },
+       {
+        "code": "1",
+        "label": "Alarm Active"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "modbus": {
+       "address": 75,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoSys1Alarm",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Alarm",
+      "shortName": "SYS 2 ALARM",
+      "states": [
+       {
+        "code": "0",
+        "label": "No Alarm"
+       },
+       {
+        "code": "1",
+        "label": "Alarm Active"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 16
+      },
+      "modbus": {
+       "address": 76,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoSys2Alarm",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Evap Anti-Freeze Flow Switch",
+      "shortName": "EVAP ANTI-FREEZE FLOW SWITCH",
+      "note": "Evap Anti-Freeze Pump only",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "modbus": {
+       "address": 77,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapAFrFlowSw",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Evap Anti-Freeze Pump Run",
+      "shortName": "EVAP ANTI-FREEZE PUMP RUN",
+      "note": "Evap Anti-Freeze Pump only",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 18
+      },
+      "modbus": {
+       "address": 78,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoEvapAFrPmpRun",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling Type [0=Water, 1=Glycol]",
+      "shortName": "COOLING TYPE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Water"
+       },
+       {
+        "code": "1",
+        "label": "Glycol"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "modbus": {
+       "address": 79,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCoolingType",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Local Remote Control Mode [0=Local,1=Remote]",
+      "shortName": "LOCAL REMOTE CONTROL MODE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "Remote"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "modbus": {
+       "address": 80,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLocRemCtrlMde",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Display Units [0=Imperial,1=SI]",
+      "shortName": "DISPLAY UNITS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Imperial"
+       },
+       {
+        "code": "1",
+        "label": "SI"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 21
+      },
+      "modbus": {
+       "address": 81,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoDisplayUnits",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Ready To Start",
+      "shortName": "READY TO START",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 22
+      },
+      "modbus": {
+       "address": 82,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoReadyToStart",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Operational Code",
+      "shortName": "SYS 1 OPERATIONAL CODE",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Fault Code",
+      "shortName": "SYS 1 FAULT CODE",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Operational Code",
+      "shortName": "SYS 2 OPERATIONAL CODE",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Fault Code",
+      "shortName": "SYS 2 FAULT CODE",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Condenser Fan Stage",
+      "shortName": "SYS 1 COND FAN STAGE",
+      "note": "Staged Fans only"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 405
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "modbus": {
+       "address": 34,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1CNDFanStage",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Condenser Fan Stage",
+      "shortName": "SYS 2 COND FAN STAGE",
+      "note": "Staged Fans only"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 407
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "modbus": {
+       "address": 36,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2CNDFanStage",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Leaving Chilled Liquid Setpoint",
+      "shortName": "ACTIVE LEAVING CHILL LIQ SETP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 30
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "modbus": {
+       "address": 40,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoActLCHLSetPt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Leaving Chilled Liquid Temp Cutout",
+      "shortName": "LOW LEAVING CHILL LIQ CUTOUT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 31
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "modbus": {
+       "address": 41,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLoLvgCHWTOff",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Economizer Valve Command",
+      "shortName": "SYS 1 ECON VALVE CMD",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 32
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "modbus": {
+       "address": 42,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1EconVlvPct",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Economizer Valve Command",
+      "shortName": "SYS 2 ECON VALVE CMD",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 33
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "modbus": {
+       "address": 43,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2EconVlvPct",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Suction Pressure Cutout",
+      "shortName": "LOW SUCT PRESS CUTOUT",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 34
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "modbus": {
+       "address": 44,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoLoSuctPrsOff",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD DC Bus Voltage",
+      "shortName": "VSD DC BUS VOLT",
+      "unitIP": "Volts",
+      "unitSI": "Volts"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 35
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "modbus": {
+       "address": 45,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoVSDDCBusVolt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_volt"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Subcooling Temperature",
+      "shortName": "SYS 1 SUBCOOLING TEMP",
+      "availability": "If Cond Type = Microchannel",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 37
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "modbus": {
+       "address": 47,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1SubcoolingT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Evaporator Level",
+      "shortName": "SYS 1 EVAPORATOR LEVEL",
+      "availability": "If Cond Type = Round Tube",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 37
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "modbus": {
+       "address": 47,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1EvapLevel",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling Range",
+      "shortName": "COOLING RANGE",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 38
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "modbus": {
+       "address": 48,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoCoolingRange",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Discharge Superheat",
+      "shortName": "SYS 1 DISCH SUPERHEAT",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 39
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "modbus": {
+       "address": 49,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1DschSuperht",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Condenser Temperature",
+      "shortName": "SYS 2 COND TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 40
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "modbus": {
+       "address": 50,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2CondTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Discharge Temperature",
+      "shortName": "SYS 2 DISCH TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 41
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "modbus": {
+       "address": 51,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2DischTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Subcooling Temperature",
+      "shortName": "SYS 2 SUBCOOLING TEMP",
+      "availability": "If Cond Type = Microchannel",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 42
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "modbus": {
+       "address": 52,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2SubcoolingT",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Evaporator Level",
+      "shortName": "SYS 2 EVAPORATOR LEVEL",
+      "availability": "If Cond Type = Round Tube",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 42
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "modbus": {
+       "address": 52,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2EvapLevel",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Discharge Superheat",
+      "shortName": "SYS 2 DISCH SUPERHEAT",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 43
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 43
+      },
+      "modbus": {
+       "address": 53,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2DschSuperht",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Lockout",
+      "shortName": "SYS 1 LOCKOUT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 25
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 25
+      },
+      "modbus": {
+       "address": 85,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1Lockout",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Lockout",
+      "shortName": "SYS 2 LOCKOUT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 26
+      },
+      "modbus": {
+       "address": 86,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2Lockout",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Flow Switch Status",
+      "shortName": "FLOW SWITCH STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 27
+      },
+      "modbus": {
+       "address": 87,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoFlowSwitch",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Lead System Number",
+      "shortName": "LEAD SYSTEM NUMBER",
+      "states": [
+       {
+        "code": "0",
+        "label": "Sys 1"
+       },
+       {
+        "code": "1",
+        "label": "Sys 2"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 28
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 28
+      },
+      "modbus": {
+       "address": 88,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoLeadSysNumber",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Economizer Temperature",
+      "shortName": "SYS 1 ECON TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 49
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 49
+      },
+      "modbus": {
+       "address": 106,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1EconTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Economizer Temperature",
+      "shortName": "SYS 2 ECON TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 50
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 50
+      },
+      "modbus": {
+       "address": 107,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2EconTemp",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Economizer Pressure",
+      "shortName": "SYS 1 ECON PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 51
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 51
+      },
+      "modbus": {
+       "address": 108,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1EconPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Economizer Pressure",
+      "shortName": "SYS 2 ECON PRESS",
+      "unitIP": "PSIG",
+      "unitSI": "BARG"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 52
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 52
+      },
+      "modbus": {
+       "address": 109,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2EconPress",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_press"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Motor Temperature 1",
+      "shortName": "SYS 1 MOTOR TEMP 1",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 53
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 53
+      },
+      "modbus": {
+       "address": 110,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1MtrTemp1",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Motor Temperature 2",
+      "shortName": "SYS 1 MOTOR TEMP 2",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 54
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 54
+      },
+      "modbus": {
+       "address": 111,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1MtrTemp2",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Motor Temperature 3",
+      "shortName": "SYS 1 MOTOR TEMP 3",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 55
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 55
+      },
+      "modbus": {
+       "address": 112,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1MtrTemp3",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Motor Temperature 1",
+      "shortName": "SYS 2 MOTOR TEMP 1",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 56
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 56
+      },
+      "modbus": {
+       "address": 113,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2MtrTemp1",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Motor Temperature 2",
+      "shortName": "SYS 2 MOTOR TEMP 2",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 57
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 57
+      },
+      "modbus": {
+       "address": 114,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2MtrTemp2",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Motor Temperature 3",
+      "shortName": "SYS 2 MOTOR TEMP 3",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 58
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 58
+      },
+      "modbus": {
+       "address": 115,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2MtrTemp3",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_temp_p"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Condenser Fan Speed Command",
+      "shortName": "SYS 1 COND FAN SPEED CMD",
+      "note": "VSD Fans only",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 59
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 59
+      },
+      "modbus": {
+       "address": 116,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1CNDFanSpPct",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Condenser Fan Speed Command",
+      "shortName": "SYS 2 COND FAN SPEED CMD",
+      "note": "VSD Fans only",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 60
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 60
+      },
+      "modbus": {
+       "address": 117,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2CNDFanSpPct",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_lev_percent"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Frequency Command",
+      "shortName": "VSD FREQUENCY COMMAND",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 70
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 70
+      },
+      "modbus": {
+       "address": 127,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoVSDCmdFreq",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_freq_hz"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Soft Shutdown [0=Disabled, 1=Enabled]",
+      "shortName": "SOFT SHUTDOWN",
+      "states": [
+       {
+        "code": "0",
+        "label": "Disabled"
+       },
+       {
+        "code": "1",
+        "label": "Enabled"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 36
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 36
+      },
+      "modbus": {
+       "address": 167,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoSoftShutdwnEn",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Evaporator [0=Disabled, 1=Enabled]",
+      "shortName": "REMOTE EVAPORATOR",
+      "states": [
+       {
+        "code": "0",
+        "label": "Disabled"
+       },
+       {
+        "code": "1",
+        "label": "Enabled"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 37
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 37
+      },
+      "modbus": {
+       "address": 168,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoRemoteEvapEn",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Quick Start [0=Disabled, 1=Enabled]",
+      "shortName": "QUICK START",
+      "states": [
+       {
+        "code": "0",
+        "label": "Disabled"
+       },
+       {
+        "code": "1",
+        "label": "Enabled"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 38
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 38
+      },
+      "modbus": {
+       "address": 169,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoQuickStartEn",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Condenser Fan VSD Fault",
+      "shortName": "SYS 1 COND FAN VSD FLT",
+      "note": "Condenser Fan Control Type is Optimized Enhanced Fans",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 44
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 44
+      },
+      "modbus": {
+       "address": 175,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS1CdFanVSDflt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Condenser Fan VSD Fault",
+      "shortName": "SYS 2 COND FAN VSD FLT",
+      "note": "Condenser Fan Control Type is Optimized Enhanced Fans",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 45
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 45
+      },
+      "modbus": {
+       "address": 176,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A",
+       "dataType": "Signed"
+      },
+      "lon": {
+       "nvName": "nvoS2CdFanVSDflt",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 2,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_switch"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 System State",
+      "shortName": "SYS 1 SYSTEM STATE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stopped"
+       },
+       {
+        "code": "1",
+        "label": "Runing"
+       },
+       {
+        "code": "2",
+        "label": "Faulted"
+       },
+       {
+        "code": "4",
+        "label": "Locked Out"
+       },
+       {
+        "code": "5",
+        "label": "Pre-Run"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 13
+      },
+      "modbus": {
+       "address": 132,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV13",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 System State",
+      "shortName": "SYS 2 SYSTEM STATE",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stopped"
+       },
+       {
+        "code": "1",
+        "label": "Runing"
+       },
+       {
+        "code": "2",
+        "label": "Faulted"
+       },
+       {
+        "code": "4",
+        "label": "Locked Out"
+       },
+       {
+        "code": "5",
+        "label": "Pre-Run"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 14
+      },
+      "modbus": {
+       "address": 133,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV14",
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 System State AV",
+      "shortName": "SYS 1 SYSTEM STATE AV",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stopped"
+       },
+       {
+        "code": "1",
+        "label": "Runing"
+       },
+       {
+        "code": "2",
+        "label": "Faulted"
+       },
+       {
+        "code": "4",
+        "label": "Locked Out"
+       },
+       {
+        "code": "5",
+        "label": "Pre-Run"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 415
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 15
+      },
+      "modbus": {
+       "address": 134,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1SysState",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 System State AV",
+      "shortName": "SYS 2 SYSTEM STATE AV",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stopped"
+       },
+       {
+        "code": "1",
+        "label": "Runing"
+       },
+       {
+        "code": "2",
+        "label": "Faulted"
+       },
+       {
+        "code": "4",
+        "label": "Locked Out"
+       },
+       {
+        "code": "5",
+        "label": "Pre-Run"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 416
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 16
+      },
+      "modbus": {
+       "address": 135,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2SysState",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Warning Code",
+      "shortName": "SYS 1 WARNING CODE",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 15
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV15",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Warning Code",
+      "shortName": "SYS 2 WARNING CODE",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 16
+      },
+      "modbus": {
+       "scaleRaw": "N/A",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV16",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Warning Code AV",
+      "shortName": "SYS 1 WARNING CODE AV",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 417
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 17
+      },
+      "modbus": {
+       "address": 136,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1WarningCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Warning Code AV",
+      "shortName": "SYS 2 WARNING CODE AV",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 418
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 18
+      },
+      "modbus": {
+       "address": 137,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2WarningCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Fan Power",
+      "shortName": "SYS 1 FAN POWER",
+      "unitIP": "kW",
+      "unitSI": "kW"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 74
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 74
+      },
+      "modbus": {
+       "address": 141,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1FankW",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_power_kilo"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Compressor Power",
+      "shortName": "SYS 1 COMPRESSOR POWER",
+      "unitIP": "kW",
+      "unitSI": "kW"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 75
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 75
+      },
+      "modbus": {
+       "address": 142,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1CompkW",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_power_kilo"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Fan Power",
+      "shortName": "SYS 2 FAN POWER",
+      "unitIP": "kW",
+      "unitSI": "kW"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 76
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 76
+      },
+      "modbus": {
+       "address": 143,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2FankW",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_power_kilo"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Compressor Power",
+      "shortName": "SYS 2 COMPRESSOR POWER",
+      "unitIP": "kW",
+      "unitSI": "kW"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 77
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 77
+      },
+      "modbus": {
+       "address": 144,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2CompkW",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_power_kilo"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Total Run Hours",
+      "shortName": "TOTAL RUN HOURS",
+      "note": "PV = (Sys 1 Total Run Hours + Sys 2 Total Run Hours)",
+      "unitIP": "Hr",
+      "unitSI": "Hr"
+     },
+     "blocks": {
+      "modbus": {
+       "scaleRaw": "N/A"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "BACnet Object & Instance": "N/A",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "MODBUS Data Type": "N/A",
+       "LON SNVT Type": "N/A"
+      },
+      "gaps": [
+       "BACnet 오브젝트 표기 해석 불가('N/A')"
+      ],
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Operational Code AV",
+      "shortName": "SYS 1 OPERATIONAL CODE AV",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 501
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 30,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1OperCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Fault Code AV",
+      "shortName": "SYS 1 FAULT CODE AV",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 502
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS1FaultCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Operational Code AV",
+      "shortName": "SYS 2 OPERATIONAL CODE AV",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 503
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 32,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2OperCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Fault Code AV",
+      "shortName": "SYS 2 FAULT CODE AV",
+      "statesRef": "See Status Codes Tab"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 504
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 33,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      },
+      "lon": {
+       "nvName": "nvoS2FaultCode",
+       "direction": "NV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YVAA-StyleB-BAS-SC-EQ-Rev1.8.pdf",
+      "sourcePage": 3,
+      "family": "SC-EQ",
+      "sourceColumns": {
+       "LON SNVT Type": "SNVT_count"
+      },
+      "interfaceId": "yvaa-styleb-bas-sc-eq-rev1-8"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev 1.8"
+   },
+   "sourcePages": [
+    1,
+    3
+   ],
+   "excluded": {
+    "reserved": 61
+   }
+  }
+ ],
+ "crosscheck": {
+  "fam": "lontalk",
+  "segments": 3,
+  "table": 104,
+  "raw": 0,
+  "both": 0,
+  "same": 0,
+  "diff": [],
+  "rate": 0.0,
+  "verified": {}
+ },
+ "tags": [
+  "chiller",
+  "chiller-rotaryScrew"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'YVAA Variable Speed Drive Screw Chiller' 의 낱말 (압축 방식·응축 방식)"
+}

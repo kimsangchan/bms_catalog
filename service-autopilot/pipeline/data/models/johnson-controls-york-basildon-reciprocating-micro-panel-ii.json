@@ -1,0 +1,4456 @@
+{
+ "id": "johnson-controls-york-basildon-reciprocating-micro-panel-ii",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "Basildon Reciprocating (Micro Panel II)",
+ "name": "Basildon Reciprocating (Micro Panel II)",
+ "cat": "HVAC.PLANT.CHILLER.RECIP",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 1건 · 판 2개에서 취입 — 오브젝트 123점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "N2",
+   "E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "York Talk",
+   "E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 2판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+ "interfaces": [
+  {
+   "id": "basildonrecipmicropanel-ii-revj-01-p1",
+   "label": "Basildon Recip II E-Link (Rev_J_01) Non-OptiView Based Equipment — 구간 1",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+   "pointCount": 70,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Water Temperature Setpoint",
+      "shortName": "LCHW TEMP.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "asciiPageRef": "P01",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "% Load Limit (10 - 100%)",
+      "shortName": "%LOAD.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "asciiPageRef": "P02",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Lead Unit Number Setpoint",
+      "shortName": "LEAD.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P05",
+       "asciiPageRef": "P03",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Start / Stop Command",
+      "shortName": "START",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "asciiPageRef": "P05",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Load the Chiller",
+      "shortName": "LOAD",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P08",
+       "asciiPageRef": "P06",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unload the Chiller",
+      "shortName": "UNLOAD",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P09",
+       "asciiPageRef": "P07",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Send History Buffer #1",
+      "shortName": "HISTORY",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P10",
+       "asciiPageRef": "P08",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chiller Water Temperature",
+      "shortName": "LCHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Mixed Chilled Water Temperature (4 only)",
+      "shortName": "MIX CHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=N,4=N,5=S,6=N,7=N,8=N,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=N,5=N,6=N,7=N,8=N,9=N"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Water Temp.",
+      "shortName": "LCDW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=N,3=O,4=N,5=N,6=O,7=O,8=N,9=N"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "asciiPageRef": "P13",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 24,
+        "end": 27
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Outside Air Temperature",
+      "shortName": "OA.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#1 - Oil Temperature",
+      "shortName": "C1 OIL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O,7=O,8=O,9=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp.#1 Oil Pressure",
+      "shortName": "C1 OIL.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O,7=O,8=O,9=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp.#1 Suction Pressure",
+      "shortName": "C1SUCT.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O,7=O,8=O,9=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp.#1 Discharge Pressure",
+      "shortName": "C1DISC.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O,5=O,6=O,7=O,8=O,9=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#1 - Actual Full Load Amps",
+      "shortName": "C1.%FL.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp.#1 Operating Hours",
+      "shortName": "C1 RUN.HOURS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp.#1 Compressor Starts",
+      "shortName": "C1 START.CNT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp.#1 Anti-Recycle Timer",
+      "shortName": "C1ARTIME.SEC",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Master Panel - Anti-Coincident Timer",
+      "shortName": "AC TIMER.SEC",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 67
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2 - Oil Temperature",
+      "shortName": "C2 OIL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=O,4=O,5=O,6=N,7=O,8=O,9=O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "yorktalk": {
+       "pageRef": "P26",
+       "asciiPageRef": "P24",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 68,
+        "end": 71
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2 - Oil Pressure",
+      "shortName": "C2 OIL.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=O,4=O,5=O,6=N,7=O,8=O,9=O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "asciiPageRef": "P25",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 72,
+        "end": 75
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2-Suction Pressure",
+      "shortName": "C2SUCT.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=O,4=O,5=O,6=N,7=O,8=O,9=O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "asciiPageRef": "P26",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 76,
+        "end": 79
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2-Discharge Pressure",
+      "shortName": "C2DISC.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=O,4=O,5=O,6=N,7=O,8=O,9=O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "asciiPageRef": "P27",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 80,
+        "end": 83
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2 - Actual Full Load Amps",
+      "shortName": "C2.%FL.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P30",
+       "asciiPageRef": "P28",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 84,
+        "end": 87
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2-Operating Hours",
+      "shortName": "C2 RUN.HOURS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "yorktalk": {
+       "pageRef": "P31",
+       "asciiPageRef": "P29",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 88,
+        "end": 91
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2-Compressor Starts",
+      "shortName": "C2 START.CNT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "yorktalk": {
+       "pageRef": "P32",
+       "asciiPageRef": "P30",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 92,
+        "end": 95
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2-Anti-Recycle Timer",
+      "shortName": "C2ARTIME.SEC",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "yorktalk": {
+       "pageRef": "P33",
+       "asciiPageRef": "P31",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 96,
+        "end": 99
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Number of Load Steps Available",
+      "shortName": "LDSTEP.AVAIL",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "yorktalk": {
+       "pageRef": "P35",
+       "asciiPageRef": "P33",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 104,
+        "end": 107
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Run",
+      "shortName": "CHL RUN.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Alarm",
+      "shortName": "CHL ALM.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Heater",
+      "shortName": "EVP HTR.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "asciiPageRef": "P36",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 110,
+        "end": 110
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pump Starter",
+      "shortName": "EVP PMP.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "asciiPageRef": "P37",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 111,
+        "end": 111
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pump Starter",
+      "shortName": "CD PUMP.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P40",
+       "asciiPageRef": "P38",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 112,
+        "end": 112
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Recycling Pumpdown Enable/Disable",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "asciiPageRef": "P39",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 113,
+        "end": 113
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#1-Liquid Line Solenoid Valve",
+      "shortName": "C1 LLSV.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P42",
+       "asciiPageRef": "P40",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 114,
+        "end": 114
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#1-Hot Gas Bypass Valve",
+      "shortName": "C1HGBPV.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=N,5=N,6=S,7=S,8=N,9=N"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P43",
+       "asciiPageRef": "P41",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 115,
+        "end": 115
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#1 - Pressure Equalization Valve",
+      "shortName": "C1 PEV.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P44",
+       "asciiPageRef": "P42",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 116,
+        "end": 116
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2-Liquid Line Solenoid Valve",
+      "shortName": "C2 LLSV.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P46",
+       "asciiPageRef": "P44",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 118,
+        "end": 118
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2 - Pressure Equalization Valve",
+      "shortName": "C2 PEV.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P48",
+       "asciiPageRef": "P46",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 120,
+        "end": 120
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Switch #1 - 0=Water 1=Brine Cooling",
+      "shortName": "DIP1.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P50",
+       "asciiPageRef": "P48",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 122,
+        "end": 122
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Switch #2 -> 0-=Std Amb 1=Low Ambient",
+      "shortName": "DIP2.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "yorktalk": {
+       "pageRef": "P51",
+       "asciiPageRef": "P49",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 123,
+        "end": 123
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Switch #3 -> 0=Local 1=Remote",
+      "shortName": "DIP3.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P52",
+       "asciiPageRef": "P50",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 124,
+        "end": 124
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Switch #4 -> 0=Part/Wind 1=Star/Delta",
+      "shortName": "DIP4.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P53",
+       "asciiPageRef": "P51",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 125,
+        "end": 125
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Switch #5 -> 0=Imperial 1=SI Units",
+      "shortName": "DIP5.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P54",
+       "asciiPageRef": "P52",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 126,
+        "end": 126
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Switch #6 -> 0=SCom No 1=SCom Yes",
+      "shortName": "DIP6.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 24
+      },
+      "yorktalk": {
+       "pageRef": "P55",
+       "asciiPageRef": "P53",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 127,
+        "end": 127
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#1 - Operational Code",
+      "shortName": "C1 OPER.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "asciiPageRef": "P54",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 128,
+        "end": 128
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#1 - Fault Code",
+      "shortName": "C1FAULT.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "asciiPageRef": "P55",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 129,
+        "end": 129
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2 - Operational Code",
+      "shortName": "C2 OPER.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "asciiPageRef": "P56",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 130,
+        "end": 130
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2 - Fault Code",
+      "shortName": "C2FAULT.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp #1 - Stages of Loading",
+      "shortName": "C1STAGES.NUM",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#1 - Condenser Fan Forward (0, 1, 2)",
+      "shortName": "C1FANFWD.NUM",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P61",
+       "asciiPageRef": "P59",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 133,
+        "end": 133
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2 - Stages of Loading",
+      "shortName": "C2STAGES.NUM",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P62",
+       "asciiPageRef": "P60",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 134,
+        "end": 134
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#2 Condenser Fan Forward (0, 1, 2)",
+      "shortName": "C2FANFWD.NUM",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P63",
+       "asciiPageRef": "P61",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 135,
+        "end": 135
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Lead Compressor (1, 2, 3, 4)",
+      "shortName": "LEAD COMP",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P64",
+       "asciiPageRef": "P62",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 136,
+        "end": 136
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Water Setpoint",
+      "shortName": "LCHW ACT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "yorktalk": {
+       "pageRef": "P66",
+       "asciiPageRef": "P64",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 138,
+        "end": 141
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Water Temperature Cutout",
+      "shortName": "LWTCUTOUT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "yorktalk": {
+       "pageRef": "P67",
+       "asciiPageRef": "P65",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 142,
+        "end": 145
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Ambient Temperature Cutout",
+      "shortName": "LOWAMBCO.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "yorktalk": {
+       "pageRef": "P68",
+       "asciiPageRef": "P66",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 146,
+        "end": 149
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "High Ambient Temperature Cutout",
+      "shortName": "HIAMBCO.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "yorktalk": {
+       "pageRef": "P69",
+       "asciiPageRef": "P67",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 150,
+        "end": 153
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Pressure Cutout",
+      "shortName": "LPCUTOUT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "yorktalk": {
+       "pageRef": "P70",
+       "asciiPageRef": "P68",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 154,
+        "end": 157
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "High Pressure Cutout",
+      "shortName": "HPCUTOUT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "yorktalk": {
+       "pageRef": "P71",
+       "asciiPageRef": "P69",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 158,
+        "end": 161
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Temperature Set Point",
+      "shortName": "RMT TEMP.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "yorktalk": {
+       "pageRef": "P72",
+       "asciiPageRef": "P70",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 162,
+        "end": 165
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Cooling Range",
+      "shortName": "RMT RNG.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "yorktalk": {
+       "pageRef": "P73",
+       "asciiPageRef": "P71",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 166,
+        "end": 169
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Local Cooler Barrel Setpoint",
+      "shortName": "LOCAL CLR.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "yorktalk": {
+       "pageRef": "P74",
+       "asciiPageRef": "P72",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 170,
+        "end": 173
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#1 - Run Time (in Seconds)",
+      "shortName": "C1 RUN.SEC",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "yorktalk": {
+       "pageRef": "P75",
+       "asciiPageRef": "P73",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 174,
+        "end": 177
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp #2 - Run Time (in seconds)",
+      "shortName": "C2 RUN.SEC",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=S,4=S,5=S,6=N,7=S,8=S,9=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "yorktalk": {
+       "pageRef": "P76",
+       "asciiPageRef": "P74",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 178,
+        "end": 181
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Switch #7 -> 0=Manual 1=Auto Lead/Lag",
+      "shortName": "DIP7.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 25
+      },
+      "yorktalk": {
+       "pageRef": "P80",
+       "asciiPageRef": "P78",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 194,
+        "end": 194
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Switch #8 -> 0=R134A 1=R22 Refrigerant",
+      "shortName": "DIP8.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 26
+      },
+      "yorktalk": {
+       "pageRef": "P81",
+       "asciiPageRef": "P79",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 195,
+        "end": 195
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Load Permissive",
+      "shortName": "LD PERM.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S,5=S,6=S,7=S,8=S,9=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 27
+      },
+      "yorktalk": {
+       "pageRef": "P82",
+       "asciiPageRef": "P80",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 196,
+        "end": 196
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p1"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev J 01",
+    "block": "구간 1"
+   },
+   "sourcePages": [
+    1,
+    2
+   ],
+   "excluded": {
+    "reserved": 41,
+    "revision": 15,
+    "codeTable": 2
+   },
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(1~40)"
+  },
+  {
+   "id": "basildonrecipmicropanel-ii-revj-01-p2",
+   "label": "Basildon Recip II E-Link (Rev_J_01) Non-OptiView Based Equipment — 구간 2",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+   "pointCount": 53,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Leaving Chiller Water Temperature",
+      "shortName": "LCHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 48
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Mixed Chiller Water Temperature",
+      "shortName": "MIX CHW.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 50
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Outside Air Temperature",
+      "shortName": "OA.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 53
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 - Oil Temperature",
+      "shortName": "C3 OIL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 54
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 Oil Pressure",
+      "shortName": "C3 OIL.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 55
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 Suction Pressure",
+      "shortName": "C3SUCT.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 56
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 Discharge Pressure",
+      "shortName": "C3DISC.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=O,2=O,3=O,4=O",
+       "code": "O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 57
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 - Actual Full Load Amps",
+      "shortName": "C3 %FL.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 58
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 Operating Hours",
+      "shortName": "C3 RUN.HOURS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 59
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 Compressor Starts",
+      "shortName": "C3 START.CNT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 60
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 Anti-Recycle Timer",
+      "shortName": "C3ARTIME.SEC",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 61
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Master Panel Anti Coincident Timer",
+      "shortName": "AC TIMER.SEC",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=N,3=N,4=N",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 62
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 67
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4 - Oil Temperature",
+      "shortName": "C4 OIL.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=O,3=N,4=O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 63
+      },
+      "yorktalk": {
+       "pageRef": "P26",
+       "asciiPageRef": "P24",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 68,
+        "end": 71
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4 - Oil Pressure",
+      "shortName": "C4 OIL.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=O,3=N,4=O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 64
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "asciiPageRef": "P25",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 72,
+        "end": 75
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4 - Suction Pressure",
+      "shortName": "C4SUCT.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=O,3=N,4=O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 65
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "asciiPageRef": "P26",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 76,
+        "end": 79
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4 - Discharge Pressure",
+      "shortName": "C4DISC.PRESS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=O,3=N,4=O"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 66
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "asciiPageRef": "P27",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 80,
+        "end": 83
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4 - Actual Full Load Amps",
+      "shortName": "C4 %FL.AMPS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 67
+      },
+      "yorktalk": {
+       "pageRef": "P30",
+       "asciiPageRef": "P28",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 84,
+        "end": 87
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4-Operating Hours",
+      "shortName": "C4 RUN.HOURS",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 68
+      },
+      "yorktalk": {
+       "pageRef": "P31",
+       "asciiPageRef": "P29",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 88,
+        "end": 91
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4 - Compressor Starts",
+      "shortName": "C4 START.CNT",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 69
+      },
+      "yorktalk": {
+       "pageRef": "P32",
+       "asciiPageRef": "P30",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 92,
+        "end": 95
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4-Anti-Recycle Timer",
+      "shortName": "C4ARTIME.SEC",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 70
+      },
+      "yorktalk": {
+       "pageRef": "P33",
+       "asciiPageRef": "P31",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 96,
+        "end": 99
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Subordinate Panel - Anti-Coincident Timer",
+      "shortName": "AC TIMES.MIN",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 71
+      },
+      "yorktalk": {
+       "pageRef": "P34",
+       "asciiPageRef": "P32",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 100,
+        "end": 103
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Number of Load Steps Available",
+      "shortName": "LDSTEP.AVAIL",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 72
+      },
+      "yorktalk": {
+       "pageRef": "P35",
+       "asciiPageRef": "P33",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 104,
+        "end": 107
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Run",
+      "shortName": "CHL RUN.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 34
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Alarm",
+      "shortName": "CHL ALM.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 35
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Heater",
+      "shortName": "EVP HTR.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 36
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "asciiPageRef": "P36",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 110,
+        "end": 110
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pump Starter",
+      "shortName": "EVP PMP.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 37
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "asciiPageRef": "P37",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 111,
+        "end": 111
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pump Starter",
+      "shortName": "CD PUMP.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 38
+      },
+      "yorktalk": {
+       "pageRef": "P40",
+       "asciiPageRef": "P38",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 112,
+        "end": 112
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Recycling Pumpdown Enable/Disable",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 39
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "asciiPageRef": "P39",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 113,
+        "end": 113
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3-Liquid Line Solenoid Valve",
+      "shortName": "C3 LLSV.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 40
+      },
+      "yorktalk": {
+       "pageRef": "P42",
+       "asciiPageRef": "P40",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 114,
+        "end": 114
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 - Pressure Equalization Valve",
+      "shortName": "C3 PEV.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 42
+      },
+      "yorktalk": {
+       "pageRef": "P44",
+       "asciiPageRef": "P42",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 116,
+        "end": 116
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4-Liquid Line Solenoid Valve",
+      "shortName": "C4 LLSV.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 44
+      },
+      "yorktalk": {
+       "pageRef": "P46",
+       "asciiPageRef": "P44",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 118,
+        "end": 118
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4 - Pressure Equalization Valve",
+      "shortName": "C4 PEV.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 46
+      },
+      "yorktalk": {
+       "pageRef": "P48",
+       "asciiPageRef": "P46",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 120,
+        "end": 120
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 - Operational Code",
+      "shortName": "C3 OPER.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "asciiPageRef": "P54",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 128,
+        "end": 128
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 - Fault Code",
+      "shortName": "C3FAULT.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "asciiPageRef": "P55",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 129,
+        "end": 129
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4 - Operational Code",
+      "shortName": "C4 OPER.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "asciiPageRef": "P56",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 130,
+        "end": 130
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4 - Fault Code",
+      "shortName": "C4FAULT.CODE",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 - Stages of Loading",
+      "shortName": "C3STAGES.NUM",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 - Condenser Fan Forward (0, 1, 2, 3)",
+      "shortName": "C3FANFWD.NUM",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P61",
+       "asciiPageRef": "P59",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 133,
+        "end": 133
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4 - Stages of Loading",
+      "shortName": "C4STAGES.NUM",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P62",
+       "asciiPageRef": "P60",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 134,
+        "end": 134
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#4 Condenser Fan Forward (0, 1, 2, 3)",
+      "shortName": "C4FANFWD.NUM",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P63",
+       "asciiPageRef": "P61",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 135,
+        "end": 135
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Lead Compressor (1, 2, 3)",
+      "shortName": "LEAD COMP",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P64",
+       "asciiPageRef": "P62",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 136,
+        "end": 136
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Water Setpoint",
+      "shortName": "LCHW ACT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 73
+      },
+      "yorktalk": {
+       "pageRef": "P66",
+       "asciiPageRef": "P64",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 138,
+        "end": 141
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Water Temperature Cutout",
+      "shortName": "LWTCUTOUT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 74
+      },
+      "yorktalk": {
+       "pageRef": "P67",
+       "asciiPageRef": "P65",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 142,
+        "end": 145
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Ambient Temperature Cutout",
+      "shortName": "LOWAMBCO.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 75
+      },
+      "yorktalk": {
+       "pageRef": "P68",
+       "asciiPageRef": "P66",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 146,
+        "end": 149
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "High Ambient Temperature Cutout",
+      "shortName": "HIAMBCO.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 76
+      },
+      "yorktalk": {
+       "pageRef": "P69",
+       "asciiPageRef": "P67",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 150,
+        "end": 153
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Pressure Cutout",
+      "shortName": "LPCUTOUT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 77
+      },
+      "yorktalk": {
+       "pageRef": "P70",
+       "asciiPageRef": "P68",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 154,
+        "end": 157
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "High Pressure Cutout",
+      "shortName": "HPCUTOUT.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 78
+      },
+      "yorktalk": {
+       "pageRef": "P71",
+       "asciiPageRef": "P69",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 158,
+        "end": 161
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Temperature Set Point",
+      "shortName": "RMT TEMP.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 79
+      },
+      "yorktalk": {
+       "pageRef": "P72",
+       "asciiPageRef": "P70",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 162,
+        "end": 165
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Cooling Range",
+      "shortName": "RMT RNG.TEMP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 80
+      },
+      "yorktalk": {
+       "pageRef": "P73",
+       "asciiPageRef": "P71",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 166,
+        "end": 169
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Local Cooler Barrel Setpoint",
+      "shortName": "LOCAL CLR.SP",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 81
+      },
+      "yorktalk": {
+       "pageRef": "P74",
+       "asciiPageRef": "P72",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 170,
+        "end": 173
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp#3 - Run Time (in Seconds)",
+      "shortName": "C3 RUN.SEC",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 82
+      },
+      "yorktalk": {
+       "pageRef": "P75",
+       "asciiPageRef": "P73",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 174,
+        "end": 177
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp #4 - Run Time (in seconds)",
+      "shortName": "C4 RUN.SEC",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=N,2=S,3=N,4=S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 83
+      },
+      "yorktalk": {
+       "pageRef": "P76",
+       "asciiPageRef": "P74",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 178,
+        "end": 181
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Load Permissive",
+      "shortName": "LD PERM.STAT",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S,2=S,3=S,4=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 56
+      },
+      "yorktalk": {
+       "pageRef": "P82",
+       "asciiPageRef": "P80",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 196,
+        "end": 196
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_BasildonRecipMicroPanel-II-(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "basildonrecipmicropanel-ii-revj-01-p2"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev J 01",
+    "block": "구간 2"
+   },
+   "sourcePages": [
+    5,
+    6
+   ],
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(11~83)"
+  }
+ ],
+ "crosscheck": {
+  "unverifiable": "BACnet 타입·인스턴스를 가진 포인트가 0/123 뿐이라 줄 읽기 경로가 짝을 만들 수 없다 (이 문서의 주소 축: n2, yorktalk)"
+ },
+ "tags": [
+  "chiller",
+  "chiller-reciprocal"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'Basildon Reciprocating (Micro Panel II)' 의 낱말 (압축 방식·응축 방식)"
+}

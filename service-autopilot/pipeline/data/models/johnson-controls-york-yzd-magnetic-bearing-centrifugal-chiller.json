@@ -1,0 +1,5687 @@
+{
+ "id": "johnson-controls-york-yzd-magnetic-bearing-centrifugal-chiller",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YZD Magnetic Bearing Centrifugal Chiller",
+ "name": "YZD Magnetic Bearing Centrifugal Chiller",
+ "cat": "HVAC.PLANT.CHILLER.CENTRIFUGAL",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 1건 · 판 1개에서 취입 — 오브젝트 156점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "Logix",
+   "YZD-Logix",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "Modbus",
+   "YZD-Logix",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+ "interfaces": [
+  {
+   "id": "yzd-bas-hmi-rev1-4",
+   "label": "YZD BAS Protocol List Rev 1.4",
+   "family": "YZD-Logix",
+   "protocols": [
+    "logix",
+    "modbus"
+   ],
+   "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+   "pointCount": 156,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Remote Chilled Water Setpoint",
+      "group": "Setpoint write data",
+      "readWrite": "W",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "SP_RemLeavingChilledSP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "sourceColumns": {
+       "Logix Tag": "SP RemLeavingChilledSP",
+       "Modbus": "40001",
+       "BACnet": "BO0001"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Current Limit Setpoint",
+      "group": "Setpoint write data",
+      "readWrite": "W",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "SP_RemCurrentLimitSP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "sourceColumns": {
+       "Logix Tag": "SP RemCurrentLimitSP",
+       "Modbus": "40002",
+       "BACnet": "BO0002"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Start Initiate",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ],
+      "group": "Digital write data",
+      "readWrite": "W",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "PB_RemoteChillerRun"
+      },
+      "modbus": {
+       "refClass": "coil",
+       "address": 1,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Logix Tag": "PB RemoteChillerRun",
+       "Modbus": "00001",
+       "Modbus Scale": "N/A",
+       "BACnet": "AO0001"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Start Mode Enable",
+      "states": [
+       {
+        "code": "0",
+        "label": "Disabled"
+       },
+       {
+        "code": "1",
+        "label": "Enabled"
+       }
+      ],
+      "group": "Digital write data",
+      "readWrite": "W",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "PB_RemoteMode"
+      },
+      "modbus": {
+       "refClass": "coil",
+       "address": 2,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Logix Tag": "PB RemoteMode",
+       "Modbus": "00002",
+       "Modbus Scale": "N/A"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Current Setpoint Enable",
+      "states": [
+       {
+        "code": "0",
+        "label": "Disabled"
+       },
+       {
+        "code": "1",
+        "label": "Enabled"
+       }
+      ],
+      "group": "Digital write data",
+      "readWrite": "W",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "PB_LocalRemCurentSP"
+      },
+      "modbus": {
+       "refClass": "coil",
+       "address": 3,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Logix Tag": "PB LocalRemCurentSP",
+       "Modbus": "00003",
+       "Modbus Scale": "N/A"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Cooling Setpoint Enable",
+      "states": [
+       {
+        "code": "0",
+        "label": "Disabled"
+       },
+       {
+        "code": "1",
+        "label": "Enabled"
+       }
+      ],
+      "group": "Digital write data",
+      "readWrite": "W",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "PB_LocalRemCoolingSP"
+      },
+      "modbus": {
+       "refClass": "coil",
+       "address": 4,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Logix Tag": "PB LocalRemCoolingSP",
+       "Modbus": "00004",
+       "Modbus Scale": "N/A"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Run",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COMPR MOTOR RUN"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 9,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "0",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40009",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0001",
+       "Count": "0"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Pump",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "CH LIQ PUMP STAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 10,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "1",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40010",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0002",
+       "Count": "1"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Pump",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "CND LIQ PUMP STAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 11,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "2",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40011",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0003",
+       "Count": "2"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Flow Switch",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ],
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "CH LIQ FLOW SWITCH STAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 12,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "3",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40012",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0004",
+       "Count": "3"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Flow Switch",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ],
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "CND FLOW SWITCH STAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 13,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "4",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40013",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0005",
+       "Count": "4"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Cooling System",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD COOLING SYS STAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 15,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "6",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40015",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0007",
+       "Count": "6"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Level Control Valve Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Auto"
+       },
+       {
+        "code": "1",
+        "label": "Manual"
+       }
+      ],
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND REF LEVEL CNTRL MODE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 17,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "8",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40017",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0009",
+       "Count": "8"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Purge Tank High Level Switch",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "PURGE TANK HIGH LEVEL SW"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 18,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "9",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40018",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0010",
+       "Count": "9"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Setpoint - Selected",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "LEAVING CH LIQ TEMP SEL SP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "22",
+      "sourceColumns": {
+       "Modbus": "40031",
+       "BACnet": "BI0023",
+       "Count": "22"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "LEAVING CH LIQ TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 32,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "23",
+      "sourceColumns": {
+       "Modbus": "40032",
+       "BACnet": "BI0024",
+       "Count": "23"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Chilled Liquid Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "ENTERING COND LIQ TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 33,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "24",
+      "sourceColumns": {
+       "Modbus": "40033",
+       "BACnet": "BI0025",
+       "Count": "24"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Condenser Liquid Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "ENTERING COND LIQ TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 34,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "25",
+      "sourceColumns": {
+       "Modbus": "40034",
+       "BACnet": "BI0026",
+       "Count": "25"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Liquid Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "LEAVING COND LIQ TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 35,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "26",
+      "sourceColumns": {
+       "Modbus": "40035",
+       "BACnet": "BI0027",
+       "Count": "26"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "PSIA",
+      "unitSIRaw": "kPa",
+      "unitSI": "kPa",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "EVAPORATOR PRESSURE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 36,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "27",
+      "sourceColumns": {
+       "Modbus": "40036",
+       "BACnet": "BI0028",
+       "Count": "27"
+      },
+      "gaps": [
+       "unitIP 정규화 불가('PSIA')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "PSIA",
+      "unitSIRaw": "kPa",
+      "unitSI": "kPa",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "CONDENSER PRESSURE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 37,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "28",
+      "sourceColumns": {
+       "Modbus": "40037",
+       "BACnet": "BI0029",
+       "Count": "28"
+      },
+      "gaps": [
+       "unitIP 정규화 불가('PSIA')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Saturation Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "EVAP SATURATION TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 38,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "29",
+      "sourceColumns": {
+       "Modbus": "40038",
+       "BACnet": "BI0030",
+       "Count": "29"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Saturation Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND SATURATION TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 39,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "30",
+      "sourceColumns": {
+       "Modbus": "40039",
+       "BACnet": "BI0031",
+       "Count": "30"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "DISCHARGE TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 41,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "32",
+      "sourceColumns": {
+       "Modbus": "40041",
+       "BACnet": "BI0033",
+       "Count": "32"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Input Current Limit",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "INPUT CURRENT ACT LIMIT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 42,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "33",
+      "sourceColumns": {
+       "Modbus": "40042",
+       "BACnet": "BI0034",
+       "Count": "33"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Input % Full Load Amps",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "INPUT CURRENT PCT FLA"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 43,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "34",
+      "sourceColumns": {
+       "Modbus": "40043",
+       "BACnet": "BI0035",
+       "Count": "34"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor % Full Load Amps",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "MOTOR CURRENT PCT FLA"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 44,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "35",
+      "sourceColumns": {
+       "Modbus": "40044",
+       "BACnet": "BI0036",
+       "Count": "35"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Input Current (RMS)",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD INPUT CURRENT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 45,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "36",
+      "sourceColumns": {
+       "Modbus": "40045",
+       "BACnet": "BI0037",
+       "Count": "36"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase A Output Current (RMS)",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PHASE A OUTPUT CURRENT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 46,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "37",
+      "sourceColumns": {
+       "Modbus": "40046",
+       "BACnet": "BI0038",
+       "Count": "37"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase B Output Current (RMS)",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PHASE B OUTPUT CURRENT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 47,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "38",
+      "sourceColumns": {
+       "Modbus": "40047",
+       "BACnet": "BI0039",
+       "Count": "38"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase C Output Current (RMS)",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PHASE C OUTPUT CURRENT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 48,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "39",
+      "sourceColumns": {
+       "Modbus": "40048",
+       "BACnet": "BI0040",
+       "Count": "39"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Output Voltage",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD OUTPUT VOLTAGE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 49,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "40",
+      "sourceColumns": {
+       "Modbus": "40049",
+       "BACnet": "BI0041",
+       "Count": "40"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Input Power",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "kW",
+      "unitIP": "kW",
+      "unitSIRaw": "kW",
+      "unitSI": "kW",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "INPUT POWER"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 50,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "41",
+      "sourceColumns": {
+       "Modbus": "40050",
+       "BACnet": "BI0042",
+       "Count": "41"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Input Kilowatt Hours",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "kWh",
+      "unitIP": "kWh",
+      "unitSIRaw": "kWh",
+      "unitSI": "kWh",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "INPUT KWH"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 51,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "42",
+      "sourceColumns": {
+       "Modbus": "40051",
+       "BACnet": "BI0043",
+       "Count": "42"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD DC Bus Voltage",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD DC BUS VOLTAGE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 54,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "45",
+      "sourceColumns": {
+       "Modbus": "40054",
+       "BACnet": "BI0046",
+       "Count": "45"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD DC Bus Current",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD DC BUS CURRENT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 55,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "46",
+      "sourceColumns": {
+       "Modbus": "40055",
+       "BACnet": "BI0047",
+       "Count": "46"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Surge Count",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "SURGE COUNT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 56,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 1,
+      "family": "YZD-Logix",
+      "srcRef": "47",
+      "sourceColumns": {
+       "Modbus": "40056",
+       "BACnet": "BI0048",
+       "Count": "47"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Output Frequency",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Hz",
+      "unitIP": "Hz",
+      "unitSIRaw": "Hz",
+      "unitSI": "Hz",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD OUTPUT FREQUENCY"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 57,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "48",
+      "sourceColumns": {
+       "Modbus": "40057",
+       "BACnet": "BI0049",
+       "Count": "48"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Internal Ambient Temp",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD INTERNAL AMBIENT TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 58,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "49",
+      "sourceColumns": {
+       "Modbus": "40058",
+       "BACnet": "BI0050",
+       "Count": "49"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Converter Heatsink Temp",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD CONVERTER HSINK TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 59,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "50",
+      "sourceColumns": {
+       "Modbus": "40059",
+       "BACnet": "BI0051",
+       "Count": "50"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Baseplate Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD BASEPLATE TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 60,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "51",
+      "sourceColumns": {
+       "Modbus": "40060",
+       "BACnet": "BI0052",
+       "Count": "51"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase A Heatsink Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PH A HEATSINK TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "52",
+      "sourceColumns": {
+       "Modbus": "40061",
+       "BACnet": "BI0053",
+       "Count": "52"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase B Heatsink Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PH B HEATSINK TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 62,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "53",
+      "sourceColumns": {
+       "Modbus": "40062",
+       "BACnet": "BI0054",
+       "Count": "53"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase C Heatsink Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PH C HEATSINK TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 63,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "54",
+      "sourceColumns": {
+       "Modbus": "40063",
+       "BACnet": "BI0055",
+       "Count": "54"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Harmonic Filter Baseplate Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "FILTER BASEPLATE TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 64,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "55",
+      "sourceColumns": {
+       "Modbus": "40064",
+       "BACnet": "BI0056",
+       "Count": "55"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Harmonic Filter Max Voltage Total Harmonic Distortion",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "FILTER MAX VOLTAGE THD"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "56",
+      "sourceColumns": {
+       "Modbus": "40065",
+       "BACnet": "BI0057",
+       "Count": "56"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Harmonic Filter Max Current Total Demand Distortion",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "FILTER MAX CURRENT TDD"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 66,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "57",
+      "sourceColumns": {
+       "Modbus": "40066",
+       "BACnet": "BI0058",
+       "Count": "57"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Harmonic Filter Total Supply KVA",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "kVA",
+      "unitIP": "kVA",
+      "unitSIRaw": "kVA",
+      "unitSI": "kVA",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "FILTER SUPPLY KVA"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "58",
+      "sourceColumns": {
+       "Modbus": "40067",
+       "BACnet": "BI0059",
+       "Count": "58"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Average Winding Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "MTR WINDING AVG TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 68,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "59",
+      "sourceColumns": {
+       "Modbus": "40068",
+       "BACnet": "BI0060",
+       "Count": "59"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Refrigerant Level Setpoint",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND REFRIGERANT LEVEL SP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 69,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "60",
+      "sourceColumns": {
+       "Modbus": "40069",
+       "BACnet": "BI0061",
+       "Count": "60"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Refrigerant Level",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND REFRIGERANT LEVEL"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 70,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "61",
+      "sourceColumns": {
+       "Modbus": "40070",
+       "BACnet": "BI0062",
+       "Count": "61"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Level Control Valve Command",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND LVL CTRL VLV CMD"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 71,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "62",
+      "sourceColumns": {
+       "Modbus": "40071",
+       "BACnet": "BI0063",
+       "Count": "62"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Drop Leg Refrigerant Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "DROP LEG REFRIG TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 72,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "63",
+      "sourceColumns": {
+       "Modbus": "40072",
+       "BACnet": "BI0064",
+       "Count": "63"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Gas Bypass Command",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "HOT GAS BYPASS COMMAND"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 73,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "64",
+      "sourceColumns": {
+       "Modbus": "40073",
+       "BACnet": "BI0049",
+       "Count": "64"
+      },
+      "gaps": [
+       "Count(64)와 BACnet 열 번호(0049)가 어긋난다"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Operating Hours",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Hr",
+      "unitIP": "h",
+      "unitSIRaw": "Hr",
+      "unitSI": "h",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "OPERATING HOURS"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 74,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "65",
+      "sourceColumns": {
+       "Modbus": "40074",
+       "BACnet": "BI0050",
+       "Count": "65"
+      },
+      "gaps": [
+       "Count(65)와 BACnet 열 번호(0050)가 어긋난다"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Number Of Starts",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "NUMBER OF STARTS"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 77,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "68",
+      "sourceColumns": {
+       "Modbus": "40077",
+       "Count": "68"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Operation Code AV",
+      "statesRef": "SC.1",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT OPERATION CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 78,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "69",
+      "sourceColumns": {
+       "Enum Set": "See SC.1 on Status Codes T",
+       "Modbus": "40078",
+       "Count": "69"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Safety Fault Code AV",
+      "statesRef": "SC.2",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT SAFETY FAULT CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 79,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "70",
+      "sourceColumns": {
+       "Enum Set": "See SC.2 on Status Codes T",
+       "Modbus": "40079",
+       "Count": "70"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Cycling Fault Code AV",
+      "statesRef": "SC.3",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT CYCLING FAULT CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 80,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "71",
+      "sourceColumns": {
+       "Enum Set": "See SC.3 on Status Codes T",
+       "Modbus": "40080",
+       "Count": "71"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Warning Code AV",
+      "statesRef": "SC.4",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT WARNING CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 81,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "72",
+      "sourceColumns": {
+       "Enum Set": "See SC.4 on Status Codes T",
+       "Modbus": "40081",
+       "Count": "72"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Control Source AV",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "BAS"
+       },
+       {
+        "code": "2",
+        "label": "Analog"
+       },
+       {
+        "code": "3",
+        "label": "Digital"
+       },
+       {
+        "code": "4",
+        "label": "Modem"
+       },
+       {
+        "code": "5",
+        "label": "Remote"
+       }
+      ],
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT CONTROL SOURCE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 82,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "73",
+      "sourceColumns": {
+       "Modbus": "40082",
+       "Count": "73"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Modified Run Code AV",
+      "statesRef": "SC.12",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT MODIFIED RUN CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 83,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "74",
+      "sourceColumns": {
+       "Enum Set": "See SC.12 on Status Codes",
+       "Modbus": "40083",
+       "Count": "74"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Start Inhibit Code AV",
+      "statesRef": "SC.13",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT START INHIBIT CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 84,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "75",
+      "sourceColumns": {
+       "Enum Set": "See SC.13 on Status Codes",
+       "Modbus": "40084",
+       "Count": "75"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Internal Fault Code AV",
+      "statesRef": "SC.14",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT INTERNAL FAULT CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 85,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "76",
+      "sourceColumns": {
+       "Enum Set": "See SC.14 on Status Codes",
+       "Modbus": "40085",
+       "Count": "76"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Purge Mode AV",
+      "states": [
+       {
+        "code": "1",
+        "label": "Standard"
+       },
+       {
+        "code": "2",
+        "label": "Enhanced"
+       }
+      ],
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "ACTIVE PURGE MODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 86,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "77",
+      "sourceColumns": {
+       "Modbus": "40086",
+       "Count": "77"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Purge Control State AV",
+      "states": [
+       {
+        "code": "1",
+        "label": "Standard"
+       },
+       {
+        "code": "2",
+        "label": "Enhanced"
+       }
+      ],
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "PURGE CONTROL STATE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 87,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "78",
+      "sourceColumns": {
+       "Modbus": "40087",
+       "Count": "78"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Total Purge Count",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "TOTAL PURGE COUNT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 93,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "84",
+      "sourceColumns": {
+       "Modbus": "40093",
+       "Count": "84"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Small Temp Difference",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F (Diff)",
+      "unitSIRaw": "Deg C (Diff)",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "EVAP SMALL TEMP DIFF"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 94,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "85",
+      "sourceColumns": {
+       "Modbus": "40094",
+       "Count": "85"
+      },
+      "gaps": [
+       "unitIP 정규화 불가('Deg F (Diff)')",
+       "unitSI 정규화 불가('Deg C (Diff)')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Small Temp Difference",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F (Diff)",
+      "unitSIRaw": "Deg C (Diff)",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND SMALL TEMP DIFF"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 95,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "86",
+      "sourceColumns": {
+       "Modbus": "40095",
+       "Count": "86"
+      },
+      "gaps": [
+       "unitIP 정규화 불가('Deg F (Diff)')",
+       "unitSI 정규화 불가('Deg C (Diff)')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Superheat",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F (Diff)",
+      "unitSIRaw": "Deg C (Diff)",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "DISCHARGE SUPERHEAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 96,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "87",
+      "sourceColumns": {
+       "Modbus": "40096",
+       "Count": "87"
+      },
+      "gaps": [
+       "unitIP 정규화 불가('Deg F (Diff)')",
+       "unitSI 정규화 불가('Deg C (Diff)')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Subcooler Effectiveness",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "SUBCOOLER EFFECTIVENESS"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 97,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "88",
+      "sourceColumns": {
+       "Modbus": "40097",
+       "Count": "88"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Subcooling Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F (Diff)",
+      "unitSIRaw": "Deg C (Diff)",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "SUBCOOLING TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 98,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "89",
+      "sourceColumns": {
+       "Modbus": "40098",
+       "Count": "89"
+      },
+      "gaps": [
+       "unitIP 정규화 불가('Deg F (Diff)')",
+       "unitSI 정규화 불가('Deg C (Diff)')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Delta P / P",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "DELTA P DIV P"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 99,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "90",
+      "sourceColumns": {
+       "Modbus": "40099",
+       "Count": "90"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Head Pressure",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "PSID",
+      "unitSIRaw": "kPaD",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "HEAD PRESSURE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 100,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "91",
+      "sourceColumns": {
+       "Modbus": "40100",
+       "Count": "91"
+      },
+      "gaps": [
+       "unitIP 정규화 불가('PSID')",
+       "unitSI 정규화 불가('kPaD')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Speed",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Hz",
+      "unitIP": "Hz",
+      "unitSIRaw": "Hz",
+      "unitSI": "Hz",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "MOTOR SPEED"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 101,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "92",
+      "sourceColumns": {
+       "Modbus": "40101",
+       "Count": "92"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Ambient Dew Point Temperature",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "AMB DEW POINT TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 102,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "93",
+      "sourceColumns": {
+       "Modbus": "40102",
+       "Count": "93"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Cooling Valve Command",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "MOTOR COOL VLV CMD"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 104,
+       "addressBase": "unknown",
+       "scaleRaw": "x 10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "95",
+      "sourceColumns": {
+       "Modbus": "40104",
+       "Count": "95"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "UPS Battery Voltage",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UPS BATTERY VOLTAGE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 105,
+       "addressBase": "unknown",
+       "scaleRaw": "x 10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "96",
+      "sourceColumns": {
+       "Modbus": "40105",
+       "BACnet": "BI0049",
+       "Count": "96"
+      },
+      "gaps": [
+       "Count(96)와 BACnet 열 번호(0049)가 어긋난다"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Anti-Surge Minimum Frequency",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Hz",
+      "unitIP": "Hz",
+      "unitSIRaw": "Hz",
+      "unitSI": "Hz",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "ACT ANTI-SURGE MIN FREQ"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 106,
+       "addressBase": "unknown",
+       "scaleRaw": "x 10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "97",
+      "sourceColumns": {
+       "Modbus": "40106",
+       "BACnet": "BI0050",
+       "Count": "97"
+      },
+      "gaps": [
+       "Count(97)와 BACnet 열 번호(0050)가 어긋난다"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VGD Position",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VGD POSITION"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 107,
+       "addressBase": "unknown",
+       "scaleRaw": "x 10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "98",
+      "sourceColumns": {
+       "Modbus": "40107",
+       "Count": "98"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Stall Voltage",
+      "group": "System 1 OptiView read data",
+      "readWrite": "R",
+      "unitIPRaw": "Votls",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "Stall Voltage"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 113,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 2,
+      "family": "YZD-Logix",
+      "srcRef": "104",
+      "sourceColumns": {
+       "Modbus": "40113",
+       "Count": "104"
+      },
+      "gaps": [
+       "unitIP 정규화 불가('Votls')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Run",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COMPR MOTOR RUN"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 509,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "0",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40509",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0001",
+       "Count": "0"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Pump",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "CH LIQ PUMP STAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 510,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "1",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40510",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0002",
+       "Count": "1"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Pump",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "CND LIQ PUMP STAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 511,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "2",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40511",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0003",
+       "Count": "2"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Flow Switch",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ],
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "CH LIQ FLOW SWITCH STAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 512,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "3",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40512",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0004",
+       "Count": "3"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Liquid Flow Switch",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ],
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "CND FLOW SWITCH STAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 513,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "4",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40513",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0005",
+       "Count": "4"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Cooling System",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD COOLING SYS STAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 515,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "6",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40515",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0007",
+       "Count": "6"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Level Control Valve Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Auto"
+       },
+       {
+        "code": "1",
+        "label": "Manual"
+       }
+      ],
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND REF LEVEL CNTRL MODE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 517,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "8",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40517",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0009",
+       "Count": "8"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Purge Tank High Level Switch",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "PURGE TANK HIGH LEVEL SW"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 518,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "9",
+      "sourceColumns": {
+       "Enum Set": "0/1",
+       "Modbus": "40518",
+       "Modbus Scale": "N/A",
+       "BACnet": "BI0010",
+       "Count": "9"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Setpoint - Selected",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "LEAVING CH LIQ TEMP SEL SP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 531,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "22",
+      "sourceColumns": {
+       "Modbus": "40531",
+       "BACnet": "BI0023",
+       "Count": "22"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "LEAVING CH LIQ TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 532,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "23",
+      "sourceColumns": {
+       "Modbus": "40532",
+       "BACnet": "BI0024",
+       "Count": "23"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Chilled Liquid Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "ENTERING COND LIQ TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 533,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "24",
+      "sourceColumns": {
+       "Modbus": "40533",
+       "BACnet": "BI0025",
+       "Count": "24"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Condenser Liquid Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "ENTERING COND LIQ TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 534,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "25",
+      "sourceColumns": {
+       "Modbus": "40534",
+       "BACnet": "BI0026",
+       "Count": "25"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Condenser Liquid Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "LEAVING COND LIQ TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 535,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "26",
+      "sourceColumns": {
+       "Modbus": "40535",
+       "BACnet": "BI0027",
+       "Count": "26"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "PSIA",
+      "unitSIRaw": "kPa",
+      "unitSI": "kPa",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "EVAPORATOR PRESSURE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 536,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "27",
+      "sourceColumns": {
+       "Modbus": "40536",
+       "BACnet": "BI0028",
+       "Count": "27"
+      },
+      "gaps": [
+       "unitIP 정규화 불가('PSIA')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "PSIA",
+      "unitSIRaw": "kPa",
+      "unitSI": "kPa",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "CONDENSER PRESSURE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 537,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "28",
+      "sourceColumns": {
+       "Modbus": "40537",
+       "BACnet": "BI0029",
+       "Count": "28"
+      },
+      "gaps": [
+       "unitIP 정규화 불가('PSIA')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Saturation Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "EVAP SATURATION TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 538,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "29",
+      "sourceColumns": {
+       "Modbus": "40538",
+       "BACnet": "BI0030",
+       "Count": "29"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Saturation Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND SATURATION TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 539,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "30",
+      "sourceColumns": {
+       "Modbus": "40539",
+       "BACnet": "BI0031",
+       "Count": "30"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "DISCHARGE TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 541,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "32",
+      "sourceColumns": {
+       "Modbus": "40541",
+       "BACnet": "BI0033",
+       "Count": "32"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Input Current Limit",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "INPUT CURRENT ACT LIMIT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 542,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "33",
+      "sourceColumns": {
+       "Modbus": "40542",
+       "BACnet": "BI0034",
+       "Count": "33"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Input % Full Load Amps",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "INPUT CURRENT PCT FLA"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 543,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "34",
+      "sourceColumns": {
+       "Modbus": "40543",
+       "BACnet": "BI0035",
+       "Count": "34"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor % Full Load Amps",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "MOTOR CURRENT PCT FLA"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 544,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "35",
+      "sourceColumns": {
+       "Modbus": "40544",
+       "BACnet": "BI0036",
+       "Count": "35"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Input Current (RMS)",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD INPUT CURRENT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 545,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "36",
+      "sourceColumns": {
+       "Modbus": "40545",
+       "BACnet": "BI0037",
+       "Count": "36"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase A Output Current (RMS)",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PHASE A OUTPUT CURRENT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 546,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "37",
+      "sourceColumns": {
+       "Modbus": "40546",
+       "BACnet": "BI0038",
+       "Count": "37"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase B Output Current (RMS)",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PHASE B OUTPUT CURRENT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 547,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "38",
+      "sourceColumns": {
+       "Modbus": "40547",
+       "BACnet": "BI0039",
+       "Count": "38"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase C Output Current (RMS)",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PHASE C OUTPUT CURRENT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 548,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "39",
+      "sourceColumns": {
+       "Modbus": "40548",
+       "BACnet": "BI0040",
+       "Count": "39"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Output Voltage",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD OUTPUT VOLTAGE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 549,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "40",
+      "sourceColumns": {
+       "Modbus": "40549",
+       "BACnet": "BI0041",
+       "Count": "40"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Input Power",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "kW",
+      "unitIP": "kW",
+      "unitSIRaw": "kW",
+      "unitSI": "kW",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "INPUT POWER"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 550,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "41",
+      "sourceColumns": {
+       "Modbus": "40550",
+       "BACnet": "BI0042",
+       "Count": "41"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Input Kilowatt Hours",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "kWh",
+      "unitIP": "kWh",
+      "unitSIRaw": "kWh",
+      "unitSI": "kWh",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "INPUT KWH"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 551,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "42",
+      "sourceColumns": {
+       "Modbus": "40551",
+       "BACnet": "BI0043",
+       "Count": "42"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD DC Bus Voltage",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD DC BUS VOLTAGE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 554,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "45",
+      "sourceColumns": {
+       "Modbus": "40554",
+       "BACnet": "BI0046",
+       "Count": "45"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD DC Bus Current",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Amps",
+      "unitIP": "A",
+      "unitSIRaw": "Amps",
+      "unitSI": "A",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD DC BUS CURRENT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 555,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "46",
+      "sourceColumns": {
+       "Modbus": "40555",
+       "BACnet": "BI0047",
+       "Count": "46"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Surge Count",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "SURGE COUNT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 556,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "47",
+      "sourceColumns": {
+       "Modbus": "40556",
+       "BACnet": "BI0048",
+       "Count": "47"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Output Frequency",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Hz",
+      "unitIP": "Hz",
+      "unitSIRaw": "Hz",
+      "unitSI": "Hz",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD OUTPUT FREQUENCY"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 557,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "48",
+      "sourceColumns": {
+       "Modbus": "40557",
+       "BACnet": "BI0049",
+       "Count": "48"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Internal Ambient Temp",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD INTERNAL AMBIENT TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 558,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "49",
+      "sourceColumns": {
+       "Modbus": "40558",
+       "BACnet": "BI0050",
+       "Count": "49"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Converter Heatsink Temp",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD CONVERTER HSINK TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 559,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "50",
+      "sourceColumns": {
+       "Modbus": "40559",
+       "BACnet": "BI0051",
+       "Count": "50"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Baseplate Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD BASEPLATE TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 560,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "51",
+      "sourceColumns": {
+       "Modbus": "40560",
+       "BACnet": "BI0052",
+       "Count": "51"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase A Heatsink Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PH A HEATSINK TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 561,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "52",
+      "sourceColumns": {
+       "Modbus": "40561",
+       "BACnet": "BI0053",
+       "Count": "52"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase B Heatsink Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PH B HEATSINK TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 562,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "53",
+      "sourceColumns": {
+       "Modbus": "40562",
+       "BACnet": "BI0054",
+       "Count": "53"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VSD Phase C Heatsink Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VSD PH C HEATSINK TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 563,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 3,
+      "family": "YZD-Logix",
+      "srcRef": "54",
+      "sourceColumns": {
+       "Modbus": "40563",
+       "BACnet": "BI0055",
+       "Count": "54"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Harmonic Filter Baseplate Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "FILTER BASEPLATE TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 564,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "55",
+      "sourceColumns": {
+       "Modbus": "40564",
+       "BACnet": "BI0056",
+       "Count": "55"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Harmonic Filter Max Voltage Total Harmonic Distortion",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "FILTER MAX VOLTAGE THD"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 565,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "56",
+      "sourceColumns": {
+       "Modbus": "40565",
+       "BACnet": "BI0057",
+       "Count": "56"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Harmonic Filter Max Current Total Demand Distortion",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "FILTER MAX CURRENT TDD"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 566,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "57",
+      "sourceColumns": {
+       "Modbus": "40566",
+       "BACnet": "BI0058",
+       "Count": "57"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Harmonic Filter Total Supply KVA",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "kVA",
+      "unitIP": "kVA",
+      "unitSIRaw": "kVA",
+      "unitSI": "kVA",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "FILTER SUPPLY KVA"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 567,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "58",
+      "sourceColumns": {
+       "Modbus": "40567",
+       "BACnet": "BI0059",
+       "Count": "58"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Average Winding Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "MTR WINDING AVG TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 568,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "59",
+      "sourceColumns": {
+       "Modbus": "40568",
+       "BACnet": "BI0060",
+       "Count": "59"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Refrigerant Level Setpoint",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND REFRIGERANT LEVEL SP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 569,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "60",
+      "sourceColumns": {
+       "Modbus": "40569",
+       "BACnet": "BI0061",
+       "Count": "60"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Refrigerant Level",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND REFRIGERANT LEVEL"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 570,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "61",
+      "sourceColumns": {
+       "Modbus": "40570",
+       "BACnet": "BI0062",
+       "Count": "61"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Level Control Valve Command",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND LVL CTRL VLV CMD"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 571,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "62",
+      "sourceColumns": {
+       "Modbus": "40571",
+       "BACnet": "BI0063",
+       "Count": "62"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Drop Leg Refrigerant Temperature",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "DROP LEG REFRIG TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 572,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "63",
+      "sourceColumns": {
+       "Modbus": "40572",
+       "BACnet": "BI0064",
+       "Count": "63"
+      },
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Gas Bypass Command",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "HOT GAS BYPASS COMMAND"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 573,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "64",
+      "sourceColumns": {
+       "Modbus": "40573",
+       "BACnet": "BI0049",
+       "Count": "64"
+      },
+      "gaps": [
+       "Count(64)와 BACnet 열 번호(0049)가 어긋난다"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Operating Hours",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Hr",
+      "unitIP": "h",
+      "unitSIRaw": "Hr",
+      "unitSI": "h",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "OPERATING HOURS"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 574,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "65",
+      "sourceColumns": {
+       "Modbus": "40574",
+       "BACnet": "BI0050",
+       "Count": "65"
+      },
+      "gaps": [
+       "Count(65)와 BACnet 열 번호(0050)가 어긋난다"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Number Of Starts",
+      "group": "System 2 OptiView data",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "NUMBER OF STARTS"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 577,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "68",
+      "sourceColumns": {
+       "Modbus": "40577",
+       "Count": "68"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Operation Code AV",
+      "statesRef": "SC.1",
+      "group": "System 2 OptiView data",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT OPERATION CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 578,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "69",
+      "sourceColumns": {
+       "Enum Set": "See SC.1 on Status Codes Tab",
+       "Modbus": "40578",
+       "Count": "69"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Safety Fault Code AV",
+      "statesRef": "SC.2",
+      "group": "System 2 OptiView data",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT SAFETY FAULT CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 579,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "70",
+      "sourceColumns": {
+       "Enum Set": "See SC.2 on Status Codes Tab",
+       "Modbus": "40579",
+       "Count": "70"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Cycling Fault Code AV",
+      "statesRef": "SC.3",
+      "group": "System 2 OptiView data",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT CYCLING FAULT CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 580,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "71",
+      "sourceColumns": {
+       "Enum Set": "See SC.3 on Status Codes Tab",
+       "Modbus": "40580",
+       "Count": "71"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Warning Code AV",
+      "statesRef": "SC.4",
+      "group": "System 2 OptiView data",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT WARNING CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 581,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "72",
+      "sourceColumns": {
+       "Enum Set": "See SC.4 on Status Codes Tab",
+       "Modbus": "40581",
+       "Count": "72"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Control Source AV",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "BAS"
+       },
+       {
+        "code": "2",
+        "label": "Analog"
+       },
+       {
+        "code": "3",
+        "label": "Digital"
+       },
+       {
+        "code": "4",
+        "label": "Modem"
+       },
+       {
+        "code": "5",
+        "label": "Remote"
+       }
+      ],
+      "group": "System 2 OptiView data",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT CONTROL SOURCE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 582,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "73",
+      "sourceColumns": {
+       "Modbus": "40582",
+       "Count": "73"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Modified Run Code AV",
+      "statesRef": "SC.12",
+      "group": "System 2 OptiView data",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT MODIFIED RUN CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 583,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "74",
+      "sourceColumns": {
+       "Enum Set": "See SC.12 on Status Codes Tab",
+       "Modbus": "40583",
+       "Count": "74"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Start Inhibit Code AV",
+      "statesRef": "SC.13",
+      "group": "System 2 OptiView data",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT START INHIBIT CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 584,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "75",
+      "sourceColumns": {
+       "Enum Set": "See SC.13 on Status Codes Tab",
+       "Modbus": "40584",
+       "Count": "75"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Internal Fault Code AV",
+      "statesRef": "SC.14",
+      "group": "System 2 OptiView data",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UNIT INTERNAL FAULT CODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 585,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "76",
+      "sourceColumns": {
+       "Enum Set": "See SC.14 on Status Codes Tab",
+       "Modbus": "40585",
+       "Count": "76"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Purge Mode AV",
+      "states": [
+       {
+        "code": "1",
+        "label": "Standard"
+       },
+       {
+        "code": "2",
+        "label": "Enhanced"
+       }
+      ],
+      "group": "System 2 OptiView data",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "ACTIVE PURGE MODE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 586,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "77",
+      "sourceColumns": {
+       "Modbus": "40586",
+       "Count": "77"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Purge Control State AV",
+      "states": [
+       {
+        "code": "1",
+        "label": "Standard"
+       },
+       {
+        "code": "2",
+        "label": "Enhanced"
+       }
+      ],
+      "group": "System 2 OptiView data",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "PURGE CONTROL STATE AV"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 587,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "78",
+      "sourceColumns": {
+       "Modbus": "40587",
+       "Count": "78"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Total Purge Count",
+      "group": "System 2 OptiView data",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "TOTAL PURGE COUNT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 593,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "84",
+      "sourceColumns": {
+       "Modbus": "40593",
+       "Count": "84"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Small Temp Difference",
+      "group": "System 2 OptiView data",
+      "unitIPRaw": "Deg F (Diff)",
+      "unitSIRaw": "Deg C (Diff)",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "EVAP SMALL TEMP DIFF"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 594,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "85",
+      "sourceColumns": {
+       "Modbus": "40594",
+       "Count": "85"
+      },
+      "gaps": [
+       "readWrite",
+       "unitIP 정규화 불가('Deg F (Diff)')",
+       "unitSI 정규화 불가('Deg C (Diff)')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Small Temp Difference",
+      "group": "System 2 OptiView data",
+      "unitIPRaw": "Deg F (Diff)",
+      "unitSIRaw": "Deg C (Diff)",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "COND SMALL TEMP DIFF"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 595,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "86",
+      "sourceColumns": {
+       "Modbus": "40595",
+       "Count": "86"
+      },
+      "gaps": [
+       "readWrite",
+       "unitIP 정규화 불가('Deg F (Diff)')",
+       "unitSI 정규화 불가('Deg C (Diff)')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Superheat",
+      "group": "System 2 OptiView data",
+      "unitIPRaw": "Deg F (Diff)",
+      "unitSIRaw": "Deg C (Diff)",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "DISCHARGE SUPERHEAT"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 596,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "87",
+      "sourceColumns": {
+       "Modbus": "40596",
+       "Count": "87"
+      },
+      "gaps": [
+       "readWrite",
+       "unitIP 정규화 불가('Deg F (Diff)')",
+       "unitSI 정규화 불가('Deg C (Diff)')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Subcooler Effectiveness",
+      "group": "System 2 OptiView data",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "SUBCOOLER EFFECTIVENESS"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 597,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "88",
+      "sourceColumns": {
+       "Modbus": "40597",
+       "Count": "88"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Subcooling Temperature",
+      "group": "System 2 OptiView data",
+      "unitIPRaw": "Deg F (Diff)",
+      "unitSIRaw": "Deg C (Diff)",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "SUBCOOLING TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 598,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "89",
+      "sourceColumns": {
+       "Modbus": "40598",
+       "Count": "89"
+      },
+      "gaps": [
+       "readWrite",
+       "unitIP 정규화 불가('Deg F (Diff)')",
+       "unitSI 정규화 불가('Deg C (Diff)')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Delta P / P",
+      "group": "System 2 OptiView data",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "DELTA P DIV P"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 599,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "90",
+      "sourceColumns": {
+       "Modbus": "40599",
+       "Count": "90"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Head Pressure",
+      "group": "System 2 OptiView data",
+      "unitIPRaw": "PSID",
+      "unitSIRaw": "kPaD",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "HEAD PRESSURE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 600,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "91",
+      "sourceColumns": {
+       "Modbus": "40600",
+       "Count": "91"
+      },
+      "gaps": [
+       "readWrite",
+       "unitIP 정규화 불가('PSID')",
+       "unitSI 정규화 불가('kPaD')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Speed",
+      "group": "System 2 OptiView data",
+      "unitIPRaw": "Hz",
+      "unitIP": "Hz",
+      "unitSIRaw": "Hz",
+      "unitSI": "Hz",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "MOTOR SPEED"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 601,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "92",
+      "sourceColumns": {
+       "Modbus": "40601",
+       "Count": "92"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Ambient Dew Point Temperature",
+      "group": "System 2 OptiView data",
+      "unitIPRaw": "Deg F",
+      "unitIP": "degF",
+      "unitSIRaw": "Deg C",
+      "unitSI": "degC",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "AMB DEW POINT TEMP"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 602,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "93",
+      "sourceColumns": {
+       "Modbus": "40602",
+       "Count": "93"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Cooling Valve Command",
+      "group": "System 2 OptiView data",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "MOTOR COOL VLV CMD"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 604,
+       "addressBase": "unknown",
+       "scaleRaw": "x 10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "95",
+      "sourceColumns": {
+       "Modbus": "40604",
+       "Count": "95"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "UPS Battery Voltage",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Volts",
+      "unitIP": "V",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "UPS BATTERY VOLTAGE"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 605,
+       "addressBase": "unknown",
+       "scaleRaw": "x 10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "96",
+      "sourceColumns": {
+       "Modbus": "40605",
+       "BACnet": "BI0049",
+       "Count": "96"
+      },
+      "gaps": [
+       "Count(96)와 BACnet 열 번호(0049)가 어긋난다"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Anti-Surge Minimum Frequency",
+      "group": "System 2 OptiView data",
+      "readWrite": "R",
+      "unitIPRaw": "Hz",
+      "unitIP": "Hz",
+      "unitSIRaw": "Hz",
+      "unitSI": "Hz",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "ACT ANTI-SURGE MIN FREQ"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 606,
+       "addressBase": "unknown",
+       "scaleRaw": "x 10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "97",
+      "sourceColumns": {
+       "Modbus": "40606",
+       "BACnet": "BI0050",
+       "Count": "97"
+      },
+      "gaps": [
+       "Count(97)와 BACnet 열 번호(0050)가 어긋난다"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "VGD Position",
+      "group": "System 2 OptiView data",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "VGD POSITION"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 607,
+       "addressBase": "unknown",
+       "scaleRaw": "x 10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "98",
+      "sourceColumns": {
+       "Modbus": "40607",
+       "Count": "98"
+      },
+      "gaps": [
+       "readWrite"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    },
+    {
+     "common": {
+      "name": "Stall Voltage",
+      "group": "System 2 OptiView data",
+      "unitIPRaw": "Votls",
+      "unitSIRaw": "Volts",
+      "unitSI": "V",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "logix": {
+       "tag": "Stall Voltage"
+      },
+      "modbus": {
+       "refClass": "holding-register",
+       "address": 613,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YZD-BAS-HMI-Rev1.4.pdf",
+      "sourcePage": 4,
+      "family": "YZD-Logix",
+      "srcRef": "104",
+      "sourceColumns": {
+       "Modbus": "40613",
+       "Count": "104"
+      },
+      "gaps": [
+       "readWrite",
+       "unitIP 정규화 불가('Votls')"
+      ],
+      "interfaceId": "yzd-bas-hmi-rev1-4"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev 1.4"
+   },
+   "sourcePages": [
+    1,
+    4
+   ],
+   "excluded": {
+    "reserved": 60,
+    "band": 4
+   }
+  }
+ ],
+ "crosscheck": {
+  "unverifiable": "BACnet 타입·인스턴스를 가진 포인트가 0/156 뿐이라 줄 읽기 경로가 짝을 만들 수 없다 (이 문서의 주소 축: logix, modbus)"
+ },
+ "tags": [
+  "chiller",
+  "chiller-centrifugal"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'YZD Magnetic Bearing Centrifugal Chiller' 의 낱말 (압축 방식·응축 방식)"
+}

@@ -1,5 +1,9 @@
 {
- "version": 1,
+ "version": 2,
+ "changelog": [
+  "v2 (2026-08-14) — interfaces 절 신설. 모델(제품) 아래 포인트를 평면으로 두면 스타터·펌웨어가 다른 목록이 한 배열에 섞인다. 포인트는 인터페이스에 속하고, 인터페이스가 모델에 속한다. provenance.interfaceId·block 등재 (block 은 어댑터가 이미 쓰고 있었는데 사전에 없어 dictionaryFirst 위반이었다).",
+  "v1 (2026-08-12) — 최초. JCI 포인트 리스트 57건 실측에서 8계통·열 합집합 45종을 얻어 세웠다."
+ ],
  "description": "오브젝트(포인트) 속성 사전 — unit-schema.json(정격)과 같은 방식의 '사전 우선' 게이트를 포인트 쪽에 세운다. 구조는 두 층이다. ① 공통 의미(common·provenance): 어느 프로토콜이든 뜻이 같은 것 — 이름·단위·범위·상태·읽기쓰기·적용·비고·출처. ② 프로토콜 블록(blocks): bacnet·modbus·n2·lon·yorktalk·logix·elink — 주소·타입처럼 프로토콜마다 어휘가 다른 것. 블록으로 나누는 이유: (1) 문서마다 지원 프로토콜이 다르다 — YorkTalk 구형 13건은 N2+YorkTalk뿐이고 BACnet·LON·Modbus 열이 아예 없다. Native는 BACnet+Modbus+N2, YPAL은 LON+N2, ECO2는 BACnet+Modbus, YZD는 Modbus+Logix다. (2) 한 포인트가 여러 프로토콜 주소를 동시에 갖는다 — E-Link/GPIC형은 한 행에 BACnet·LON·N2·Modbus 4종 주소가 나란히 온다. 평면 이름으로는 이 동시성이 modbus* 6종 같은 접두 필드 증식으로 나타났고 18종까지 불어났다. (3) 같은 열 이름이 계통마다 다른 뜻을 담는다('BACnet Object Name'이 Typ-Ins형에선 York Talk 좌표) — 블록을 나눠야 '어느 프로토콜의 무엇'인지 경로가 말해 준다. 포인트 레코드 모양: 최상위 키는 common·provenance의 필드, 프로토콜 주소는 블록명 하위 객체(예: {\"name\":…, \"bacnet\":{\"objectType\":\"AV\",\"instance\":29}, \"modbus\":{\"address\":1,…}}). 경로 표기는 'bacnet.instance' 식이다.",
  "statuses": {
   "extracted": "자동 추출 — 검수 전 제안값. 재추출이 자유롭게 갱신한다",
@@ -7,6 +11,7 @@
   "manual": "수기 입력 — 문서 한계로 추출이 못 만드는 값을 사람이 직접 채웠다. 재추출이 건드리지 않는다"
  },
  "rules": {
+  "interfaceIsANode": "포인트는 모델(제품)이 아니라 **인터페이스**에 속한다 — 모델 레코드의 interfaces[] 가 노드이고 포인트는 그 아래 담긴다(models/<id>.json → interfaces[].points[]). 한 문서에 제품이 여럿이고(E-Link 7Lqu5 는 1~4쪽 Standard Starter · 5~8쪽 Solid State Starter 로 **주소가 다르다**), 같은 제품도 펌웨어·개정에 따라 목록이 다르다(Simplicity SE 'Firmware v1072' · YZD 'Rev 1.4'). 평면 points[] 에 합치면 서로 다른 주소 체계가 한 배열에 섞여 되돌릴 수 없다 — 어느 행이 어느 판인지 알려 주는 열이 원문에 없기 때문이다. 업계도 같은 자리를 노드로 둔다: BTL 등재는 제품마다 시험 펌웨어를 붙이고, LonMark XIF 의 열쇠는 모델이 아니라 프로그램 ID 이며, KNX 카탈로그 엔트리 하나는 1..n 제품 × 애플리케이션 프로그램 버전으로 갈린다",
   "dictionaryFirst": "포인트 레코드의 모든 키는 이 사전(common·provenance·blocks)에 정의된 경로만 허용 — 사전 밖 필드는 검증 오류. 새 열을 만나면 순서는 ① provenance.sourceColumns 에 원문 보존 ② 이 사전에 등재 ③ 그다음에야 필드 승격이다. unit-schema 규칙 ④와 같은 원리: 사전 없이 필드가 자라게 두면 지금의 평면 18종이 재현된다",
   "emptyMeansAbsent": "'' · '_' 단독 · '-' · 'N/A' 셀은 값이 아니다 — 필드를 만들지 않는다. 열이 존재해도 전 행 공란이면(E-Link/YorkTalk 13건의 'GPIC Object Type') 그 열로는 어떤 필드도 만들지 않는다 — 열 존재 ≠ 값 존재",
   "reservedSlotNotAPoint": "이름 계열 열이 전부 빈 예약 슬롯 행(E-Link 는 P03~P84 를 사용 여부와 무관하게 할당)은 포인트로 저장하지 않는다 — 세면 포인트 수가 2~4배 부풀려진다(p2Oiy 325행 중 이름 128행). 빈 판정 기준 열은 계통마다 달라(ISN LINC 만 / DESCRIPTION 만 / 둘 다) 공통 규칙이 불가능하다 — 취입 어댑터가 계통별로 정하고 그 근거를 남긴다",
@@ -203,6 +208,95 @@
    ],
    "required": true,
    "note": "**columnGuards 의 절반이 계통 조건부다** — 'YZD 문서에서 bacnet 블록 생성은 오류'·'GPIC형과 Typ-Ins형의 라우팅이 다르다' 같은 규칙은 레코드가 출신 계통을 모르면 강제할 수 없다. 초안에 이 자리가 없어 가드 3개가 작동 불능이었다(2026-08-12 검증). 계통은 취입할 때 어댑터가 적는다."
+  },
+  "interfaceId": {
+   "ko": "소속 인터페이스",
+   "shape": "string",
+   "required": "모델에 interfaces[] 가 있으면 필수",
+   "note": "같은 모델의 어느 판에서 나온 포인트인지 가리킨다 → interfaces[].id. 인터페이스 아래 중첩해 담으므로 취입 코드가 채우는 값이지 사람이 적는 값이 아니다. 중첩과 중복이지만 남긴다 — 포인트만 뽑아 CSV·시뮬레이터로 넘길 때 소속을 잃지 않는 유일한 길이다(rules.interfaceIsANode)"
+  },
+  "block": {
+   "ko": "원문 블록",
+   "shape": "object {index:int, title:string}",
+   "note": "머리글이 표의 0행이 아닌 문서에서 어댑터가 끊은 블록 — 제목은 그 위 제목행에서 가져온다('YR OptiView Standard Starter'). **인터페이스를 가를 근거이지 인터페이스 자체가 아니다** — 블록 경계는 표 인식의 산물이라 사람이 보고 승격해야 한다(같은 제품의 이어지는 표일 수도, 다른 제품일 수도 있다. 실측: VJ52 는 완전 중복이고 7Lqu 는 주소 대역이 이어진다). 승격 전에는 이 자리에만 있고 interfaceId 는 문서 단위 하나로 둔다"
+  }
+ },
+ "interfaces": {
+  "ko": "인터페이스 (포인트 리스트 리비전)",
+  "where": "모델 레코드(data/models/<id>.json)의 최상위 키 interfaces[]. 포인트는 여기 중첩된다 — interfaces[].points[]",
+  "description": "모델(제품)과 인터페이스(그 제품이 실제로 내보내는 오브젝트 목록)는 1:N 이다. 게이트웨이가 붙으면 같은 냉동기가 E-Link 판과 Native 판을 따로 갖고, 펌웨어가 오르면 목록이 바뀌며, 한 문서 안에 스타터 사양이 다른 두 판이 들어 있기도 하다. 이 자리를 만들지 않으면 그 셋이 전부 한 배열로 뭉개진다",
+  "fields": {
+   "id": {
+    "ko": "인터페이스 ID",
+    "shape": "string",
+    "required": true,
+    "note": "모델 안에서만 유일하면 된다. 규칙: <계통약칭>-<판 구분> 소문자 하이픈 (예: 'elink-gpic-std-starter' · 'native-bacnet' · 'yzd-rev14'). 문서가 한 판만 주면 계통 약칭 하나로 끝낸다"
+   },
+   "label": {
+    "ko": "화면 표기",
+    "shape": "string",
+    "required": true,
+    "note": "사람이 고르는 이름 — 'E-Link 게이트웨이 (Standard Starter)'. 좌측 트리에서 모델 아래 놓인다"
+   },
+   "family": {
+    "ko": "문서 계통",
+    "shape": "enum",
+    "note": "값은 provenance.family 와 같은 목록. 벤더 축이 아니라 **문서 계통 축**이다 — BTL 의 디바이스 프로파일에 해당하는 보조 축이고, 1차 분류는 설비 계열(e5·e9…)이 맡는다. 벤더가 정한 분류를 1차 축으로 올리면 KNX 제품 DB 처럼 제조사마다 다른 가지가 생긴다(KNX 공식 문서: 하위분류는 표준화돼 있지 않다)"
+   },
+   "protocols": {
+    "ko": "지원 프로토콜",
+    "shape": "array [블록명]",
+    "note": "이 인터페이스가 실제로 주소를 주는 블록만 — blocks 의 키(bacnet·modbus·n2·lon·yorktalk·logix·elink). 문서에 열이 있어도 전 행이 비면 넣지 않는다(rules.emptyMeansAbsent). 화면 패싯의 '프로토콜' 축이 이 값을 쓴다"
+   },
+   "revision": {
+    "ko": "판 구분",
+    "shape": "object {doc, firmware, block, date}",
+    "note": "doc='Rev 1.4' 같은 문서 개정, firmware='v1072' 같은 펌웨어, block='Solid State Starter' 같은 문서 내 판, date=발행일. **문서가 밝힌 것만 적는다** — 없으면 비운다. 셋 다 없으면 그 문서는 판이 하나라는 뜻이다"
+   },
+   "appliesTo": {
+    "ko": "이 목록이 덮는 제품",
+    "shape": "array [제품 코드]",
+    "note": "문서 제목이 여러 제품을 나열하면 그대로 적는다('YCAJ, YCAZ, YCWZ, YCWJ, YCRJ, YCWK, YCRR'). 인터페이스는 **주 제품 모델 하나에만** 붙이고 나머지는 여기로 밝힌다 — 같은 1,000점을 제품 수만큼 복제하면 한쪽만 고쳐지는 날이 온다. 화면은 이 값으로 역색인을 만들어 'YCWJ 를 고르면 이 목록'을 보여 준다"
+   },
+   "sourceFile": {
+    "ko": "출처 파일",
+    "shape": "string",
+    "required": true
+   },
+   "sourcePages": {
+    "ko": "출처 쪽 범위",
+    "shape": "array [int]",
+    "note": "한 문서에서 여러 판을 갈랐다면 어느 쪽이 어느 판인지가 유일한 근거다"
+   },
+   "pointCount": {
+    "ko": "포인트 수",
+    "shape": "int",
+    "note": "points 길이와 같아야 한다 — 검증에서 대조한다"
+   },
+   "excluded": {
+    "ko": "제외한 행",
+    "shape": "object {reason: count}",
+    "note": "예약 슬롯·개정이력·NOTES 처럼 포인트로 세지 않은 행. **조용히 빼지 않는다** — 화면에 사유와 함께 낸다(SC-EQ 예약 슬롯 745행=29%)"
+   },
+   "firmware": {
+    "ko": "펌웨어 이력",
+    "shape": "array [{version, date, partNo, checksum, baud, comment}]",
+    "note": "문서 앞 개정이력표에서 온다(nonPointColumns.firmwareHistory). 포인트가 아니므로 여기 모델 메타로 내린다"
+   },
+   "status": {
+    "ko": "상태",
+    "shape": "enum",
+    "values": ["extracted", "verified", "manual"]
+   },
+   "gaps": {
+    "ko": "문서가 안 주는 것",
+    "shape": "array [string]",
+    "note": "인터페이스 단위의 한계 — 'addressBase 를 문서가 밝히지 않음'(YZD)처럼 포인트마다 반복할 것이 아닌 것"
+   },
+   "note": {
+    "ko": "비고",
+    "shape": "string"
+   }
   }
  },
  "blocks": {
@@ -260,6 +354,11 @@
      "ko": "오브젝트 식별자(OID) 원값",
      "shape": "int",
      "note": "JCI SE 매핑표처럼 타입 없이 32비트 OID 숫자만 줄 때 보존(예: 29526). 타입·인스턴스 분해는 확실할 때만"
+    },
+    "alternates": {
+     "ko": "같은 오브젝트의 다른 표기",
+     "shape": "array [타입+인스턴스 문자열]",
+     "note": "'MV1 /AV401' 처럼 **설정에 따라 형태가 달라지는** 오브젝트를 원문이 병기한 것(SC-EQ 실측 50건 · E-Link GPIC 53건). 첫째를 objectType·instance 본체로 삼고 둘째는 여기 남긴다 — 버리면 그 설정을 쓰는 현장에서 매핑이 조용히 어긋난다. 별개의 포인트가 아니므로 행을 늘리지 않는다"
     },
     "msvOffset": {
      "ko": "MSV 상태값 오프셋",

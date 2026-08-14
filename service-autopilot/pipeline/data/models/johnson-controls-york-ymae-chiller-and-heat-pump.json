@@ -1,0 +1,5289 @@
+{
+ "id": "johnson-controls-york-ymae-chiller-and-heat-pump",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YMAE Chiller and Heat Pump",
+ "name": "YMAE Chiller and Heat Pump",
+ "cat": "HVAC.PLANT.CHILLER",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 2건 · 판 2개에서 취입 — 오브젝트 142점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "YMAE-15",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "Modbus",
+   "YMAE-15",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "N2",
+   "YMAE-15",
+   "—",
+   "포인트 리스트 2판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+ "interfaces": [
+  {
+   "id": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0",
+   "label": "YMAE Points List Two-Pipe Equipment",
+   "family": "YMAE-15",
+   "protocols": [
+    "bacnet",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+   "pointCount": 69,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Chiller On|Off (Command)",
+      "shortName": "CHILLER ON|OFF (CMD)",
+      "rangeIP": {
+       "min": 1.0,
+       "max": 2.0
+      },
+      "rangeSI": {
+       "min": 1.0,
+       "max": 2.0
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Invalid"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       },
+       {
+        "code": "2",
+        "label": "Off"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 0,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1"
+      },
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Running Mode",
+      "shortName": "RUNNING MODE",
+      "rangeIP": {
+       "min": 0.0,
+       "max": 8.0
+      },
+      "rangeSI": {
+       "min": 0.0,
+       "max": 8.0
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Cooling"
+       },
+       {
+        "code": "1",
+        "label": "Heating"
+       },
+       {
+        "code": "8",
+        "label": "Pump Only"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2"
+      },
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Cool Entering Water Temperature Setpoint",
+      "shortName": "COOL EWT SETPOINT",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "rangeIP": {
+       "min": 23.0,
+       "max": 77.0
+      },
+      "rangeSI": {
+       "min": -5.0,
+       "max": 25.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Heat Entering Water Temperature Setpoint",
+      "shortName": "HEAT EWT SETPOINT",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "rangeIP": {
+       "min": 68.0,
+       "max": 131.0
+      },
+      "rangeSI": {
+       "min": 20.0,
+       "max": 55.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 3,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Cool Leaving Water Temperature Setpoint",
+      "shortName": "COOL LWT SETPOINT",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "rangeIP": {
+       "min": 14.0,
+       "max": 68.0
+      },
+      "rangeSI": {
+       "min": -10.0,
+       "max": 20.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "modbus": {
+       "address": 4,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Heat Leaving Water Temperature Setpoint",
+      "shortName": "HEAT LWT SETPOINT",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "rangeIP": {
+       "min": 77.0,
+       "max": 140.0
+      },
+      "rangeSI": {
+       "min": 25.0,
+       "max": 60.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 4
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Noise Reduction",
+      "shortName": "NOISE REDUCTION",
+      "rangeIP": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "rangeSI": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling Control Select",
+      "shortName": "COOLING CONTROL SELECT",
+      "rangeIP": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "rangeSI": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "EWT control"
+       },
+       {
+        "code": "1",
+        "label": "LWT control"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3"
+      },
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating Control Select",
+      "shortName": "HEATING CONTROL SELECT",
+      "rangeIP": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "rangeSI": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "EWT control"
+       },
+       {
+        "code": "1",
+        "label": "LWT control"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 10,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4"
+      },
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Temperature Control Cycle",
+      "shortName": "TEMP CONTROL CYCLE",
+      "unitIP": "Sec",
+      "unitSI": "Sec",
+      "rangeIP": {
+       "min": 20.0,
+       "max": 120.0
+      },
+      "rangeSI": {
+       "min": 20.0,
+       "max": 120.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Water Temperature Control Differential",
+      "shortName": "WATER TEMP CONTROL DIFF",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)",
+      "rangeIP": {
+       "min": 1.8,
+       "max": 5.4
+      },
+      "rangeSI": {
+       "min": 1.0,
+       "max": 3.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Water Temp Pulldown Rate Select",
+      "shortName": "EWT PULLDOWN RATE SELECT",
+      "rangeIP": {
+       "min": 0.0,
+       "max": 6.0
+      },
+      "rangeSI": {
+       "min": 0.0,
+       "max": 6.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Module Number",
+      "shortName": "MODULE NUMBER",
+      "rangeIP": {
+       "min": 1.0,
+       "max": 32.0
+      },
+      "rangeSI": {
+       "min": 1.0,
+       "max": 32.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Mode Control Selection",
+      "shortName": "CHILLER MODE CONTROL SELECTION",
+      "states": [
+       {
+        "code": "0",
+        "label": "HMI"
+       },
+       {
+        "code": "1",
+        "label": "Remote"
+       },
+       {
+        "code": "2",
+        "label": "HMI+ BAS"
+       },
+       {
+        "code": "3",
+        "label": "BAS"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV5"
+      },
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller ON|OFF Control Selection",
+      "shortName": "CHILLER ON|OFF CONTROL SELECTION",
+      "states": [
+       {
+        "code": "0",
+        "label": "HMI"
+       },
+       {
+        "code": "1",
+        "label": "Remote"
+       },
+       {
+        "code": "2",
+        "label": "HMI+ BAS"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV6"
+      },
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller On|Off (Status)",
+      "shortName": "CHILLER ON|OFF (STATUS)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 3
+      },
+      "modbus": {
+       "address": 100,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "System Status",
+      "shortName": "SYSTEM STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Cooling"
+       },
+       {
+        "code": "1",
+        "label": "Heating"
+       },
+       {
+        "code": "8",
+        "label": "Pump Only"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 101
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "modbus": {
+       "address": 101,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV101"
+      },
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Other Status",
+      "shortName": "OTHER STATUS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 102
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 102,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Human Machine Interface Comm. Status",
+      "shortName": "HMI COMMUNICATION STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Offline"
+       },
+       {
+        "code": "1",
+        "label": "Online"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 4
+      },
+      "modbus": {
+       "address": 103,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Network Status (1-16)",
+      "shortName": "UNIT NETWORK STATUS (1-16)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 104
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 104,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Fault Status (1-16)",
+      "shortName": "UNIT FAULT STATUS (1-16)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 109
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 109,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Entering Water Temperature",
+      "shortName": "CHILLER EWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 110
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 110,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Leaving Water Temperature",
+      "shortName": "CHILLER LWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 111
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 111,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Ambient Temperature",
+      "shortName": "AMBIENT TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 113
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 113,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Loading",
+      "shortName": "CHILLER LOADING",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 114
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 114,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Total Run Hours",
+      "shortName": "TOTAL RUN HOURS",
+      "unitIP": "Hours",
+      "unitSI": "Hours"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 117
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 117,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Network Status (17-32)",
+      "shortName": "UNIT NETWORK STATUS (17-32)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 121
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 121,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Fault Status (17-32)",
+      "shortName": "UNIT FAULT STATUS (17-32)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 122
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 122,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Quantity",
+      "shortName": "UNIT QUANTITY"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 123
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 123,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault",
+      "shortName": "FAULT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Normal"
+       },
+       {
+        "code": "1",
+        "label": "Alarm"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 1000,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Entering Water Temperature",
+      "shortName": "UNIT EWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1021
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 1021,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Coil Temperature",
+      "shortName": "CKT1 COIL TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1023
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 1023,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Coil Temperature",
+      "shortName": "CKT2 COIL TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1024
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 1024,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Leaving Water Temperature",
+      "shortName": "UNIT LWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1025
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 1025,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Suction Temperature",
+      "shortName": "CKT1 SUCT TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1027
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 1027,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Suction Temperature",
+      "shortName": "CKT2 SUCT TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1028
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 1028,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "System 1 Discharge Temp",
+      "shortName": "SYS 1 DISCHARGE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1029
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "modbus": {
+       "address": 1029,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Economizer Entering Temp",
+      "shortName": "CKT1 ECO ENTERING TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1030
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "modbus": {
+       "address": 1030,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "System 2 Discharge Temp",
+      "shortName": "SYS 2 DISCHARGE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1031
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "modbus": {
+       "address": 1031,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Economizer Entering Temp",
+      "shortName": "CKT2 ECO ENTERING TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1032
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "modbus": {
+       "address": 1032,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Economizer Leaving Temp",
+      "shortName": "CKT1 ECO LEAVING TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1033
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "modbus": {
+       "address": 1033,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Economizer Leaving Temp",
+      "shortName": "CKT2 ECO LEAVING TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1034
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "modbus": {
+       "address": 1034,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "R454B Relative Lower Flammable Limit",
+      "shortName": "R454B Relative LFL",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1036
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "modbus": {
+       "address": 1036,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Suction Pressure",
+      "shortName": "CKT1 SUCT PRS",
+      "unitIP": "PSIG",
+      "unitSI": "kPa"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1040
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "modbus": {
+       "address": 1040,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Suction Pressure",
+      "shortName": "CKT2 SUCT PRS",
+      "unitIP": "PSIG",
+      "unitSI": "kPa"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1041
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "modbus": {
+       "address": 1041,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Discharge Pressure",
+      "shortName": "CKT1 DISCH PRS",
+      "unitIP": "PSIG",
+      "unitSI": "kPa"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1042
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "modbus": {
+       "address": 1042,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Discharge Pressure",
+      "shortName": "CKT2 DISCH PRS",
+      "unitIP": "PSIG",
+      "unitSI": "kPa"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1043
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 43
+      },
+      "modbus": {
+       "address": 1043,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "DI17-32",
+      "shortName": "DI17-32"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1053
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 53
+      },
+      "modbus": {
+       "address": 1053,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "DI1-16",
+      "shortName": "DI1-16"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1054
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 54
+      },
+      "modbus": {
+       "address": 1054,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "DO17-32",
+      "shortName": "DO17-33"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1055
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 55
+      },
+      "modbus": {
+       "address": 1055,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "DO1-16",
+      "shortName": "DO1-16"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1056
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 56
+      },
+      "modbus": {
+       "address": 1056,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Electronic Expansion Valve",
+      "shortName": "CKT1 EEV"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1057
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 57
+      },
+      "modbus": {
+       "address": 1057,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Electronic Expansion Valve",
+      "shortName": "CKT2 EEV"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1058
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 58
+      },
+      "modbus": {
+       "address": 1058,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Economizer EEV",
+      "shortName": "CKT1 ECO EEV"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1059
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 59
+      },
+      "modbus": {
+       "address": 1059,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Economizer EEV",
+      "shortName": "CKT2 ECO EEV"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1060
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 60
+      },
+      "modbus": {
+       "address": 1060,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Fan Speed",
+      "shortName": "CKT1 FAN SPEED",
+      "unitIP": "RPM",
+      "unitSI": "RPM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1065
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 65
+      },
+      "modbus": {
+       "address": 1065,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Fan Speed",
+      "shortName": "CKT2 FAN SPEED",
+      "unitIP": "RPM",
+      "unitSI": "RPM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1066
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 66
+      },
+      "modbus": {
+       "address": 1066,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Dial Switch Status",
+      "shortName": "DIAL SWITCH STATUS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1073
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 73
+      },
+      "modbus": {
+       "address": 1073,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Inverter Compressor Frequency",
+      "shortName": "CKT1 INV COMP FREQ",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1080
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 80
+      },
+      "modbus": {
+       "address": 1080,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Inverter Compressor Frequency",
+      "shortName": "CKT2 INV COMP FREQ",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1096
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 96
+      },
+      "modbus": {
+       "address": 1096,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 1",
+      "shortName": "FAULT STATUS 1"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1155
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 155
+      },
+      "modbus": {
+       "address": 1155,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 2",
+      "shortName": "FAULT STATUS 2"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1156
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 156
+      },
+      "modbus": {
+       "address": 1156,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 3",
+      "shortName": "FAULT STATUS 3"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1157
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 157
+      },
+      "modbus": {
+       "address": 1157,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 4",
+      "shortName": "FAULT STATUS 4"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1158
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 158
+      },
+      "modbus": {
+       "address": 1158,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 5",
+      "shortName": "FAULT STATUS 5"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1159
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 159
+      },
+      "modbus": {
+       "address": 1159,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 6",
+      "shortName": "FAULT STATUS 6"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1160
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 160
+      },
+      "modbus": {
+       "address": 1160,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 7",
+      "shortName": "FAULT STATUS 7"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1161
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 161
+      },
+      "modbus": {
+       "address": 1161,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 8",
+      "shortName": "FAULT STATUS 8"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1162
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 162
+      },
+      "modbus": {
+       "address": 1162,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Model Number",
+      "shortName": "CHILLER MODEL NUMBER"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1163
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 163
+      },
+      "modbus": {
+       "address": 1163,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_2_pipe_equipment_modbus_bacnet_points_list_rev1-0"
+     }
+    }
+   ],
+   "sourcePages": [
+    1,
+    1
+   ]
+  },
+  {
+   "id": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1",
+   "label": "YMAE Points List Four-Pipe Equipment",
+   "family": "YMAE-15",
+   "protocols": [
+    "bacnet",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+   "pointCount": 73,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Chiller On|Off (Command)",
+      "shortName": "CHILLER ON|OFF (CMD)",
+      "rangeIP": {
+       "min": 1.0,
+       "max": 2.0
+      },
+      "rangeSI": {
+       "min": 1.0,
+       "max": 2.0
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Invalid"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       },
+       {
+        "code": "2",
+        "label": "Off"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 0,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1"
+      },
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Running Mode",
+      "shortName": "RUNNING MODE",
+      "rangeIP": {
+       "min": 0.0,
+       "max": 9.0
+      },
+      "rangeSI": {
+       "min": 0.0,
+       "max": 9.0
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Cooling"
+       },
+       {
+        "code": "1",
+        "label": "Heating"
+       },
+       {
+        "code": "8",
+        "label": "Pump Only"
+       },
+       {
+        "code": "9",
+        "label": "Cooling+Heating"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2"
+      },
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cool Entering Water Temperature Setpoint",
+      "shortName": "COOL EWT SETPOINT",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "rangeIP": {
+       "min": 19.4,
+       "max": 86.0
+      },
+      "rangeSI": {
+       "min": -7.0,
+       "max": 30.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Heat Entering Water Temperature Setpoint",
+      "shortName": "HEAT EWT SETPOINT",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "rangeIP": {
+       "min": 59.0,
+       "max": 131.0
+      },
+      "rangeSI": {
+       "min": 15.0,
+       "max": 55.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 3,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cool Leaving Water Temperature Setpoint",
+      "shortName": "COOL LWT SETPOINT",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "rangeIP": {
+       "min": 14.0,
+       "max": 68.0
+      },
+      "rangeSI": {
+       "min": -10.0,
+       "max": 20.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "modbus": {
+       "address": 4,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Heat Leaving Water Temperature Setpoint",
+      "shortName": "HEAT LWT SETPOINT",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "rangeIP": {
+       "min": 77.0,
+       "max": 140.0
+      },
+      "rangeSI": {
+       "min": 25.0,
+       "max": 60.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 4
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Noise Reduction",
+      "shortName": "NOISE REDUCTION",
+      "rangeIP": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "rangeSI": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling Control Select",
+      "shortName": "COOLING CONTROL SELECT",
+      "rangeIP": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "rangeSI": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Manual EWT control"
+       },
+       {
+        "code": "1",
+        "label": "Manual LWT control"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating Control Select",
+      "shortName": "HEATING CONTROL SELECT",
+      "rangeIP": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "rangeSI": {
+       "min": 0.0,
+       "max": 1.0
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Manual EWT control"
+       },
+       {
+        "code": "1",
+        "label": "Manual LWT control"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 10,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Temperature Control Cycle",
+      "shortName": "TEMP CONTROL CYCLE",
+      "unitIP": "Sec",
+      "unitSI": "Sec",
+      "rangeIP": {
+       "min": 10.0,
+       "max": 120.0
+      },
+      "rangeSI": {
+       "min": 10.0,
+       "max": 120.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Water Temperature Control Differential",
+      "shortName": "WATER TEMP CONTROL DIFF",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)",
+      "rangeIP": {
+       "min": 1.8,
+       "max": 5.4
+      },
+      "rangeSI": {
+       "min": 1.0,
+       "max": 3.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Water Temperature Pulldown Rate Select",
+      "shortName": "EWT PULLDOWN RATE SELECT",
+      "rangeIP": {
+       "min": 0.0,
+       "max": 6.0
+      },
+      "rangeSI": {
+       "min": 0.0,
+       "max": 6.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Module Number",
+      "shortName": "MODULE NUMBER",
+      "rangeIP": {
+       "min": 1.0,
+       "max": 32.0
+      },
+      "rangeSI": {
+       "min": 1.0,
+       "max": 32.0
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 15,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Mode Control Selection",
+      "shortName": "CHILLER MODE CONTROL SELECTION",
+      "states": [
+       {
+        "code": "0",
+        "label": "HMI"
+       },
+       {
+        "code": "1",
+        "label": "Remote"
+       },
+       {
+        "code": "2",
+        "label": "HMI+ BAS"
+       },
+       {
+        "code": "3",
+        "label": "BAS"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3"
+      },
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller ON|OFF Control Selection",
+      "shortName": "CHILLER ON|OFF CONTROL SELECTION",
+      "states": [
+       {
+        "code": "0",
+        "label": "HMI"
+       },
+       {
+        "code": "1",
+        "label": "Remote"
+       },
+       {
+        "code": "2",
+        "label": "HMI+ BAS"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4"
+      },
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller On|Off (Status)",
+      "shortName": "CHILLER ON|OFF (STATUS)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 100
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 3
+      },
+      "modbus": {
+       "address": 100,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "System Status",
+      "shortName": "SYSTEM STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Cooling"
+       },
+       {
+        "code": "1",
+        "label": "Heating"
+       },
+       {
+        "code": "8",
+        "label": "Pump Only"
+       },
+       {
+        "code": "9",
+        "label": "Cooling+Heating"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 101
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "modbus": {
+       "address": 101,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV101"
+      },
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Other Status",
+      "shortName": "OTHER STATUS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 102
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 102,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Human Machine Interface Communication Status",
+      "shortName": "HMI COMMUNICATION STATUS",
+      "states": [
+       {
+        "code": "0",
+        "label": "Offline"
+       },
+       {
+        "code": "1",
+        "label": "Online"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 103
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 4
+      },
+      "modbus": {
+       "address": 103,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Network Status (1-16)",
+      "shortName": "UNIT NETWORK STATUS (1-16)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 104
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 104,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Fault Status (1-16)",
+      "shortName": "UNIT FAULT STATUS (1-16)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 109
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 109,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Cool Entering Water Temp",
+      "shortName": "CHILLER COOL EWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 110
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 110,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Cool Leaving Water Temp",
+      "shortName": "CHILLER COOL LWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 111
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 111,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Ambient Temperature",
+      "shortName": "AMBIENT TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 113
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 113,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Loading",
+      "shortName": "CHILLER LOADING",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 114
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 114,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Total Run Hours",
+      "shortName": "TOTAL RUN HOURS",
+      "unitIP": "Hours",
+      "unitSI": "Hours"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 117
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 117,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Heat Entering Water Temp",
+      "shortName": "CHILLER HEAT EWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 118
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 118,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Heat Leaving Water Temp",
+      "shortName": "CHILLER HEAT LWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 119
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 119,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Network Status (17-32)",
+      "shortName": "UNIT NETWORK STATUS (17-32)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 121
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 121,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Fault Status (17-32)",
+      "shortName": "UNIT FAULT STATUS (17-32)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 122
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 122,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Quantity",
+      "shortName": "UNIT QUANTITY"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 123
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 123,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault",
+      "shortName": "FAULT",
+      "states": [
+       {
+        "code": "0",
+        "label": "Normal"
+       },
+       {
+        "code": "1",
+        "label": "Alarm"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "scaleRaw": "N/A"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "sourceColumns": {
+       "BACnet Object & Instance": "N/A",
+       "N2 Metasys Address": "N/A",
+       "MODBUS Address": "N/A",
+       "MODBUS Data Type": "N/A"
+      },
+      "gaps": [
+       "BACnet 오브젝트 표기 해석 불가('N/A')"
+      ],
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Cool Entering Water Temp",
+      "shortName": "UNIT COOL EWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1021
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 1021,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Coil Temperature",
+      "shortName": "CKT1 COIL TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1023
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 1023,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Coil Temperature",
+      "shortName": "CKT2 COIL TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1024
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 1024,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Cool Leaving Water Temp",
+      "shortName": "UNIT COOL LWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1025
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 1025,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Suction Temperature",
+      "shortName": "CKT1 SUCT TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1027
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 1027,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Suction Temperature",
+      "shortName": "CKT2 SUCT TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1028
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 1028,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "System 1 Discharge Temp",
+      "shortName": "SYS 1 DISCHARGE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1029
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "modbus": {
+       "address": 1029,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Economizer Entering Temp",
+      "shortName": "CKT1 ECO ENTERING TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1033
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "modbus": {
+       "address": 1030,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "System 2 Discharge Temp",
+      "shortName": "SYS 2 DISCHARGE TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1031
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "modbus": {
+       "address": 1031,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Economizer Entering Temp",
+      "shortName": "CKT2 ECO ENTERING TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1035
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "modbus": {
+       "address": 1032,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Economizer Leaving Temp",
+      "shortName": "CKT1 ECO LEAVING TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1034
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "modbus": {
+       "address": 1033,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Economizer Leaving Temp",
+      "shortName": "CKT2 ECO LEAVING TEMP",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1036
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "modbus": {
+       "address": 1034,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "R454B Relative Lower Flammable Limit",
+      "shortName": "R454B RELATIVE LFL",
+      "unitIP": "%",
+      "unitSI": "%"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1200
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 200
+      },
+      "modbus": {
+       "address": 1036,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Heat Leaving Water Temp",
+      "shortName": "UNIT HEAT LWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1037
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "modbus": {
+       "address": 1037,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Heat Entering Water Temp",
+      "shortName": "UNIT HEAT EWT",
+      "unitIP": "°F",
+      "unitSI": "°C"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1039
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "modbus": {
+       "address": 1039,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Signed",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Suction Pressure",
+      "shortName": "CKT1 SUCT PRS",
+      "unitIP": "PSIG",
+      "unitSI": "kPa"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1040
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "modbus": {
+       "address": 1040,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Suction Pressure",
+      "shortName": "CKT2 SUCT PRS",
+      "unitIP": "PSIG",
+      "unitSI": "kPa"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1041
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "modbus": {
+       "address": 1041,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Discharge Pressure",
+      "shortName": "CKT1 DISCH PRS",
+      "unitIP": "PSIG",
+      "unitSI": "kPa"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1042
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "modbus": {
+       "address": 1042,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Discharge Pressure",
+      "shortName": "CKT2 DISCH PRS",
+      "unitIP": "PSIG",
+      "unitSI": "kPa"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1043
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 43
+      },
+      "modbus": {
+       "address": 1043,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "DI17-32",
+      "shortName": "DI17-32"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1053
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 53
+      },
+      "modbus": {
+       "address": 1053,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "DI1-16",
+      "shortName": "DI1-16"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1054
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 54
+      },
+      "modbus": {
+       "address": 1054,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "DO17-32",
+      "shortName": "DO17-33"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1055
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 55
+      },
+      "modbus": {
+       "address": 1055,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "DO1-16",
+      "shortName": "DO1-16"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1056
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 56
+      },
+      "modbus": {
+       "address": 1056,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Electronic Expansion Valve",
+      "shortName": "CKT1 EEV"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1057
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 57
+      },
+      "modbus": {
+       "address": 1057,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Electronic Expansion Valve",
+      "shortName": "CKT2 EEV"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1058
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 58
+      },
+      "modbus": {
+       "address": 1058,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Economizer EEV",
+      "shortName": "CKT1 ECO EEV"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1059
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 59
+      },
+      "modbus": {
+       "address": 1059,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Economizer EEV",
+      "shortName": "CKT2 ECO EEV"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1060
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 60
+      },
+      "modbus": {
+       "address": 1060,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Fan Speed",
+      "shortName": "CKT1 FAN SPEED",
+      "unitIP": "RPM",
+      "unitSI": "RPM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1065
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 65
+      },
+      "modbus": {
+       "address": 1065,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Fan Speed",
+      "shortName": "CKT2 FAN SPEED",
+      "unitIP": "RPM",
+      "unitSI": "RPM"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1066
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 66
+      },
+      "modbus": {
+       "address": 1066,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Dial Switch Status",
+      "shortName": "DIAL SWITCH STATUS"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1073
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 73
+      },
+      "modbus": {
+       "address": 1073,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 1 Inverter Compressor Frequency",
+      "shortName": "CKT1 INV COMP FREQ",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1080
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 80
+      },
+      "modbus": {
+       "address": 1080,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Circuit 2 Inverter Compressor Frequency",
+      "shortName": "CKT2 INV COMP FREQ",
+      "unitIP": "Hz",
+      "unitSI": "Hz"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1096
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 96
+      },
+      "modbus": {
+       "address": 1096,
+       "addressBase": "unknown",
+       "scaleRaw": "X10",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 1",
+      "shortName": "FAULT STATUS 1"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1155
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 155
+      },
+      "modbus": {
+       "address": 1155,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 2",
+      "shortName": "FAULT STATUS 2"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1156
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 156
+      },
+      "modbus": {
+       "address": 1156,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 3",
+      "shortName": "FAULT STATUS 3"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1157
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 157
+      },
+      "modbus": {
+       "address": 1157,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 4",
+      "shortName": "FAULT STATUS 4"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1158
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 158
+      },
+      "modbus": {
+       "address": 1158,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 5",
+      "shortName": "FAULT STATUS 5"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1159
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 159
+      },
+      "modbus": {
+       "address": 1159,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 6",
+      "shortName": "FAULT STATUS 6"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1160
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 160
+      },
+      "modbus": {
+       "address": 1160,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 7",
+      "shortName": "FAULT STATUS 7"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1161
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 161
+      },
+      "modbus": {
+       "address": 1161,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Fault Status 8",
+      "shortName": "FAULT STATUS 8"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1162
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 162
+      },
+      "modbus": {
+       "address": 1162,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    },
+    {
+     "common": {
+      "name": "Chiller Model Number",
+      "shortName": "CHILLER MODEL NUMBER"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1163
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 163
+      },
+      "modbus": {
+       "address": 1163,
+       "addressBase": "unknown",
+       "scaleRaw": "X1",
+       "dataType": "Unsigned",
+       "functionCodes": [
+        0,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YMAE_4_Pipe_Equipment_Model_Modbus_YMAEQ_Rev1.1.pdf",
+      "sourcePage": 1,
+      "family": "YMAE-15",
+      "interfaceId": "ymae_4_pipe_equipment_model_modbus_ymaeq_rev1-1"
+     }
+    }
+   ],
+   "sourcePages": [
+    1,
+    1
+   ]
+  }
+ ],
+ "crosscheck": {
+  "fam": "bacnet",
+  "segments": 2,
+  "table": 141,
+  "raw": 0,
+  "both": 0,
+  "same": 0,
+  "diff": [],
+  "rate": 0.0,
+  "verified": {}
+ },
+ "tags": [
+  "chiller",
+  "heatPump"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'YMAE Chiller and Heat Pump' 의 낱말 (압축 방식·응축 방식)"
+}

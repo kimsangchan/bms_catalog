@@ -1,0 +1,3429 @@
+{
+ "id": "johnson-controls-york-frick-ls-screw-rwb-microboard",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "Frick LS Screw (RWB Microboard)",
+ "name": "Frick LS Screw (RWB Microboard)",
+ "cat": "HVAC.PLANT.CHILLER.SCREW",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 1건 · 판 3개에서 취입 — 오브젝트 97점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "N2",
+   "E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 3판"
+  ],
+  [
+   "York Talk",
+   "E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 3판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+ "interfaces": [
+  {
+   "id": "frick-ls-rwbscrew-revj-01-p1",
+   "label": "Frick LS Screw E-Link (Rev_J_01) RWB Microboard only. For the latest points maps contact Frick Service support. Non-OptiView Based Equipment — 구간 1",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+   "pointCount": 40,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Temperature Capacity Setpoint",
+      "shortName": "LCHW TEMP.SP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "asciiPageRef": "P01",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "% FLA Force Unload Setpoint",
+      "shortName": "%CURRENT.SP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "asciiPageRef": "P02",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Start/Stop (On=Start)",
+      "shortName": "START",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "asciiPageRef": "P05",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Process Temperature",
+      "shortName": "LCHW.TEMP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Suction Pressure ( in PSIA)",
+      "shortName": "EVAP.PRESS",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "asciiPageRef": "P10",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 12,
+        "end": 15
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharger Pressure",
+      "shortName": "COND.PRESS",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pressure (PSIG)",
+      "shortName": "OIL.DP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Pressure (PSID)",
+      "shortName": "FILTER.DP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "asciiPageRef": "P13",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 24,
+        "end": 27
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Percent Full Load Amps",
+      "shortName": "%CURRENT",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Temperature Capacity Control Setpoint",
+      "shortName": "LCHW ACT.SP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Load Control ( Force Unload Setpoint)",
+      "shortName": "%CURR ACT.SP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Suction Temperature (deg F)",
+      "shortName": "SUCT.TEMP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature (deg F)",
+      "shortName": "DISCH.TEMP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Temperature (deg F)",
+      "shortName": "OIL.TEMP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Separator Temperature (deg F)",
+      "shortName": "SEP.TEMP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Slide Valve % Position Open",
+      "shortName": "%SLDVLV.POS",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Liquid Level %",
+      "shortName": "%LIQ.LVL",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Volume Ratio",
+      "shortName": "VOL RATIO",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 67
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Seperator Level Switch",
+      "shortName": "HEATER.STAT",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Run",
+      "shortName": "OIL PMP.STAT",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Load",
+      "shortName": "SEP SW.STAT",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "asciiPageRef": "P36",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 110,
+        "end": 110
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Unload",
+      "shortName": "COMPR.STAT",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "asciiPageRef": "P37",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 111,
+        "end": 111
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pump Auxillary",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "asciiPageRef": "P39",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 113,
+        "end": 113
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Auxillary #1 (input # 7)",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P42",
+       "asciiPageRef": "P40",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 114,
+        "end": 114
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Auxilary #2 ( Input # 8)",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P43",
+       "asciiPageRef": "P41",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 115,
+        "end": 115
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Starter",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P44",
+       "asciiPageRef": "P42",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 116,
+        "end": 116
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Slide Valve Load",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P45",
+       "asciiPageRef": "P43",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 117,
+        "end": 117
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Slide Valve Increase",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P46",
+       "asciiPageRef": "P44",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 118,
+        "end": 118
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Slide Valve Decrease",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P48",
+       "asciiPageRef": "P46",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 120,
+        "end": 120
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Bypass Oil Sol (optional feature)",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P49",
+       "asciiPageRef": "P47",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 121,
+        "end": 121
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Water Cooler Control / Hot Gas Bypass",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "yorktalk": {
+       "pageRef": "P51",
+       "asciiPageRef": "P49",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 123,
+        "end": 123
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Alarm",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P52",
+       "asciiPageRef": "P50",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 124,
+        "end": 124
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Heater Relay",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P53",
+       "asciiPageRef": "P51",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 125,
+        "end": 125
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pump Starter",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P54",
+       "asciiPageRef": "P52",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 126,
+        "end": 126
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Anti-Recycle Timer Minutes Remaining",
+      "shortName": "AR TIME.MIN",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "asciiPageRef": "P54",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 128,
+        "end": 128
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Mode",
+      "states": [
+       {
+        "code": "1",
+        "label": "Manual"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Remote"
+       },
+       {
+        "code": "4",
+        "label": "Off"
+       }
+      ],
+      "shortName": "COMPR.CODE",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "asciiPageRef": "P55",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 129,
+        "end": 129
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Slide Valve Mode",
+      "states": [
+       {
+        "code": "1",
+        "label": "Manual"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Remote"
+       }
+      ],
+      "shortName": "SLIDE.CODE",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "asciiPageRef": "P56",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 130,
+        "end": 130
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Operational Code",
+      "shortName": "OPER.CODE",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Shutdown Code",
+      "shortName": "SAFETY.CODE",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    },
+    {
+     "common": {
+      "name": "Cycling Shutdown Code",
+      "shortName": "CYCLING.CODE",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P61",
+       "asciiPageRef": "P59",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 133,
+        "end": 133
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p1"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev J 01",
+    "block": "구간 1"
+   },
+   "sourcePages": [
+    1,
+    2
+   ],
+   "excluded": {
+    "reserved": 149,
+    "revision": 7,
+    "codeTable": 3
+   },
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(1~23)"
+  },
+  {
+   "id": "frick-ls-rwbscrew-revj-01-p2",
+   "label": "Frick LS Screw E-Link (Rev_J_01) RWB Microboard only. For the latest points maps contact Frick Service support. Non-OptiView Based Equipment — 구간 2",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+   "pointCount": 29,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Chilled Water Temp Setpoint",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "asciiPageRef": "P01",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Current Limit Setpoint",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "asciiPageRef": "P02",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Start/Stop",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "asciiPageRef": "P05",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temp",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Capacity Control Setpoint",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "asciiPageRef": "P10",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 12,
+        "end": 15
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "asciiPageRef": "P13",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 24,
+        "end": 27
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "DischargeTemperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Separator Temp",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Percent Motor Current",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Volume Ratio",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Mode",
+      "states": [
+       {
+        "code": "1",
+        "label": "Manual"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Remote"
+       },
+       {
+        "code": "4",
+        "label": "Local"
+       }
+      ],
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Current Limit Setpoint",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Slide Valve Position",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Liquid Level Position",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Slide Valve Mode",
+      "states": [
+       {
+        "code": "1",
+        "label": "Manual"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Remote"
+       }
+      ],
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 67
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pressure",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "asciiPageRef": "P25",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 72,
+        "end": 75
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Temperature",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "asciiPageRef": "P26",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 76,
+        "end": 79
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Anti-Recyle Time Remaining",
+      "pointKind": "analog",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "asciiPageRef": "P27",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 80,
+        "end": 83
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Heater Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pump Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Separator Oil Level Switch (ON=Closed, OFF=Open)",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "asciiPageRef": "P36",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 110,
+        "end": 110
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Start",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "asciiPageRef": "P37",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 111,
+        "end": 111
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Water Pump Status",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P40",
+       "asciiPageRef": "P38",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 112,
+        "end": 112
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "OIl Level Switch (ON=Open, OFF=Closed)",
+      "pointKind": "binary",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "asciiPageRef": "P39",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 113,
+        "end": 113
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 5,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Shutdown Code (0-255, see list)",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    },
+    {
+     "common": {
+      "name": "Operational Code (0-11, see list)",
+      "pointKind": "code",
+      "availability": {
+       "raw": "1=S",
+       "code": "S",
+       "column": 1
+      }
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 6,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 2,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p2"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev J 01",
+    "block": "구간 2"
+   },
+   "sourcePages": [
+    5,
+    6
+   ],
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(1~23)"
+  },
+  {
+   "id": "frick-ls-rwbscrew-revj-01-p3",
+   "label": "Frick LS Screw E-Link (Rev_J_01) RWB Microboard only. For the latest points maps contact Frick Service support. Non-OptiView Based Equipment — 구간 3",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+   "pointCount": 28,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temp Setpoint (deg F)",
+      "shortName": "LCHW TEMP.SP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "asciiPageRef": "P01",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Current Setpoint (deg F)",
+      "shortName": "%CURRENT.SP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "asciiPageRef": "P02",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Start/Stop (On=Start)",
+      "shortName": "START",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "asciiPageRef": "P05",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Water Temp (deg F)",
+      "shortName": "LCHW.TEMP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pressure (PSIG)",
+      "shortName": "EVAP.PRESS",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "asciiPageRef": "P10",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 12,
+        "end": 15
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure (PSIG)",
+      "shortName": "COND.PRESS",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pressure (PSIG)",
+      "shortName": "OIL.DP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Pressure (PSID)",
+      "shortName": "FILTER.DP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "asciiPageRef": "P13",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 24,
+        "end": 27
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor Percent Full Load Amps",
+      "shortName": "%CURRENT",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Micro-Panel actual Leaving Chilled Liquid Setpoint",
+      "shortName": "LCHW ACT.SP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Micro-Panel actual Leaving Current Limit Setpoint",
+      "shortName": "%CURR ACT.SP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Suction Temperature (deg F)",
+      "shortName": "SUCT.TEMP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature (deg F)",
+      "shortName": "DISCH.TEMP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Temperature (deg F)",
+      "shortName": "OIL.TEMP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Separator Temperature (deg F)",
+      "shortName": "SEP.TEMP",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "asciiPageRef": "P20",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 52,
+        "end": 55
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Slide Valve %Open",
+      "shortName": "%SLDVLV.POS",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "asciiPageRef": "P21",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 56,
+        "end": 59
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Liquid Level %",
+      "shortName": "%LIQ.LVL",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "asciiPageRef": "P22",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 60,
+        "end": 63
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Volume Ratio",
+      "shortName": "VOL RATIO",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "asciiPageRef": "P23",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 64,
+        "end": 67
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Heater Status",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "shortName": "HEATER.STAT",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "asciiPageRef": "P34",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 108,
+        "end": 108
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pump Status",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "shortName": "OIL PMP.STAT",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "asciiPageRef": "P35",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 109,
+        "end": 109
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Separator Oil Level Switch",
+      "states": [
+       {
+        "code": "0",
+        "label": "Open"
+       },
+       {
+        "code": "1",
+        "label": "Closed"
+       }
+      ],
+      "shortName": "SEP SW.STAT",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "asciiPageRef": "P36",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 110,
+        "end": 110
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Start",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ],
+      "shortName": "COMPR.STAT",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "asciiPageRef": "P37",
+       "pointType": "D. Monitor",
+       "charPos": {
+        "start": 111,
+        "end": 111
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 9,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Anti-Recycle Timer Minutes Remaining",
+      "shortName": "AR TIME.MIN",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "asciiPageRef": "P54",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 128,
+        "end": 128
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor Mode",
+      "states": [
+       {
+        "code": "1",
+        "label": "Manual"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Remote"
+       },
+       {
+        "code": "4",
+        "label": "Off"
+       }
+      ],
+      "shortName": "COMPR.CODE",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "asciiPageRef": "P55",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 129,
+        "end": 129
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Slide Valve Mode",
+      "states": [
+       {
+        "code": "1",
+        "label": "Manual"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Remote"
+       }
+      ],
+      "shortName": "SLIDE.CODE",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "asciiPageRef": "P56",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 130,
+        "end": 130
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Operational Code",
+      "shortName": "OPER.CODE",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "asciiPageRef": "P57",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 131,
+        "end": 131
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Shutdown Code",
+      "shortName": "SAFETY.CODE",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P60",
+       "asciiPageRef": "P58",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 132,
+        "end": 132
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    },
+    {
+     "common": {
+      "name": "Cycling Shutdown Code",
+      "shortName": "CYCLING.CODE",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P61",
+       "asciiPageRef": "P59",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 133,
+        "end": 133
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_Frick-LS-RWBScrew(RevJ-01).pdf",
+      "sourcePage": 10,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 3,
+       "title": ""
+      },
+      "interfaceId": "frick-ls-rwbscrew-revj-01-p3"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev J 01",
+    "block": "구간 3"
+   },
+   "sourcePages": [
+    9,
+    10
+   ],
+   "note": "주소 대역이 앞 판과 겹쳐 별개 판으로 갈랐다(1~19)"
+  }
+ ],
+ "crosscheck": {
+  "unverifiable": "BACnet 타입·인스턴스를 가진 포인트가 0/97 뿐이라 줄 읽기 경로가 짝을 만들 수 없다 (이 문서의 주소 축: n2, yorktalk)"
+ },
+ "tags": [
+  "chiller",
+  "chiller-rotaryScrew"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'Frick LS Screw (RWB Microboard)' 의 낱말 (압축 방식·응축 방식)"
+}

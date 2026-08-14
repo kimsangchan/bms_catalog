@@ -1,0 +1,7669 @@
+{
+ "id": "johnson-controls-york-ysaa-air-cooled-screw-chiller",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YSAA Air Cooled Screw Chiller",
+ "name": "YSAA Air Cooled Screw Chiller",
+ "cat": "HVAC.PLANT.CHILLER.SCREW",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 2건 · 판 2개에서 취입 — 오브젝트 148점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "E-Link/BACnet(Typ-Ins) · Native",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "LON",
+   "E-Link/BACnet(Typ-Ins)",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "Modbus",
+   "E-Link/BACnet(Typ-Ins) · Native",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "N2",
+   "E-Link/BACnet(Typ-Ins) · Native",
+   "—",
+   "포인트 리스트 2판"
+  ],
+  [
+   "York Talk",
+   "E-Link/BACnet(Typ-Ins)",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YSAA-BAS.pdf",
+ "interfaces": [
+  {
+   "id": "ysaa-bas",
+   "label": "YSAA BAS (ISN) E-Link Non-OptiView Based Equipment",
+   "family": "E-Link/BACnet(Typ-Ins)",
+   "protocols": [
+    "bacnet",
+    "lon",
+    "modbus",
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_YSAA-BAS.pdf",
+   "pointCount": 76,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Remote Setpoint [99=Auto] Sys 1 Remote Setpoint (SP Unit)",
+      "unitIPRaw": "°F PSI",
+      "unitSIRaw": "°C BAR",
+      "availability": {
+       "raw": "1=S N,2=S N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "lon": {
+       "nvName": "nviYTS01p003",
+       "direction": "nvi",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "coord": "YT2 S01 P03"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0001"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Cooling Range (DAT Unit) Sys 2 Remote Setpoint (SP Unit)",
+      "unitIPRaw": "°F PSI",
+      "unitSIRaw": "°C BAR",
+      "availability": {
+       "raw": "1=N,2=N",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "modbus": {
+       "address": 3,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10"
+      },
+      "lon": {
+       "nvName": "nviYTS01p005",
+       "direction": "nvi",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P05",
+       "coord": "YT2 S01 P05"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0003"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Start/Stop Command Sys 1 Start/Stop Command",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S N,2=S N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 61,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nviYTS01p007",
+       "direction": "nvi",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "coord": "YT2 S01 P07"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0061"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Start/Stop Command",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=N",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 2
+      },
+      "modbus": {
+       "address": 62,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nviYTS01p008",
+       "direction": "nvi",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P08",
+       "coord": "YT2 S01 P08"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0062"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "History Buffer Request",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 4
+      },
+      "modbus": {
+       "address": 64,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nviYTS01p010",
+       "direction": "nvi",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P10",
+       "coord": "YT2 S01 P10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0064"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 5,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p011",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "coord": "YT2 S01 P11"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0005"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Entering Chilled Liquid Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 6,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p012",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "coord": "YT2 S01 P12"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0006"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Liquid Temp",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 7,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p013",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "coord": "YT2 S01 P13"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0007"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Air Temp (Cond Unit)",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=N,2=N",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 8,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p014",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "coord": "YT2 S01 P14"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0008"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Suction Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 9,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p015",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "coord": "YT2 S01 P15"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0009"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Ambient Air Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 10,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p016",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "coord": "YT2 S01 P16"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0010"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Suction Superheat",
+      "unitIPRaw": "°F (diff)",
+      "unitSIRaw": "°C (diff)",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 11,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p017",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "coord": "YT2 S01 P17"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0011"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Run Time in seconds",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 12,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p018",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "coord": "YT2 S01 P18"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0012"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Suction Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 13,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p019",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "coord": "YT2 S01 P19"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0013"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Discharge Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 14,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p020",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "coord": "YT2 S01 P20"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0014"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Run Hours",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 16,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p022",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P22",
+       "coord": "YT2 S01 P22"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0016"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 EEV Output % (EEV)",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 17
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 17,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p023",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P23",
+       "coord": "YT2 S01 P23"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0017"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Anti-Recycle Timer in seconds",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 18,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p024",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P24",
+       "coord": "YT2 S01 P24"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0018"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Anti-Coincident Timer in seconds",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 19,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p025",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P25",
+       "coord": "YT2 S01 P25"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0019"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Suction Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 20,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p026",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P26",
+       "coord": "YT2 S01 P26"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0020"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Run Time in seconds",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 21,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p027",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P27",
+       "coord": "YT2 S01 P27"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0021"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Suction Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 22,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p028",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P28",
+       "coord": "YT2 S01 P28"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0022"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Discharge Pressure",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 23,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p029",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P29",
+       "coord": "YT2 S01 P29"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0023"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Run Hours",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 25
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 25,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p031",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P31",
+       "coord": "YT2 S01 P31"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0025"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Suction Superheat",
+      "unitIPRaw": "°F (diff)",
+      "unitSIRaw": "°C (diff)",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 26
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 26,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p032",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P32",
+       "coord": "YT2 S01 P32"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0026"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Anti-Recycle Timer in seconds",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 27
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 27,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p033",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P33",
+       "coord": "YT2 S01 P33"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 1,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0027"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 EEV Output %",
+      "unitIPRaw": "%",
+      "unitIP": "percent",
+      "unitSIRaw": "%",
+      "unitSI": "percent",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 28
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 28,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p034",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P34",
+       "coord": "YT2 S01 P34"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0028"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Alarm",
+      "states": [
+       {
+        "code": "0",
+        "label": "No Alarm"
+       },
+       {
+        "code": "1",
+        "label": "Alarm"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 65,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p036",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "coord": "YT2 S01 P36"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0065"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Alarm",
+      "states": [
+       {
+        "code": "0",
+        "label": "No Alarm"
+       },
+       {
+        "code": "1",
+        "label": "Alarm"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 66,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p037",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P37",
+       "coord": "YT2 S01 P37"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0066"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Heater Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 67,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p038",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P38",
+       "coord": "YT2 S01 P38"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0067"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Evaporator Pump Status",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "modbus": {
+       "address": 68,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p039",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P39",
+       "coord": "YT2 S01 P39"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0068"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Comp Run",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 9
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "modbus": {
+       "address": 69,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p040",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P40",
+       "coord": "YT2 S01 P40"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0069"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 SV Min Load",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "modbus": {
+       "address": 70,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p041",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P41",
+       "coord": "YT2 S01 P41"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0070"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 SV Load",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 11
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "modbus": {
+       "address": 71,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p042",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P42",
+       "coord": "YT2 S01 P42"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0071"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 SV Unload",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 12
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "modbus": {
+       "address": 72,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p043",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P43",
+       "coord": "YT2 S01 P43"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0072"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Comp Run",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 13
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "modbus": {
+       "address": 73,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p044",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P44",
+       "coord": "YT2 S01 P44"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0073"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 SV Min Load",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 14
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "modbus": {
+       "address": 74,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p045",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P45",
+       "coord": "YT2 S01 P45"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0074"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 SV Load",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 15
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "modbus": {
+       "address": 75,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p046",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P46",
+       "coord": "YT2 S01 P46"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0075"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 SV Unload",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 16
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 16
+      },
+      "modbus": {
+       "address": 76,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p047",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P47",
+       "coord": "YT2 S01 P47"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0076"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Hot Gas Bypass Valve",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=N",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 18
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 18
+      },
+      "modbus": {
+       "address": 78,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p049",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P49",
+       "coord": "YT2 S01 P49"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0078"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Chilled Liquid Type",
+      "states": [
+       {
+        "code": "0",
+        "label": "Water"
+       },
+       {
+        "code": "1",
+        "label": "Glycol"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 19
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "modbus": {
+       "address": 79,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p050",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P50",
+       "coord": "YT2 S01 P50"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0079"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Lead System",
+      "states": [
+       {
+        "code": "0",
+        "label": "Sys1"
+       },
+       {
+        "code": "1",
+        "label": "Sys2"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 20
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "modbus": {
+       "address": 80,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p051",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P51",
+       "coord": "YT2 S01 P51"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0080"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Local/Remote Control Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Local"
+       },
+       {
+        "code": "1",
+        "label": "Remote"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 21
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 21
+      },
+      "modbus": {
+       "address": 81,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p052",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P52",
+       "coord": "YT2 S01 P52"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0081"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Units",
+      "states": [
+       {
+        "code": "0",
+        "label": "Imperial"
+       },
+       {
+        "code": "1",
+        "label": "SI"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 22
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 22
+      },
+      "modbus": {
+       "address": 82,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p053",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P53",
+       "coord": "YT2 S01 P53"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0082"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Lead/Lag Control Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Manual"
+       },
+       {
+        "code": "1",
+        "label": "Auto"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 23
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 23
+      },
+      "modbus": {
+       "address": 83,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p054",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P54",
+       "coord": "YT2 S01 P54"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0083"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Hot Gas Bypass Valve",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=N,2=N",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 24
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 24
+      },
+      "modbus": {
+       "address": 84,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p055",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P55",
+       "coord": "YT2 S01 P55"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0084"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Operational Code",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 1
+      },
+      "modbus": {
+       "address": 30,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p056",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "coord": "YT2 S01 P56"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV1",
+       "MODBUS Address": "0030"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Fault Code",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 2
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 2
+      },
+      "modbus": {
+       "address": 31,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p057",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P57",
+       "coord": "YT2 S01 P57"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV2",
+       "MODBUS Address": "0031"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Operational Code",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 3
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 3
+      },
+      "modbus": {
+       "address": 32,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p058",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P58",
+       "coord": "YT2 S01 P58"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV3",
+       "MODBUS Address": "0032"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Fault Code",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 4
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 4
+      },
+      "modbus": {
+       "address": 33,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p059",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P59",
+       "coord": "YT2 S01 P59"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV4",
+       "MODBUS Address": "0033"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Condenser Fan Stage",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 6
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 6
+      },
+      "modbus": {
+       "address": 35,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p061",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P61",
+       "coord": "YT2 S01 P61"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV6",
+       "MODBUS Address": "0035"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Condenser Fan Stage",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 8
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 8
+      },
+      "modbus": {
+       "address": 37,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p063",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P63",
+       "coord": "YT2 S01 P63"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV8",
+       "MODBUS Address": "0037"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Control Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "LW"
+       },
+       {
+        "code": "1",
+        "label": "RW"
+       },
+       {
+        "code": "2",
+        "label": "DA"
+       }
+      ],
+      "availability": {
+       "raw": "1=N,2=N",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 10
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 10
+      },
+      "modbus": {
+       "address": 39,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p065",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P65",
+       "coord": "YT2 S01 P65"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV10",
+       "MODBUS Address": "0039"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Anti-Recycle Time Programmed",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 30
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 11
+      },
+      "modbus": {
+       "address": 40,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p066",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P66",
+       "coord": "YT2 S01 P66"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0040"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Chilled Liquid Temp Cutout",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 31
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 12
+      },
+      "modbus": {
+       "address": 41,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p067",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P67",
+       "coord": "YT2 S01 P67"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0041"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Ambient Temp Cutout",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 32
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 13
+      },
+      "modbus": {
+       "address": 42,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p068",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P68",
+       "coord": "YT2 S01 P68"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0042"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Low Suction Pressure Cutout Cooling",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 34
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 15
+      },
+      "modbus": {
+       "address": 44,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p070",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P70",
+       "coord": "YT2 S01 P70"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0044"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "High Discharge Pressure Cutout",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 35
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 16
+      },
+      "modbus": {
+       "address": 45,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p071",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P71",
+       "coord": "YT2 S01 P71"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0045"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Setpoint SP Control Remote Setpoint 1",
+      "unitIPRaw": "°F PSI",
+      "unitSIRaw": "°C BAR",
+      "availability": {
+       "raw": "1=S N,2=S N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 36
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 17
+      },
+      "modbus": {
+       "address": 46,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p072",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P72",
+       "coord": "YT2 S01 P72"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0046"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling Range SP Control Cooling Range 1",
+      "unitIPRaw": "°F PSI",
+      "unitSIRaw": "°C BAR",
+      "availability": {
+       "raw": "1=S N,2=S N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 37
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 18
+      },
+      "modbus": {
+       "address": 47,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p073",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P73",
+       "coord": "YT2 S01 P73"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0047"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Setpoint 2 (SP)",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=N,2=N",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 38
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 19
+      },
+      "modbus": {
+       "address": 48,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p074",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P74",
+       "coord": "YT2 S01 P74"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0048"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling Range 2 (SP)",
+      "unitIPRaw": "PSI",
+      "unitIP": "psi",
+      "unitSIRaw": "BAR",
+      "unitSI": "bar",
+      "availability": {
+       "raw": "1=N,2=N",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 39
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 20
+      },
+      "modbus": {
+       "address": 49,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p075",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P75",
+       "coord": "YT2 S01 P75"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0049"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Discharge Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 40
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 21
+      },
+      "modbus": {
+       "address": 50,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p076",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P76",
+       "coord": "YT2 S01 P76"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0050"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 1 Discharge Superheat",
+      "unitIPRaw": "°F (diff)",
+      "unitSIRaw": "°C (diff)",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 41
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 22
+      },
+      "modbus": {
+       "address": 51,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p077",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P77",
+       "coord": "YT2 S01 P77"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0051"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Discharge Temperature",
+      "unitIPRaw": "°F",
+      "unitIP": "degF",
+      "unitSIRaw": "°C",
+      "unitSI": "degC",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 42
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 23
+      },
+      "modbus": {
+       "address": 52,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p078",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P78",
+       "coord": "YT2 S01 P78"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0052"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Sys 2 Discharge Superheat",
+      "unitIPRaw": "°F (diff)",
+      "unitSIRaw": "°C (diff)",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 43
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 24
+      },
+      "modbus": {
+       "address": 53,
+       "addressBase": "unknown",
+       "scaleRaw": "x10"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p079",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P79",
+       "coord": "YT2 S01 P79"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 2,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0053"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Available",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 29
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 29
+      },
+      "modbus": {
+       "address": 89,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS01p084",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P84",
+       "coord": "YT2 S01 P84"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 3,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 1,
+       "title": "SECTION 1"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0089"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Option Indicator",
+      "states": [
+       {
+        "code": "0",
+        "label": "Disabled"
+       },
+       {
+        "code": "1",
+        "label": "Enabled"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 105
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 34
+      },
+      "modbus": {
+       "address": 165,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p036",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P36",
+       "coord": "YT2 S02 P36"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 4,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0165"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 1",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 119
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 48
+      },
+      "modbus": {
+       "address": 179,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p050",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P50",
+       "coord": "YT2 S02 P50"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 4,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0179"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 2",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 120
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 49
+      },
+      "modbus": {
+       "address": 180,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p051",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P51",
+       "coord": "YT2 S02 P51"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0180"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 3",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 121
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 50
+      },
+      "modbus": {
+       "address": 181,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p052",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P52",
+       "coord": "YT2 S02 P52"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0181"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 4",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 122
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 51
+      },
+      "modbus": {
+       "address": 182,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p053",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P53",
+       "coord": "YT2 S02 P53"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0182"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 5",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 123
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 52
+      },
+      "modbus": {
+       "address": 183,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p054",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P54",
+       "coord": "YT2 S02 P54"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0183"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "SCC Auto Detect Digit 6",
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 124
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 53
+      },
+      "modbus": {
+       "address": 184,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p055",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P55",
+       "coord": "YT2 S02 P55"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0184"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Refrigerant",
+      "states": [
+       {
+        "code": "0",
+        "label": "R-134a"
+       },
+       {
+        "code": "1",
+        "label": "R-513a"
+       }
+      ],
+      "availability": {
+       "raw": "1=N,2=N",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 101
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 11
+      },
+      "modbus": {
+       "address": 130,
+       "addressBase": "unknown",
+       "scaleRaw": "x1"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p056",
+       "direction": "nvo",
+       "snvtType": "SNVT_count_f",
+       "snvtIndex": 51
+      },
+      "yorktalk": {
+       "pageRef": "P56",
+       "coord": "YT2 S02 P56"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "BACnet Object & Instance": "MV101",
+       "MODBUS Address": "0130"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    },
+    {
+     "common": {
+      "name": "Units",
+      "states": [
+       {
+        "code": "0",
+        "label": "Imperial"
+       },
+       {
+        "code": "1",
+        "label": "Metric"
+       }
+      ],
+      "unitIPRaw": "0/1",
+      "unitSIRaw": "0/1",
+      "availability": {
+       "raw": "1=S,2=S",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 129
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 58
+      },
+      "modbus": {
+       "address": 189,
+       "addressBase": "unknown",
+       "scaleRaw": "N/A"
+      },
+      "lon": {
+       "nvName": "nvoYTS02p084",
+       "direction": "nvo",
+       "snvtType": "SNVT_switch",
+       "snvtIndex": 95
+      },
+      "yorktalk": {
+       "pageRef": "P84",
+       "coord": "YT2 S02 P84"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAA-BAS.pdf",
+      "sourcePage": 5,
+      "family": "E-Link/BACnet(Typ-Ins)",
+      "block": {
+       "index": 2,
+       "title": "SECTION 2"
+      },
+      "sourceColumns": {
+       "MODBUS Address": "0189"
+      },
+      "interfaceId": "ysaa-bas"
+     }
+    }
+   ],
+   "sourcePages": [
+    1,
+    5
+   ],
+   "excluded": {
+    "reserved": 88,
+    "notes": 10
+   },
+   "note": "블록 1·2 를 한 판으로 묶었다 — 주소 대역이 이어진다(1~129)"
+  },
+  {
+   "id": "ysaanative",
+   "label": "YSAA Native BACnet MS/TP, Modbus, N2 Data Map",
+   "family": "Native",
+   "protocols": [
+    "bacnet",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_YSAANative.pdf",
+   "pointCount": 72,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "group": "ANALOG WRITE POINTS",
+      "name": "Remote Setpoint [99=Auto]",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "W",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "REM_SETP",
+       "objectType": "AV",
+       "instance": 1,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1026,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10",
+       "functionCodes": [
+        3,
+        6,
+        16
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "1",
+      "sourceColumns": {
+       "BACnet Object Instance": "AV1",
+       "Modbus Data Type Supported": "03,06,16"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG WRITE POINTS",
+      "name": "Sys 1 Remote Setpoint (SP Unit)",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "W",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SP_REM_SP_S1",
+       "objectType": "AV",
+       "instance": 2,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "modbus": {
+       "address": 1027,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10",
+       "functionCodes": [
+        3,
+        6,
+        16
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "2",
+      "sourceColumns": {
+       "BACnet Object Instance": "AV2",
+       "Modbus Data Type Supported": "03,06,16"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG WRITE POINTS",
+      "name": "Remote Cooling Range (DAT Unit)",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "W",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "REM_CR",
+       "objectType": "AV",
+       "instance": 3,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "modbus": {
+       "address": 1028,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10",
+       "functionCodes": [
+        3,
+        6,
+        16
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "3",
+      "sourceColumns": {
+       "BACnet Object Instance": "AV3",
+       "Modbus Data Type Supported": "03,06,16"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG WRITE POINTS",
+      "name": "Sys 2 Remote Setpoint (SP Unit)",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "W",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SP_REM_SP_S2",
+       "objectType": "AV",
+       "instance": 4,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 4
+      },
+      "modbus": {
+       "address": 1029,
+       "addressBase": "unknown",
+       "scaleRaw": "Div 10",
+       "functionCodes": [
+        3,
+        6,
+        16
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "4",
+      "sourceColumns": {
+       "BACnet Object Instance": "AV4",
+       "Modbus Data Type Supported": "03,06,16"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY WRITE POINTS",
+      "name": "Remote Start/Stop Command",
+      "readWrite": "W",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "START_STOP",
+       "objectType": "BV",
+       "instance": 1,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "modbus": {
+       "address": 1538,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        3,
+        5,
+        6,
+        15
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "5",
+      "sourceColumns": {
+       "BACnet Object Instance": "BV1",
+       "Modbus Data Type Supported": "01,03,05,06,15",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1",
+       "Point List Code: S = Standard O = Optional N = Not Available Point List Description": "Remote Start/Stop Command [0=Stop, 1=Run]"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY WRITE POINTS",
+      "name": "Sys 1 Remote Start/Stop (SP Unit)",
+      "readWrite": "W",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SS_SYS1",
+       "objectType": "BV",
+       "instance": 2,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 2
+      },
+      "modbus": {
+       "address": 1539,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        3,
+        5,
+        6,
+        15
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "6",
+      "sourceColumns": {
+       "BACnet Object Instance": "BV2",
+       "Modbus Data Type Supported": "01,03,05,06,15",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY WRITE POINTS",
+      "name": "Sys 2 Remote Start/Stop (SP Unit)",
+      "readWrite": "W",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SS_SYS2",
+       "objectType": "BV",
+       "instance": 3,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 3
+      },
+      "modbus": {
+       "address": 1540,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        3,
+        5,
+        6,
+        15
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "7",
+      "sourceColumns": {
+       "BACnet Object Instance": "BV3",
+       "Modbus Data Type Supported": "01,03,05,06,15",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Leaving Chilled Liquid Temp",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "LCHLT",
+       "objectType": "AI",
+       "instance": 1,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "modbus": {
+       "address": 514,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "8",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI1",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Entering Chilled Liquid Temp",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ECHLT",
+       "objectType": "AI",
+       "instance": 2,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "modbus": {
+       "address": 515,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "9",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI2",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Evaporator Liquid Temp",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ELT",
+       "objectType": "AI",
+       "instance": 3,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "modbus": {
+       "address": 516,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "10",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI3",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Discharge Air Temp (Cond)",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "DAT",
+       "objectType": "AI",
+       "instance": 4,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "modbus": {
+       "address": 517,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "11",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI4",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Suction Temp",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_SUCT_TEMP",
+       "objectType": "AI",
+       "instance": 5,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "modbus": {
+       "address": 518,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "12",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI5",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Ambient Air Temp",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OAT",
+       "objectType": "AI",
+       "instance": 6,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "modbus": {
+       "address": 519,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "13",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI6",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Suction Superheat",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_SUCT_SH",
+       "objectType": "AI",
+       "instance": 7,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "modbus": {
+       "address": 520,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "14",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI7",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Run Time in seconds",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_RUN_TIME",
+       "objectType": "AI",
+       "instance": 8,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "modbus": {
+       "address": 521,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "15",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI8",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Suction Pressure",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_SUCT_PR",
+       "objectType": "AI",
+       "instance": 9,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "modbus": {
+       "address": 522,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "16",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI9",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Discharge Pressure",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_DSCH_PR",
+       "objectType": "AI",
+       "instance": 10,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "modbus": {
+       "address": 523,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "17",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI10",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 EEV Output %",
+      "unitIP": "%",
+      "unitSI": "%",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_EEV_OUT",
+       "objectType": "AI",
+       "instance": 11,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "modbus": {
+       "address": 524,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "18",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI11",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Anti-Recycle Timer in seconds",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_AR_TIMER",
+       "objectType": "AI",
+       "instance": 12,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 16
+      },
+      "modbus": {
+       "address": 525,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "19",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI12",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Anti-Coincident Timer in seconds",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "AC_TIMER",
+       "objectType": "AI",
+       "instance": 13,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 17
+      },
+      "modbus": {
+       "address": 526,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "20",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI13",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Suction Temperature",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_SUCT_TEMP",
+       "objectType": "AI",
+       "instance": 14,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 18
+      },
+      "modbus": {
+       "address": 527,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "21",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI14",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Run Time in seconds",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_RUN_TIME",
+       "objectType": "AI",
+       "instance": 15,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 19
+      },
+      "modbus": {
+       "address": 528,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "22",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI15",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Suction Pressure",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_SUCT_PR",
+       "objectType": "AI",
+       "instance": 16,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 20
+      },
+      "modbus": {
+       "address": 529,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "23",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI16",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Discharge Pressure",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_DSCH_PR",
+       "objectType": "AI",
+       "instance": 17,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 21
+      },
+      "modbus": {
+       "address": 530,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "24",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI17",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Suction Superheat",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_SUCT_SH",
+       "objectType": "AI",
+       "instance": 18,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 22
+      },
+      "modbus": {
+       "address": 531,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "25",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI18",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Anti-Recycle Timer",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_AR_TIMER",
+       "objectType": "AI",
+       "instance": 19,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 23
+      },
+      "modbus": {
+       "address": 532,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "26",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI19",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 EEV Output %",
+      "unitIP": "%",
+      "unitSI": "%",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_EEV_OUT",
+       "objectType": "AI",
+       "instance": 20,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 24
+      },
+      "modbus": {
+       "address": 533,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "27",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI20",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Operational Code",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_OP_CODE",
+       "objectType": "AI",
+       "instance": 21,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 25
+      },
+      "modbus": {
+       "address": 534,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "28",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI21",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Fault Code",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_FLT_CODE",
+       "objectType": "AI",
+       "instance": 22,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 26
+      },
+      "modbus": {
+       "address": 535,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "29",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI22",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Operational",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_OP_CODE",
+       "objectType": "AI",
+       "instance": 23,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 27
+      },
+      "modbus": {
+       "address": 536,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "30",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI23",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Fault Code",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_FLT_CODE",
+       "objectType": "AI",
+       "instance": 24,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 28
+      },
+      "modbus": {
+       "address": 537,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "31",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI24",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Condenser Fan Stage",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_FAN_STAGE",
+       "objectType": "AI",
+       "instance": 25,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 29
+      },
+      "modbus": {
+       "address": 538,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "32",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI25",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Condenser Fan Stage",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_FAN_STAGE",
+       "objectType": "AI",
+       "instance": 26,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 30
+      },
+      "modbus": {
+       "address": 539,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "33",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI26",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Unit Control Mode",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      },
+      "states": [
+       {
+        "code": "1",
+        "label": "LW"
+       },
+       {
+        "code": "2",
+        "label": "DA"
+       },
+       {
+        "code": "3",
+        "label": "SP"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "CONTROL_MODE",
+       "objectType": "AI",
+       "instance": 27,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 31
+      },
+      "modbus": {
+       "address": 540,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "34",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI27",
+       "Modbus Data Type Supported": "03,04",
+       "Point List Code: S = Standard O = Optional N = Not Available Point List Description": "Unit Control Mode [1=LW, 2=DA, 3=SP]"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Anti-Recycle Time Programmed",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "AR_TIME",
+       "objectType": "AI",
+       "instance": 28,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 32
+      },
+      "modbus": {
+       "address": 541,
+       "addressBase": "unknown",
+       "scaleRaw": "x1",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 1,
+      "family": "Native",
+      "srcRef": "35",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI28",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Leaving Chilled Liquid Temp Cutout",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "LCHLT_CUT",
+       "objectType": "AI",
+       "instance": 29,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 33
+      },
+      "modbus": {
+       "address": 542,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "36",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI29",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Low Ambient Temperature Cutout",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "LOW_AMB_CUT",
+       "objectType": "AI",
+       "instance": 30,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 34
+      },
+      "modbus": {
+       "address": 543,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "37",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI30",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Low Suction Pressure Cutout",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "L_SUCT_P_CO",
+       "objectType": "AI",
+       "instance": 31,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 35
+      },
+      "modbus": {
+       "address": 544,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "38",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI31",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "High Discharge Pressure Cutout",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "H_DSCH_P_CO",
+       "objectType": "AI",
+       "instance": 32,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 36
+      },
+      "modbus": {
+       "address": 545,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "39",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI32",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Cooling Setpoint",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COOL_SETP",
+       "objectType": "AI",
+       "instance": 33,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 37
+      },
+      "modbus": {
+       "address": 546,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "40",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI33",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Cooling Setpoint (SP Unit)",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SP_SETP_S1",
+       "objectType": "AI",
+       "instance": 34,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 38
+      },
+      "modbus": {
+       "address": 547,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "41",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI34",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Cooling Range",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "CONTROL_RG",
+       "objectType": "AI",
+       "instance": 35,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 39
+      },
+      "modbus": {
+       "address": 548,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "42",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI35",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Cooling Range (SP Unit)",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SP_CTL_RG_S1",
+       "objectType": "AI",
+       "instance": 36,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 40
+      },
+      "modbus": {
+       "address": 549,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "43",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI36",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Cooling Setpoint (SP Unit)",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SP_SETP_S2",
+       "objectType": "AI",
+       "instance": 37,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 41
+      },
+      "modbus": {
+       "address": 550,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "44",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI37",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Cooling Range (SP Unit)",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SP_CTL_RG_S2",
+       "objectType": "AI",
+       "instance": 38,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 42
+      },
+      "modbus": {
+       "address": 551,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "45",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI38",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Discharge Temperature",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_DSCH_TEMP",
+       "objectType": "AI",
+       "instance": 39,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 43
+      },
+      "modbus": {
+       "address": 552,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "46",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI39",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 1 Discharge Superheat",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_DSCH_SH",
+       "objectType": "AI",
+       "instance": 40,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 44
+      },
+      "modbus": {
+       "address": 553,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "47",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI40",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Discharge Temperature",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_DSCH_TEMP",
+       "objectType": "AI",
+       "instance": 41,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 45
+      },
+      "modbus": {
+       "address": 554,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "48",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI41",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Sys 2 Discharge Superheat",
+      "unitIP": "°F (diff)",
+      "unitSI": "°C (diff)",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_DSCH_SH",
+       "objectType": "AI",
+       "instance": 42,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 46
+      },
+      "modbus": {
+       "address": 555,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "49",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI42",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Remote Setpoint",
+      "unitIP": "°F",
+      "unitSI": "°C",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "R_COOL_SETP",
+       "objectType": "AI",
+       "instance": 43,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 47
+      },
+      "modbus": {
+       "address": 556,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "50",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI43",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Remote Setpoint 1 (SP Unit)",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "R_SP_SETP_S1",
+       "objectType": "AI",
+       "instance": 44,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 48
+      },
+      "modbus": {
+       "address": 557,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "51",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI44",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "ANALOG READ ONLY POINTS",
+      "name": "Remote Setpoint 2 (SP Unit)",
+      "unitIP": "PSI",
+      "unitSI": "BAR",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "R_SP_SETP_S2",
+       "objectType": "AI",
+       "instance": 45,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "ADF",
+       "address": 49
+      },
+      "modbus": {
+       "address": 558,
+       "addressBase": "unknown",
+       "scaleRaw": "x10",
+       "functionCodes": [
+        3,
+        4
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "52",
+      "sourceColumns": {
+       "BACnet Object Instance": "AI45",
+       "Modbus Data Type Supported": "03,04"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 1 Alarm",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "No Alarm"
+       },
+       {
+        "code": "1",
+        "label": "Alarm"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_ALARM",
+       "objectType": "BI",
+       "instance": 1,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 4
+      },
+      "modbus": {
+       "address": 1282,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "53",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI1",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1",
+       "Point List Code: S = Standard O = Optional N = Not Available Point List Description": "Sys 1 Alarm [0=No Alarm, 1=Alarm]"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 2 Alarm",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "No Alarm"
+       },
+       {
+        "code": "1",
+        "label": "Alarm"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_ALARM",
+       "objectType": "BI",
+       "instance": 2,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 5
+      },
+      "modbus": {
+       "address": 1283,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "54",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI2",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1",
+       "Point List Code: S = Standard O = Optional N = Not Available Point List Description": "Sys 2 Alarm [0=No Alarm, 1=Alarm]"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Evaporator Heater Status",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "EVAP_HTR",
+       "objectType": "BI",
+       "instance": 3,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 6
+      },
+      "modbus": {
+       "address": 1284,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "55",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI3",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Evaporator Pump 1",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "EVAP_PUMP1",
+       "objectType": "BI",
+       "instance": 4,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 7
+      },
+      "modbus": {
+       "address": 1285,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "56",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI4",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Evaporator Pump 2",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "EVAP_PUMP2",
+       "objectType": "BI",
+       "instance": 5,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 8
+      },
+      "modbus": {
+       "address": 1286,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "57",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI5",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 1 Comp Run",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_C_RUN",
+       "objectType": "BI",
+       "instance": 6,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 9
+      },
+      "modbus": {
+       "address": 1287,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "58",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI6",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 1 Slide Valve Min Load",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_SV_MIN_LOAD",
+       "objectType": "BI",
+       "instance": 7,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 10
+      },
+      "modbus": {
+       "address": 1288,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "59",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI7",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 1 Slide Valve Unload",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_SV_UNL",
+       "objectType": "BI",
+       "instance": 8,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 11
+      },
+      "modbus": {
+       "address": 1289,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "60",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI8",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 1 Slide Valve Load",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_SV_LD",
+       "objectType": "BI",
+       "instance": 9,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 12
+      },
+      "modbus": {
+       "address": 1290,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "61",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI9",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 2 Comp Run",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_C_RUN",
+       "objectType": "BI",
+       "instance": 10,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 13
+      },
+      "modbus": {
+       "address": 1291,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "62",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI10",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 2 Slide Valve Min Load",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_SV_MIN_LOAD",
+       "objectType": "BI",
+       "instance": 11,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 14
+      },
+      "modbus": {
+       "address": 1292,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "63",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI11",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 2 Slide Valve Unload",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_SV_UNL",
+       "objectType": "BI",
+       "instance": 12,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 15
+      },
+      "modbus": {
+       "address": 1293,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "64",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI12",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 2 Slide Valve Load",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_SV_LD",
+       "objectType": "BI",
+       "instance": 13,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 16
+      },
+      "modbus": {
+       "address": 1294,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "65",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI13",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Lead System",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Sys 1"
+       },
+       {
+        "code": "1",
+        "label": "Sys 2"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "LEAD_SYS",
+       "objectType": "BI",
+       "instance": 14,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 17
+      },
+      "modbus": {
+       "address": 1295,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "66",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI14",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1",
+       "Point List Code: S = Standard O = Optional N = Not Available Point List Description": "Lead System [0=Sys 1, 1=Sys 2]"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Chilled Liquid Type",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Water"
+       },
+       {
+        "code": "1",
+        "label": "Glycol"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "CH_LIQ_TYPE",
+       "objectType": "BI",
+       "instance": 15,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 18
+      },
+      "modbus": {
+       "address": 1296,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "67",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI15",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1",
+       "Point List Code: S = Standard O = Optional N = Not Available Point List Description": "Chilled Liquid Type [0=Water, 1=Glycol]"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Local Remote Control Mode",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Manual"
+       },
+       {
+        "code": "1",
+        "label": "Auto"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "CNTL_MODE",
+       "objectType": "BI",
+       "instance": 16,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 19
+      },
+      "modbus": {
+       "address": 1297,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "68",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI16",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1",
+       "Point List Code: S = Standard O = Optional N = Not Available Point List Description": "Local Remote Control Mode [0=Manual, 1=Auto]"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Display Units",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Imperial"
+       },
+       {
+        "code": "1",
+        "label": "SI"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "DATA_UNIT",
+       "objectType": "BI",
+       "instance": 17,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 20
+      },
+      "modbus": {
+       "address": 1298,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "69",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI17",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1",
+       "Point List Code: S = Standard O = Optional N = Not Available Point List Description": "Display Units [0=Imperial, 1=SI]"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Lead Lag Control Mode",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=S",
+       "column": "1",
+       "code": "S"
+      },
+      "states": [
+       {
+        "code": "0",
+        "label": "Manual"
+       },
+       {
+        "code": "1",
+        "label": "Auto"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "AUTO_LL",
+       "objectType": "BI",
+       "instance": 18,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 21
+      },
+      "modbus": {
+       "address": 1299,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "70",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI18",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1",
+       "Point List Code: S = Standard O = Optional N = Not Available Point List Description": "Lead Lag Control Mode [0=Manual, 1=Auto]"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 1 Hot Gas Bypass Valve",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S1_HGBV",
+       "objectType": "BI",
+       "instance": 19,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 22
+      },
+      "modbus": {
+       "address": 1300,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "71",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI19",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    },
+    {
+     "common": {
+      "group": "BINARY READ ONLY POINTS",
+      "name": "Sys 2 Hot Gas Bypass Valve",
+      "readWrite": "R",
+      "availability": {
+       "raw": "1=N",
+       "column": "1",
+       "code": "N"
+      }
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "S2_HGBV",
+       "objectType": "BI",
+       "instance": 20,
+       "objectTypeSource": "'BACnet Object Instance' 값 접두 (문서에 오브젝트 타입 전용 열 없음)"
+      },
+      "n2": {
+       "pointType": "BD",
+       "address": 23
+      },
+      "modbus": {
+       "address": 1301,
+       "addressBase": "unknown",
+       "functionCodes": [
+        1,
+        2,
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YSAANative.pdf",
+      "sourcePage": 2,
+      "family": "Native",
+      "srcRef": "72",
+      "sourceColumns": {
+       "BACnet Object Instance": "BI20",
+       "Modbus Data Type Supported": "01,02,03",
+       "Engineering Units Imperial": "0/1",
+       "SI": "0/1"
+      },
+      "gaps": [
+       "modbus.dataType — 머리글은 데이터형이나 값이 함수코드다(데이터형은 NOTES 문장에만 있어 행 단위 근거가 없다)",
+       "availability — 1~10 열 번호↔형번 대응표가 문서에 없다"
+      ],
+      "interfaceId": "ysaanative"
+     }
+    }
+   ],
+   "sourcePages": [
+    1,
+    2
+   ],
+   "excluded": {
+    "band": 4
+   }
+  }
+ ],
+ "crosscheck": {
+  "fam": "lontalk",
+  "segments": 2,
+  "table": 148,
+  "raw": 0,
+  "both": 0,
+  "same": 0,
+  "diff": [],
+  "rate": 0.0,
+  "verified": {}
+ },
+ "tags": [
+  "chiller",
+  "chiller-rotaryScrew",
+  "airCooling"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'YSAA Air Cooled Screw Chiller' 의 낱말 (압축 방식·응축 방식)"
+}

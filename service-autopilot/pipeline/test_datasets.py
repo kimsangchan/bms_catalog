@@ -97,7 +97,10 @@ class DatasetBuildTest(unittest.TestCase):
                 continue
             seen[model["id"]] = datasets.template_profile_for(model)
 
-        self.assertEqual(len(seen), 17)
+        # 모델 수는 늘어난다(2026-08-14 JCI 옥상형 2건). 수를 박아 두면 새 모델이
+        # 들어올 때마다 이 게이트가 '틀렸다'고 말한다 — 확인해야 할 것은 **미해결이
+        # 없다**는 것이다.
+        self.assertGreaterEqual(len(seen), 17)
         self.assertFalse([k for k, v in seen.items() if v is None])
         self.assertEqual(
             seen["trane-symbio-800-intellicore-split-system-rauk-bacnet"], "e5.rtu")
@@ -613,9 +616,27 @@ class DatasetBuildTest(unittest.TestCase):
         # 새 벤더를 넣고 이 테스트가 깨지면 체크리스트 5번(인식 사다리 확장)을 하지
         # 않은 것이다. "조판 탓" 으로 넘기지 말 것 (AAON 실사례 — 텍스트 층 파서로 해결).
         data = datasets.build_dataset(equip_ids={"e5"})
+        # 예외는 하나뿐 — **정격 문서가 아예 없는 모델**이다. BAS 포인트 리스트만
+        # 있는 제품(JCI York 옥상형)은 형번을 뽑을 원문 자체가 없다. 사다리를 넓혀서
+        # 될 일이 아니라 카탈로그를 더 받아야 하는 일이라, 여기서 막으면 게이트가
+        # '고칠 수 없는 실패'로 상주한다. 대신 사유가 gap 에 적혀 있어야 하고
+        # validate.py 의 units-none / units-none-undoc 가 그것을 매번 확인한다.
+        # ⚠ 면제 판정은 **모델 레코드**로 한다. modelMappings 에는 사양 키가 없어서
+        #    거기서 판정하면 조건이 항상 참이 되고 게이트가 통째로 무력해진다
+        #    (실제로 그렇게 썼다가 19건 전부 면제되는 것을 확인하고 고쳤다).
+        no_rating = set()
+        for path in glob.glob(os.path.join(datasets.DATA, "models", "*.json")):
+            model = datasets.load_json(path)
+            if model.get("equipId") != "e5":
+                continue
+            if not (model.get("specTables") or model.get("variants") or model.get("spec")):
+                no_rating.add(model["id"])
         missing = [mid for mid, m in data["modelMappings"].items()
-                   if not m.get("unitModels")]
+                   if not m.get("unitModels") and mid not in no_rating]
         self.assertEqual(missing, [])
+        # 면제가 늘어나면 게이트가 조용히 헐거워진다 — 수를 박아 둔다
+        self.assertLessEqual(len(no_rating), 2,
+                             "정격 문서 없는 e5 모델이 늘었다: %s" % sorted(no_rating))
 
     def test_aaon_cabinet_text_yields_units_with_iom_tonnage(self):
         data = datasets.build_dataset(equip_ids={"e5"})

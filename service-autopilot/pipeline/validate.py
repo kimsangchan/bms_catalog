@@ -114,7 +114,9 @@ def check_model(m, eq, kg):
     # 7) 교차 대조 ★ 정답셋을 사람이 못 따라갈 때의 자동 방어선
     #    표 인식과 다른 경로(줄 읽기)로 원문을 한 번 더 읽어 비교한 결과를 쓴다.
     xc = m.get("crosscheck")
-    if xc and xc.get("unverifiable"):
+    if not n_points(m):
+        pass          # 포인트가 없는 모델(별칭)은 대조할 것이 아예 없다 — 물을 일이 아니다
+    elif xc and xc.get("unverifiable"):
         add("W", "crosscheck-unverifiable", xc["unverifiable"])
     elif xc:
         rate, n = xc.get("rate", 0), xc.get("both", 0)
@@ -151,7 +153,7 @@ def check_model(m, eq, kg):
             add("W", "known-good-missing", "정답에 있는 포인트 없음: %s" % ", ".join(miss[:4]))
         if not wrong and not miss:
             add("I", "known-good-ok", "정답 대조 %d건 전부 일치" % len(exp))
-    elif not xc:
+    elif not xc and n_points(m):
         add("W", "no-known-good", "정답 대조셋도 교차 대조도 없음 — 정확도를 확인할 방법이 없다")
 
     # 9) 정격 사양 — 시뮬레이터가 쓰려면 통신 맵만으로는 부족하다
@@ -193,7 +195,143 @@ def check_model(m, eq, kg):
     # 11) 형번 확정 데이터셋 — 추출은 제안, data/units/ 골든 레코드가 정본.
     #     화면은 확정본만 읽으므로 누락·스키마 위반은 오류(E), 미동기는 경고(W)다.
     check_curated_units(m, add)
+    # 12) 인터페이스(포인트 리스트 리비전) — point-schema.json 이 정본
+    check_interfaces(m, add)
     return out
+
+
+PSCHEMA = None
+
+
+def point_schema():
+    global PSCHEMA
+    if PSCHEMA is None:
+        with open(os.path.join(DATA, "point-schema.json"), encoding="utf-8") as f:
+            PSCHEMA = json.load(f)
+    return PSCHEMA
+
+
+def n_points(m):
+    """모델의 포인트 수 — 옛 평면과 새 인터페이스 양쪽을 센다."""
+    return (len(m.get("points") or [])
+            + sum(len(i.get("points") or []) for i in (m.get("interfaces") or [])))
+
+
+def check_interfaces(m, add):
+    """인터페이스(포인트 리스트 리비전) 검사 — point-schema.json 이 정본이다.
+
+    왜 옛 포인트와 따로 보나
+      평면 points[] 는 사전이 없던 시절의 추출본이다(24,423점). 사전 게이트를
+      거기까지 소급하면 전 모델이 오류로 뒤덮여 게이트가 쓸모없어진다. 그래서
+      **새로 취입하는 interfaces[].points[] 에만** 사전 우선 규칙을 강제하고,
+      옛 것은 '아직 안 옮겼다'를 정보로 남겨 보이게만 한다. 옛 데이터를 조용히
+      통과시키는 것이 아니라 세어서 표면화한다 — 남은 이관 분량이 곧 그 숫자다.
+    """
+    sch = point_schema()
+    ifs = m.get("interfaces") or []
+    legacy = m.get("points") or []
+    if not ifs:
+        if legacy:
+            add("I", "points-legacy",
+                "평면 %d점 — 인터페이스로 아직 안 갈랐다(옛 추출본)" % len(legacy))
+        return
+    if legacy:
+        # 두 모양이 한 모델에 있으면 어느 쪽이 정본인지 알 수 없다
+        add("E", "iface-mixed",
+            "평면 points[] %d점과 interfaces[] 가 함께 있다 — 한 모양으로 모아야 한다"
+            % len(legacy))
+
+    fields = sch["interfaces"]["fields"]
+    families = set(sch["provenance"]["family"]["values"])
+    blocks = set(sch["blocks"])
+    common_ok = set(sch["common"])
+    prov_ok = set(sch["provenance"])
+    statuses = set(sch.get("statuses") or ())
+    vs = sch["rules"]["valueShape"]
+
+    seen = set()
+    for it in ifs:
+        iid = it.get("id") or "?"
+        for k in ("id", "label", "sourceFile"):
+            if not it.get(k):
+                add("E", "iface-required", "%s: 인터페이스 필수 항목 없음 — %s" % (iid, k))
+        if iid in seen:
+            add("E", "iface-dup-id", "인터페이스 ID 중복: %s" % iid)
+        seen.add(iid)
+        for k in it:
+            if k not in fields and k != "points":
+                add("E", "iface-field", "%s: 사전에 없는 인터페이스 필드 %r" % (iid, k))
+        if it.get("family") and it["family"] not in families:
+            add("E", "iface-family", "%s: 정의 밖 문서 계통 %r" % (iid, it["family"]))
+        badp = [p for p in (it.get("protocols") or []) if p not in blocks]
+        if badp:
+            add("E", "iface-protocol", "%s: 사전에 없는 프로토콜 블록 %s" % (iid, ", ".join(badp)))
+        if it.get("status") and it["status"] not in statuses:
+            add("E", "iface-status", "%s: 정의 밖 상태 %r" % (iid, it["status"]))
+
+        pts = it.get("points") or []
+        if it.get("pointCount") is not None and it["pointCount"] != len(pts):
+            add("E", "iface-count", "%s: pointCount %s ≠ 실제 %d점"
+                % (iid, it["pointCount"], len(pts)))
+        if not pts:
+            add("W", "iface-empty", "%s: 포인트가 없다" % iid)
+
+        # 사전 우선 — 레코드의 모든 키가 사전에 정의된 경로여야 한다
+        bad, orphan, blkuse = collections.Counter(), 0, collections.Counter()
+        longname, outrange = [], []
+        for p in pts:
+            for top in p:
+                if top not in ("common", "blocks", "provenance"):
+                    bad["최상위 %s" % top] += 1
+            for k in (p.get("common") or {}):
+                if k not in common_ok:
+                    bad["common.%s" % k] += 1
+            for k in (p.get("provenance") or {}):
+                if k not in prov_ok:
+                    bad["provenance.%s" % k] += 1
+            for b, f in (p.get("blocks") or {}).items():
+                blkuse[b] += 1
+                if b not in blocks:
+                    bad["blocks.%s" % b] += 1
+                    continue
+                known = set((sch["blocks"][b].get("fields") or {}))
+                for k in f:
+                    if k not in known:
+                        bad["%s.%s" % (b, k)] += 1
+            pv = p.get("provenance") or {}
+            if pv.get("interfaceId") not in (None, iid):
+                orphan += 1
+            nm = (p.get("common") or {}).get("name") or ""
+            if len(nm) > vs["nameMaxLen"]:
+                longname.append(nm)
+            inst = ((p.get("blocks") or {}).get("bacnet") or {}).get("instance")
+            lo, hi = vs["bacnetInstanceRange"]
+            if isinstance(inst, int) and not (lo <= inst <= hi):
+                outrange.append(inst)
+        if bad:
+            add("E", "point-field", "%s: 사전 밖 필드 %d종 — %s"
+                % (iid, len(bad), ", ".join("%s×%d" % kv for kv in bad.most_common(3))))
+        if orphan:
+            add("E", "point-orphan", "%s: 다른 인터페이스를 가리키는 포인트 %d점" % (iid, orphan))
+        if outrange:
+            add("E", "point-instance", "%s: BACnet 인스턴스 범위 밖 %d점 예: %s"
+                % (iid, len(outrange), outrange[0]))
+        if longname:
+            add("W", "point-longname", "%s: 이름 %d자 초과 %d점 — 설명 문단이 눌러붙었는지 확인: %r"
+                % (iid, vs["nameMaxLen"], len(longname), longname[0][:48]))
+        # 문서가 준 프로토콜과 실제로 값이 있는 블록이 어긋나면 둘 중 하나가 틀렸다
+        declared = set(it.get("protocols") or [])
+        if declared and set(blkuse) - declared:
+            add("W", "iface-protocol-undeclared", "%s: 선언에 없는 블록에 값이 있다 — %s"
+                % (iid, ", ".join(sorted(set(blkuse) - declared))))
+        # 제외 행은 조용히 빼지 않는다 — 사유와 함께 남긴다
+        ex = it.get("excluded") or {}
+        if ex:
+            add("I", "iface-excluded", "%s: 포인트로 세지 않은 행 %s"
+                % (iid, ", ".join("%s %d행" % (k, v) for k, v in ex.items())))
+        add("I", "iface-ok", "%s: %s · %d점 (%s)"
+            % (iid, it.get("family") or "계통 미상", len(pts),
+               ", ".join(it.get("protocols") or ["프로토콜 미상"])))
 
 
 def check_curated_units(m, add):
@@ -295,7 +433,7 @@ def main(argv):
         if r["model"] != cur:
             cur = r["model"]
             m = [x for x in md if x["id"] == cur][0]
-            print("\n■ %s  (%s · 포인트 %d)" % (cur, m["vendor"], len(m["points"])))
+            print("\n■ %s  (%s · 포인트 %d)" % (cur, m["vendor"], n_points(m)))
         mark = {"E": "✗ 오류", "W": "△ 경고", "I": "· 정보"}[r["level"]]
         print("   %s [%s] %s" % (mark, r["code"], r["message"]))
     print("\n" + "─" * 72)

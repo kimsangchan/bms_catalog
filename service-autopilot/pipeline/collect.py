@@ -131,11 +131,17 @@ def probe(src, limit=None, verbose=True, workers=12):
         groups.setdefault(series_key(src, u), []).append(u)
     keys = list(groups)[:limit] if limit else list(groups)
 
+    # 최소 크기는 **번호를 찍어 맞히는 series 열거의 방어선**이다 — 죽은 조합이
+    # 오류 안내 페이지(수 KB)를 200 으로 돌려주기 때문이다. list 열거는 문서를
+    # 지목한 것이라 이 필터가 살아 있는 문서를 **조용히 버린다**
+    # (JCI YSAA Native 18,213 B 가 실제로 그렇게 빠져 56건 중 55건만 받았다).
+    floor = 20000 if src["enumerate"] == "series" else 1000
+
     def first_alive(key):
         """이 번호의 후보를 차례로 두드려 처음 살아 있는 것을 돌려준다."""
         for u in groups[key]:
             code, size = head(u, src=src)
-            if code == 200 and size > 20000:
+            if code == 200 and size > floor:
                 return {"url": u, "size": size, "key": key}
             if code == 403:
                 return {"url": u, "size": 0, "key": key, "blocked": True}
@@ -156,16 +162,37 @@ def probe(src, limit=None, verbose=True, workers=12):
     return found
 
 
+def files_of(source_id):
+    """등록된 원문 경로 목록 — 소스 하나에 문서가 여럿인 벤더 파서가 쓴다.
+
+    파서가 폴더를 훑으면 그 PC 에만 있는 임시 폴더에 묶인다(JCI 56건이 실제로
+    그랬다 — 다른 PC 에서 재현이 안 됐다). 대장이 정본이면 어디서든
+    `collect.py --run <소스ID>` 한 번으로 같은 목록이 선다.
+    """
+    out = []
+    for v in load_ledger().values():
+        if v.get("source") == source_id and v.get("file"):
+            p = os.path.join(RAW, v["file"])
+            if os.path.exists(p):
+                out.append(p)
+    return sorted(out)
+
+
 def local_name(src, url):
     """저장할 파일 이름.
 
     보통은 URL 의 마지막 조각을 쓴다. 그런데 벤더가 'user guide.pdf' 처럼
     벤더도 제품도 안 들어간 이름으로 올려 두면 다른 벤더 문서와 부딪히고
     나중에 무슨 문서인지 알 수 없다. 그런 소스는 rename 에 이름을 적어 둔다.
+
+    rename 의 열쇠는 **원 이름 또는 URL 전체**다. JCI khub 처럼 URL 끝이 전부
+    'content' 인 사이트는 원 이름이 56건 모두 같아 이름 기준으로는 가를 수 없다
+    (그래서 전에는 문서 하나당 소스 하나로 쪼갰다).
     """
     raw = os.path.basename(url.rstrip("/")).split("?")[0]
     raw = urllib.parse.unquote(raw)
-    fixed = (src.get("rename") or {}).get(raw)
+    ren = src.get("rename") or {}
+    fixed = ren.get(url) or ren.get(raw)
     return fixed or raw.replace(" ", "_")
 
 

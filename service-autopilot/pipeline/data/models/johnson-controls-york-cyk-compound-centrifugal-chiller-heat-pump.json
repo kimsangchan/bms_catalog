@@ -1,0 +1,608 @@
+{
+ "id": "johnson-controls-york-cyk-compound-centrifugal-chiller-heat-pump",
+ "equipId": "e9",
+ "vendor": "Johnson Controls / YORK",
+ "model": "CYK Compound Centrifugal Chiller/Heat Pump",
+ "name": "CYK Compound Centrifugal Chiller/Heat Pump",
+ "cat": "HVAC.PLANT.CHILLER.CENTRIFUGAL",
+ "tag": "chiller",
+ "status": "active",
+ "summary": "BAS 포인트 리스트 1건 · 판 1개에서 취입 — 오브젝트 18점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "N2",
+   "E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "York Talk",
+   "E-Link/YorkTalk",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+ "interfaces": [
+  {
+   "id": "frickquantum3-4-revj-01",
+   "label": "Frick Quantum E-Link (Rev_J_01) For pre 2000 Quantum panels only. For later versions contact Frick Product Support. Non-OptiView Based Equipment",
+   "family": "E-Link/YorkTalk",
+   "protocols": [
+    "n2",
+    "yorktalk"
+   ],
+   "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+   "pointCount": 18,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Capacity Setpoint for the current Capacity Control",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P03",
+       "asciiPageRef": "P01",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "High Motor Amps Force Unload Setpoint",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P04",
+       "asciiPageRef": "P02",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "High Motor Amps Stop Load Setpoint",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P05",
+       "asciiPageRef": "P03",
+       "pointType": "A. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Remote Start/Stop",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 1
+      },
+      "yorktalk": {
+       "pageRef": "P07",
+       "asciiPageRef": "P05",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Start/Stop Enable 0= Enable, 1 = Disable",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 2
+      },
+      "yorktalk": {
+       "pageRef": "P08",
+       "asciiPageRef": "P06",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Change Setpoints Enable , 0 = Enable; 1 = Disable",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "BD",
+       "address": 3
+      },
+      "yorktalk": {
+       "pageRef": "P09",
+       "asciiPageRef": "P07",
+       "pointType": "D. Control"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Suction Temperature",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 5
+      },
+      "yorktalk": {
+       "pageRef": "P11",
+       "asciiPageRef": "P09",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 8,
+        "end": 11
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 6
+      },
+      "yorktalk": {
+       "pageRef": "P12",
+       "asciiPageRef": "P10",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 12,
+        "end": 15
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Temperature",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P13",
+       "asciiPageRef": "P11",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 16,
+        "end": 19
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Seperator Temperature",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 8
+      },
+      "yorktalk": {
+       "pageRef": "P14",
+       "asciiPageRef": "P12",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 20,
+        "end": 23
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Leaving Process Temperature",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 9
+      },
+      "yorktalk": {
+       "pageRef": "P15",
+       "asciiPageRef": "P13",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 24,
+        "end": 27
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Oil Pressure",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 10
+      },
+      "yorktalk": {
+       "pageRef": "P16",
+       "asciiPageRef": "P14",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 28,
+        "end": 31
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Differential Pressure",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 11
+      },
+      "yorktalk": {
+       "pageRef": "P17",
+       "asciiPageRef": "P15",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 32,
+        "end": 35
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Pressure",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 12
+      },
+      "yorktalk": {
+       "pageRef": "P18",
+       "asciiPageRef": "P16",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 36,
+        "end": 39
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Suction Pressure",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 13
+      },
+      "yorktalk": {
+       "pageRef": "P19",
+       "asciiPageRef": "P17",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 40,
+        "end": 43
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Balance Piston Pressure",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 14
+      },
+      "yorktalk": {
+       "pageRef": "P20",
+       "asciiPageRef": "P18",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 44,
+        "end": 47
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "System Discharge Pressure",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADF",
+       "address": 15
+      },
+      "yorktalk": {
+       "pageRef": "P21",
+       "asciiPageRef": "P19",
+       "pointType": "A. Monitor",
+       "charPos": {
+        "start": 48,
+        "end": 51
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 1,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    },
+    {
+     "common": {
+      "name": "Stop/Force Unload Status",
+      "pointKind": "code"
+     },
+     "blocks": {
+      "n2": {
+       "pointType": "ADI",
+       "address": 7
+      },
+      "yorktalk": {
+       "pageRef": "P62",
+       "asciiPageRef": "P60",
+       "pointType": "Code Monitor",
+       "charPos": {
+        "start": 134,
+        "end": 134
+       }
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_FrickQuantum3-4(RevJ-01).pdf",
+      "sourcePage": 2,
+      "family": "E-Link/YorkTalk",
+      "block": {
+       "index": 1,
+       "title": ""
+      },
+      "interfaceId": "frickquantum3-4-revj-01"
+     }
+    }
+   ],
+   "revision": {
+    "doc": "Rev J 01"
+   },
+   "sourcePages": [
+    1,
+    2
+   ],
+   "excluded": {
+    "reserved": 64,
+    "revision": 6,
+    "codeTable": 1
+   }
+  }
+ ],
+ "crosscheck": {
+  "unverifiable": "BACnet 타입·인스턴스를 가진 포인트가 0/18 뿐이라 줄 읽기 경로가 짝을 만들 수 없다 (이 문서의 주소 축: n2, yorktalk)"
+ },
+ "tags": [
+  "chiller",
+  "chiller-centrifugal",
+  "heatPump"
+ ],
+ "classifiedBy": "JCI 카탈로그 제품명 'CYK Compound Centrifugal Chiller/Heat Pump' 의 낱말 (압축 방식·응축 방식)"
+}

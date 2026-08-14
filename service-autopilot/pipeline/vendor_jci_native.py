@@ -72,7 +72,17 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
-PROBE = os.path.join(DATA, "raw", "_probe_jci")
+SOURCE = "jci-york-bas-points"
+
+
+def docs():
+    """이 파서가 훑을 문서 목록 — 정본은 대장(collected.json)이다.
+
+    조사 단계에는 임시 폴더(data/raw/_probe_jci)를 훑었는데 그 폴더가 이 PC 에만
+    있어 다른 곳에서 재현이 안 됐다. 등록 후에는 대장이 목록을 준다.
+    """
+    import collect
+    return collect.files_of(SOURCE)
 sys.path.insert(0, HERE)
 import specs as SP      # noqa: E402
 import schema as S      # noqa: E402
@@ -626,7 +636,7 @@ def main(argv):
 
     if a.parse:
         cands = ([a.parse] if os.path.exists(a.parse)
-                 else glob.glob(os.path.join(PROBE, a.parse + "*")))
+                 else [p for p in docs() if a.parse.lower() in os.path.basename(p).lower()])
         if not cands:
             print("파일을 못 찾겠다: %s" % a.parse)
             return 1
@@ -645,7 +655,7 @@ def main(argv):
         from collections import Counter
         tot, allunk, allskip = Counter(), Counter(), Counter()
         hit = 0
-        for f in sorted(glob.glob(os.path.join(PROBE, "*.pdf"))):
+        for f in docs():
             rows, unk, head, skip = parse_doc(f)
             if not rows:
                 continue
