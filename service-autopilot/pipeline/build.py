@@ -22,7 +22,12 @@ PUBLIC_MENU_EQUIP_IDS = {
     "e13", "e14", "e15", "e16",
     "e19", "e20",
 }
-PUBLIC_MODEL_EQUIP_IDS = {"e5"}
+# 화면에 모델을 싣는 계열. 전에는 공조기(e5) 하나뿐이었다 — 그때 산출물이 공조기
+# 완결이었기 때문이다. 냉동기(e9)까지 모델이 쌓인 지금은 모델이 있는 계열을 다 싣는다.
+PUBLIC_MODEL_EQUIP_IDS = {"e5", "e6", "e7", "e8", "e9", "e13", "e14", "e15", "e16", "e19"}
+# 형번·BMS 템플릿·시뮬레이터 판정(목적별 데이터셋)은 **프로파일이 정의된 계열만**.
+# 정의 없는 계열을 넣으면 RTU 를 냉수코일 체크리스트로 채점하던 사고가 재현된다.
+PURPOSE_EQUIP_IDS = {"e5"}
 
 DOM_ORDER = ["공기측 설비", "열원·수측 설비", "반송·구동", "계측·제어", "전력 설비",
              "조명·차양", "방재", "승강", "보안·출입", "환경·공기질", "급배수·위생"]
@@ -87,6 +92,35 @@ def load_json(path):
         return json.load(f)
 
 
+def screen_point(p):
+    """옛 평면 포인트 → 화면용. **빈 칸은 빼고 싣는다.**
+
+    전에는 12개 열쇠를 값이 없어도 모두 실었다. 포인트가 24,423점이라 그 빈 칸이
+    파일에서 3MB 를 차지했다(전체의 20%). 화면 코드는 없는 열쇠를 이미 견딘다
+    (`p.bacOid || ''` · `=== undefined`).
+    """
+    out = {"inst": p["inst"], "type": p["type"], "name": p["name"],
+           "unitDisp": p.get("unitRaw") or "—"}
+    for k in ("note", "sourceFile", "sourcePage", "bacOid", "modbusRegister",
+              "modbusScaleFactor", "modbusBooleanFlag", "modbusSignedFlag",
+              "modbusOffset", "modbusWritableFlag"):
+        v = p.get(k)
+        if v not in (None, "", [], {}):
+            out[k] = v
+    return out
+
+
+def compact_interface(it):
+    """인터페이스(판) → 화면용. 포인트는 ingest_jci 의 화면 변환을 그대로 쓴다 —
+    같은 규칙을 두 벌 두면 화면마다 다르게 해석된다."""
+    import ingest_jci as J
+    keep = ("id", "label", "family", "protocols", "revision", "sourceFile",
+            "sourcePages", "pointCount", "excluded", "appliesTo", "gaps", "note")
+    out = {k: it[k] for k in keep if it.get(k) not in (None, "", [], {})}
+    out["points"] = [J.view_point(p) for p in (it.get("points") or [])]
+    return out
+
+
 def load():
     equips = []
     for f in sorted(glob.glob(os.path.join(DATA, "equips", "*.json")),
@@ -125,18 +159,9 @@ def load():
             "photo": m.get("photo"), "photoSource": m.get("photoSource"),
             "specFrom": m.get("specFrom"),
             "docs": docs_by_model.get(m["id"]) or docs_by_model.get(base) or [],
-            "points": [{"inst": p["inst"], "type": p["type"],
-                        "unitDisp": p.get("unitRaw") or "—", "name": p["name"],
-                        "note": p.get("note", ""),
-                        "sourceFile": p.get("sourceFile"),
-                        "sourcePage": p.get("sourcePage"),
-                        "bacOid": p.get("bacOid"),
-                        "modbusRegister": p.get("modbusRegister"),
-                        "modbusScaleFactor": p.get("modbusScaleFactor"),
-                        "modbusBooleanFlag": p.get("modbusBooleanFlag"),
-                        "modbusSignedFlag": p.get("modbusSignedFlag"),
-                        "modbusOffset": p.get("modbusOffset"),
-                        "modbusWritableFlag": p.get("modbusWritableFlag")} for p in m.get("points", [])],
+            "points": [screen_point(p) for p in m.get("points", [])],
+            "interfaces": [compact_interface(it) for it in m.get("interfaces", [])],
+            "aliasOf": m.get("aliasOf"), "tags": m.get("tags", []),
         })
     # 사양 참조 풀기 — 같은 제품의 다른 프로토콜 판은 사양을 공유한다.
     # 데이터에는 참조만 두고(중복 방지), 화면에 낼 때 실제 값을 채운다.
@@ -165,7 +190,7 @@ def load_purpose_dataset():
     """
     import datasets
 
-    raw = datasets.build_dataset(PUBLIC_MODEL_EQUIP_IDS)
+    raw = datasets.build_dataset(PURPOSE_EQUIP_IDS)
     out = {}
     for mid, m in raw["modelMappings"].items():
         out[mid] = {
@@ -205,7 +230,9 @@ def main():
     totp = sum(e["np"] for e in equips)
     tots = sum(e["ns"] for e in equips)
     nmodel = sum(len(v) for v in models.values())
-    nmpts = sum(len(m["points"]) for v in models.values() for m in v)
+    # 옛 평면 목록과 판별 목록을 함께 센다 — 한쪽만 세면 지표가 실제보다 적게 나온다
+    nmpts = sum(len(m["points"]) + sum(len(it["points"]) for it in m.get("interfaces", []))
+                for v in models.values() for m in v)
     # 사양이 있는 모델 수 — 어느 모델을 눌러야 정격이 나오는지 화면에서 알려면 필요하다
     nspec = sum(1 for v in models.values() for m in v
                 if m.get("specTables") or m.get("variants") or m.get("spec"))

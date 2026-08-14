@@ -21,7 +21,8 @@
 실행
   PYTHONIOENCODING=utf-8 python ingest_jci.py --route     계통 판정만 (빠름)
   PYTHONIOENCODING=utf-8 python ingest_jci.py --apply     모델 레코드 생성 (오래 걸림)
-  PYTHONIOENCODING=utf-8 python ingest_jci.py --apply --only YK
+  PYTHONIOENCODING=utf-8 python ingest_jci.py --refresh    규칙만 다시 적용 (몇 초)
+  PYTHONIOENCODING=utf-8 python ingest_jci.py --export     검토 화면 (review/jci-ingest.html)
 """
 import argparse
 import collections
@@ -596,16 +597,385 @@ def write_aliases(models):
     return made
 
 
+# ── 검토 화면 ────────────────────────────────────────────────────────────────
+# 취입 결과를 사람이 볼 수 있는 표로 낸다. 정격 쪽 build.py 와 같은 자리다 —
+# **명령으로 다시 만들어지는 오프라인 단일 HTML** 이어야 한다(폐쇄망에서 더블클릭).
+VIEW = r"""<title>York 포인트 취입 검사대</title>
+<style>
+:root{
+  --bg:#F5F8F9; --panel:#FFFFFF; --rail:#EDF2F4; --ink:#0F1A1F; --dim:#4A6068;
+  --faint:#7C949C; --line:#DAE3E7; --accent:#0E7A88; --accent-soft:#DCEEF0;
+  --warn:#9A6608; --warn-soft:#F6EBD3; --hole:#98304A; --hole-soft:#F7E2E7;
+  --ok:#1F6B4B;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1417; --panel:#111C20; --rail:#0E181C; --ink:#DCE7EA; --dim:#93A8AF;
+    --faint:#6B838B; --line:#1E2C32; --accent:#3FB4C2; --accent-soft:#10333A;
+    --warn:#D9A441; --warn-soft:#2D2413; --hole:#E0788F; --hole-soft:#2E161C;
+    --ok:#5FBF95;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1417; --panel:#111C20; --rail:#0E181C; --ink:#DCE7EA; --dim:#93A8AF;
+  --faint:#6B838B; --line:#1E2C32; --accent:#3FB4C2; --accent-soft:#10333A;
+  --warn:#D9A441; --warn-soft:#2D2413; --hole:#E0788F; --hole-soft:#2E161C;
+  --ok:#5FBF95;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:system-ui,-apple-system,"Segoe UI","Malgun Gothic",sans-serif;
+ font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,"Cascadia Mono",Consolas,"SF Mono",monospace;
+ font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.92em}
+
+header{position:sticky;top:0;z-index:5;background:var(--panel);
+ border-bottom:1px solid var(--line);padding:14px 20px;
+ display:flex;align-items:baseline;gap:22px;flex-wrap:wrap}
+h1{margin:0;font-size:15px;font-weight:650;letter-spacing:-.01em}
+h1 span{color:var(--faint);font-weight:450;margin-left:8px;font-size:12.5px}
+.stats{display:flex;gap:20px;flex-wrap:wrap;margin-left:auto;align-items:baseline}
+.stat{display:flex;align-items:baseline;gap:6px;font-size:12px;color:var(--dim)}
+.stat b{font-size:16px;font-weight:650;color:var(--ink);
+ font-family:ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums}
+.stat.good b{color:var(--ok)}
+.stat.hole b{color:var(--hole)}
+.flow{font-size:12px;color:var(--dim);display:flex;align-items:baseline;gap:7px}
+.flow b{font-family:ui-monospace,Consolas,monospace;font-size:16px;color:var(--ink)}
+.arrow{color:var(--accent)}
+
+.app{display:grid;grid-template-columns:290px minmax(0,1fr);height:calc(100vh - 59px)}
+aside{background:var(--rail);border-right:1px solid var(--line);overflow-y:auto}
+.rh{padding:12px 16px 6px;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+ color:var(--faint);font-weight:700}
+aside button.item{display:grid;grid-template-columns:1fr auto;gap:8px;width:100%;
+ text-align:left;padding:7px 16px;border-left:2px solid transparent;align-items:center}
+aside button.item:hover{background:var(--accent-soft)}
+aside button.item[aria-current="true"]{background:var(--panel);border-left-color:var(--accent)}
+.iname{font-size:12.5px;line-height:1.3}
+.icount{font-size:10.5px;color:var(--faint);white-space:nowrap;
+ font-family:ui-monospace,Consolas,monospace}
+.icount em{font-style:normal;color:var(--accent);font-weight:700}
+.cool{font-style:normal;font-size:10px;margin-left:6px;padding:0 5px;border-radius:3px;
+ background:var(--accent-soft);color:var(--dim);font-family:ui-monospace,Consolas,monospace}
+
+main{overflow-y:auto;padding:0 0 60px}
+.pad{padding:20px 26px}
+h2{margin:0 0 2px;font-size:20px;font-weight:650;letter-spacing:-.015em;text-wrap:balance}
+.sub{color:var(--dim);font-size:12.5px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 0}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:7px;
+ padding:8px 12px;display:grid;gap:2px;text-align:left;min-width:184px}
+.chip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.chip .fam{font-size:12.5px;font-weight:600}
+.chip .meta{font-size:10.5px;color:var(--faint);font-family:ui-monospace,Consolas,monospace}
+.chip .np{font-size:10.5px;color:var(--accent);font-weight:700;
+ font-family:ui-monospace,Consolas,monospace}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+ padding:12px 14px;margin-top:14px;font-size:12.5px}
+.card b.lbl{display:block;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+ color:var(--faint);margin-bottom:4px}
+.card.warn{border-left:3px solid var(--warn);background:var(--warn-soft)}
+.card.hole{border-left:3px solid var(--hole);background:var(--hole-soft)}
+.kv{display:flex;gap:18px;flex-wrap:wrap;color:var(--dim)}
+.kv span b{color:var(--ink);font-weight:600}
+
+.tools{display:flex;gap:10px;align-items:center;margin:18px 0 8px}
+input[type=search]{flex:0 1 320px;padding:6px 10px;border:1px solid var(--line);
+ border-radius:6px;background:var(--panel);color:var(--ink);font:inherit;font-size:12.5px}
+.rowcount{font-size:11.5px;color:var(--faint);font-family:ui-monospace,Consolas,monospace}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:12px}
+th{position:sticky;top:0;background:var(--panel);text-align:left;font-size:10.5px;
+ letter-spacing:.05em;text-transform:uppercase;color:var(--faint);font-weight:700;
+ padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:5px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:hover{background:var(--accent-soft)}
+td.num{font-family:ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums;
+ white-space:nowrap;color:var(--dim)}
+td.nm{min-width:210px}
+.empty{padding:30px;color:var(--faint);text-align:center}
+@media (max-width:820px){
+  .app{grid-template-columns:1fr;height:auto}
+  aside{border-right:0;border-bottom:1px solid var(--line);max-height:220px}
+}
+</style>
+<header>
+  <h1>York 포인트 취입 검사대 <span>2026-08-14 · JCI/York BAS 포인트 리스트</span></h1>
+  <div class="stats">
+    <div class="flow"><b id="sDocs">0</b> 문서 <span class="arrow">&#8594;</span> <b id="sModels">0</b> 제품</div>
+    <div class="stat"><b id="sIfs">0</b> 판</div>
+    <div class="stat"><b id="sPts">0</b> 오브젝트</div>
+    <div class="stat good"><b>0</b> 검증 오류</div>
+    <div class="stat"><b id="sHole">0</b> 별칭 제품</div>
+  </div>
+</header>
+<div class="app">
+  <aside>
+    <div class="rh">남은 일</div>
+    <button class="item" data-id="__holes__">
+      <span class="iname">판정·별칭·남은 일</span>
+      <span class="icount"><em id="hn">0</em></span>
+    </button>
+    <div id="rail"></div>
+  </aside>
+  <main id="main"></main>
+</div>
+<script id="d" type="application/json">__DATA__</script>
+<script>
+"use strict";
+var D = JSON.parse(document.getElementById('d').textContent);
+var rail = document.getElementById('rail'), main = document.getElementById('main');
+var cur = 0, ifi = 0, term = '';
+
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function pts(m){ return m.ifs.reduce(function(a, x){ return a + x.n; }, 0); }
+
+D.models.sort(function(a, b){ return b.ifs.length - a.ifs.length || pts(b) - pts(a); });
+var totDocs = D.docs;
+document.getElementById('sDocs').textContent = D.docs;
+document.getElementById('sModels').textContent = D.models.length;
+document.getElementById('sIfs').textContent = D.totalIfs;
+document.getElementById('sPts').textContent = D.totalPoints.toLocaleString();
+var holeN = D.alias.length;
+document.getElementById('sHole').textContent = holeN;
+document.getElementById('hn').textContent = holeN;
+
+// 설비 분류로 묶는다 — 냉동기 31건을 한 줄로 늘어놓으면 압축 방식이 안 보인다.
+// 분류 근거는 JCI 카탈로그 제품명의 낱말이고, cat 4단계에 그대로 실려 있다.
+var KIND = [['HVAC.PLANT.CHILLER.CENTRIFUGAL','원심식 냉동기'],
+            ['HVAC.PLANT.CHILLER.SCREW','스크류식 냉동기'],
+            ['HVAC.PLANT.CHILLER.SCROLL','스크롤식 냉동기'],
+            ['HVAC.PLANT.CHILLER.RECIP','왕복동식 냉동기'],
+            ['HVAC.PLANT.CHILLER.ABSORPTION','흡수식 냉동기'],
+            ['HVAC.PLANT.CHILLER','압축 방식 미상'],
+            ['HVAC.AIR.RTU','옥상형 공조기']];
+var COOL = {airCooling:'공랭', waterCooling:'수냉'};
+rail.innerHTML = KIND.map(function(k){
+  var list = D.models.map(function(m, i){ return {m:m, i:i}; })
+    .filter(function(x){ return x.m.cat === k[0]; });
+  if(!list.length) return '';
+  return '<div class="rh">' + k[1] + ' <b>' + list.length + '</b></div>'
+    + list.map(function(x){
+        var cool = (x.m.tags || []).map(function(t){ return COOL[t]; }).filter(Boolean)[0];
+        return '<button class="item" data-id="' + x.i + '"><span class="iname">'
+          + esc(x.m.model) + (cool ? '<i class="cool">' + cool + '</i>' : '') + '</span>'
+          + '<span class="icount"><em>' + x.m.ifs.length + '</em>판 &middot; ' + pts(x.m)
+          + '</span></button>';
+      }).join('');
+}).join('');
+
+var PROTO = {bacnet:'BACnet', modbus:'Modbus', n2:'N2', lon:'LON',
+             yorktalk:'York Talk', logix:'Logix', elink:'E-Link'};
+function protoName(p){ return PROTO[p] || p; }
+// 판 이름은 계통+개정만으로는 안 갈린다 — YK 는 EM/SSS 와 VSD 가 같은 'Rev K 04d' 다.
+// 문서 이름이 유일한 구분자라 칩에 함께 보인다.
+function chipTail(x){ return x.id.replace(/^[a-z0-9]+-/, ''); }
+
+var COLS = [['n','오브젝트명'],['s','짧은 이름'],['b','BACnet'],['m','Modbus'],['d','N2'],
+            ['l','LON'],['y','York Talk'],['k','YT 종별'],['g','Logix'],['u','단위'],
+            ['w','R/W'],['a','적용 조건'],['t','상태·열거'],['o','비고'],['p','쪽']];
+
+function renderHoles(){
+  var judged = [], merged = 0, split = 0;
+  D.models.forEach(function(m){ m.ifs.forEach(function(x){
+    if(/한 판으로 묶었다/.test(x.note || '')) merged++;
+    if(/별개 판으로 갈랐다/.test(x.note || '')) split++;
+    (x.gaps || []).forEach(function(g){ judged.push([m.model, x.id, g]); }); }); });
+  var h = '<div class="pad"><h2>판정 · 별칭 · 남은 일</h2>'
+    + '<div class="sub">문서 ' + D.docs + '건이 제품 ' + D.models.length + '건 · 판 '
+    + D.totalIfs + '개로 정리됐다. 기계가 판단한 것과, 아직 사람이 채워야 하는 것을 나눠 적는다.</div>'
+    + '<div class="card"><b class="lbl">판 분리 — 자동 판정</b>'
+    + '한 문서 안에 표 블록이 여럿일 때 <b>주소 대역</b>으로 갈랐다. '
+    + '다음 블록이 앞 블록의 최대 주소 위에서 시작하면(1~43 → 101~135) 쪽만 넘어간 <b>같은 판</b>이고, '
+    + '주소가 다시 처음부터 시작하면(1~43 → 1~43) 한 장치가 같은 주소를 두 번 쓸 수 없으므로 <b>별개 판</b>이다.'
+    + '<div class="kv" style="margin-top:8px">'
+    + '<span>이어져서 합친 판 <b>' + merged + '</b></span>'
+    + '<span>겹쳐서 가른 판 <b>' + split + '</b></span>'
+    + '<span>문서 ' + D.docs + ' → 판 <b>' + D.totalIfs + '</b></span></div></div>'
+    + '<div class="card"><b class="lbl">별칭 제품 ' + D.alias.length + '건 — 이제 찾아진다</b>'
+    + '한 문서가 제품을 여럿 덮을 때 목록은 주 제품에만 두고(복제 금지), 나머지 코드는 '
+    + '<b>어느 모델의 어느 판이 덮는지만</b> 가리키는 별칭 모델로 세웠다.'
+    + '<div class="tw" style="margin-top:10px"><table><thead><tr><th>제품 코드</th><th>목록이 있는 곳</th><th>근거</th></tr></thead><tbody>'
+    + D.alias.map(function(a){ return '<tr><td class="mono">' + esc(a.code) + '</td><td class="nm">'
+        + esc(a.summary.replace(/^.*?— /, '')) + '</td><td class="mono">'
+        + esc((a.why || '').replace('문서 제목의 제품 나열 — ', '')) + '</td></tr>'; }).join('')
+    + '</tbody></table></div></div>'
+    + '<div class="card hole"><b class="lbl">정격이 없다 — 제품 ' + D.models.length + '건 전부</b>'
+    + '이 소스는 <b>BAS 포인트 리스트</b>뿐이다. 시뮬레이터가 소비전력·능력을 계산하려면 '
+    + '용량·COP·전류가 있는 <b>제품 카탈로그</b>를 따로 수집해야 한다(짝 규칙). '
+    + '지금 상태로는 매핑 자동화까지만 쓸 수 있다.</div>';
+  if(judged.length) h += '<div class="card warn"><b class="lbl">아직 사람이 볼 것 ' + judged.length + '건</b>'
+    + '<div class="tw" style="margin-top:10px"><table><thead><tr><th>제품</th><th>판</th><th>내용</th></tr></thead><tbody>'
+    + judged.map(function(r){ return '<tr><td class="nm">' + esc(r[0]) + '</td><td class="mono">' + esc(r[1])
+        + '</td><td>' + esc(r[2]) + '</td></tr>'; }).join('')
+    + '</tbody></table></div></div>';
+  return h + '</div>';
+}
+
+function render(){
+  document.querySelectorAll('aside .item').forEach(function(b){
+    b.setAttribute('aria-current', String(b.dataset.id) === String(cur)); });
+  if(cur === '__holes__'){ main.innerHTML = renderHoles(); return; }
+  var m = D.models[cur | 0];
+  var it = m.ifs[Math.min(ifi, m.ifs.length - 1)];
+  var use = COLS.filter(function(c){
+    return it.points.some(function(p){ return p[c[0]] !== undefined; }); });
+  var rows = it.points.filter(function(p){
+    return !term || JSON.stringify(p).toLowerCase().indexOf(term) >= 0; });
+  var h = '<div class="pad"><h2>' + esc(m.model) + '</h2>'
+    + '<div class="sub">' + esc(m.cat) + ' &middot; 계열 ' + esc(m.equipId)
+    + ' &middot; 포인트 리스트 <b>' + m.ifs.length + '판</b> &middot; 오브젝트 <b>' + pts(m) + '</b></div>'
+    + '<div class="chips">' + m.ifs.map(function(x, i){
+        var rv = [x.rev.doc, x.rev.block, x.rev.firmware].filter(Boolean).join(' · ');
+        return '<button class="chip" data-if="' + i + '" aria-pressed="' + (i === ifi) + '">'
+          + '<span class="fam">' + esc(x.family) + '</span>'
+          + '<span class="meta">' + esc([rv, chipTail(x)].filter(Boolean).join(' · ')) + '</span>'
+          + '<span class="meta">' + esc(x.protocols.map(protoName).join(' · ')) + '</span>'
+          + '<span class="np">' + x.n + '점</span></button>';
+      }).join('') + '</div>'
+    + '<div class="card"><b class="lbl">이 판의 출처</b><div class="kv">'
+    + '<span class="mono">' + esc(it.src) + (it.pages ? ' p' + it.pages.join('~') : '') + '</span>'
+    + (it.appliesTo ? '<span>덮는 제품 <b class="mono">' + esc(it.appliesTo.join(' · ')) + '</b></span>' : '')
+    + '</div><div style="margin-top:6px;color:var(--dim)">' + esc(it.label) + '</div></div>';
+  if(it.excluded) h += '<div class="card"><b class="lbl">포인트로 세지 않은 행</b>'
+    + Object.keys(it.excluded).map(function(k){ return esc(k) + ' <b>' + it.excluded[k] + '</b>행'; }).join(' · ')
+    + ' — 예약 슬롯·개정이력·NOTES 같은 것. 조용히 빼지 않고 여기 적는다.</div>';
+  if(it.gaps) h += '<div class="card warn"><b class="lbl">남은 판단</b>' + esc(it.gaps.join(' / ')) + '</div>';
+  if(m.crosscheck) h += '<div class="card"><b class="lbl">교차 대조</b>' + esc(m.crosscheck) + '</div>';
+  h += '<div class="tools"><input type="search" id="q" placeholder="이 판에서 찾기 — 이름 · 주소 · 단위" value="'
+    + esc(term) + '"><span class="rowcount">' + rows.length + ' / ' + it.points.length + '행</span></div>'
+    + '<div class="tw"><table><thead><tr>'
+    + use.map(function(c){ return '<th>' + c[1] + '</th>'; }).join('') + '</tr></thead><tbody>'
+    + rows.map(function(p){ return '<tr>' + use.map(function(c){
+        var v = p[c[0]];
+        var cls = (c[0] === 'n' || c[0] === 'o' || c[0] === 't') ? 'nm' : 'num mono';
+        return '<td class="' + cls + '">' + esc(v === undefined ? '' : v) + '</td>'; }).join('') + '</tr>';
+      }).join('')
+    + '</tbody></table>' + (rows.length ? '' : '<div class="empty">찾은 게 없어요</div>') + '</div></div>';
+  main.innerHTML = h;
+  main.querySelectorAll('.chip').forEach(function(b){
+    b.addEventListener('click', function(){ ifi = +b.dataset.if; term = ''; render(); }); });
+  var q = document.getElementById('q');
+  if(q) q.addEventListener('input', function(){
+    term = q.value.trim().toLowerCase();
+    var at = q.selectionStart;
+    render();
+    var q2 = document.getElementById('q');
+    if(q2){ q2.focus(); q2.setSelectionRange(at, at); } });
+}
+document.querySelectorAll('aside .item').forEach(function(b){
+  b.addEventListener('click', function(){ cur = b.dataset.id; ifi = 0; term = ''; render();
+    main.scrollTop = 0; }); });
+render();
+</script>
+"""
+
+
+def _cell(v):
+    """중첩 값을 한 칸에 넣을 수 있는 글자로. 원문 표기(raw)가 있으면 그걸 쓴다."""
+    if v is None:
+        return None
+    if isinstance(v, dict):
+        if v.get("raw") not in (None, ""):
+            return str(v["raw"])
+        return " · ".join("%s=%s" % (k, _cell(x)) for k, x in v.items())
+    if isinstance(v, list):
+        return ", ".join(str(_cell(x)) for x in v)
+    return v
+
+
+def view_point(p):
+    """포인트 레코드 → 화면용 짧은 열쇠. 값이 있는 것만 담는다."""
+    c = p.get("common") or {}
+    b = p.get("blocks") or {}
+    pv = p.get("provenance") or {}
+    bac, mb, n2 = (b.get("bacnet") or {}, b.get("modbus") or {}, b.get("n2") or {})
+    lon, yt, lg = (b.get("lon") or {}, b.get("yorktalk") or {}, b.get("logix") or {})
+    obj = ""
+    if bac.get("objectType"):
+        obj = bac["objectType"] + ("" if bac.get("instance") is None else str(bac["instance"]))
+        if bac.get("alternates"):
+            obj += " /" + ",".join(bac["alternates"])
+    row = {
+        "n": c.get("name") or lon.get("nvName") or "", "s": c.get("shortName"),
+        "b": obj or None, "m": mb.get("address"),
+        "d": ("%s %s" % (n2.get("pointType") or "", n2.get("address"))).strip() if n2 else None,
+        "l": lon.get("snvtType"),
+        "y": yt.get("coord") or yt.get("pageRef") or yt.get("asciiPageRef"),
+        "k": yt.get("pointType"), "g": lg.get("tag"),
+        "u": (c.get("unitIP") or c.get("unitSI") or c.get("unitIPRaw") or c.get("unitSIRaw")),
+        "w": c.get("readWrite"), "a": _cell(c.get("availability")),
+        "t": _cell(c.get("states") or c.get("statesRef")),
+        "o": c.get("note"), "p": pv.get("sourcePage"),
+    }
+    return {k: v for k, v in row.items() if v not in (None, "", [], {})}
+
+
+def view_data():
+    """저장된 모델에서 화면 데이터를 만든다 — 정본은 data/models 다."""
+    out = {"models": [], "alias": []}
+    for path in sorted(glob.glob(os.path.join(DATA, "models", "*.json"))):
+        with open(path, encoding="utf-8") as f:
+            d = json.load(f)
+        if d.get("extractor") != "vendor_jci":
+            continue
+        if d.get("aliasOf"):
+            out["alias"].append({"code": d["model"], "of": d["aliasOf"],
+                                 "why": d.get("classifiedBy", ""), "summary": d["summary"]})
+            continue
+        m = {"id": d["id"], "model": d["model"], "equipId": d["equipId"], "cat": d["cat"],
+             "tags": d.get("tags", []), "ifs": [],
+             "crosscheck": (d.get("crosscheck") or {}).get("unverifiable") or ""}
+        for it in d.get("interfaces") or []:
+            m["ifs"].append({
+                "id": it["id"], "label": it["label"], "family": it["family"],
+                "protocols": it["protocols"], "rev": it.get("revision") or {},
+                "src": it["sourceFile"], "pages": it.get("sourcePages"),
+                "n": it["pointCount"], "excluded": it.get("excluded"),
+                "appliesTo": it.get("appliesTo"), "gaps": it.get("gaps"),
+                "note": it.get("note"),
+                "points": [view_point(p) for p in it.get("points") or []]})
+        out["models"].append(m)
+    out["docs"] = len({i["src"] for m in out["models"] for i in m["ifs"]})
+    out["totalIfs"] = sum(len(m["ifs"]) for m in out["models"])
+    out["totalPoints"] = sum(i["n"] for m in out["models"] for i in m["ifs"])
+    return out
+
+
+def export(out_path=None):
+    out_path = out_path or os.path.join(HERE, "..", "review", "jci-ingest.html")
+    data = view_data()
+    html = VIEW.replace("__DATA__", json.dumps(data, ensure_ascii=False,
+                                               separators=(",", ":")))
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(html)
+    print("  %s" % os.path.normpath(out_path))
+    print("  제품 %d · 문서 %d · 판 %d · 오브젝트 %d · 별칭 %d · %.1f MB"
+          % (len(data["models"]), data["docs"], data["totalIfs"], data["totalPoints"],
+             len(data["alias"]), os.path.getsize(out_path) / 1024.0 / 1024.0))
+    return 0
+
+
 def main(argv):
     ap = argparse.ArgumentParser(description="JCI 포인트 리스트 취입")
     ap.add_argument("--route", action="store_true", help="계통 판정만 (빠름)")
     ap.add_argument("--apply", action="store_true", help="모델 레코드 생성")
     ap.add_argument("--dry", action="store_true", help="파싱은 하되 쓰지 않는다")
     ap.add_argument("--no-crosscheck", action="store_true", help="교차 대조 건너뛰기")
+    ap.add_argument("--export", action="store_true",
+                    help="검토 화면 review/jci-ingest.html 을 낸다")
     ap.add_argument("--refresh", action="store_true",
                     help="취입한 모델의 메타만 다시 계산 (PDF 재파싱 없음)")
     ap.add_argument("--only", help="저장 이름에 이 글자가 든 문서만")
     a = ap.parse_args(argv)
+    if a.export:
+        return export()
     if a.refresh:
         return refresh()
     if a.route:

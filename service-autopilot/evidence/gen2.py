@@ -80,6 +80,24 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 aside{border-right:1px solid var(--line);overflow-y:auto;max-height:calc(100dvh - 45px);
  position:sticky;top:45px;padding-bottom:24px}
 .gh{padding:12px 12px 4px;font-size:10.5px;font-weight:700;letter-spacing:.07em;color:var(--faint)}
+/* 축 전환 — 같은 데이터에 입구를 둘 둔다 (설비 기준 · 제조사 기준) */
+.axis{display:flex;gap:4px;padding:8px 10px 2px;border-bottom:1px solid var(--line)}
+.axis button{flex:1;padding:5px 0;font-size:11.5px;font-weight:650;border:1px solid var(--line);
+ border-radius:6px;color:var(--dim);text-align:center}
+.axis button[aria-pressed="true"]{background:var(--sel);border-color:var(--accent);color:var(--ink)}
+/* 모델 목록의 제조사 구분 — 한 줄로 늘어놓으면 어느 회사 것인지 이름을 읽어야 안다 */
+.mvd{display:flex;align-items:baseline;gap:6px;padding:10px 18px 4px;font-size:11px;
+ font-weight:700;letter-spacing:.04em;color:var(--dim)}
+.mvd i{font-style:normal;font-size:10px;color:var(--faint)}
+/* 인터페이스(판) 고르기 */
+.iflist{display:flex;gap:6px;flex-wrap:wrap;padding:0 18px 10px}
+.iflist button{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;
+ border:1px solid var(--line);border-radius:6px;font-size:12px}
+.iflist button[aria-pressed="true"]{background:var(--sel);border-color:var(--accent);font-weight:650}
+.ifr{font-size:10.5px;color:var(--dim);font-family:var(--mono)}
+.ifmeta{padding:0 18px 8px;font-size:11.5px;color:var(--dim)}
+.ifmeta .dot{margin:0 7px;color:var(--faint)}
+.vclr{margin-left:8px;padding:1px 7px;border:1px solid var(--line);border-radius:4px;font-size:10.5px}
 aside button{display:grid;grid-template-columns:1fr auto;gap:6px;width:100%;text-align:left;
  padding:5px 12px;font-size:12.5px;align-items:center;border-left:2px solid transparent}
 aside button:hover{background:var(--sel)}
@@ -367,6 +385,12 @@ var ssel = 0;   // 고른 사양 표
 var usel = {};  // 모델 ID → 고른 Unit Model Number 후보
 var uvw = {};   // 모델 ID → 형번 목록 보기 방식 (table 표 | cards 카드)
 var mview = 'unit'; // 모델 상세 안의 작업 탭
+var axis = 'eq';    // 좌측 레일의 축 — 'eq' 설비 기준 · 'vn' 제조사 기준
+var vnF = '';       // 제조사 축에서 들어왔을 때의 제조사 좁히기
+var isel = {};      // 모델 ID → 고른 인터페이스(포인트 리스트의 판)
+// 프로토콜 블록 이름 → 화면 표기. 사전(point-schema blocks)의 키를 그대로 받는다.
+var PROTO_KO = {bacnet:'BACnet', modbus:'Modbus', n2:'N2', lon:'LON',
+                yorktalk:'York Talk', logix:'Logix', elink:'E-Link'};
 var ksel = 'rating';  // 고른 표 성격 — 모델을 바꾸면 모델별 기본 정격표로 되돌린다
 // 표의 성격. rating은 사용자가 바로 입력하는 값이 아니라 모델별 정격값을 찾는 원문표다.
 var KIND_ORDER = ['rating','perf','dim','etc'];
@@ -393,33 +417,79 @@ var NUMCOL = /^(인스턴스|종류|단위|등급|수량|값)$/;
 
 // ── 좌측 목록
 function buildNav(){
-  var h = '<div class="gh">시작</div><button data-id="home">홈 — 현업은 이렇게 봐요<i></i></button>';
-  D.domOrder.forEach(function(dm){
-    var list = D.equips.filter(function(e){return e.domain===dm;});
-    if(!list.length) return;
-    if(list.length>1) h += '<div class="gh">'+esc(dm)+'</div>';
-    else h += '<div class="gh" style="height:6px"></div>';
-    list.forEach(function(e){
-      var nm = (D.models[e.id]||[]).length;
-      // 사양이 있는 모델 수까지 보여 준다 — 없으면 어느 계열을 눌러야 할지 알 수 없다
-      var ns = (D.models[e.id]||[]).filter(hasSpec).length;
-      h += '<button data-id="'+e.id+'">'+esc(e.title)+'<i>'+e.np+(nm?' · M'+nm:'')
-         + (ns?' · <b class="sm">S'+ns+'</b>':'')+'</i></button>';
-      if(e.id==='e5' && nm){
-        modelSubtypes(e.id).forEach(function(g){
-          h += '<button class="sub" data-id="'+e.id+'" data-sub="'+esc(g.name)+'">└ '
-             + esc(g.name)+'<i>M'+g.count+'</i></button>';
-        });
-      }
+  // 입구를 둘 둔다 — 설비 기준과 제조사 기준. 업계 카탈로그(BTL·AHRI)가 같은 집합에
+  // 입구를 둘 두는 이유는 물어보는 것이 두 가지라서다. "이 제조사가 뭘 갖고 있나"와
+  // "이 설비를 누가 만드나"는 다른 질문이고, 트리 하나로는 한쪽만 답한다.
+  var h = '<div class="axis">'
+        + '<button class="axb" data-axis="eq" aria-pressed="'+(axis==='eq')+'">설비</button>'
+        + '<button class="axb" data-axis="vn" aria-pressed="'+(axis==='vn')+'">제조사</button>'
+        + '</div>';
+  h += '<div class="gh">시작</div><button data-id="home">홈 — 현업은 이렇게 봐요<i></i></button>';
+  if(axis==='eq'){
+    D.domOrder.forEach(function(dm){
+      var list = D.equips.filter(function(e){return e.domain===dm;});
+      if(!list.length) return;
+      if(list.length>1) h += '<div class="gh">'+esc(dm)+'</div>';
+      else h += '<div class="gh" style="height:6px"></div>';
+      list.forEach(function(e){
+        var nm = (D.models[e.id]||[]).length;
+        // 사양이 있는 모델 수까지 보여 준다 — 없으면 어느 계열을 눌러야 할지 알 수 없다
+        var ns = (D.models[e.id]||[]).filter(hasSpec).length;
+        h += '<button data-id="'+e.id+'">'+esc(e.title)+'<i>'+e.np+(nm?' · M'+nm:'')
+           + (ns?' · <b class="sm">S'+ns+'</b>':'')+'</i></button>';
+        if(e.id==='e5' && nm){
+          modelSubtypes(e.id).forEach(function(g){
+            h += '<button class="sub" data-id="'+e.id+'" data-sub="'+esc(g.name)+'">└ '
+               + esc(g.name)+'<i>M'+g.count+'</i></button>';
+          });
+        }
+      });
     });
-  });
+  } else {
+    var vx = vendorIndex();
+    h += '<div class="gh">제조사 '+Object.keys(vx).length+'곳</div>';
+    Object.keys(vx).sort().forEach(function(vn){
+      var v = vx[vn];
+      h += '<button data-id="v:'+esc(vn)+'">'+esc(vn)+'<i>M'+v.n
+         + (v.ni?' · <b class="sm">'+v.ni+'판</b>':'')+'</i></button>';
+      Object.keys(v.eqs).forEach(function(eq){
+        var e = eqById(eq);
+        if(!e) return;
+        h += '<button class="sub" data-id="'+eq+'" data-vendor="'+esc(vn)+'">└ '
+           + esc(e.title)+'<i>M'+v.eqs[eq].length+'</i></button>';
+      });
+    });
+  }
   nav.innerHTML = h;
-  nav.querySelectorAll('button').forEach(function(b){
-    b.addEventListener('click',function(){ cur=b.dataset.id; subF=b.dataset.sub||''; tab=defaultTab(cur); mi=0; vsel=0; ssel=0; mview='unit'; pageOf={}; kindF=''; gradeF=''; render(); });
+  nav.querySelectorAll('button:not(.axb)').forEach(function(b){
+    b.addEventListener('click',function(){ cur=b.dataset.id; subF=b.dataset.sub||'';
+      vnF=b.dataset.vendor||''; tab=defaultTab(cur); mi=0; vsel=0; ssel=0; mview='unit';
+      pageOf={}; kindF=''; gradeF=''; render(); });
+  });
+  nav.querySelectorAll('.axb').forEach(function(b){
+    b.addEventListener('click',function(){ axis=b.dataset.axis; buildNav(); markNav(); });
   });
 }
-function markNav(){ nav.querySelectorAll('button').forEach(function(b){
-  b.setAttribute('aria-current', b.dataset.id===cur && (b.dataset.sub||'')===subF ? 'true':'false'); }); }
+
+// 제조사 → {모델 수, 판 수, 계열별 모델 번호}. 번호는 D.models[계열] 기준이라 기존
+// 이동 단추([[계열|번호|이름]])와 그대로 맞물린다.
+function vendorIndex(){
+  var map = {};
+  Object.keys(D.models).forEach(function(eq){
+    (D.models[eq]||[]).forEach(function(m,i){
+      var v = map[m.vendor] = map[m.vendor] || {n:0, ni:0, eqs:{}};
+      v.n++;
+      v.ni += (m.interfaces||[]).length;
+      (v.eqs[eq] = v.eqs[eq] || []).push(i);
+    });
+  });
+  return map;
+}
+function eqById(id){ return D.equips.filter(function(x){return x.id===id;})[0]; }
+
+function markNav(){ nav.querySelectorAll('button:not(.axb)').forEach(function(b){
+  b.setAttribute('aria-current', b.dataset.id===cur && (b.dataset.sub||'')===subF
+    && (b.dataset.vendor||'')===vnF ? 'true':'false'); }); }
 function defaultTab(eid){
   return (D.models[eid]||[]).length ? 'md' : 'pt';
 }
@@ -434,7 +504,11 @@ function modelSubtypes(eid){
 }
 function visibleModels(eid){
   var allModels = D.models[eid] || [];
-  return subF ? allModels.filter(function(m){ return (m.modelSubtype||'기타')===subF; }) : allModels;
+  if(subF) allModels = allModels.filter(function(m){ return (m.modelSubtype||'기타')===subF; });
+  // 제조사 축에서 들어오면 그 제조사만 남긴다 — 축을 바꿔도 화면이 같으면 축을 바꾼
+  // 의미가 없다. 'Trane 의 냉동기'가 곧 답이어야 한다.
+  if(vnF) allModels = allModels.filter(function(m){ return m.vendor===vnF; });
+  return allModels;
 }
 
 // ── 표
@@ -646,6 +720,7 @@ function renderEquip(e){
   if(tab==='md' && !models.length) tab = 'pt';
   var h = '<div class="hd"><div class="dom">'+esc(e.domain)+'</div><h1>'+esc(e.title)+'</h1>'
         + (subF ? '<div class="subttl">'+esc(subF)+'</div>' : '')
+        + (vnF ? '<div class="subttl">'+esc(vnF)+' 만 <button class="vclr">전체 보기</button></div>' : '')
         + '<div class="tag">'+fmt(e.head)+'</div></div>';
   h += '<div class="tabs">'
      + tb('md','모델',models.length) + tb('pt','포인트',e.np) + tb('sp','사양',e.ns) + '</div>';
@@ -683,8 +758,21 @@ function renderModels(models, l3){
     // 모델이 20건을 넘으면 이름 전체가 길어 고르기 어렵다.
     // 공통 앞머리(제조사·컨트롤러)를 떼고 **다른 부분만** 보이게 한다.
     var pre = models.length > 1 ? commonPrefix(models.map(function(x){return x.selectorLabel || x.model;})) : '';
+    // 제조사로 묶는다 — 한 줄로 늘어놓으면 어느 회사 것인지 이름을 읽어야 안다.
+    // (models 는 build 에서 (제조사, 모델) 순으로 정렬돼 이어 붙이면 그대로 묶인다)
+    var vgroups = [];
+    models.forEach(function(x,i){
+      var g = vgroups[vgroups.length-1];
+      if(!g || g.v !== x.vendor) vgroups.push(g = {v:x.vendor, items:[]});
+      g.items.push({x:x, i:i});
+    });
     h += (pre ? '<div class="mpre">'+esc(pre.replace(/[\s—·-]+$/,''))+'</div>' : '')
-       + '<div class="mlist">' + models.map(function(x,i){ return modelButton(x, i, pre); }).join('') + '</div>';
+       + vgroups.map(function(g){
+           return (vgroups.length>1 ? '<div class="mvd">'+esc(g.v)+'<i>'+g.items.length+'</i></div>' : '')
+             + '<div class="mlist">'
+             + g.items.map(function(o){ return modelButton(o.x, o.i, pre); }).join('')
+             + '</div>';
+         }).join('');
   }
   // 형번을 골랐으면 그 형번 사진을, 아니면 제품군 사진을 보여 준다.
   var vphoto = (m.variants||[])[Math.min(vsel,(m.variants||[]).length-1)];
@@ -696,6 +784,16 @@ function renderModels(models, l3){
      + '<p>'+fmt(m.summary)+'</p>'
      + (psrc ? '<div class="psrc">사진 출처 '+esc(psrc)+'</div>' : '')
      + '</div></div>';
+  // 별칭 모델 — 이 제품은 자기 목록이 없고 다른 모델의 판이 덮는다. 그 판으로 가는
+  // 길을 안 주면 화면이 '아무것도 없는 모델'로 보인다.
+  if(m.aliasOf){
+    var pj = null;
+    Object.keys(D.models).forEach(function(eq){
+      (D.models[eq]||[]).forEach(function(x,i){ if(x.id===m.aliasOf) pj = [eq,i,x.name]; }); });
+    h += '<div class="msg"><b>이 제품은 목록을 다른 모델과 함께 쓴다</b><p>'
+       + fmt(m.summary) + '</p>'
+       + (pj ? '<p>[['+pj[0]+'|'+pj[1]+'|'+esc(pj[2])+' 로 가기]]</p>' : '') + '</div>';
+  }
   h += '<div class="meta"><span>프로파일 <code>'+esc(m.model)+'</code></span>'
      + '<span>분류 <code>'+esc(m.cat)+'</code></span><span>태그 <code>'+esc(m.tag)+'</code></span>'
      + '<span>사양값 '+badge(m.has.spec)+'</span><span>오브젝트 목록 '+badge(m.has.points)+'</span></div>';
@@ -859,6 +957,7 @@ function renderModels(models, l3){
                 key:'st'+si+(t.source||''), raw:true});
     if(isAhuModel(m)) h += '</details>';
   }
+  h += renderInterfaces(m);
   if(m.points.length){
     var pts = m.points.filter(function(p){return p.inst;});
     var hasNote = m.points.some(function(p){return p.note;});
@@ -975,7 +1074,7 @@ function renderAhuPurposeWorkspace(m){
 function availableModelViews(m, p){
   var views = [];
   if((p.unitModels||[]).length) views.push({id:'unit', label:'형번·정격', count:p.unitModels.length});
-  views.push({id:'points', label:'오브젝트 목록', count:(m.points||[]).length});
+  views.push({id:'points', label:'오브젝트 목록', count:ptCount(m)});
   if((m.specTables||[]).length) views.push({id:'raw', label:'원문표', count:(m.specTables||[]).length});
   if((m.docs||[]).length) views.push({id:'docs', label:'근거', count:(m.docs||[]).length});
   return views;
@@ -1021,7 +1120,114 @@ function renderSimulatorInputPanel(m, p){
              }), key:'ahu-purpose-sim'+m.id, raw:true, nopage:true});
 }
 
+// ── 제조사 화면 ──────────────────────────────────────────────────────────────
+// 제조사를 고르면 그 회사가 가진 것을 설비별로 본다. 표 첫 칸이 이동 단추라
+// 거기서 바로 그 계열 화면의 그 모델로 넘어간다.
+function protoOf(m){
+  var s = {};
+  (m.comm||[]).forEach(function(c){ if(c[0]) s[c[0]]=1; });
+  (m.interfaces||[]).forEach(function(it){
+    (it.protocols||[]).forEach(function(x){ s[PROTO_KO[x]||x]=1; }); });
+  return Object.keys(s).join('·');
+}
+function ptCount(m){
+  return (m.points||[]).length
+       + (m.interfaces||[]).reduce(function(a,it){ return a + (it.pointCount||0); }, 0);
+}
+function renderVendor(vn){
+  var v = vendorIndex()[vn];
+  if(!v) return '<div class="msg"><b>제조사를 못 찾았어요</b></div>';
+  var nm = 0, np = 0;
+  Object.keys(v.eqs).forEach(function(eq){ v.eqs[eq].forEach(function(i){
+    nm++; np += ptCount(D.models[eq][i]); }); });
+  var h = '<div class="hd"><div class="dom">제조사</div><h1>'+esc(vn)+'</h1>'
+        + '<div class="tag">모델 <b class="num">'+nm+'</b> · 설비 계열 '
+        + Object.keys(v.eqs).length + ' · 오브젝트 <b class="num">'+np+'</b>'
+        + (v.ni?' · 포인트 리스트 판 <b class="num">'+v.ni+'</b>':'')+'</div></div><div class="wrap">';
+  Object.keys(v.eqs).forEach(function(eq){
+    var e = eqById(eq);
+    if(!e) return;
+    var rows = v.eqs[eq].map(function(i){
+      var m = D.models[eq][i];
+      return ['[['+eq+'|'+i+'|'+esc(e.title)+']]', esc(m.name)
+              + (m.aliasOf ? '<span class="mpr"> 별칭</span>' : ''),
+              esc(protoOf(m)), (m.interfaces||[]).length || '',
+              ptCount(m) || '', specCount(m) || ''];
+    });
+    h += sec(e.title, rows.length)
+       + table({header:['계열','모델','프로토콜','판','오브젝트','원문표'],
+                rows:rows, key:'vn'+vn+eq, nopage:true, raw:true});
+  });
+  return h + '</div>';
+}
+
+// ── 인터페이스(포인트 리스트의 판) ────────────────────────────────────────────
+// 한 제품이 게이트웨이·펌웨어·개정에 따라 다른 목록을 낸다. 문서가 가른 대로 나눠
+// 두지 않으면 주소 체계가 다른 목록이 한 표에 섞여 되돌릴 수 없다(D-016).
+function ifCell(v){
+  if(v===null || v===undefined) return '';
+  if(Array.isArray(v)) return v.map(ifCell).join(', ');
+  if(typeof v === 'object'){
+    if(v.raw!==undefined && v.raw!==null) return String(v.raw);
+    return Object.keys(v).map(function(k){ return k+'='+ifCell(v[k]); }).join(' · ');
+  }
+  return String(v);
+}
+var IFCOLS = [['n','오브젝트명'],['s','짧은 이름'],['b','BACnet'],['m','Modbus'],['d','N2'],
+              ['l','LON'],['y','York Talk'],['k','YT 종별'],['g','Logix'],['u','단위'],
+              ['w','R/W'],['a','적용 조건'],['t','상태·열거'],['o','비고'],['p','쪽']];
+function renderInterfaces(m){
+  var ifs = m.interfaces || [];
+  if(!ifs.length) return '';
+  var k = Math.min(isel[m.id]||0, ifs.length-1), it = ifs[k];
+  var tot = ifs.reduce(function(a,x){ return a + (x.pointCount||0); }, 0);
+  var h = sec('오브젝트 목록 — 판 '+ifs.length+'개', tot);
+  if(ifs.length>1) h += '<div class="guide"><b>같은 제품인데 목록이 여러 판이에요</b>'
+    + '<p>게이트웨이·펌웨어·문서 개정에 따라 주소가 달라집니다. 문서가 가른 대로 나눠 두었어요 '
+    + '— 판을 고르면 그 판의 목록만 봅니다.</p></div>';
+  h += '<div class="iflist">' + ifs.map(function(x,i){
+      // 계통+개정만으로는 안 갈린다 — YK 는 EM/SSS 판과 VSD 판이 같은 'Rev K 04d' 다.
+      // 문서 이름이 유일한 구분자라 함께 보인다.
+      var rv = [x.revision&&x.revision.doc, x.revision&&x.revision.block,
+                x.revision&&x.revision.firmware,
+                x.id.replace(/^[a-z0-9]+-/,'')].filter(Boolean).join(' · ');
+      return '<button data-if="'+i+'" aria-pressed="'+(i===k)+'">'
+        + esc(x.family||'계통 미상')
+        + (rv ? '<span class="ifr">'+esc(rv)+'</span>' : '')
+        + '<span class="mpr">'+esc((x.protocols||[]).map(function(pp){
+            return PROTO_KO[pp]||pp; }).join('·'))+'</span>'
+        + '<span class="mn">'+(x.pointCount||0)+'</span></button>';
+    }).join('') + '</div>';
+  var meta = [];
+  if(it.appliesTo && it.appliesTo.length)
+    meta.push('이 목록이 덮는 제품 <b>'+esc(it.appliesTo.join(' · '))+'</b>');
+  meta.push('출처 ' + srcLink(it.sourceFile, (it.sourcePages||[])[0],
+            it.sourceFile + (it.sourcePages ? ' p'+it.sourcePages.join('~') : '')));
+  h += '<div class="ifmeta">' + meta.join('<span class="dot">·</span>') + '</div>';
+  if(it.note) h += '<div class="ifmeta">'+esc(it.note)+'</div>';
+  // 뺀 행과 못 채운 것은 표 앞에 둔다 — 조용히 빼면 '문서에 그것뿐'으로 읽힌다
+  if(it.excluded) h += '<div class="msg"><b>포인트로 세지 않은 행</b><p>'
+    + esc(Object.keys(it.excluded).map(function(r){ return r+' '+it.excluded[r]+'행'; }).join(' · '))
+    + '</p></div>';
+  if(it.gaps && it.gaps.length) h += '<div class="msg"><b>남은 판단</b><p>'
+    + esc(it.gaps.join(' / ')) + '</p></div>';
+  var use = IFCOLS.filter(function(c){
+    return (it.points||[]).some(function(pp){ return pp[c[0]]!==undefined && pp[c[0]]!==''; }); });
+  var rows = (it.points||[]).map(function(pp){
+    return use.map(function(c){ return esc(ifCell(pp[c[0]])); }); });
+  h += '<div class="qrow"><span class="qsrc">'+esc(it.label||'')+'</span>'
+     + csvBtn('if'+m.id+k, safeName(m.vendor+'_'+m.model+'_'+it.id)+'.csv',
+              use.map(function(c){ return c[1]; }), rows, '이 판 CSV')
+     + '</div>'
+     + table({header:use.map(function(c){ return c[1]; }), rows:rows, raw:true,
+              key:'if'+m.id+k});
+  return h;
+}
+
 function renderObjectPointPanel(m){
+  // 새 형식(판별 목록)이 있으면 그것이 본체다. 옛 평면 목록이 함께 있으면 뒤에 잇는다.
+  var ifh = renderInterfaces(m);
+  if(ifh && !(m.points||[]).length) return ifh;
   var pts = (m.points||[]).filter(function(p){return p.inst;});
   var hasNote = (m.points||[]).some(function(p){return p.note;});
   var hasSrc = (m.points||[]).some(function(p){return p.sourceFile && p.sourcePage;});
@@ -1041,7 +1247,7 @@ function renderObjectPointPanel(m){
       p.sourceFile ? (p.sourceFile + (p.sourcePage ? ' p'+p.sourcePage : '')) : ''));
     return r;
   });
-  return sec('제조사 원문 오브젝트 목록', pts.length)
+  return ifh + sec('제조사 원문 오브젝트 목록', pts.length)
     + '<div class="guide"><b>L3 전체 포인트예요</b>'
     + '<p>BMS 자동 매핑과 시운전에 필요한 제조사 원문 오브젝트 목록입니다. 운영 화면에 전부 올리는 목록이 아니라, 상세 매핑의 원천입니다.</p></div>'
     + '<div class="qrow"><span class="qsrc">인스턴스 번호까지 문서에 확정된 L3 전체 목록</span>'
@@ -1886,7 +2092,8 @@ function render(){
   var html;
   if(searchAll_on && term.length>=2) html = renderSearch();
   else if(cur==='home') html = renderHome();
-  else html = renderEquip(D.equips.filter(function(x){return x.id===cur;})[0]);
+  else if(String(cur).indexOf('v:')===0) html = renderVendor(String(cur).slice(2));
+  else html = renderEquip(eqById(cur));
   // 링크 표기 [[계열|모델|이름]] → 이동 버튼. **이벤트를 붙이기 전에** 바꿔야 한다.
   // 예전엔 붙인 뒤 innerHTML 을 다시 넣어 앞서 건 이벤트가 전부 날아갔다.
   main.innerHTML = html.replace(/\[\[([^|]+)\|(\d+)\|([^\]]+)\]\]/g,
@@ -1940,6 +2147,14 @@ function wire(){
     b.addEventListener('click',function(){ tab=b.dataset.tab; kindF=''; gradeF=''; render(); });});
   main.querySelectorAll('.mlist button').forEach(function(b){
     b.addEventListener('click',function(){ mi=+b.dataset.mi; vsel=0; ssel=0; mview='unit'; ksel='rating'; pageOf={}; render(); });});
+  main.querySelectorAll('.iflist button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var models = visibleModels(cur), m = models[Math.min(mi, models.length-1)];
+      if(m) isel[m.id] = +b.dataset.if;
+      re();
+    });});
+  main.querySelectorAll('.vclr').forEach(function(b){
+    b.addEventListener('click',function(){ vnF=''; mi=0; render(); });});
   main.querySelectorAll('.mtabs button').forEach(function(b){
     b.addEventListener('click',function(){ mview=b.dataset.mview; pageOf={}; render(); });});
   main.querySelectorAll('.ucard').forEach(function(b){

@@ -18,9 +18,12 @@
   그 제품이 내보내는 목록의 판(계통·펌웨어·개정). 한 문서가 여러 제품을 덮으면 주
   제품에만 붙이고 `appliesTo` 로 밝힌다. 사전은 `data/point-schema.json`(v2),
   게이트는 `validate.check_interfaces` + `test_interfaces.py` 11건.
-- ⚠ **화면(`equip-catalog.html`)은 아직 모델을 공조기(e5) 19건만 싣는다**
-  (`build.py PUBLIC_MODEL_EQUIP_IDS`). JCI 33모델은 데이터에는 있지만 화면에 안 나온다.
-  카탈로그 축 개편(설비 ↔ 제조사 전환)은 D-016 에 결정만 적혀 있고 미착수다.
+- **화면은 축이 둘이다** — 좌측 레일에서 설비 기준 ↔ 제조사 기준을 바꾼다(D-016 ⑵).
+  계열 화면의 모델 목록은 제조사로 묶이고, 모델 안에서는 판(인터페이스)을 골라 본다.
+  `build.py PUBLIC_MODEL_EQUIP_IDS` 가 화면에 싣는 계열(이제 e5 하나가 아니다),
+  `PURPOSE_EQUIP_IDS` 는 형번·템플릿 워크스페이스가 정의된 계열(e5)만.
+- 검토 화면은 둘이다 — `review/equip-catalog.html`(전체 카탈로그, `build.py`) ·
+  `review/jci-ingest.html`(JCI 취입 검사대, `ingest_jci.py --export`).
 
 - **형번 데이터는 확정 데이터셋(골든 레코드)** — 추출은 제안, 정본은
   `pipeline/data/units/<모델>.json`(23모델 360건). 속성 사전 `data/unit-schema.json`
@@ -51,8 +54,9 @@
   설비 분류는 JCI 제품명의 낱말로 `cat` 4단계(`…CHILLER.SCREW`)와 Haystack 태그
   (`chiller-rotaryScrew`·`airCooling`)를 붙였다. 스크롤은 Haystack 4 에 값이 없어
   태그 없이 gap 에 적었다.
-  **화면은 손대지 않았다** — 축 개편은 D-016 에 결정만 남기고 다음으로 미뤘다
-  (한 번에 스키마·취입·화면을 같이 바꾸면 무엇이 무엇을 깨뜨렸는지 못 가린다).
+  화면은 **취입을 커밋한 뒤 따로** 했다 — 좌측 축 전환(설비 ↔ 제조사)·제조사별 묶음·
+  판 선택 표, 그리고 계열 제한 해제(모델 19 → 140건). 6.2MB → 12.3MB(옛 포인트의 빈
+  칸을 빼 16.9MB 에서 줄였다).
   ⚠ 고친 함정 — collect 의 최소 크기 필터(20KB)가 list 소스에서 살아 있는 문서를
   조용히 버렸다(YSAA Native 18KB). 계통 판정을 페이지 글자로 하면 머리글이 열끼리
   뒤섞여 21건이 미분류가 된다(표 머리글로 봐야 한다).
