@@ -699,6 +699,7 @@ td.num{font-family:ui-monospace,Consolas,monospace;font-variant-numeric:tabular-
  white-space:nowrap;color:var(--dim)}
 td.nm{min-width:210px}
 .empty{padding:30px;color:var(--faint);text-align:center}
+h3.ph{margin:22px 0 2px;font-size:13px;font-weight:650;letter-spacing:-.01em}
 @media (max-width:820px){
   .app{grid-template-columns:1fr;height:auto}
   aside{border-right:0;border-bottom:1px solid var(--line);max-height:220px}
@@ -717,6 +718,10 @@ td.nm{min-width:210px}
 <div class="app">
   <aside>
     <div class="rh">남은 일</div>
+    <button class="item" data-id="__progress__">
+      <span class="iname">진행 현황 — 설비 타입별</span>
+      <span class="icount"><em id="pn">0</em>제품</span>
+    </button>
     <button class="item" data-id="__holes__">
       <span class="iname">판정·별칭·남은 일</span>
       <span class="icount"><em id="hn">0</em></span>
@@ -730,7 +735,7 @@ td.nm{min-width:210px}
 "use strict";
 var D = JSON.parse(document.getElementById('d').textContent);
 var rail = document.getElementById('rail'), main = document.getElementById('main');
-var cur = 0, ifi = 0, term = '';
+var cur = '__progress__', ifi = 0, term = '';
 
 function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
@@ -745,6 +750,7 @@ document.getElementById('sPts').textContent = D.totalPoints.toLocaleString();
 var holeN = D.alias.length;
 document.getElementById('sHole').textContent = holeN;
 document.getElementById('hn').textContent = holeN;
+document.getElementById('pn').textContent = D.models.length;
 
 // 설비 분류로 묶는다 — 냉동기 31건을 한 줄로 늘어놓으면 압축 방식이 안 보인다.
 // 분류 근거는 JCI 카탈로그 제품명의 낱말이고, cat 4단계에 그대로 실려 있다.
@@ -780,6 +786,82 @@ function chipTail(x){ return x.id.replace(/^[a-z0-9]+-/, ''); }
 var COLS = [['n','오브젝트명'],['s','짧은 이름'],['b','BACnet'],['m','Modbus'],['d','N2'],
             ['l','LON'],['y','York Talk'],['k','YT 종별'],['g','Logix'],['u','단위'],
             ['w','R/W'],['a','적용 조건'],['t','상태·열거'],['o','비고'],['p','쪽']];
+
+// ── 진행 현황 ────────────────────────────────────────────────────────────────
+// "어디까지 됐나"에 답하는 화면. 두 축으로 본다 — 설비 타입별로 무엇이 쌓였나,
+// 그리고 **문서 포털에 있는 것 대비** 얼마나 가져왔나. 뒤쪽이 없으면 "다 했다"를
+// 확인할 방법이 없다.
+var SITE_KO = {chillers:'냉동기 포털', ductedsystems:'덕트·옥상형 포털', bas:'제어·계측 포털(Metasys)'};
+function renderProgress(){
+  var byKind = KIND.map(function(k){
+    var ms = D.models.filter(function(m){ return m.cat === k[0]; });
+    var al = D.alias.filter(function(a){
+      return D.models.some(function(m){ return m.id === a.of && m.cat === k[0]; }); });
+    return {ko:k[1], n:ms.length,
+            ifs:ms.reduce(function(a,m){ return a + m.ifs.length; }, 0),
+            pts:ms.reduce(function(a,m){ return a + pts(m); }, 0),
+            alias:al.length,
+            top:ms.slice().sort(function(a,b){ return pts(b)-pts(a); }).slice(0,3)};
+  }).filter(function(x){ return x.n; });
+
+  var h = '<div class="pad"><h2>진행 현황</h2>'
+    + '<div class="sub">설비 타입별로 무엇이 쌓였는지, 그리고 <b>문서 포털에 있는 것 대비</b> '
+    + '얼마나 가져왔는지. 뒤쪽이 없으면 "다 했다"를 확인할 방법이 없다.</div>'
+    + '<div class="tw" style="margin-top:14px"><table><thead><tr>'
+    + '<th>설비 타입</th><th>제품</th><th>판</th><th>오브젝트</th><th>별칭</th>'
+    + '<th>정격</th><th>큰 것부터</th></tr></thead><tbody>'
+    + byKind.map(function(x){
+        return '<tr><td class="nm"><b>' + esc(x.ko) + '</b></td>'
+          + '<td class="num">' + x.n + '</td><td class="num">' + x.ifs + '</td>'
+          + '<td class="num">' + x.pts.toLocaleString() + '</td>'
+          + '<td class="num">' + (x.alias || '') + '</td>'
+          + '<td class="num" style="color:var(--hole)">0/' + x.n + '</td>'
+          + '<td class="nm">' + x.top.map(function(m){
+              return esc(m.model.split(' ')[0]) + ' ' + pts(m); }).join(' · ') + '</td></tr>';
+      }).join('')
+    + '<tr><td class="nm"><b>합계</b></td><td class="num"><b>' + D.models.length + '</b></td>'
+    + '<td class="num"><b>' + D.totalIfs + '</b></td>'
+    + '<td class="num"><b>' + D.totalPoints.toLocaleString() + '</b></td>'
+    + '<td class="num"><b>' + D.alias.length + '</b></td>'
+    + '<td class="num" style="color:var(--hole)"><b>0/' + D.models.length + '</b></td>'
+    + '<td></td></tr></tbody></table></div>'
+    + '<div class="card"><b class="lbl">정격이 왜 0 인가</b>'
+    + '이 소스는 <b>BAS 포인트 리스트</b>다. 오브젝트 매핑 자동화는 33제품 전부 되지만, '
+    + '시뮬레이터가 쓸 용량·COP·전류는 한 제품도 없다 — 제품 카탈로그가 별도 수집 대상이다.</div>';
+
+  if(D.coverage && D.coverage.length){
+    h += '<h3 class="ph">문서 포털 대비 취입률</h3>'
+      + '<div class="sub" style="padding:0 0 8px">JCI 문서 카탈로그 스냅샷과 대조했다. '
+      + '"후보"는 제목에 포인트 리스트 낌새가 있는 문서다 — 실제 포인트 표가 있는지는 열어 봐야 안다.</div>'
+      + '<div class="tw"><table><thead><tr><th>포털</th><th>전체 문서</th><th>후보</th>'
+      + '<th>취입</th><th>안 가져온 것의 분류</th></tr></thead><tbody>'
+      + D.coverage.map(function(c){
+          var pct = c.cand ? Math.round(c.taken * 100 / c.cand) : 0;
+          return '<tr><td class="nm"><b>' + esc(SITE_KO[c.site] || c.site) + '</b></td>'
+            + '<td class="num">' + c.docs.toLocaleString() + '</td>'
+            + '<td class="num">' + c.cand + '</td>'
+            + '<td class="num"><b>' + c.taken + '</b> <span style="color:var(--faint)">('
+            + pct + '%)</span></td>'
+            + '<td class="nm">' + (c.miss.length
+                ? c.miss.map(function(m){ return esc(m[0]) + ' ' + m[1]; }).join(' · ')
+                : '<span style="color:var(--ok)">없음</span>') + '</td></tr>';
+        }).join('')
+      + '</tbody></table></div>'
+      + '<div class="card"><b class="lbl">냉동기 포털의 안 가져온 31건은 무엇인가</b>'
+      + '열어 보니 대부분 <b>SC-EQ 펌웨어 공지 · 배선도 · 번역본 · 제품 카탈로그</b>였다 — '
+      + '포인트 표가 아니다. 실제 포인트 표가 있는 문서는 아래 하나뿐이다.</div>';
+  }
+  if(D.knownGaps && D.knownGaps.length){
+    h += '<h3 class="ph">확인된 구멍</h3>'
+      + D.knownGaps.map(function(g){
+          return '<div class="card hole"><b class="lbl">' + esc(g.what) + '</b>'
+            + '<div class="kv"><span>문서 <b>' + esc(g.docs) + '</b></span>'
+            + '<span>실측 <b>' + esc(g.found) + '</b></span></div>'
+            + '<div style="margin-top:6px">' + esc(g.why) + '</div></div>';
+        }).join('');
+  }
+  return h + '</div>';
+}
 
 function renderHoles(){
   var judged = [], merged = 0, split = 0;
@@ -821,6 +903,7 @@ function renderHoles(){
 function render(){
   document.querySelectorAll('aside .item').forEach(function(b){
     b.setAttribute('aria-current', String(b.dataset.id) === String(cur)); });
+  if(cur === '__progress__'){ main.innerHTML = renderProgress(); return; }
   if(cur === '__holes__'){ main.innerHTML = renderHoles(); return; }
   var m = D.models[cur | 0];
   var it = m.ifs[Math.min(ifi, m.ifs.length - 1)];
@@ -875,6 +958,49 @@ document.querySelectorAll('aside .item').forEach(function(b){
 render();
 </script>
 """
+
+
+# 포털 스냅샷에서 '포인트 표가 있을 법한 문서'를 고르는 힌트. 취입률을 재는 데만 쓴다 —
+# 이걸로 파싱하지 않는다(파싱 판정은 표 머리글로 한다).
+PT_HINT = re.compile(r"points?\s*list|data\s*map|point\s*map|BAS\b|E-?Link|SC-?EQ|"
+                     r"BACnet|Modbus|N2\b|LON\b|protocol", re.I)
+
+# 눈으로 확인한 구멍. **원문을 열어 센 것만 적는다** — 짐작은 적지 않는다.
+KNOWN_GAPS = [
+    {"what": "YKN2Open BMS 게이트웨이",
+     "docs": "영문 1건 + 번역 7건 (chillers 포털)",
+     "found": "Modbus 38행 · BACnet 51행 · 노드 설정 17행 = 106행 (2026-08-18 원문 실측)",
+     "why": "표가 FieldServer 계열이라(Map Descriptor Name · Data Array Name) 지금 파서 "
+            "넷 중 어느 것도 안 잡는다. 9번째 계통이다."},
+    {"what": "정격 (용량·COP·전류)",
+     "docs": "이 소스에 없음",
+     "found": "제품 33건 전부 0",
+     "why": "BAS 포인트 리스트 포털이라 정격이 실리지 않는다. York 제품 카탈로그를 "
+            "따로 수집해야 시뮬레이터가 쓸 수 있다(짝 규칙)."},
+]
+
+
+def coverage():
+    """포털 스냅샷 대비 취입률. 스냅샷이 없으면 빈 값 — 화면이 그 절을 생략한다."""
+    if not os.path.exists(SNAPSHOT):
+        return []
+    with open(SNAPSHOT, encoding="utf-8") as f:
+        snap = json.load(f)
+    taken = {i for i, _s, _n in SRC.JCI_BAS_POINTS}
+    out = []
+    for site, lst in snap.items():
+        cand = [x for x in lst if PT_HINT.search(x.get("title") or "")]
+        got = [x for x in cand if x["id"] in taken]
+        miss = collections.Counter()
+        for x in cand:
+            if x["id"] in taken:
+                continue
+            meta = {m.get("key"): (m.get("values") or [""])[0]
+                    for m in (x.get("metadata") or [])}
+            miss[meta.get("category") or "(분류 없음)"] += 1
+        out.append({"site": site, "docs": len(lst), "cand": len(cand), "taken": len(got),
+                    "miss": miss.most_common(6)})
+    return out
 
 
 def _cell(v):
@@ -945,6 +1071,8 @@ def view_data():
     out["docs"] = len({i["src"] for m in out["models"] for i in m["ifs"]})
     out["totalIfs"] = sum(len(m["ifs"]) for m in out["models"])
     out["totalPoints"] = sum(i["n"] for m in out["models"] for i in m["ifs"])
+    out["coverage"] = coverage()
+    out["knownGaps"] = KNOWN_GAPS
     return out
 
 
