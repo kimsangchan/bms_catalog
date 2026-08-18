@@ -106,6 +106,23 @@ MECHANISM = [
 COOLING = [("Air Cooled", "airCooling"), ("Air-Cooled", "airCooling"),
            ("Water Cooled", "waterCooling"), ("Water-Cooled", "waterCooling")]
 
+# JCI 카탈로그의 문서 분류(category) — **제조사 자신의 분류**라 두 번째 근거로 쓴다.
+# 제품명에 방식이 안 적힌 제품이 4건 있었는데 그중 3건을 이걸로 채웠다
+# (CR→원심 · YVWH/YVWE/YGWH→스크류 수냉 · YMAE→스크롤 공랭).
+# ⚠ 방식을 안 밝히는 분류가 있다('Heat Pump'·'Condensing Unit') — 그때는 미상으로 남긴다.
+CATEGORY = {
+    "Centrifugal": ("CENTRIFUGAL", None),
+    "Screw Air-Cooled": ("SCREW", "airCooling"),
+    "Screw Water-Cooled": ("SCREW", "waterCooling"),
+    "Scroll Air-Cooled": ("SCROLL", "airCooling"),
+    "Scroll Water-Cooled": ("SCROLL", "waterCooling"),
+    "Reciprocating": ("RECIP", None),
+    "Absorption": ("ABSORPTION", None),
+}
+MECH_TAG = {"CENTRIFUGAL": "chiller-centrifugal", "SCREW": "chiller-rotaryScrew",
+            "RECIP": "chiller-reciprocal", "ABSORPTION": "chiller-absorption",
+            "SCROLL": None}
+
 
 def catalog():
     """문서ID → 카탈로그 메타(파일·제목·제품). 스냅샷이 정본이다."""
@@ -177,7 +194,7 @@ def route(only=None, verbose=True):
         marks = marks_of(path)
         rows.append({"id": doc_id, "path": path, "file": name, "marks": marks,
                      "title": m.get("title", ""), "prod": m.get("prod", ""),
-                     "site": m.get("site", "")})
+                     "category": m.get("category", ""), "site": m.get("site", "")})
         if verbose:
             print("%-46s %-24s %s" % (name[:46], ", ".join(marks) or "표식 없음 ⚠",
                                       (m.get("prod") or m.get("title", ""))[:40]))
@@ -214,32 +231,52 @@ def model_of(row):
     return MERGE.get(prod, prod), prod
 
 
-def equip_of(name):
-    """제품명·제목의 낱말로 계열·분류·태그를 정한다.
+def equip_of(name, category=""):
+    """제품명과 문서 분류로 계열·분류·태그를 정한다.
 
     설비별로 갈라 보려면 계열(e9) 하나로는 부족하다 — 냉동기 31건이 한 덩어리가 된다.
-    JCI 카탈로그 제품명이 압축 방식과 응축 방식을 이미 밝히므로(‘YCAS Air Cooled
-    Screw Chiller’) 그걸 읽어 cat 4단계와 Haystack 태그로 옮긴다. **문서에 없는
-    것은 만들지 않는다** — 이름에 안 적힌 제품은 그냥 CHILLER 로 남는다.
+    근거는 둘이고 순서가 있다.
+      ① 제품명 — JCI 가 대개 방식을 이름에 적는다('YCAS Air Cooled Screw Chiller')
+      ② 문서 분류(category) — 제조사 자신의 분류. 이름에 방식이 없을 때 채운다
+    **문서에 없는 것은 만들지 않는다** — 둘 다 안 밝히면 미상으로 남긴다(AWHP).
+
+    ⚠ 둘이 어긋나면 **이름을 따르되 gap 에 적는다.** 실측 1건 — YIA ParaFlow
+    Absorption 은 이름이 흡수식이라고 밝히는데 카탈로그는 Centrifugal 분류에 넣어
+    두었다. 더 구체적인 근거는 이름이지만, 어긋났다는 사실 자체가 사라지면 안 된다.
     """
     t = name.lower()
     if "rooftop" in t or "ypal" in t:
         return "e5", "HVAC.AIR.RTU", "rooftop", ["rooftop"], []
     tags, gaps = ["chiller"], []
-    cat = "HVAC.PLANT.CHILLER"
-    for word, suffix, tag in MECHANISM:
+    suffix = None
+    for word, sfx, _tag in MECHANISM:
         if word.lower() in t:
-            cat = "HVAC.PLANT.CHILLER." + suffix
-            if tag:
-                tags.append(tag)
-            else:
-                gaps.append("압축 방식 '%s' 는 Haystack 4 chillerMechanism 에 값이 없다"
-                            "(chiller-scroll 미정의) — 태그를 지어내지 않는다" % word)
+            suffix = sfx
             break
-    for word, tag in COOLING:
-        if word.lower() in t:
+    cmech, ccool = CATEGORY.get((category or "").strip(), (None, None))
+    if suffix and cmech and suffix != cmech:
+        gaps.append("압축 방식이 이름과 문서 분류에서 다르다 — 이름 %r vs 분류 %r. "
+                    "더 구체적인 이름을 따랐다." % (suffix, category))
+    if not suffix and cmech:
+        suffix = cmech
+        gaps.append("압축 방식을 제품명이 안 밝혀 JCI 문서 분류 %r 에서 가져왔다" % category)
+    cat = "HVAC.PLANT.CHILLER" + ("." + suffix if suffix else "")
+    if suffix:
+        tag = MECH_TAG.get(suffix)
+        if tag:
             tags.append(tag)
+        else:
+            gaps.append("압축 방식 '%s' 는 Haystack 4 chillerMechanism 에 값이 없다"
+                        "(chiller-scroll 미정의) — 태그를 지어내지 않는다" % suffix)
+    cool = None
+    for word, tg in COOLING:
+        if word.lower() in t:
+            cool = tg
             break
+    if not cool and ccool:
+        cool = ccool
+    if cool:
+        tags.append(cool)
     if "heat pump" in t:
         tags.append("heatPump")
     return "e9", cat, "chiller", tags, gaps
@@ -452,7 +489,9 @@ def apply(only=None, dry=False, crosscheck=True):
                   len(prows), (" · %d판" % len(made_ifs)) if len(made_ifs) > 1 else ""))
         if not ifaces:
             continue
-        equip, cat, tag, tags, cgaps = equip_of(key + " " + items[0][0]["title"])
+        dcats = collections.Counter(r["category"] for r, _p in items if r.get("category"))
+        equip, cat, tag, tags, cgaps = equip_of(
+            key, dcats.most_common(1)[0][0] if dcats else "")
         mid = S.model_id(VENDOR, key)
         n = sum(i["pointCount"] for i in ifaces)
         rec = {
@@ -488,12 +527,13 @@ def apply(only=None, dry=False, crosscheck=True):
 
 
 def _doc_meta():
-    """저장 이름 → (문서ID, 제목, 제품명). 취입 뒤에도 원 제목을 되찾을 수 있어야 한다."""
+    """저장 이름 → (문서ID, 제목, 제품명, 문서 분류). 취입 뒤에도 근거를 되찾을 수 있어야 한다."""
     cat = catalog()
     out = {}
     for doc_id, _site, name in SRC.JCI_BAS_POINTS:
         m = cat.get(doc_id) or {}
-        out[name] = (doc_id, m.get("title", ""), m.get("prod", "") or BLANK_PROD.get(doc_id, ""))
+        out[name] = (doc_id, m.get("title", ""),
+                     m.get("prod", "") or BLANK_PROD.get(doc_id, ""), m.get("category", ""))
     return out
 
 
@@ -519,12 +559,17 @@ def refresh():
             for k, v in (it.get("excluded") or {}).items():
                 e["excluded"][k] = e["excluded"].get(k, 0) + v
         ifaces = []
+        cats = collections.Counter()
         for f0, e in by_file.items():
-            doc_id, title, prod = meta.get(f0, ("", m["model"], ""))
+            doc_id, title, prod, dcat = meta.get(f0, ("", m["model"], "", ""))
+            if dcat:
+                cats[dcat] += 1
             row = {"file": f0, "title": title or m["model"], "id": doc_id}
             ifaces.extend(build_interfaces(row, "", e["points"], e["excluded"],
                                            block=BLOCK_OF.get(prod)))
-        equip, cat, tag, tags, cgaps = equip_of(m["model"] + " " + m.get("summary", ""))
+        # 문서 분류는 그 제품 문서들이 가장 많이 붙은 것을 쓴다(한 제품에 문서가 여럿이다)
+        equip, cat, tag, tags, cgaps = equip_of(
+            m["model"], cats.most_common(1)[0][0] if cats else "")
         m["equipId"], m["cat"], m["tag"], m["tags"] = equip, cat, tag, tags
         m["classifiedBy"] = "JCI 카탈로그 제품명 %r 의 낱말 (압축 방식·응축 방식)" % m["model"]
         m["interfaces"] = ifaces
@@ -651,8 +696,16 @@ h1 span{color:var(--faint);font-weight:450;margin-left:8px;font-size:12.5px}
 aside{background:var(--rail);border-right:1px solid var(--line);overflow-y:auto}
 .rh{padding:12px 16px 6px;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
  color:var(--faint);font-weight:700}
+/* 제품 33건 × 7분류가 세로로 길다 — 분류는 접고, 이름 검색으로 바로 좁힌다 */
+.rsearch{padding:10px 12px 4px}
+.rsearch input{width:100%;padding:5px 9px;border:1px solid var(--line);border-radius:6px;
+ background:var(--panel);color:var(--ink);font:inherit;font-size:12px}
+aside details.grp>summary{padding:7px 16px 5px;font-size:10.5px;letter-spacing:.09em;
+ text-transform:uppercase;color:var(--faint);font-weight:700;cursor:pointer;
+ user-select:none}
+aside details.grp>summary:hover{color:var(--dim)}
 aside button.item{display:grid;grid-template-columns:1fr auto;gap:8px;width:100%;
- text-align:left;padding:7px 16px;border-left:2px solid transparent;align-items:center}
+ text-align:left;padding:4px 16px;border-left:2px solid transparent;align-items:center}
 aside button.item:hover{background:var(--accent-soft)}
 aside button.item[aria-current="true"]{background:var(--panel);border-left-color:var(--accent)}
 .iname{font-size:12.5px;line-height:1.3}
@@ -663,18 +716,29 @@ aside button.item[aria-current="true"]{background:var(--panel);border-left-color
  background:var(--accent-soft);color:var(--dim);font-family:ui-monospace,Consolas,monospace}
 
 main{overflow-y:auto;padding:0 0 60px}
-.pad{padding:20px 26px}
+.pad{padding:12px 20px 20px}
 h2{margin:0 0 2px;font-size:20px;font-weight:650;letter-spacing:-.015em;text-wrap:balance}
 .sub{color:var(--dim);font-size:12.5px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 0}
-.chip{border:1px solid var(--line);background:var(--panel);border-radius:7px;
- padding:8px 12px;display:grid;gap:2px;text-align:left;min-width:184px}
-.chip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
-.chip .fam{font-size:12.5px;font-weight:600}
-.chip .meta{font-size:10.5px;color:var(--faint);font-family:ui-monospace,Consolas,monospace}
-.chip .np{font-size:10.5px;color:var(--accent);font-weight:700;
- font-family:ui-monospace,Consolas,monospace}
-
+.hsub{font-size:12px;color:var(--faint);font-weight:450;letter-spacing:0;margin-left:8px}
+/* 판 고르기 — 표를 첫 화면에 올리려고 카드 대신 한 줄 알약/셀렉트로 줄였다 */
+.ifc{border:1px solid var(--line);background:var(--panel);border-radius:999px;
+ padding:3px 10px;font-size:11.5px;color:var(--dim);display:inline-flex;gap:6px;
+ align-items:baseline;white-space:nowrap}
+.ifc b{font-family:ui-monospace,Consolas,monospace;font-size:10.5px;color:var(--faint);
+ font-weight:600}
+.ifc[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);
+ color:var(--ink)}
+.ifc[aria-pressed="true"] b{color:var(--accent)}
+select#ifsel{padding:4px 8px;border:1px solid var(--line);border-radius:6px;
+ background:var(--panel);color:var(--ink);font:inherit;font-size:12px;max-width:420px}
+/* 출처·제외 행·남은 판단·교차 대조 — 근거 팝업이 따로 있으니 요약 한 줄로 접는다.
+   지우지 않는다: 펼치면 전과 같은 카드가 그대로 나온다 */
+details.meta{margin:6px 0 0;font-size:12px}
+details.meta>summary{cursor:pointer;color:var(--dim);font-size:11.5px;padding:2px 0;
+ user-select:none}
+details.meta>summary:hover{color:var(--ink)}
+details.meta>summary .mono{color:var(--faint)}
+details.meta .card{margin-top:8px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;
  padding:12px 14px;margin-top:14px;font-size:12.5px}
 .card b.lbl{display:block;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
@@ -684,10 +748,29 @@ h2{margin:0 0 2px;font-size:20px;font-weight:650;letter-spacing:-.015em;text-wra
 .kv{display:flex;gap:18px;flex-wrap:wrap;color:var(--dim)}
 .kv span b{color:var(--ink);font-weight:600}
 
-.tools{display:flex;gap:10px;align-items:center;margin:18px 0 8px}
-input[type=search]{flex:0 1 320px;padding:6px 10px;border:1px solid var(--line);
+/* 고르는 것(판)과 거르는 것(검색·필터)을 한 줄에 모은다 — 표가 첫 화면에 보이게 */
+.tools{display:flex;gap:8px;row-gap:6px;align-items:center;flex-wrap:wrap;margin:8px 0 6px}
+input[type=search]{flex:0 1 240px;padding:5px 10px;border:1px solid var(--line);
  border-radius:6px;background:var(--panel);color:var(--ink);font:inherit;font-size:12.5px}
 .rowcount{font-size:11.5px;color:var(--faint);font-family:ui-monospace,Consolas,monospace}
+/* 필터 칩 — 0행 칩은 지우지 않고 흐리게만. "이 판에는 그게 없다"도 정보라서다 */
+.flbl{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--faint);
+ font-weight:700;margin:0 2px 0 6px}
+.fchip{border:1px solid var(--line);background:var(--panel);border-radius:999px;
+ padding:3px 10px;font-size:11.5px;color:var(--dim);display:inline-flex;gap:6px;
+ align-items:baseline}
+.fchip b{font-family:ui-monospace,Consolas,monospace;font-size:10.5px;color:var(--faint);
+ font-weight:600}
+.fchip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);
+ color:var(--ink)}
+.fchip[aria-pressed="true"] b{color:var(--accent)}
+.fchip.off{opacity:.45}
+.pager{display:flex;gap:10px;align-items:center;margin:6px 0;font-size:11.5px;
+ color:var(--dim)}
+.pager button{padding:3px 10px;border:1px solid var(--line);border-radius:5px;
+ font-size:11.5px;color:var(--dim)}
+.pager button:hover:not(:disabled){background:var(--accent-soft);color:var(--ink)}
+.pager button:disabled{opacity:.4;cursor:default}
 .tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
 table{border-collapse:collapse;width:100%;font-size:12px}
 th{position:sticky;top:0;background:var(--panel);text-align:left;font-size:10.5px;
@@ -700,6 +783,22 @@ td.num{font-family:ui-monospace,Consolas,monospace;font-variant-numeric:tabular-
 td.nm{min-width:210px}
 .empty{padding:30px;color:var(--faint);text-align:center}
 h3.ph{margin:22px 0 2px;font-size:13px;font-weight:650;letter-spacing:-.01em}
+/* 원문 대조 팝업 — 값이 맞는지는 원문과 나란히 놓고 봐야 판단할 수 있다 */
+tbody tr.src{cursor:zoom-in}
+dialog#zoom{width:94vw;height:92vh;max-width:none;max-height:none;padding:0;border:0;
+ border-radius:10px;background:var(--panel);color:var(--ink);overflow:hidden}
+dialog#zoom::backdrop{background:rgba(0,0,0,.62)}
+.ztop{display:flex;align-items:center;gap:8px;padding:8px 12px;
+ border-bottom:1px solid var(--line);font-size:12px}
+.ztop .zsp{flex:1}
+.ztop button,.ztop a{padding:3px 9px;border:1px solid var(--line);border-radius:5px;
+ font-size:11.5px;color:var(--dim);text-decoration:none}
+.ztop button:hover,.ztop a:hover{background:var(--accent-soft);color:var(--ink)}
+#zv{position:relative;width:100%;height:calc(92vh - 39px);overflow:hidden;
+ background:var(--rail);touch-action:none;cursor:grab}
+#zv.drag{cursor:grabbing}
+#zi{position:absolute;top:0;left:0;transform-origin:0 0;
+ box-shadow:0 1px 14px rgba(0,0,0,.25);background:#fff}
 @media (max-width:820px){
   .app{grid-template-columns:1fr;height:auto}
   aside{border-right:0;border-bottom:1px solid var(--line);max-height:220px}
@@ -715,8 +814,18 @@ h3.ph{margin:22px 0 2px;font-size:13px;font-weight:650;letter-spacing:-.01em}
     <div class="stat"><b id="sHole">0</b> 별칭 제품</div>
   </div>
 </header>
+<dialog id="zoom">
+  <div class="ztop"><span id="zt"></span>
+    <span class="zsp"></span>
+    <button id="zfit">화면 맞춤</button><button id="z100">100%</button>
+    <span id="zlv" class="mono">100%</span>
+    <a id="zpdf" target="_blank" rel="noopener">원문 PDF</a>
+    <button id="zx">닫기 (Esc)</button></div>
+  <div id="zv"><img id="zi" alt="원문 쪽"></div>
+</dialog>
 <div class="app">
   <aside>
+    <div class="rsearch"><input type="search" id="rq" placeholder="제품 찾기 — 이름 · 코드"></div>
     <div class="rh">남은 일</div>
     <button class="item" data-id="__progress__">
       <span class="iname">진행 현황 — 설비 타입별</span>
@@ -736,6 +845,12 @@ h3.ph{margin:22px 0 2px;font-size:13px;font-weight:650;letter-spacing:-.01em}
 var D = JSON.parse(document.getElementById('d').textContent);
 var rail = document.getElementById('rail'), main = document.getElementById('main');
 var cur = '__progress__', ifi = 0, term = '';
+// 한 판이 244행까지 간다 — 한꺼번에 그리면 훑을 수 없어 100행씩 끊는다.
+// page·filt 는 판을 바꾸면 초기화한다(다른 판의 필터가 이어지면 빈 표만 보게 된다).
+var PAGE = 100, page = 1, filt = {};
+// 메타 접기의 펼침 상태 — render 가 화면을 통째로 다시 그려도 사용자가 펼쳐 둔
+// 것을 잊지 않도록 밖에 둔다
+var metaOpen = false;
 
 function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
@@ -762,18 +877,20 @@ var KIND = [['HVAC.PLANT.CHILLER.CENTRIFUGAL','원심식 냉동기'],
             ['HVAC.PLANT.CHILLER','압축 방식 미상'],
             ['HVAC.AIR.RTU','옥상형 공조기']];
 var COOL = {airCooling:'공랭', waterCooling:'수냉'};
+// 분류는 접는다 — 기본은 지금 보고 있는 제품이 속한 분류만 펼친다(render 가 연다).
+// 세로 33줄이 항상 펼쳐져 있으면 레일이 스크롤로만 다녀야 해서다.
 rail.innerHTML = KIND.map(function(k){
   var list = D.models.map(function(m, i){ return {m:m, i:i}; })
     .filter(function(x){ return x.m.cat === k[0]; });
   if(!list.length) return '';
-  return '<div class="rh">' + k[1] + ' <b>' + list.length + '</b></div>'
+  return '<details class="grp"><summary>' + k[1] + ' <b>' + list.length + '</b></summary>'
     + list.map(function(x){
         var cool = (x.m.tags || []).map(function(t){ return COOL[t]; }).filter(Boolean)[0];
         return '<button class="item" data-id="' + x.i + '"><span class="iname">'
           + esc(x.m.model) + (cool ? '<i class="cool">' + cool + '</i>' : '') + '</span>'
           + '<span class="icount"><em>' + x.m.ifs.length + '</em>판 &middot; ' + pts(x.m)
           + '</span></button>';
-      }).join('');
+      }).join('') + '</details>';
 }).join('');
 
 var PROTO = {bacnet:'BACnet', modbus:'Modbus', n2:'N2', lon:'LON',
@@ -783,8 +900,15 @@ function protoName(p){ return PROTO[p] || p; }
 // 문서 이름이 유일한 구분자라 칩에 함께 보인다.
 function chipTail(x){ return x.id.replace(/^[a-z0-9]+-/, ''); }
 
-var COLS = [['n','오브젝트명'],['s','짧은 이름'],['b','BACnet'],['m','Modbus'],['d','N2'],
-            ['l','LON'],['y','York Talk'],['k','YT 종별'],['g','Logix'],['u','단위'],
+// [열쇠, 화면 이름, 원문 열 이름]. 원문 열 이름은 th 의 title 로 단다 — "원문에
+// description 열이 있는데 반영이 안 됐다"는 오해가 실제로 있었다(오브젝트명이 그것이다).
+var COLS = [['n','오브젝트명','POINT LIST DESCRIPTION'],
+            ['s','짧은 이름','ISN LINC Descriptive Text'],
+            ['b','BACnet'],['m','Modbus'],['d','N2'],['l','LON'],
+            ['y','York Talk','ENG PAGE REF'],['k','YT 종별','York Talk Point Type'],
+            ['c','문자 위치','York Talk Character Position'],
+            ['x','ASCII 쪽','ASCII PAGE REF'],
+            ['g','Logix'],['u','단위'],
             ['w','R/W'],['a','적용 조건'],['t','상태·열거'],['o','비고'],['p','쪽']];
 
 // ── 진행 현황 ────────────────────────────────────────────────────────────────
@@ -903,59 +1027,239 @@ function renderHoles(){
 function render(){
   document.querySelectorAll('aside .item').forEach(function(b){
     b.setAttribute('aria-current', String(b.dataset.id) === String(cur)); });
+  // 지금 보는 제품이 속한 분류는 펼쳐 둔다. 다른 분류를 강제로 닫지는 않는다 —
+  // 사용자가 손으로 연 것을 렌더마다 도로 닫으면 훑어보기가 안 된다.
+  var cb = document.querySelector('#rail .item[aria-current="true"]');
+  if(cb && cb.closest('details')) cb.closest('details').open = true;
   if(cur === '__progress__'){ main.innerHTML = renderProgress(); return; }
   if(cur === '__holes__'){ main.innerHTML = renderHoles(); return; }
   var m = D.models[cur | 0];
   var it = m.ifs[Math.min(ifi, m.ifs.length - 1)];
   var use = COLS.filter(function(c){
     return it.points.some(function(p){ return p[c[0]] !== undefined; }); });
+  // 필터 칩 — 이미 데이터에 있는 열쇠만 쓴다. 프로토콜은 이 판이 실제로 가진 블록만,
+  // t·a·u 는 값이 없어도 세운다(흐리게 남는 것 자체가 "이 판에는 없다"는 정보다).
+  var chips = [];
+  [['b','BACnet'],['m','Modbus'],['d','N2'],['l','LON'],['y','York Talk'],['g','Logix']]
+    .forEach(function(c){
+      if(it.points.some(function(p){ return p[c[0]] !== undefined; }))
+        chips.push({k:'has:' + c[0], lbl:c[1]});
+    });
+  var rws = {};
+  it.points.forEach(function(p){ if(p.w) rws[p.w] = 1; });
+  Object.keys(rws).sort().forEach(function(v){ chips.push({k:'rw:' + v, lbl:'R/W ' + v}); });
+  [['t','상태·열거 있음'],['a','적용 조건 있음'],['u','단위 있음']].forEach(function(c){
+    chips.push({k:'has:' + c[0], lbl:c[1]}); });
+  // 켜진 칩은 전부 AND — rw 는 값 일치, 나머지는 그 열쇠의 존재로 본다
+  function chipPass(k, p){
+    var v = k.slice(k.indexOf(':') + 1);
+    return k.indexOf('rw:') === 0 ? p.w === v : p[v] !== undefined;
+  }
   var rows = it.points.filter(function(p){
-    return !term || JSON.stringify(p).toLowerCase().indexOf(term) >= 0; });
-  var h = '<div class="pad"><h2>' + esc(m.model) + '</h2>'
-    + '<div class="sub">' + esc(m.cat) + ' &middot; 계열 ' + esc(m.equipId)
-    + ' &middot; 포인트 리스트 <b>' + m.ifs.length + '판</b> &middot; 오브젝트 <b>' + pts(m) + '</b></div>'
-    + '<div class="chips">' + m.ifs.map(function(x, i){
-        var rv = [x.rev.doc, x.rev.block, x.rev.firmware].filter(Boolean).join(' · ');
-        return '<button class="chip" data-if="' + i + '" aria-pressed="' + (i === ifi) + '">'
-          + '<span class="fam">' + esc(x.family) + '</span>'
-          + '<span class="meta">' + esc([rv, chipTail(x)].filter(Boolean).join(' · ')) + '</span>'
-          + '<span class="meta">' + esc(x.protocols.map(protoName).join(' · ')) + '</span>'
-          + '<span class="np">' + x.n + '점</span></button>';
-      }).join('') + '</div>'
+    if(term && JSON.stringify(p).toLowerCase().indexOf(term) < 0) return false;
+    for(var k in filt) if(!chipPass(k, p)) return false;
+    return true; });
+  // 판 고르기 — 카드 여러 줄이 표를 화면 밖으로 밀어냈다. 4판까지는 알약 한 줄,
+  // 넘으면 셀렉트(YT 는 9판이라 알약으로도 한 줄이 안 된다).
+  function ifLabel(x){
+    var rv = [x.rev.doc, x.rev.block, x.rev.firmware].filter(Boolean).join(' · ');
+    return [x.family, rv, chipTail(x)].filter(Boolean).join(' · ');
+  }
+  var pick;
+  if(m.ifs.length > 4){
+    pick = '<select id="ifsel" title="판 고르기">' + m.ifs.map(function(x, i){
+      return '<option value="' + i + '"' + (i === ifi ? ' selected' : '') + '>'
+        + esc(ifLabel(x) + ' · ' + x.n + '점') + '</option>'; }).join('') + '</select>';
+  } else if(m.ifs.length > 1){
+    pick = m.ifs.map(function(x, i){
+      return '<button class="ifc" data-if="' + i + '" aria-pressed="' + (i === ifi)
+        + '" title="' + esc(x.protocols.map(protoName).join(' · ')) + '">'
+        + esc(ifLabel(x)) + '<b>' + x.n + '</b></button>'; }).join('');
+  } else {
+    pick = '<span class="rowcount" title="판이 하나뿐이다">' + esc(ifLabel(it)) + '</span>';
+  }
+  var h = '<div class="pad"><h2>' + esc(m.model)
+    + '<span class="hsub">' + esc(m.cat) + ' · 계열 ' + esc(m.equipId) + ' · '
+    + m.ifs.length + '판 · ' + pts(m) + '점</span></h2>'
+    + '<div class="tools">' + pick
+    + '<input type="search" id="q" placeholder="이 판에서 찾기 — 이름 · 주소 · 단위" value="'
+    + esc(term) + '"><span class="rowcount">' + rows.length + ' / ' + it.points.length + '행</span>'
+    + '<span class="flbl">필터</span>'
+    + chips.map(function(c){
+        // 칩 숫자 = 지금 걸린 필터·검색 위에 이 칩까지 켰을 때 남는 행 수.
+        // AND 라서 켜진 칩에는 곧 현재 남은 행 수가 나온다.
+        var cnt = rows.filter(function(p){ return chipPass(c.k, p); }).length;
+        return '<button class="fchip' + (cnt ? '' : ' off') + '" data-fk="' + c.k
+          + '" aria-pressed="' + !!filt[c.k] + '">' + esc(c.lbl) + '<b>' + cnt
+          + '</b></button>';
+      }).join('') + '</div>';
+  // 출처·제외 행·남은 판단·교차 대조는 접는다 — 근거는 행 클릭 원문 팝업이 이미 있고,
+  // 카드 네 장이 표를 첫 화면 밖으로 밀었다. 지우지는 않는다: 펼치면 그대로 나온다.
+  var exN = Object.keys(it.excluded || {}).reduce(function(a, k){
+    return a + it.excluded[k]; }, 0);
+  var sumBits = ['출처 ' + it.src + (it.pages ? ' p' + it.pages.join('~') : '')];
+  if(it.appliesTo) sumBits.push('덮는 제품 ' + it.appliesTo.length);
+  if(exN) sumBits.push('세지 않은 행 ' + exN);
+  if(it.gaps) sumBits.push('남은 판단 ' + it.gaps.length + '건');
+  if(m.crosscheck) sumBits.push('교차 대조 못함');
+  h += '<details class="meta"' + (metaOpen ? ' open' : '') + '><summary><span class="mono">'
+    + esc(sumBits.join(' · ')) + '</span></summary>'
     + '<div class="card"><b class="lbl">이 판의 출처</b><div class="kv">'
     + '<span class="mono">' + esc(it.src) + (it.pages ? ' p' + it.pages.join('~') : '') + '</span>'
     + (it.appliesTo ? '<span>덮는 제품 <b class="mono">' + esc(it.appliesTo.join(' · ')) + '</b></span>' : '')
     + '</div><div style="margin-top:6px;color:var(--dim)">' + esc(it.label) + '</div></div>';
+  // 행 클릭으로 원문이 뜬다는 건 안내가 없으면 아무도 모른다. 문구는 그림 임베드 여부에 맞춘다.
+  h += '<div class="sub" style="margin:8px 0 0">행을 누르면 그 포인트의 원문 쪽이 뜬다 — '
+    + (((D.imgs || {})[it.src])
+        ? '휠로 확대·축소, 끌어서 이동, Esc 로 닫기.'
+        : '이 문서는 그림이 임베드되지 않아 원문 PDF 가 그 쪽에서 열린다. 그림을 넣으려면 '
+          + '<code>ingest_jci.py --export --with-pages</code>.')
+    + '</div>';
   if(it.excluded) h += '<div class="card"><b class="lbl">포인트로 세지 않은 행</b>'
-    + Object.keys(it.excluded).map(function(k){ return esc(k) + ' <b>' + it.excluded[k] + '</b>행'; }).join(' · ')
-    + ' — 예약 슬롯·개정이력·NOTES 같은 것. 조용히 빼지 않고 여기 적는다.</div>';
+    + Object.keys(it.excluded).map(function(k){ return esc(exKo(k)) + ' <b>' + it.excluded[k] + '</b>행'; }).join(' · ')
+    + ' — 조용히 빼지 않고 여기 적는다.</div>';
   if(it.gaps) h += '<div class="card warn"><b class="lbl">남은 판단</b>' + esc(it.gaps.join(' / ')) + '</div>';
   if(m.crosscheck) h += '<div class="card"><b class="lbl">교차 대조</b>' + esc(m.crosscheck) + '</div>';
-  h += '<div class="tools"><input type="search" id="q" placeholder="이 판에서 찾기 — 이름 · 주소 · 단위" value="'
-    + esc(term) + '"><span class="rowcount">' + rows.length + ' / ' + it.points.length + '행</span></div>'
+  h += '</details>';
+  var npg = Math.max(1, Math.ceil(rows.length / PAGE));
+  if(page > npg) page = npg;
+  var lo = (page - 1) * PAGE, hi = Math.min(rows.length, lo + PAGE);
+  function pager(loc){
+    if(rows.length <= PAGE) return '';   // 한 쪽에 다 들어가면 페이징 UI 를 아예 안 그린다
+    return '<div class="pager"><button class="pgb" data-d="-1" data-loc="' + loc + '"'
+      + (page <= 1 ? ' disabled' : '') + '>이전</button><span class="mono">'
+      + page + '/' + npg + '쪽 &middot; ' + rows.length + '행 중 ' + (lo + 1) + '~' + hi
+      + '</span><button class="pgb" data-d="1" data-loc="' + loc + '"'
+      + (page >= npg ? ' disabled' : '') + '>다음</button></div>';
+  }
+  h += pager('t')
     + '<div class="tw"><table><thead><tr>'
-    + use.map(function(c){ return '<th>' + c[1] + '</th>'; }).join('') + '</tr></thead><tbody>'
-    + rows.map(function(p){ return '<tr>' + use.map(function(c){
-        var v = p[c[0]];
-        var cls = (c[0] === 'n' || c[0] === 'o' || c[0] === 't') ? 'nm' : 'num mono';
-        return '<td class="' + cls + '">' + esc(v === undefined ? '' : v) + '</td>'; }).join('') + '</tr>';
+    + use.map(function(c){ return '<th' + (c[2] ? ' title="원문 열 이름: ' + esc(c[2]) + '"' : '')
+        + '>' + c[1] + '</th>'; }).join('') + '</tr></thead><tbody>'
+    + rows.slice(lo, hi).map(function(p){
+        // 행을 누르면 그 포인트가 나온 원문 쪽이 뜬다 — 값 대조는 원문 옆에서만 된다
+        var at = p.p ? (' class="src" data-src="' + esc(it.src) + '" data-pg="' + p.p + '"') : '';
+        return '<tr' + at + '>' + use.map(function(c){
+          var v = p[c[0]];
+          var cls = (c[0] === 'n' || c[0] === 'o' || c[0] === 't') ? 'nm' : 'num mono';
+          return '<td class="' + cls + '">' + esc(v === undefined ? '' : v) + '</td>';
+        }).join('') + '</tr>';
       }).join('')
-    + '</tbody></table>' + (rows.length ? '' : '<div class="empty">찾은 게 없어요</div>') + '</div></div>';
+    + '</tbody></table>' + (rows.length ? '' : '<div class="empty">찾은 게 없어요</div>') + '</div>'
+    + pager('b') + '</div>';
   main.innerHTML = h;
-  main.querySelectorAll('.chip').forEach(function(b){
-    b.addEventListener('click', function(){ ifi = +b.dataset.if; term = ''; render(); }); });
+  main.querySelectorAll('.ifc').forEach(function(b){
+    b.addEventListener('click', function(){ ifi = +b.dataset.if; term = ''; page = 1; filt = {};
+      render(); }); });
+  var sel = document.getElementById('ifsel');
+  if(sel) sel.addEventListener('change', function(){
+    ifi = +sel.value; term = ''; page = 1; filt = {}; render(); });
+  var md = main.querySelector('details.meta');
+  if(md) md.addEventListener('toggle', function(){ metaOpen = md.open; });
+  main.querySelectorAll('.fchip').forEach(function(b){
+    b.addEventListener('click', function(){
+      var k = b.dataset.fk;
+      if(filt[k]) delete filt[k]; else filt[k] = true;
+      page = 1; render(); }); });
+  main.querySelectorAll('.pgb').forEach(function(b){
+    b.addEventListener('click', function(){
+      page += +b.dataset.d; render();
+      // 아래쪽 페이저로 넘기면 새 쪽 머리가 화면 밖이라 표 위로 끌어올린다
+      if(b.dataset.loc === 'b'){
+        var t = main.querySelector('.tools'); if(t) t.scrollIntoView(); } }); });
   var q = document.getElementById('q');
   if(q) q.addEventListener('input', function(){
-    term = q.value.trim().toLowerCase();
+    term = q.value.trim().toLowerCase(); page = 1;
     var at = q.selectionStart;
     render();
     var q2 = document.getElementById('q');
     if(q2){ q2.focus(); q2.setSelectionRange(at, at); } });
 }
 document.querySelectorAll('aside .item').forEach(function(b){
-  b.addEventListener('click', function(){ cur = b.dataset.id; ifi = 0; term = ''; render();
-    main.scrollTop = 0; }); });
+  b.addEventListener('click', function(){ cur = b.dataset.id; ifi = 0; term = ''; page = 1;
+    filt = {}; render(); main.scrollTop = 0; }); });
+// 레일 제품 검색 — 접힌 분류 안까지 이름으로 찾는다. 검색 중에는 걸린 분류를 펼치고,
+// 비우면 기본 상태(보고 있는 제품의 분류만 펼침)로 돌아간다.
+var rq = document.getElementById('rq');
+rq.addEventListener('input', function(){
+  var t = rq.value.trim().toLowerCase();
+  document.querySelectorAll('#rail details.grp').forEach(function(d){
+    var any = false;
+    d.querySelectorAll('.item').forEach(function(b){
+      var hit = !t || b.textContent.toLowerCase().indexOf(t) >= 0;
+      b.style.display = hit ? '' : 'none';
+      if(hit) any = true;
+    });
+    d.style.display = any ? '' : 'none';
+    d.open = t ? true : !!d.querySelector('.item[aria-current="true"]');
+  });
+});
 render();
+
+// ── 원문 대조 팝업 ───────────────────────────────────────────────────────────
+// 그림이 임베드돼 있으면(--with-pages, WebP 회색조라 전 문서 기본) 팝업에서 휠로
+// 확대·끌어서 이동한다. 없는 쪽만 원문 PDF 를 그 쪽으로 연다.
+// 제외 사유 열쇠는 파서가 쓰는 영문이다 — 화면에는 뜻을 적는다
+var EXKO = {reserved:'예약 슬롯', revision:'개정이력표', codeTable:'상태 코드표',
+            notes:'표 아래 NOTES', band:'구분 행', banner:'되풀이된 머리글',
+            headerMislabeled:'머리글이 데이터와 어긋난 표',
+            headerGlitch:'머리글에 값이 배어난 쪽', foreign:'남의 계통 표',
+            unrestored:'조판 아티팩트 복원 실패'};
+function exKo(k){ return EXKO[k] || k; }
+function pdfHref(file, page){
+  return '../pipeline/data/raw/' + encodeURIComponent(String(file).split('#')[0])
+       + (page ? '#page=' + page : '');
+}
+var zoom = document.getElementById('zoom'), zv = document.getElementById('zv'),
+    zi = document.getElementById('zi');
+var zs = 1, zx = 0, zy = 0, natW = 0, natH = 0;
+function zapply(){
+  zi.style.transform = 'translate(' + zx + 'px,' + zy + 'px) scale(' + zs + ')';
+  document.getElementById('zlv').textContent = Math.round(zs * 100) + '%';
+}
+function zfit(){
+  if(!natW) return;
+  zs = Math.min(zv.clientWidth / natW, zv.clientHeight / natH);
+  zx = (zv.clientWidth - natW * zs) / 2; zy = (zv.clientHeight - natH * zs) / 2;
+  zapply();
+}
+zi.onload = function(){ natW = zi.naturalWidth; natH = zi.naturalHeight;
+  zi.style.width = natW + 'px'; zi.style.height = natH + 'px'; zfit(); };
+zv.addEventListener('wheel', function(e){
+  e.preventDefault();
+  var r = zv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+  // 커서가 가리키는 지점을 고정한 채 배율을 바꾼다
+  var k = Math.exp(-e.deltaY * 0.0015);
+  var ns = Math.min(8, Math.max(0.05, zs * k));
+  zx = mx - (mx - zx) * (ns / zs); zy = my - (my - zy) * (ns / zs); zs = ns;
+  zapply();
+}, {passive:false});
+var zdrag = false, zpx = 0, zpy = 0;
+zv.addEventListener('pointerdown', function(e){ zdrag = true; zpx = e.clientX; zpy = e.clientY;
+  zv.classList.add('drag'); zv.setPointerCapture(e.pointerId); });
+zv.addEventListener('pointermove', function(e){ if(!zdrag) return;
+  zx += e.clientX - zpx; zy += e.clientY - zpy; zpx = e.clientX; zpy = e.clientY; zapply(); });
+zv.addEventListener('pointerup', function(){ zdrag = false; zv.classList.remove('drag'); });
+zv.addEventListener('dblclick', function(){ if(zs < 1.5){ zs = 2; zapply(); } else { zfit(); } });
+document.getElementById('zfit').onclick = zfit;
+document.getElementById('z100').onclick = function(){
+  var cx = zv.clientWidth / 2, cy = zv.clientHeight / 2;
+  zx = cx - (cx - zx) * (1 / zs); zy = cy - (cy - zy) * (1 / zs); zs = 1; zapply(); };
+document.getElementById('zx').onclick = function(){ zoom.close(); };
+window.addEventListener('resize', function(){ if(zoom.open) zfit(); });
+document.addEventListener('click', function(e){
+  var tr = e.target.closest && e.target.closest('tr.src');
+  if(!tr) return;
+  var src = tr.dataset.src, pg = tr.dataset.pg;
+  var img = ((D.imgs || {})[src] || {})[pg];
+  var href = pdfHref(src, pg);
+  if(!img){ window.open(href, '_blank'); return; }   // 그림이 없으면 원문 PDF 를 그 쪽으로
+  document.getElementById('zt').textContent = src + ' — 원문 ' + pg + '쪽';
+  document.getElementById('zpdf').href = href;
+  zs = 1; zx = 0; zy = 0; natW = 0;
+  zi.src = img;
+  zoom.showModal();
+});
 </script>
 """
 
@@ -1016,6 +1320,14 @@ def _cell(v):
     return v
 
 
+def _charpos(v):
+    """yorktalk.charPos {start,end} → '120' 또는 '120~124'. 한 글자면 범위 표기가 소음이다."""
+    if not isinstance(v, dict) or v.get("start") is None:
+        return None
+    a, b = v.get("start"), v.get("end")
+    return str(a) if b in (None, a) else "%s~%s" % (a, b)
+
+
 def view_point(p):
     """포인트 레코드 → 화면용 짧은 열쇠. 값이 있는 것만 담는다."""
     c = p.get("common") or {}
@@ -1033,7 +1345,10 @@ def view_point(p):
         "b": obj or None, "m": mb.get("address"),
         "d": ("%s %s" % (n2.get("pointType") or "", n2.get("address"))).strip() if n2 else None,
         "l": lon.get("snvtType"),
-        "y": yt.get("coord") or yt.get("pageRef") or yt.get("asciiPageRef"),
+        # asciiPageRef 는 제 열('x')이 생겼다 — 여기 대신 넣으면 ENG/ASCII 구분이 사라진다
+        "y": yt.get("coord") or yt.get("pageRef"),
+        "x": yt.get("asciiPageRef"),
+        "c": _charpos(yt.get("charPos")),
         "k": yt.get("pointType"), "g": lg.get("tag"),
         "u": (c.get("unitIP") or c.get("unitSI") or c.get("unitIPRaw") or c.get("unitSIRaw")),
         "w": c.get("readWrite"), "a": _cell(c.get("availability")),
@@ -1076,9 +1391,80 @@ def view_data():
     return out
 
 
-def export(out_path=None):
+def render_pages(want, dpi=110, quality=35):
+    """원문 쪽 → base64 WebP 회색조. ({저장이름: {쪽: dataURI}}, 실패 집계)
+
+    JPEG 컬러 150dpi 는 217쪽에 base64 54MB 라 전 문서를 못 넣었다(실측 — 그때는
+    --only 로 문서를 골라야 했다). WebP 회색조 110dpi 는 같은 217쪽이 q40 25.7MB ·
+    q35 24.5MB(실측) — 전 문서를 넣을 수 있어 **기본으로 전부 넣는다**. 원문이
+    흑백 표라 회색조로 잃는 것이 없다. 실패(파일 없음·쪽 범위 밖·렌더 오류)는
+    조용히 넘기지 않고 세어 돌려준다.
+    """
+    import base64
+    import io
+    import fitz
+    from PIL import Image
+    out = {}
+    fails = collections.Counter()
+    for name, pages in sorted(want.items()):
+        path = os.path.join(DATA, "raw", name)
+        if not os.path.exists(path):
+            fails["원문 파일 없음"] += 1
+            continue
+        doc = fitz.open(path)
+        got = {}
+        for pg in sorted(pages):
+            if pg < 1 or pg > doc.page_count:
+                fails["쪽 번호가 문서 범위 밖"] += 1
+                continue
+            try:
+                page = doc[pg - 1]
+                # 글자가 있는 데까지만 자른다 — 원문 여백이 쪽마다 3~4cm 다.
+                # 해상도는 그대로라 읽는 데 잃는 것이 없고 크기는 25.4MB → 20MB 로 준다.
+                words = page.get_text("words")
+                clip = None
+                if words:
+                    xs = [w[0] for w in words] + [w[2] for w in words]
+                    ys = [w[1] for w in words] + [w[3] for w in words]
+                    clip = fitz.Rect(max(0, min(xs) - 6), max(0, min(ys) - 6),
+                                     min(page.rect.x1, max(xs) + 6),
+                                     min(page.rect.y1, max(ys) + 6))
+                pix = page.get_pixmap(dpi=dpi, clip=clip)
+                img = Image.frombytes("RGB", [pix.width, pix.height],
+                                      pix.samples).convert("L")
+                buf = io.BytesIO()
+                img.save(buf, format="WEBP", quality=quality)
+            except Exception:
+                fails["렌더 실패"] += 1
+                continue
+            got[str(pg)] = ("data:image/webp;base64,"
+                            + base64.b64encode(buf.getvalue()).decode("ascii"))
+        doc.close()
+        if got:
+            out[name] = got
+    return out, fails
+
+
+def export(out_path=None, with_pages=False, only=None, quality=35):
     out_path = out_path or os.path.join(HERE, "..", "review", "jci-ingest.html")
     data = view_data()
+    data["imgs"] = {}
+    if with_pages:
+        # --only 가 없으면 전 문서를 넣는다 — 팝업이 안 뜨는 문서를 없애는 것이 목적이다
+        want = {}
+        for m in data["models"]:
+            for it in m["ifs"]:
+                if only and only.lower() not in it["src"].lower():
+                    continue
+                for pt in it["points"]:
+                    if pt.get("p"):
+                        want.setdefault(it["src"], set()).add(pt["p"])
+        data["imgs"], fails = render_pages(want, quality=quality)
+        print("  원문 쪽 그림 %d문서 %d쪽"
+              % (len(data["imgs"]), sum(len(v) for v in data["imgs"].values())))
+        if fails:
+            print("  ⚠ 그림 실패 %d건 — %s" % (sum(fails.values()),
+                  " · ".join("%s %d" % kv for kv in fails.most_common())))
     html = VIEW.replace("__DATA__", json.dumps(data, ensure_ascii=False,
                                                separators=(",", ":")))
     with open(out_path, "w", encoding="utf-8") as f:
@@ -1098,12 +1484,14 @@ def main(argv):
     ap.add_argument("--no-crosscheck", action="store_true", help="교차 대조 건너뛰기")
     ap.add_argument("--export", action="store_true",
                     help="검토 화면 review/jci-ingest.html 을 낸다")
+    ap.add_argument("--with-pages", action="store_true",
+                    help="원문 쪽 그림을 전 문서에 넣는다 (WebP 회색조 — 전체 15MB 안팎)")
     ap.add_argument("--refresh", action="store_true",
                     help="취입한 모델의 메타만 다시 계산 (PDF 재파싱 없음)")
     ap.add_argument("--only", help="저장 이름에 이 글자가 든 문서만")
     a = ap.parse_args(argv)
     if a.export:
-        return export()
+        return export(with_pages=a.with_pages, only=a.only)
     if a.refresh:
         return refresh()
     if a.route:

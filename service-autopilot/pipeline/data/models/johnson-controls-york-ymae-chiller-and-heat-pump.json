@@ -4,7 +4,7 @@
  "vendor": "Johnson Controls / YORK",
  "model": "YMAE Chiller and Heat Pump",
  "name": "YMAE Chiller and Heat Pump",
- "cat": "HVAC.PLANT.CHILLER",
+ "cat": "HVAC.PLANT.CHILLER.SCROLL",
  "tag": "chiller",
  "status": "active",
  "summary": "BAS 포인트 리스트 2건 · 판 2개에서 취입 — 오브젝트 142점",
@@ -37,7 +37,7 @@
   ]
  ],
  "points": [],
- "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다.",
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다. 압축 방식을 제품명이 안 밝혀 JCI 문서 분류 'Scroll Air-Cooled' 에서 가져왔다 / 압축 방식 'SCROLL' 는 Haystack 4 chillerMechanism 에 값이 없다(chiller-scroll 미정의) — 태그를 지어내지 않는다",
  "extractor": "vendor_jci",
  "sourceDoc": "JCI_YMAE_2_Pipe_Equipment_Modbus_Bacnet_Points_list_Rev1.0.pdf",
  "interfaces": [
@@ -5283,6 +5283,7 @@
  },
  "tags": [
   "chiller",
+  "airCooling",
   "heatPump"
  ],
  "classifiedBy": "JCI 카탈로그 제품명 'YMAE Chiller and Heat Pump' 의 낱말 (압축 방식·응축 방식)"

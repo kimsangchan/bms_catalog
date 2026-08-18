@@ -97,6 +97,17 @@ aside{border-right:1px solid var(--line);overflow-y:auto;max-height:calc(100dvh 
 .ifr{font-size:10.5px;color:var(--dim);font-family:var(--mono)}
 .ifmeta{padding:0 18px 8px;font-size:11.5px;color:var(--dim)}
 .ifmeta .dot{margin:0 7px;color:var(--faint)}
+/* 판 메타 접기 — 근거 팝업이 따로 있으므로 출처·제외 행·남은 판단은 요약 한 줄로 접는다.
+   부모(details)가 이미 18px 들여 있어 안쪽 블록의 좌우 여백은 없앤다(이중 들여쓰기 방지) */
+.ifdet{margin:0 18px 8px;border-top:0;padding-top:0}
+.ifdet .guide{margin:8px 0 0}
+.ifdet .ifmeta{padding:8px 0 0}
+.ifdet .msg{margin:8px 0 0;padding:10px 12px}
+/* 판 오브젝트 표 필터 — .chip 은 사양 화면 필터(kindF·gradeF)가 쓰므로 별도 클래스 */
+.iffbar{display:flex;gap:5px;flex-wrap:wrap;align-items:center;padding:0 18px 8px}
+.ifc{padding:3px 9px;border:1px solid var(--line);border-radius:99px;font-size:11.5px;color:var(--dim)}
+.ifc[aria-pressed="true"]{background:var(--accent-bg);border-color:var(--accent);color:var(--accent);font-weight:600}
+.iffbar .ifn{margin-left:auto;font-size:11.5px;color:var(--faint);font-family:var(--mono)}
 .vclr{margin-left:8px;padding:1px 7px;border:1px solid var(--line);border-radius:4px;font-size:10.5px}
 aside button{display:grid;grid-template-columns:1fr auto;gap:6px;width:100%;text-align:left;
  padding:5px 12px;font-size:12.5px;align-items:center;border-left:2px solid transparent}
@@ -159,6 +170,11 @@ td.n{color:var(--dim);white-space:nowrap;font-size:11.5px}
 .mlist button[aria-pressed="true"]{background:var(--sel);border-color:var(--accent);font-weight:650}
 .mlist button{display:inline-flex;align-items:center;gap:6px}
 .mpre{padding:9px 18px 0;font-size:11px;letter-spacing:.05em;color:var(--faint);font-weight:700}
+/* 모델이 12건을 넘으면(냉동기 70건) 단추 목록이 화면 절반을 먹는다 → 셀렉트 한 줄로 */
+.mselrow{display:flex;gap:8px;align-items:center;padding:8px 18px;border-bottom:1px solid var(--line2)}
+.mselrow .mpre{padding:0}
+.msel{min-width:0;max-width:100%;padding:5px 8px;border:1px solid var(--line);border-radius:6px;
+ font:inherit;font-size:12px;background:var(--bg);color:var(--ink)}
 .mpr{font-size:10px;letter-spacing:.04em;color:var(--faint);font-weight:700}
 .slist{display:flex;gap:5px;flex-wrap:wrap;padding:0 18px 10px;max-height:132px;overflow:auto}
 .slist button{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;
@@ -766,13 +782,40 @@ function renderModels(models, l3){
       if(!g || g.v !== x.vendor) vgroups.push(g = {v:x.vendor, items:[]});
       g.items.push({x:x, i:i});
     });
-    h += (pre ? '<div class="mpre">'+esc(pre.replace(/[\s—·-]+$/,''))+'</div>' : '')
-       + vgroups.map(function(g){
-           return (vgroups.length>1 ? '<div class="mvd">'+esc(g.v)+'<i>'+g.items.length+'</i></div>' : '')
-             + '<div class="mlist">'
-             + g.items.map(function(o){ return modelButton(o.x, o.i, pre); }).join('')
-             + '</div>';
-         }).join('');
+    if(models.length>12){
+      // 냉동기(e9)는 모델 70건 — 단추 목록이 화면 절반을 먹어 표가 안 보인다.
+      // 12건을 넘으면 셀렉트 한 줄로 줄인다. 제조사 축은 optgroup 으로 살린다.
+      // 사진·이름은 아래 .mtop 이 보여 주므로 목록에서 썸네일은 뺀다.
+      var ci = Math.min(mi, models.length-1);
+      h += '<div class="mselrow">'
+         + (pre ? '<span class="mpre">'+esc(pre.replace(/[\s—·-]+$/,''))+'</span>' : '')
+         + '<select class="msel" aria-label="모델 선택">'
+         + vgroups.map(function(g){
+             var opts = g.items.map(function(o){
+               var base = o.x.selectorLabel || o.x.model;
+               var lbl = base.slice(pre.length).replace(/^[\s—·-]+/,'')
+                          .replace(/\s*\((BACnet|LonTalk|Modbus)\)\s*$/i,'') || base;
+               // 이름이 프로토콜만 다른 모델이 있어, 떼어낸 프로토콜을 뒤에 되살린다
+               var pr = (o.x.comm||[]).map(function(c){return c[0];});
+               var n = (o.x.points||[]).length;
+               return '<option value="'+o.i+'"'+(o.i===ci?' selected':'')+'>'
+                    + esc(lbl + (pr.length?' — '+pr.join('·'):'') + (n?' · '+n+'점':''))
+                    + '</option>';
+             }).join('');
+             return vgroups.length>1
+               ? '<optgroup label="'+esc(g.v)+' ('+g.items.length+')">'+opts+'</optgroup>'
+               : opts;
+           }).join('')
+         + '</select><span class="mn">'+models.length+'개</span></div>';
+    } else {
+      h += (pre ? '<div class="mpre">'+esc(pre.replace(/[\s—·-]+$/,''))+'</div>' : '')
+         + vgroups.map(function(g){
+             return (vgroups.length>1 ? '<div class="mvd">'+esc(g.v)+'<i>'+g.items.length+'</i></div>' : '')
+               + '<div class="mlist">'
+               + g.items.map(function(o){ return modelButton(o.x, o.i, pre); }).join('')
+               + '</div>';
+           }).join('');
+    }
   }
   // 형번을 골랐으면 그 형번 사진을, 아니면 제품군 사진을 보여 준다.
   var vphoto = (m.variants||[])[Math.min(vsel,(m.variants||[]).length-1)];
@@ -1164,6 +1207,12 @@ function renderVendor(vn){
 // ── 인터페이스(포인트 리스트의 판) ────────────────────────────────────────────
 // 한 제품이 게이트웨이·펌웨어·개정에 따라 다른 목록을 낸다. 문서가 가른 대로 나눠
 // 두지 않으면 주소 체계가 다른 목록이 한 표에 섞여 되돌릴 수 없다(D-016).
+// 제외 사유 열쇠는 파서가 쓰는 영문이다 — 화면에는 뜻을 적는다
+var EXKO = {reserved:'예약 슬롯', revision:'개정이력표', codeTable:'상태 코드표',
+            notes:'표 아래 NOTES', band:'구분 행', banner:'되풀이된 머리글',
+            headerMislabeled:'머리글이 데이터와 어긋난 표', headerGlitch:'머리글에 값이 배어난 쪽',
+            foreign:'남의 계통 표', unrestored:'조판 아티팩트 복원 실패'};
+function exKo(k){ return EXKO[k] || k; }
 function ifCell(v){
   if(v===null || v===undefined) return '';
   if(Array.isArray(v)) return v.map(ifCell).join(', ');
@@ -1176,15 +1225,14 @@ function ifCell(v){
 var IFCOLS = [['n','오브젝트명'],['s','짧은 이름'],['b','BACnet'],['m','Modbus'],['d','N2'],
               ['l','LON'],['y','York Talk'],['k','YT 종별'],['g','Logix'],['u','단위'],
               ['w','R/W'],['a','적용 조건'],['t','상태·열거'],['o','비고'],['p','쪽']];
+// 판 표 필터 상태 — 다른 판·모델에서는 의미가 없으므로 표 키가 달라지면 통째로 버린다
+var ifFkey = '', ifF = {pr:{}, rw:'', st:false, av:false};
 function renderInterfaces(m){
   var ifs = m.interfaces || [];
   if(!ifs.length) return '';
   var k = Math.min(isel[m.id]||0, ifs.length-1), it = ifs[k];
   var tot = ifs.reduce(function(a,x){ return a + (x.pointCount||0); }, 0);
   var h = sec('오브젝트 목록 — 판 '+ifs.length+'개', tot);
-  if(ifs.length>1) h += '<div class="guide"><b>같은 제품인데 목록이 여러 판이에요</b>'
-    + '<p>게이트웨이·펌웨어·문서 개정에 따라 주소가 달라집니다. 문서가 가른 대로 나눠 두었어요 '
-    + '— 판을 고르면 그 판의 목록만 봅니다.</p></div>';
   h += '<div class="iflist">' + ifs.map(function(x,i){
       // 계통+개정만으로는 안 갈린다 — YK 는 EM/SSS 판과 VSD 판이 같은 'Rev K 04d' 다.
       // 문서 이름이 유일한 구분자라 함께 보인다.
@@ -1198,29 +1246,74 @@ function renderInterfaces(m){
             return PROTO_KO[pp]||pp; }).join('·'))+'</span>'
         + '<span class="mn">'+(x.pointCount||0)+'</span></button>';
     }).join('') + '</div>';
+  // 출처·제외 행·남은 판단·판 분리 설명은 근거표(원문 팝업)가 따로 있으므로 표 앞에서
+  // 자리를 차지할 이유가 없다 → 접고 요약 한 줄만 남긴다. 지우지는 않는다 —
+  // 조용히 빼면 '문서에 그것뿐'으로 읽힌다(저장소 규칙). 펼치면 이전 내용 그대로다.
+  var exKeys = it.excluded ? Object.keys(it.excluded) : [], exTot = 0;
+  exKeys.forEach(function(r){ exTot += it.excluded[r]; });
+  // 요약 줄의 출처는 링크를 걸지 않는다 — summary 안의 링크는 클릭이 접기 토글과 겹친다.
+  var sumBits = ['출처 ' + (it.sourceFile||'')
+                 + (it.sourcePages ? ' p'+it.sourcePages.join('~') : '')];
+  if(exTot) sumBits.push(exKeys.length===1 ? exKo(exKeys[0])+' '+exTot+'행 제외'
+                                           : '세지 않은 행 '+exTot+'행 제외');
+  if(it.gaps && it.gaps.length) sumBits.push('남은 판단 '+it.gaps.length+'건');
+  var body = '';
+  if(ifs.length>1) body += '<div class="guide"><b>같은 제품인데 목록이 여러 판이에요</b>'
+    + '<p>게이트웨이·펌웨어·문서 개정에 따라 주소가 달라집니다. 문서가 가른 대로 나눠 두었어요 '
+    + '— 판을 고르면 그 판의 목록만 봅니다.</p></div>';
   var meta = [];
   if(it.appliesTo && it.appliesTo.length)
     meta.push('이 목록이 덮는 제품 <b>'+esc(it.appliesTo.join(' · '))+'</b>');
   meta.push('출처 ' + srcLink(it.sourceFile, (it.sourcePages||[])[0],
             it.sourceFile + (it.sourcePages ? ' p'+it.sourcePages.join('~') : '')));
-  h += '<div class="ifmeta">' + meta.join('<span class="dot">·</span>') + '</div>';
-  if(it.note) h += '<div class="ifmeta">'+esc(it.note)+'</div>';
-  // 뺀 행과 못 채운 것은 표 앞에 둔다 — 조용히 빼면 '문서에 그것뿐'으로 읽힌다
-  if(it.excluded) h += '<div class="msg"><b>포인트로 세지 않은 행</b><p>'
-    + esc(Object.keys(it.excluded).map(function(r){ return r+' '+it.excluded[r]+'행'; }).join(' · '))
+  body += '<div class="ifmeta">' + meta.join('<span class="dot">·</span>') + '</div>';
+  if(it.note) body += '<div class="ifmeta">'+esc(it.note)+'</div>';
+  if(it.excluded) body += '<div class="msg"><b>포인트로 세지 않은 행</b><p>'
+    + esc(exKeys.map(function(r){ return exKo(r)+' '+it.excluded[r]+'행'; }).join(' · '))
     + '</p></div>';
-  if(it.gaps && it.gaps.length) h += '<div class="msg"><b>남은 판단</b><p>'
+  if(it.gaps && it.gaps.length) body += '<div class="msg"><b>남은 판단</b><p>'
     + esc(it.gaps.join(' / ')) + '</p></div>';
+  h += '<details class="more ifdet"><summary>'+esc(sumBits.join(' · '))+'</summary>'
+     + body + '</details>';
   var use = IFCOLS.filter(function(c){
     return (it.points||[]).some(function(pp){ return pp[c[0]]!==undefined && pp[c[0]]!==''; }); });
-  var rows = (it.points||[]).map(function(pp){
+  var has = function(pp,c){ return pp[c]!==undefined && pp[c]!==''; };
+  var tkey = 'if'+m.id+k;
+  if(ifFkey !== tkey){ ifFkey = tkey; ifF = {pr:{}, rw:'', st:false, av:false}; }
+  // 칩은 이 판에 실제로 값이 있는 것만 낸다 — 없는 프로토콜 칩은 눌러 봐야 0행이라 헛손질
+  var prCols = [['b','BACnet'],['m','Modbus'],['d','N2'],['l','LON'],['y','York Talk'],['g','Logix']]
+    .filter(function(c){ return (it.points||[]).some(function(pp){ return has(pp,c[0]); }); });
+  var rwSet = {};
+  (it.points||[]).forEach(function(pp){ if(pp.w) rwSet[pp.w]=1; });
+  var hasT = (it.points||[]).some(function(pp){ return has(pp,'t'); });
+  var hasA = (it.points||[]).some(function(pp){ return has(pp,'a'); });
+  // 켜진 조건은 전부 AND. R/W 만 한 값 고르기(둘을 AND 하면 항상 0행이라 의미가 없다)
+  var pts = (it.points||[]).filter(function(pp){
+    if(!Object.keys(ifF.pr).every(function(c){ return !ifF.pr[c] || has(pp,c); })) return false;
+    if(ifF.rw && String(pp.w||'') !== ifF.rw) return false;
+    if(ifF.st && !has(pp,'t')) return false;
+    if(ifF.av && !has(pp,'a')) return false;
+    return true;
+  });
+  var fon = prCols.some(function(c){ return ifF.pr[c[0]]; }) || ifF.rw || ifF.st || ifF.av;
+  var ifc = function(g,v,label,on){
+    return '<button class="ifc" data-ifg="'+g+'" data-v="'+esc(v)+'" aria-pressed="'+!!on+'">'
+         + esc(label) + '</button>'; };
+  var fch = prCols.map(function(c){ return ifc('pr', c[0], c[1], ifF.pr[c[0]]); })
+    .concat(Object.keys(rwSet).sort().map(function(v){ return ifc('rw', v, v, ifF.rw===v); }))
+    .concat(hasT ? [ifc('st','1','상태·열거 있음',ifF.st)] : [])
+    .concat(hasA ? [ifc('av','1','적용 조건 있음',ifF.av)] : []);
+  if(fch.length) h += '<div class="iffbar">' + fch.join('')
+    + (fon ? '<span class="ifn">'+pts.length+' / '+(it.points||[]).length+'행</span>' : '')
+    + '</div>';
+  var rows = pts.map(function(pp){
     return use.map(function(c){ return esc(ifCell(pp[c[0]])); }); });
   h += '<div class="qrow"><span class="qsrc">'+esc(it.label||'')+'</span>'
-     + csvBtn('if'+m.id+k, safeName(m.vendor+'_'+m.model+'_'+it.id)+'.csv',
+     + csvBtn(tkey, safeName(m.vendor+'_'+m.model+'_'+it.id)+'.csv',
               use.map(function(c){ return c[1]; }), rows, '이 판 CSV')
      + '</div>'
      + table({header:use.map(function(c){ return c[1]; }), rows:rows, raw:true,
-              key:'if'+m.id+k});
+              key:tkey});
   return h;
 }
 
@@ -2147,10 +2240,23 @@ function wire(){
     b.addEventListener('click',function(){ tab=b.dataset.tab; kindF=''; gradeF=''; render(); });});
   main.querySelectorAll('.mlist button').forEach(function(b){
     b.addEventListener('click',function(){ mi=+b.dataset.mi; vsel=0; ssel=0; mview='unit'; ksel='rating'; pageOf={}; render(); });});
+  // 모델이 많을 때의 셀렉트 — 단추와 같은 상태 초기화를 해야 판·표 선택이 새 모델에 맞는다
+  main.querySelectorAll('.msel').forEach(function(s){
+    s.addEventListener('change',function(){ mi=+s.value; vsel=0; ssel=0; mview='unit'; ksel='rating'; pageOf={}; render(); });});
   main.querySelectorAll('.iflist button').forEach(function(b){
     b.addEventListener('click',function(){
       var models = visibleModels(cur), m = models[Math.min(mi, models.length-1)];
       if(m) isel[m.id] = +b.dataset.if;
+      re();
+    });});
+  main.querySelectorAll('.ifc').forEach(function(b){
+    b.addEventListener('click',function(){
+      var v = b.dataset.v;
+      if(b.dataset.ifg==='pr') ifF.pr[v] = !ifF.pr[v];
+      if(b.dataset.ifg==='rw') ifF.rw = (ifF.rw===v) ? '' : v;
+      if(b.dataset.ifg==='st') ifF.st = !ifF.st;
+      if(b.dataset.ifg==='av') ifF.av = !ifF.av;
+      delete pageOf[ifFkey];   // 걸러지면 행 수가 달라져 보던 쪽 번호가 무의미 — 1쪽부터
       re();
     });});
   main.querySelectorAll('.vclr').forEach(function(b){

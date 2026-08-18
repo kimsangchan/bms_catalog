@@ -715,14 +715,23 @@ LonMark XIF 의 열쇠는 모델이 아니라 프로그램 ID, KNX 카탈로그 
 그러면 `YCWJ` 로 찾을 길이 없어지므로, 코드마다 `aliasOf` 만 가진 모델을 세운다 —
 포인트를 복제하지 않고 **어느 모델의 어느 판이 덮는지**만 가리킨다(실측 10건).
 
-### 설비 분류는 제품명의 낱말에서 온다
+### 설비 분류의 근거는 둘, 순서가 있다
 
-JCI 카탈로그 제품명이 이미 압축·응축 방식을 밝힌다(`YCAS Air Cooled Screw Chiller`).
-그걸 읽어 `cat` 4단계(`HVAC.PLANT.CHILLER.SCREW`)와 Haystack 태그
-(`chiller-rotaryScrew` · `airCooling`)를 붙인다. **문서에 없는 것은 만들지 않는다** —
-이름에 방식이 안 적힌 4건은 `HVAC.PLANT.CHILLER` 로 남는다.
-⚠ 스크롤은 Haystack 4 에 `chiller-scroll` 이 **없다**. 태그를 지어내지 않고 cat 에만
-넣고 gap 에 적었다.
+① **제품명** — JCI 가 대개 방식을 이름에 적는다(`YCAS Air Cooled Screw Chiller`).
+② **문서 분류(category)** — JCI 카탈로그가 문서마다 붙인 제조사 자신의 분류
+   (`Centrifugal` · `Screw Water-Cooled` · `Scroll Air-Cooled` …). 이름에 방식이
+   없을 때 여기서 가져온다.
+
+전수 대조하면 25건이 일치했고(서로 검증된 셈), 이름만 보던 때 '방식 미상'이던 4건 중
+3건을 ②가 채웠다 — CR→원심 · YVWH·YVWE·YGWH→스크류 수냉 · YMAE→스크롤 공랭.
+남은 1건(AWHP)은 분류가 `Heat Pump` 라 방식을 안 밝힌다 — **미상으로 둔다**.
+
+`cat` 4단계(`HVAC.PLANT.CHILLER.SCREW`)와 Haystack 태그(`chiller-rotaryScrew` ·
+`airCooling`)로 싣는다. **문서에 없는 것은 만들지 않는다.**
+- ⚠ 둘이 어긋나면 **이름을 따르되 gap 에 적는다.** 실측 1건 — YIA ParaFlow Absorption
+  은 이름이 흡수식이라는데 카탈로그는 `Centrifugal` 분류에 넣어 두었다.
+- ⚠ 스크롤은 Haystack 4 에 `chiller-scroll` 이 **없다**. 태그를 지어내지 않고 cat 에만
+  넣고 gap 에 적었다.
 
 ### JCI 취입 (`ingest_jci.py`)
 
@@ -730,11 +739,32 @@ JCI 카탈로그 제품명이 이미 압축·응축 방식을 밝힌다(`YCAS Ai
 PYTHONIOENCODING=utf-8 python ingest_jci.py --route    # 계통 판정만
 PYTHONIOENCODING=utf-8 python ingest_jci.py --apply    # 문서 파싱 → 모델 생성 (수십 분)
 PYTHONIOENCODING=utf-8 python ingest_jci.py --refresh  # 규칙만 다시 적용 (몇 초)
+PYTHONIOENCODING=utf-8 python ingest_jci.py --export   # 검토 화면 → review/jci-ingest.html
+PYTHONIOENCODING=utf-8 python ingest_jci.py --export --with-pages --only <문서>  # + 원문 쪽 그림
 ```
 
 `--refresh` 는 저장된 포인트에서 유도되는 것만 다시 만든다 — 판 분리·덮는 제품·
 설비 분류·통신표·별칭. **규칙을 고칠 때마다 문서 56건을 다시 읽을 이유가 없다**
 (30분 대 몇 초).
+
+검토 화면 표에는 **필터와 페이징**이 있다 — 한 판이 244행까지 가서, 한 덩어리로
+그리면 눈으로 따라갈 수 없다.
+
+`--export --with-pages` 는 **원문 쪽 그림을 화면에 임베드**한다 — 행을 누르면 그
+포인트가 나온 원문 쪽이 팝업으로 뜨고 휠로 확대·축소된다. **전 문서 56건 217쪽**이
+들어가고 파일은 **22.7MB** 다.
+
+크기를 이렇게 줄이기까지 세 번 갈아탔다(217쪽 base64 기준 실측):
+| 방식 | 크기 |
+|---|---|
+| JPEG 컬러 150dpi | 54MB — 전 문서를 못 넣어 `--only` 로 골라야 했다 |
+| JPEG 회색조 90dpi | 26MB — 글자가 뭉갠다 |
+| **WebP 회색조 110dpi q35 + 여백 크롭** | **22.7MB** — 해상도 그대로, 여백만 잘랐다 |
+
+크롭은 `page.get_text("words")` 로 글자가 있는 데까지만 자른다. 원문 여백이 쪽마다
+3~4cm 라 그만큼이 통째로 그림이 되고 있었다 — 해상도를 낮추지 않고 15% 를 줄인다.
+`--only <문서>` 를 주면 그 문서만 넣어 가볍게 만들 수 있다. 그림이 없는 문서는 화면이
+원문 PDF 를 그 쪽에서 연다(`../pipeline/data/raw/<파일>#page=N`).
 
 계통 판정은 **표 머리글**로 한다. 페이지 글자 흐름(`get_text`)으로 찾으면 안 된다 —
 머리글 칸이 여러 줄이면 열끼리 뒤섞여 `ENG PAGE REF` 가
