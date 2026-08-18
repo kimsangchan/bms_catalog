@@ -25,5 +25,11 @@ service-autopilot/pipeline/data/haystack/_*.json
 data/tmp.json
 service-autopilot/pipeline/tmp-*.png
 
+# JCI 본문 전수 스캔 중간물 — 고정 후보 입력(_jci_scan_tiers.json)과
+# 최종 근거(jci-body-scan.json)만 추적한다.
+service-autopilot/pipeline/data/_jci_scan_candidates.json
+service-autopilot/pipeline/data/_jci_scan_hits_*.json
+service-autopilot/pipeline/data/_jci_ipu_docs.json
+
 # 브라우저 자동화 세션 로그 (Playwright MCP) — 산출물 아님
 .playwright-mcp/

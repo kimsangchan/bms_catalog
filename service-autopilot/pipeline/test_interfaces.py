@@ -94,6 +94,21 @@ class InterfaceGateTest(unittest.TestCase):
         got = codes(model(interfaces=[iface(points=[p])]))
         self.assertIn(("W", "iface-protocol-undeclared"), got)
 
+    def test_alt_names_must_be_a_nonempty_string_array(self):
+        p = point()
+        p["common"]["altNames"] = "Gas heat status"
+        self.assertIn(("E", "point-shape"), codes(model(interfaces=[iface(points=[p])])))
+
+    def test_states_must_have_string_code_and_label(self):
+        p = point()
+        p["common"]["states"] = [{"code": 1, "label": "On"}]
+        self.assertIn(("E", "point-shape"), codes(model(interfaces=[iface(points=[p])])))
+
+    def test_states_reject_empty_labels(self):
+        p = point()
+        p["common"]["states"] = [{"code": "1", "label": ""}]
+        self.assertIn(("E", "point-shape"), codes(model(interfaces=[iface(points=[p])])))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,160 @@
+{
+ "id": "johnson-controls-york-l-series-lswu-lswd-lswf-self-contained",
+ "equipId": "e5",
+ "vendor": "Johnson Controls / YORK",
+ "model": "L-Series LSWU/LSWD/LSWF Self-Contained",
+ "name": "L-Series LSWU/LSWD/LSWF Self-Contained",
+ "cat": "HVAC.AIR.SELFCONTAINED",
+ "tag": "ahu",
+ "tags": [
+  "ahu"
+ ],
+ "status": "active",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "points": [],
+ "classifiedBy": "JCI 문서 분류 'Air and Water-Cooled Self-Contained Units'",
+ "gap": "정격·형번이 없다 — IOM 본문의 포인트 표만 취입했다. 형번별 정격은 같은 매뉴얼의 다른 절이나 제품 카탈로그에서 따로 와야 한다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_IOM_145.05-FA2.pdf",
+ "interfaces": [
+  {
+   "id": "iom_145-05-fa2",
+   "label": "Airside Economizer Field Assembly for LSWU/LSWD/LSWF Models, IPU2 Controls, 25-105 Ton Water-Cooled Self-Contained Units",
+   "family": "IPU/Series-100",
+   "protocols": [
+    "bacnet",
+    "modbus"
+   ],
+   "sourceFile": "JCI_IOM_145.05-FA2.pdf",
+   "pointCount": 4,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Outside Air Humidity",
+      "shortName": "OA REL HUMID",
+      "note": "Actual Outdoor Air Humidity Displayed as %H. Note: This value only appears when the unit has an airside economizer and is set up to monitor the value.",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OA REL HUMID",
+       "objectType": "AI",
+       "instance": 29
+      },
+      "modbus": {
+       "address": 542,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-FA2.pdf",
+      "sourcePage": 17,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-fa2"
+     }
+    },
+    {
+     "common": {
+      "name": "Outside Air Temp",
+      "shortName": "OA TEMP",
+      "note": "Outside Air Temp Note: This value only appears when the unit has an airside economizer and is set up to monitor the value.",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OA TEMP",
+       "objectType": "AI",
+       "instance": 30
+      },
+      "modbus": {
+       "address": 543,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-FA2.pdf",
+      "sourcePage": 17,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-fa2"
+     }
+    },
+    {
+     "common": {
+      "name": "Outside Air Humidity BAS Point",
+      "shortName": "OA RH BAS",
+      "note": "Outside Air Humidity BAS Point being communicated to from the building automation. Default is 72.0°F",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OA RH BAS",
+       "objectType": "AV",
+       "instance": 50
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-FA2.pdf",
+      "sourcePage": 17,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "MODBUS REGISTER ADDRESS": "N/A"
+      },
+      "interfaceId": "iom_145-05-fa2"
+     }
+    },
+    {
+     "common": {
+      "name": "Outside Air Temperature BAS Point",
+      "shortName": "OAT CURR BAS",
+      "note": "Outside Air Temperature BAS Point being communicated to/from the BAS. Default is 0% RH.",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OAT CURR BAS",
+       "objectType": "AV",
+       "instance": 49
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-FA2.pdf",
+      "sourcePage": 17,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "MODBUS REGISTER ADDRESS": "N/A"
+      },
+      "interfaceId": "iom_145-05-fa2"
+     }
+    }
+   ],
+   "sourcePages": [
+    17,
+    17
+   ],
+   "note": "파서 vendor_jci_ipu · 원문 IOM 본문"
+  }
+ ],
+ "summary": "BAS 포인트 표 1판에서 취입 — 오브젝트 4점",
+ "comm": [
+  [
+   "BACnet",
+   "IPU/Series-100",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "Modbus",
+   "IPU/Series-100",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ]
+}

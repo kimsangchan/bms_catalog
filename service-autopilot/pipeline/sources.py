@@ -138,6 +138,44 @@ JCI_BAS_POINTS = [
 ]
 _JCI_KHUB = "https://docs.johnsoncontrols.com/%s/api/khub/documents/%s/content"
 
+# JCI 옥상형·자립형 IOM 16건 — 포인트 표가 **매뉴얼 본문**(대개 p110~190대)에 묻혀 있다.
+# 제목에는 낌새가 없어 제목 스캔으로는 못 찾는다. 본문 전수 스캔(scan_jci.py)이
+# 1,492건에서 골라낸 것이다 — 근거는 data/jci-body-scan.json.
+JCI_IOM_POINTS = [
+    ("xLE48mA5godfHZjcnWpzXg", "ductedsystems",
+     "JCI_IOM_100.50-NOM3.pdf"),
+    ("~6kOXz2TlqNoTDiKhe4N5w", "ductedsystems",
+     "JCI_IOM_100.50-NOM10.pdf"),
+    ("NM9Ffc7gf1w9ZMGJ4IEBhQ", "ductedsystems",
+     "JCI_IOM_100.50-NOM11.pdf"),
+    ("jHl7DLBfzBwL8EpKbeMhag", "ductedsystems",
+     "JCI_IOM_100.50-NOM8.pdf"),
+    ("2DuEps2tmbiJza~RoblMpQ", "ductedsystems",
+     "JCI_IOM_100.50-NOM4.pdf"),
+    ("PzyUqnwmpibAZ5RrpmdAQA", "ductedsystems",
+     "JCI_IOM_100.50-SU8.pdf"),
+    ("PwDHFbfBgQxp4HQ4ucu1fw", "ductedsystems",
+     "JCI_IOM_100.50-NOM5.pdf"),
+    ("SGq_ET2snQgUpiWEkwLe9Q", "ductedsystems",
+     "JCI_IOM_100.50-NOM9.pdf"),
+    ("_~G86KWmcNAwaza1eWuLog", "ductedsystems",
+     "JCI_IOM_100.50-NOM12.pdf"),
+    ("BpB59IccLWhzwcdWvOEhIg", "ductedsystems",
+     "JCI_IOM_145.05-FA2.pdf"),
+    ("rnPJfvwHD2q52d5PbSnh6w", "ductedsystems",
+     "JCI_IOM_5276178-jim-e-0119.pdf"),
+    ("ZgIshwasfGQR32HXAn9ytQ", "ductedsystems",
+     "JCI_IOM_TPM3-NOM1.pdf"),
+    ("Ck5Q_ooGFgSVlyjx31b2hg", "ductedsystems",
+     "JCI_IOM_TPM2-NOM1.pdf"),
+    ("hxRGm93wCa~o8RhAHCHuMg", "ductedsystems",
+     "JCI_IOM_TPM2-NOM2.pdf"),
+    ("3AypYHL6KoR916FxgB5XVQ", "ductedsystems",
+     "JCI_IOM_145.05-NOM3.pdf"),
+    ("~kxYAglMx7q8o4OKJTy5DA", "ductedsystems",
+     "JCI_IOM_YRK3-NOM1.pdf"),
+]
+
 SOURCES = [
     {
         "id": "trane-points-list",
@@ -972,6 +1010,23 @@ SOURCES = [
         # 계통 대부분이 Modbus·N2·LON 주소만 주거나(BACnet 타입 열이 없거나) 한 행에 네
         # 프로토콜을 함께 실어, 줄 읽기 경로가 (타입, 인스턴스) 짝을 만들 수 없다.
         "crosscheck_unreliable": r"JCI_",
+    },
+    {
+        "id": "jci-york-iom-points",
+        "vendor": "Johnson Controls / YORK",
+        "kind": "포인트리스트",
+        "note": "York 옥상형(YPAL Series 100·Millenium·TempMaster OmniElite)·자립형(Versecon) "
+                "설치·운전 매뉴얼. 포인트 표가 본문 후반에 묻혀 있다 — 냉동기처럼 별도 "
+                "포인트 리스트로 발행되지 않는다. 표는 BACnet NAME|USER INTERFACE NAME|"
+                "READ/WRITE|OBJECT TYPE AND INSTANCE|(MODBUS REGISTER|ENG UNITS|N2 ADDRESS)|"
+                "POINTS LIST DESCRIPTION. 파서는 vendor_jci_ipu.py.",
+        "enumerate": "list",
+        "urls": [_JCI_KHUB % (site, i) for i, site, _n in JCI_IOM_POINTS],
+        "rename": {_JCI_KHUB % (site, i): n for i, site, n in JCI_IOM_POINTS},
+        "extractor": "vendor",
+        "access": "무로그인",
+        # 200쪽 매뉴얼이라 줄 읽기 경로가 표를 못 따라간다 — 교차 대조 불가
+        "crosscheck_unreliable": r"JCI_IOM_",
     },
 ]
 

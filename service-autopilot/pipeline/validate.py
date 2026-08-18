@@ -277,15 +277,26 @@ def check_interfaces(m, add):
             add("W", "iface-empty", "%s: 포인트가 없다" % iid)
 
         # 사전 우선 — 레코드의 모든 키가 사전에 정의된 경로여야 한다
-        bad, orphan, blkuse = collections.Counter(), 0, collections.Counter()
+        bad, shape_bad, orphan, blkuse = (collections.Counter(), collections.Counter(),
+                                          0, collections.Counter())
         longname, outrange = [], []
         for p in pts:
             for top in p:
                 if top not in ("common", "blocks", "provenance"):
                     bad["최상위 %s" % top] += 1
-            for k in (p.get("common") or {}):
+            common = p.get("common") or {}
+            for k in common:
                 if k not in common_ok:
                     bad["common.%s" % k] += 1
+            alt_names = common.get("altNames")
+            if alt_names is not None and (not isinstance(alt_names, list) or
+                                          not all(isinstance(x, str) and x for x in alt_names)):
+                shape_bad["common.altNames"] += 1
+            states = common.get("states")
+            if states is not None and (not isinstance(states, list) or not all(
+                    isinstance(x, dict) and isinstance(x.get("code"), str) and
+                    isinstance(x.get("label"), str) and bool(x.get("label")) for x in states)):
+                shape_bad["common.states"] += 1
             for k in (p.get("provenance") or {}):
                 if k not in prov_ok:
                     bad["provenance.%s" % k] += 1
@@ -311,6 +322,9 @@ def check_interfaces(m, add):
         if bad:
             add("E", "point-field", "%s: 사전 밖 필드 %d종 — %s"
                 % (iid, len(bad), ", ".join("%s×%d" % kv for kv in bad.most_common(3))))
+        if shape_bad:
+            add("E", "point-shape", "%s: 값 모양이 사전과 다른 필드 — %s"
+                % (iid, ", ".join("%s×%d" % kv for kv in shape_bad.most_common())))
         if orphan:
             add("E", "point-orphan", "%s: 다른 인터페이스를 가리키는 포인트 %d점" % (iid, orphan))
         if outrange:

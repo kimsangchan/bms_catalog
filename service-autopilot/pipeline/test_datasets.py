@@ -107,6 +107,16 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(
             seen["trane-symbio-700-precedent-and-axiom-rooftop-wshp-lontalk-scc"], "e5.rtu")
         self.assertEqual(seen["swegon-iqlogic-gold-rx-px-cx-sd-ahu-modbus"], "e5.ahu")
+        # 자립형은 응축수 배관이 있어도 냉수코일 AHU가 아니다. 냉매 압축기와
+        # 응축기를 한 캐비닛에 둔 직팽 패키지라 RTU 계산식을 쓴다.
+        self.assertEqual(
+            seen["johnson-controls-york-versecon-yswu-yswd-water-cooled-self-contained"],
+            "e5.rtu",
+        )
+        self.assertEqual(
+            seen["johnson-controls-york-l-series-lswu-lswd-lswf-self-contained"],
+            "e5.rtu",
+        )
         with self.assertRaises(ValueError):
             datasets.template_profile_for({"id": "x", "equipId": "e5", "cat": "HVAC.WATER.PUMP"})
 
@@ -616,8 +626,8 @@ class DatasetBuildTest(unittest.TestCase):
         # 새 벤더를 넣고 이 테스트가 깨지면 체크리스트 5번(인식 사다리 확장)을 하지
         # 않은 것이다. "조판 탓" 으로 넘기지 말 것 (AAON 실사례 — 텍스트 층 파서로 해결).
         data = datasets.build_dataset(equip_ids={"e5"})
-        # 예외는 하나뿐 — **정격 문서가 아예 없는 모델**이다. BAS 포인트 리스트만
-        # 있는 제품(JCI York 옥상형)은 형번을 뽑을 원문 자체가 없다. 사다리를 넓혀서
+        # 예외는 **정격 문서가 아예 없는 모델**이다. BAS 포인트 리스트나 IOM만
+        # 있는 JCI York 제품은 형번을 뽑을 원문 자체가 없다. 사다리를 넓혀서
         # 될 일이 아니라 카탈로그를 더 받아야 하는 일이라, 여기서 막으면 게이트가
         # '고칠 수 없는 실패'로 상주한다. 대신 사유가 gap 에 적혀 있어야 하고
         # validate.py 의 units-none / units-none-undoc 가 그것을 매번 확인한다.
@@ -634,9 +644,16 @@ class DatasetBuildTest(unittest.TestCase):
         missing = [mid for mid, m in data["modelMappings"].items()
                    if not m.get("unitModels") and mid not in no_rating]
         self.assertEqual(missing, [])
-        # 면제가 늘어나면 게이트가 조용히 헐거워진다 — 수를 박아 둔다
-        self.assertLessEqual(len(no_rating), 2,
-                             "정격 문서 없는 e5 모델이 늘었다: %s" % sorted(no_rating))
+        # 면제가 늘어나면 게이트가 조용히 헐거워진다 — 승인한 모델 id를 정확히 박는다.
+        self.assertEqual(no_rating, {
+            "johnson-controls-york-l-series-lswu-lswd-lswf-self-contained",
+            "johnson-controls-york-millenium-packaged-rooftop-unit",
+            "johnson-controls-york-rooftop-25-30-40-ton-ipu-control",
+            "johnson-controls-york-sunline-3000-rooftop",
+            "johnson-controls-york-tempmaster-omnielite-packaged-rooftop-unit",
+            "johnson-controls-york-versecon-yswu-yswd-water-cooled-self-contained",
+            "johnson-controls-york-ypal-packaged-rooftop-unit",
+        })
 
     def test_aaon_cabinet_text_yields_units_with_iom_tonnage(self):
         data = datasets.build_dataset(equip_ids={"e5"})

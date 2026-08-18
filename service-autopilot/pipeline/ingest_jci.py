@@ -1476,12 +1476,132 @@ def export(out_path=None, with_pages=False, only=None, quality=35):
     return 0
 
 
+# ── IOM 본문형(IPU/Series-100) 취입 ──────────────────────────────────────────
+# 냉동기는 포인트 리스트가 별도 문서지만 옥상형·자립형은 IOM 본문에 묻혀 있다.
+# 문서 성격이 달라 소스도 파서도 따로지만, **모델에 담기는 모양은 같다**(interfaces[]).
+IOM_PROD = {                       # 카탈로그가 제품명을 안 준 문서 — 제목에서 옮겨 적는다
+    "90-105 Tons, Mod G (Current), Series 100": "Series 100 (YPAL)",
+    "TempMaster OmniElite 90-105 Tons": "OmniElite",
+}
+# 카탈로그 제품명 → 우리 모델 이름. 같은 제품군을 한 모델로 모은다.
+IOM_MODEL = {
+    "Series 100 (YPAL)": "YPAL Packaged Rooftop Unit",   # 기존 모델과 같은 제품군이다
+    "YPAL": "YPAL Packaged Rooftop Unit",
+    "OmniElite": "TempMaster OmniElite Packaged Rooftop Unit",
+    "Millenium": "Millenium Packaged Rooftop Unit",
+    "V2 to V4": "Rooftop 25/30/40 Ton (IPU Control)",
+    "Versecon": "Versecon YSWU/YSWD Water-Cooled Self-Contained",
+    "L-Series": "L-Series LSWU/LSWD/LSWF Self-Contained",
+}
+IOM_EQUIP = {                      # 문서 분류 → (계열, cat, tag)
+    "Applied Packaged Rooftop Units": ("e5", "HVAC.AIR.RTU", "rooftop"),
+    "Rooftop Packaged Unit": ("e5", "HVAC.AIR.RTU", "rooftop"),
+    "Air Conditioners": ("e5", "HVAC.AIR.RTU", "rooftop"),
+    "Air and Water-Cooled Self-Contained Units": ("e5", "HVAC.AIR.SELFCONTAINED", "ahu"),
+}
+
+
+def apply_iom(dry=False):
+    """IOM 본문 포인트 표 → 모델의 interfaces[]. 제품이 이미 있으면 판을 잇는다."""
+    import vendor_jci_ipu as P
+    try:
+        cat = catalog()
+    except (OSError, ValueError):
+        # 전체 JCI 카탈로그 스냅샷은 44MB라 저장소에 싣지 않는다. 본문 스캔의
+        # 추적 가능한 prod/cat 메타만으로도 이 16건은 재현돼야 한다.
+        cat = {}
+    groups = collections.OrderedDict()
+    for h, path in P.docs():
+        meta = dict(cat.get(h.get("id"), {}))
+        meta.setdefault("prod", h.get("prod") or "")
+        meta.setdefault("category", h.get("cat") or "")
+        prod = meta.get("prod") or ""
+        if not prod:
+            for k, v in IOM_PROD.items():
+                if k.lower() in (h.get("title") or "").lower():
+                    prod = v
+                    break
+        key = IOM_MODEL.get(prod, prod or os.path.basename(path))
+        groups.setdefault(key, []).append((h, path, meta))
+
+    made = pts = 0
+    for key, items in groups.items():
+        ifaces = []
+        for h, path, meta in items:
+            rows, unk, head, skipped = P.parse_doc(path)
+            if unk:
+                detail = ", ".join("%s×%s" % item for item in sorted(unk.items()))
+                raise ValueError("%s: 못 알아본 포인트 표 열 — %s" %
+                                 (os.path.basename(path), detail))
+            if not rows:
+                print("  ⚠ %-58s 0점" % os.path.basename(path)[:58])
+                continue
+            row = {"file": os.path.basename(path), "title": h.get("title") or "",
+                   "id": h.get("id", "")}
+            made_ifs = build_interfaces(row, P.FAMILY, rows, skipped)
+            for it in made_ifs:
+                basis = it.get("note") or ""
+                it["note"] = " · ".join(x for x in (
+                    basis, "파서 vendor_jci_ipu · 원문 IOM 본문") if x)
+            ifaces.extend(made_ifs)
+            print("  · %-58s %5d점" % ((h.get("title") or "")[:58], len(rows)))
+        if not ifaces:
+            continue
+        equip, cat4, tag = IOM_EQUIP.get(
+            (items[0][2] or {}).get("category", ""), ("e5", "HVAC.AIR.RTU", "rooftop"))
+        mid = S.model_id(VENDOR, key)
+        path_m = os.path.join(DATA, "models", mid + ".json")
+        new_ifaces = ifaces
+        if os.path.exists(path_m):
+            # 같은 제품이 이미 있다 — 새 문서는 잇고, 같은 sourceFile은 최신 파서
+            # 결과로 교체한다. 그래야 파서 결함을 고친 뒤 삭제 없이 재생성할 수 있다.
+            with open(path_m, encoding="utf-8") as f:
+                rec = json.load(f)
+            old_ifaces = rec.get("interfaces") or []
+            have = {i["sourceFile"] for i in old_ifaces}
+            new_ifaces = [i for i in ifaces if i["sourceFile"] not in have]
+            incoming_sources = {i["sourceFile"] for i in ifaces}
+            merged_ifaces = ([i for i in old_ifaces
+                              if i.get("sourceFile") not in incoming_sources] + ifaces)
+            if merged_ifaces == old_ifaces:
+                print("  ↷ %s — 이미 취입한 문서, 변경 없음" % mid)
+                continue
+            rec["interfaces"] = merged_ifaces
+        else:
+            rec = {"id": mid, "equipId": equip, "vendor": VENDOR, "model": key,
+                   "name": key, "cat": cat4, "tag": tag, "tags": [tag],
+                   "status": "active", "has": {"spec": False, "points": True},
+                   "ede": False, "spec": [], "io": [], "elec": None, "points": [],
+                   "classifiedBy": "JCI 문서 분류 %r" % (items[0][2] or {}).get("category", ""),
+                   "gap": "정격·형번이 없다 — IOM 본문의 포인트 표만 취입했다. "
+                          "형번별 정격은 같은 매뉴얼의 다른 절이나 제품 카탈로그에서 따로 와야 한다.",
+                   "extractor": "vendor_jci", "sourceDoc": ifaces[0]["sourceFile"],
+                   "interfaces": ifaces}
+        n = sum(i["pointCount"] for i in rec["interfaces"])
+        rec["summary"] = ("BAS 포인트 표 %d판에서 취입 — 오브젝트 %d점"
+                          % (len(rec["interfaces"]), n))
+        rec["comm"] = comm_rows(rec["interfaces"])
+        made += 1
+        pts += sum(i["pointCount"] for i in new_ifaces)
+        if dry:
+            print("  (dry) %s — 판 %d · %d점" % (mid, len(rec["interfaces"]), n))
+            continue
+        with open(path_m, "w", encoding="utf-8") as f:
+            json.dump(rec, f, ensure_ascii=False, indent=1)
+        print("  ✓ %s — 판 %d · 총 %d점" % (mid, len(rec["interfaces"]), n))
+    print("\n모델 %d건 · 새 오브젝트 %d점" % (made, pts))
+
+    return 0
+
+
 def main(argv):
     ap = argparse.ArgumentParser(description="JCI 포인트 리스트 취입")
     ap.add_argument("--route", action="store_true", help="계통 판정만 (빠름)")
     ap.add_argument("--apply", action="store_true", help="모델 레코드 생성")
     ap.add_argument("--dry", action="store_true", help="파싱은 하되 쓰지 않는다")
     ap.add_argument("--no-crosscheck", action="store_true", help="교차 대조 건너뛰기")
+    ap.add_argument("--apply-iom", action="store_true",
+                    help="IOM 본문형(IPU/Series-100) 취입")
     ap.add_argument("--export", action="store_true",
                     help="검토 화면 review/jci-ingest.html 을 낸다")
     ap.add_argument("--with-pages", action="store_true",
@@ -1490,6 +1610,8 @@ def main(argv):
                     help="취입한 모델의 메타만 다시 계산 (PDF 재파싱 없음)")
     ap.add_argument("--only", help="저장 이름에 이 글자가 든 문서만")
     a = ap.parse_args(argv)
+    if a.apply_iom:
+        return apply_iom(dry=a.dry)
     if a.export:
         return export(with_pages=a.with_pages, only=a.only)
     if a.refresh:

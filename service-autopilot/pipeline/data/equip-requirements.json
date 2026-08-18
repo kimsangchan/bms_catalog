@@ -22,10 +22,11 @@
       "match": {
         "catPrefix": [
           "HVAC.AIR.RTU",
-          "HVAC.AIR.SPLIT"
+          "HVAC.AIR.SPLIT",
+          "HVAC.AIR.SELFCONTAINED"
         ]
       },
-      "matchNote": "catPrefix 는 접두 최장일치라 HVAC.AIR.RTU.WSHP(수열원 히트펌프 2모델)도 여기로 온다 — 맞다. WSHP 의 nviCWFlow·nvoCWPump·nvoCWTemp 는 응축수 루프이지 냉수코일이 아니다. HVAC.AIR.SPLIT(Trane IntelliCore RAUK 1모델)은 접두로는 안 걸려서 명시로 넣었다: 압축기 2회로·Cooling Capacity Enable 을 갖는 직팽이라 계산식이 RTU 와 같다.",
+      "matchNote": "catPrefix 는 접두 최장일치라 HVAC.AIR.RTU.WSHP(수열원 히트펌프 2모델)도 여기로 온다 — 맞다. WSHP 의 nviCWFlow·nvoCWPump·nvoCWTemp 는 응축수 루프이지 냉수코일이 아니다. HVAC.AIR.SPLIT(Trane IntelliCore RAUK 1모델)은 접두로는 안 걸려서 명시로 넣었다: 압축기 2회로·Cooling Capacity Enable 을 갖는 직팽이라 계산식이 RTU 와 같다. HVAC.AIR.SELFCONTAINED(Versecon·L-Series)는 응축수 배관이 있어도 냉수코일 AHU가 아니라 냉매 압축기·응축기를 한 캐비닛에 둔 직팽 패키지라 같은 계산식을 쓴다.",
       "note": "냉수·온수코일이 없다. AHU 요구 항목을 그대로 쓰면 없는 부품을 찾게 된다(2026-08-11 실제 사고).",
       "energyModel": {
         "cooling": "냉방 전력 = 냉방부하 ÷ COP(부분부하)",

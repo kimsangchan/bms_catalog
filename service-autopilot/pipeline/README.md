@@ -738,6 +738,7 @@ LonMark XIF 의 열쇠는 모델이 아니라 프로그램 ID, KNX 카탈로그 
 ```bash
 PYTHONIOENCODING=utf-8 python ingest_jci.py --route    # 계통 판정만
 PYTHONIOENCODING=utf-8 python ingest_jci.py --apply    # 문서 파싱 → 모델 생성 (수십 분)
+PYTHONIOENCODING=utf-8 python ingest_jci.py --apply-iom # IOM 본문형(IPU/Series-100) 취입
 PYTHONIOENCODING=utf-8 python ingest_jci.py --refresh  # 규칙만 다시 적용 (몇 초)
 PYTHONIOENCODING=utf-8 python ingest_jci.py --export   # 검토 화면 → review/jci-ingest.html
 PYTHONIOENCODING=utf-8 python ingest_jci.py --export --with-pages --only <문서>  # + 원문 쪽 그림
@@ -746,6 +747,15 @@ PYTHONIOENCODING=utf-8 python ingest_jci.py --export --with-pages --only <문서
 `--refresh` 는 저장된 포인트에서 유도되는 것만 다시 만든다 — 판 분리·덮는 제품·
 설비 분류·통신표·별칭. **규칙을 고칠 때마다 문서 56건을 다시 읽을 이유가 없다**
 (30분 대 몇 초).
+
+냉동기와 달리 옥상형·자립형은 포인트 표를 별도 문서로 내지 않고 200쪽 안팎 IOM
+본문 후반에 묻는다. `scan_jci.py`가 JCI 후보 1,492건의 본문을 훑어 찾았고,
+`vendor_jci_ipu.py`가 IPU/Series-100 표를 읽는다. 실측 16문서 → **6제품군·16판·
+4,098점**이다. YPAL은 새 모델을 만들지 않고 기존 2판에 세대별 9판을 이었다.
+같은 주소의 설치 구성별 이름은 행을 복제하지 않고 `common.altNames`에 둔다.
+미인식 열이 하나라도 나오면 취입을 중단한다 — 열 변화로 값이 조용히 사라지는 것을
+막기 위해서다. 전체 카탈로그 스냅샷은 저장소에 없으므로 추적되는
+`data/jci-body-scan.json`의 제품·분류 메타로 새 체크아웃에서도 재현한다.
 
 검토 화면 표에는 **필터와 페이징**이 있다 — 한 판이 244행까지 가서, 한 덩어리로
 그리면 눈으로 따라갈 수 없다.
@@ -794,8 +804,8 @@ Belimo 는 같은 기기를 BACnet 판과 Modbus 판으로 낸다. 사양은 같
 Air Water 구동기는 계열 문서가 없고 형번마다 따로다 (`LR24A-MOD` 등).
 ```
 
-벤더별 모델: Trane 32 · Belimo 19 · Vertiv/Liebert 19 · Daikin 5 · ebm-papst 4 ·
-Danfoss 3 · JCI 3 · Schneider 2 · Grundfos 1 · Siemens 1
+벤더별 모델: JCI/YORK 49 · Trane 32 · Belimo 19 · Vertiv/Liebert 19 · Daikin 5 ·
+ebm-papst 4 · Danfoss 3 · Schneider 2 · LG 2 · JCI 2 · 기타 8
 
 계열 커버리지 **10 / 19**
 
@@ -804,7 +814,7 @@ Danfoss 3 · JCI 3 · Schneider 2 · Grundfos 1 · Siemens 1
 | 냉동기 (칠러) | 29 | 8,809 |
 | FCU · 항온항습기 (CRAC) | 19 | 5,515 |
 | 계량 · 계측 · 제어기 | 15 | 417 |
-| 공조기 (AHU) | 9 | 2,453 |
+| 공조기 (AHU·RTU·자립형) | 14 | 6,551 |
 | 송풍기 | 4 | 652 |
 | 터미널 유닛 (VAV) | 4 | 75 |
 | VRF | 3 | 91 |

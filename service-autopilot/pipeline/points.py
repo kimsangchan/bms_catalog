@@ -131,10 +131,76 @@ def load():
             yield json.load(fp)
 
 
+def iface_rows(m, base):
+    """새 형식(interfaces[].points[]) → 같은 CSV 한 줄.
+
+    왜 여기에 붙이나: BMS 가 가져가는 출구는 이 CSV 하나다. 구조가 둘로 갈렸다고
+    출구도 둘이 되면 소비자가 두 벌을 합쳐야 한다 — **한 줄 모양은 그대로 두고
+    판을 가리는 열(interfaceId·family·revision)과 프로토콜 열만 늘린다.**
+    interfaceId 가 없으면 같은 제품의 다른 판이 CSV 에서 섞인다(D-016 이 막은 사고).
+    """
+    for it in (m.get("interfaces") or []):
+        rev = it.get("revision") or {}
+        for p in (it.get("points") or []):
+            c = p.get("common") or {}
+            b = p.get("blocks") or {}
+            pv = p.get("provenance") or {}
+            bac, mb = b.get("bacnet") or {}, b.get("modbus") or {}
+            n2, lon = b.get("n2") or {}, b.get("lon") or {}
+            yt, lg = b.get("yorktalk") or {}, b.get("logix") or {}
+            value_range = c.get("rangeIP") or c.get("rangeSI") or {}
+            # availability 는 계통마다 모양이 다르다 — SC-EQ 는 {raw,code,column},
+            # E-Link 는 문자열 하나다. 둘 다 받는다.
+            av = c.get("availability")
+            av = av.get("raw") if isinstance(av, dict) else (av or "")
+            r = dict(base)
+            r.update({
+                "interfaceId": it.get("id"), "family": it.get("family"),
+                "revision": " ".join(x for x in (rev.get("doc"), rev.get("block"),
+                                                 rev.get("firmware")) if x),
+                "type": bac.get("objectType") or "", "inst": bac.get("instance"),
+                "name": c.get("name") or lon.get("nvName") or "",
+                "altNames": " | ".join(c.get("altNames") or []),
+                "shortName": c.get("shortName") or "",
+                "unit": c.get("unitIP") or c.get("unitSI") or "",
+                "unitRaw": c.get("unitIPRaw") or c.get("unitSIRaw") or "",
+                "sourceFile": pv.get("sourceFile") or "",
+                "sourcePage": pv.get("sourcePage") or "",
+                "writable": c.get("readWrite") or "",
+                "modbusRegister": mb.get("address", ""),
+                "modbusBase": mb.get("addressBase") or "",
+                "modbusRefClass": mb.get("refClass") or "",
+                "modbusScaleFactor": mb.get("scaleRaw") or "",
+                "modbusSignedFlag": mb.get("dataType") or "",
+                "n2": ("%s %s" % (n2.get("pointType") or "", n2.get("address"))).strip()
+                      if n2 else "",
+                "lon": lon.get("snvtType") or lon.get("nvName") or "",
+                "yorktalk": yt.get("coord") or yt.get("pageRef") or "",
+                "logix": lg.get("tag") or "",
+                "condition": av,
+                "descr": c.get("note") or "",
+                "rangeMin": value_range.get("min", ""),
+                "rangeMax": value_range.get("max", ""),
+                "rangeRaw": ("%s – %s" % (value_range.get("min"), value_range.get("max"))
+                             if value_range else ""),
+                "bacnetName": bac.get("objectName") or "",
+                "noteRaw": "",
+            })
+            states = [(s.get("code"), s.get("label"))
+                      for s in (c.get("states") or []) if s.get("label")]
+            # 옛 형식 전용 파생 열은 빈 값으로 채운다 — 요약·CSV 가 열을 항상 기대한다
+            for k in FIELDS:
+                r.setdefault(k, "")
+            r["stateCount"] = len(states)
+            yield r, states
+
+
 def rows():
     for m in load():
         base = {"modelId": m.get("id"), "equipId": m.get("equipId"),
                 "vendor": m.get("vendor"), "model": m.get("model")}
+        for r in iface_rows(m, base):
+            yield r
         for p in (m.get("points") or []):
             d = parse_note(p.get("note"))
             r = dict(base)
@@ -156,14 +222,17 @@ def rows():
             yield r, d["states"]
 
 
+# 새 열은 **뒤에 붙인다** — 앞 열 순서를 바꾸면 이 CSV 를 읽던 쪽이 깨진다.
 FIELDS = ["modelId", "equipId", "vendor", "model", "type", "inst", "name",
           "unit", "unitRaw", "sourceFile", "sourcePage", "writable",
           "bacOid", "modbusRegister", "modbusScaleFactor", "modbusBooleanFlag",
           "modbusSignedFlag", "modbusOffset", "modbusWritableFlag",
           "rangeMin", "rangeMax", "rangeRaw", "defaultRaw", "regRaw",
           "origRaw", "bacnetName", "condition", "code",
-          "stateCount", "truncated", "descr", "noteRaw"]
-STATE_FIELDS = ["modelId", "type", "inst", "name", "stateCode", "stateLabel"]
+          "stateCount", "truncated", "descr", "noteRaw",
+          "interfaceId", "family", "revision", "shortName", "altNames",
+          "modbusBase", "modbusRefClass", "n2", "lon", "yorktalk", "logix"]
+STATE_FIELDS = ["modelId", "type", "inst", "name", "stateCode", "stateLabel", "interfaceId"]
 
 
 def export():
@@ -172,8 +241,8 @@ def export():
     for r, states in rows():
         pts.append(r)
         for code, label in states:
-            sts.append({"modelId": r["modelId"], "type": r["type"],
-                        "inst": r["inst"], "name": r["name"],
+            sts.append({"modelId": r["modelId"], "interfaceId": r.get("interfaceId", ""),
+                        "type": r["type"], "inst": r["inst"], "name": r["name"],
                         "stateCode": code, "stateLabel": label})
     write(os.path.join(OUT, "points.csv"), pts, FIELDS)
     write(os.path.join(OUT, "point-states.csv"), sts, STATE_FIELDS)

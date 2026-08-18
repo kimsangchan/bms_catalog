@@ -80,6 +80,11 @@
    "shape": "string",
    "note": "사람이 읽는 긴 이름. 출처 열: 'Long Name (BACnet Object Description)'(SC-EQ·YMAE) / 'POINT LIST DESCRIPTION'(E-Link 3계통) / 'Description'(YZD). 괄호로 딸려 오는 상태 의미('(0=outside air, 1=return air)')는 states 로 분리하고 이름에서 뗀다. Typ-Ins형의 'BACnet Object Name' 열을 이름으로 쓰면 안 된다 — rules.columnGuards 참조 ⚠ Native/Panel(YPAL·ECO2) 계통에는 긴 이름 열이 아예 없다. 'PANEL DISPLAYED NAME' 은 shortName 이고, 이를 name 으로 승격하지 않는다 — 승격하면 다른 계통의 name(사람이 읽는 설명문)과 성격이 달라진다. 이 계통은 name 을 비우고 gaps 에 '문서에 긴 이름 열 없음'을 적는다."
   },
+  "altNames": {
+   "ko": "같은 오브젝트의 다른 이름",
+   "shape": "array [string]",
+   "note": "같은 주소가 **설치 구성에 따라 다른 이름으로 불리는** 경우. IPU/Series-100 표에서 BI26 한 점이 전기히터 구성이면 'ELECT HEAT STAGE 1 STATUS', 가스로면 'STAGED GAS FURN 1 LO STATUS'·'MOD GAS FURN 1A LOW STATUS' 로 나온다 — 원문이 주소 칸을 비운 채 이름만 다음 줄에 적는다. 버리면 가스로 현장에서 그 이름으로 찾을 길이 없다. 별개 포인트가 아니므로 행을 늘리지 않는다(bacnet.alternates 가 주소 표기 차이인 것과 짝)"
+  },
   "shortName": {
    "ko": "짧은 이름(패널 니모닉)",
    "shape": "string",
@@ -204,10 +209,11 @@
     "E-Link/YorkTalk",
     "Native",
     "Native/Panel",
-    "YZD-Logix"
+    "YZD-Logix",
+    "IPU/Series-100"
    ],
    "required": true,
-   "note": "**columnGuards 의 절반이 계통 조건부다** — 'YZD 문서에서 bacnet 블록 생성은 오류'·'GPIC형과 Typ-Ins형의 라우팅이 다르다' 같은 규칙은 레코드가 출신 계통을 모르면 강제할 수 없다. 초안에 이 자리가 없어 가드 3개가 작동 불능이었다(2026-08-12 검증). 계통은 취입할 때 어댑터가 적는다."
+   "note": "IPU/Series-100 은 냉동기가 아니라 **옥상형·자립형 IOM 본문**에 묻힌 표다(2026-08-18 본문 전수 스캔에서 찾았다 — 제목에는 낌새가 없어 그때까지 통째로 빠져 있었다). **columnGuards 의 절반이 계통 조건부다** — 'YZD 문서에서 bacnet 블록 생성은 오류'·'GPIC형과 Typ-Ins형의 라우팅이 다르다' 같은 규칙은 레코드가 출신 계통을 모르면 강제할 수 없다. 초안에 이 자리가 없어 가드 3개가 작동 불능이었다(2026-08-12 검증). 계통은 취입할 때 어댑터가 적는다."
   },
   "interfaceId": {
    "ko": "소속 인터페이스",
