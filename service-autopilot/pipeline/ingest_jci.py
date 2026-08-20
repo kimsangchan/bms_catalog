@@ -34,6 +34,9 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
+# IOM 본문형 판을 가리키는 표식. `--refresh` 가 이 판을 건너뛰는 근거다
+# (파서·문서 성격이 달라 E-Link 규칙으로 다시 짜면 안 된다).
+IOM_NOTE = "파서 vendor_jci_ipu · 원문 IOM 본문"
 sys.path.insert(0, HERE)
 import collect as CO  # noqa: E402
 import schema as S  # noqa: E402
@@ -354,6 +357,39 @@ def split_blocks(rows):
     return out
 
 
+TAB_FOOT = re.compile(r"Tab:\s*(\S.*?)\s*$")
+
+
+def tab_name(file_name, page):
+    """쪽 꼬리말의 `Tab: <시트 이름>` 을 읽는다. 없으면 None.
+
+    JCI E-Link 문서는 엑셀 워크북을 찍어 낸 것이라 **모든 쪽 꼬리말에 시트 이름**이
+    박혀 있다 — 'Tab: YCWS Style F,G' · 'Tab: YS SSS' · 'Tab: without VSD'.
+    블록 제목이 없는 판을 '구간 2' 로 부르고 있었는데, 문서는 처음부터 이름을
+    달고 있었다(이름 없던 판 37개 전부에 있었다 — 실측 누락 0건).
+    """
+    if not file_name or not page:
+        return None
+    path = os.path.join(DATA, "raw", file_name)
+    if not os.path.exists(path):
+        return None
+    try:
+        import fitz
+        doc = fitz.open(path)
+        try:
+            if not 1 <= page <= doc.page_count:
+                return None
+            for line in doc[page - 1].get_text().split("\n"):
+                m = TAB_FOOT.search(line.strip())
+                if m:
+                    return re.sub(r"\s{2,}", " ", m.group(1)).strip()
+        finally:
+            doc.close()
+    except Exception:
+        return None
+    return None
+
+
 def build_interfaces(row, fam, rows, skipped, block=None):
     """문서 하나 → 판(인터페이스) 목록. 한 문서가 판을 여럿 담을 수 있다."""
     base = iface_id(row["file"])
@@ -383,8 +419,12 @@ def build_interfaces(row, fam, rows, skipped, block=None):
         # 레코드가 밝힌 계통이 정본이다(어댑터가 하위형까지 갈라 적는다). 표식은 후보였을 뿐.
         family = fams.most_common(1)[0][0] if fams else fam
         rev = dict(rev0)
+        # 판 이름은 ⑴ 블록 제목 ⑵ 쪽 꼬리말의 시트 이름 ⑶ 마지막에야 '구간 N' 이다.
+        tab = tab_name(row["file"], pages[0] if pages else None)
+        if tab:
+            rev["tab"] = tab
         if len(parts) > 1:
-            rev["block"] = titles[0] if titles else "구간 %d" % n
+            rev["block"] = (titles[0] if titles else None) or tab or "구간 %d" % n
         label = row["title"] or row["file"]
         if len(parts) > 1:
             label = "%s — %s" % (label, rev["block"])
@@ -407,12 +447,30 @@ def build_interfaces(row, fam, rows, skipped, block=None):
         if why:
             it["note"] = why
         out.append(it)
-    # 판 수와 덮는 제품 수가 같으면 짝을 짓고 싶어지지만, 문서가 그 짝을 밝히지 않는다
-    if codes and len(out) == len(codes):
+    # 판이 어느 제품 것인지는 **판 이름이 밝힌다**. E-Link 문서는 제품별로 시트를
+    # 나눠 두고 꼬리말에 시트 이름을 박아 둔다 — 'YCWS Style F,G' / 'YCRS-REMOTE
+    # Style F,G', 'YS Standard' / 'YS SSS' / 'YN Standard' / 'YN SSS'.
+    # 이름이 덮는 제품 중 **딱 하나**를 지목할 때만 좁힌다. 'Master'·'without VSD'
+    # 처럼 제품을 안 밝히는 이름이면 문서가 안 가른 것이니 그대로 둔다.
+    if codes and len(codes) > 1:
+        picked = {}
         for it in out:
-            it.setdefault("gaps", []).append(
-                "판 %d개와 덮는 제품 %d개 수가 같다 — 어느 판이 어느 제품인지 문서가 "
-                "밝히지 않아 짝짓지 않았다" % (len(out), len(codes)))
+            nm = (it.get("revision") or {}).get("block") or ""
+            hit = [c for c in codes if re.search(r"\b%s\b" % re.escape(c), nm, re.I)]
+            if len(hit) == 1:
+                picked[it["id"]] = hit[0]
+        # 덮는 제품이 하나도 안 빠지고 갈렸을 때만 반영한다 — 일부만 가려지면
+        # 나머지 판이 어느 제품인지 여전히 모르는 셈이라 문서를 앞서가게 된다.
+        if picked and set(picked.values()) == set(codes) and len(picked) == len(out):
+            for it in out:
+                it["appliesTo"] = [picked[it["id"]]]
+                it.setdefault("gaps", []).append(
+                    "판 이름이 제품을 밝혀 %s 만 덮는 것으로 좁혔다" % picked[it["id"]])
+        elif len(out) == len(codes):
+            for it in out:
+                it.setdefault("gaps", []).append(
+                    "판 %d개와 덮는 제품 %d개 수가 같다 — 어느 판이 어느 제품인지 문서가 "
+                    "밝히지 않아 짝짓지 않았다" % (len(out), len(codes)))
     return out
 
 
@@ -551,8 +609,16 @@ def refresh():
             m = json.load(f)
         if m.get("extractor") != "vendor_jci" or not m.get("interfaces"):
             continue
+        # IOM 본문형(vendor_jci_ipu) 판은 **손대지 않는다**. 파서도 문서 성격도 달라
+        # E-Link 규칙으로 다시 짜면 라벨·주석이 날아가고, `_doc_meta()` 에 IOM 문서가
+        # 없어 설비 분류가 제품명 낱말로 되돌아간다(Versecon 이 공조기 → 냉동기로
+        # 뒤집혔다). 그대로 통과시키고 E-Link 판만 다시 짠다.
+        keep = [it for it in m["interfaces"] if IOM_NOTE in (it.get("note") or "")]
+        todo = [it for it in m["interfaces"] if IOM_NOTE not in (it.get("note") or "")]
+        if not todo:
+            continue
         by_file = collections.OrderedDict()
-        for it in m["interfaces"]:
+        for it in todo:
             f0 = it["sourceFile"]
             e = by_file.setdefault(f0, {"points": [], "excluded": {}, "note": it.get("note")})
             e["points"].extend(it.get("points") or [])
@@ -572,10 +638,19 @@ def refresh():
             m["model"], cats.most_common(1)[0][0] if cats else "")
         m["equipId"], m["cat"], m["tag"], m["tags"] = equip, cat, tag, tags
         m["classifiedBy"] = "JCI 카탈로그 제품명 %r 의 낱말 (압축 방식·응축 방식)" % m["model"]
+        # 손대지 않은 IOM 본문 판을 **원래 자리**로 되돌린다. 여기서 id 순으로 다시
+        # 줄 세우면 판 내용은 그대로인데 순서만 뒤바뀌어 헛diff 가 난다(24모델 ±10,000줄).
+        pos = {it["id"]: k for k, it in enumerate(m["interfaces"])}
+        firstpos = {}
+        for k, it in enumerate(m["interfaces"]):      # ⚠ 바깥 카운터 n 을 가리지 않게
+            firstpos.setdefault(it["sourceFile"], k)
+        ifaces = sorted(ifaces + keep,                      # 새로 갈린 판은 같은 문서 옆에
+                        key=lambda i: (pos.get(i["id"], firstpos.get(i["sourceFile"], 1 << 20)),
+                                       i["id"]))
         m["interfaces"] = ifaces
         m["comm"] = comm_rows(ifaces)
         m["summary"] = ("BAS 포인트 리스트 %d건 · 판 %d개에서 취입 — 오브젝트 %d점"
-                        % (len(by_file), len(ifaces),
+                        % (len(by_file) + len(keep), len(ifaces),
                            sum(i["pointCount"] for i in ifaces)))
         if cgaps and cgaps[0] not in m["gap"]:
             m["gap"] = m["gap"] + " " + " / ".join(cgaps)
@@ -1564,7 +1639,7 @@ def apply_iom(dry=False):
             for it in made_ifs:
                 basis = it.get("note") or ""
                 it["note"] = " · ".join(x for x in (
-                    basis, "파서 vendor_jci_ipu · 원문 IOM 본문") if x)
+                    basis, IOM_NOTE) if x)
             ifaces.extend(made_ifs)
             print("  · %-58s %5d점" % ((h.get("title") or "")[:58], len(rows)))
         if not ifaces:
