@@ -28,6 +28,15 @@ BLEED = re.compile(
     r"Configuration Dependency|Object Name|Object Identifier|mandatory|optional)\b", re.I)
 # 이름이 아니라 값·단위만 남은 경우
 VALUEONLY = re.compile(r"^[\d\.\-\*/,%°\s]+$")
+# 아래첨자가 줄바꿈으로 떨어져 이름에 섞인 꼴 — 화학식(CO₂·NO₂·H₂O)이 대부분이다.
+# 'CO 2'·'ReCO … 2' 처럼 원소 기호 뒤에 숫자가 따로 떠 있는 것만 본다. 'Comp Alarms 1'
+# 같은 정상 이름을 잡지 않도록 원소 기호를 앞에 요구한다.
+SUBSCRIPT = re.compile(
+    # ⑴ 원소 기호 바로 뒤에 숫자가 떠 있다 ('CO 2 Level')
+    r"\b(?:Re)?(?:CO|NO|SO|NH|CH)\s+\d\b"
+    # ⑵ 첨자를 잃은 CO 토큰과 홀로 뜬 숫자가 한 이름에 같이 있다
+    #    ('CO Level Of The 2 Outside Air' · 'ReCO-CO … P-band 2 2')
+    r"|^(?=.*\b(?:Re)?CO\b(?!\d))(?=.*\s\d(?:\s|$))")
 
 
 def load_all():
@@ -97,6 +106,15 @@ def check_model(m, eq, kg):
     junk = [p for p in pts if VALUEONLY.match(p.get("name", "")) or len(p.get("name", "")) < 3]
     if junk:
         add("W", "name-junk", "이름이 비정상 %d건 예: %r" % (len(junk), junk[0].get("name")))
+
+    # 5a) 아래첨자가 떨어져 나온 이름 — PyMuPDF 는 CO₂ 의 '2' 를 줄바꿈으로 떼어낸다.
+    #     'ReCO₂ heat level' 이 'ReCO heat level 2' 로 굳어 105건이 확정본에 들어가
+    #     있었다(각주 번호처럼 보여 검수를 통과했다). 원문 대조가 필요하니 여기서는
+    #     의심만 세운다 — 고칠 때는 반드시 원문 쪽 글자와 맞춰 본다.
+    sub = [p for p in pts if SUBSCRIPT.search(p.get("name", "") or "")]
+    if sub:
+        add("W", "subscript-split", "아래첨자가 떨어진 듯한 이름 %d건 예: %r — 원문 대조 필요"
+            % (len(sub), sub[0].get("name")))
 
     # 5b) 이름이 오브젝트 ID 를 되풀이한 것뿐 — 문서가 이름을 안 준 경우다
     idonly = [p for p in pts if re.fullmatch(
