@@ -25,6 +25,8 @@
 
 | 할 일 | 메모 |
 |---|---|
+| 확정 데이터 이름 오염 28건 | Swegon `ReCO heat level 2` 는 실제로 `ReCO2 heat level`(아래첨자 2). PyMuPDF 가 아래첨자를 줄바꿈으로 떼어낸 것이 각주처럼 보여 검수를 통과했다 — `parser-comparison.md` |
+| opendataloader-pdf 채택 여부 | 대조 완료(`parser-comparison.md`). 회수는 동률이라 급하지 않다. 20곳을 한 번에 바꾸지 말고 `crosscheck.py` 부터 붙여 보는 안 |
 | e9 무형번 18모델 정격 카탈로그 | RTAC·RTWD/RTHD·CentraVac·Agility·AGZ-F·WME 등 — 통신 문서뿐이라 제품 카탈로그 수집 필요(짝 규칙) |
 | 빈 계열 8개 채우기 | 냉각탑·보일러·열교환기·조명·방재·승강·보안·환경 — 벤더 발굴부터 |
 | Liebert CRAC 정격 사양 | 통신 레퍼런스엔 없다. Vertiv 제품 카탈로그가 따로 필요 |

@@ -757,6 +757,9 @@ PYTHONIOENCODING=utf-8 python ingest_jci.py --export --no-pages   # 그림 없�
 막기 위해서다. 전체 카탈로그 스냅샷은 저장소에 없으므로 추적되는
 `data/jci-body-scan.json`의 제품·분류 메타로 새 체크아웃에서도 재현한다.
 
+표 인식을 opendataloader-pdf 로 갈아탈지 재 본 기록은 `../parser-comparison.md` 에
+있다 — 회수는 동률이고, 차이는 아래첨자·다단 열거 순서·속도다(아직 채택 안 함).
+
 검토 화면 표에는 **필터와 페이징**이 있다 — 한 판이 244행까지 가서, 한 덩어리로
 그리면 눈으로 따라갈 수 없다.
 
