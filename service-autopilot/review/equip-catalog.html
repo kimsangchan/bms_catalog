@@ -81,6 +81,10 @@ aside button[aria-current="true"]{background:var(--sel);border-left-color:var(--
 aside button i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--faint)}
 aside button.sub{padding-left:24px;font-size:11.7px;color:var(--dim)}
 aside button.sub[aria-current="true"]{color:var(--ink)}
+/* 레일 3단째 — 모델. sub(2단)보다 한 단 더 들여 계층이 눈에 보이게 한다 */
+aside button.msubb{padding-left:38px;font-size:11.4px}
+aside button.msubb[aria-current="true"]{color:var(--accent);font-weight:650;
+ border-left-color:var(--accent);background:var(--sel)}
 
 main{min-width:0;display:flex;flex-direction:column}
 .hd{padding:14px 18px 0}
@@ -424,6 +428,9 @@ function buildNav(){
                + esc(g.name)+'<i>M'+g.count+'</i></button>';
           });
         }
+        // 모델은 **고른 계열 아래에만** 편다. 냉동기는 70건이라 늘 펼치면 레일이
+        // 스크롤 전용이 되고, 셀렉트로만 닿던 모델이 트리에서 안 보이는 문제가 남는다.
+        h += '<div class="msub" data-for="'+e.id+'"></div>';
       });
     });
   } else {
@@ -450,6 +457,16 @@ function buildNav(){
   nav.querySelectorAll('.axb').forEach(function(b){
     b.addEventListener('click',function(){ axis=b.dataset.axis; buildNav(); markNav(); });
   });
+  // 레일의 모델 단추는 렌더마다 다시 만들어지므로 상위에서 위임으로 받는다.
+  // 초기화 항목은 본문 셀렉트(.msel)와 똑같이 맞춘다 — 안 그러면 판·표 선택이 남는다.
+  if(!nav.dataset.msubWired){
+    nav.dataset.msubWired = '1';
+    nav.addEventListener('click', function(ev){
+      var b = ev.target.closest && ev.target.closest('.msubb');
+      if(!b) return;
+      mi=+b.dataset.mi; vsel=0; ssel=0; mview='unit'; ksel='rating'; pageOf={}; render();
+    });
+  }
 }
 
 // 제조사 → {모델 수, 판 수, 계열별 모델 번호}. 번호는 D.models[계열] 기준이라 기존
@@ -468,9 +485,25 @@ function vendorIndex(){
 }
 function eqById(id){ return D.equips.filter(function(x){return x.id===id;})[0]; }
 
-function markNav(){ nav.querySelectorAll('button:not(.axb)').forEach(function(b){
+function markNav(){ nav.querySelectorAll('button:not(.axb):not(.msubb)').forEach(function(b){
   b.setAttribute('aria-current', b.dataset.id===cur && (b.dataset.sub||'')===subF
-    && (b.dataset.vendor||'')===vnF ? 'true':'false'); }); }
+    && (b.dataset.vendor||'')===vnF ? 'true':'false'); });
+  renderNavModels(); }
+
+// 레일 3단째 — 고른 계열의 모델. 본문 셀렉트/단추와 같은 것을 가리키고 서로 따라간다.
+function renderNavModels(){
+  nav.querySelectorAll('.msub').forEach(function(box){
+    if(box.dataset.for !== String(cur)){ box.innerHTML=''; return; }
+    var models = visibleModels(cur) || [];
+    if(models.length<2){ box.innerHTML=''; return; }   // 하나뿐이면 단계를 만들지 않는다
+    var ci = Math.min(mi, models.length-1);
+    box.innerHTML = models.map(function(x,i){
+      var n = (x.points||[]).length;
+      return '<button class="sub msubb" data-mi="'+i+'" aria-current="'+(i===ci)+'"'
+        + ' title="'+esc(x.vendor+' · '+(x.model||''))+'">└ '+esc(x.selectorLabel||x.model)
+        + '<i>'+(n?n+'점':'')+'</i></button>'; }).join('');
+  });
+}
 function defaultTab(eid){
   return (D.models[eid]||[]).length ? 'md' : 'pt';
 }

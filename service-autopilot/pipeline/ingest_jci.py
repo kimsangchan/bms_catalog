@@ -783,6 +783,16 @@ aside button.item{display:grid;grid-template-columns:1fr auto;gap:8px;width:100%
  text-align:left;padding:4px 16px;border-left:2px solid transparent;align-items:center}
 aside button.item:hover{background:var(--accent-soft)}
 aside button.item[aria-current="true"]{background:var(--panel);border-left-color:var(--accent)}
+/* 레일 3단째 — 판. 모델보다 한 단 들여 쓰고 글씨를 낮춰 단계가 눈에 보이게 한다 */
+aside .ifsub{display:flex;flex-direction:column}
+aside button.ifitem{display:grid;grid-template-columns:1fr auto;gap:6px;width:100%;
+ text-align:left;background:none;border:0;border-left:3px solid transparent;
+ padding:4px 14px 4px 30px;font-size:11.5px;color:var(--dim);cursor:pointer}
+aside button.ifitem:hover{background:var(--accent-soft);color:var(--ink)}
+aside button.ifitem[aria-current="true"]{color:var(--accent);font-weight:650;
+ border-left-color:var(--accent);background:var(--panel)}
+aside button.ifitem .ifn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+aside button.ifitem .ifq{font-family:var(--mono);font-size:10.5px;color:var(--faint)}
 .iname{font-size:12.5px;line-height:1.3}
 .icount{font-size:10.5px;color:var(--faint);white-space:nowrap;
  font-family:ui-monospace,Consolas,monospace}
@@ -967,7 +977,9 @@ rail.innerHTML = KIND.map(function(k){
         return '<button class="item" data-id="' + x.i + '"><span class="iname">'
           + esc(x.m.model) + (cool ? '<i class="cool">' + cool + '</i>' : '') + '</span>'
           + '<span class="icount"><em>' + x.m.ifs.length + '</em>판 &middot; ' + pts(x.m)
-          + '</span></button>';
+          + '</span></button>'
+          // 판은 **고른 제품 아래에만** 편다. 100판을 늘 펼치면 레일이 스크롤 전용이 된다.
+          + '<div class="ifsub" data-for="' + x.i + '"></div>';
       }).join('') + '</details>';
 }).join('');
 
@@ -1102,9 +1114,36 @@ function renderHoles(){
   return h + '</div>';
 }
 
+// 레일 3단째 — 고른 제품의 판. 본문 셀렉트와 같은 것을 가리키고 서로 따라간다.
+function renderRailIfs(){
+  document.querySelectorAll('#rail .ifsub').forEach(function(box){
+    var mi = box.dataset.for;
+    if(String(mi) !== String(cur)){ box.innerHTML = ''; return; }
+    var m = D.models[mi | 0];
+    if(!m || m.ifs.length < 2){ box.innerHTML = ''; return; }   // 판 하나면 단계를 만들지 않는다
+    box.innerHTML = m.ifs.map(function(x, i){
+      var nm = railIfName(x);
+      return '<button class="ifitem" data-if="' + i + '" aria-current="' + (i === ifi) + '"'
+        + ' title="' + esc(ifRailTitle(x)) + '"><span class="ifn">' + esc(nm)
+        + '</span><span class="ifq">' + x.n + '</span></button>'; }).join('');
+  });
+}
+// 레일에 쓸 짧은 판 이름. 블록 이름이 정본이고, 없으면 문서 이름을 쓴다.
+// 블록 이름에 보드 번호까지 붙은 것이 있어(YT OptiView … Micro Board: 031-…) 앞에서 끊는다.
+function railIfName(x){
+  var nm = (x.rev && x.rev.block) || '';
+  if(!nm) return chipTail(x);
+  nm = nm.split(/\s+(?:ELINK|YORK TALK|Micro Board|MicroGateway)/i)[0];
+  return nm.length > 46 ? nm.slice(0, 45) + '…' : nm;
+}
+function ifRailTitle(x){
+  return [x.family, x.rev && x.rev.doc, x.src].filter(Boolean).join(' · ');
+}
+
 function render(){
   document.querySelectorAll('aside .item').forEach(function(b){
     b.setAttribute('aria-current', String(b.dataset.id) === String(cur)); });
+  renderRailIfs();
   // 지금 보는 제품이 속한 분류는 펼쳐 둔다. 다른 분류를 강제로 닫지는 않는다 —
   // 사용자가 손으로 연 것을 렌더마다 도로 닫으면 훑어보기가 안 된다.
   var cb = document.querySelector('#rail .item[aria-current="true"]');
@@ -1257,6 +1296,13 @@ function render(){
 document.querySelectorAll('aside .item').forEach(function(b){
   b.addEventListener('click', function(){ cur = b.dataset.id; ifi = 0; term = ''; page = 1;
     filt = {}; render(); main.scrollTop = 0; }); });
+// 레일의 판 버튼은 렌더마다 다시 만들어지므로 상위에서 위임으로 받는다
+document.getElementById('rail').addEventListener('click', function(e){
+  var b = e.target.closest && e.target.closest('.ifitem');
+  if(!b) return;
+  ifi = +b.dataset.if; term = ''; page = 1; filt = {};
+  render(); main.scrollTop = 0;
+});
 // 레일 제품 검색 — 접힌 분류 안까지 이름으로 찾는다. 검색 중에는 걸린 분류를 펼치고,
 // 비우면 기본 상태(보고 있는 제품의 분류만 펼침)로 돌아간다.
 var rq = document.getElementById('rq');
@@ -1472,6 +1518,29 @@ def view_data():
     return out
 
 
+def _ink_box(page, probe_dpi=50, pad=4):
+    """쪽에서 흰 여백이 아닌 부분의 경계(표시 좌표). 못 구하면 None(=전면 그대로)."""
+    import numpy as np
+    import fitz
+    try:
+        pix = page.get_pixmap(dpi=probe_dpi)
+    except Exception:
+        return None
+    if not pix.width or not pix.height:
+        return None
+    a = np.frombuffer(pix.samples, dtype=np.uint8)
+    a = a.reshape(pix.height, pix.stride)[:, : pix.width * pix.n]
+    a = a.reshape(pix.height, pix.width, pix.n)
+    ink = a[:, :, :3].min(axis=2) < 245          # 거의 흰색이면 여백으로 본다
+    ys, xs = np.where(ink)
+    if not len(xs):
+        return None                               # 빈 쪽
+    s = 72.0 / probe_dpi
+    r = fitz.Rect(int(xs.min()) * s - pad, int(ys.min()) * s - pad,
+                  (int(xs.max()) + 1) * s + pad, (int(ys.max()) + 1) * s + pad)
+    return r & page.rect
+
+
 def render_pages(want, dpi=110, quality=35):
     """원문 쪽 → base64 WebP 회색조. ({저장이름: {쪽: dataURI}}, 실패 집계)
 
@@ -1503,29 +1572,15 @@ def render_pages(want, dpi=110, quality=35):
                 # 내용이 있는 데까지만 자른다 — 원문 여백이 쪽마다 3~4cm 다.
                 # 해상도는 그대로라 읽는 데 잃는 것이 없고 크기는 25.4MB → 20MB 로 준다.
                 #
-                # ⚠ 글자 좌표만으로 자르면 안 된다. 표의 **괘선은 글자가 아니라 도형**이라
-                #    글자 상자 밖으로 3~24pt 나가 있고, 그만큼 잘려 표가 아래·오른쪽이
-                #    열린 채로 끝난다(486쪽 중 110쪽이 그랬다 — 빈 행이 통째로 사라진
-                #    쪽도 있다). 도형·이미지까지 합쳐서 자른다. 넓이는 1.00배로 사실상
-                #    공짜고, 이걸로 전면이 되어 버리는 쪽은 없다(실측).
-                words = page.get_text("words")
-                clip = None
-                if words:
-                    xs = [w[0] for w in words] + [w[2] for w in words]
-                    ys = [w[1] for w in words] + [w[3] for w in words]
-                    clip = fitz.Rect(max(0, min(xs) - 6), max(0, min(ys) - 6),
-                                     min(page.rect.x1, max(xs) + 6),
-                                     min(page.rect.y1, max(ys) + 6))
-                    for d in page.get_drawings():
-                        r = d.get("rect")
-                        if r:
-                            clip |= (r & page.rect)
-                    for im in page.get_images(full=True):
-                        for r in page.get_image_rects(im[0]):
-                            clip |= (r & page.rect)
-                    # 괘선이 가장자리에 딱 붙지 않게 조금 띄우고 쪽 안으로 가둔다
-                    clip = fitz.Rect(clip.x0 - 4, clip.y0 - 4,
-                                     clip.x1 + 4, clip.y1 + 4) & page.rect
+                # ⚠ 자를 범위를 **찍히는 픽셀**로 정한다. 내용 종류를 열거하는 방식으로
+                #    두 번 틀렸다: ⑴ 글자 좌표만 보다가 표 괘선(도형)을 잘랐고(110쪽),
+                #    ⑵ 도형·이미지를 더했더니 이번엔 **90° 회전된 쪽**에서 잘렸다(135쪽)
+                #    — get_text/get_drawings 는 회전 **전** 좌표를 주는데 get_pixmap 의
+                #    clip 은 회전 **후** 좌표를 받아서 좌표계가 어긋났다.
+                #    낮은 해상도로 한 번 그려 흰 여백이 아닌 칸의 경계를 찾으면 좌표계도
+                #    내용 종류도 신경 쓸 일이 없다. 배경이 깔린 쪽은 전면이 되는데,
+                #    그건 '덜 자른' 것이라 안전한 실패다.
+                clip = _ink_box(page)
                 pix = page.get_pixmap(dpi=dpi, clip=clip)
                 img = Image.frombytes("RGB", [pix.width, pix.height],
                                       pix.samples).convert("L")
