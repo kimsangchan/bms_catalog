@@ -45,13 +45,13 @@ service-autopilot/
 │  ├─ specs.py          문서 → 정격 사양 · 표 성격 분류
 │  ├─ crosscheck.py     표 인식과 다른 경로로 재독해해 대조
 │  ├─ validate.py       게이트 (오류 0 이어야 한다)
-│  ├─ ingest_jci.py     JCI 문서 → 모델의 interfaces[] (--route·--apply·--refresh·--export[ --with-pages --only])
+│  ├─ ingest_jci.py     JCI 문서 → 모델의 interfaces[] (--route·--apply·--refresh·--export[ --no-pages --only])
 │  ├─ build.py          → review/equip-catalog.html
 │  └─ data/models/      모델 1건 = JSON 1개  ★ 산출물 본체
 ├─ evidence/gen2.py     HTML 템플릿 (화면 손보려면 여기)
 └─ review/
    ├─ equip-catalog.html   전체 카탈로그 (build.py) — 더블클릭해서 본다
-   └─ jci-ingest.html      JCI 취입 검사대 (--export · 표 필터·페이징, --with-pages 는 --only 로 좁혀서 — 전 문서면 26MB 초과)
+   └─ jci-ingest.html      JCI 취입 검사대 (--export — 원문 쪽 그림 포함이 기본, 47MB · gitignore 라 직접 만든다)
 ```
 
 ## 자주 쓰는 명령

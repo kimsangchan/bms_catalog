@@ -1729,8 +1729,14 @@ function srcHref(file, page){
 function srcLink(file, page, text){
   var h = srcHref(file, page);
   if(!h) return esc(text);
-  return '<a class="srclink" href="'+h+'" target="_blank" rel="noopener" '
-    + 'title="원문 PDF 해당 쪽 열기">'+esc(text)+'</a>';
+  // 원문은 **탭 하나(neuros-src)를 재사용**한다. 근거를 훑을 때 근거표 셀마다 새 탭이
+  // 쌓이면 화면을 못 쓴다. 검사대(jci-ingest)도 같은 이름을 써서 두 화면이 한 탭을 나눈다.
+  // rel="noopener" 는 뺐다. 실측(Playwright/Chromium)으로는 noopener 가 붙어도 이름이
+  // 살아 재사용됐지만, 명세는 noopener 일 때 빈 이름이 아닌 target 을 _blank 처럼 다루라고
+  // 한다 — 엔진에 따라 다시 탭이 쌓일 수 있어 이름만 남긴다. srcHref 는 확장자가 .pdf 인
+  // 로컬 파일에만 링크를 만들므로(스크립트 실행 불가) opener 노출로 잃을 것이 없다.
+  return '<a class="srclink" href="'+h+'" target="neuros-src" '
+    + 'title="원문 PDF 해당 쪽 열기 — 원문 탭 하나를 재사용합니다">'+esc(text)+'</a>';
 }
 function unitSourceLink(r){
   return srcLink(r.sourceFile, r.sourcePage || r.page, unitSource(r));

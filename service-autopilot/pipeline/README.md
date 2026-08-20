@@ -740,8 +740,8 @@ PYTHONIOENCODING=utf-8 python ingest_jci.py --route    # 계통 판정만
 PYTHONIOENCODING=utf-8 python ingest_jci.py --apply    # 문서 파싱 → 모델 생성 (수십 분)
 PYTHONIOENCODING=utf-8 python ingest_jci.py --apply-iom # IOM 본문형(IPU/Series-100) 취입
 PYTHONIOENCODING=utf-8 python ingest_jci.py --refresh  # 규칙만 다시 적용 (몇 초)
-PYTHONIOENCODING=utf-8 python ingest_jci.py --export   # 검토 화면 → review/jci-ingest.html
-PYTHONIOENCODING=utf-8 python ingest_jci.py --export --with-pages --only <문서>  # + 원문 쪽 그림
+PYTHONIOENCODING=utf-8 python ingest_jci.py --export   # 검토 화면 → review/jci-ingest.html (원문 쪽 그림 포함)
+PYTHONIOENCODING=utf-8 python ingest_jci.py --export --no-pages   # 그림 없이 (가볍지만 행 클릭이 원문 PDF 로 나간다)
 ```
 
 `--refresh` 는 저장된 포인트에서 유도되는 것만 다시 만든다 — 판 분리·덮는 제품·
@@ -760,9 +760,14 @@ PYTHONIOENCODING=utf-8 python ingest_jci.py --export --with-pages --only <문서
 검토 화면 표에는 **필터와 페이징**이 있다 — 한 판이 244행까지 가서, 한 덩어리로
 그리면 눈으로 따라갈 수 없다.
 
-`--export --with-pages` 는 **원문 쪽 그림을 화면에 임베드**한다 — 행을 누르면 그
-포인트가 나온 원문 쪽이 팝업으로 뜨고 휠로 확대·축소된다. **전 문서 56건 217쪽**이
-들어가고 파일은 **22.7MB** 다.
+`--export` 는 **원문 쪽 그림을 화면에 임베드**한다(기본값) — 행을 누르면 그 포인트가
+나온 원문 쪽이 팝업으로 뜨고 휠로 확대·축소된다. 현재 **전 문서 72건 486쪽**이 들어가고
+파일은 **47.5MB** 다. 그래서 이 파일은 저장소에 두지 않는다(gitignore) — `spec-verify`·
+`req-verify` 와 같은 처리이고, 필요할 때 이 명령으로 다시 만든다.
+
+그림을 빼는 `--no-pages` 는 1.5MB 로 가볍지만, 행을 눌렀을 때 보여 줄 그림이 없어
+**원문 PDF 로 화면을 떠난다**. 파싱 육안 대조라는 목적이 깨지므로 기본값이 아니다
+(예전엔 그림 없음이 기본이라 "왜 자꾸 원문 파일로 넘어가냐"를 반복해서 밟았다).
 
 크기를 이렇게 줄이기까지 세 번 갈아탔다(217쪽 base64 기준 실측):
 | 방식 | 크기 |

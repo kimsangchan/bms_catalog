@@ -819,7 +819,10 @@ dialog#zoom::backdrop{background:rgba(0,0,0,.62)}
     <span class="zsp"></span>
     <button id="zfit">화면 맞춤</button><button id="z100">100%</button>
     <span id="zlv" class="mono">100%</span>
-    <a id="zpdf" target="_blank" rel="noopener">원문 PDF</a>
+    <!-- 원문 탭은 이름(neuros-src) 하나를 재사용한다 — 카탈로그 근거표와 같은 이름이라
+         두 화면이 한 탭을 나눠 쓴다. rel="noopener" 는 빼 둔다(명세상 noopener 면 이름이
+         무시될 수 있다). 대상은 로컬 PDF 라 opener 노출로 잃을 것이 없다. -->
+    <a id="zpdf" target="neuros-src">원문 PDF</a>
     <button id="zx">닫기 (Esc)</button></div>
   <div id="zv"><img id="zi" alt="원문 쪽"></div>
 </dialog>
@@ -1112,8 +1115,9 @@ function render(){
   h += '<div class="sub" style="margin:8px 0 0">행을 누르면 그 포인트의 원문 쪽이 뜬다 — '
     + (((D.imgs || {})[it.src])
         ? '휠로 확대·축소, 끌어서 이동, Esc 로 닫기.'
-        : '이 문서는 그림이 임베드되지 않아 원문 PDF 가 그 쪽에서 열린다. 그림을 넣으려면 '
-          + '<code>ingest_jci.py --export --with-pages</code>.')
+        : '이 문서는 그림이 없어 원문 PDF 로 화면을 떠난다 — <code>--no-pages</code> 로 '
+          + '뽑았거나 원문 파일을 못 찾은 경우다. <code>ingest_jci.py --export</code> 로 '
+          + '다시 뽑으면 여기서 바로 보인다.')
     + '</div>';
   if(it.excluded) h += '<div class="card"><b class="lbl">포인트로 세지 않은 행</b>'
     + Object.keys(it.excluded).map(function(k){ return esc(exKo(k)) + ' <b>' + it.excluded[k] + '</b>행'; }).join(' · ')
@@ -1253,7 +1257,9 @@ document.addEventListener('click', function(e){
   var src = tr.dataset.src, pg = tr.dataset.pg;
   var img = ((D.imgs || {})[src] || {})[pg];
   var href = pdfHref(src, pg);
-  if(!img){ window.open(href, '_blank'); return; }   // 그림이 없으면 원문 PDF 를 그 쪽으로
+  // 그림이 없으면 원문 PDF 를 그 쪽으로. 창 이름을 주어 **탭 하나를 재사용**한다 —
+  // 카탈로그(gen2.srcLink)와 같은 이름이라 두 화면이 한 탭을 나눠 쓴다.
+  if(!img){ window.open(href, 'neuros-src'); return; }
   document.getElementById('zt').textContent = src + ' — 원문 ' + pg + '쪽';
   document.getElementById('zpdf').href = href;
   zs = 1; zx = 0; zy = 0; natW = 0;
@@ -1419,8 +1425,14 @@ def render_pages(want, dpi=110, quality=35):
                 continue
             try:
                 page = doc[pg - 1]
-                # 글자가 있는 데까지만 자른다 — 원문 여백이 쪽마다 3~4cm 다.
+                # 내용이 있는 데까지만 자른다 — 원문 여백이 쪽마다 3~4cm 다.
                 # 해상도는 그대로라 읽는 데 잃는 것이 없고 크기는 25.4MB → 20MB 로 준다.
+                #
+                # ⚠ 글자 좌표만으로 자르면 안 된다. 표의 **괘선은 글자가 아니라 도형**이라
+                #    글자 상자 밖으로 3~24pt 나가 있고, 그만큼 잘려 표가 아래·오른쪽이
+                #    열린 채로 끝난다(486쪽 중 110쪽이 그랬다 — 빈 행이 통째로 사라진
+                #    쪽도 있다). 도형·이미지까지 합쳐서 자른다. 넓이는 1.00배로 사실상
+                #    공짜고, 이걸로 전면이 되어 버리는 쪽은 없다(실측).
                 words = page.get_text("words")
                 clip = None
                 if words:
@@ -1429,6 +1441,16 @@ def render_pages(want, dpi=110, quality=35):
                     clip = fitz.Rect(max(0, min(xs) - 6), max(0, min(ys) - 6),
                                      min(page.rect.x1, max(xs) + 6),
                                      min(page.rect.y1, max(ys) + 6))
+                    for d in page.get_drawings():
+                        r = d.get("rect")
+                        if r:
+                            clip |= (r & page.rect)
+                    for im in page.get_images(full=True):
+                        for r in page.get_image_rects(im[0]):
+                            clip |= (r & page.rect)
+                    # 괘선이 가장자리에 딱 붙지 않게 조금 띄우고 쪽 안으로 가둔다
+                    clip = fitz.Rect(clip.x0 - 4, clip.y0 - 4,
+                                     clip.x1 + 4, clip.y1 + 4) & page.rect
                 pix = page.get_pixmap(dpi=dpi, clip=clip)
                 img = Image.frombytes("RGB", [pix.width, pix.height],
                                       pix.samples).convert("L")
@@ -1445,7 +1467,7 @@ def render_pages(want, dpi=110, quality=35):
     return out, fails
 
 
-def export(out_path=None, with_pages=False, only=None, quality=35):
+def export(out_path=None, with_pages=True, only=None, quality=35):
     out_path = out_path or os.path.join(HERE, "..", "review", "jci-ingest.html")
     data = view_data()
     data["imgs"] = {}
@@ -1604,8 +1626,13 @@ def main(argv):
                     help="IOM 본문형(IPU/Series-100) 취입")
     ap.add_argument("--export", action="store_true",
                     help="검토 화면 review/jci-ingest.html 을 낸다")
+    # 원문 쪽 그림은 **기본으로 넣는다**. 안 넣으면 행을 눌렀을 때 보여 줄 그림이 없어
+    # 원문 PDF 로 화면을 떠나 버리는데, 그게 이 화면의 목적(파싱 육안 대조)을 깬다.
+    # 예전 기본값(넣지 않음)으로 뽑았다가 "왜 자꾸 원문 파일로 넘어가냐"를 반복해서 밟았다.
+    ap.add_argument("--no-pages", action="store_true",
+                    help="원문 쪽 그림을 넣지 않는다 (가볍지만 행 클릭이 원문 PDF 로 나간다)")
     ap.add_argument("--with-pages", action="store_true",
-                    help="원문 쪽 그림을 전 문서에 넣는다 (WebP 회색조 — 전체 15MB 안팎)")
+                    help="(이제 기본값이라 아무 일도 하지 않는다 — 예전 명령을 위해 남겨 둔다)")
     ap.add_argument("--refresh", action="store_true",
                     help="취입한 모델의 메타만 다시 계산 (PDF 재파싱 없음)")
     ap.add_argument("--only", help="저장 이름에 이 글자가 든 문서만")
@@ -1613,7 +1640,7 @@ def main(argv):
     if a.apply_iom:
         return apply_iom(dry=a.dry)
     if a.export:
-        return export(with_pages=a.with_pages, only=a.only)
+        return export(with_pages=not a.no_pages, only=a.only)
     if a.refresh:
         return refresh()
     if a.route:
