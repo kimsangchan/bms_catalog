@@ -1597,6 +1597,62 @@ def render_pages(want, dpi=110, quality=35):
     return out, fails
 
 
+def audit_pages(only=None):
+    """임베드 대상 쪽이 **실제로 안 잘렸는지** 독립 경로로 확인한다.
+
+    자르기(_ink_box)와 같은 방법으로 확인하면 같은 맹점을 그대로 통과한다 — 실제로
+    글자 좌표로 고치고 글자 좌표로 확인해 "0쪽"을 보고했다가, 90° 회전된 쪽에서
+    135쪽이 잘려 있는 것을 사용자가 눈으로 찾아냈다(규칙 4: 교차 대조를 믿는다).
+    여기서는 **전면을 그려** 잉크 경계를 구하고 자를 범위와 견준다.
+    """
+    import numpy as np
+    import fitz
+    data = view_data()
+    want = {}
+    for m in data["models"]:
+        for it in m["ifs"]:
+            if only and only.lower() not in it["src"].lower():
+                continue
+            for pt in it["points"]:
+                if pt.get("p"):
+                    want.setdefault(it["src"], set()).add(pt["p"])
+    tot = cut = 0
+    worst = []
+    for name, pages in sorted(want.items()):
+        path = os.path.join(DATA, "raw", name)
+        if not os.path.exists(path):
+            continue
+        doc = fitz.open(path)
+        for pg in sorted(pages):
+            if not 1 <= pg <= doc.page_count:
+                continue
+            page = doc[pg - 1]
+            tot += 1
+            c = _ink_box(page)
+            if c is None:
+                continue
+            pix = page.get_pixmap(dpi=50)
+            a = np.frombuffer(pix.samples, dtype=np.uint8)
+            a = a.reshape(pix.height, pix.stride)[:, : pix.width * pix.n]
+            a = a.reshape(pix.height, pix.width, pix.n)
+            ys, xs = np.where(a[:, :, :3].min(axis=2) < 245)
+            if not len(xs):
+                continue
+            k = 72.0 / 50
+            ink = fitz.Rect(xs.min() * k, ys.min() * k, (xs.max() + 1) * k, (ys.max() + 1) * k)
+            over = [c.x0 - ink.x0, c.y0 - ink.y0, ink.x1 - c.x1, ink.y1 - c.y1]
+            if max(over) > 1:
+                cut += 1
+                worst.append((max(over), name, pg,
+                              [round(v, 1) for v in over]))
+        doc.close()
+    worst.sort(reverse=True)
+    print("임베드 대상 %d쪽 · 잘리는 쪽 %d" % (tot, cut))
+    for _, n, pg, o in worst[:10]:
+        print("   %s p%d  좌%s 상%s 우%s 하%s" % (n, pg, *o))
+    return 1 if cut else 0
+
+
 def export(out_path=None, with_pages=True, only=None, quality=35):
     out_path = out_path or os.path.join(HERE, "..", "review", "jci-ingest.html")
     data = view_data()
@@ -1760,17 +1816,29 @@ def main(argv):
     # 원문 PDF 로 화면을 떠나 버리는데, 그게 이 화면의 목적(파싱 육안 대조)을 깬다.
     # 예전 기본값(넣지 않음)으로 뽑았다가 "왜 자꾸 원문 파일로 넘어가냐"를 반복해서 밟았다.
     ap.add_argument("--no-pages", action="store_true",
-                    help="원문 쪽 그림을 넣지 않는다 (가볍지만 행 클릭이 원문 PDF 로 나간다)")
+                    help="원문 쪽 그림을 넣지 않는다 (가볍다 — 시험용. --out 으로 딴 데 써야 한다)")
+    ap.add_argument("--out", help="낼 파일 경로 (기본: review/jci-ingest.html)")
+    ap.add_argument("--audit-pages", action="store_true",
+                    help="원문 쪽 그림이 잘리지 않는지 전면 렌더로 대조한다 (잘리면 exit 1)")
     ap.add_argument("--with-pages", action="store_true",
                     help="(이제 기본값이라 아무 일도 하지 않는다 — 예전 명령을 위해 남겨 둔다)")
     ap.add_argument("--refresh", action="store_true",
                     help="취입한 모델의 메타만 다시 계산 (PDF 재파싱 없음)")
     ap.add_argument("--only", help="저장 이름에 이 글자가 든 문서만")
     a = ap.parse_args(argv)
+    if a.audit_pages:
+        return audit_pages(only=a.only)
     if a.apply_iom:
         return apply_iom(dry=a.dry)
     if a.export:
-        return export(with_pages=not a.no_pages, only=a.only)
+        # 그림 없는 축소본이 산출물을 덮으면, 행을 눌러도 팝업이 안 뜨고 원문 PDF 로
+        # 나가 버린다. 작업 중 빠른 확인용으로 뽑았다가 그대로 두어 실제로 밟았다 —
+        # 축소본은 반드시 딴 경로로 뺀다.
+        if a.no_pages and not a.out:
+            print("✗ --no-pages 는 시험용이라 산출물을 덮을 수 없다. --out 으로 딴 경로를 준다.")
+            print("  예: python ingest_jci.py --export --no-pages --out probe.html")
+            return 2
+        return export(out_path=a.out, with_pages=not a.no_pages, only=a.only)
     if a.refresh:
         return refresh()
     if a.route:
