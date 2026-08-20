@@ -720,7 +720,10 @@ def write_aliases(models):
 # ── 검토 화면 ────────────────────────────────────────────────────────────────
 # 취입 결과를 사람이 볼 수 있는 표로 낸다. 정격 쪽 build.py 와 같은 자리다 —
 # **명령으로 다시 만들어지는 오프라인 단일 HTML** 이어야 한다(폐쇄망에서 더블클릭).
-VIEW = r"""<title>York 포인트 취입 검사대</title>
+VIEW = r"""<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>York 포인트 취입 검사대</title>
 <style>
 :root{
   --bg:#F5F8F9; --panel:#FFFFFF; --rail:#EDF2F4; --ink:#0F1A1F; --dim:#4A6068;
@@ -793,6 +796,11 @@ aside button.ifitem[aria-current="true"]{color:var(--accent);font-weight:650;
  border-left-color:var(--accent);background:var(--panel)}
 aside button.ifitem .ifn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 aside button.ifitem .ifq{font-family:var(--mono);font-size:10.5px;color:var(--faint)}
+/* 판 항목은 두 줄 — 위는 구성('without VSD'), 아래는 어느 경로로 읽는 판인지 */
+aside button.ifitem{grid-template-columns:1fr auto;row-gap:1px}
+aside button.ifitem .ifp{grid-column:1/-1;font-size:10px;color:var(--faint);
+ letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+aside button.ifitem[aria-current="true"] .ifp{color:var(--dim)}
 .iname{font-size:12.5px;line-height:1.3}
 .icount{font-size:10.5px;color:var(--faint);white-space:nowrap;
  font-family:ui-monospace,Consolas,monospace}
@@ -889,6 +897,7 @@ dialog#zoom::backdrop{background:rgba(0,0,0,.62)}
   aside{border-right:0;border-bottom:1px solid var(--line);max-height:220px}
 }
 </style>
+</head><body>
 <header>
   <h1>York 포인트 취입 검사대 <span>2026-08-14 · JCI/York BAS 포인트 리스트</span></h1>
   <div class="stats">
@@ -1122,19 +1131,42 @@ function renderRailIfs(){
     var m = D.models[mi | 0];
     if(!m || m.ifs.length < 2){ box.innerHTML = ''; return; }   // 판 하나면 단계를 만들지 않는다
     box.innerHTML = m.ifs.map(function(x, i){
-      var nm = railIfName(x);
+      var path = railIfPath(x);
       return '<button class="ifitem" data-if="' + i + '" aria-current="' + (i === ifi) + '"'
-        + ' title="' + esc(ifRailTitle(x)) + '"><span class="ifn">' + esc(nm)
-        + '</span><span class="ifq">' + x.n + '</span></button>'; }).join('');
+        + ' title="' + esc(x.label || '') + '">'
+        + '<span class="ifn">' + esc(railIfName(x)) + '</span>'
+        + '<span class="ifq">' + x.n + '</span>'
+        + (path ? '<span class="ifp">' + esc(path) + '</span>' : '')
+        + '</button>'; }).join('');
   });
 }
-// 레일에 쓸 짧은 판 이름. 블록 이름이 정본이고, 없으면 문서 이름을 쓴다.
-// 블록 이름에 보드 번호까지 붙은 것이 있어(YT OptiView … Micro Board: 031-…) 앞에서 끊는다.
+// 레일에 쓸 짧은 판 이름 — **구성**을 가리킨다('without VSD' 처럼).
+// 블록 이름이 정본이고, 없으면 문서 제목에서 구분되는 대목을 떼어 온다:
+//   'YK OptiView BAS E-Link (Rev K_04d) EM and SSS Data Maps OptiView Based Equipment'
+//   → 개정 괄호 뒤 ~ 'Based Equipment' 앞 = 'EM and SSS Data Maps'
+// 보드 번호까지 붙은 블록 이름은 앞에서 끊는다(YT OptiView … Micro Board: 031-…).
 function railIfName(x){
   var nm = (x.rev && x.rev.block) || '';
-  if(!nm) return chipTail(x);
-  nm = nm.split(/\s+(?:ELINK|YORK TALK|Micro Board|MicroGateway)/i)[0];
-  return nm.length > 46 ? nm.slice(0, 45) + '…' : nm;
+  if(!nm){
+    var t = String(x.label || '');
+    var after = t.indexOf(')') >= 0 ? t.slice(t.indexOf(')') + 1) : t;
+    nm = after.replace(/\s*(?:Non-?)?OptiView Based Equipment\s*$/i, '').trim();
+    if(!nm) nm = (x.rev && x.rev.doc) || chipTail(x);
+  }
+  nm = nm.split(/\s+(?:ELINK|YORK TALK|Micro Board|MicroGateway)/i)[0]
+         .replace(/[\u200b-\u200f\ufeff]/g, '').trim();   // 원문 제목에 폭 없는 문자가 섞여 있다
+  return nm.length > 40 ? nm.slice(0, 39) + '…' : nm;
+}
+// 판 이름만으로는 '무엇의 without VSD 인지' 알 수 없다. 어느 경로로 읽는 판인지를
+// **문서가 쓴 낱말 그대로** 한 줄 더 보인다 — 제어반 세대(OptiView / Non-OptiView)와
+// 통신 경로(E-Link 게이트웨이 / 계통). 짐작해 옮기지 않는다.
+function railIfPath(x){
+  var t = String(x.label || '');
+  var out = [];
+  if(/Non-?OptiView/i.test(t)) out.push('Non-OptiView');
+  else if(/OptiView/i.test(t)) out.push('OptiView');
+  out.push(/E-?Link/i.test(t) ? 'E-Link' : (x.family || ''));
+  return out.filter(Boolean).join(' · ');
 }
 function ifRailTitle(x){
   return [x.family, x.rev && x.rev.doc, x.src].filter(Boolean).join(' · ');
@@ -1178,9 +1210,13 @@ function render(){
     return true; });
   // 판 고르기 — 카드 여러 줄이 표를 화면 밖으로 밀어냈다. 4판까지는 알약 한 줄,
   // 넘으면 셀렉트(YT 는 9판이라 알약으로도 한 줄이 안 된다).
+  // 레일과 같은 말을 쓴다 — 구성('without VSD') · 경로('Non-OptiView · E-Link') · 개정.
+  // 전에는 계통 코드(E-Link/YorkTalk)가 앞에 와서 '무엇의 without 인지'가 안 보였다.
   function ifLabel(x){
-    var rv = [x.rev.doc, x.rev.block, x.rev.firmware].filter(Boolean).join(' · ');
-    return [x.family, rv, chipTail(x)].filter(Boolean).join(' · ');
+    var nm = railIfName(x), doc = (x.rev && x.rev.doc) || '';
+    // 블록 이름이 없는 판은 이름 자리에 개정을 쓴다 — 뒤에 또 붙이면 'Rev 2.9 · Rev 2.9'
+    return [nm, railIfPath(x), doc === nm ? '' : doc,
+            x.rev && x.rev.firmware].filter(Boolean).join(' · ');
   }
   var pick;
   if(m.ifs.length > 4){
@@ -1388,6 +1424,7 @@ document.addEventListener('click', function(e){
   zoom.showModal();
 });
 </script>
+</body></html>
 """
 
 
