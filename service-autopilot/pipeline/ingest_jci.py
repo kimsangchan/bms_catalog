@@ -968,7 +968,7 @@ dialog#zoom::backdrop{background:rgba(0,0,0,.62)}
 </style>
 </head><body>
 <header>
-  <h1>York 포인트 취입 검사대 <span>2026-08-14 · JCI/York BAS 포인트 리스트</span></h1>
+  <h1>York 포인트 취입 검사대 <span>__BUILT__ · JCI/York BAS 포인트 리스트</span></h1>
   <div class="stats">
     <div class="flow"><b id="sDocs">0</b> 문서 <span class="arrow">&#8594;</span> <b id="sModels">0</b> 제품</div>
     <div class="stat"><b id="sIfs">0</b> 판</div>
@@ -1841,8 +1841,12 @@ def export(out_path=None, with_pages=True, only=None, quality=35):
         if fails:
             print("  ⚠ 그림 실패 %d건 — %s" % (sum(fails.values()),
                   " · ".join("%s %d" % kv for kv in fails.most_common())))
-    html = VIEW.replace("__DATA__", json.dumps(data, ensure_ascii=False,
-                                               separators=(",", ":")))
+    # ⚠ 머리글 날짜를 소스에 적어 두면 낡는다 — 실제로 2026-08-14 로 굳어 있어
+    #   8/21 에 만든 파일이 8/14 로 보였다. 만든 날짜를 그때 박는다.
+    import datetime
+    built = datetime.date.today().isoformat()
+    html = VIEW.replace("__BUILT__", built).replace(
+        "__DATA__", json.dumps(data, ensure_ascii=False, separators=(",", ":")))
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
     print("  %s" % os.path.normpath(out_path))
