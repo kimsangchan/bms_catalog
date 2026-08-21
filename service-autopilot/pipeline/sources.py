@@ -135,8 +135,26 @@ JCI_BAS_POINTS = [
      "JCI_YZ-BAS-SC-EQ-Rev1.7.pdf"),   # YZ Points List SC-EQ (Rev 1.7) OptiView Based Equipment
     ("RNezPwBMi1SWkNtA2cBRwg", "chillers",
      "JCI_YZD-BAS-HMI-Rev1.4.pdf"),   # YZD BAS Protocol List Rev 1.4
+    # ── 9번째 계통: 게이트웨이 (2026-08-21 추가) ──────────────────────────────
+    # 앞의 56건은 전부 '장비가 직접 내보내는' 목록이다. 이것은 장비의 N2 를
+    # BACnet/IP·Modbus TCP 로 **바꿔 주는 액세서리 키트**(FieldServer QuickServer)라
+    # 표가 게이트웨이 설정표 모양이고, 그래서 파서 넷이 다 못 잡았다.
+    # ⚠ 같은 문서의 번역본 6건(pt·es·de·nl·it·fr)이 포털에 함께 있다 — 내용이
+    #   같아 등록하지 않는다. 문서ID 는 ingest_jci.TRANSLATIONS 에 근거로 남겼다.
+    ("bdk7s53yQ5tftUD6MrJq9g", "chillers",
+     "JCI_YKN2Open-BMS-Gateway.pdf"),   # YKN2Open BMS BACnet/IP and Modbus TCP/IP Installation and User Guide
 ]
 _JCI_KHUB = "https://docs.johnsoncontrols.com/%s/api/khub/documents/%s/content"
+
+# JCI Roomtop RTC/RTH 기술 가이드 2건 — **정격이 실린 유일한 JCI 문서**다.
+# 포털 제목은 스페인어인데 본문은 영문이고, 냉동기 포털의 'Rooftop Packaged Unit'
+# 분류에 들어 있다. 같은 제품을 YKN2Open 게이트웨이가 BAS 로 내보낸다(짝 규칙).
+JCI_RTH_SPECS = [
+    ("xBWNamFiscpTTg0ZZWTl1A", "chillers",
+     "JCI_RTH-K_TechnicalGuide.pdf"),   # Bombas de calor horizontales compactas RTH-07K a 30K Guía técnica
+    ("GqRBmNpcEJwNdfo7VQqTEg", "chillers",
+     "JCI_RTH-L_TechnicalGuide.pdf"),   # Bombas de calor horizontales compactas RTH 07L a 30L
+]
 
 # JCI 옥상형·자립형 IOM 16건 — 포인트 표가 **매뉴얼 본문**(대개 p110~190대)에 묻혀 있다.
 # 제목에는 낌새가 없어 제목 스캔으로는 못 찾는다. 본문 전수 스캔(scan_jci.py)이
@@ -1027,6 +1045,24 @@ SOURCES = [
         "access": "무로그인",
         # 200쪽 매뉴얼이라 줄 읽기 경로가 표를 못 따라간다 — 교차 대조 불가
         "crosscheck_unreliable": r"JCI_IOM_",
+    },
+    {
+        "id": "jci-york-rth-tech-guide",
+        "vendor": "Johnson Controls / YORK",
+        "kind": "제품 카탈로그",
+        "note": "Roomtop RTC/RTH 컴팩트 수평형 공기-공기 히트펌프 기술 가이드 2건(K판·L판). "
+                "**이 저장소 JCI 문서 중 정격이 실린 유일한 것**이다 — 나머지는 전부 BAS "
+                "포인트/IOM 이라 용량·소비전력이 없었다(짝 규칙의 짝). 같은 제품의 BAS "
+                "포인트는 YKN2Open 게이트웨이 판에 있다. "
+                "⚠ 포털 제목은 스페인어인데 본문은 영문이다. "
+                "⚠ 임베드 폰트(Gen_*)의 ToUnicode 가 1 밀려 있어 도면·배선도 글자가 "
+                "'MPT DPNQPOFOUFT'(=LOS COMPONENTES)로 나온다 — 정격 표는 깨끗한 "
+                "폰트라 무사하지만 파서가 폰트로 갈라 되돌린다. 파서는 vendor_jci_rth.py.",
+        "enumerate": "list",
+        "urls": [_JCI_KHUB % (site, i) for i, site, _n in JCI_RTH_SPECS],
+        "rename": {_JCI_KHUB % (site, i): n for i, site, n in JCI_RTH_SPECS},
+        "extractor": "vendor",
+        "access": "무로그인",
     },
 ]
 

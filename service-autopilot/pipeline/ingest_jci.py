@@ -58,7 +58,35 @@ ROUTES = [
     ("SC-EQ", "vendor_jci_sceq", r"Long\s*Name"),
     ("E-Link", "vendor_jci_elink",
      r"ENG\s*B?PAGE\s*REF|ASCII\s*PAGE\s*REF|York\s*Talk\s*Point\s*Type"),
+    # 9번째 계통 — 게이트웨이(FieldServer QuickServer). 앞 넷과 달리 장비가 아니라
+    # **변환기**가 내는 표라 열 어휘가 통째로 다르다. marks_of 는 표의 0행만 보는데
+    # 이 계통은 0행이 표 제목('Modbus variables')이고 진짜 머리글은 그 아래다.
+    ("YKN2Open", "vendor_jci_ykn2open",
+     r"Bacnet\s*variables|Modbus\s*variables|Map\s*Descriptor\s*Name"),
 ]
+
+# 같은 문서의 번역본. 내용이 같아 등록하지 않는다 — 다만 포털 취입률을 셀 때
+# '안 가져온 것'으로 남으므로 어느 것이 무엇의 번역인지 근거를 남긴다.
+TRANSLATIONS = {
+    "bdk7s53yQ5tftUD6MrJq9g": ["7uJN9xsUvPTIs732TjFlWQ",   # pt
+                               "0DZBTy5Dzl4w1f3LcczfdQ",   # es
+                               "7GjH3ZdAZVCKh4ryibKb9A",   # de
+                               "DR7Cfv2Z_oXplT3b_6ioCg",   # nl
+                               "e_e_RWK3yhqgoEujgdbfJQ",   # it
+                               "F8c~Vlv0OwMaJ7YndUL4cg"],  # fr
+}
+
+# 문서 **본문**이 덮는 제품을 밝히는데 제목에는 없는 것. 제목만 읽는 applies_to()
+# 로는 못 잡는다. 짐작이 아니라 원문 문장을 옮겨 적고 쪽수를 남긴다.
+BODY_APPLIES = {
+    "bdk7s53yQ5tftUD6MrJq9g": {
+        "codes": ["RTC", "RTH", "VAC", "VAH", "VCH", "VIR"],
+        "why": "덮는 제품은 제목이 아니라 본문이 밝힌다 — 원문 4쪽 \"cold units and "
+               "heat pumps from Roomtop (RTC-RTH-L), ACTIVA Rooftop, Large ACTIVA "
+               "Rooftop, VITALITY VAC/VAH/VCH-VIR of R410A equipped with the YKN2Open "
+               "control\". 게이트웨이 한 대가 장비 최대 5대를 덮는다(원문 7쪽).",
+    },
+}
 
 # JCI 카탈로그가 제품명을 안 준 문서. 제목에 적힌 것만 옮겨 적는다 — 지어내지 않는다.
 BLANK_PROD = {
@@ -249,7 +277,15 @@ def equip_of(name, category=""):
     """
     t = name.lower()
     if "rooftop" in t or "ypal" in t:
-        return "e5", "HVAC.AIR.RTU", "rooftop", ["rooftop"], []
+        return "e5", "HVAC.AIR.RTU", "rooftop", ["rooftop"], [], None
+    # 제품명이 설비 종류를 안 밝히는 것이 있다 — 'YKN2Open Control Board' 는 장비가
+    # 아니라 **게이트웨이 이름**이다. 그때 두 번째 근거인 JCI 문서 분류를 쓴다.
+    # ⚠ 기존 옥상형 3건의 분류는 'Packaged Rooftop Units'(다른 문자열)라 이 규칙이
+    #   닿지 않는다 — 회귀 없음을 확인하고 넣었다.
+    if (category or "").strip() == "Rooftop Packaged Unit":
+        why = ("설비 종류를 제품명 %r 이 안 밝혀 JCI 문서 분류 'Rooftop Packaged Unit' "
+               "에서 가져왔다" % name)
+        return "e5", "HVAC.AIR.RTU", "rooftop", ["rooftop"], [why], why
     tags, gaps = ["chiller"], []
     suffix = None
     for word, sfx, _tag in MECHANISM:
@@ -282,7 +318,7 @@ def equip_of(name, category=""):
         tags.append(cool)
     if "heat pump" in t:
         tags.append("heatPump")
-    return "e9", cat, "chiller", tags, gaps
+    return "e9", cat, "chiller", tags, gaps, None
 
 
 def iface_id(name):
@@ -393,7 +429,8 @@ def tab_name(file_name, page):
 def build_interfaces(row, fam, rows, skipped, block=None):
     """문서 하나 → 판(인터페이스) 목록. 한 문서가 판을 여럿 담을 수 있다."""
     base = iface_id(row["file"])
-    codes = applies_to(row["title"])
+    body = BODY_APPLIES.get(row.get("id") or "")
+    codes = (body or {}).get("codes") or applies_to(row["title"])
     rev0 = {}
     m = REV.search(row["title"]) or REV.search(row["file"])
     if m:
@@ -440,6 +477,8 @@ def build_interfaces(row, fam, rows, skipped, block=None):
             it["excluded"] = ex
         if codes:
             it["appliesTo"] = codes
+        if body:
+            it.setdefault("gaps", []).append(body["why"])
         gaps = []
         if len(fams) > 1:
             gaps.append("한 문서에 계통이 섞였다: %s"
@@ -548,14 +587,17 @@ def apply(only=None, dry=False, crosscheck=True):
         if not ifaces:
             continue
         dcats = collections.Counter(r["category"] for r, _p in items if r.get("category"))
-        equip, cat, tag, tags, cgaps = equip_of(
+        equip, cat, tag, tags, cgaps, basis = equip_of(
             key, dcats.most_common(1)[0][0] if dcats else "")
         mid = S.model_id(VENDOR, key)
         n = sum(i["pointCount"] for i in ifaces)
         rec = {
             "id": mid, "equipId": equip, "vendor": VENDOR, "model": key, "name": key,
             "cat": cat, "tag": tag, "tags": tags, "status": "active",
-            "classifiedBy": "JCI 카탈로그 제품명 %r 의 낱말 (압축 방식·응축 방식)" % key,
+            # ⚠ 근거는 **실제로 쓴 것**을 적는다. 제품명이 설비 종류를 안 밝혀
+            #   문서 분류로 간 건은 그렇게 적어야 나중에 되짚을 수 있다.
+            "classifiedBy": basis or
+                            "JCI 카탈로그 제품명 %r 의 낱말 (압축 방식·응축 방식)" % key,
             "summary": "BAS 포인트 리스트 %d건에서 취입 — 오브젝트 %d점" % (len(ifaces), n),
             "has": {"spec": False, "points": True}, "ede": False,
             "spec": [], "io": [], "elec": None,
@@ -634,10 +676,11 @@ def refresh():
             ifaces.extend(build_interfaces(row, "", e["points"], e["excluded"],
                                            block=BLOCK_OF.get(prod)))
         # 문서 분류는 그 제품 문서들이 가장 많이 붙은 것을 쓴다(한 제품에 문서가 여럿이다)
-        equip, cat, tag, tags, cgaps = equip_of(
+        equip, cat, tag, tags, cgaps, basis = equip_of(
             m["model"], cats.most_common(1)[0][0] if cats else "")
         m["equipId"], m["cat"], m["tag"], m["tags"] = equip, cat, tag, tags
-        m["classifiedBy"] = "JCI 카탈로그 제품명 %r 의 낱말 (압축 방식·응축 방식)" % m["model"]
+        m["classifiedBy"] = basis or ("JCI 카탈로그 제품명 %r 의 낱말 "
+                                      "(압축 방식·응축 방식)" % m["model"])
         # 손대지 않은 IOM 본문 판을 **원래 자리**로 되돌린다. 여기서 id 순으로 다시
         # 줄 세우면 판 내용은 그대로인데 순서만 뒤바뀌어 헛diff 가 난다(24모델 ±10,000줄).
         pos = {it["id"]: k for k, it in enumerate(m["interfaces"])}
@@ -664,6 +707,16 @@ def refresh():
     return 0
 
 
+def _body_applies_files():
+    """BODY_APPLIES 로 코드를 얻은 문서의 저장 이름 → 근거 문장.
+
+    별칭 레코드가 '문서 제목의 제품 나열'이라고 적는데, 이 문서들은 제목이 아니라
+    **본문**이 밝힌 것이라 그대로 두면 근거가 틀린다.
+    """
+    by_id = {i: n for i, _s, n in SRC.JCI_BAS_POINTS}
+    return {by_id[i]: v["why"] for i, v in BODY_APPLIES.items() if i in by_id}
+
+
 def write_aliases(models):
     """문서가 덮는데 모델이 없는 제품 → **별칭 모델**을 세운다.
 
@@ -675,12 +728,25 @@ def write_aliases(models):
     for m in models:
         for c in re.findall(CODE_WORD, m["model"]):
             have.add(c)
+    # 다른 추출기가 만든 **진짜 모델**도 센다. 별칭은 '그 코드로 찾을 길이 없다'를
+    # 메우는 것이라, 코드에 정격을 가진 제품 모델이 생기면 더 만들 이유가 없다 —
+    # 실제로 RTC·RTH 가 YKN2Open 게이트웨이의 별칭이면서 동시에 제품 모델로도
+    # 있게 됐다(정격 취입 후). 별칭 자신은 세지 않는다 — 그러면 전부 사라진다.
+    for path in glob.glob(os.path.join(DATA, "models", "*.json")):
+        with open(path, encoding="utf-8") as f:
+            other = json.load(f)
+        if other.get("aliasOf") or other.get("extractor", "").startswith("vendor_jci") \
+                and other.get("interfaces"):
+            continue
+        for c in re.findall(CODE_WORD, other.get("model") or ""):
+            have.add(c)
     want = collections.OrderedDict()
     for m in models:
         for it in m["interfaces"]:
             for c in it.get("appliesTo") or []:
                 if c not in have:
                     want.setdefault(c, (m, it))
+    body_why = _body_applies_files()
     made = 0
     for code, (m, it) in want.items():
         mid = S.model_id(VENDOR, code)
@@ -693,9 +759,12 @@ def write_aliases(models):
                        % (VENDOR, m["model"], it["id"]),
             "has": {"spec": False, "points": False}, "ede": False,
             "spec": [], "io": [], "elec": None, "comm": [], "points": [],
-            "classifiedBy": "문서 제목의 제품 나열 — %s" % it["label"][:70],
+            "classifiedBy": (body_why[it["sourceFile"]]
+                             if it["sourceFile"] in body_why
+                             else "문서 제목의 제품 나열 — %s" % it["label"][:70]),
             "gap": "제품 정식명·정격·형번 미상 — JCI 카탈로그가 이 코드에 제품명을 주지 "
-                   "않는다. 문서 제목에 코드로만 나온다.",
+                   "않는다. 문서 %s에 코드로만 나온다."
+                   % ("본문" if it["sourceFile"] in body_why else "제목"),
             "extractor": "vendor_jci",
             "sourceDoc": it["sourceFile"],
         }
@@ -1049,7 +1118,7 @@ function renderProgress(){
     + '<td class="num" style="color:var(--hole)"><b>0/' + D.models.length + '</b></td>'
     + '<td></td></tr></tbody></table></div>'
     + '<div class="card"><b class="lbl">정격이 왜 0 인가</b>'
-    + '이 소스는 <b>BAS 포인트 리스트</b>다. 오브젝트 매핑 자동화는 33제품 전부 되지만, '
+    + '이 소스는 <b>BAS 포인트 리스트</b>다. 오브젝트 매핑 자동화는 ' + D.models.length + '제품 전부 되지만, '
     + '시뮬레이터가 쓸 용량·COP·전류는 한 제품도 없다 — 제품 카탈로그가 별도 수집 대상이다.</div>';
 
   if(D.coverage && D.coverage.length){
@@ -1069,10 +1138,24 @@ function renderProgress(){
                 ? c.miss.map(function(m){ return esc(m[0]) + ' ' + m[1]; }).join(' · ')
                 : '<span style="color:var(--ok)">없음</span>') + '</td></tr>';
         }).join('')
-      + '</tbody></table></div>'
-      + '<div class="card"><b class="lbl">냉동기 포털의 안 가져온 31건은 무엇인가</b>'
-      + '열어 보니 대부분 <b>SC-EQ 펌웨어 공지 · 배선도 · 번역본 · 제품 카탈로그</b>였다 — '
-      + '포인트 표가 아니다. 실제 포인트 표가 있는 문서는 아래 하나뿐이다.</div>';
+      + '</tbody></table></div>';
+  }
+  // 안 가져온 것을 **열어 본 결과**. 전에는 여기에 '포인트 표가 있는 문서는 하나뿐'
+  // 이라고 적혀 있었는데, 표식 낱말로만 훑은 짐작이었고 실제로는 셋이었다.
+  if(D.missDetail && D.missDetail.groups && D.missDetail.groups.length){
+    var md = D.missDetail;
+    h += '<h3 class="ph">안 가져온 것을 열어 봤다</h3>'
+      + '<div class="sub" style="padding:0 0 8px">' + esc(md.note) + '</div>'
+      + md.groups.map(function(g){
+          var cls = g.key === 'point-table' ? 'card hole' : 'card';
+          return '<div class="' + cls + '"><b class="lbl">' + esc(g.ko) + ' — '
+            + g.n + '건</b><ul style="margin:6px 0 0;padding-left:18px">'
+            + g.docs.map(function(x){
+                return '<li>' + (x.taken ? '<b style="color:var(--ok)">취입됨</b> · ' : '')
+                  + esc(x.title) + (g.docs.length <= 6
+                      ? '<div style="color:var(--dim)">' + esc(x.why) + '</div>' : '')
+                  + '</li>'; }).join('')
+            + '</ul></div>'; }).join('');
   }
   if(D.knownGaps && D.knownGaps.length){
     h += '<h3 class="ph">확인된 구멍</h3>'
@@ -1435,16 +1518,34 @@ PT_HINT = re.compile(r"points?\s*list|data\s*map|point\s*map|BAS\b|E-?Link|SC-?E
 
 # 눈으로 확인한 구멍. **원문을 열어 센 것만 적는다** — 짐작은 적지 않는다.
 KNOWN_GAPS = [
-    {"what": "YKN2Open BMS 게이트웨이",
-     "docs": "영문 1건 + 번역 7건 (chillers 포털)",
-     "found": "Modbus 38행 · BACnet 51행 · 노드 설정 17행 = 106행 (2026-08-18 원문 실측)",
-     "why": "표가 FieldServer 계열이라(Map Descriptor Name · Data Array Name) 지금 파서 "
-            "넷 중 어느 것도 안 잡는다. 9번째 계통이다."},
+    {"what": "SC-EQ 통신 카드 자체의 설정 포인트",
+     "docs": "SI0371(펌웨어 3.0.0.1114) 1쪽 · 통신카드 설치설명서 46쪽 — 같은 6점",
+     "found": "BV65000·AV65000·MV65003·SV65000·MV65001·MV65002 + 'Manual Select "
+              "Chiller Model' 값 44종 (2026-08-21 원문 실측)",
+     "why": "장비가 아니라 통신 카드의 설정값이라 어느 제품에 붙일지가 판단이다. "
+            "표 머리글이 'Point name | BACnet | Modbus | N2 | Description' 으로 "
+            "기존 어느 계통과도 다르다."},
+    {"what": "SC-EQ 펌웨어 릴리스 노트 6건 — 이름만 있고 주소가 없다",
+     "docs": "3.4.0.12 · 3.5.0.11 · 3.5.0.12 · 4.0.0.76 · 4.2.0.20 · 4.3",
+     "found": "'Long Name | Notes | Available to Customer BAS' — 합 343행이지만 "
+              "주소 열이 아예 없고 구획 머리행('YVAM Write Data')이 섞여 있다",
+     "why": "지금 SC-EQ 파서에 그냥 물리면 배너가 포인트가 되고 가용성 열이 날아간다. "
+            "게다가 판(제품이 내보내는 전체 목록)이 아니라 그 펌웨어가 더한 것의 "
+            "델타라, 실을지 자체가 정해진 적 없다."},
     {"what": "정격 (용량·COP·전류)",
      "docs": "이 소스에 없음",
-     "found": "제품 33건 전부 0",
+     "found": "제품 39건 전부 0",
      "why": "BAS 포인트 리스트 포털이라 정격이 실리지 않는다. York 제품 카탈로그를 "
-            "따로 수집해야 시뮬레이터가 쓸 수 있다(짝 규칙)."},
+            "따로 수집해야 시뮬레이터가 쓸 수 있다(짝 규칙). "
+            "✓ 옥상형 한 갈래는 풀렸다 — 같은 포털의 Roomtop RTC/RTH 기술 가이드 "
+            "2건(제목만 스페인어, 본문 영문)에서 형번 12건의 냉방·난방 능력과 "
+            "소비전력을 취입했다(모델 …rtc-rth-compact-horizontal-heat-pump-roomtop). "
+            "YKN2Open 이 덮는 그 제품이라 짝이 맞는다. "
+            "⚠ 남은 냉동기 정격은 **포털 안에 있다** — 지금까지의 그물이 "
+            "'포인트 리스트 낌새'뿐이라 정격 문서를 한 번도 열거하지 않았을 뿐이다. "
+            "제목으로 세면 272건(냉동기 32 · 덕트·옥상형 211 · 제어 29)이고, 그 안에 "
+            "'YK Style H … Engineering Guide'·'YZ Style A'·'YMC2'·'YVAA Style B' 처럼 "
+            "우리가 포인트를 가진 바로 그 모델이 있다."},
 ]
 
 
@@ -1469,6 +1570,35 @@ def coverage():
         out.append({"site": site, "docs": len(lst), "cand": len(cand), "taken": len(got),
                     "miss": miss.most_common(6)})
     return out
+
+
+# 안 가져온 것을 **열어 본 결과**. 짐작을 화면에 적지 않으려고 파일로 뺐다 —
+# 표식 낱말로만 훑던 때는 '포인트 표가 있는 문서는 하나뿐'이라고 적혀 있었는데
+# 실제로는 셋이었다(2026-08-21 31건 전수 실측).
+MISS_VERDICT = os.path.join(DATA, "jci-portal-miss.json")
+VERDICT_KO = [
+    ("point-table", "포인트 표가 있다"),
+    ("name-only", "이름만 — 주소 없는 펌웨어 릴리스 노트"),
+    ("translation", "번역본 — 내용이 같다"),
+    ("no-point-table", "포인트 표가 없다 — 배선도·공지·킷·호환표"),
+]
+
+
+def miss_detail():
+    """'안 가져온 것'의 실측 판정. 파일이 없으면 빈 값 — 화면이 그 절을 생략한다."""
+    if not os.path.exists(MISS_VERDICT):
+        return None
+    with open(MISS_VERDICT, encoding="utf-8") as f:
+        d = json.load(f)
+    by = collections.OrderedDict((k, []) for k, _ko in VERDICT_KO)
+    for e in d.get("docs") or []:
+        by.setdefault(e["verdict"], []).append(e)
+    return {"note": d.get("note", ""), "asOf": d.get("asOf", ""),
+            "groups": [{"key": k, "ko": ko, "n": len(by.get(k) or []),
+                        "docs": [{"title": x["title"], "why": x["why"],
+                                  "taken": bool(x.get("taken"))}
+                                 for x in (by.get(k) or [])]}
+                       for k, ko in VERDICT_KO if by.get(k)]}
 
 
 def _cell(v):
@@ -1551,6 +1681,7 @@ def view_data():
     out["totalIfs"] = sum(len(m["ifs"]) for m in out["models"])
     out["totalPoints"] = sum(i["n"] for m in out["models"] for i in m["ifs"])
     out["coverage"] = coverage()
+    out["missDetail"] = miss_detail()
     out["knownGaps"] = KNOWN_GAPS
     return out
 

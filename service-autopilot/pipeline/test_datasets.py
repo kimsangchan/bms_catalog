@@ -653,6 +653,17 @@ class DatasetBuildTest(unittest.TestCase):
             "johnson-controls-york-tempmaster-omnielite-packaged-rooftop-unit",
             "johnson-controls-york-versecon-yswu-yswd-water-cooled-self-contained",
             "johnson-controls-york-ypal-packaged-rooftop-unit",
+            # ── YKN2Open 게이트웨이와 그것이 덮는 제품 코드 (2026-08-21) ──────
+            # 게이트웨이 문서에는 정격이 없다(BAS 포인트만). 덮는 제품 코드는
+            # 별칭 레코드라 목록 자체를 갖지 않는다 — 정격은 더 없다.
+            # ✓ RTC·RTH 는 여기 있었는데 뺐다 — 기술 가이드 2건에서 정격을 취입해
+            #   진짜 제품 모델(형번 12건)이 생겼고, 별칭이 필요 없어져 지워졌다.
+            #   VITALITY 4코드는 아직 정격 문서가 없어 별칭으로 남는다.
+            "johnson-controls-york-ykn2open-control-board",
+            "johnson-controls-york-vac",
+            "johnson-controls-york-vah",
+            "johnson-controls-york-vch",
+            "johnson-controls-york-vir",
         })
 
     def test_aaon_cabinet_text_yields_units_with_iom_tonnage(self):

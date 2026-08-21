@@ -1,0 +1,2453 @@
+{
+ "id": "johnson-controls-york-ykn2open-control-board",
+ "equipId": "e5",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YKN2Open Control Board",
+ "name": "YKN2Open Control Board",
+ "cat": "HVAC.AIR.RTU",
+ "tag": "rooftop",
+ "tags": [
+  "rooftop"
+ ],
+ "status": "active",
+ "classifiedBy": "설비 종류를 제품명 'YKN2Open Control Board' 이 안 밝혀 JCI 문서 분류 'Rooftop Packaged Unit' 에서 가져왔다",
+ "summary": "BAS 포인트 리스트 1건 · 판 1개에서 취입 — 오브젝트 49점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "YKN2Open",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "Modbus",
+   "YKN2Open",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "N2",
+   "YKN2Open",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다. 설비 종류를 제품명 'YKN2Open Control Board' 이 안 밝혀 JCI 문서 분류 'Rooftop Packaged Unit' 에서 가져왔다",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_YKN2Open-BMS-Gateway.pdf",
+ "interfaces": [
+  {
+   "id": "ykn2open-bms-gateway",
+   "label": "YKN2Open BMS BACnet/IP and Modbus TCP/IP Installation and User Guide",
+   "family": "YKN2Open",
+   "protocols": [
+    "bacnet",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+   "pointCount": 49,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Suction Temperature 1",
+      "rangeSI": {
+       "min": -50.0,
+       "max": 160.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAI001",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 1,
+       "objectName": "Suction Temperature 1"
+      },
+      "n2": {
+       "address": 1
+      },
+      "modbus": {
+       "address": 30001,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "-50 min / 160 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "62",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI001"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Liquid Temperature 1",
+      "rangeSI": {
+       "min": -50.0,
+       "max": 160.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAI002",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 2,
+       "objectName": "Liquid Temperature 1"
+      },
+      "n2": {
+       "address": 2
+      },
+      "modbus": {
+       "address": 30002,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "-50 min / 160 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "62",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI002"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Outdoor Temperature",
+      "rangeSI": {
+       "min": -50.0,
+       "max": 160.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAI003",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 3,
+       "objectName": "Outdoor Temperature"
+      },
+      "n2": {
+       "address": 3
+      },
+      "modbus": {
+       "address": 30003,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "-50 min / 160 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "62",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI003"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Suction Temperature 2",
+      "rangeSI": {
+       "min": -50.0,
+       "max": 160.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAI004",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 4,
+       "objectName": "Suction Temperature 2"
+      },
+      "n2": {
+       "address": 4
+      },
+      "modbus": {
+       "address": 30004,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "-50 min / 160 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "62",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI004"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Liquid Temperature 2",
+      "rangeSI": {
+       "min": -50.0,
+       "max": 160.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAI005",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 5,
+       "objectName": "Liquid Temperature 2"
+      },
+      "n2": {
+       "address": 5
+      },
+      "modbus": {
+       "address": 30005,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "-50 min / 160 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "62",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI005"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature 1",
+      "rangeSI": {
+       "min": -50.0,
+       "max": 160.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAI006",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 6,
+       "objectName": "Discharge Temperature 1"
+      },
+      "n2": {
+       "address": 6
+      },
+      "modbus": {
+       "address": 30006,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "-50 min / 160 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "62",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI006"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Temperature 2",
+      "rangeSI": {
+       "min": -50.0,
+       "max": 160.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAI007",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 7,
+       "objectName": "Discharge Temperature 2"
+      },
+      "n2": {
+       "address": 7
+      },
+      "modbus": {
+       "address": 30007,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "-50 min / 160 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "62",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI007"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Temperature",
+      "rangeSI": {
+       "min": -50.0,
+       "max": 160.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAI011",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 11,
+       "objectName": "Return Temperature"
+      },
+      "n2": {
+       "address": 11
+      },
+      "modbus": {
+       "address": 30008,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "-50 min / 160 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "62",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI011"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Suply air Temperature",
+      "rangeSI": {
+       "min": -50.0,
+       "max": 160.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAI012",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 12,
+       "objectName": "Suply air Temperature"
+      },
+      "n2": {
+       "address": 12
+      },
+      "modbus": {
+       "address": 30009,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "-50 min / 160 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "62",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI012"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Water HWC Temperature",
+      "rangeSI": {
+       "min": -50.0,
+       "max": 160.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAI013",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 13,
+       "objectName": "Water HWC Temperature"
+      },
+      "n2": {
+       "address": 13
+      },
+      "modbus": {
+       "address": 30010,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "-50 min / 160 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "62",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI013"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Outdor Enthalpy",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 300.0
+      },
+      "shortName": "CMDAI014",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 14,
+       "objectName": "Outdor Enthalpy"
+      },
+      "n2": {
+       "address": 14
+      },
+      "modbus": {
+       "address": 30011,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0 min / 300 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "95",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI014"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Enthalpy",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 300.0
+      },
+      "shortName": "CMDAI015",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 15,
+       "objectName": "Return Enthalpy"
+      },
+      "n2": {
+       "address": 15
+      },
+      "modbus": {
+       "address": 30012,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0 min / 300 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "95",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI015"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Indoor Temperature",
+      "rangeSI": {
+       "min": -30.0,
+       "max": 70.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAI016",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 16,
+       "objectName": "Indoor Temperature"
+      },
+      "n2": {
+       "address": 16
+      },
+      "modbus": {
+       "address": 30013,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "-30 min / 70 max",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "62",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI016"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Economizer Door (out)",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 100.0
+      },
+      "unitSIRaw": "%",
+      "unitSI": "%",
+      "shortName": "CMDAI017",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 17,
+       "objectName": "Economizer Door (out)"
+      },
+      "n2": {
+       "address": 17
+      },
+      "modbus": {
+       "address": 30014,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-100",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "98",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI017"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Water Coil (out)",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 100.0
+      },
+      "unitSIRaw": "%",
+      "unitSI": "%",
+      "shortName": "CMDAI018",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 18,
+       "objectName": "Water Coil (out)"
+      },
+      "n2": {
+       "address": 18
+      },
+      "modbus": {
+       "address": 30015,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-100",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "98",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI018"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor 1 Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI019",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 19,
+       "objectName": "Compressor 1 Hours"
+      },
+      "n2": {
+       "address": 19
+      },
+      "modbus": {
+       "address": 30016,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI019"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor 2 Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI020",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 20,
+       "objectName": "Compressor 2 Hours"
+      },
+      "n2": {
+       "address": 20
+      },
+      "modbus": {
+       "address": 30017,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI020"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Tandem Comp 1 Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI022",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 22,
+       "objectName": "Tandem Comp 1 Hours"
+      },
+      "n2": {
+       "address": 22
+      },
+      "modbus": {
+       "address": 30018,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI022"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Tandem Comp 2 Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI023",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 23,
+       "objectName": "Tandem Comp 2 Hours"
+      },
+      "n2": {
+       "address": 23
+      },
+      "modbus": {
+       "address": 30019,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI023"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Water Coil Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI024",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 24,
+       "objectName": "Water Coil Hours"
+      },
+      "n2": {
+       "address": 24
+      },
+      "modbus": {
+       "address": 30020,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI024"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Auxiliary Stage 1 Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI025",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 25,
+       "objectName": "Auxiliary Stage 1 Hours"
+      },
+      "n2": {
+       "address": 25
+      },
+      "modbus": {
+       "address": 30021,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI025"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Auxiliary Stage 2 Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI026",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 26,
+       "objectName": "Auxiliary Stage 2 Hours"
+      },
+      "n2": {
+       "address": 26
+      },
+      "modbus": {
+       "address": 30022,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI026"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Auxiliary Stage 3 Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI027",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 27,
+       "objectName": "Auxiliary Stage 3 Hours"
+      },
+      "n2": {
+       "address": 27
+      },
+      "modbus": {
+       "address": 30023,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI027"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Auxiliary Stage 4 Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI028",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 28,
+       "objectName": "Auxiliary Stage 4 Hours"
+      },
+      "n2": {
+       "address": 28
+      },
+      "modbus": {
+       "address": 30024,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI028"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Indoor Fan Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI029",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 29,
+       "objectName": "Indoor Fan Hours"
+      },
+      "n2": {
+       "address": 29
+      },
+      "modbus": {
+       "address": 30025,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI029"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Outdoor Fan 1 Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI030",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 30,
+       "objectName": "Outdoor Fan 1 Hours"
+      },
+      "n2": {
+       "address": 30
+      },
+      "modbus": {
+       "address": 30026,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI030"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Error Code",
+      "unitSIRaw": "Integer",
+      "shortName": "CMDAI031",
+      "pointKind": "analog",
+      "statesRef": "Alarm code (11 a 46). See alarm table",
+      "states": [
+       {
+        "code": "11",
+        "label": "Dicharge Temperature 1"
+       },
+       {
+        "code": "12",
+        "label": "High pressure switch 1"
+       },
+       {
+        "code": "13",
+        "label": "Low pressure switch 1"
+       },
+       {
+        "code": "14",
+        "label": "Indoor fan thermal switch"
+       },
+       {
+        "code": "15",
+        "label": "Suction temperature 1"
+       },
+       {
+        "code": "21",
+        "label": "Dicharge Temperature 2"
+       },
+       {
+        "code": "22",
+        "label": "High pressure switch 2"
+       },
+       {
+        "code": "23",
+        "label": "Low pressure switch 2"
+       },
+       {
+        "code": "25",
+        "label": "Suction temperature 2"
+       },
+       {
+        "code": "41",
+        "label": "Gas 1 control or Electric heater 1"
+       },
+       {
+        "code": "42",
+        "label": "Gas 2 control or Electric heater 2"
+       },
+       {
+        "code": "43",
+        "label": "Electric heater 3"
+       },
+       {
+        "code": "44",
+        "label": "Electric heater 4"
+       },
+       {
+        "code": "45",
+        "label": "Economiser or hot water coil"
+       },
+       {
+        "code": "46",
+        "label": "Smoke detector or high temperature or impulse temperature"
+       },
+       {
+        "code": "91",
+        "label": "Ambient probe open or short circuited"
+       },
+       {
+        "code": "92",
+        "label": "Internal probe not calibrated"
+       },
+       {
+        "code": "93",
+        "label": "Communication error"
+       },
+       {
+        "code": "94",
+        "label": "External entry of failure"
+       },
+       {
+        "code": "95",
+        "label": "Digital probe S5 is not detected"
+       },
+       {
+        "code": "96",
+        "label": "Digital probe S6 is not detected"
+       },
+       {
+        "code": "97",
+        "label": "Digital probe S7 is not detected"
+       },
+       {
+        "code": "98",
+        "label": "Digital probe S8 is not detected"
+       },
+       {
+        "code": "99",
+        "label": "Digital probe S9 is not detected"
+       }
+      ]
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 31,
+       "objectName": "Error Code"
+      },
+      "n2": {
+       "address": 31
+      },
+      "modbus": {
+       "address": 30027,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "Alarm code (11 a 46). See alarm table",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "95",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI031"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다",
+       "states — 원문이 밝힌 범위(11~46) 밖의 코드 9개(91~99 Thermostat)가 알람표에 함께 있어 전부 실었다",
+       "알람표의 'Location' 열(YKN2Open · 2 Circuit · Accessory · Thermostat)은 states 구조에 자리가 없어 싣지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Outdoor Fan 2 Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI032",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 32,
+       "objectName": "Outdoor Fan 2 Hours"
+      },
+      "n2": {
+       "address": 32
+      },
+      "modbus": {
+       "address": 30028,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI032"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Exhaust fan Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI034",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 34,
+       "objectName": "Exhaust fan Hours"
+      },
+      "n2": {
+       "address": 34
+      },
+      "modbus": {
+       "address": 30029,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI034"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Water Bomb Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 50000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI035",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 35,
+       "objectName": "Water Bomb Hours"
+      },
+      "n2": {
+       "address": 35
+      },
+      "modbus": {
+       "address": 30030,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-50000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI035"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "General Power Hours",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 100000.0
+      },
+      "unitSIRaw": "Hours",
+      "unitSI": "h",
+      "shortName": "CMDAI036",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 36,
+       "objectName": "General Power Hours"
+      },
+      "n2": {
+       "address": 36
+      },
+      "modbus": {
+       "address": 30031,
+       "addressBase": "unknown",
+       "refClass": "input-register",
+       "scaleRaw": "/10",
+       "scale": 0.1
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-100000",
+       "Object-type-text": "Analog Input",
+       "Unit-code": "71",
+       "N2OpenType": "AI",
+       "Map Descriptor Name": "CMDAI036"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Minimum air renovation (Input)",
+      "rangeSI": {
+       "min": 0.0,
+       "max": 100.0
+      },
+      "unitSIRaw": "%",
+      "unitSI": "%",
+      "shortName": "CMDAO001",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1,
+       "objectName": "Minimum air renovation (Input)"
+      },
+      "n2": {
+       "address": 1
+      },
+      "modbus": {
+       "address": 40001,
+       "addressBase": "unknown",
+       "refClass": "holding-register",
+       "scaleRaw": "x /10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0-100",
+       "Object-type-text": "Analog Value In/ Out",
+       "Unit-code": "98",
+       "N2OpenType": "AO",
+       "Map Descriptor Name": "CMDAO001"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "modbus.scale — 배율 원표기 'x /10' 이 곱셈·나눗셈 기호를 함께 써 방향을 확정하지 못했다. 수치로 올리지 않았다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Setpoint occupied cool",
+      "rangeSI": {
+       "min": 10.0,
+       "max": 32.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAO002",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2,
+       "objectName": "Setpoint occupied cool"
+      },
+      "n2": {
+       "address": 2
+      },
+      "modbus": {
+       "address": 40002,
+       "addressBase": "unknown",
+       "refClass": "holding-register",
+       "scaleRaw": "x /10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "10min 32max",
+       "Object-type-text": "Analog Value In/ Out",
+       "Unit-code": "62",
+       "N2OpenType": "AO",
+       "Map Descriptor Name": "CMDAO002"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "modbus.scale — 배율 원표기 'x /10' 이 곱셈·나눗셈 기호를 함께 써 방향을 확정하지 못했다. 수치로 올리지 않았다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Setpoint occupied heat",
+      "rangeSI": {
+       "min": 10.0,
+       "max": 32.0
+      },
+      "unitSIRaw": "°C",
+      "unitSI": "°C",
+      "shortName": "CMDAO003",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 3,
+       "objectName": "Setpoint occupied heat"
+      },
+      "n2": {
+       "address": 3
+      },
+      "modbus": {
+       "address": 40003,
+       "addressBase": "unknown",
+       "refClass": "holding-register",
+       "scaleRaw": "x /10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "10min 32max",
+       "Object-type-text": "Analog Value In/ Out",
+       "Unit-code": "62",
+       "N2OpenType": "AO",
+       "Map Descriptor Name": "CMDAO003"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "modbus.scale — 배율 원표기 'x /10' 이 곱셈·나눗셈 기호를 함께 써 방향을 확정하지 못했다. 수치로 올리지 않았다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "OFF"
+       },
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Heat"
+       },
+       {
+        "code": "3",
+        "label": "Auto"
+       },
+       {
+        "code": "5",
+        "label": "Emerg Heat"
+       }
+      ],
+      "unitSIRaw": "Integer",
+      "shortName": "CMDAO004",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 8,
+       "objectName": "Mode"
+      },
+      "n2": {
+       "address": 8
+      },
+      "modbus": {
+       "address": 40004,
+       "addressBase": "unknown",
+       "refClass": "holding-register",
+       "scaleRaw": "x /10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0 ‑ OFF 1 ‑ Cool 2 ‑ Heat 3 ‑ Auto 5 ‑ Emerg Heat",
+       "Object-type-text": "Analog Value In/ Out",
+       "Unit-code": "95",
+       "N2OpenType": "AO",
+       "Map Descriptor Name": "CMDAO004"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "modbus.scale — 배율 원표기 'x /10' 이 곱셈·나눗셈 기호를 함께 써 방향을 확정하지 못했다. 수치로 올리지 않았다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       11
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Fan Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Fan auto"
+       },
+       {
+        "code": "1",
+        "label": "Fan manual continuo"
+       }
+      ],
+      "unitSIRaw": "Auto/Manual",
+      "statesRef": "4 Close-Open",
+      "shortName": "CMDDO001",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1,
+       "objectName": "Fan Mode"
+      },
+      "n2": {
+       "address": 1
+      },
+      "modbus": {
+       "address": 1,
+       "addressBase": "unknown",
+       "refClass": "coil"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0 ‑ Fan auto 1-Fan manual continuo",
+       "Object-type-text": "Binary Value",
+       "N2OpenType": "DO",
+       "Map Descriptor Name": "CMDDO001"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       12
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "ON/OFF",
+      "states": [
+       {
+        "code": "0",
+        "label": "OFF (forced)"
+       },
+       {
+        "code": "1",
+        "label": "ON. Reset"
+       }
+      ],
+      "unitSIRaw": "Off/On",
+      "statesRef": "5 Inactive-Active",
+      "shortName": "CMDDO002",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 2,
+       "objectName": "ON/OFF"
+      },
+      "n2": {
+       "address": 2
+      },
+      "modbus": {
+       "address": 2,
+       "addressBase": "unknown",
+       "refClass": "coil"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 9,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Range": "0 ‑ OFF (forced) 1 ‑ ON. Reset",
+       "Object-type-text": "Binary Value",
+       "N2OpenType": "DO",
+       "Map Descriptor Name": "CMDDO002"
+      },
+      "gaps": [
+       "n2.pointType — 문서 표기가 'AI/AO/DI/DO'(N2Open 종별)라 사전값(ADF·ADI·BD)에 없다. 원표기는 sourceColumns 에 뒀다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "sourcePages": [
+       9,
+       12
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Override Minimum air renovation (Inpu",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 101,
+       "objectName": "Override Minimum air renovation (Input)"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Override Setpoint occupied cool",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 102,
+       "objectName": "Override Setpoint occupied cool"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Override Setpoint occupied heat",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 103,
+       "objectName": "Override Setpoint occupied heat"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Override Mode",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 104,
+       "objectName": "Override Mode"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Override Fan Mode",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 105,
+       "objectName": "Override Fan Mode"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Override ON/OFF",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 106,
+       "objectName": "Override ON/ OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Release Minimum air renovation (Input",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 107,
+       "objectName": "Release Minimum air renovation (Input)"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Release Setpoint occupied cool",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 108,
+       "objectName": "Release Setpoint occupied cool"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Release Setpoint occupied heat",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 109,
+       "objectName": "Release Setpoint occupied heat"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Release Mode",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 110,
+       "objectName": "Release Mode"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Release Fan Mode",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 111,
+       "objectName": "Release Fan Mode"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    },
+    {
+     "common": {
+      "name": "Release ON/OFF",
+      "statesRef": "6 Open-Close",
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 112,
+       "objectName": "Release ON/ OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_YKN2Open-BMS-Gateway.pdf",
+      "sourcePage": 12,
+      "family": "YKN2Open",
+      "sourceColumns": {
+       "Object-type-text": "Binary Value"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 오브젝트 타입으로 추측하지 않았다"
+      ],
+      "interfaceId": "ykn2open-bms-gateway"
+     }
+    }
+   ],
+   "sourcePages": [
+    9,
+    12
+   ],
+   "excluded": {
+    "gatewayConfig": 52
+   },
+   "appliesTo": [
+    "RTC",
+    "RTH",
+    "VAC",
+    "VAH",
+    "VCH",
+    "VIR"
+   ],
+   "gaps": [
+    "덮는 제품은 제목이 아니라 본문이 밝힌다 — 원문 4쪽 \"cold units and heat pumps from Roomtop (RTC-RTH-L), ACTIVA Rooftop, Large ACTIVA Rooftop, VITALITY VAC/VAH/VCH-VIR of R410A equipped with the YKN2Open control\". 게이트웨이 한 대가 장비 최대 5대를 덮는다(원문 7쪽)."
+   ]
+  }
+ ],
+ "crosscheck": {
+  "fam": "bacnet",
+  "segments": 1,
+  "table": 49,
+  "raw": 53,
+  "both": 45,
+  "same": 45,
+  "diff": [],
+  "rate": 1.0,
+  "verified": {
+   "AI-1": "Suction Temperature 1",
+   "AI-2": "Liquid Temperature 1",
+   "AI-3": "Outdoor Temperature",
+   "AI-4": "Suction Temperature 2",
+   "AI-5": "Liquid Temperature 2",
+   "AI-6": "Discharge Temperature 1",
+   "AI-7": "Discharge Temperature 2",
+   "AI-11": "Return Temperature",
+   "AI-12": "Suply air Temperature",
+   "AI-13": "Water HWC Temperature",
+   "AI-14": "Outdor Enthalpy",
+   "AI-15": "Return Enthalpy",
+   "AI-16": "Indoor Temperature",
+   "AI-17": "Economizer Door (out)",
+   "AI-18": "Water Coil (out)",
+   "AI-19": "Compressor 1 Hours",
+   "AI-20": "Compressor 2 Hours",
+   "AI-22": "Tandem Comp 1 Hours",
+   "AI-23": "Tandem Comp 2 Hours",
+   "AI-24": "Water Coil Hours",
+   "AI-25": "Auxiliary Stage 1 Hours",
+   "AI-26": "Auxiliary Stage 2 Hours",
+   "AI-27": "Auxiliary Stage 3 Hours",
+   "AI-28": "Auxiliary Stage 4 Hours",
+   "AI-29": "Indoor Fan Hours",
+   "AI-30": "Outdoor Fan 1 Hours",
+   "AI-31": "Error Code",
+   "AI-32": "Outdoor Fan 2 Hours",
+   "AI-34": "Exhaust fan Hours",
+   "AI-35": "Water Bomb Hours",
+   "AI-36": "General Power Hours",
+   "BV-1": "Fan Mode",
+   "BV-2": "ON/OFF",
+   "BV-101": "Override Minimum air renovation (Inpu",
+   "BV-102": "Override Setpoint occupied cool",
+   "BV-103": "Override Setpoint occupied heat",
+   "BV-104": "Override Mode",
+   "BV-105": "Override Fan Mode",
+   "BV-106": "Override ON/OFF",
+   "BV-107": "Release Minimum air renovation (Input",
+   "BV-108": "Release Setpoint occupied cool",
+   "BV-109": "Release Setpoint occupied heat",
+   "BV-110": "Release Mode",
+   "BV-111": "Release Fan Mode",
+   "BV-112": "Release ON/OFF"
+  }
+ }
+}

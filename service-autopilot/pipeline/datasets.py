@@ -532,6 +532,12 @@ def clean_model_label(value):
 def label_unit(label):
     """라벨에 적힌 단위만 뽑는다 — (sq ft)·(%)·CFM·HP·RPM 등. 없는 단위는 지어내지 않는다."""
     text = clean_text(label)
+    # 괄호 안이 **단위 하나뿐**인 표기. 아래 일반 어휘에는 W·Pa 가 없어 JCI Roomtop
+    # 의 '(W)'·'(Pa)' 가 단위 없이 저장됐다 — 값이 W 인지 Btu/h 인지 모르게 된다.
+    # 정확히 이 토큰들일 때만 받는다(어휘에 'w' 를 넣으면 '(with packing)' 이 걸린다).
+    m = re.match(r"^.*\(\s*(W|Pa|m3/h|m³/h)\s*\)\s*$", text)
+    if m:
+        return m.group(1)
     m = re.search(r"\(([^)]*(?:%|ft|cfm|btu|mbh|hp|rpm|ton|kw|psi|°f|m³|m3|l/s|cmh|mm|db)[^)]*)\)",
                   text, re.I)
     if m and not re.search(r"nominal|standard|oversiz|fins|t/y", m.group(1), re.I):
@@ -662,8 +668,12 @@ UNIT_FIELD_PICKS = {
     # 'Air ?Flow'는 Lennox 띄어쓰기, 'Standard air flow volume'은 Mitsubishi 표준 풍량.
     "ratedAirflow": [r"AHRI Rated Air ?Flow", r"Nominal cfm/AHRI Rated cfm",
                      r"^Nominal airflow", r"^Standard air flow volume",
-                     r"^Nominal CFM$", r"CFM \(Nominal\)", r"^CFM$"],
+                     r"^Nominal CFM$", r"CFM \(Nominal\)", r"^CFM$",
+                     # JCI Roomtop RTC/RTH — 실내측 정격 풍량(m3/h)
+                     r"^Indoor nominal air flow"],
     "grossCoolingCapacity": [r"Gross Cooling Capacity - System",
+                             # JCI Roomtop RTC/RTH — 위 heatingCapacity 와 같은 표
+                             r"^Cooling capacity \(?W\)?$",
                              r"^Gross Cooling Capacity$", r"^Gross Cooling Capacity - Btuh",
                              r"^Gross Capacity @ (ARI|AHRI)"],
     # Lennox 는 'Net Cooling Capacity (Btuh)'/'- Btuh' — 각주 1이 AHRI 인증 표기다
@@ -684,11 +694,20 @@ UNIT_FIELD_PICKS = {
     "seer": [r"^SEER \(Btuh"],
     "seer2": [r"^SEER2"],
     # 히트펌프(Lennox LHT)의 난방 성능 — 냉방 절의 값과 라벨이 겹치지 않는다
-    "heatingCapacity": [r"^Total High Heat Capacity"],
+    "heatingCapacity": [r"^Total High Heat Capacity",
+                        # JCI Roomtop RTC/RTH 기술 가이드의 'Nominal capacities' 표
+                        # (2026-08-21). 라벨에 단위가 붙어 있어(…W) 다른 벤더의
+                        # 'Cooling capacity' 류와 겹치지 않는다 — 기존 모델 전수
+                        # 대조에서 걸리는 라벨 0건을 확인하고 넣었다.
+                        r"^Heating capacity \(?W\)?$"],
     "cop": [r"^C\.O\.P\."],
-    "systemPower": [r"^System power \(KW\)", r"^Total Unit Power"],
+    "heatingInput": [r"^Heating consumption \(?W\)?$"],
+    "systemPower": [r"^System power \(KW\)", r"^Total Unit Power", r"^Cooling consumption \(?W\)?$"],
     "soundRating": [r"Sound Rating Number", r"^Outdoor Sound Rating"],
-    "refrigerantCharge": [r"^lbs of R-"],
+    # JCI Roomtop RTC/RTH 는 'Refrigerant load R-407C (kg)' 로 적는다.
+    # ⚠ 여기에 따로 항목을 만들면 안 된다 — 위쪽에 하나 더 두었다가 dict 뒤엣것이
+    #   이겨 패턴이 조용히 무시됐다(pyflakes 가 잡았다).
+    "refrigerantCharge": [r"^lbs of R-", r"^Refrigerant load"],
     "refrigerantControl": [r"^Refrigerant control$"],
     "cabinetSize": [r"^Cabinet$"],
     "airflowConfiguration": [r"^Configuration$"],
