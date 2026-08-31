@@ -5,7 +5,7 @@
 드러나 스냅샷을 다시 만들었다.** 순서는 **오브젝트(포인트) 먼저, 정격은 그 다음**이다.
 
 ### 지금 상태
-- 모델 **154** · 판 **105** · 오브젝트 **10,634점** · `validate.py` 오류 0 · 테스트 **221건** 통과
+- 모델 **154** · 판 **106** · 오브젝트 **10,650점** · `validate.py` 오류 0 · 테스트 **241건** 통과
 - **냉동기: 닫힘** — 포털 후보 87건 전수 확인 → 진짜 포인트 표 59건, **59/59 취입**
 - **공조기(덕트·옥상형): 분모 나옴** — 1,207건 **본문까지 100% 확인**. 포인트 표 20건,
   제품계열 7개 중 7개 보유. 문서 기준 17/20
@@ -24,6 +24,17 @@ L-Series 를 넣으려 `--apply-iom` 을 돌렸더니 **YPAL 의 CO2 40건이 �
   안 맞으면 손대지 않는다(가드가 잡는다).
 - 검증: 17문서 **4,263점 전부** 사람이 고친 확정본과 **글자까지 일치 · 가드적중 0**.
   시험 16건 추가(합 173 통과). `--apply-iom` 은 이제 다시 돌려도 안전하다.
+
+### [1순위-A] 덕트 재훑기로 새로 나온 11건 취입 — **여기부터**
+`data/jci-duct-rescan.json` 의 새 11건(2,861행). 큰 것부터:
+1. `Technical Guide: Smart Equipment™ Controls` 811행 (p36~)
+2. `Technical Supplement: Simplicity SE Point Mapping (Firmware v1072)` 553행 (p1~)
+3. `VEC100 Generic RTU Controller` 5종 189~229행 — 난방·냉방 조합별로 갈린 판이다.
+   ⚠ 서로 재수록일 수 있다. **취입 전에 행 글자를 대조해 갈라라**(YKH↔YKL 이 100%
+   같았던 전례). 방법은 `data/_air_rows.json` 을 만든 방식 그대로.
+4. `TempMaster OmniElite` · `YORK YPAL` Control Sequence 200·172행 — 기존 모델에
+   판을 잇는 것일 수 있다(같은 제품군이 이미 있다).
+5. `JDMA Series` Makeup Air 58행
 
 ### [1순위] 오브젝트 계속 채우기
 1. ✅ **L-Series 취입 완료** (2026-08-31) — `145.05-NOM7` `Table 42` p172~181 **165점**.
@@ -59,9 +70,12 @@ L-Series 를 넣으려 `--apply-iom` 을 돌렸더니 **YPAL 의 CO2 40건이 �
    - ⏸ **에너지회수 응용 가이드 19행 — 아직 안 했다.** 제품 목록이 아니라 **응용
      템플릿**이다(`OA-T`·`RA-T`·`SA-T` 같은 일반 이름). 제품 모델에 붙일 것이 아니라
      어디에 둘지 정해야 한다 — 쓰임새를 정하는 쪽이 먼저다.
-   - ⏸ **AYK550 의 Modbus 4xxxx 표 — 아직 안 했다.** 같은 매뉴얼 p162~164 에 있고
-     `Modbus Register | AYK550 Standard Profile | Access | Remarks` 다. 같은 제품의
-     **둘째 판**이라 같은 모델에 인터페이스로 이으면 된다(냉동기의 E-Link/Native 처럼).
+   - ✅ **AYK550 Modbus 4xxxx 16점 취입 완료** — 같은 모델의 **둘째 판**(`drive-modbus`).
+     판 2 · 113점 · 교차 대조 **113/113 = 100%** · 계통 `Drive/Modbus` · 시험 20건.
+     FLN 97점과 이름이 **하나도 안 겹친다**(0/16) — 같은 드라이브의 다른 프로토콜 창구다.
+     ⚠ 주소는 `레지스터 − 40001` 이다. 원문: "Holding register 40002 is addressed as
+     0001 in a Modbus message." 40000 을 빼면 전 포인트가 한 칸 밀린 채 게이트를 통과한다.
+     ⚠ 자료형은 40005~40012(Actual)에만 원문 근거가 있다. 나머지는 gap 이다.
 
 2-b. ✅ **[끝남] `scan_jci.py` 문턱·머리글 수정 (2026-08-31)**
    `airhandling` 본 스캔이 **적중 0** 이었던 것은 표가 없어서가 아니었다.
@@ -78,13 +92,21 @@ L-Series 를 넣으려 `--apply-iom` 을 돌렸더니 **YPAL 의 CO2 40건이 �
    - ⚠ 남은 한계: 두 줄 머리글인데 0행만으로도 표식이 걸리는 판(AYK550)은 둘째 줄을
      본문으로 세어 표마다 한 행씩 많다. 이 수는 **후보 규모**일 뿐 취입 수가 아니다.
 
-2-c. **[해야 함] 냉동기·덕트 포털 다시 훑기 — 옛 문턱으로 낸 분모다**
-   `chillers` 2,525건 · `ductedsystems` 1,207건은 **고치기 전 문턱**으로 훑었다.
-   "덕트 1,207건 100% 확인"은 **"옛 문턱으로 100% 훑었다"** 는 뜻이지 "표가 없음을
-   확인했다"가 아니다. `airhandling` 이 그 문턱에서 0 이었다가 5건이 나왔다.
-   방법은 같다 — 고정 코퍼스를 만들어 `--slice i/4 --corpus` 로 돌리고 `--merge`.
-   ⚠ `--out` 을 반드시 새 이름으로 준다. 기본값은 `jci-body-scan.json` 이고 그 파일은
-   IOM 취입 경로(`vendor_jci_ipu.docs()`)가 읽는다.
+2-c. **[반쯤 끝남] 옛 문턱으로 낸 분모 다시 훑기**
+   ✅ **덕트 1,207건 재훑기 완료** (2026-08-31) — 오류 0, 적중 **29건**.
+   그중 **11건 2,861행이 새로 걸렸다** — "덕트 100% 확인"은 사실이 아니었다.
+   근거 `data/jci-duct-rescan.json` · 코퍼스 `data/_jci_duct_all_corpus.json`.
+   가장 큰 둘은 **제목에 포인트 표라고 대놓고 적혀 있는데도** 옛 문턱을 못 넘었다:
+   | 행 | 문서 |
+   |---|---|
+   | **811** | `Technical Guide: Smart Equipment™ Controls` |
+   | **553** | `Technical Supplement: Simplicity SE Point Mapping (Firmware v1072)` |
+   | 229·228·216·205·189 | `VEC100 Generic RTU Controller` 5종 |
+   | 200·172 | `TempMaster OmniElite` · `YORK YPAL` Control Sequence |
+   | 58 | `JDMA Series` Makeup Air |
+   ⏳ **냉동기 2,525건은 아직 안 했다.** 같은 방법으로 하면 된다.
+   ⚠ `--out` 을 반드시 새 이름으로 준다. 기본값 `jci-body-scan.json` 은 IOM 취입
+   경로(`vendor_jci_ipu.docs()`)가 읽는 파일이다.
 3. **`industrialrefrigeration` 6건 확인** — `UniSAB 4 Modbus Communications Setup Guide`
    (Frick 압축기 제어반). 다국어 중복으로 보이니 영문 1건만 열어 보면 된다
 4. TPM-SU2 · YRK-SU2 — 열어 보니 기존 판의 재수록이라 새 포인트가 거의 없다. 후순위

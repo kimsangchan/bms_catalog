@@ -3745,13 +3745,487 @@
      }
     }
    ]
+  },
+  {
+   "id": "drive-modbus",
+   "label": "AYK550 표준 프로파일 Modbus 레지스터 (YORK DRIVES)",
+   "family": "Drive/Modbus",
+   "protocols": [
+    "modbus"
+   ],
+   "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+   "sourcePages": [
+    162,
+    163
+   ],
+   "pointCount": 16,
+   "status": "extracted",
+   "note": "4xxxx 고정 창 40001~40099 중 정의된 것만 표에 있다 (40013~40030·40035~40099 는 없다). 40101~49999 는 드라이브 파라미터로 **규칙 매핑**이라 행이 없다 — 레지스터마다 행이 있으리라 기대하면 안 된다. 같은 문서의 FLN 97점과는 이름이 하나도 안 겹친다(0/16) — 같은 드라이브의 다른 창구다.",
+   "points": [
+    {
+     "common": {
+      "name": "CONTROL WORD",
+      "readWrite": "R/W",
+      "note": "Supported only if the drive is configured to use the YORK Drives Profile (5305 = 0)."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 0,
+       "addressBase": "0",
+       "refClass": "holding-register"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40001",
+       "Access": "R/W",
+       "Remarks": "Supported only if the drive is configured to use the YORK Drives Profile (5305 = 0)."
+      },
+      "gaps": [
+       "blocks.modbus.dataType"
+      ],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reference 1",
+      "readWrite": "R/W",
+      "note": "Range = 0…+20000 (scaled to 0…1105 REF1 MAX), or -20000…0 (scaled to 1105 REF1 MAX…0)."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "0",
+       "refClass": "holding-register"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40002",
+       "Access": "R/W",
+       "Remarks": "Range = 0…+20000 (scaled to 0…1105 REF1 MAX), or -20000…0 (scaled to 1105 REF1 MAX…0)."
+      },
+      "gaps": [
+       "blocks.modbus.dataType"
+      ],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reference 2",
+      "readWrite": "R/W",
+      "note": "Range = 0…+10000 (scaled to 0…1108 REF2 MAX), or -10000…0 (scaled to 1108 REF2 MAX…0)."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "0",
+       "refClass": "holding-register"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40003",
+       "Access": "R/W",
+       "Remarks": "Range = 0…+10000 (scaled to 0…1108 REF2 MAX), or -10000…0 (scaled to 1108 REF2 MAX…0)."
+      },
+      "gaps": [
+       "blocks.modbus.dataType"
+      ],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "STATUS WORD",
+      "readWrite": "R",
+      "note": "This register is only supported if the drive is configured to use the YORK Drives Profile (5305 = 0)."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "0",
+       "refClass": "holding-register"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40004",
+       "Access": "R",
+       "Remarks": "This register is only supported if the drive is configured to use the YORK Drives Profile (5305 = 0)."
+      },
+      "gaps": [
+       "blocks.modbus.dataType"
+      ],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Actual 1 (select using 5310)",
+      "readWrite": "R",
+      "note": "By default, stores a copy of 0103 OUTPUT FREQ. Use parameter 5310 to select a different actual value for this register."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40005",
+       "Access": "R",
+       "Remarks": "By default, stores a copy of 0103 OUTPUT FREQ. Use parameter 5310 to select a different actual value for this register."
+      },
+      "gaps": [],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Actual 2 (select using 5311)",
+      "readWrite": "R",
+      "note": "By default, stores a copy of 0104 CURRENT. Use parameter 5311 to select a different actual value for this register."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40006",
+       "Access": "R",
+       "Remarks": "By default, stores a copy of 0104 CURRENT. Use parameter 5311 to select a different actual value for this register."
+      },
+      "gaps": [],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Actual 3 (select using 5312)",
+      "readWrite": "R",
+      "note": "By default, stores nothing. Use parameter 5312 to select an actual value for this register."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40007",
+       "Access": "R",
+       "Remarks": "By default, stores nothing. Use parameter 5312 to select an actual value for this register."
+      },
+      "gaps": [],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Actual 4 (select by 5313)",
+      "readWrite": "R",
+      "note": "By default, stores nothing. Use parameter 5313 to select an actual value for this register."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 7,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40008",
+       "Access": "R",
+       "Remarks": "By default, stores nothing. Use parameter 5313 to select an actual value for this register."
+      },
+      "gaps": [],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Actual 5 (select by 5314)",
+      "readWrite": "R",
+      "note": "By default, stores nothing. Use parameter 5314 to select an actual value for this register."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 8,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40009",
+       "Access": "R",
+       "Remarks": "By default, stores nothing. Use parameter 5314 to select an actual value for this register."
+      },
+      "gaps": [],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Actual 6 (select by 5315)",
+      "readWrite": "R",
+      "note": "By default, stores nothing. Use parameter 5315 to select an actual value for this register."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 9,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40010",
+       "Access": "R",
+       "Remarks": "By default, stores nothing. Use parameter 5315 to select an actual value for this register."
+      },
+      "gaps": [],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Actual 7 (select by 5316)",
+      "readWrite": "R",
+      "note": "By default, stores nothing. Use parameter 5316 to select an actual value for this register."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 10,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40011",
+       "Access": "R",
+       "Remarks": "By default, stores nothing. Use parameter 5316 to select an actual value for this register."
+      },
+      "gaps": [],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Actual 8 (select by 5317)",
+      "readWrite": "R",
+      "note": "By default, stores nothing. Use parameter 5317 to select an actual value for this register."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 11,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40012",
+       "Access": "R",
+       "Remarks": "By default, stores nothing. Use parameter 5317 to select an actual value for this register."
+      },
+      "gaps": [],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "AYK550 CONTROL WORD LSW",
+      "readWrite": "R/W",
+      "note": "Maps directly to the Least Significant Word of the AYK550 Drive Profile CONTROL WORD. See parameter 0301."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 30,
+       "addressBase": "0",
+       "refClass": "holding-register"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 162,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40031",
+       "Access": "R/W",
+       "Remarks": "Maps directly to the Least Significant Word of the AYK550 Drive Profile CONTROL WORD. See parameter 0301."
+      },
+      "gaps": [
+       "blocks.modbus.dataType"
+      ],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "AYK550 CONTROL WORD MSW",
+      "readWrite": "R",
+      "note": "Maps directly to the Most Significant Word of the AYK550 Drive Profile CONTROL WORD. See parameter 0302."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 31,
+       "addressBase": "0",
+       "refClass": "holding-register"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 163,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40032",
+       "Access": "R",
+       "Remarks": "Maps directly to the Most Significant Word of the AYK550 Drive Profile CONTROL WORD. See parameter 0302."
+      },
+      "gaps": [
+       "blocks.modbus.dataType"
+      ],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "AYK550 STATUS WORD LSW",
+      "readWrite": "R",
+      "note": "Maps directly to the Least Significant Word of the AYK550 Drive Profile STATUS WORD. See parameter 0303."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 32,
+       "addressBase": "0",
+       "refClass": "holding-register"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 163,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40033",
+       "Access": "R",
+       "Remarks": "Maps directly to the Least Significant Word of the AYK550 Drive Profile STATUS WORD. See parameter 0303."
+      },
+      "gaps": [
+       "blocks.modbus.dataType"
+      ],
+      "interfaceId": "drive-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "AYK550 STATUS WORD MSW",
+      "readWrite": "R",
+      "note": "Maps directly to the Most Significant Word of the AYK550 Drive Profile STATUS WORD. See parameter 0304."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 33,
+       "addressBase": "0",
+       "refClass": "holding-register"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 163,
+      "family": "Drive/Modbus",
+      "status": "extracted",
+      "sourceColumns": {
+       "Modbus Register": "40034",
+       "Access": "R",
+       "Remarks": "Maps directly to the Most Significant Word of the AYK550 Drive Profile STATUS WORD. See parameter 0304."
+      },
+      "gaps": [
+       "blocks.modbus.dataType"
+      ],
+      "interfaceId": "drive-modbus"
+     }
+    }
+   ]
   }
  ],
  "crosscheck": {
   "rate": 1.0,
-  "both": 97,
-  "total": 97,
-  "method": "표 인식 대신 쪽 글자 흐름에서 '포인트 번호 + Type 코드' 가 잇달아 오는 자리를 찾아 이름을 다시 읽었다"
+  "both": 113,
+  "total": 113,
+  "method": "판마다 따로 재독해해 합쳤다 — 표 인식 대신 쪽 글자 흐름에서 '포인트 번호 + Type 코드' 가 잇달아 오는 자리를 찾아 이름을 다시 읽었다 / 표 인식 대신 쪽 글자 흐름에서 4xxxx 레지스터 다음 줄의 이름을 다시 읽었다"
  },
- "summary": "APOGEE P1/FLN 포인트 1판에서 취입 — 오브젝트 97점"
+ "summary": "APOGEE/FLN · Drive/Modbus 2판에서 취입 — 오브젝트 113점"
 }

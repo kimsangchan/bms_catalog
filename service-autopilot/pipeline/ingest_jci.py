@@ -2030,6 +2030,135 @@ AIR_MODELS = {
 }
 
 
+# 계통 → 그 계통 전용 교차 대조 함수를 가진 모듈 이름.
+# 새 계통을 만들면 여기 등재한다 — 빠뜨리면 그 판은 대조 없이 지나간다.
+XC_ADAPTERS = {
+    "APOGEE/FLN": "vendor_jci_fln",
+    "Drive/Modbus": "vendor_jci_ayk_modbus",
+    "AirHandling/Modbus": "vendor_jci_air",
+}
+
+
+def refresh_model_meta(rec, path):
+    """모델의 교차 대조와 요약을 **판 전부**를 보고 다시 계산한다.
+
+    ⚠ 저장된 값에 더하지 않는다. 더하면 재실행마다 누적된다(실제로 113 → 129 로
+      불어났다). 매번 처음부터 돌려서 몇 번을 돌려도 같은 수가 나오게 한다.
+    ⚠ 취입 경로마다 따로 계산하면 서로 덮어쓴다 — 그래서 여기 한 곳에서만 한다.
+    """
+    # 판 순서를 고정한다. 경로마다 자기 판을 맨 뒤에 붙이므로, 두 경로를 번갈아
+    # 돌리면 순서만 계속 바뀌어 "변경 없음" 이 영영 안 된다 — 쓸데없는 재기록이 쌓인다.
+    rec["interfaces"] = sorted(rec.get("interfaces") or [],
+                               key=lambda i: str(i.get("id") or ""))
+    parts, fams = [], []
+    for it in rec.get("interfaces") or []:
+        pl = it.get("points") or []
+        fam = it.get("family")
+        if fam and fam not in fams:
+            fams.append(fam)
+        mod = XC_ADAPTERS.get(fam)
+        if not pl or not mod:
+            continue
+        parts.append(__import__(mod).crosscheck(path, pl))
+    if parts:
+        both = sum(x["both"] for x in parts)
+        hit = sum(round(x["rate"] * x["both"]) for x in parts)
+        xc = {"rate": round(hit / both, 4) if both else 0.0, "both": both,
+              "total": sum(x["total"] for x in parts),
+              "method": "판마다 따로 재독해해 합쳤다 — " + " / ".join(
+                  x["method"] for x in parts)}
+        ms = [m for x in parts for m in (x.get("misses") or [])]
+        if ms:
+            xc["misses"] = ms[:5]
+        rec["crosscheck"] = xc
+    ifs = rec.get("interfaces") or []
+    n = sum(i.get("pointCount", len(i.get("points") or [])) for i in ifs)
+    rec["summary"] = "%s %d판에서 취입 — 오브젝트 %d점" % (
+        " · ".join(fams) or "포인트 표", len(ifs), n)
+    return rec
+
+
+def apply_ayk_modbus(dry=False):
+    """AYK550 의 4xxxx 고정 레지스터 창 → 같은 모델의 **둘째 판**.
+
+    FLN 판과 같은 PDF 에서 나온다. 그래서 판 갈아끼우기 열쇠가 (id, sourceFile)
+    이어야 한다 — 문서만 보면 한쪽을 취입할 때마다 다른 쪽이 사라진다.
+    """
+    import vendor_jci_ayk_modbus as M
+    import vendor_jci_ipu as IPU
+    import fitz
+    import scan_jci as SC
+
+    made = pts_total = 0
+    for path in CO.files_of(M.SOURCE):
+        fname = os.path.basename(path)
+        rows_in = []
+        doc = fitz.open(path)
+        for pi in range(doc.page_count):
+            try:
+                tabs = doc[pi].find_tables().tables
+            except Exception:
+                continue
+            for t in tabs:
+                data = t.extract()
+                if len(data) < 3:
+                    continue
+                hd = SC.table_header(data)
+                if not hd or not M.is_point_table(hd[0]):
+                    continue
+                for r in data[hd[1]:]:
+                    cells = [IPU.join_subscripts(x or "").replace("\n", " ").strip()
+                             for x in r]
+                    if any(cells):
+                        rows_in.append((pi + 1, cells))
+        doc.close()
+        points, skipped = M.parse_rows(rows_in, fname)
+        print("  \u00b7 %-46s %4d\uc810 %s" % (fname[:46], len(points), skipped or ""))
+        if not points:
+            continue
+        iid = "drive-modbus"
+        for pt in points:
+            pt["provenance"]["interfaceId"] = iid
+        pages = sorted({pt["provenance"]["sourcePage"] for pt in points})
+        iface = {"id": iid,
+                 "label": "AYK550 \ud45c\uc900 \ud504\ub85c\ud30c\uc77c Modbus \ub808\uc9c0\uc2a4\ud130 (YORK DRIVES)",
+                 "family": M.FAMILY, "protocols": ["modbus"], "sourceFile": fname,
+                 "sourcePages": pages, "pointCount": len(points),
+                 "status": "extracted",
+                 "note": "4xxxx \uace0\uc815 \ucc3d 40001~40099 \uc911 \uc815\uc758\ub41c \uac83\ub9cc \ud45c\uc5d0 \uc788\ub2e4 "
+                         "(40013~40030\u00b740035~40099 \ub294 \uc5c6\ub2e4). 40101~49999 \ub294 \ub4dc\ub77c\uc774\ube0c "
+                         "\ud30c\ub77c\ubbf8\ud130\ub85c **\uaddc\uce59 \ub9e4\ud551**\uc774\ub77c \ud589\uc774 \uc5c6\ub2e4 \u2014 \ub808\uc9c0\uc2a4\ud130\ub9c8\ub2e4 "
+                         "\ud589\uc774 \uc788\uc73c\ub9ac\ub77c \uae30\ub300\ud558\uba74 \uc548 \ub41c\ub2e4. \uac19\uc740 \ubb38\uc11c\uc758 FLN 97\uc810\uacfc\ub294 "
+                         "\uc774\ub984\uc774 \ud558\ub098\ub3c4 \uc548 \uacb9\uce5c\ub2e4(0/16) \u2014 \uac19\uc740 \ub4dc\ub77c\uc774\ube0c\uc758 \ub2e4\ub978 \ucc3d\uad6c\ub2e4.",
+                 "points": points}
+        mid = S.model_id(VENDOR, "AYK550 Air Modulator VFD")
+        path_m = os.path.join(DATA, "models", mid + ".json")
+        if not os.path.exists(path_m):
+            print("    \u26a0 %s \uac00 \uc5c6\ub2e4 \u2014 --apply-fln \uc744 \uba3c\uc800 \ub3cc\ub824\ub77c" % mid)
+            continue
+        with open(path_m, encoding="utf-8") as f:
+            rec = json.load(f)
+        before = json.dumps(rec, ensure_ascii=False, sort_keys=True)
+        old = [i for i in (rec.get("interfaces") or [])
+               if not (i.get("id") == iid and i.get("sourceFile") == fname)]
+        rec["interfaces"] = old + [iface]
+        refresh_model_meta(rec, path)
+        n = sum(i["pointCount"] for i in rec["interfaces"])
+        if json.dumps(rec, ensure_ascii=False, sort_keys=True) == before:
+            print("    \u21b7 %s \u2014 \uc774\ubbf8 \ucde8\uc785\ud55c \ud310, \ubcc0\uacbd \uc5c6\uc74c" % mid)
+            continue
+        made += 1
+        pts_total += len(points)
+        if dry:
+            print("    (dry) %s \u2014 \ud310 %d \u00b7 %d\uc810" % (mid, len(rec["interfaces"]), n))
+            continue
+        with open(path_m, "w", encoding="utf-8") as f:
+            json.dump(rec, f, ensure_ascii=False, indent=1)
+        print("    \u2192 %s \u2014 \ud310 %d \u00b7 %d\uc810" % (mid, len(rec["interfaces"]), n))
+    print("\n\ubaa8\ub378 %d\uac74 \u00b7 \uc0c8 \uc624\ube0c\uc81d\ud2b8 %d\uc810" % (made, pts_total))
+    return 0
+
+
 def apply_fln(dry=False):
     """APOGEE P1/FLN 포인트 데이터베이스 → 모델의 interfaces[].
 
@@ -2090,7 +2219,11 @@ def apply_fln(dry=False):
             with open(path_m, encoding="utf-8") as f:
                 rec = json.load(f)
             before = json.dumps(rec, ensure_ascii=False, sort_keys=True)
-            old = [i for i in (rec.get("interfaces") or []) if i["sourceFile"] != fname]
+            # ⚠ 열쇠는 (판 id, 문서) 둘 다다. sourceFile 만 보면 **같은 문서에서 나온
+            #   다른 판을 지운다** — AYK550 매뉴얼 한 권에 FLN 표와 Modbus 표가 둘 다
+            #   있어서, 열쇠가 문서뿐이면 한쪽을 취입할 때마다 다른 쪽이 사라진다.
+            old = [i for i in (rec.get("interfaces") or [])
+                   if not (i.get("id") == iid and i.get("sourceFile") == fname)]
             rec["interfaces"] = old + [iface]
         else:
             rec = {"id": mid, "equipId": "e15", "vendor": VENDOR,
@@ -2105,10 +2238,8 @@ def apply_fln(dry=False):
                           "slope \ubcc0\ud658 \ubc29\ud5a5\ub3c4 \uc548 \uc900\ub2e4 \u2014 \ud3ec\uc778\ud2b8\ub9c8\ub2e4 gaps \uc5d0 \uc801\ud600 \uc788\ub2e4.",
                    "extractor": "vendor_jci_fln", "sourceDoc": fname,
                    "interfaces": [iface]}
-        rec["crosscheck"] = F.crosscheck(path, points)
+        refresh_model_meta(rec, path)
         n = sum(i["pointCount"] for i in rec["interfaces"])
-        rec["summary"] = "APOGEE P1/FLN \ud3ec\uc778\ud2b8 %d\ud310\uc5d0\uc11c \ucde8\uc785 \u2014 \uc624\ube0c\uc81d\ud2b8 %d\uc810" % (
-            len(rec["interfaces"]), n)
         if before is not None and json.dumps(rec, ensure_ascii=False, sort_keys=True) == before:
             print("    \u21b7 %s \u2014 \uc774\ubbf8 \ucde8\uc785\ud55c \ubb38\uc11c, \ubcc0\uacbd \uc5c6\uc74c" % mid)
             continue
@@ -2193,7 +2324,11 @@ def apply_air(dry=False):
             with open(path_m, encoding="utf-8") as f:
                 rec = json.load(f)
             before = json.dumps(rec, ensure_ascii=False, sort_keys=True)
-            old = [i for i in (rec.get("interfaces") or []) if i["sourceFile"] != fname]
+            # ⚠ 열쇠는 (판 id, 문서) 둘 다다. sourceFile 만 보면 **같은 문서에서 나온
+            #   다른 판을 지운다** — AYK550 매뉴얼 한 권에 FLN 표와 Modbus 표가 둘 다
+            #   있어서, 열쇠가 문서뿐이면 한쪽을 취입할 때마다 다른 쪽이 사라진다.
+            old = [i for i in (rec.get("interfaces") or [])
+                   if not (i.get("id") == iid and i.get("sourceFile") == fname)]
             rec["interfaces"] = old + [iface]
         else:
             rec = {"id": mid, "equipId": spec["equip"], "vendor": VENDOR,
@@ -2207,11 +2342,9 @@ def apply_air(dry=False):
                           "공학 범위로 못 올렸다(포인트마다 gaps 에 적혀 있다).",
                    "extractor": "vendor_jci_air", "sourceDoc": fname,
                    "interfaces": [iface]}
-        # 규칙 ④ — 만든 방법으로 확인하지 않는다. 표 인식 대신 줄 읽기로 다시 돌려 맞춰 본다.
-        rec["crosscheck"] = A.crosscheck(path, points)
+        # 규칙 ④ — 만든 방법으로 확인하지 않는다. 표 인식 대신 줄 읽기로 다시 돌려 맞춘다.
+        refresh_model_meta(rec, path)
         n = sum(i["pointCount"] for i in rec["interfaces"])
-        rec["summary"] = "유닛 제어반 Modbus 레지스터 %d판에서 취입 — 오브젝트 %d점" % (
-            len(rec["interfaces"]), n)
         # 비교는 레코드를 **끝까지 만든 뒤**에 한다. 중간에 빠져나가면 그 뒤에 붙는 것
         # (교차 대조 같은 것)이 영영 기록되지 않는다 — 실제로 그래서 빠졌다.
         if before is not None and json.dumps(rec, ensure_ascii=False, sort_keys=True) == before:
@@ -2328,6 +2461,8 @@ def main(argv):
     ap.add_argument("--apply", action="store_true", help="모델 레코드 생성")
     ap.add_argument("--dry", action="store_true", help="파싱은 하되 쓰지 않는다")
     ap.add_argument("--no-crosscheck", action="store_true", help="교차 대조 건너뛰기")
+    ap.add_argument("--apply-ayk-modbus", action="store_true",
+                    help="AYK550 4xxxx 고정 레지스터 창 취입 (FLN 판과 같은 문서)")
     ap.add_argument("--apply-fln", action="store_true",
                     help="APOGEE P1/FLN 포인트 데이터베이스 취입")
     ap.add_argument("--apply-air", action="store_true",
@@ -2352,6 +2487,8 @@ def main(argv):
     a = ap.parse_args(argv)
     if a.audit_pages:
         return audit_pages(only=a.only)
+    if a.apply_ayk_modbus:
+        return apply_ayk_modbus(dry=a.dry)
     if a.apply_fln:
         return apply_fln(dry=a.dry)
     if a.apply_air:

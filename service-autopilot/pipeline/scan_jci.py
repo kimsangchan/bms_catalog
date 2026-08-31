@@ -32,7 +32,11 @@ UA = {"User-Agent": "Mozilla/5.0"}
 
 # 포인트 표 머리글 — 지금까지 실측한 8계통 + IOM 본문형에서 뽑았다.
 MARK = re.compile(
-    r"BACNET\s*NAME|OBJECT\s*TYPE\s*AND\s*INSTANCE|MODBUS\s*REGISTER\s*ADDRESS|"
+    r"BACNET\s*NAME|OBJECT\s*TYPE\s*AND\s*INSTANCE|MODBUS\s*REGISTER|"
+    # 2026-08-31 에 'MODBUS REGISTER ADDRESS' 를 'MODBUS REGISTER' 로 줄였다 —
+    # AYK550 의 표는 머리글이 'Modbus Register' 뿐이라 ADDRESS 를 요구하면 표를
+    # 통째로 못 본다(실제로 못 봤다). 낱말만 스친 것은 page_is_table 의 '같은
+    # 표식이 이웃 쪽에 이어질 것' 조건이 거른다.
     r"POINT\s*LIST\s*DESCRIPTION|ENG\s*B?PAGE\s*REF|ASCII\s*PAGE\s*REF|ISN\s*LINC|"
     r"LOGIX\s*TAG|ITEM\s*REF\s*NUM|N2\s*(?:METASYS\s*)?ADDRESS|SNVT\s*TYPE|"
     r"PANEL\s*DISPLAYED\s*NAME|Enum\s*Set|Register\s*Address|"
