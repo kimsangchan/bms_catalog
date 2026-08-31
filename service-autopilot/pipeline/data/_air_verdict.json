@@ -1,5 +1,5 @@
 {
- "note": "airhandling 236건 본문 전수 확인 결과. 본 스캔(MIN_KINDS=2)은 0건이었으나 문턱 1종으로 낮추니 걸렸다 — Modbus 레지스터 표는 우리가 아는 표식이 하나뿐이라 문턱을 못 넘는다. 머리글이 두 줄로 쪼개지는 판도 있어 앞 3행을 본다. (2차: 머리글을 열 단위로 이어 붙여 다시 셌다 — 1차는 줄 단위로만 봐 YKH·YKL 을 놓쳤다)",
+ "note": "airhandling 236건 본문 전수 확인. 옛 문턱(MIN_KINDS=2)에서는 적중 0 이었다 — Modbus 레지스터 표는 아는 열 이름이 'REGISTER ADDRESS' 하나뿐이라 문턱을 못 넘는다. 문턱을 고친 뒤(같은 표식이 이웃 쪽에 이어지면 표) 파이프라인이 5건 743행을 스스로 찾는다. 행수 정본은 data/jci-air-scan.json.",
  "madeOn": "2026-08-31",
  "scanned": 236,
  "docs": [
@@ -13,116 +13,6 @@
     "REGISTER ADDRESS": 3,
     "POINT NAME": 7
    },
-   "tables": [
-    {
-     "page": 181,
-     "rows": 5,
-     "head": "FLN ABB AYK550 Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "01 | LAO | CTLR ADDRESS | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 181,
-     "rows": 14,
-     "head": "FLN Startup Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "21 | LDI | FWD.REV | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 182,
-     "rows": 2,
-     "head": "FLN Startup Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "94 | LDO | RESET FAULT | "
-     ]
-    },
-    {
-     "page": 182,
-     "rows": 23,
-     "head": "FLN Overview Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "03 | LAI | FREQ OUTPUT | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 182,
-     "rows": 6,
-     "head": "FLN Drive I/O Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "40 | LDO | RO 1 COMMAND | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 183,
-     "rows": 16,
-     "head": "FLN Drive I/O Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "45 | LDO | RO 6 COMMAND | "
-     ]
-    },
-    {
-     "page": 183,
-     "rows": 13,
-     "head": "FLN Drive Config. Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "30 | LAO | CURRENT LIM | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 184,
-     "rows": 14,
-     "head": "FLN Process PID Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "15 | LAI | PRC PID FBCK | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 184,
-     "rows": 12,
-     "head": "FLN External PID Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "55 | LAO | EXT PID GAIN | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 186,
-     "rows": 33,
-     "head": "FLN Point Database Point |  | Subpoint Name | Factory Default | Engr. Units | Slope | Intercept | On Text | Off Text",
-     "sample": [
-      "# | Type |  | (SI Units) |  |  |  |  | ",
-      "01 | LAO | CTLR ADDRESS | 99 | - | 1 | 0 | - | -"
-     ]
-    },
-    {
-     "page": 187,
-     "rows": 32,
-     "head": "FLN Point Database Point |  | Subpoint Name | Factory Default | Engr. Units | Slope | Intercept | On Text | Off Text",
-     "sample": [
-      "# | Type |  | (SI Units) |  |  |  |  | ",
-      "{34} | LDI | ENA.DIS ACT | DISABL | - | 1 | 0 | ENABLE | DISABL"
-     ]
-    },
-    {
-     "page": 188,
-     "rows": 35,
-     "head": "FLN Point Database Point |  | Subpoint Name | Factory Default | Engr. Units | Slope | Intercept | On Text | Off Text",
-     "sample": [
-      "# | Type |  | (SI Units) |  |  |  |  | ",
-      "66 | LDO | SPD OUT MIN | 0 | PCT | 0.1 | 0 | - | -"
-     ]
-    }
-   ],
    "rowsTotal": 205,
    "verdict": "진짜 포인트 표",
    "markPages1": [
@@ -148,116 +38,6 @@
     "REGISTER ADDRESS": 3,
     "POINT NAME": 7
    },
-   "tables": [
-    {
-     "page": 180,
-     "rows": 5,
-     "head": "FLN ABB AYK550 Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "01 | LAO | CTLR ADDRESS | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 180,
-     "rows": 14,
-     "head": "FLN Startup Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "21 | LDI | FWD.REV | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 181,
-     "rows": 2,
-     "head": "FLN Startup Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "94 | LDO | RESET FAULT | "
-     ]
-    },
-    {
-     "page": 181,
-     "rows": 23,
-     "head": "FLN Overview Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "03 | LAI | FREQ OUTPUT | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 181,
-     "rows": 6,
-     "head": "FLN Drive I/O Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "40 | LDO | RO 1 COMMAND | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 182,
-     "rows": 16,
-     "head": "FLN Drive I/O Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "45 | LDO | RO 6 COMMAND | "
-     ]
-    },
-    {
-     "page": 182,
-     "rows": 13,
-     "head": "FLN Drive Config. Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "30 | LAO | CURRENT LIM | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 183,
-     "rows": 14,
-     "head": "FLN Process PID Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "15 | LAI | PRC PID FBCK | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 183,
-     "rows": 12,
-     "head": "FLN External PID Report Point |  | Subpoint Name | Data",
-     "sample": [
-      "# | Type |  | ",
-      "55 | LAO | EXT PID GAIN | Each host FLN applicat"
-     ]
-    },
-    {
-     "page": 185,
-     "rows": 33,
-     "head": "FLN Point Database Point |  | Subpoint Name | Factory Default | Engr. Units | Slope | Intercept | On Text | Off Text",
-     "sample": [
-      "# | Type |  | (SI Units) |  |  |  |  | ",
-      "01 | LAO | CTLR ADDRESS | 99 | - | 1 | 0 | - | -"
-     ]
-    },
-    {
-     "page": 186,
-     "rows": 32,
-     "head": "FLN Point Database Point |  | Subpoint Name | Factory Default | Engr. Units | Slope | Intercept | On Text | Off Text",
-     "sample": [
-      "# | Type |  | (SI Units) |  |  |  |  | ",
-      "{34} | LDI | ENA.DIS ACT | DISABL | - | 1 | 0 | ENABLE | DISABL"
-     ]
-    },
-    {
-     "page": 187,
-     "rows": 35,
-     "head": "FLN Point Database Point |  | Subpoint Name | Factory Default | Engr. Units | Slope | Intercept | On Text | Off Text",
-     "sample": [
-      "# | Type |  | (SI Units) |  |  |  |  | ",
-      "66 | LDO | SPD OUT MIN | 0 | PCT | 0.1 | 0 | - | -"
-     ]
-    }
-   ],
    "rowsTotal": 205,
    "verdict": "진짜 포인트 표",
    "markPages1": [
@@ -282,27 +62,7 @@
    "kinds": {
     "POINT NAME": 2
    },
-   "tables": [
-    {
-     "page": 27,
-     "rows": 10,
-     "head": "Point name OA-T | Description Outside air temperature | Type AI | Point common for all technologies ✔ | Specific technologies",
-     "sample": [
-      "RA-T | Return air temperature | AI | ✔ | ",
-      "SA-T | Supply air temperature | AI | ✔ | "
-     ]
-    },
-    {
-     "page": 28,
-     "rows": 7,
-     "head": "Point name HX-BYP POS | Description Bypass damper position | Type AI | Point common for all technologies ✔ | Specific technologies For heat exchanger",
-     "sample": [
-      "HX-DP | Differential pressure  | AI | ✔ | For heat exchanger",
-      "FROST-STAT | Frost protection switc | BI | ✔ | "
-     ]
-    }
-   ],
-   "rowsTotal": 17,
+   "rowsTotal": 19,
    "verdict": "진짜 포인트 표",
    "markPages1": [
     27,
@@ -318,7 +78,6 @@
    "kinds": {
     "POINT NAME": 1
    },
-   "tables": [],
    "rowsTotal": 0,
    "verdict": "낱말만 스침",
    "markPages1": [
@@ -334,89 +93,6 @@
    "kinds": {
     "REGISTER\nADDRESS": 9
    },
-   "tables": [
-    {
-     "page": 28,
-     "rows": 7,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40001 | 0 | Unit open and close va | 0, 1 | 0: Off 1: On",
-      "40002 | 1 | Unit set temperature | 0 to 999 | The value includes a d"
-     ]
-    },
-    {
-     "page": 29,
-     "rows": 18,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40009 | 8 | Unit supply air temper | -400 to 999 | If there is no tempera",
-      "40010 | 9 | Outside temperature va | -400 to 999 | "
-     ]
-    },
-    {
-     "page": 30,
-     "rows": 21,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40031 | 30 | Heat exchanger freezin | 0, 1 | ",
-      "40034 | 33 | Humidity value | 0 to 1,000 | Adjust this value acco"
-     ]
-    },
-    {
-     "page": 31,
-     "rows": 29,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40061 | 60 | Instant aspirator fan  | 0 to 6 | Fan electric heater di",
-      "40062 | 61 | Instant ventilator fan | 0 to 6 | "
-     ]
-    },
-    {
-     "page": 32,
-     "rows": 14,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40092 | 91 | Instant second | 0 to 59 | ",
-      "40093 | 92 | Instant day of the wee | 1 to 7 | 1: Sunday 2: Monday 3:"
-     ]
-    },
-    {
-     "page": 33,
-     "rows": 12,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40116 | 115 | Filter time counter | 0 to 9,999 | This counter increases",
-      "40117 | 116 | Unit operating mode in | 0 to 100 | 0: Unit off 1: Damper "
-     ]
-    },
-    {
-     "page": 34,
-     "rows": 14,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40155 | 154 | Number of preheater st | 0 to 3 | ",
-      "40156 | 155 | Heater on time | 1 to 999 | Heater on delay time. "
-     ]
-    },
-    {
-     "page": 35,
-     "rows": 23,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40177 | 176 | Heat exchanger freeze  | -400 to 999 | If the heat exchanger ",
-      "40178 | 177 | Filter protection warn | 1 to 9,999 | If the filter counter "
-     ]
-    },
-    {
-     "page": 36,
-     "rows": 19,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40262 | 261 | Din 1 input normally o | 0, 1 | Check the universal in",
-      "40263 | 262 | Din 2 input normally o |  | "
-     ]
-    }
-   ],
    "rowsTotal": 157,
    "verdict": "진짜 포인트 표",
    "markPages1": [
@@ -440,89 +116,6 @@
    "kinds": {
     "REGISTER\nADDRESS": 9
    },
-   "tables": [
-    {
-     "page": 27,
-     "rows": 7,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40001 | 0 | Unit open and close va | 0, 1 | 0: Off 1: On",
-      "40002 | 1 | Unit set temperature | 0 to 999 | The value includes a d"
-     ]
-    },
-    {
-     "page": 28,
-     "rows": 18,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40009 | 8 | Unit supply air temper | -400 to 999 | If there is no tempera",
-      "40010 | 9 | Outside temperature va | -400 to 999 | "
-     ]
-    },
-    {
-     "page": 29,
-     "rows": 21,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40031 | 30 | Heat exchanger freezin | 0, 1 | ",
-      "40034 | 33 | Humidity value | 0 to 1,000 | Adjust this value acco"
-     ]
-    },
-    {
-     "page": 30,
-     "rows": 29,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40061 | 60 | Instant aspirator fan  | 0 to 6 | Fan electric heater di",
-      "40062 | 61 | Instant ventilator fan | 0 to 6 | "
-     ]
-    },
-    {
-     "page": 31,
-     "rows": 14,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40092 | 91 | Instant second | 0 to 59 | ",
-      "40093 | 92 | Instant day of the wee | 1 to 7 | 1: Sunday 2: Monday 3:"
-     ]
-    },
-    {
-     "page": 32,
-     "rows": 12,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40116 | 115 | Filter time counter | 0 to 9,999 | This counter increases",
-      "40117 | 116 | Unit operating mode in | 0 to 100 | 0: Unit off 1: Damper "
-     ]
-    },
-    {
-     "page": 33,
-     "rows": 14,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40155 | 154 | Number of preheater st | 0 to 3 | ",
-      "40156 | 155 | Heater on time | 1 to 999 | Heater on delay time. "
-     ]
-    },
-    {
-     "page": 34,
-     "rows": 23,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40177 | 176 | Heat exchanger freeze  | -400 to 999 | If the heat exchanger ",
-      "40178 | 177 | Filter protection warn | 1 to 9,999 | If the filter counter "
-     ]
-    },
-    {
-     "page": 35,
-     "rows": 19,
-     "head": "PLC register Address | Parameter number | Name | Range | Details",
-     "sample": [
-      "40262 | 261 | Din 1 input normally o | 0, 1 | Check the universal in",
-      "40263 | 262 | Din 2 input normally o |  | "
-     ]
-    }
-   ],
    "rowsTotal": 157,
    "verdict": "진짜 포인트 표",
    "markPages1": [
@@ -546,7 +139,6 @@
    "kinds": {
     "AVAILABLE TO CUSTOMER": 1
    },
-   "tables": [],
    "rowsTotal": 0,
    "verdict": "낱말만 스침",
    "markPages1": [
@@ -2444,5 +2036,6 @@
    "prod": "YORK",
    "marks": 0
   }
- ]
+ ],
+ "rowsTotal": 743
 }

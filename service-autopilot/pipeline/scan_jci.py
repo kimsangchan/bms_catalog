@@ -43,6 +43,75 @@ MARK = re.compile(
 MIN_KINDS = 2
 
 
+def page_is_table(per, i):
+    """쪽 i 를 포인트 표로 볼 것인가. per[i] 는 그 쪽에서 걸린 표식 **종류 집합**.
+
+    2종 문턱만으로는 표를 버린다 (2026-08-31 airhandling 236건 실증)
+      Modbus 레지스터 표는 우리가 아는 열 이름이 'REGISTER ADDRESS' **하나뿐**이라
+      '한 쪽에 2종'을 영영 못 넘는다. 그래서 이 포털이 통째로 **적중 0** 이었고,
+      문턱을 낮춰 다시 훑고서야 진짜 표 5건 741행이 나왔다(YKH·YKL 은 9쪽 연속인데도
+      빠져 있었다). 근거는 data/_air_verdict.json.
+
+    그렇다고 1종을 그냥 받으면 낱말만 스친 것이 는다. 표는 **여러 쪽에 이어진다**는
+    성질을 쓴다 — 같은 표식이 이웃 쪽에도 있으면 표로 본다. 실측으로 갈렸다:
+      진짜 5건  표식이 이웃 쪽으로 이어짐 (YKH p28~36 · AYK550 p161~164, p180~188 …)
+      스친 2건  외톨이 쪽 하나뿐 (팬코일 p34 점퍼표 · CurbPak p9 본문 문장)
+
+    ⚠ 이 규칙은 적중을 **더할 뿐 빼지 않는다** — 2종이 걸린 쪽은 그대로 통과한다.
+      그래서 앞서 낸 분모가 줄지 않는다. 다만 chillers·ductedsystems 도 옛 문턱으로
+      훑었으니 다시 훑으면 더 나올 수 있다.
+    """
+    k = per[i]
+    if not k:
+        return False
+    if len(k) >= MIN_KINDS:
+        return True
+    if i and (per[i - 1] & k):
+        return True
+    if i + 1 < len(per) and (per[i + 1] & k):
+        return True
+    return False
+
+
+def _cellwise(rows):
+    """여러 줄을 **열 단위로** 이어 붙인다 — 세로로 쪼개진 머리글을 복원한다."""
+    n = max(len(r) for r in rows)
+    out = []
+    for c in range(n):
+        parts = [(r[c] or "").replace("\n", " ").strip() if c < len(r) else "" for r in rows]
+        out.append(" ".join(x for x in parts if x))
+    return out
+
+
+def table_header(data, spans=(1, 2, 3)):
+    r"""표의 머리글 → (머리글 글자, 본문 시작 행). 못 찾으면 None.
+
+    머리글은 한 줄이 아니고, 열 이름이 **세로로 쪼개진다**. YKH 의 1열은
+    0행 'PLC register' + 1행 'Address' = 'PLC register Address' 다. 0행만 보면
+    어느 줄에도 'register address' 가 없어 157행짜리 표가 **0행**으로 세어졌다
+    (2026-08-31 실측). 쪽 글자에서는 'register
+Address' 가 \s 에 걸려 잡히는데
+    표 인식 경로에서는 안 잡힌다 — 경로가 다르면 결과가 다르다.
+
+    ⚠ **좁은 것부터** 본다. 두 줄을 먼저 대면 한 줄짜리 머리글에서 **데이터 한 줄을
+      머리글로 먹는다** ('BACNET NAME | OBJECT TYPE' + 첫 행 'A | AI 1' 이 붙어
+      'BACNET NAME A | ...' 가 된다). 행수가 표마다 하나씩 줄어든다.
+
+    한계: 두 줄 머리글인데 0행만으로도 표식이 걸리는 판(AYK550 의
+      'Point | | Subpoint Name | Data' + '# | Type | |')은 둘째 줄을 본문으로 센다.
+      표마다 한 행씩 많게 나온다. 이 수는 **후보 규모**일 뿐 취입 수가 아니라
+      (취입 행수는 각 계통 파서가 따로 센다) 여기서 짐작으로 더 깎지 않는다.
+    """
+    for span in spans:
+        for start in (0, 1):
+            if start + span > len(data):
+                continue
+            head = " | ".join(_cellwise(data[start:start + span]))
+            if MARK.search(head):
+                return head, start + span
+    return None
+
+
 def url_of(site, doc_id):
     return "https://docs.johnsoncontrols.com/%s/api/khub/documents/%s/content" % (site, doc_id)
 
@@ -62,12 +131,10 @@ def scan_one(c):
            "prod": c.get("prod", ""), "bytes": os.path.getsize(path)}
     doc = fitz.open(path)
     out["pages"] = doc.page_count
-    hits = []
+    per = []
     for i in range(doc.page_count):
-        txt = doc[i].get_text()
-        kinds = {m.group(0).upper() for m in MARK.finditer(txt)}
-        if len(kinds) >= MIN_KINDS:
-            hits.append(i + 1)
+        per.append({m.group(0).upper() for m in MARK.finditer(doc[i].get_text())})
+    hits = [i + 1 for i in range(len(per)) if page_is_table(per, i)]
     out["markPages"] = hits
     rows = 0
     heads = []
@@ -80,9 +147,11 @@ def scan_one(c):
             data = t.extract()
             if len(data) < 4:
                 continue
-            head = " | ".join((x or "").replace("\n", " ").strip() for x in data[0])
-            if MARK.search(head):
-                rows += len(data) - 1
+            h = table_header(data)
+            if h:
+                head, bstart = h
+                body = [r for r in data[bstart:] if any((x or "").strip() for x in r)]
+                rows += len(body)
                 if len(heads) < 3:
                     heads.append(head[:150])
     out["tableRows"] = rows
