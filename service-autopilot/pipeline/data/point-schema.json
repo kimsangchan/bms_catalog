@@ -1,6 +1,7 @@
 {
  "version": 2,
  "changelog": [
+  "v2.2 (2026-08-31) — 10번째 계통 SC-EQ/Config(통신 카드 자신의 설정 포인트) 등재. provenance.family 에 값만 더했다 — 새 필드는 없다. 이 계통이 쓰는 것(states·statesRef·modbus.dataType·modbus.scaleRaw·n2.pointType)은 전부 이미 있던 자리다. ⚠ columnGuards 'Enum Set(코드표 참조형)' 의 msvOffset 기록 의무는 이 계통에서 **채울 수 없다** — 참조 코드표(Table 1, 44종)를 풀어 states 를 채우지만 원문에 'for BACnet MSV values add 1 to number' 노트가 없다. 0 으로도 1 로도 단정하지 않고 포인트 gap 에 그 사실을 적는다.",
   "v2.1 (2026-08-21) — 9번째 계통 YKN2Open(게이트웨이) 등재. provenance.family 에 값 추가, provenance.sourcePages 신설 — 한 포인트가 Modbus 표와 BACnet 표에 나뉘어 실려 쪽이 둘이다. 어댑터가 먼저 쓰고 사전이 나중에 따라가는 일을 만들지 않으려고 게이트(validate point-field)가 잡은 자리에서 바로 등재했다.",
   "v2 (2026-08-14) — interfaces 절 신설. 모델(제품) 아래 포인트를 평면으로 두면 스타터·펌웨어가 다른 목록이 한 배열에 섞인다. 포인트는 인터페이스에 속하고, 인터페이스가 모델에 속한다. provenance.interfaceId·block 등재 (block 은 어댑터가 이미 쓰고 있었는데 사전에 없어 dictionaryFirst 위반이었다).",
   "v1 (2026-08-12) — 최초. JCI 포인트 리스트 57건 실측에서 8계통·열 합집합 45종을 얻어 세웠다."
@@ -217,10 +218,11 @@
     "Native/Panel",
     "YZD-Logix",
     "IPU/Series-100",
-    "YKN2Open"
+    "YKN2Open",
+    "SC-EQ/Config"
    ],
    "required": true,
-   "note": "IPU/Series-100 은 냉동기가 아니라 **옥상형·자립형 IOM 본문**에 묻힌 표다(2026-08-18 본문 전수 스캔에서 찾았다 — 제목에는 낌새가 없어 그때까지 통째로 빠져 있었다). **columnGuards 의 절반이 계통 조건부다** — 'YZD 문서에서 bacnet 블록 생성은 오류'·'GPIC형과 Typ-Ins형의 라우팅이 다르다' 같은 규칙은 레코드가 출신 계통을 모르면 강제할 수 없다. 초안에 이 자리가 없어 가드 3개가 작동 불능이었다(2026-08-12 검증). 계통은 취입할 때 어댑터가 적는다. YKN2Open 은 9번째 계통이자 **처음으로 장비가 아닌 것**이다 — 장비의 N2 를 BACnet/IP·Modbus TCP 로 바꿔 주는 FieldServer QuickServer 게이트웨이 키트라 표가 게이트웨이 설정표 모양이고, 그래서 앞의 파서 넷이 다 못 잡았다(2026-08-21). 이 계통만 한 포인트가 표 두 개(Modbus·BACnet)에 나뉘어 실린다 → provenance.sourcePages."
+   "note": "IPU/Series-100 은 냉동기가 아니라 **옥상형·자립형 IOM 본문**에 묻힌 표다(2026-08-18 본문 전수 스캔에서 찾았다 — 제목에는 낌새가 없어 그때까지 통째로 빠져 있었다). **columnGuards 의 절반이 계통 조건부다** — 'YZD 문서에서 bacnet 블록 생성은 오류'·'GPIC형과 Typ-Ins형의 라우팅이 다르다' 같은 규칙은 레코드가 출신 계통을 모르면 강제할 수 없다. 초안에 이 자리가 없어 가드 3개가 작동 불능이었다(2026-08-12 검증). 계통은 취입할 때 어댑터가 적는다. YKN2Open 은 9번째 계통이자 **처음으로 장비가 아닌 것**이다 — 장비의 N2 를 BACnet/IP·Modbus TCP 로 바꿔 주는 FieldServer QuickServer 게이트웨이 키트라 표가 게이트웨이 설정표 모양이고, 그래서 앞의 파서 넷이 다 못 잡았다(2026-08-21). 이 계통만 한 포인트가 표 두 개(Modbus·BACnet)에 나뉘어 실린다 → provenance.sourcePages. SC-EQ/Config 는 10번째 계통이다(2026-08-31) — 'SC-EQ' 계통이 **냉동기가 카드를 통해 내보내는** 목록인 데 반해, 이것은 **카드 자신의 설정 포인트** 6점이다(장치 이름·인스턴스 ID·인코딩·단위계·기종 선택). 머리글이 'Point name | BACnet | Modbus | N2 | Description' 으로 통째로 달라 기존 파서 아홉이 다 못 잡았다. 계통을 'SC-EQ' 로 합치면 안 된다 — columnGuards 의 'Enum Set(코드표 참조형)' 가드가 SC-EQ 코드표의 'add 1 to number' 노트를 전제하는데 이 문서에는 그 노트가 없다."
   },
   "interfaceId": {
    "ko": "소속 인터페이스",

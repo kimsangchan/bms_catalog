@@ -1,5 +1,5 @@
 {
- "note": "냉동기 포털 '후보인데 안 가져온 것'의 실측 판정 (2026-08-21). 제목 힌트(PT_HINT)로 고른 후보 87건에서 취입분을 뺀 31건을 전부 내려받아 표 머리글로 갈랐다. 제목으로 짐작하지 않는다 — 표식 낱말(scan_jci.MARK)로 훑을 때는 'Long Name'·'POINT NAME' 표가 안 걸려 '포인트 표가 있는 문서는 하나뿐'이라고 화면에 적혀 있었는데, 실제로는 셋이었다. 이 중 YKN2Open 1건은 같은 날 취입했다(taken).",
+ "note": "냉동기 포털 '후보인데 안 가져온 것'의 실측 판정 (2026-08-21). 제목 힌트(PT_HINT)로 고른 후보 87건에서 취입분을 뺀 31건을 전부 내려받아 표 머리글로 갈랐다. 제목으로 짐작하지 않는다 — 표식 낱말(scan_jci.MARK)로 훑을 때는 'Long Name'·'POINT NAME' 표가 안 걸려 '포인트 표가 있는 문서는 하나뿐'이라고 화면에 적혀 있었는데, 실제로는 셋이었다. 이 중 YKN2Open 1건은 같은 날 취입했다(taken). — 2026-08-31: point-table 3건이 모두 취입·대조를 마쳤다. 냉동기 포털에서 '후보인데 안 가져온' 포인트 표는 이제 남아 있지 않다.",
  "asOf": "2026-08-21",
  "docs": [
   {
@@ -422,7 +422,7 @@
    "category": "Absorption",
    "site": "chillers",
    "verdict": "point-table",
-   "why": "포인트 표 있음 — 60쪽 매뉴얼 46쪽에 위 SI0371 과 같은 설정 포인트 6점. 본문이 'Refer to SI0371' 로 값 표를 그쪽에 넘긴다. 같은 포인트 집합이라 둘 중 하나만 판이 된다.",
+   "why": "포인트 표 있음 — 60쪽 매뉴얼 46쪽에 위 SI0371 과 같은 설정 포인트 6점. 본문이 'Refer to SI0371' 로 값 표를 그쪽에 넘긴다. 같은 포인트 집합이라 둘 중 하나만 판이 된다. 2026-08-31 대조 완료 — 글자 흐름으로 따로 읽으니 SI0371 1쪽과 이름·BACnet·Modbus·N2 네 칸이 여섯 행 모두 같다(다른 것은 'N/A'/'n/a' 대소문자와 설명문 어투뿐). 값 표를 가진 SI0371 만 판으로 삼고 이 문서는 근거로 남겼다(ingest_jci.CORROBORATED) — 대장에 등록하지 않는다.",
    "pages": 60,
    "tables": [
     {
@@ -449,7 +449,8 @@
      "cols": 7,
      "head": "D-SUB 9-PIN |  |  |  |  | Phoenix 4-PIN | "
     }
-   ]
+   ],
+   "taken": true
   },
   {
    "id": "bdk7s53yQ5tftUD6MrJq9g",
@@ -493,7 +494,7 @@
    "category": "Screw Air-Cooled",
    "site": "chillers",
    "verdict": "point-table",
-   "why": "포인트 표 있음 — 1쪽 'Point name | BACnet | Modbus | N2 | Description' 6행(SC-EQ 통신 카드 자체의 설정 포인트: BV65000·AV65000·MV65003·SV65000·MV65001·MV65002) + 2쪽 'Manual Select Chiller Model' 값 44종. 아직 안 가져왔다.",
+   "why": "포인트 표 있음 — 1쪽 'Point name | BACnet | Modbus | N2 | Description' 6행(SC-EQ 통신 카드 자체의 설정 포인트: BV65000·AV65000·MV65003·SV65000·MV65001·MV65002) + 2쪽 'Manual Select Chiller Model' 값 44종. 아직 안 가져왔다. 2026-08-31 취입(6점 + 값 표 44종을 'Manual Select Chiller Model' 의 states 로, 10번째 계통 vendor_jci_sceq_config). 값 표를 가진 이쪽을 판으로 삼았다 — 모델은 냉동기가 아니라 카드 자신(johnson-controls-york-sc-eq-communication-card).",
    "pages": 2,
    "tables": [
     {
@@ -508,7 +509,8 @@
      "cols": 5,
      "head": "None (Disables Manual Select) | 0 |  | YLPA (IP) | 233"
     }
-   ]
+   ],
+   "taken": true
   },
   {
    "id": "7uJN9xsUvPTIs732TjFlWQ",

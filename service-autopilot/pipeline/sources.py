@@ -143,6 +143,21 @@ JCI_BAS_POINTS = [
     #   같아 등록하지 않는다. 문서ID 는 ingest_jci.TRANSLATIONS 에 근거로 남겼다.
     ("bdk7s53yQ5tftUD6MrJq9g", "chillers",
      "JCI_YKN2Open-BMS-Gateway.pdf"),   # YKN2Open BMS BACnet/IP and Modbus TCP/IP Installation and User Guide
+    # ── 10번째 계통: 통신 카드 자신의 설정 포인트 (2026-08-31 추가) ────────────
+    # 위 20건의 'SC-EQ' 문서는 **냉동기가 SC-EQ 카드를 통해 내보내는** 목록이다.
+    # 이 문서(SI0371)는 다르다 — 표에 담긴 6점이 **카드 자신의 설정값**이다
+    # (BACnet 장치 이름·인스턴스 ID·문자 인코딩·단위계·붙어 있는 냉동기 기종).
+    # 머리글이 'Point name | BACnet | Modbus | N2 | Description' 으로 통째로 달라
+    # 기존 파서 아홉이 다 못 잡았다. 파서는 vendor_jci_sceq_config.py.
+    # ⚠ 같은 6점이 'SC-EQ Communication Card Installation Instructions'
+    #   (2P~o78Hw6Zd~F~_z12AEMg, 60쪽 매뉴얼의 46쪽 Table 8)에도 있다. 값 표(44종)를
+    #   가진 이쪽만 판으로 삼는다 — 그쪽은 "Refer to SI0371." 로 값 표를 여기 넘긴다.
+    #   대조 결과와 문서ID 는 ingest_jci.CORROBORATED 에 근거로 남겼다.
+    # ⚠ khub 카탈로그의 prodname 이 냉동기 11종이라 첫 값('YCAL Scroll Chiller')을
+    #   제품으로 삼으면 카드의 설정 포인트가 YCAL 냉동기 목록으로 들어간다 —
+    #   ingest_jci.PROD_OF 가 문서가 밝히는 제품으로 되돌린다.
+    ("9cg6yK~zvn2rx75l2aehJA", "chillers",
+     "JCI_SC-EQ-Firmware-3.0.0.1114-SI0371.pdf"),   # YVAA, YVFA, YVWA, YCAV, YCIV, YCAL, YCUL, YCRL, YLAA, YLAE, YLUA SC-EQ Firmware 3.0.0.1114, Control Panel
 ]
 _JCI_KHUB = "https://docs.johnsoncontrols.com/%s/api/khub/documents/%s/content"
 

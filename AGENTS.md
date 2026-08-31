@@ -39,6 +39,8 @@ Claude Code는 `CLAUDE.md`의 `@import`로, Codex·Antigravity·Cursor는 네이
 ```
 service-autopilot/
 ├─ pipeline/            수집·추출·검증 코드 (여기서 실행)
+│  ├─ snapshot_jci.py   JCI 문서 포털 전수 열거 → data/haystack/_jci_docs.json
+│  │                    (--probe 두드려 보기 · --run 재생성. 포털을 손으로 고르지 않는다)
 │  ├─ sources.py        벤더 문서 소스 레지스트리
 │  ├─ collect.py        열거·내려받기 → data/raw/ (git 제외)
 │  ├─ extract.py        문서 → 오브젝트 목록
@@ -63,6 +65,7 @@ PYTHONIOENCODING=utf-8 python build.py             # HTML 다시 만들기
 PYTHONIOENCODING=utf-8 python collect.py --list    # 소스 목록
 PYTHONIOENCODING=utf-8 python collect.py --run <소스ID>
 PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류
+PYTHONIOENCODING=utf-8 python snapshot_jci.py --probe   # JCI 포털 열거 (담는 것·빼는 것)
 ```
 
 `PYTHONIOENCODING=utf-8` 를 빼면 한글 출력에서 `UnicodeEncodeError` 로 죽는다(Windows cp949).
@@ -89,6 +92,10 @@ PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류
    좌표로 고쳤으면 픽셀로 본다(`ingest_jci.py --audit-pages`). 실제로 도형 좌표로
    고치고 같은 좌표로 "0쪽 잘림"을 확인했는데, 회전된 쪽 135개가 잘려 있었다.
 5. **`validate.py` 오류 0 을 유지한다.** 경고는 남아도 되지만 사유가 설명돼야 한다.
+5.5 **진척률엔 범위를 앞에 붙인다.** `[JCI 냉동기 포털] 97%` 처럼. 범위 없는 `97%` 는
+   전체로 읽혀 남은 일을 숨긴다 — 실제로 그렇게 보고했다가 지적받았다. 분모를 안 세어 본
+   구간은 **"미산출"** 이라고 적고, 세는 것 자체를 할 일로 올린다. **후보 수는 분모가
+   아니다** — 제목 힌트로 고른 87건 중 진짜는 59건이었다(D-017).
 6. 커밋 메시지는 **한글**. 제목에 `[기능]`·`[개선]`·`[수정]` 을 붙이고, 본문에
    **무엇이 왜 틀렸는지**를 적는다 (다음 사람이 같은 함정을 밟지 않도록).
 7. push 는 지시받았을 때만 한다.

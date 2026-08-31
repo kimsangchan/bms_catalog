@@ -35,7 +35,10 @@ MARK = re.compile(
     r"BACNET\s*NAME|OBJECT\s*TYPE\s*AND\s*INSTANCE|MODBUS\s*REGISTER\s*ADDRESS|"
     r"POINT\s*LIST\s*DESCRIPTION|ENG\s*B?PAGE\s*REF|ASCII\s*PAGE\s*REF|ISN\s*LINC|"
     r"LOGIX\s*TAG|ITEM\s*REF\s*NUM|N2\s*(?:METASYS\s*)?ADDRESS|SNVT\s*TYPE|"
-    r"PANEL\s*DISPLAYED\s*NAME|Enum\s*Set|Register\s*Address", re.I)
+    r"PANEL\s*DISPLAYED\s*NAME|Enum\s*Set|Register\s*Address|"
+    # 2026-08-21 에 넓혔다 — 이 셋이 없어 냉동기 포털에서 포인트 표 3건을 놓쳤고
+    # 화면에 "포인트 표는 하나뿐"이라는 틀린 문장이 남아 있었다.
+    r"Long\s*Name|POINT\s*NAME|Available\s*to\s*Customer", re.I)
 # 표가 아니라 문장에서 낱말만 스친 것을 거른다 — 한 쪽에 표식이 2종 이상이어야 표로 본다
 MIN_KINDS = 2
 
@@ -90,11 +93,17 @@ def scan_one(c):
     return out
 
 
-def run_slice(idx, total):
-    tiers = json.load(io.open(os.path.join(DATA, "_jci_scan_tiers.json"), encoding="utf-8"))
-    cands = tiers["t1"]
+def run_slice(idx, total, corpus=None):
+    if corpus:
+        # 고정 코퍼스 파일 (예: 덕트·옥상형 미확인 622건) — t1 과 섞지 않는다
+        d = json.load(io.open(os.path.join(DATA, corpus), encoding="utf-8"))
+        cands = d["docs"] if isinstance(d, dict) else d
+    else:
+        tiers = json.load(io.open(os.path.join(DATA, "_jci_scan_tiers.json"), encoding="utf-8"))
+        cands = tiers["t1"]
     mine = [c for n, c in enumerate(cands) if n % total == idx]
-    outp = os.path.join(DATA, "_jci_scan_hits_%d.json" % idx)
+    tag = (corpus or "t1").replace("_jci_", "").replace("_corpus.json", "").replace(".json", "")
+    outp = os.path.join(DATA, "_scan_%s_hits_%d.json" % (tag, idx))
     done = {}
     if os.path.exists(outp):
         for r in json.load(io.open(outp, encoding="utf-8")):
@@ -123,14 +132,16 @@ def run_slice(idx, total):
     return 0
 
 
-def merge():
+def merge(corpus=None, out_name=None):
     import glob
+    tag = (corpus or "t1").replace("_jci_", "").replace("_corpus.json", "").replace(".json", "")
     all_ = []
-    for f in sorted(glob.glob(os.path.join(DATA, "_jci_scan_hits_*.json"))):
+    pat = "_scan_%s_hits_*.json" % tag if corpus else "_jci_scan_hits_*.json"
+    for f in sorted(glob.glob(os.path.join(DATA, pat))):
         all_.extend(json.load(io.open(f, encoding="utf-8")))
     hit = [r for r in all_ if r.get("markPages")]
     hit.sort(key=lambda r: -r.get("tableRows", 0))
-    out = os.path.join(DATA, "jci-body-scan.json")
+    out = os.path.join(DATA, out_name or "jci-body-scan.json")
     json.dump({"scanned": len(all_), "hits": hit}, io.open(out, "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
     print("훑은 문서 %d · 포인트 표를 품은 문서 %d · 행 합계 %d"
@@ -146,12 +157,14 @@ def main(argv):
     ap = argparse.ArgumentParser(description="JCI 본문 전수 스캔")
     ap.add_argument("--slice", help="i/N 형식 — N 조각 중 i 번")
     ap.add_argument("--merge", action="store_true")
+    ap.add_argument("--corpus", help="고정 코퍼스 파일 이름 (data/ 안)")
+    ap.add_argument("--out", help="--merge 결과 파일 이름")
     a = ap.parse_args(argv)
     if a.merge:
-        return merge()
+        return merge(a.corpus, a.out)
     if a.slice:
         i, n = a.slice.split("/")
-        return run_slice(int(i), int(n))
+        return run_slice(int(i), int(n), a.corpus)
     ap.print_help()
     return 0
 

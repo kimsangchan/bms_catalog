@@ -63,6 +63,13 @@ ROUTES = [
     # 이 계통은 0행이 표 제목('Modbus variables')이고 진짜 머리글은 그 아래다.
     ("YKN2Open", "vendor_jci_ykn2open",
      r"Bacnet\s*variables|Modbus\s*variables|Map\s*Descriptor\s*Name"),
+    # 10번째 계통 — 통신 카드 **자신의** 설정 포인트. 위 'SC-EQ' 계통이 냉동기가 카드를
+    # 통해 내보내는 목록인 데 반해, 이 표 6점은 카드의 BACnet 장치 이름·인스턴스 ID·
+    # 인코딩·단위계·붙어 있는 냉동기 기종이다.
+    # ⚠ 표식을 'Point name' 하나로 잡으면 안 된다 — 흔한 낱말이라 남의 계통 표가 걸린다.
+    #   다섯 낱말이 **이 순서로 붙은 표 머리글**만 이 계통이다(marks_of 는 표 0행을 본다).
+    ("SC-EQ/Config", "vendor_jci_sceq_config",
+     r"Point\s*name\s*\|\s*BACnet\s*\|\s*Modbus\s*\|\s*N2\b"),
 ]
 
 # 같은 문서의 번역본. 내용이 같아 등록하지 않는다 — 다만 포털 취입률을 셀 때
@@ -76,8 +83,25 @@ TRANSLATIONS = {
                                "F8c~Vlv0OwMaJ7YndUL4cg"],  # fr
 }
 
-# 문서 **본문**이 덮는 제품을 밝히는데 제목에는 없는 것. 제목만 읽는 applies_to()
-# 로는 못 잡는다. 짐작이 아니라 원문 문장을 옮겨 적고 쪽수를 남긴다.
+# 같은 표를 싣는 다른 문서. 판은 하나만 세우고 나머지는 **근거**로 남긴다 —
+# 대조한 사실이 사라지면 다음 사람이 '안 가져온 문서'로 보고 또 연다.
+CORROBORATED = {
+    "9cg6yK~zvn2rx75l2aehJA": [
+        ("2P~o78Hw6Zd~F~_z12AEMg",
+         "SC-EQ Communication Card Installation Instructions (450.50-N1) 46쪽 "
+         "'Table 8 - Manual Modbus addresses' 에 같은 6점이 있다. 글자 흐름(get_text)으로 "
+         "따로 읽어 대조했다 — 이름·BACnet·Modbus·N2 네 칸이 여섯 행 모두 같고, 다른 것은 "
+         "'N/A'/'n/a' 대소문자와 설명문 어투뿐이다. 값 표(Table 1, 44종)를 가진 SI0371 을 "
+         "판으로 삼았다 — 450.50-N1 은 그 자리에 \"Refer to SI0371.\" 이라 적어 값 표를 "
+         "이쪽에 넘긴다."),
+    ],
+}
+
+# 덮는 제품을 **제목만으로는 정할 수 없는** 문서. 짐작이 아니라 원문 문장을 옮겨
+# 적고 쪽수를 남긴다. 두 가지가 있다.
+#   ⑴ 제목엔 없고 본문이 밝힌다 → 본문이 말한 코드를 적는다(YKN2Open).
+#   ⑵ 제목이 코드를 나열하지만 그게 '이 목록이 덮는 제품'이 아니다 → **빈 목록**을 적고
+#      왜 아닌지를 남긴다. 빈 목록도 판단이다 — applies_to() 로 흘려보내면 안 된다.
 BODY_APPLIES = {
     "bdk7s53yQ5tftUD6MrJq9g": {
         "codes": ["RTC", "RTH", "VAC", "VAH", "VCH", "VIR"],
@@ -86,6 +110,54 @@ BODY_APPLIES = {
                "Rooftop, VITALITY VAC/VAH/VCH-VIR of R410A equipped with the YKN2Open "
                "control\". 게이트웨이 한 대가 장비 최대 5대를 덮는다(원문 7쪽).",
     },
+    "9cg6yK~zvn2rx75l2aehJA": {
+        "codes": [],
+        "why": "제목이 냉동기 11종(YVAA·YVFA·YVWA·YCAV·YCIV·YCAL·YCUL·YCRL·YLAA·YLAE·"
+               "YLUA)을 나열하지만 **이 목록이 덮는 제품이 아니다** — 그 냉동기들은 이 "
+               "펌웨어 릴리스가 걸리는 장비이고, 표 6점은 냉동기의 값이 아니라 SC-EQ 카드 "
+               "자신의 설정값이다(BACnet 장치 이름·인스턴스 ID·인코딩·단위계·기종 선택). "
+               "appliesTo 로 적으면 별칭 생성기가 냉동기 코드의 목록 소재지를 통신 카드로 "
+               "돌려 YVFA·YCIV 별칭이 냉동기에서 카드로 옮겨 붙는다(설비 분류까지 따라간다). "
+               "카드가 말을 걸 수 있는 기종은 'Manual Select Chiller Model' 포인트의 "
+               "states 44종에 그대로 실려 있다 — 그쪽이 문서가 실제로 밝힌 자리다.",
+    },
+}
+
+# JCI 카탈로그의 prodname 이 **문서가 말하는 제품**이 아닌 것.
+# khub 의 prodname 은 '이 문서가 걸리는 제품 목록'이라 SI0371 에는 냉동기 11종이 붙어
+# 있고 catalog() 가 쓰는 첫 값이 'YCAL Scroll Chiller' 다. 그대로 두면 SC-EQ 통신 카드의
+# 설정 포인트 6점이 YCAL 냉동기의 목록으로 들어간다 — 냉동기가 자기 것이 아닌 오브젝트를
+# 갖게 되는 셈이다. 제품명은 **문서 자신이 밝힌 것**만 적는다(지어내지 않는다):
+# 짝 문서 450.50-N1 의 제목이 'SC-EQ Communication Card Installation Instructions' 이고,
+# 그 13쪽 표가 'Microboard number | SC-EQ/install kit | Equipment model',
+# 18쪽 부품표가 'P/N 031-03610-000 · Gateway SC-EQ B' 로 카드를 하나의 부품으로 센다.
+PROD_OF = {
+    "9cg6yK~zvn2rx75l2aehJA": "SC-EQ Communication Card",
+}
+
+# 모델 단위의 **판단** 근거. 문서에서 자동으로 나오지 않는 결정을 적는 자리다 —
+# 재취입(--apply)이 gap 을 다시 짜므로 모델 파일을 손으로 고치면 다음 실행에 사라진다.
+MODEL_GAP = {
+    "SC-EQ Communication Card":
+        "결정(2026-08-31) — 이 6점을 어느 냉동기가 아니라 **카드 자신을 제품으로 세워** "
+        "붙였다. ⑴ 표의 여섯 점은 냉동기의 값이 아니라 카드의 값이다(카드의 BACnet 장치 "
+        "이름·인스턴스 ID·문자 인코딩·단위계·붙어 있는 기종 선택). 냉동기 하나를 골라 "
+        "붙이면 임의 선택이고, 이 카드를 쓰는 SC-EQ 문서 20건의 제품 전부에 복제하면 "
+        "'같은 목록을 제품 수만큼 복제하지 않는다'(interfaces.appliesTo)를 어긴다. "
+        "⑵ 선례가 있다 — YKN2Open 게이트웨이도 게이트웨이 자체를 제품으로 세웠다"
+        "(johnson-controls-york-ykn2open-control-board). ⑶ 제품이 실재한다는 근거는 짝 "
+        "문서 450.50-N1 이다: 제목이 'SC-EQ Communication Card Installation Instructions' "
+        "이고 13쪽 표가 'Microboard number | SC-EQ/install kit | Equipment model', 18쪽 "
+        "부품표가 'P/N 031-03610-000 · Gateway SC-EQ B' 로 카드를 하나의 부품으로 센다. "
+        "⑷ 계열을 e16 으로 둔 근거: data/equips/e16.json 이 '제어기·판넬은 장비 대장이 "
+        "아니라 통신 토폴로지로 관리한다'고 못박는데, 이 모델은 정격 없이 포인트만 갖는 "
+        "통신 토폴로지 노드라 그 규정과 어긋나지 않는다. YKN2Open 이 e5(옥상형)로 간 것과 "
+        "갈린 이유는 근거의 유무다 — 그쪽은 제품명이 설비 종류를 안 밝혀 JCI 문서 분류"
+        "('Rooftop Packaged Unit' = 덮는 장비)를 빌렸지만, 이쪽은 문서 두 건의 분류가 냉동기 "
+        "다섯 종류로 흩어져 덮는 장비 하나를 못 가리키고 제품명이 스스로 '통신 카드'라고 "
+        "밝힌다. ⑸ Haystack 4 에 `gateway` 정의는 없어 지어내지 않고 `controller`"
+        "(lib:phIct, 'Microprocessor based device used in a control system … or via "
+        "network protocols')를 붙였다.",
 }
 
 # JCI 카탈로그가 제품명을 안 준 문서. 제목에 적힌 것만 옮겨 적는다 — 지어내지 않는다.
@@ -122,6 +194,9 @@ CODE_WORD = re.compile(r"\b(%s)\b" % CODE)
 NOT_CODE = {"AND", "OR", "THE", "AND/OR", "BAS", "SC", "EQ", "LON", "N2", "IPU",
             "ISN", "VSD", "EM", "SSS", "HMI", "PDF", "REV", "OPTIVIEW", "ELINK"}
 REV = re.compile(r"\bRev[\s_]*([A-Za-z]?[\s_]?[\d.]+[a-z]?)", re.I)
+# 제목이 밝힌 펌웨어 판 — 'SC-EQ Firmware 3.0.0.1114'. 등록 문서 58건 중 이 한 건만
+# 걸린다(실측). 목록이 펌웨어에 매인 계통이 있어 판 구분으로 남긴다.
+FW = re.compile(r"\bFirmware\s+([\d][\d.]*)", re.I)
 
 # 설비 분류 — **제품명에 적힌 낱말**로만 정한다(JCI 카탈로그 prodname 이 근거다).
 # 태그 어휘는 Haystack 4 를 그대로 쓴다: chillerMechanism 은 choice 라 하나만 붙는다.
@@ -258,7 +333,8 @@ def parse_best(row):
 
 def model_of(row):
     """문서 → 모델 키(제품). 카탈로그 제품명이 정본, 없으면 제목에서 옮겨 적은 것."""
-    prod = row["prod"] or BLANK_PROD.get(row["id"]) or row["title"][:40]
+    prod = (PROD_OF.get(row["id"]) or row["prod"]
+            or BLANK_PROD.get(row["id"]) or row["title"][:40])
     return MERGE.get(prod, prod), prod
 
 
@@ -276,6 +352,20 @@ def equip_of(name, category=""):
     두었다. 더 구체적인 근거는 이름이지만, 어긋났다는 사실 자체가 사라지면 안 된다.
     """
     t = name.lower()
+    # 통신 카드는 **장비가 아니다** — 장비의 프로토콜을 BAS 로 바꿔 주는 부품이고,
+    # 제품명이 그렇게 밝힌다. 이 가드가 없으면 아래에서 JCI 문서 분류(category)가
+    # 그대로 굳는다: SC-EQ 카드 문서의 분류는 'Screw Air-Cooled'·'Absorption' 인데
+    # 그건 **이 문서가 걸리는 냉동기**의 분류이지 카드의 분류가 아니다 — 카드가
+    # 스크류 공랭 냉동기가 되어 냉동기 목록 사이에 서게 된다.
+    # 계열은 e16(계량·계측·제어기) — 그 사전이 "제어기·판넬은 장비 대장이 아니라
+    # 통신 토폴로지로 관리한다"고 못박은 자리다. 태그는 Haystack 4 의 `controller`
+    # ("Microprocessor based device used in a control system … or via network
+    # protocols", lib:phIct). Haystack 4 에 `gateway` 는 **없다** — 지어내지 않는다.
+    if "communication card" in t:
+        why = ("통신 카드는 장비가 아니라 장비의 프로토콜을 BAS 로 바꿔 주는 부품이다 — "
+               "제품명 %r 이 그렇게 밝힌다. JCI 문서 분류(category)는 이 문서가 걸리는 "
+               "냉동기의 분류라 따르지 않았다." % name)
+        return "e16", "HVAC.FIELD.CONTROLLER", "controller", ["controller"], [why], why
     if "rooftop" in t or "ypal" in t:
         return "e5", "HVAC.AIR.RTU", "rooftop", ["rooftop"], [], None
     # 제품명이 설비 종류를 안 밝히는 것이 있다 — 'YKN2Open Control Board' 는 장비가
@@ -430,11 +520,19 @@ def build_interfaces(row, fam, rows, skipped, block=None):
     """문서 하나 → 판(인터페이스) 목록. 한 문서가 판을 여럿 담을 수 있다."""
     base = iface_id(row["file"])
     body = BODY_APPLIES.get(row.get("id") or "")
-    codes = (body or {}).get("codes") or applies_to(row["title"])
+    # ⚠ `or` 로 이으면 **빈 목록이 판단으로 안 선다** — BODY_APPLIES 가 "제목의 코드는
+    #   덮는 제품이 아니다"라고 적어 둔 문서에서 다시 applies_to(제목) 로 흘러간다.
+    codes = body["codes"] if body else applies_to(row["title"])
     rev0 = {}
     m = REV.search(row["title"]) or REV.search(row["file"])
     if m:
         rev0["doc"] = "Rev " + re.sub(r"[\s_]+", " ", m.group(1)).strip()
+    # 펌웨어 판 — 이 목록이 그 펌웨어에서만 존재하는 계통이 있다. SC-EQ 설정 포인트
+    # 6점은 원문 1쪽이 "Provides BAS system writable configuration points" 라고 밝힌
+    # 3.0.0.1114 릴리스의 새 항목이다. 판 구분을 잃으면 구형 카드에도 있는 줄 안다.
+    mf = FW.search(row["title"] or "")
+    if mf:
+        rev0["firmware"] = mf.group(1)
     if block:
         rev0["block"] = block
     ex = {k: v for k, v in (skipped or {}).items() if v}
@@ -479,6 +577,9 @@ def build_interfaces(row, fam, rows, skipped, block=None):
             it["appliesTo"] = codes
         if body:
             it.setdefault("gaps", []).append(body["why"])
+        # 같은 표를 싣는 다른 문서를 대조하고 판에서 뺐다는 사실을 판에 남긴다
+        for other_id, why_dup in CORROBORATED.get(row.get("id") or "", ()):
+            it.setdefault("gaps", []).append("%s (문서ID %s)" % (why_dup, other_id))
         gaps = []
         if len(fams) > 1:
             gaps.append("한 문서에 계통이 섞였다: %s"
@@ -607,7 +708,8 @@ def apply(only=None, dry=False, crosscheck=True):
             "points": [],
             "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다."
                    + (" " + " / ".join(cgaps) if cgaps else "")
-                   + (" " + " / ".join(notes) if notes else ""),
+                   + (" " + " / ".join(notes) if notes else "")
+                   + (" " + MODEL_GAP[key] if key in MODEL_GAP else ""),
             "extractor": "vendor_jci",
             "sourceDoc": ifaces[0]["sourceFile"],
             "interfaces": ifaces,
@@ -697,6 +799,10 @@ def refresh():
                            sum(i["pointCount"] for i in ifaces)))
         if cgaps and cgaps[0] not in m["gap"]:
             m["gap"] = m["gap"] + " " + " / ".join(cgaps)
+        # 모델 단위의 판단 근거는 apply 가 심는다 — refresh 만 돌린 판에서 빠지지 않게
+        mg = MODEL_GAP.get(m["model"])
+        if mg and mg not in m["gap"]:
+            m["gap"] = m["gap"] + " " + mg
         with open(path, "w", encoding="utf-8") as f:
             json.dump(m, f, ensure_ascii=False, indent=1)
         models.append(m)
@@ -1041,11 +1147,25 @@ var KIND = [['HVAC.PLANT.CHILLER.CENTRIFUGAL','원심식 냉동기'],
             ['HVAC.PLANT.CHILLER.RECIP','왕복동식 냉동기'],
             ['HVAC.PLANT.CHILLER.ABSORPTION','흡수식 냉동기'],
             ['HVAC.PLANT.CHILLER','압축 방식 미상'],
-            ['HVAC.AIR.RTU','옥상형 공조기']];
+            ['HVAC.AIR.RTU','옥상형 공조기'],
+            ['HVAC.AIR.SELFCONTAINED','자립형 공조기']];
+// ⚠ 이 목록은 **손으로 적은 것**이라 새 분류가 생기면 조용히 빠진다 — 실제로
+//    자립형 2제품(167점)이 레일에서 사라졌고 머리글은 39, 레일은 37 이었다.
+//    그래서 목록에 없는 분류는 버리지 않고 '그 밖에' 로 모은다. 빠지느니 뭉쳐 둔다.
+function kindsOf(models){
+  var out = KIND.slice(), known = {};
+  KIND.forEach(function(k){ known[k[0]] = 1; });
+  var rest = models.filter(function(m){ return !known[m.cat]; });
+  if(rest.length){
+    var cats = {}; rest.forEach(function(m){ cats[m.cat] = 1; });
+    Object.keys(cats).forEach(function(c){ out.push([c, '그 밖에 — ' + c]); });
+  }
+  return out;
+}
 var COOL = {airCooling:'공랭', waterCooling:'수냉'};
 // 분류는 접는다 — 기본은 지금 보고 있는 제품이 속한 분류만 펼친다(render 가 연다).
 // 세로 33줄이 항상 펼쳐져 있으면 레일이 스크롤로만 다녀야 해서다.
-rail.innerHTML = KIND.map(function(k){
+rail.innerHTML = kindsOf(D.models).map(function(k){
   var list = D.models.map(function(m, i){ return {m:m, i:i}; })
     .filter(function(x){ return x.m.cat === k[0]; });
   if(!list.length) return '';
@@ -1085,7 +1205,7 @@ var COLS = [['n','오브젝트명','POINT LIST DESCRIPTION'],
 // 확인할 방법이 없다.
 var SITE_KO = {chillers:'냉동기 포털', ductedsystems:'덕트·옥상형 포털', bas:'제어·계측 포털(Metasys)'};
 function renderProgress(){
-  var byKind = KIND.map(function(k){
+  var byKind = kindsOf(D.models).map(function(k){
     var ms = D.models.filter(function(m){ return m.cat === k[0]; });
     var al = D.alias.filter(function(a){
       return D.models.some(function(m){ return m.id === a.of && m.cat === k[0]; }); });

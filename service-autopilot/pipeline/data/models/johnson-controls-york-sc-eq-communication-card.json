@@ -1,0 +1,474 @@
+{
+ "id": "johnson-controls-york-sc-eq-communication-card",
+ "equipId": "e16",
+ "vendor": "Johnson Controls / YORK",
+ "model": "SC-EQ Communication Card",
+ "name": "SC-EQ Communication Card",
+ "cat": "HVAC.FIELD.CONTROLLER",
+ "tag": "controller",
+ "tags": [
+  "controller"
+ ],
+ "status": "active",
+ "classifiedBy": "통신 카드는 장비가 아니라 장비의 프로토콜을 BAS 로 바꿔 주는 부품이다 — 제품명 'SC-EQ Communication Card' 이 그렇게 밝힌다. JCI 문서 분류(category)는 이 문서가 걸리는 냉동기의 분류라 따르지 않았다.",
+ "summary": "BAS 포인트 리스트 1건 · 판 1개에서 취입 — 오브젝트 6점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "comm": [
+  [
+   "BACnet",
+   "SC-EQ/Config",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "Modbus",
+   "SC-EQ/Config",
+   "—",
+   "포인트 리스트 1판"
+  ],
+  [
+   "N2",
+   "SC-EQ/Config",
+   "—",
+   "포인트 리스트 1판"
+  ]
+ ],
+ "points": [],
+ "gap": "정격·형번이 없다 — BAS 포인트 문서만 있고 제품 카탈로그는 따로 수집해야 한다. 통신 카드는 장비가 아니라 장비의 프로토콜을 BAS 로 바꿔 주는 부품이다 — 제품명 'SC-EQ Communication Card' 이 그렇게 밝힌다. JCI 문서 분류(category)는 이 문서가 걸리는 냉동기의 분류라 따르지 않았다. 결정(2026-08-31) — 이 6점을 어느 냉동기가 아니라 **카드 자신을 제품으로 세워** 붙였다. ⑴ 표의 여섯 점은 냉동기의 값이 아니라 카드의 값이다(카드의 BACnet 장치 이름·인스턴스 ID·문자 인코딩·단위계·붙어 있는 기종 선택). 냉동기 하나를 골라 붙이면 임의 선택이고, 이 카드를 쓰는 SC-EQ 문서 20건의 제품 전부에 복제하면 '같은 목록을 제품 수만큼 복제하지 않는다'(interfaces.appliesTo)를 어긴다. ⑵ 선례가 있다 — YKN2Open 게이트웨이도 게이트웨이 자체를 제품으로 세웠다(johnson-controls-york-ykn2open-control-board). ⑶ 제품이 실재한다는 근거는 짝 문서 450.50-N1 이다: 제목이 'SC-EQ Communication Card Installation Instructions' 이고 13쪽 표가 'Microboard number | SC-EQ/install kit | Equipment model', 18쪽 부품표가 'P/N 031-03610-000 · Gateway SC-EQ B' 로 카드를 하나의 부품으로 센다. ⑷ 계열을 e16 으로 둔 근거: data/equips/e16.json 이 '제어기·판넬은 장비 대장이 아니라 통신 토폴로지로 관리한다'고 못박는데, 이 모델은 정격 없이 포인트만 갖는 통신 토폴로지 노드라 그 규정과 어긋나지 않는다. YKN2Open 이 e5(옥상형)로 간 것과 갈린 이유는 근거의 유무다 — 그쪽은 제품명이 설비 종류를 안 밝혀 JCI 문서 분류('Rooftop Packaged Unit' = 덮는 장비)를 빌렸지만, 이쪽은 문서 두 건의 분류가 냉동기 다섯 종류로 흩어져 덮는 장비 하나를 못 가리키고 제품명이 스스로 '통신 카드'라고 밝힌다. ⑸ Haystack 4 에 `gateway` 정의는 없어 지어내지 않고 `controller`(lib:phIct, 'Microprocessor based device used in a control system … or via network protocols')를 붙였다.",
+ "extractor": "vendor_jci",
+ "sourceDoc": "JCI_SC-EQ-Firmware-3.0.0.1114-SI0371.pdf",
+ "interfaces": [
+  {
+   "id": "sc-eq-firmware-3-0-0-1114-si0371",
+   "label": "YVAA, YVFA, YVWA, YCAV, YCIV, YCAL, YCUL, YCRL, YLAA, YLAE, YLUA SC-EQ Firmware 3.0.0.1114, Control Panel",
+   "family": "SC-EQ/Config",
+   "protocols": [
+    "bacnet",
+    "modbus",
+    "n2"
+   ],
+   "sourceFile": "JCI_SC-EQ-Firmware-3.0.0.1114-SI0371.pdf",
+   "pointCount": 6,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "BACnet Instance ID Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Auto"
+       },
+       {
+        "code": "1",
+        "label": "Manual"
+       }
+      ],
+      "pointKind": "binary"
+     },
+     "blocks": {
+      "bacnet": {
+       "instance": 65000,
+       "objectType": "BV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_SC-EQ-Firmware-3.0.0.1114-SI0371.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ/Config",
+      "sourceColumns": {
+       "BACNET": "BV65000",
+       "DESCRIPTION": "0 = Auto 1 = Manual"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 원문 개요가 'Provides BAS system writable configuration points' 라고만 밝혀 포인트별 방향을 확정하지 못했다"
+      ],
+      "interfaceId": "sc-eq-firmware-3-0-0-1114-si0371"
+     }
+    },
+    {
+     "common": {
+      "name": "BACnet Instance ID",
+      "note": "Write desired value with Mode set to Manual",
+      "pointKind": "analog"
+     },
+     "blocks": {
+      "bacnet": {
+       "instance": 65000,
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_SC-EQ-Firmware-3.0.0.1114-SI0371.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ/Config",
+      "sourceColumns": {
+       "BACNET": "AV65000",
+       "DESCRIPTION": "Write desired value with Mode set to Manual"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 원문 개요가 'Provides BAS system writable configuration points' 라고만 밝혀 포인트별 방향을 확정하지 못했다"
+      ],
+      "interfaceId": "sc-eq-firmware-3-0-0-1114-si0371"
+     }
+    },
+    {
+     "common": {
+      "name": "BACnet Encoding Type",
+      "states": [
+       {
+        "code": "0",
+        "label": "ISO(UCS-2)"
+       },
+       {
+        "code": "1",
+        "label": "ASCII"
+       }
+      ],
+      "pointKind": "code"
+     },
+     "blocks": {
+      "bacnet": {
+       "instance": 65003,
+       "objectType": "MSV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_SC-EQ-Firmware-3.0.0.1114-SI0371.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ/Config",
+      "sourceColumns": {
+       "BACNET": "MV65003",
+       "DESCRIPTION": "0 = ISO(UCS-2), 1 = ASCII"
+      },
+      "gaps": [
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 원문 개요가 'Provides BAS system writable configuration points' 라고만 밝혀 포인트별 방향을 확정하지 못했다"
+      ],
+      "interfaceId": "sc-eq-firmware-3-0-0-1114-si0371"
+     }
+    },
+    {
+     "common": {
+      "name": "BACnet Device Name",
+      "note": "Write value desired for BAS system"
+     },
+     "blocks": {
+      "bacnet": {
+       "instance": 65000,
+       "objectType": "SV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_SC-EQ-Firmware-3.0.0.1114-SI0371.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ/Config",
+      "sourceColumns": {
+       "BACNET": "SV65000",
+       "DESCRIPTION": "Write value desired for BAS system"
+      },
+      "gaps": [
+       "pointKind — BACnet 타입 'SV' 은 허용값 셋(analog·binary·code) 어디에도 맞지 않는다. 지어내지 않고 비웠다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 원문 개요가 'Provides BAS system writable configuration points' 라고만 밝혀 포인트별 방향을 확정하지 못했다"
+      ],
+      "interfaceId": "sc-eq-firmware-3-0-0-1114-si0371"
+     }
+    },
+    {
+     "common": {
+      "name": "Units",
+      "states": [
+       {
+        "code": "0",
+        "label": "Imperial"
+       },
+       {
+        "code": "1",
+        "label": "Metric"
+       }
+      ],
+      "pointKind": "code"
+     },
+     "blocks": {
+      "bacnet": {
+       "instance": 65001,
+       "objectType": "MSV"
+      },
+      "modbus": {
+       "address": 65001,
+       "addressBase": "unknown",
+       "dataType": "Unsigned",
+       "scaleRaw": "X1"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 201
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_SC-EQ-Firmware-3.0.0.1114-SI0371.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ/Config",
+      "sourceColumns": {
+       "BACNET": "MV65001",
+       "MODBUS": "65001",
+       "Note (표 밖 각주)": "Modbus addresses … are Scaled X1 and Unsigned",
+       "N2": "ADI 201",
+       "DESCRIPTION": "0 = Imperial, 1 = Metric"
+      },
+      "gaps": [
+       "modbus.refClass — 주소 65001 가 알려진 대역(0/1/3/4xxxx)이 아니다. 앞자리로 레지스터 종류를 지어내지 않았다",
+       "modbus.scale — 각주 원표기 'X1'. 곱·나눗 방향을 문서가 밝히지 않아 수치로 올리지 않았다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 원문 개요가 'Provides BAS system writable configuration points' 라고만 밝혀 포인트별 방향을 확정하지 못했다"
+      ],
+      "interfaceId": "sc-eq-firmware-3-0-0-1114-si0371"
+     }
+    },
+    {
+     "common": {
+      "name": "Manual Select Chiller Model (YT2 only)",
+      "statesRef": "See Table 1 below",
+      "states": [
+       {
+        "code": "0",
+        "label": "None (Disables Manual Select)"
+       },
+       {
+        "code": "200",
+        "label": "Generic"
+       },
+       {
+        "code": "201",
+        "label": "YVAA Micro Channel (IP)"
+       },
+       {
+        "code": "202",
+        "label": "YVAA Micro Channel (SI)"
+       },
+       {
+        "code": "203",
+        "label": "YVAA Round Tube (IP)"
+       },
+       {
+        "code": "204",
+        "label": "YVAA Round Tube (SI)"
+       },
+       {
+        "code": "205",
+        "label": "YVFA Micro Channel (IP)"
+       },
+       {
+        "code": "206",
+        "label": "YVFA Micro Channel (SI)"
+       },
+       {
+        "code": "207",
+        "label": "YVFA Round Tube (IP)"
+       },
+       {
+        "code": "208",
+        "label": "YVFA Round Tube (SI)"
+       },
+       {
+        "code": "213",
+        "label": "YVWA Two Compressor (IP)"
+       },
+       {
+        "code": "214",
+        "label": "YVWA Two Compressor (SI)"
+       },
+       {
+        "code": "215",
+        "label": "YVWA One Compressor (IP)"
+       },
+       {
+        "code": "216",
+        "label": "YVWA One Compressor (SI)"
+       },
+       {
+        "code": "219",
+        "label": "YCAV/YCIV Two Compressor (IP)"
+       },
+       {
+        "code": "220",
+        "label": "YCAV/YCIV Two Compressor (SI)"
+       },
+       {
+        "code": "221",
+        "label": "YCAV/YCIV Three Compressor (IP)"
+       },
+       {
+        "code": "222",
+        "label": "YCAV/YCIV Three Compressor (SI)"
+       },
+       {
+        "code": "223",
+        "label": "YCAV/YCIV Four Compressor (IP)"
+       },
+       {
+        "code": "224",
+        "label": "YCAV/YCIV Four Compressor (SI)"
+       },
+       {
+        "code": "231",
+        "label": "YCAL, YCUL, YCRL, YLAA, YLAE, YLUA (IP)"
+       },
+       {
+        "code": "232",
+        "label": "YCAL, YCUL, YCRL, YLAA, YLAE, YLUA (SI)"
+       },
+       {
+        "code": "233",
+        "label": "YLPA (IP)"
+       },
+       {
+        "code": "234",
+        "label": "YLPA (SI)"
+       },
+       {
+        "code": "235",
+        "label": "YCWL (IP)"
+       },
+       {
+        "code": "236",
+        "label": "YCWL (SI)"
+       },
+       {
+        "code": "245",
+        "label": "YSAA One Compressor (IP)"
+       },
+       {
+        "code": "246",
+        "label": "YSAA One Compressor (SI)"
+       },
+       {
+        "code": "247",
+        "label": "YSAA Two Compressor (IP)"
+       },
+       {
+        "code": "248",
+        "label": "YSAA Two Compressor (SI)"
+       },
+       {
+        "code": "327",
+        "label": "YCAS/YCWS/YCRS (IP)"
+       },
+       {
+        "code": "328",
+        "label": "YCAS/YCWS/YCRS (SI)"
+       },
+       {
+        "code": "329",
+        "label": "Millenium YG/YB (IP)"
+       },
+       {
+        "code": "330",
+        "label": "Millenium YG/YB (SI)"
+       },
+       {
+        "code": "331",
+        "label": "Millenium YIA (IP)"
+       },
+       {
+        "code": "332",
+        "label": "Millenium YIA (SI)"
+       },
+       {
+        "code": "333",
+        "label": "Millenium YK (IP)"
+       },
+       {
+        "code": "334",
+        "label": "Millenium YK (SI)"
+       },
+       {
+        "code": "335",
+        "label": "Millenium YPC (IP)"
+       },
+       {
+        "code": "336",
+        "label": "Millenium YPC (SI)"
+       },
+       {
+        "code": "337",
+        "label": "Millenium YS (IP)"
+       },
+       {
+        "code": "338",
+        "label": "Millenium YS (SI)"
+       },
+       {
+        "code": "339",
+        "label": "Millenium YT (IP)"
+       },
+       {
+        "code": "340",
+        "label": "Millenium YT (SI)"
+       }
+      ],
+      "pointKind": "code"
+     },
+     "blocks": {
+      "bacnet": {
+       "instance": 65002,
+       "objectType": "MSV"
+      },
+      "modbus": {
+       "address": 65002,
+       "addressBase": "unknown",
+       "dataType": "Unsigned",
+       "scaleRaw": "X1"
+      },
+      "n2": {
+       "pointType": "ADI",
+       "address": 202
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_SC-EQ-Firmware-3.0.0.1114-SI0371.pdf",
+      "sourcePage": 1,
+      "family": "SC-EQ/Config",
+      "sourceColumns": {
+       "BACNET": "MV65002",
+       "MODBUS": "65002",
+       "Note (표 밖 각주)": "Modbus addresses … are Scaled X1 and Unsigned",
+       "N2": "ADI 202",
+       "DESCRIPTION": "See Table 1 below"
+      },
+      "gaps": [
+       "modbus.refClass — 주소 65002 가 알려진 대역(0/1/3/4xxxx)이 아니다. 앞자리로 레지스터 종류를 지어내지 않았다",
+       "modbus.scale — 각주 원표기 'X1'. 곱·나눗 방향을 문서가 밝히지 않아 수치로 올리지 않았다",
+       "bacnet.msvOffset — 참조 코드표를 풀어 states 를 채웠는데 이 문서에는 '*for BACnet MSV values add 1 to number' 같은 보정 노트가 없다. 0 으로도 1 로도 단정하지 않고 비웠다",
+       "readWrite — 문서에 읽기/쓰기 열이 없다. 원문 개요가 'Provides BAS system writable configuration points' 라고만 밝혀 포인트별 방향을 확정하지 못했다"
+      ],
+      "interfaceId": "sc-eq-firmware-3-0-0-1114-si0371"
+     }
+    }
+   ],
+   "revision": {
+    "firmware": "3.0.0.1114"
+   },
+   "sourcePages": [
+    1,
+    1
+   ],
+   "excluded": {
+    "modelCodeTable": 22,
+    "nonPointTable": 4
+   },
+   "gaps": [
+    "제목이 냉동기 11종(YVAA·YVFA·YVWA·YCAV·YCIV·YCAL·YCUL·YCRL·YLAA·YLAE·YLUA)을 나열하지만 **이 목록이 덮는 제품이 아니다** — 그 냉동기들은 이 펌웨어 릴리스가 걸리는 장비이고, 표 6점은 냉동기의 값이 아니라 SC-EQ 카드 자신의 설정값이다(BACnet 장치 이름·인스턴스 ID·인코딩·단위계·기종 선택). appliesTo 로 적으면 별칭 생성기가 냉동기 코드의 목록 소재지를 통신 카드로 돌려 YVFA·YCIV 별칭이 냉동기에서 카드로 옮겨 붙는다(설비 분류까지 따라간다). 카드가 말을 걸 수 있는 기종은 'Manual Select Chiller Model' 포인트의 states 44종에 그대로 실려 있다 — 그쪽이 문서가 실제로 밝힌 자리다.",
+    "SC-EQ Communication Card Installation Instructions (450.50-N1) 46쪽 'Table 8 - Manual Modbus addresses' 에 같은 6점이 있다. 글자 흐름(get_text)으로 따로 읽어 대조했다 — 이름·BACnet·Modbus·N2 네 칸이 여섯 행 모두 같고, 다른 것은 'N/A'/'n/a' 대소문자와 설명문 어투뿐이다. 값 표(Table 1, 44종)를 가진 SI0371 을 판으로 삼았다 — 450.50-N1 은 그 자리에 \"Refer to SI0371.\" 이라 적어 값 표를 이쪽에 넘긴다. (문서ID 2P~o78Hw6Zd~F~_z12AEMg)"
+   ]
+  }
+ ],
+ "crosscheck": {
+  "unverifiable": "BACnet 타입·인스턴스를 가진 포인트가 6/6 뿐이라 줄 읽기 경로가 짝을 만들 수 없다 (이 문서의 주소 축: bacnet, modbus, n2)"
+ }
+}
