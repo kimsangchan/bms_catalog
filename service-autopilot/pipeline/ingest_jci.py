@@ -641,6 +641,7 @@ def crosscheck_of(path, ifaces):
 
 
 PROTO_KO = {"bacnet": "BACnet", "modbus": "Modbus", "n2": "N2", "lon": "LON",
+            "fln": "APOGEE P1/FLN",
             "yorktalk": "York Talk", "logix": "Logix", "elink": "E-Link"}
 
 
@@ -1203,7 +1204,7 @@ var COLS = [['n','오브젝트명','POINT LIST DESCRIPTION'],
 // "어디까지 됐나"에 답하는 화면. 두 축으로 본다 — 설비 타입별로 무엇이 쌓였나,
 // 그리고 **문서 포털에 있는 것 대비** 얼마나 가져왔나. 뒤쪽이 없으면 "다 했다"를
 // 확인할 방법이 없다.
-var SITE_KO = {chillers:'냉동기 포털', ductedsystems:'덕트·옥상형 포털', bas:'제어·계측 포털(Metasys)'};
+var SITE_KO = {chillers:'냉동기 포털', ductedsystems:'덕트·옥상형 포털', bas:'제어·계측 포털(Metasys)', airhandling:'공조기 포털', industrialrefrigeration:'산업용 냉동 포털', openblue:'OpenBlue'};
 function renderProgress(){
   var byKind = kindsOf(D.models).map(function(k){
     var ms = D.models.filter(function(m){ return m.cat === k[0]; });
@@ -1675,10 +1676,17 @@ def coverage():
         return []
     with open(SNAPSHOT, encoding="utf-8") as f:
         snap = json.load(f)
-    taken = {i for i, _s, _n in SRC.JCI_BAS_POINTS}
+    # 취입 집합은 **등록한 목록 전부**다. BAS 만 세면 IOM 17건·공조기 3건이
+    # 미취입으로 보인다 — 남은 일을 실제보다 많게 보여 준다.
+    taken = {i for lst in (SRC.JCI_BAS_POINTS, SRC.JCI_IOM_POINTS,
+                           SRC.JCI_AIR_POINTS, SRC.JCI_FLN_POINTS)
+             for i, _s, _n in lst}
     out = []
     for site, lst in snap.items():
-        cand = [x for x in lst if PT_HINT.search(x.get("title") or "")]
+        # ⚠ 분모를 제목 힌트로만 만들면 안 된다 — IOM·공조기는 **제목에 낌새가 없어**
+        #   본문 스캔으로 찾은 것들이라 후보에 안 든다. 취입한 것은 후보 밖이어도 센다.
+        cand = [x for x in lst
+                if PT_HINT.search(x.get("title") or "") or x["id"] in taken]
         got = [x for x in cand if x["id"] in taken]
         miss = collections.Counter()
         for x in cand:
@@ -1778,7 +1786,10 @@ def view_data():
     for path in sorted(glob.glob(os.path.join(DATA, "models", "*.json"))):
         with open(path, encoding="utf-8") as f:
             d = json.load(f)
-        if d.get("extractor") != "vendor_jci":
+        # 어댑터 이름으로 거른다. 계통이 늘 때마다 여기 이름을 더해야 하는데,
+        # 안 더하면 취입은 됐는데 **화면에서만 조용히 사라진다** — 공조기 157점이
+        # 실제로 그랬다(vendor_jci_air 라 필터에 걸렸다). 접두로 받아 그 함정을 막는다.
+        if not str(d.get("extractor") or "").startswith("vendor_jci"):
             continue
         if d.get("aliasOf"):
             out["alias"].append({"code": d["model"], "of": d["aliasOf"],
@@ -2019,6 +2030,100 @@ AIR_MODELS = {
 }
 
 
+def apply_fln(dry=False):
+    """APOGEE P1/FLN 포인트 데이터베이스 → 모델의 interfaces[].
+
+    한 매뉴얼에 표가 셋이라 **9열 목록만** 받는다(vendor_jci_fln.is_point_table).
+    리포트 7종은 그 목록의 부분집합이고, 같은 문서의 Modbus 4xxxx 표는 계통이 다르다.
+    """
+    import vendor_jci_fln as F
+    import vendor_jci_ipu as IPU
+    import fitz
+    import scan_jci as SC
+
+    made = pts_total = 0
+    for path in CO.files_of(F.SOURCE):
+        fname = os.path.basename(path)
+        rows_in = []
+        doc = fitz.open(path)
+        for pi in range(doc.page_count):
+            try:
+                tabs = doc[pi].find_tables().tables
+            except Exception:
+                continue
+            for t in tabs:
+                data = t.extract()
+                if len(data) < 4:
+                    continue
+                hd = SC.table_header(data)
+                if not hd or not F.is_point_table(hd[0]):
+                    continue
+                for r in data[hd[1]:]:
+                    # 아래첨자를 제자리에 돌린 뒤 줄바꿈을 누른다 (82b11ef 재발 방지)
+                    cells = [IPU.join_subscripts(x or "").replace("\n", " ").strip()
+                             for x in r]
+                    if any(cells):
+                        rows_in.append((pi + 1, cells))
+        doc.close()
+        points, skipped = F.parse_rows(rows_in, fname)
+        print("  \u00b7 %-46s %4d\uc810 %s" % (fname[:46], len(points), skipped or ""))
+        if not points:
+            continue
+        iid = "apogee-fln"
+        for pt in points:
+            pt["provenance"]["interfaceId"] = iid
+        pages = sorted({pt["provenance"]["sourcePage"] for pt in points})
+        iface = {"id": iid, "label": "APOGEE P1/FLN \ud3ec\uc778\ud2b8 \ub370\uc774\ud130\ubca0\uc774\uc2a4",
+                 "family": F.FAMILY, "protocols": ["fln"], "sourceFile": fname,
+                 "sourcePages": pages, "pointCount": len(points),
+                 "appliesTo": ["AYK550-UH 1-150 HP", "AYK550-UH 1-400 HP"],
+                 "status": "extracted",
+                 "note": "\ubc88\ud638\ub294 \uc5f0\uc18d\uc774 \uc544\ub2c8\ub2e4 \u2014 19\u00b765 \uac00 \uacb0\ubc88\uc774\uace0 \uc0c1\uc138 \uc808\uc5d0 'N/A' \ub85c "
+                         "\ubc1a\ud600 \uc788\ub2e4. 1-150 HP \ud310 \ub9e4\ub274\uc5bc\uc740 \uc774 \ubaa9\ub85d\uacfc 185/185 \ud589\uc774 \uae00\uc790\uae4c\uc9c0 "
+                         "\uac19\uc544 \ud55c \ubc8c\ub9cc \ub454\ub2e4. \uac19\uc740 \ubb38\uc11c\uc758 Modbus 4xxxx \ud45c\ub294 \uacc4\ud1b5\uc774 \ub2ec\ub77c "
+                         "\uc5ec\uae30 \uc5c6\ub2e4(\ubbf8\ucde8\uc785).",
+                 "points": points}
+        mid = S.model_id(VENDOR, "AYK550 Air Modulator VFD")
+        path_m = os.path.join(DATA, "models", mid + ".json")
+        before = None
+        if os.path.exists(path_m):
+            with open(path_m, encoding="utf-8") as f:
+                rec = json.load(f)
+            before = json.dumps(rec, ensure_ascii=False, sort_keys=True)
+            old = [i for i in (rec.get("interfaces") or []) if i["sourceFile"] != fname]
+            rec["interfaces"] = old + [iface]
+        else:
+            rec = {"id": mid, "equipId": "e15", "vendor": VENDOR,
+                   "model": "AYK550 Air Modulator VFD",
+                   "name": "YORK AYK550 Air Modulator \uc778\ubc84\ud130 (VFD)",
+                   "cat": "HVAC.DRIVE.VFD", "tag": "vfd", "tags": ["vfd"],
+                   "status": "active", "has": {"spec": False, "points": True},
+                   "ede": False, "spec": [], "io": [], "elec": None, "points": [],
+                   "classifiedBy": "JCI \uacf5\uc870\uae30 \ud3ec\ud138 \ubb38\uc11c \ubd84\ub958 \u2014 HVAC Drives",
+                   "gap": "\uc815\uaca9\u00b7\ud615\ubc88\uc774 \uc5c6\ub2e4 \u2014 \ub9e4\ub274\uc5bc \ubcf8\ubb38\uc758 FLN \ud3ec\uc778\ud2b8 \ud45c\ub9cc \ucde8\uc785\ud588\ub2e4. "
+                          "\uadf8\ub9ac\uace0 \uc774 \ud45c\ub294 Type \ucf54\ub4dc \ud480\uc774\ub3c4, On/Off Text \uc758 \ucf54\ub4dc \ub300\uc751\ub3c4, "
+                          "slope \ubcc0\ud658 \ubc29\ud5a5\ub3c4 \uc548 \uc900\ub2e4 \u2014 \ud3ec\uc778\ud2b8\ub9c8\ub2e4 gaps \uc5d0 \uc801\ud600 \uc788\ub2e4.",
+                   "extractor": "vendor_jci_fln", "sourceDoc": fname,
+                   "interfaces": [iface]}
+        rec["crosscheck"] = F.crosscheck(path, points)
+        n = sum(i["pointCount"] for i in rec["interfaces"])
+        rec["summary"] = "APOGEE P1/FLN \ud3ec\uc778\ud2b8 %d\ud310\uc5d0\uc11c \ucde8\uc785 \u2014 \uc624\ube0c\uc81d\ud2b8 %d\uc810" % (
+            len(rec["interfaces"]), n)
+        if before is not None and json.dumps(rec, ensure_ascii=False, sort_keys=True) == before:
+            print("    \u21b7 %s \u2014 \uc774\ubbf8 \ucde8\uc785\ud55c \ubb38\uc11c, \ubcc0\uacbd \uc5c6\uc74c" % mid)
+            continue
+        made += 1
+        pts_total += len(points)
+        if dry:
+            print("    (dry) %s \u2014 \ud310 %d \u00b7 %d\uc810" % (mid, len(rec["interfaces"]), n))
+            continue
+        with open(path_m, "w", encoding="utf-8") as f:
+            json.dump(rec, f, ensure_ascii=False, indent=1)
+        print("    \u2192 %s \u2014 \ud310 %d \u00b7 %d\uc810" % (mid, len(rec["interfaces"]), n))
+    print("\n\ubaa8\ub378 %d\uac74 \u00b7 \uc0c8 \uc624\ube0c\uc81d\ud2b8 %d\uc810" % (made, pts_total))
+    return 0
+
+
 def apply_air(dry=False):
     """공조기 포털 Modbus 레지스터 표 → 모델의 interfaces[].
 
@@ -2223,6 +2328,8 @@ def main(argv):
     ap.add_argument("--apply", action="store_true", help="모델 레코드 생성")
     ap.add_argument("--dry", action="store_true", help="파싱은 하되 쓰지 않는다")
     ap.add_argument("--no-crosscheck", action="store_true", help="교차 대조 건너뛰기")
+    ap.add_argument("--apply-fln", action="store_true",
+                    help="APOGEE P1/FLN 포인트 데이터베이스 취입")
     ap.add_argument("--apply-air", action="store_true",
                     help="공조기 포털 Modbus 레지스터 표 취입")
     ap.add_argument("--apply-iom", action="store_true",
@@ -2245,6 +2352,8 @@ def main(argv):
     a = ap.parse_args(argv)
     if a.audit_pages:
         return audit_pages(only=a.only)
+    if a.apply_fln:
+        return apply_fln(dry=a.dry)
     if a.apply_air:
         return apply_air(dry=a.dry)
     if a.apply_iom:

@@ -1,0 +1,3757 @@
+{
+ "id": "johnson-controls-york-ayk550-air-modulator-vfd",
+ "equipId": "e15",
+ "vendor": "Johnson Controls / YORK",
+ "model": "AYK550 Air Modulator VFD",
+ "name": "YORK AYK550 Air Modulator 인버터 (VFD)",
+ "cat": "HVAC.DRIVE.VFD",
+ "tag": "vfd",
+ "tags": [
+  "vfd"
+ ],
+ "status": "active",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "points": [],
+ "classifiedBy": "JCI 공조기 포털 문서 분류 — HVAC Drives",
+ "gap": "정격·형번이 없다 — 매뉴얼 본문의 FLN 포인트 표만 취입했다. 그리고 이 표는 Type 코드 풀이도, On/Off Text 의 코드 대응도, slope 변환 방향도 안 준다 — 포인트마다 gaps 에 적혀 있다.",
+ "extractor": "vendor_jci_fln",
+ "sourceDoc": "JCI_AIR_AYK550-fln.pdf",
+ "interfaces": [
+  {
+   "id": "apogee-fln",
+   "label": "APOGEE P1/FLN 포인트 데이터베이스",
+   "family": "APOGEE/FLN",
+   "protocols": [
+    "fln"
+   ],
+   "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+   "sourcePages": [
+    186,
+    187,
+    188
+   ],
+   "pointCount": 97,
+   "appliesTo": [
+    "AYK550-UH 1-150 HP",
+    "AYK550-UH 1-400 HP"
+   ],
+   "status": "extracted",
+   "note": "번호는 연속이 아니다 — 19·65 가 결번이고 상세 절에 'N/A' 로 밚혀 있다. 1-150 HP 판 매뉴얼은 이 목록과 185/185 행이 글자까지 같아 한 벌만 둔다. 같은 문서의 Modbus 4xxxx 표는 계통이 달라 여기 없다(미취입).",
+   "points": [
+    {
+     "common": {
+      "name": "CTLR ADDRESS"
+     },
+     "blocks": {
+      "fln": {
+       "address": 1,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "99"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "01",
+       "Type": "LAO",
+       "Factory Default": "99",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "APPLICATION"
+     },
+     "blocks": {
+      "fln": {
+       "address": 2,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 1,
+       "slopeRaw": "1",
+       "factoryDefault": "2734"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "02",
+       "Type": "LAO",
+       "Factory Default": "2734",
+       "Slope": "1"
+      },
+      "gaps": [
+       "blocks.fln.intercept",
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "FREQ OUTPUT",
+      "unitIP": "Hz",
+      "unitIPRaw": "Hz",
+      "unitSI": "Hz",
+      "unitSIRaw": "Hz"
+     },
+     "blocks": {
+      "fln": {
+       "address": 3,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{03}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "Hz",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "PCT OUTPUT",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 4,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{04}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "SPEED",
+      "unitIP": "RPM",
+      "unitIPRaw": "RPM",
+      "unitSI": "RPM",
+      "unitSIRaw": "RPM"
+     },
+     "blocks": {
+      "fln": {
+       "address": 5,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{05}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "RPM",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "CURRENT",
+      "unitIP": "A",
+      "unitIPRaw": "A",
+      "unitSI": "A",
+      "unitSIRaw": "A"
+     },
+     "blocks": {
+      "fln": {
+       "address": 6,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{06}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "A",
+       "Slope": "0.1"
+      },
+      "gaps": [
+       "blocks.fln.intercept",
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "TORQUE",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 7,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": -200,
+       "interceptRaw": "-200",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{07}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "-200"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "POWER",
+      "unitIP": "HP",
+      "unitIPRaw": "HP (KW)",
+      "unitSI": "KW",
+      "unitSIRaw": "HP (KW)"
+     },
+     "blocks": {
+      "fln": {
+       "address": 8,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.134 0.1",
+       "intercept": 0,
+       "interceptRaw": "0 0",
+       "factoryDefault": "0 (0)"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{08}",
+       "Type": "LAI",
+       "Factory Default": "0 (0)",
+       "Engr. Units": "HP (KW)",
+       "Slope": "0.134 0.1",
+       "Intercept": "0 0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DRIVE TEMP",
+      "unitIP": "° F",
+      "unitIPRaw": "° F (° C)",
+      "unitSI": "° C",
+      "unitSIRaw": "° F (° C)"
+     },
+     "blocks": {
+      "fln": {
+       "address": 9,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.18 (0.1)",
+       "intercept": 0,
+       "interceptRaw": "32 0",
+       "factoryDefault": "77 (25)"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{09}",
+       "Type": "LAI",
+       "Factory Default": "77 (25)",
+       "Engr. Units": "° F (° C)",
+       "Slope": "0.18 (0.1)",
+       "Intercept": "32 0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DRIVE KWH",
+      "unitIP": "KWH",
+      "unitIPRaw": "KWH",
+      "unitSI": "KWH",
+      "unitSIRaw": "KWH"
+     },
+     "blocks": {
+      "fln": {
+       "address": 10,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{10}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "KWH",
+       "Slope": "1"
+      },
+      "gaps": [
+       "blocks.fln.intercept",
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DRIVE MWH",
+      "unitIP": "MWH",
+      "unitIPRaw": "MWH",
+      "unitSI": "MWH",
+      "unitSIRaw": "MWH"
+     },
+     "blocks": {
+      "fln": {
+       "address": 11,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{11}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "MWH",
+       "Slope": "1"
+      },
+      "gaps": [
+       "blocks.fln.intercept",
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RUN TIME",
+      "unitIP": "HRS",
+      "unitIPRaw": "HRS",
+      "unitSI": "HRS",
+      "unitSIRaw": "HRS"
+     },
+     "blocks": {
+      "fln": {
+       "address": 12,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{12}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "HRS",
+       "Slope": "1"
+      },
+      "gaps": [
+       "blocks.fln.intercept",
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DC BUS VOLT",
+      "unitIP": "V",
+      "unitIPRaw": "V",
+      "unitSI": "V",
+      "unitSIRaw": "V"
+     },
+     "blocks": {
+      "fln": {
+       "address": 13,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{13}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "V",
+       "Slope": "1"
+      },
+      "gaps": [
+       "blocks.fln.intercept",
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "OUTPUT VOLT",
+      "unitIP": "V",
+      "unitIPRaw": "V",
+      "unitSI": "V",
+      "unitSIRaw": "V"
+     },
+     "blocks": {
+      "fln": {
+       "address": 14,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{14}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "V",
+       "Slope": "1"
+      },
+      "gaps": [
+       "blocks.fln.intercept",
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "PRC PID FBCK",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 15,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{15}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1"
+      },
+      "gaps": [
+       "blocks.fln.intercept",
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "PRC PID DEV",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 16,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{16}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1"
+      },
+      "gaps": [
+       "blocks.fln.intercept",
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "MOTOR TEMP",
+      "unitIP": "° F",
+      "unitIPRaw": "° F (° C)",
+      "unitSI": "° C",
+      "unitSIRaw": "° F (° C)"
+     },
+     "blocks": {
+      "fln": {
+       "address": 17,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1.8 (1)",
+       "intercept": 0,
+       "interceptRaw": "32 0",
+       "factoryDefault": "77(25)"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{17}",
+       "Type": "LAI",
+       "Factory Default": "77(25)",
+       "Engr. Units": "° F (° C)",
+       "Slope": "1.8 (1)",
+       "Intercept": "32 0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "MREV COUNTER",
+      "unitIP": "MREV",
+      "unitIPRaw": "MREV",
+      "unitSI": "MREV",
+      "unitSIRaw": "MREV"
+     },
+     "blocks": {
+      "fln": {
+       "address": 18,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{18}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "MREV",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "OVRD TIME",
+      "unitIP": "hrs",
+      "unitIPRaw": "hrs",
+      "unitSI": "hrs",
+      "unitSIRaw": "hrs"
+     },
+     "blocks": {
+      "fln": {
+       "address": 20,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "20",
+       "Type": "LAO",
+       "Factory Default": "1",
+       "Engr. Units": "hrs",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "FWD.REV"
+     },
+     "blocks": {
+      "fln": {
+       "address": 21,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "FWD",
+       "onText": "REV",
+       "offText": "FWD"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{21}",
+       "Type": "LDI",
+       "Factory Default": "FWD",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "REV",
+       "Off Text": "FWD"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "CMD FWD.REV"
+     },
+     "blocks": {
+      "fln": {
+       "address": 22,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "FWD",
+       "onText": "REV",
+       "offText": "FWD"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{22}",
+       "Type": "LDO",
+       "Factory Default": "FWD",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "REV",
+       "Off Text": "FWD"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "STOP.RUN"
+     },
+     "blocks": {
+      "fln": {
+       "address": 23,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "STOP",
+       "onText": "RUN",
+       "offText": "STOP"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{23}",
+       "Type": "LDI",
+       "Factory Default": "STOP",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "RUN",
+       "Off Text": "STOP"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "CMD STP.STRT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 24,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "STOP",
+       "onText": "RUN",
+       "offText": "STOP"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{24}",
+       "Type": "LDO",
+       "Factory Default": "STOP",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "RUN",
+       "Off Text": "STOP"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "EXT1.2 ACT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 25,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "EXT1",
+       "onText": "EXT2",
+       "offText": "EXT1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{25}",
+       "Type": "LDI",
+       "Factory Default": "EXT1",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "EXT2",
+       "Off Text": "EXT1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "EXT1.2 CMD"
+     },
+     "blocks": {
+      "fln": {
+       "address": 26,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "EXT1",
+       "onText": "EXT2",
+       "offText": "EXT1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{26}",
+       "Type": "LDO",
+       "Factory Default": "EXT1",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "EXT2",
+       "Off Text": "EXT1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DRIVE READY"
+     },
+     "blocks": {
+      "fln": {
+       "address": 27,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "NOTRDY",
+       "onText": "READY",
+       "offText": "NOTRDY"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{27}",
+       "Type": "LDI",
+       "Factory Default": "NOTRDY",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "READY",
+       "Off Text": "NOTRDY"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "AT SETPOINT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 28,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "NO",
+       "onText": "YES",
+       "offText": "NO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{28}",
+       "Type": "LDI",
+       "Factory Default": "NO",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "YES",
+       "Off Text": "NO"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DAY.NIGHT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 29,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "DAY",
+       "onText": "NIGHT",
+       "offText": "DAY"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{29}",
+       "Type": "LDO",
+       "Factory Default": "DAY",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "NIGHT",
+       "Off Text": "DAY"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "CURRENT LIM",
+      "unitIP": "A",
+      "unitIPRaw": "A",
+      "unitSI": "A",
+      "unitSIRaw": "A"
+     },
+     "blocks": {
+      "fln": {
+       "address": 30,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "30",
+       "Type": "LAO",
+       "Factory Default": "0",
+       "Engr. Units": "A",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "ACCEL TIME 1",
+      "unitIP": "sec",
+      "unitIPRaw": "sec",
+      "unitSI": "sec",
+      "unitSIRaw": "sec"
+     },
+     "blocks": {
+      "fln": {
+       "address": 31,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "300"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "31",
+       "Type": "LAO",
+       "Factory Default": "300",
+       "Engr. Units": "sec",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DECEL TIME 1",
+      "unitIP": "sec",
+      "unitIPRaw": "sec",
+      "unitSI": "sec",
+      "unitSIRaw": "sec"
+     },
+     "blocks": {
+      "fln": {
+       "address": 32,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "300"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "32",
+       "Type": "LAO",
+       "Factory Default": "300",
+       "Engr. Units": "sec",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "HANDAUTO ACT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 33,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "AUTO",
+       "onText": "HAND",
+       "offText": "AUTO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 186,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{33}",
+       "Type": "LDI",
+       "Factory Default": "AUTO",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "HAND",
+       "Off Text": "AUTO"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "ENA.DIS ACT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 34,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "DISABL",
+       "onText": "ENABLE",
+       "offText": "DISABL"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{34}",
+       "Type": "LDI",
+       "Factory Default": "DISABL",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ENABLE",
+       "Off Text": "DISABL"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "ENA.DIS CMD"
+     },
+     "blocks": {
+      "fln": {
+       "address": 35,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "DISABL",
+       "onText": "ENABLE",
+       "offText": "DISABL"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{35}",
+       "Type": "LDO",
+       "Factory Default": "DISABL",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ENABLE",
+       "Off Text": "DISABL"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "FLN LOC ACT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 36,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "AUTO",
+       "onText": "FLN",
+       "offText": "AUTO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{36}",
+       "Type": "LDI",
+       "Factory Default": "AUTO",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "FLN",
+       "Off Text": "AUTO"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "CTL SRC"
+     },
+     "blocks": {
+      "fln": {
+       "address": 37,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "NO",
+       "onText": "YES",
+       "offText": "NO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{37}",
+       "Type": "LDI",
+       "Factory Default": "NO",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "YES",
+       "Off Text": "NO"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "FLN REF1 SRC"
+     },
+     "blocks": {
+      "fln": {
+       "address": 38,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "NO",
+       "onText": "YES",
+       "offText": "NO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{38}",
+       "Type": "LDI",
+       "Factory Default": "NO",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "YES",
+       "Off Text": "NO"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "FLN REF2 SRC"
+     },
+     "blocks": {
+      "fln": {
+       "address": 39,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "NO",
+       "onText": "YES",
+       "offText": "NO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{39}",
+       "Type": "LDI",
+       "Factory Default": "NO",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "YES",
+       "Off Text": "NO"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 1 COMMAND"
+     },
+     "blocks": {
+      "fln": {
+       "address": 40,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{40}",
+       "Type": "LDO",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 2 COMMAND"
+     },
+     "blocks": {
+      "fln": {
+       "address": 41,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{41}",
+       "Type": "LDO",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 3 COMMAND"
+     },
+     "blocks": {
+      "fln": {
+       "address": 42,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{42}",
+       "Type": "LDO",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 4 COMMAND"
+     },
+     "blocks": {
+      "fln": {
+       "address": 43,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{43}",
+       "Type": "LDO",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 5 COMMAND"
+     },
+     "blocks": {
+      "fln": {
+       "address": 44,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{44}",
+       "Type": "LDO",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 6 COMMAND"
+     },
+     "blocks": {
+      "fln": {
+       "address": 45,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{45}",
+       "Type": "LDO",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "AO 1 COMMAND",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 46,
+       "pointType": "LAO",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "PCT"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{46}",
+       "Type": "LAO",
+       "Factory Default": "PCT",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "AO 1 COMMAND",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 47,
+       "pointType": "LAO",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "PCT"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{47}",
+       "Type": "LAO",
+       "Factory Default": "PCT",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RST RUN TIME"
+     },
+     "blocks": {
+      "fln": {
+       "address": 48,
+       "pointType": "LDO",
+       "unbundlable": false,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "NO",
+       "onText": "RESET",
+       "offText": "NO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "48",
+       "Type": "LDO",
+       "Factory Default": "NO",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "RESET",
+       "Off Text": "NO"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RESET KWH"
+     },
+     "blocks": {
+      "fln": {
+       "address": 49,
+       "pointType": "LDO",
+       "unbundlable": false,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "NO",
+       "onText": "RESET",
+       "offText": "NO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "49",
+       "Type": "LDO",
+       "Factory Default": "NO",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "RESET",
+       "Off Text": "NO"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "PRC PID GAIN",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 50,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "50",
+       "Type": "LAO",
+       "Factory Default": "10",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "PRC PID ITIM",
+      "unitIP": "SEC",
+      "unitIPRaw": "SEC",
+      "unitSI": "SEC",
+      "unitSIRaw": "SEC"
+     },
+     "blocks": {
+      "fln": {
+       "address": 51,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "600"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "51",
+       "Type": "LAO",
+       "Factory Default": "600",
+       "Engr. Units": "SEC",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "PRC PID DTIM",
+      "unitIP": "SEC",
+      "unitIPRaw": "SEC",
+      "unitSI": "SEC",
+      "unitSIRaw": "SEC"
+     },
+     "blocks": {
+      "fln": {
+       "address": 52,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "52",
+       "Type": "LAO",
+       "Factory Default": "0",
+       "Engr. Units": "SEC",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "PRC PID DFIL",
+      "unitIP": "SEC",
+      "unitIPRaw": "SEC",
+      "unitSI": "SEC",
+      "unitSIRaw": "SEC"
+     },
+     "blocks": {
+      "fln": {
+       "address": 53,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "53",
+       "Type": "LAO",
+       "Factory Default": "10",
+       "Engr. Units": "SEC",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "PRC PID SEL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 54,
+       "pointType": "LDO",
+       "unbundlable": false,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "SET1",
+       "onText": "SET2",
+       "offText": "SET1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "54",
+       "Type": "LDO",
+       "Factory Default": "SET1",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "SET2",
+       "Off Text": "SET1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "EXT PID GAIN",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 55,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "55",
+       "Type": "LAO",
+       "Factory Default": "10",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "EXT PID ITIM",
+      "unitIP": "SEC",
+      "unitIPRaw": "SEC",
+      "unitSI": "SEC",
+      "unitSIRaw": "SEC"
+     },
+     "blocks": {
+      "fln": {
+       "address": 56,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "600"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "56",
+       "Type": "LAO",
+       "Factory Default": "600",
+       "Engr. Units": "SEC",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "EXT PID DTIM",
+      "unitIP": "SEC",
+      "unitIPRaw": "SEC",
+      "unitSI": "SEC",
+      "unitSIRaw": "SEC"
+     },
+     "blocks": {
+      "fln": {
+       "address": 57,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "57",
+       "Type": "LAO",
+       "Factory Default": "0",
+       "Engr. Units": "SEC",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "EXT PID DFIL",
+      "unitIP": "SEC",
+      "unitIPRaw": "SEC",
+      "unitSI": "SEC",
+      "unitSIRaw": "SEC"
+     },
+     "blocks": {
+      "fln": {
+       "address": 58,
+       "pointType": "LAO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "10"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "58",
+       "Type": "LAO",
+       "Factory Default": "10",
+       "Engr. Units": "SEC",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "LOCK PANEL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 59,
+       "pointType": "LDO",
+       "unbundlable": false,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "UNLOCK",
+       "onText": "LOCK",
+       "offText": "UNLOCK"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "59",
+       "Type": "LDO",
+       "Factory Default": "UNLOCK",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "LOCK",
+       "Off Text": "UNLOCK"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "INPUT REF1",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 60,
+       "pointType": "LAO",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{60}",
+       "Type": "LAO",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "INPUT REF2",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 61,
+       "pointType": "LAO",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{61}",
+       "Type": "LAO",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "EXT PID STPT",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 62,
+       "pointType": "LAO",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{62}",
+       "Type": "LAO",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "EXT PID FBCK",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 63,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{63}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "EXT PID DEV",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 64,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 187,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{64}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "SPD OUT MIN",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 66,
+       "pointType": "LDO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "66",
+       "Type": "LDO",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "SPD OUT MAX",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 67,
+       "pointType": "LDO",
+       "unbundlable": false,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "1000"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "67",
+       "Type": "LDO",
+       "Factory Default": "1000",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "FLN LOC CTL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 68,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "AUTO",
+       "onText": "FLN",
+       "offText": "AUTO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{68}",
+       "Type": "LDO",
+       "Factory Default": "AUTO",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "FLN",
+       "Off Text": "AUTO"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "FLN LOC REF"
+     },
+     "blocks": {
+      "fln": {
+       "address": 69,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "AUTO",
+       "onText": "FLN",
+       "offText": "AUTO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{69}",
+       "Type": "LDO",
+       "Factory Default": "AUTO",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "FLN",
+       "Off Text": "AUTO"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DI 1 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 70,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{70}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DI 2 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 71,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{71}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DI 3 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 72,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{72}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DI 4 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 73,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{73}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DI 5 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 74,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{74}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "DI 6 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 75,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{75}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 1 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 76,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{76}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 2 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 77,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{77}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 3 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 78,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{78}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 4 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 79,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{79}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 5 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 80,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{80}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RO 6 ACTUAL"
+     },
+     "blocks": {
+      "fln": {
+       "address": 81,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OFF",
+       "onText": "ON",
+       "offText": "OFF"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{81}",
+       "Type": "LDI",
+       "Factory Default": "OFF",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ON",
+       "Off Text": "OFF"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "AI 1 ACTUAL",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 82,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{82}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "AI 2 ACTUAL",
+      "unitIP": "PCT",
+      "unitIPRaw": "PCT",
+      "unitSI": "PCT",
+      "unitSIRaw": "PCT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 83,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{83}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "PCT",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "AO 1 ACTUAL",
+      "unitIP": "MA",
+      "unitIPRaw": "MA",
+      "unitSI": "MA",
+      "unitSIRaw": "MA"
+     },
+     "blocks": {
+      "fln": {
+       "address": 84,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{84}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "MA",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "AI 2 ACTUAL",
+      "unitIP": "MA",
+      "unitIPRaw": "MA",
+      "unitSI": "MA",
+      "unitSIRaw": "MA"
+     },
+     "blocks": {
+      "fln": {
+       "address": 85,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 0.1,
+       "slopeRaw": "0.1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{85}",
+       "Type": "LAI",
+       "Factory Default": "0",
+       "Engr. Units": "MA",
+       "Slope": "0.1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "OK.ALARM"
+     },
+     "blocks": {
+      "fln": {
+       "address": 86,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OK",
+       "onText": "ALARM",
+       "offText": "OK"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{86}",
+       "Type": "LDI",
+       "Factory Default": "OK",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "ALARM",
+       "Off Text": "OK"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "OK.MAINT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 87,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OK",
+       "onText": "MAINT",
+       "offText": "OK"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{87}",
+       "Type": "LDI",
+       "Factory Default": "OK",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "MAINT",
+       "Off Text": "OK"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "ALARM WORD 1"
+     },
+     "blocks": {
+      "fln": {
+       "address": 88,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{88}",
+       "Type": "LAI",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "ALARM WORD 2"
+     },
+     "blocks": {
+      "fln": {
+       "address": 89,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{89}",
+       "Type": "LAI",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "LAST FAULT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 90,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{90}",
+       "Type": "LAI",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "PREV FAULT 1"
+     },
+     "blocks": {
+      "fln": {
+       "address": 91,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{91}",
+       "Type": "LAI",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "PREV FAULT 2"
+     },
+     "blocks": {
+      "fln": {
+       "address": 92,
+       "pointType": "LAI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{92}",
+       "Type": "LAI",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "OK.FAULT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 93,
+       "pointType": "LDI",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "OK",
+       "onText": "FAULT",
+       "offText": "OK"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{93}",
+       "Type": "LDI",
+       "Factory Default": "OK",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "FAULT",
+       "Off Text": "OK"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "RESET FAULT"
+     },
+     "blocks": {
+      "fln": {
+       "address": 94,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "NO",
+       "onText": "RESET",
+       "offText": "NO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{94}",
+       "Type": "LDO",
+       "Factory Default": "NO",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "RESET",
+       "Off Text": "NO"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "MBOX PARAM"
+     },
+     "blocks": {
+      "fln": {
+       "address": 95,
+       "pointType": "LAO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{95}",
+       "Type": "LAO",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "MBOX DATA"
+     },
+     "blocks": {
+      "fln": {
+       "address": 96,
+       "pointType": "LAO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{96}",
+       "Type": "LAO",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "MBOX READ"
+     },
+     "blocks": {
+      "fln": {
+       "address": 97,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "DONE",
+       "onText": "READ",
+       "offText": "DONE"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{97}",
+       "Type": "LDO",
+       "Factory Default": "DONE",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "READ",
+       "Off Text": "DONE"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "MBOX WRITE"
+     },
+     "blocks": {
+      "fln": {
+       "address": 98,
+       "pointType": "LDO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0",
+       "factoryDefault": "DONE",
+       "onText": "WRITE",
+       "offText": "DONE"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{98}",
+       "Type": "LDO",
+       "Factory Default": "DONE",
+       "Slope": "1",
+       "Intercept": "0",
+       "On Text": "WRITE",
+       "Off Text": "DONE"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    },
+    {
+     "common": {
+      "name": "ERROR STATUS"
+     },
+     "blocks": {
+      "fln": {
+       "address": 99,
+       "pointType": "LAO",
+       "unbundlable": true,
+       "slope": 1,
+       "slopeRaw": "1",
+       "intercept": 0,
+       "interceptRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_AYK550-fln.pdf",
+      "sourcePage": 188,
+      "family": "APOGEE/FLN",
+      "status": "extracted",
+      "sourceColumns": {
+       "Point #": "{99}",
+       "Type": "LAO",
+       "Slope": "1",
+       "Intercept": "0"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "interfaceId": "apogee-fln"
+     }
+    }
+   ]
+  }
+ ],
+ "crosscheck": {
+  "rate": 1.0,
+  "both": 97,
+  "total": 97,
+  "method": "표 인식 대신 쪽 글자 흐름에서 '포인트 번호 + Type 코드' 가 잇달아 오는 자리를 찾아 이름을 다시 읽었다"
+ },
+ "summary": "APOGEE P1/FLN 포인트 1판에서 취입 — 오브젝트 97점"
+}

@@ -409,7 +409,7 @@ var axis = 'eq';    // 좌측 레일의 축 — 'eq' 설비 기준 · 'vn' 제�
 var vnF = '';       // 제조사 축에서 들어왔을 때의 제조사 좁히기
 var isel = {};      // 모델 ID → 고른 인터페이스(포인트 리스트의 판)
 // 프로토콜 블록 이름 → 화면 표기. 사전(point-schema blocks)의 키를 그대로 받는다.
-var PROTO_KO = {bacnet:'BACnet', modbus:'Modbus', n2:'N2', lon:'LON',
+var PROTO_KO = {"fln": "APOGEE P1/FLN", bacnet:'BACnet', modbus:'Modbus', n2:'N2', lon:'LON',
                 yorktalk:'York Talk', logix:'Logix', elink:'E-Link'};
 var ksel = 'rating';  // 고른 표 성격 — 모델을 바꾸면 모델별 기본 정격표로 되돌린다
 // 표의 성격. rating은 사용자가 바로 입력하는 값이 아니라 모델별 정격값을 찾는 원문표다.

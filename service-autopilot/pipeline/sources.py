@@ -227,6 +227,17 @@ JCI_AIR_POINTS = [
 ]
 
 
+# JCI 공조기 포털의 Siemens APOGEE P1/FLN 포인트 데이터베이스.
+# AYK550(YORK 브랜드 ABB 인버터) 매뉴얼 한 권에 표가 셋 섞여 있다 —
+#   9열 FLN 포인트 목록(이것) · 4열 리포트 7종(부분집합) · Modbus 4xxxx 표.
+# 리포트를 포인트로 세면 안 된다. 고유 번호 85개가 전부 9열 목록 안에 있다.
+# 1-150 HP 판은 이 판과 185/185 행 전문 일치라 담지 않는다(appliesTo 로 밝힌다).
+JCI_FLN_POINTS = [
+    ("oth6dFMk01VNpCVxNTvXJQ", "airhandling",
+     "JCI_AIR_AYK550-fln.pdf"),
+]
+
+
 SOURCES = [
     {
         "id": "trane-points-list",
@@ -1112,6 +1123,23 @@ SOURCES = [
         "access": "무로그인",
         # 40쪽 매뉴얼 본문에 묻힌 표라 줄 읽기 경로가 표를 못 따라간다
         "crosscheck_unreliable": r"JCI_AIR_",
+    },
+    {
+        "id": "jci-airhandling-fln",
+        "vendor": "Johnson Controls / YORK",
+        "kind": "포인트리스트",
+        "note": "AYK550 Air Modulator(인버터)의 APOGEE P1/FLN 포인트 "
+                "데이터베이스. 열은 Point #|Type|Subpoint Name|Factory Default|"
+                "Engr. Units|Slope|Intercept|On Text|Off Text. ⚠ 원문이 Type 코드 "
+                "풀이도, On/Off Text 의 코드 대응도, slope 변환 방향도 주지 않는다 "
+                "— 보존만 하고 해석은 gaps 로 남긴다. 파서는 vendor_jci_fln.py.",
+        "enumerate": "list",
+        "urls": [_JCI_KHUB % (site, i) for i, site, _n in JCI_FLN_POINTS],
+        "rename": {_JCI_KHUB % (site, i): n for i, site, n in JCI_FLN_POINTS},
+        "extractor": "vendor",
+        "access": "무로그인",
+        # 280쪽 매뉴얼 본문에 묻힌 표라 줄 읽기 경로가 표를 못 따라간다
+        "crosscheck_unreliable": r"JCI_AIR_AYK550",
     },
 ]
 
