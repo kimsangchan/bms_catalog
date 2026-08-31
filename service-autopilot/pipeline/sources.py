@@ -213,6 +213,20 @@ JCI_IOM_POINTS = [
      "JCI_IOM_145.05-NOM7.pdf"),
 ]
 
+# JCI 공조기(airhandling) 포털 — 유닛 제어반 Modbus 레지스터 표를 품은 문서.
+# 236건을 본문까지 전수로 훑어 고른 것이다(data/_air_verdict.json).
+# ⚠ 본 스캔은 이 표를 **못 찾았었다** — 아는 열 이름이 'REGISTER ADDRESS' 하나뿐이라
+#   옛 문턱(한 쪽에 표식 2종)을 못 넘었다. scan_jci.page_is_table 을 고치고서야 잡혔다.
+# YKH 와 YKL 은 제품이 다른데 157행이 글자까지 똑같다(같은 제어반). 같은 목록을 제품
+# 수만큼 복제하지 않는다 — 주 제품에 붙이고 나머지는 interfaces[].appliesTo 로 밝힌다.
+JCI_AIR_POINTS = [
+    ("K38KiK3JQojXa44D3dskiA", "airhandling",
+     "JCI_AIR_YKL-lowprofile-ahu.pdf"),
+    ("E7QAAqUX0MgQa81lO5NROg", "airhandling",
+     "JCI_AIR_YKH-heat-recovery.pdf"),
+]
+
+
 SOURCES = [
     {
         "id": "trane-points-list",
@@ -1082,6 +1096,22 @@ SOURCES = [
         "rename": {_JCI_KHUB % (site, i): n for i, site, n in JCI_RTH_SPECS},
         "extractor": "vendor",
         "access": "무로그인",
+    },
+    {
+        "id": "jci-airhandling-points",
+        "vendor": "Johnson Controls / YORK",
+        "kind": "포인트리스트",
+        "note": "YORK 공조기 포털의 유닛 제어반 Modbus 레지스터 표. 열은 PLC register "
+                "Address|Parameter number|Name|Range|Details 로, BACnet 이름도 오브젝트 "
+                "타입도 없다 — 기존 8계통과 열이 하나도 안 겹쳐 어댑터를 따로 뒀다"
+                "(vendor_jci_air.py). YKH·YKL 은 157행이 글자까지 같다(같은 제어반).",
+        "enumerate": "list",
+        "urls": [_JCI_KHUB % (site, i) for i, site, _n in JCI_AIR_POINTS],
+        "rename": {_JCI_KHUB % (site, i): n for i, site, n in JCI_AIR_POINTS},
+        "extractor": "vendor",
+        "access": "무로그인",
+        # 40쪽 매뉴얼 본문에 묻힌 표라 줄 읽기 경로가 표를 못 따라간다
+        "crosscheck_unreliable": r"JCI_AIR_",
     },
 ]
 

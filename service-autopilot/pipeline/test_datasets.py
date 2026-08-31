@@ -664,6 +664,10 @@ class DatasetBuildTest(unittest.TestCase):
             "johnson-controls-york-vah",
             "johnson-controls-york-vch",
             "johnson-controls-york-vir",
+            # ── 공조기 포털 (2026-08-31) ───────────────────────────
+            # YKL 은 IOM 본문의 Modbus 레지스터 표만 가졌다 — 정격도 형번도 없다.
+            # 사다리를 넓혀서 될 일이 아니라 제품 카탈로그를 더 받아야 하는 일이다.
+            "johnson-controls-york-ykl-compact-low-profile-ahu",
         })
 
     def test_aaon_cabinet_text_yields_units_with_iom_tonnage(self):

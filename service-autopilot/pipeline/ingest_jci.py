@@ -2001,6 +2001,129 @@ IOM_EQUIP = {                      # 문서 분류 → (계열, cat, tag)
 }
 
 
+# 공조기 포털 — 제품마다 모델을 만들 자리. 두 제품이 **같은 157행**을 쓰므로 목록은
+# 주 제품 하나에만 붙인다(스키마: 같은 목록을 제품 수만큼 복제하지 마라).
+AIR_MODELS = {
+    "JCI_AIR_YKL-lowprofile-ahu.pdf": {
+        "key": "YKL Compact Low Profile AHU",
+        "equip": "e5", "cat": "HVAC.AIR.AHU", "tag": "ahu",
+        "label": "유닛 제어반 Modbus 레지스터",
+        "appliesTo": ["YKH", "YKL"],
+        "primary": True,
+    },
+    "JCI_AIR_YKH-heat-recovery.pdf": {
+        "key": "YKH Residential Heat Recovery Unit",
+        "equip": "e12", "cat": "HVAC.WATER.HX.ERV", "tag": "heatRecovery",
+        "primary": False,
+    },
+}
+
+
+def apply_air(dry=False):
+    """공조기 포털 Modbus 레지스터 표 → 모델의 interfaces[].
+
+    두 문서(YKH·YKL)의 157행이 **글자까지 100% 같다** — 같은 유닛 제어반이다.
+    그래서 목록은 주 제품(YKL, 공조기 계열)에만 붙이고 YKH 는 그 사실을 적은 모델로
+    둔다. 같은 1,000점을 제품 수만큼 복제하면 한쪽만 고쳐지는 날이 온다(스키마 경고).
+    """
+    import vendor_jci_air as A
+    import vendor_jci_ipu as IPU
+    import fitz
+    import scan_jci as SC
+
+    made = pts_total = 0
+    for path in CO.files_of(A.SOURCE):
+        fname = os.path.basename(path)
+        spec = AIR_MODELS.get(fname)
+        if not spec:
+            print("  ⚠ %s — 모델 자리가 정해지지 않았다" % fname)
+            continue
+        rows_in = []
+        doc = fitz.open(path)
+        for pi in range(doc.page_count):
+            try:
+                tabs = doc[pi].find_tables().tables
+            except Exception:
+                continue
+            for t in tabs:
+                data = t.extract()
+                if len(data) < 4:
+                    continue
+                head = SC.table_header(data)
+                if not head or not A.HEAD.search(head[0]):
+                    continue
+                for r in data[head[1]:]:
+                    # ⚠ 셀 글자를 여기서 만든다 — 아래첨자를 제자리에 돌린 뒤 줄바꿈을
+                    #   눌러야 한다. 그냥 누르면 'CO2' 가 'CO 2' 로 굳는다(67fd3b6 재발).
+                    cells = [IPU.join_subscripts(x or "").replace("\n", " ").strip()
+                             for x in r]
+                    if any(cells):
+                        rows_in.append((pi + 1, cells))
+        doc.close()
+        points, skipped = A.parse_doc(path, rows_in, None)
+        print("  · %-46s %4d점 %s" % (fname[:46], len(points), skipped or ""))
+        if not points:
+            continue
+        if not spec["primary"]:
+            main = next(v["key"] for v in AIR_MODELS.values() if v["primary"])
+            print("    ↷ 주 제품이 아니다 — 같은 157행이라 목록은 %r 에만 둔다" % main)
+            continue
+        iid = "air-modbus"
+        for pt in points:
+            pt["provenance"]["interfaceId"] = iid
+        pages = sorted({pt["provenance"]["sourcePage"] for pt in points})
+        iface = {"id": iid, "label": spec["label"], "family": A.FAMILY,
+                 "protocols": ["modbus"], "sourceFile": fname,
+                 "sourcePages": pages, "pointCount": len(points),
+                 "appliesTo": spec.get("appliesTo"), "status": "extracted",
+                 "note": "유닛 제어반의 홀딩 레지스터 목록. 같은 표가 YKH 매뉴얼에도 "
+                         "글자까지 똑같이 실려 있다(157행 전수 대조) — 같은 제어반이라 "
+                         "제품마다 복제하지 않고 여기 한 벌만 둔다.",
+                 "points": points}
+        iface = {k: v for k, v in iface.items() if v is not None}
+        mid = S.model_id(VENDOR, spec["key"])
+        path_m = os.path.join(DATA, "models", mid + ".json")
+        before = None
+        if os.path.exists(path_m):
+            with open(path_m, encoding="utf-8") as f:
+                rec = json.load(f)
+            before = json.dumps(rec, ensure_ascii=False, sort_keys=True)
+            old = [i for i in (rec.get("interfaces") or []) if i["sourceFile"] != fname]
+            rec["interfaces"] = old + [iface]
+        else:
+            rec = {"id": mid, "equipId": spec["equip"], "vendor": VENDOR,
+                   "model": spec["key"], "name": spec["key"], "cat": spec["cat"],
+                   "tag": spec["tag"], "tags": [spec["tag"]], "status": "active",
+                   "has": {"spec": False, "points": True}, "ede": False,
+                   "spec": [], "io": [], "elec": None, "points": [],
+                   "classifiedBy": "JCI 공조기 포털 문서 분류",
+                   "gap": "정격·형번이 없다 — 매뉴얼 본문의 Modbus 레지스터 표만 취입했다. "
+                          "표가 readWrite 를 안 주고, Range 는 배율이 걸린 raw 값이라 "
+                          "공학 범위로 못 올렸다(포인트마다 gaps 에 적혀 있다).",
+                   "extractor": "vendor_jci_air", "sourceDoc": fname,
+                   "interfaces": [iface]}
+        # 규칙 ④ — 만든 방법으로 확인하지 않는다. 표 인식 대신 줄 읽기로 다시 돌려 맞춰 본다.
+        rec["crosscheck"] = A.crosscheck(path, points)
+        n = sum(i["pointCount"] for i in rec["interfaces"])
+        rec["summary"] = "유닛 제어반 Modbus 레지스터 %d판에서 취입 — 오브젝트 %d점" % (
+            len(rec["interfaces"]), n)
+        # 비교는 레코드를 **끝까지 만든 뒤**에 한다. 중간에 빠져나가면 그 뒤에 붙는 것
+        # (교차 대조 같은 것)이 영영 기록되지 않는다 — 실제로 그래서 빠졌다.
+        if before is not None and json.dumps(rec, ensure_ascii=False, sort_keys=True) == before:
+            print("    ↷ %s — 이미 취입한 문서, 변경 없음" % mid)
+            continue
+        made += 1
+        pts_total += len(points)
+        if dry:
+            print("    (dry) %s — 판 %d · %d점" % (mid, len(rec["interfaces"]), n))
+            continue
+        with open(path_m, "w", encoding="utf-8") as f:
+            json.dump(rec, f, ensure_ascii=False, indent=1)
+        print("    → %s — 판 %d · %d점" % (mid, len(rec["interfaces"]), n))
+    print("\n모델 %d건 · 새 오브젝트 %d점" % (made, pts_total))
+    return 0
+
+
 def apply_iom(dry=False):
     """IOM 본문 포인트 표 → 모델의 interfaces[]. 제품이 이미 있으면 판을 잇는다."""
     import vendor_jci_ipu as P
@@ -2100,6 +2223,8 @@ def main(argv):
     ap.add_argument("--apply", action="store_true", help="모델 레코드 생성")
     ap.add_argument("--dry", action="store_true", help="파싱은 하되 쓰지 않는다")
     ap.add_argument("--no-crosscheck", action="store_true", help="교차 대조 건너뛰기")
+    ap.add_argument("--apply-air", action="store_true",
+                    help="공조기 포털 Modbus 레지스터 표 취입")
     ap.add_argument("--apply-iom", action="store_true",
                     help="IOM 본문형(IPU/Series-100) 취입")
     ap.add_argument("--export", action="store_true",
@@ -2120,6 +2245,8 @@ def main(argv):
     a = ap.parse_args(argv)
     if a.audit_pages:
         return audit_pages(only=a.only)
+    if a.apply_air:
+        return apply_air(dry=a.dry)
     if a.apply_iom:
         return apply_iom(dry=a.dry)
     if a.export:

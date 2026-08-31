@@ -1,0 +1,4964 @@
+{
+ "id": "johnson-controls-york-ykl-compact-low-profile-ahu",
+ "equipId": "e5",
+ "vendor": "Johnson Controls / YORK",
+ "model": "YKL Compact Low Profile AHU",
+ "name": "YKL Compact Low Profile AHU",
+ "cat": "HVAC.AIR.AHU",
+ "tag": "ahu",
+ "tags": [
+  "ahu"
+ ],
+ "status": "active",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "points": [],
+ "classifiedBy": "JCI 공조기 포털 문서 분류",
+ "gap": "정격·형번이 없다 — 매뉴얼 본문의 Modbus 레지스터 표만 취입했다. 표가 readWrite 를 안 주고, Range 는 배율이 걸린 raw 값이라 공학 범위로 못 올렸다(포인트마다 gaps 에 적혀 있다).",
+ "extractor": "vendor_jci_air",
+ "sourceDoc": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+ "interfaces": [
+  {
+   "id": "air-modbus",
+   "label": "유닛 제어반 Modbus 레지스터",
+   "family": "AirHandling/Modbus",
+   "protocols": [
+    "modbus"
+   ],
+   "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+   "sourcePages": [
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35
+   ],
+   "pointCount": 157,
+   "appliesTo": [
+    "YKH",
+    "YKL"
+   ],
+   "status": "extracted",
+   "note": "유닛 제어반의 홀딩 레지스터 목록. 같은 표가 YKH 매뉴얼에도 글자까지 똑같이 실려 있다(157행 전수 대조) — 같은 제어반이라 제품마다 복제하지 않고 여기 한 벌만 둔다.",
+   "points": [
+    {
+     "common": {
+      "name": "Unit open and close variable",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 0,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 27,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40001",
+       "Parameter number": "0",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit set temperature",
+      "note": "The value includes a decimal place. For example, a value of 280 indicates 28ºC."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 27,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40002",
+       "Parameter number": "1",
+       "Range": "0 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit air conditioning mode",
+      "note": "0: Fan mode 1: Manual heating 2: Manual cooling 3: Auto heating 4: Auto cooling 5: Full automatic mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Fan mode"
+       },
+       {
+        "code": "1",
+        "label": "Manual heating"
+       },
+       {
+        "code": "2",
+        "label": "Manual cooling"
+       },
+       {
+        "code": "3",
+        "label": "Auto heating"
+       },
+       {
+        "code": "4",
+        "label": "Auto cooling"
+       },
+       {
+        "code": "5",
+        "label": "Full automatic mode"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 27,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40003",
+       "Parameter number": "2",
+       "Range": "0 to 5"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Aspirator fan manual speed value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 27,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40004",
+       "Parameter number": "3",
+       "Range": "0 to 6"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ventilator fan manual speed value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 27,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40005",
+       "Parameter number": "4",
+       "Range": "0 to 6"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Panel ambient temperature value",
+      "note": "The temperature value on the panel."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 27,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40007",
+       "Parameter number": "6",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit fresh air temperature value",
+      "note": "Displays the temperature of the air drawn into the space."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 7,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 27,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40008",
+       "Parameter number": "7",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit supply air temperature value",
+      "note": "If there is no temperature value available on the unit, the temperature value is shown as 32767."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 8,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40009",
+       "Parameter number": "8",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Outside temperature value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 9,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40010",
+       "Parameter number": "9",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Water coil temperature value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 10,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40011",
+       "Parameter number": "10",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "BMS input",
+      "note": "0: The unit operates normally. 1: The unit is off.",
+      "states": [
+       {
+        "code": "0",
+        "label": "The unit operates normally"
+       },
+       {
+        "code": "1",
+        "label": "The unit is off"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 14,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40015",
+       "Parameter number": "14",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Boost input",
+      "note": "0: Fans run at the normal speed. 1: Fans run at full speed.",
+      "states": [
+       {
+        "code": "0",
+        "label": "Fans run at the normal speed"
+       },
+       {
+        "code": "1",
+        "label": "Fans run at full speed"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 15,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40016",
+       "Parameter number": "15",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Aspirator fan air flow information",
+      "note": "Aspirator fan air flow switch information."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 16,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40017",
+       "Parameter number": "16",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ventilator fan air flow information",
+      "note": "Ventilator fan air flow switch information."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 17,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40018",
+       "Parameter number": "17",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter 1 dirty information",
+      "note": "Filter 1 DPS state."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 18,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40019",
+       "Parameter number": "18",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Electrical heater safety thermostat information",
+      "note": "Safety thermostat information."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 20,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40021",
+       "Parameter number": "20",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Aspirator fan thermal fault information",
+      "note": "Aspirator fan fault information."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 21,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40022",
+       "Parameter number": "21",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ventilator fan thermal fault information",
+      "note": "Ventilator fan fault information."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 22,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40023",
+       "Parameter number": "22",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Emergency stop button information",
+      "note": "Emergency stop button information."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 23,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40024",
+       "Parameter number": "23",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Low pressure inlet information",
+      "note": "Low pressure input."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 24,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40025",
+       "Parameter number": "24",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "High pressure information",
+      "note": "High pressure input."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 25,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40026",
+       "Parameter number": "25",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Fire information",
+      "note": "Fire entry."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 26,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40027",
+       "Parameter number": "26",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Freezing thermostat information",
+      "note": "Freezing thermostat information. In water coil applications, the valve opens fully and the fans are off."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 27,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40028",
+       "Parameter number": "27",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor thermal failure information",
+      "note": "Compressor thermic information. If there is a compressor, the compressor turns off."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 28,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40029",
+       "Parameter number": "28",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Phase fail information",
+      "note": "Phase failure information. The unit is off."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 29,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 28,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40030",
+       "Parameter number": "29",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heat exchanger freezing thermostat"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 30,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40031",
+       "Parameter number": "30",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Humidity value",
+      "note": "Adjust this value according to the analog input calibration parameter between 321 and 340."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 33,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40034",
+       "Parameter number": "33",
+       "Range": "0 to 1,000"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Air quality value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 34,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40035",
+       "Parameter number": "34",
+       "Range": "0 to 1,000"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "CO2 value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 35,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40036",
+       "Parameter number": "35",
+       "Range": "0 to 1,000"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Return pressure value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 36,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40037",
+       "Parameter number": "36",
+       "Range": "0 to 1,000"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Blowing pressure value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 37,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40038",
+       "Parameter number": "37",
+       "Range": "0 to 1,000"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Analog 1 set value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 38,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40039",
+       "Parameter number": "38"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Analog 2 set value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 39,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40040",
+       "Parameter number": "39"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Fresh air or suction damper motor",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 43,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40044",
+       "Parameter number": "43",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Bypass damper motor",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 44,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40045",
+       "Parameter number": "44",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating or cooling coil valve output",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 45,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40046",
+       "Parameter number": "45",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating battery open or close output",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 46,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40047",
+       "Parameter number": "46",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Cooling on or off battery outlet",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 47,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40048",
+       "Parameter number": "47",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor output",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 48,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40049",
+       "Parameter number": "48",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor four-way valve output",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 49,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40050",
+       "Parameter number": "49",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit operation information output",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 50,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40051",
+       "Parameter number": "50",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit fault information output",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 51,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40052",
+       "Parameter number": "51",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit warning information output",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 52,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40053",
+       "Parameter number": "52",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Aspirator fan run output",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 53,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40054",
+       "Parameter number": "53",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ventilator fan run output",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 54,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40055",
+       "Parameter number": "54",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Rotary outlet",
+      "note": "0: Off 1: On",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 58,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 29,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40059",
+       "Parameter number": "58",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant aspirator fan output value",
+      "note": "Fan electric heater displays the instantaneous step value."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 60,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40061",
+       "Parameter number": "60",
+       "Range": "0 to 6"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant ventilator fan output value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 61,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40062",
+       "Parameter number": "61",
+       "Range": "0 to 6"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant electric heater value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 62,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40063",
+       "Parameter number": "62",
+       "Range": "0 to 3"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant electric preheater value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 63,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40064",
+       "Parameter number": "63",
+       "Range": "0 to 3"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Aspirator fan analog output value",
+      "note": "Displays the proportional output values."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 64,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40065",
+       "Parameter number": "64",
+       "Range": "0 to 100"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ventilator fan analog output value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 65,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40066",
+       "Parameter number": "65",
+       "Range": "0 to 100"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proportional cooling valve output value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 66,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40067",
+       "Parameter number": "66",
+       "Range": "0 to 100"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proportional cooling valve output value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 67,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40068",
+       "Parameter number": "67",
+       "Range": "0 to 100"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proportional heating or cooling valve output value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 68,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40069",
+       "Parameter number": "68",
+       "Range": "0 to 100"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proportional bypass damper output value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 69,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40070",
+       "Parameter number": "69"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Start on Monday",
+      "note": "The unit operates between the set start and end times in a day. The unit turns off outside the set times. If the start and end times are equal, the unit works continuously on the day. If the start time is more than the end time, the unit is completely turned off on the day set. The parameter is set in the form hh:mm."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 72,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40073",
+       "Parameter number": "72",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ending on Sunday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 73,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40074",
+       "Parameter number": "73",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Start on Monday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 74,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40075",
+       "Parameter number": "74",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ending on Monday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 75,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40076",
+       "Parameter number": "75",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Start on Tuesday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 76,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40077",
+       "Parameter number": "76",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ending on Tuesday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 77,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40078",
+       "Parameter number": "77",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Start on Wednesday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 78,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40079",
+       "Parameter number": "78",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ending on Wednesday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 79,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40080",
+       "Parameter number": "79",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Start on Thursday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 80,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40081",
+       "Parameter number": "80",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ending on Thursday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 81,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40082",
+       "Parameter number": "81",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Start on Friday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 82,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40083",
+       "Parameter number": "82",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ending on Friday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 83,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40084",
+       "Parameter number": "83",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Start on Saturday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 84,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40085",
+       "Parameter number": "84",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Ending on Saturday"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 85,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40086",
+       "Parameter number": "85",
+       "Range": "0 to 2,359"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant day"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 86,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40087",
+       "Parameter number": "86",
+       "Range": "1 to 31"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant mount"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 87,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40088",
+       "Parameter number": "87",
+       "Range": "1 to 12"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant year"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 88,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40089",
+       "Parameter number": "88",
+       "Range": "0 to 99"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant hour"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 89,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40090",
+       "Parameter number": "89",
+       "Range": "0 to 23"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant minute"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 90,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 30,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40091",
+       "Parameter number": "90",
+       "Range": "0 to 59"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant second"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 91,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40092",
+       "Parameter number": "91",
+       "Range": "0 to 59"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant day of the week",
+      "note": "1: Sunday 2: Monday 3: Tuesday 4: Wednesday 5: Thursday 6: Friday 7: Saturday",
+      "states": [
+       {
+        "code": "1",
+        "label": "Sunday"
+       },
+       {
+        "code": "2",
+        "label": "Monday"
+       },
+       {
+        "code": "3",
+        "label": "Tuesday"
+       },
+       {
+        "code": "4",
+        "label": "Wednesday"
+       },
+       {
+        "code": "5",
+        "label": "Thursday"
+       },
+       {
+        "code": "6",
+        "label": "Friday"
+       },
+       {
+        "code": "7",
+        "label": "Saturday"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 92,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40093",
+       "Parameter number": "92",
+       "Range": "1 to 7"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Instant weekly program status",
+      "note": "0: No weekly schedule. 1: The unit has a weekly program and the unit is working. 2: The unit has a weekly schedule and the unit is stopped.",
+      "states": [
+       {
+        "code": "0",
+        "label": "No weekly schedule"
+       },
+       {
+        "code": "1",
+        "label": "The unit has a weekly program and the unit is working"
+       },
+       {
+        "code": "2",
+        "label": "The unit has a weekly schedule and the unit is stopped"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 93,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40094",
+       "Parameter number": "93",
+       "Range": "0 to 2"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Alarm value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 95,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40096",
+       "Parameter number": "95",
+       "Range": "0 to 99"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Warning value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 96,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40097",
+       "Parameter number": "96",
+       "Range": "0 to 99"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Key lock",
+      "note": "0: Key lock off. 1: Key lock on.",
+      "states": [
+       {
+        "code": "0",
+        "label": "Key lock off"
+       },
+       {
+        "code": "1",
+        "label": "Key lock on"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 103,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40104",
+       "Parameter number": "103",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Major fault information",
+      "note": "0: No fault. 1: The unit is completely shut down.",
+      "states": [
+       {
+        "code": "0",
+        "label": "No fault"
+       },
+       {
+        "code": "1",
+        "label": "The unit is completely shut down"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 104,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40105",
+       "Parameter number": "104",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor failure information",
+      "note": "0: No fault in the compressor. 1: A fault is present that stops the compressor.",
+      "states": [
+       {
+        "code": "0",
+        "label": "No fault in the compressor"
+       },
+       {
+        "code": "1",
+        "label": "A fault is present that stops the compressor"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 105,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40106",
+       "Parameter number": "105",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Fan quantity",
+      "note": "1: Single fan 2: Double fan",
+      "states": [
+       {
+        "code": "1",
+        "label": "Single fan"
+       },
+       {
+        "code": "2",
+        "label": "Double fan"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 108,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40109",
+       "Parameter number": "108",
+       "Range": "1 to 2"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Fan step value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 109,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40110",
+       "Parameter number": "109",
+       "Range": "1 to 6"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Modbus ID"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 111,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40112",
+       "Parameter number": "111",
+       "Range": "1 to 254"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Modbus baud rate"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 112,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40113",
+       "Parameter number": "112",
+       "Range": "0 to 7"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Monitoring temperature value",
+      "note": "0: Do not show 1: Outside temperature 2: Supply temperature 3: Two temperatures",
+      "states": [
+       {
+        "code": "0",
+        "label": "Do not show"
+       },
+       {
+        "code": "1",
+        "label": "Outside temperature"
+       },
+       {
+        "code": "2",
+        "label": "Supply temperature"
+       },
+       {
+        "code": "3",
+        "label": "Two temperatures"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 113,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40114",
+       "Parameter number": "113",
+       "Range": "0 to 3"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Analog input value",
+      "note": "0: Do not show 1: CO2 2: Air quality 3: Humidity",
+      "states": [
+       {
+        "code": "0",
+        "label": "Do not show"
+       },
+       {
+        "code": "1",
+        "label": "CO2"
+       },
+       {
+        "code": "2",
+        "label": "Air quality"
+       },
+       {
+        "code": "3",
+        "label": "Humidity"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 114,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 31,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40115",
+       "Parameter number": "114",
+       "Range": "0 to 3"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter time counter",
+      "note": "This counter increases every hour that the ventilator fan operates."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 115,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40116",
+       "Parameter number": "115",
+       "Range": "0 to 9,999"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit operating mode information",
+      "note": "0: Unit off 1: Damper opens 2: Fan turns on 3: Main loop 4: Valve closes 5: Fan turns off 6: Freezing condition 7: Defrost status 99: Fault status, waiting for reset"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 116,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40117",
+       "Parameter number": "116",
+       "Range": "0 to 100"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Activate boost",
+      "note": "0: Deactivated 1: Active",
+      "states": [
+       {
+        "code": "0",
+        "label": "Deactivated"
+       },
+       {
+        "code": "1",
+        "label": "Active"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 117,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40118",
+       "Parameter number": "117",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Control temperature type",
+      "note": "0: Panel temperature 1: According to the return air temperature 2: According to the discharge temperature 3: According to outside air temperature",
+      "states": [
+       {
+        "code": "0",
+        "label": "Panel temperature"
+       },
+       {
+        "code": "1",
+        "label": "According to the return air temperature"
+       },
+       {
+        "code": "2",
+        "label": "According to the discharge temperature"
+       },
+       {
+        "code": "3",
+        "label": "According to outside air temperature"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 118,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40119",
+       "Parameter number": "118",
+       "Range": "0 to 3"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Fire scenario",
+      "note": "0: Fans off 1: Aspirator full, ventilator off 2: Aspirator off, ventilator full 3: Both fans fully on",
+      "states": [
+       {
+        "code": "0",
+        "label": "Fans off"
+       },
+       {
+        "code": "1",
+        "label": "Aspirator full, ventilator off"
+       },
+       {
+        "code": "2",
+        "label": "Aspirator off, ventilator full"
+       },
+       {
+        "code": "3",
+        "label": "Both fans fully on"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 144,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40145",
+       "Parameter number": "144",
+       "Range": "0 to 3"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating cooling hysteresis"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 145,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40146",
+       "Parameter number": "145",
+       "Range": "0 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Boost maximum operating time",
+      "note": "Boost turns off automatically after the set time. Set in min."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 148,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40149",
+       "Parameter number": "148",
+       "Range": "0 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Limiting variable of the heater based on the fan"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 149,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40150",
+       "Parameter number": "149",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Preheater on time",
+      "note": "Preheater on delay time. Set in s."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 150,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40151",
+       "Parameter number": "150",
+       "Range": "1 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Preheater off time",
+      "note": "Preheater off delay time. Set in s."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 151,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40152",
+       "Parameter number": "151",
+       "Range": "1 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Preheater hysteresis",
+      "note": "The value includes a decimal place. For example, a value of 100 indicates 10.0ºC."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 152,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40153",
+       "Parameter number": "152",
+       "Range": "1 to 100"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Preheater stage ranges"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 153,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 32,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40154",
+       "Parameter number": "153"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Number of preheater stages"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 154,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40155",
+       "Parameter number": "154",
+       "Range": "0 to 3"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heater on time",
+      "note": "Heater on delay time. Set in s."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 155,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40156",
+       "Parameter number": "155",
+       "Range": "1 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heater off time",
+      "note": "Heater off delay time. Set in s."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 156,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40157",
+       "Parameter number": "156",
+       "Range": "1 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heater hysteresis",
+      "note": "The value includes a decimal place. For example, a value of 100 indicates 10.0ºC."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 157,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40158",
+       "Parameter number": "157",
+       "Range": "1 to 100"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heater stage intervals"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 158,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40159",
+       "Parameter number": "158"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Number of heater stages"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 159,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40160",
+       "Parameter number": "159"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Preheater set temperature value"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 160,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40161",
+       "Parameter number": "160",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Bypass hysteresis"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 161,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40162",
+       "Parameter number": "161",
+       "Range": "1 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Rotary hysteresis"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 162,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40163",
+       "Parameter number": "162",
+       "Range": "1 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "P value for valve PI control"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 163,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40164",
+       "Parameter number": "163"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "I value for valve PI control"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 164,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40165",
+       "Parameter number": "164"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating coil freeze protection minimum temperature value",
+      "note": "If the sensor for the battery in the heating coil is lower than the set temperature value, the unit goes into freeze protection mode."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 173,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40174",
+       "Parameter number": "173",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating coil freeze protection maximum temperature value",
+      "note": "If the sensor for the battery in the heating coil is higher than the set temperature value during freeze protection mode, the unit exits the mode."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 174,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40175",
+       "Parameter number": "174",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heat exchanger freeze protection minimum temperature value",
+      "note": "If the heat exchanger temperature sensor is lower than the set temperature value, the heat exchanger enters the frost protection mode with the bypass damper."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 175,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 33,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40176",
+       "Parameter number": "175",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Heat exchanger freeze protection maximum temperature value",
+      "note": "If the heat exchanger temperature sensor is higher than the set temperature value during frost protection mode, the unit exits the mode."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 176,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40177",
+       "Parameter number": "176",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter protection warning time limit",
+      "note": "If the filter counter time exceeds the set value, a filter warning displays on the screen."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 177,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40178",
+       "Parameter number": "177",
+       "Range": "1 to 9,999"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "1 Universal input status",
+      "note": "If one of the unit's universal input digital inputs is selected, 0 or 1 appears in the register. 0: On 1: Off"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 181,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40182",
+       "Parameter number": "181",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "2 Universal input status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 182,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40183",
+       "Parameter number": "182",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "3 Universal input status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 183,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40184",
+       "Parameter number": "183",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "4 Universal input status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 184,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40185",
+       "Parameter number": "184",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "5 Universal input status",
+      "note": "If one of the unit’s universal input digital inputs is selected, 0 or 1 appears in the register. 0:On 1:Off"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 185,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40186",
+       "Parameter number": "185",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "6 Universal input status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 186,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40187",
+       "Parameter number": "186",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "7 Universal input status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 187,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40188",
+       "Parameter number": "187",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "8 Universal input status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 188,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40189",
+       "Parameter number": "188",
+       "Range": "-400 to 999"
+      },
+      "gaps": [
+       "common.rangeSI",
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "1 Digital output status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 201,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40202",
+       "Parameter number": "201",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "2 Digital output status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 202,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40203",
+       "Parameter number": "202",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "3 Digital output status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 203,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40204",
+       "Parameter number": "203",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "4 Digital output status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 204,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40205",
+       "Parameter number": "204",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "5 Digital output status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 205,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40206",
+       "Parameter number": "205",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "6 Digital output status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 206,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40207",
+       "Parameter number": "206",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "7 Digital output status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 207,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40208",
+       "Parameter number": "207",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "8 Digital output status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 208,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40209",
+       "Parameter number": "208",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Analog input 1 status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 221,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40222",
+       "Parameter number": "221",
+       "Range": "-9,999 to 9,999"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Analog output 1 status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 231,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40232",
+       "Parameter number": "231",
+       "Range": "-9,999 to 9,999"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Analog output 2 status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 232,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40233",
+       "Parameter number": "232",
+       "Range": "-9,999 to 9,999"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Analog output 3 status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 233,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40234",
+       "Parameter number": "233",
+       "Range": "-9,999 to 9,999"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Analog output 4 status"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 234,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 34,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40235",
+       "Parameter number": "234",
+       "Range": "-9,999 to 9,999"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 1 input normally open or closed selection",
+      "note": "Check the universal inputs from the project and the input purposes."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 261,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40262",
+       "Parameter number": "261",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 2 input normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 262,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40263",
+       "Parameter number": "262"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 3 input normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 263,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40264",
+       "Parameter number": "263"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 4 input normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 264,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40265",
+       "Parameter number": "264"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 5 Input Normally Open/ Closed Selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 265,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40266",
+       "Parameter number": "265"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 6 input normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 266,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40267",
+       "Parameter number": "266"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 7 input normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 267,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40268",
+       "Parameter number": "267"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 8 input normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 268,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40269",
+       "Parameter number": "268"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 1 output normally open or closed selection",
+      "note": "Check the digital outputs from the project and the output purposes."
+     },
+     "blocks": {
+      "modbus": {
+       "address": 301,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40302",
+       "Parameter number": "301",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 2 output normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 302,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40303",
+       "Parameter number": "302"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 3 output normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 303,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40304",
+       "Parameter number": "303"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 4 output normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 304,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40305",
+       "Parameter number": "304"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 5 output normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 305,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40306",
+       "Parameter number": "305"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 6 output normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 306,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40307",
+       "Parameter number": "306"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 7 output normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 307,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40308",
+       "Parameter number": "307"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Din 8 output normally open or closed selection"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 308,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40309",
+       "Parameter number": "308"
+      },
+      "gaps": [
+       "common.readWrite"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Modbus data bit"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 360,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40361",
+       "Parameter number": "360",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Modbus parity"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 361,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40362",
+       "Parameter number": "361",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Modbus stop bit"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 362,
+       "addressBase": "0",
+       "refClass": "holding-register",
+       "dataType": "Signed"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_AIR_YKL-lowprofile-ahu.pdf",
+      "sourcePage": 35,
+      "family": "AirHandling/Modbus",
+      "sourceColumns": {
+       "PLC register Address": "40363",
+       "Parameter number": "362",
+       "Range": "0, 1"
+      },
+      "gaps": [
+       "common.readWrite",
+       "common.states"
+      ],
+      "status": "extracted",
+      "interfaceId": "air-modbus"
+     }
+    }
+   ]
+  }
+ ],
+ "summary": "유닛 제어반 Modbus 레지스터 1판에서 취입 — 오브젝트 157점",
+ "crosscheck": {
+  "rate": 1.0,
+  "both": 157,
+  "total": 157,
+  "method": "표 인식 대신 쪽 글자 흐름에서 4xxxx 레지스터를 열쇠로 이름을 다시 읽었다"
+ }
+}
