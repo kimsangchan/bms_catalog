@@ -207,6 +207,10 @@ JCI_IOM_POINTS = [
      "JCI_IOM_145.05-NOM3.pdf"),
     ("~kxYAglMx7q8o4OKJTy5DA", "ductedsystems",
      "JCI_IOM_YRK3-NOM1.pdf"),
+    # L-Series 수냉 자립형(LSWU/LSWD/LSWF) IPU2 — 본문 스캔이 뒤늦게 골라냈다.
+    # Table 42(p172~181) 165행. 근거는 data/jci-duct-verdict.json.
+    ("2clxIXbzWLHpg~aPscPCsA", "ductedsystems",
+     "JCI_IOM_145.05-NOM7.pdf"),
 ]
 
 SOURCES = [

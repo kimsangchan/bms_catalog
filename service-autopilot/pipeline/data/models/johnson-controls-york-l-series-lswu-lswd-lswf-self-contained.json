@@ -140,21 +140,4178 @@
     17
    ],
    "note": "파서 vendor_jci_ipu · 원문 IOM 본문"
+  },
+  {
+   "id": "iom_145-05-nom7",
+   "label": "L-Series (LSWU/LSWD/LSWF) with IPU2 Control, 25–105 Ton Water-Cooled Self-Contained Units Installation, Operation, and Maintenance Manual",
+   "family": "IPU/Series-100",
+   "protocols": [
+    "bacnet",
+    "modbus"
+   ],
+   "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+   "pointCount": 165,
+   "status": "extracted",
+   "points": [
+    {
+     "common": {
+      "name": "Duct Static Setpoint",
+      "shortName": "ACT DSP SP",
+      "note": "A Derived Value the Duct Static is Controlled to (\"WG)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ACT DSP SP",
+       "objectType": "AI",
+       "instance": 1
+      },
+      "modbus": {
+       "address": 514,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Minimum Position",
+      "shortName": "ACT MIN POS",
+      "note": "A Derived Value the Damper is Controlled to for Minimum Ventilation Air (%)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ACT MIN POS",
+       "objectType": "AI",
+       "instance": 3
+      },
+      "modbus": {
+       "address": 516,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Supply Air Setp",
+      "shortName": "ACT SAT SP",
+      "note": "A Derived Value the Supply Air Temperature is Controlled to (F)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ACT SAT SP",
+       "objectType": "AI",
+       "instance": 4
+      },
+      "modbus": {
+       "address": 517,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Slab Control",
+      "shortName": "ACT SLAB CTL",
+      "note": "Allows the Active Slab Control Feature to be Turned On and Off on FlexSys Units (0 = Off / 1 = On)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ACT SLAB CTL",
+       "objectType": "AI",
+       "instance": 5
+      },
+      "modbus": {
+       "address": 1102,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Alarm",
+      "shortName": "ALARM",
+      "note": "Gives the Status of the Alarm (NFL - No Fault; FLT - Faulted)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ALARM",
+       "objectType": "BI",
+       "instance": 2
+      },
+      "modbus": {
+       "address": 1283,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Adapt Morn Warm Up Active",
+      "shortName": "AMORN WA ACT",
+      "note": "Identifies when Adaptive Morning Warm Up is Active (Off / On)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "AMORN WA ACT",
+       "objectType": "BI",
+       "instance": 1
+      },
+      "modbus": {
+       "address": 1282,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Avg Press Suction A",
+      "shortName": "AV PRS A SUC",
+      "note": "Gives the Average Suction Pressure for the System A Unloading Compressor",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "AV PRS A SUC",
+       "objectType": "AI",
+       "instance": 5
+      },
+      "modbus": {
+       "address": 518,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Avg Press Discharge A",
+      "shortName": "AV PRS DIS",
+      "note": "Gives the Average Discharge Pressure for the System A Unloading Compressor",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "AV PRS DIS",
+       "objectType": "AI",
+       "instance": 2
+      },
+      "modbus": {
+       "address": 515,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Bypass Damper",
+      "shortName": "BYPASS DAMPER",
+      "note": "Actual Bypass Damper Position (%)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "BYPASS DAMPER",
+       "objectType": "AI",
+       "instance": 6
+      },
+      "modbus": {
+       "address": 519,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Bypass Valve Position",
+      "shortName": "BYP VALV POS",
+      "note": "The Analog Output from the Control to the Bypass Valve",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "BYP VALV POS",
+       "objectType": "AI",
+       "instance": 64
+      },
+      "modbus": {
+       "address": 577,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Comfort Ventilation",
+      "shortName": "COMFORT VENT",
+      "note": "Gives the Status of the Comfort Vent Option and Allows it to be Turned On and Off (0 = Off; 1 = On)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMFORT VENT",
+       "objectType": "AI",
+       "instance": 2
+      },
+      "modbus": {
+       "address": 1103,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor A",
+      "shortName": "COMP A",
+      "note": "Status of Compressor A, (On/Off)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP A",
+       "objectType": "BI",
+       "instance": 3
+      },
+      "modbus": {
+       "address": 1284,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor B",
+      "shortName": "COMP B",
+      "note": "Status of Compressor B, (On/Off)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP B",
+       "objectType": "BI",
+       "instance": 4
+      },
+      "modbus": {
+       "address": 1285,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor C",
+      "shortName": "COMP C",
+      "note": "Status of Compressor C, (On/Off)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP C",
+       "objectType": "BI",
+       "instance": 5
+      },
+      "modbus": {
+       "address": 1286,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor D",
+      "shortName": "COMP D",
+      "note": "Status of Compressor D, (On/Off)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP D",
+       "objectType": "BI",
+       "instance": 6
+      },
+      "modbus": {
+       "address": 1287,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor E",
+      "shortName": "COMP E",
+      "note": "Status of Compressor E, (On/Off)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP E",
+       "objectType": "BI",
+       "instance": 7
+      },
+      "modbus": {
+       "address": 1288,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor F",
+      "shortName": "COMP F",
+      "note": "Status of Compressor F, (On/Off)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP F",
+       "objectType": "BI",
+       "instance": 8
+      },
+      "modbus": {
+       "address": 1289,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor A Load",
+      "shortName": "COMP A LOAD",
+      "note": "Gives the Status of the Unloading Compres- sor in %.",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP A LOAD",
+       "objectType": "AI",
+       "instance": 15
+      },
+      "modbus": {
+       "address": 528,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor 1A Oper Hrs",
+      "shortName": "COMP A OPER",
+      "note": "The Number of Hours Compressor A has been in Operation (Hour)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP A OPER",
+       "objectType": "AI",
+       "instance": 9
+      },
+      "modbus": {
+       "address": 522,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor 1B Oper Hrs",
+      "shortName": "COMP B OPER",
+      "note": "The Number of Hours Compressor B has been in Operation (Hour)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP B OPER",
+       "objectType": "AI",
+       "instance": 10
+      },
+      "modbus": {
+       "address": 523,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor 2A Oper Hrs",
+      "shortName": "COMP C OPER",
+      "note": "The Number of Hours Compressor C has been in Operation (Hour)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP C OPER",
+       "objectType": "AI",
+       "instance": 11
+      },
+      "modbus": {
+       "address": 524,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor 2B Oper Hrs",
+      "shortName": "COMP D OPER",
+      "note": "The Number of Hours Compressor D has been in Operation (Hour)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP D OPER",
+       "objectType": "AI",
+       "instance": 12
+      },
+      "modbus": {
+       "address": 525,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor 3A Oper Hrs",
+      "shortName": "COMP E OPER",
+      "note": "The Number of Hours Compressor E has been in Operation (Hour)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP E OPER",
+       "objectType": "AI",
+       "instance": 13
+      },
+      "modbus": {
+       "address": 526,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Compressor 3B Oper Hrs",
+      "shortName": "COMP F OPER",
+      "note": "The Number of Hours Compressor F has been in Operation (Hour)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP F OPER",
+       "objectType": "AI",
+       "instance": 14
+      },
+      "modbus": {
+       "address": 527,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 172,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp Sys A Status",
+      "shortName": "COMP A STAT",
+      "note": "Identifies the Status of the Compressor A (0 - Ready; 1 - Safety Trip 1; 2 - Safety Trip 2; 3 - Comp On; 4 - Low Pressure Lockout; 5 - Inhibited; 6 - Safety Lockout; 7 Off Ascd; 8 - User Disabled).",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP A STAT",
+       "objectType": "AI",
+       "instance": 66
+      },
+      "modbus": {
+       "address": 579,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp Sys B Status",
+      "shortName": "COMP B STAT",
+      "note": "Identifies The Status of the Compressor B (0 - Ready; 1 - Safety Trip 1; 2 - Safety Trip 2; 3 - Comp On; 4 - Low Pressure Lockout; 5 - Inhibited; 6 - Safety Lockout; 7 Off Ascd; 8 - User Disabled).",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP B STAT",
+       "objectType": "AI",
+       "instance": 67
+      },
+      "modbus": {
+       "address": 580,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp Sys C Status",
+      "shortName": "COMP C STAT",
+      "note": "Identifies the Status of the Compressor C (0 - Ready; 1 - Safety Trip 1; 2 - Safety Trip 2; 3 - Comp On; 4 - Low Pressure Lockout; 5 - Inhibited; 6 - Safety Lockout; 7 Off Ascd; 8 - User Disabled).",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP C STAT",
+       "objectType": "AI",
+       "instance": 68
+      },
+      "modbus": {
+       "address": 581,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp Sys D Status",
+      "shortName": "COMP D STAT",
+      "note": "Identifies the Status of The Compressor D (0 - Ready; 1 - Safety Trip 1; 2 - Safety Trip 2; 3 - Comp On; 4 - Low Pressure Lockout; 5 - Inhibited; 6 - Safety Lockout; 7 Off Ascd; 8 - User Disabled).",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP D STAT",
+       "objectType": "AI",
+       "instance": 69
+      },
+      "modbus": {
+       "address": 582,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp Sys E Status",
+      "shortName": "COMP E STAT",
+      "note": "Identifies the Status of the Compressor E (0 - Ready; 1 - Safety Trip 1; 2 - Safety Trip 2; 3 - Comp On; 4 - Low Pressure Lockout; 5 - Inhibited; 6 - Safety Lockout; 7 Off Ascd; 8 - User Disabled).",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP E STAT",
+       "objectType": "AI",
+       "instance": 70
+      },
+      "modbus": {
+       "address": 583,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp Sys F Status",
+      "shortName": "COMP F STAT",
+      "note": "Identifies The Status of the Compressor F (0 - Ready; 1 - Safety Trip 1; 2 - Safety Trip 2; 3 - Comp On; 4 - Low Pressure Lockout; 5 - Inhibited; 6 - Safety Lockout; 7 Off Ascd; 8 - User Disabled).",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP F STAT",
+       "objectType": "AI",
+       "instance": 71
+      },
+      "modbus": {
+       "address": 584,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Input Chain A",
+      "shortName": "COMP STAT A",
+      "note": "Status of Compressor A Compressor Safety Circuit (NFL - No Fault / FLT - Faulted)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP STAT A",
+       "objectType": "BI",
+       "instance": 12
+      },
+      "modbus": {
+       "address": 1293,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Input Chain B",
+      "shortName": "COMP STAT B",
+      "note": "Status of Compressor B Compressor Safety Circuit (NFL - No Fault / FLT - Faulted)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP STAT B",
+       "objectType": "BI",
+       "instance": 13
+      },
+      "modbus": {
+       "address": 1294,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Input Chain C",
+      "shortName": "COMP STAT C",
+      "note": "Status of Compressor C Compressor Safety Circuit (NFL - No Fault / FLT - Faulted)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP STAT C",
+       "objectType": "BI",
+       "instance": 14
+      },
+      "modbus": {
+       "address": 1295,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Input Chain D",
+      "shortName": "COMP STAT D",
+      "note": "Status of Compressor D Compressor Safety Circuit (NFL - NO FAULT / FLT - FAULTED)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP STAT D",
+       "objectType": "BI",
+       "instance": 67
+      },
+      "modbus": {
+       "address": 1348,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Input Chain E",
+      "shortName": "COMP STAT E",
+      "note": "Status of Compressor E Compressor Safety Circuit (NFL - NO FAULT / FLT - FAULTED)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP STAT E",
+       "objectType": "BI",
+       "instance": 68
+      },
+      "modbus": {
+       "address": 1349,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Safety Input Chain F",
+      "shortName": "COMP STAT F",
+      "note": "Status of Compressor F Compressor Safety Circuit (NFL - NO FAULT / FLT - FAULTED)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP STAT F",
+       "objectType": "BI",
+       "instance": 69
+      },
+      "modbus": {
+       "address": 1350,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Comp Staging Seq",
+      "shortName": "COMP STG SEQ",
+      "note": "This Identifies the Type of Compressor Stat- ing Being Used (0 = Simple; 1 = Mixed)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COMP STG SEQ",
+       "objectType": "AI",
+       "instance": 65
+      },
+      "modbus": {
+       "address": 578,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Cond Bypass Max Pos",
+      "shortName": "COND BYP MAX",
+      "note": "The Maximum Allowable Opening for the Bypass Valve (%)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COND BYP MAX",
+       "objectType": "AV",
+       "instance": 41
+      },
+      "modbus": {
+       "address": 1066,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Cond Valve Min Pos",
+      "shortName": "COND BYP MIN",
+      "note": "The Minimum Allowable Opening for the Condenser Water Valve (%)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COND BYP MIN",
+       "objectType": "AV",
+       "instance": 42
+      },
+      "modbus": {
+       "address": 1067,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 173,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Pressure PI Output",
+      "shortName": "COND PRS OUT",
+      "note": "This is a Derived Value that Identifies the Output Demand to the Condenser Water Valve (%)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COND PRS OUT",
+       "objectType": "AI",
+       "instance": 75
+      },
+      "modbus": {
+       "address": 588,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Condenser Type",
+      "shortName": "COND TYPE",
+      "note": "This Identifies the Type of Condenser In- stalled in the Unit (0 = Water Cooled; 1 = Air Cooled)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COND TYPE",
+       "objectType": "AI",
+       "instance": 76
+      },
+      "modbus": {
+       "address": 589,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Cond Valves Install",
+      "shortName": "COND VAL INS",
+      "note": "Identifies the Condenser Valve Installed (0 = None; 1 = Cond Only; 2 = Cond W/Bypass)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COND VAL INS",
+       "objectType": "AI",
+       "instance": 72
+      },
+      "modbus": {
+       "address": 585,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Cond Water Control",
+      "shortName": "COND WTR CNT",
+      "note": "Identifies the Status of the Condenser Water Control ( 0 = Dis; 1 = Ena)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COND WTR CNT",
+       "objectType": "BI",
+       "instance": 66
+      },
+      "modbus": {
+       "address": 1347,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Cond Water Flow",
+      "shortName": "COND WTR FLW",
+      "note": "Identifies if the Unit is Configured for a Water Flow Switch (0 = None; 1 = Installed)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COND WTR FLW",
+       "objectType": "AI",
+       "instance": 73
+      },
+      "modbus": {
+       "address": 586,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Cond Water Valve",
+      "shortName": "COND WTR VAL",
+      "note": "Shows the Position of the Condenser Water Valve (%)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "COND WTR VAL",
+       "objectType": "AI",
+       "instance": 74
+      },
+      "modbus": {
+       "address": 587,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Duct Static Pres 1",
+      "shortName": "DCT STAT PR1",
+      "note": "Actual Duct Static Pressure Input from Trans- ducer 1 to the Control (\"WG)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "DCT STAT PR1",
+       "objectType": "AI",
+       "instance": 17
+      },
+      "modbus": {
+       "address": 530,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Duct Static Pres 2",
+      "shortName": "DCT STAT PR2",
+      "note": "Actual Duct Static Pressure Input from Trans- ducer 2 to the Control (\"WG)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "DCT STAT PR2",
+       "objectType": "AI",
+       "instance": 77
+      },
+      "modbus": {
+       "address": 590,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Dew Point Reset",
+      "shortName": "DEW PNT RST",
+      "note": "This Allows the Dew Point Reset Feature to be Turned On and Off on FlexSys Units (0 = Off / 1 = On)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "DEW PNT RST",
+       "objectType": "BV",
+       "instance": 4
+      },
+      "modbus": {
+       "address": 1105,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Duct Static High Setp",
+      "shortName": "DSP HI SP",
+      "note": "The Duct Static Upper Setpoint (\"WG)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "DSP HI SP",
+       "objectType": "AV",
+       "instance": 3
+      },
+      "modbus": {
+       "address": 1028,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Duct Static Low Setp",
+      "shortName": "DSP LO SP",
+      "note": "The Duct Static Lower Setpoint (\"WG)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "DSP LO SP",
+       "objectType": "AV",
+       "instance": 4
+      },
+      "modbus": {
+       "address": 1029,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Duct Static Pres Rst Bas",
+      "shortName": "DSP RST BAS",
+      "note": "A BAS Entered Value that Results in a %Reset Down from the Duct Static High Limit Based on a Percent of the Difference Be- tween Duct Static High Limit and Duct Static Low Limit (%). “DUCT PRES RST BAS” Must be Enabled Using the Service Key to Use this Feature",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "DSP RST BAS",
+       "objectType": "AV",
+       "instance": 5
+      },
+      "modbus": {
+       "address": 1030,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Economizer Method Active",
+      "shortName": "ECON ME USED",
+      "note": "The Economizer Method being Used by the Control (1 - Dry Bulb; 2 - Single Enthalpy; 3 - Dual Enthalpy; 4 - Best Method; 5 - Waterside)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ECON ME USED",
+       "objectType": "AI",
+       "instance": 18
+      },
+      "modbus": {
+       "address": 531,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Economizer Installed",
+      "shortName": "ECONO IN- STAL",
+      "note": "Allows the Economizer Feature to be Turned On and Off (0 = Off / 1 = On)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ECONO IN- STAL"
+      },
+      "modbus": {
+       "address": 1106,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "BACnet OBJECT TYPE AND INSTANCE": "BV5, AV81"
+      },
+      "gaps": [
+       "오브젝트 표기를 못 갈랐다('BV5, AV81')"
+      ],
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Econo Method To Use",
+      "shortName": "ECONO METHOD",
+      "note": "The Economizer Method Selected for Use (0 - None; 1 - Dry Bulb; 2 - Single Enthalpy; 3 - Dual Enthalpy; 4 - Best Method; 5 - Water- side)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ECONO METHOD",
+       "objectType": "AV",
+       "instance": 6
+      },
+      "modbus": {
+       "address": 1031,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Economized Valve Position",
+      "shortName": "ECONO VALVE",
+      "note": "Current Output Value to the Waterside Economizer Valve from the Unit Controller.",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ECONO VALVE",
+       "objectType": "AI",
+       "instance": 16
+      },
+      "modbus": {
+       "address": 529,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Econo Sys Status",
+      "shortName": "ECON STA- TUS",
+      "note": "Status of the Economizer Option (0 - Normal Inactive; 1 - Normal Active; 2 - None; 3 - Dis- abled; 8 - Safety Lockout)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ECON STA- TUS",
+       "objectType": "AI",
+       "instance": 19
+      },
+      "modbus": {
+       "address": 532,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Econo method to use",
+      "shortName": "ECON METHOD",
+      "note": "The Economizer Method Selected for Use (0 - None; 1 - Dry Bulb; 2 - Single Enthalpy; 3 - Dual Enthalpy; 4 - Best Method; 5 - Water- side)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ECON METHOD",
+       "objectType": "AV",
+       "instance": 6
+      },
+      "modbus": {
+       "address": 1031,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 174,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Evap Leaving Air Temp High Setpoint",
+      "shortName": "EL AIR TMP H",
+      "note": "On a FlexSys Unit with Bypass this is the Supply Air Temperature High Setpoint (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "EL AIR TMP H",
+       "objectType": "AV",
+       "instance": 7
+      },
+      "modbus": {
+       "address": 1032,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Evap Leaving Air Temp Low Setpoint Flex Evap Temp Current",
+      "shortName": "EL AIR TMP L EVAP AIR TMP",
+      "note": "On a FlexSys Unit with Bypass this is the Supply Air Temperature Low Setpoint (F) Actual Temperature of Air Leaving the Evapo- rator Coil on a FlexSys Unit (F)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "EL AIR TMP L EVAP AIR TMP",
+       "objectType": "AV",
+       "instance": 8,
+       "alternates": [
+        "AI20"
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "MODBUS REGISTER ADDRESS": "1033 533"
+      },
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Status",
+      "shortName": "FILTER STATS",
+      "note": "Identifies the Status of the Binary Dirty Filter Input (NFL - No Fault; FLT - Faulted)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "FILTER STATS",
+       "objectType": "BI",
+       "instance": 25
+      },
+      "modbus": {
+       "address": 1306,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "FlexSys Reheat",
+      "shortName": "FLSYS RE- HEAT",
+      "note": "Allows for FlexSys Reheat to be Turned On and Off (0-Disabled; 1-Enabled)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "FLSYS RE- HEAT"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "BACnet OBJECT TYPE AND INSTANCE": "BV6-AV82"
+      },
+      "gaps": [
+       "오브젝트 표기를 못 갈랐다('BV6-AV82')"
+      ],
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Hot Water Frz Status",
+      "shortName": "FREEZESTAT",
+      "note": "The Status of the Freezestat Circuit on Units With Hot Water or Steam Heat. (FLT - Fault- ed / NFL - No Fault)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "FREEZESTAT",
+       "objectType": "BI",
+       "instance": 33
+      },
+      "modbus": {
+       "address": 1314,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Electric Heat Stage 1",
+      "shortName": "FURN OUT 1",
+      "note": "Identifies the Status of the Binary Output to The Indicated Heating Section (Off / On)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "FURN OUT 1",
+       "objectType": "BI",
+       "instance": 26
+      },
+      "modbus": {
+       "address": 1307,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Electric Heat Stage 2",
+      "shortName": "FURN OUT 2",
+      "note": "Identifies the Status of the Binary Output to The Indicated Heating Section (Off / On)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "FURN OUT 2",
+       "objectType": "BI",
+       "instance": 27
+      },
+      "modbus": {
+       "address": 1308,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Electric Heat Stage 3",
+      "shortName": "FURN OUT 3",
+      "note": "Identifies the Status of the Binary Output to the Indicated Heating Section (Off / On)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "FURN OUT 3",
+       "objectType": "BI",
+       "instance": 28
+      },
+      "modbus": {
+       "address": 1309,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Electric Heat Stage 4",
+      "shortName": "FURN OUT 4",
+      "note": "Identifies the Status of the Binary Output to the Indicated Heating Section (Off / On)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "FURN OUT 4",
+       "objectType": "BI",
+       "instance": 29
+      },
+      "modbus": {
+       "address": 1310,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating System",
+      "shortName": "HEAT EN- ABLE",
+      "note": "A Communicated Input that Allows the Heat- ing Function to be Turned On and Off (1 = Enabled; 0 = Disabled)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "HEAT EN- ABLE"
+      },
+      "modbus": {
+       "address": 1108,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "BACnet OBJECT TYPE AND INSTANCE": "AV83, BV7"
+      },
+      "gaps": [
+       "오브젝트 표기를 못 갈랐다('AV83, BV7')"
+      ],
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating Sat",
+      "shortName": "HEATING SAT",
+      "note": "The Heating Sat Setpoint for a VAV or Flex- Sys Unit (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "HEATING SAT",
+       "objectType": "AV",
+       "instance": 9
+      },
+      "modbus": {
+       "address": 1032,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating Valve",
+      "shortName": "HEATING VALV",
+      "note": "The Output from the Control to a Hot Water, Steam, or Modulating Gas Heat Valve (%)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "HEATING VALV",
+       "objectType": "AI",
+       "instance": 24
+      },
+      "modbus": {
+       "address": 537,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Electric Heat Stages",
+      "shortName": "HEAT STAG- ES",
+      "note": "Derived Value Showing the Number of Electric or Staged Gas Heat Stages Available (1 - 7)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "HEAT STAG- ES",
+       "objectType": "AI",
+       "instance": 23
+      },
+      "modbus": {
+       "address": 536,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating System Status",
+      "shortName": "HEATING STAT",
+      "note": "Identifies the Status of the Heat (0 - Normal - Inactive; 1 - Normal - Active; 2 - None; 3 - Disabled; 8 - Safety Lockout; 9 - Air Temper- ing)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "HEATING STAT",
+       "objectType": "AI",
+       "instance": 78
+      },
+      "modbus": {
+       "address": 591,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Heating Valve Action",
+      "shortName": "HEAT VAC- TION",
+      "note": "A Communicated Input That Allows the Heat- ing Valve Action To Be Changed (0 = Direct Acting; 1 = Reverse Acting)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "HEAT VAC- TION"
+      },
+      "modbus": {
+       "address": 1109,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "BACnet OBJECT TYPE AND INSTANCE": "AV84, BV8"
+      },
+      "gaps": [
+       "오브젝트 표기를 못 갈랐다('AV84, BV8')"
+      ],
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Local Stop",
+      "shortName": "LOCAL STOP",
+      "note": "Identifies the Status of the Hardwired Binary Input of the Local Stop (Run / Stp - Stop)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "LOCAL STOP",
+       "objectType": "BI",
+       "instance": 34
+      },
+      "modbus": {
+       "address": 1315,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Maximum Bypass",
+      "shortName": "MAX BY- PASS",
+      "note": "The Maximum Allowable Setting for the By- pass Damper in a FlexSys Unit (%)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "MAX BY- PASS",
+       "objectType": "AV",
+       "instance": 10
+      },
+      "modbus": {
+       "address": 1035,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Mixed Air Temp",
+      "shortName": "MIX AIR TEMP",
+      "note": "The Temperature of the Air Entering the Evaporator Coil",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "MIX AIR TEMP",
+       "objectType": "AI",
+       "instance": 79
+      },
+      "modbus": {
+       "address": 592,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Mixed Sat Limit",
+      "shortName": "MIXD SAT SP",
+      "note": "On a FlexSys Unit this is the Supply Air Setpoint when Operating without a Bypass Damper (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "MIXD SAT SP",
+       "objectType": "AV",
+       "instance": 14
+      },
+      "modbus": {
+       "address": 1039,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 175,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Morning Warm Up En- able Morning Warm Up Cmnd",
+      "shortName": "MORN WARM UP MORN WUP CMD",
+      "note": "A Communicated Input that Allows Morn- ing Warm Up to be Turned On and Off (0 = Enabled; 1 = Disabled) A BAS Generated Command to Allow the Morning Warm Up Feature to be Turned On and Off (0 = Off / 1 = On)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "MORN WARM UP MORN WUP CMD"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "BACnet OBJECT TYPE AND INSTANCE": "AV85, BV9 AV88, BV10",
+       "MODBUS REGISTER ADDRESS": "1110 1111"
+      },
+      "gaps": [
+       "오브젝트 표기를 못 갈랐다('AV85, BV9 AV88, BV10')"
+      ],
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Need for Dehumidifica- tion",
+      "shortName": "NEED DEHUMID",
+      "note": "Enables Dehumidification Process-FlexSys Only (On or Off)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "NEED DEHUMID",
+       "objectType": "BI",
+       "instance": 37
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Night Set Back (for Heating)",
+      "shortName": "NIGHT SET- BAC",
+      "note": "This Command Allows the Night Set Back Heating Function to be Turned On and Off (0 = Off / 1 = On)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "NIGHT SET- BAC"
+      },
+      "modbus": {
+       "address": 1112,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "BACnet OBJECT TYPE AND INSTANCE": "AV87, BV11"
+      },
+      "gaps": [
+       "오브젝트 표기를 못 갈랐다('AV87, BV11')"
+      ],
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "OA Damper",
+      "shortName": "OA DAMP- ER",
+      "note": "This is the Position of the Outdoor Damper (%)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OA DAMP- ER",
+       "objectType": "AI",
+       "instance": 25
+      },
+      "modbus": {
+       "address": 538,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "OA Damper Min Posi- tion",
+      "shortName": "OA DAMP MIN",
+      "note": "The Minimum Position for the Outdoor Air Damper when Using Fixed Ventilation Con- trol when the Supply Fan is at Full Speed (%)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OA DAMP MIN",
+       "objectType": "AV",
+       "instance": 16
+      },
+      "modbus": {
+       "address": 1041,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "OA Damper Max Posi- tion",
+      "shortName": "OA DAMP MAX",
+      "note": "The Minimum Position for the Outdoor Air Damper when Using Fixed Ventilation Con- trol when the Supply Fan is at 50% of Full Speed (%)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OA DAMP MAX",
+       "objectType": "AV",
+       "instance": 17
+      },
+      "modbus": {
+       "address": 1042,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Outside Air Enthalpy",
+      "shortName": "OA EN- THALPY",
+      "note": "Actual Outside Air Enthalpy (BTU/LB)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OA EN- THALPY",
+       "objectType": "AI",
+       "instance": 26
+      },
+      "modbus": {
+       "address": 539,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "OA Enthalpy Setp",
+      "shortName": "OA ENTH SP",
+      "note": "The Upper Enthalpy Limit to Allow the Use of Outdoor Air for Single or Dual Enthalpy Economizer (BTU/lb). NOTE: This value only appears if the unit has an airside economizer and is set to monitor the value.",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OA ENTH SP",
+       "objectType": "AV",
+       "instance": 18
+      },
+      "modbus": {
+       "address": 1043,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Outside Air Humidity",
+      "shortName": "OA REL HUMID",
+      "note": "Actual Outdoor Air Relative Humidity (%).",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OA REL HUMID",
+       "objectType": "AI",
+       "instance": 29
+      },
+      "modbus": {
+       "address": 542,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Outside Air Humidity Building Automation System (BAS)",
+      "shortName": "OA RH BAS",
+      "note": "Only available when AIRSIDE ECONO- MIZER is selected in OPTIONS. This is a communicated outside air humidity from the BAS. Default is 0% RH.",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OA RH BAS",
+       "objectType": "AV",
+       "instance": 50
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "MODBUS REGISTER ADDRESS": "Not Available"
+      },
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Outside Air Temperature (OAT) BAS",
+      "shortName": "OA TEMP",
+      "note": "Actual OAT (°F). NOTE: This value only ap- pears if the unit has an airside economizer and is set to monitor the value.",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OA TEMP",
+       "objectType": "AI",
+       "instance": 30
+      },
+      "modbus": {
+       "address": 543,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "OAT BAS",
+      "shortName": "OAT CURR BAS",
+      "note": "Only available when AIRSIDE ECONOMIZ- ER is selected in OPTIONS. This a commu- nicated OAT from the BAS. When the BAS points are enabled, the hardwired points are always a backup in case the values are lost. Default is 72.0°F.",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OAT CURR BAS",
+       "objectType": "AV",
+       "instance": 49
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "MODBUS REGISTER ADDRESS": "Not Available"
+      },
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "OAT for High SAT",
+      "shortName": "OAT HIGH SAT",
+      "note": "The Outdoor Temperature the Control Uses when Using Outdoor Air SAT Reset to Switch to the SAT High Limit Setpoint (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OAT HIGH SAT",
+       "objectType": "AV",
+       "instance": 19
+      },
+      "modbus": {
+       "address": 1044,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 176,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "OAT for Low SAT Occupancy Mode",
+      "shortName": "OAT LOW SAT OCC MODE",
+      "note": "The Outdoor Temperature the Control Uses when Using Outdoor Air SAT Reset to Switch to the SAT Low Limit Setpoint (F) Identifies the Occupied / Unoccupied Status with Hard Wired, Communicated or Internal Clock Schedule Input (ENA - Enabled-Occu- pied; DIS - Disabled - Unoccupied)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OAT LOW SAT OCC MODE",
+       "objectType": "AV",
+       "instance": 20,
+       "alternates": [
+        "BI35"
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "MODBUS REGISTER ADDRESS": "1045 1316"
+      },
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Occupancy State",
+      "shortName": "OCC STATE",
+      "note": "Identifies the Status of the Hardwired Binary Input (ENA - Enabled - Occupied; DIS - Dis- abled Unoccupied)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OCC STATE",
+       "objectType": "BI",
+       "instance": 36
+      },
+      "modbus": {
+       "address": 1317,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Occupancy Command",
+      "shortName": "OC- CUPNCY CMD",
+      "note": "This BAS Command Allows the Unit to be Placed in the Occupied or Unoccupied Mode (0 = Unoccupied / 1 = Occupied)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OC- CUPNCY CMD"
+      },
+      "modbus": {
+       "address": 1113,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "BACnet OBJECT TYPE AND INSTANCE": "AV88, BV12"
+      },
+      "gaps": [
+       "오브젝트 표기를 못 갈랐다('AV88, BV12')"
+      ],
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Occupied Zone Cooling Setp",
+      "shortName": "OCC ZN COOL",
+      "note": "The Occupied Zone Cooling Setpoint (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OCC ZN COOL",
+       "objectType": "AV",
+       "instance": 21
+      },
+      "modbus": {
+       "address": 1046,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Occupied Zone Heating Setp",
+      "shortName": "OCC ZN HEAT",
+      "note": "The Occupied Zone Heating Setpoint (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "OCC ZN HEAT",
+       "objectType": "AV",
+       "instance": 22
+      },
+      "modbus": {
+       "address": 1047,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Pressure Sp Min",
+      "shortName": "PR DIS SP- MIN",
+      "note": "Establishes the Minimum Discharge Pres- sure Setpoint for Condenser Water Control",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PR DIS SP- MIN",
+       "objectType": "AV",
+       "instance": 43
+      },
+      "modbus": {
+       "address": 1068,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Discharge Pressure Sp Max",
+      "shortName": "PR DIS SP- MAX",
+      "note": "Establishes the Minimum Discharge Pres- sure Setpoint for Condenser Water Control",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PR DIS SP- MAX",
+       "objectType": "AV",
+       "instance": 46
+      },
+      "modbus": {
+       "address": 1071,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Discharge A",
+      "shortName": "PRS A DISCH",
+      "note": "Actual Comp A Discharge Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS A DISCH",
+       "objectType": "AI",
+       "instance": 31
+      },
+      "modbus": {
+       "address": 544,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Suction A",
+      "shortName": "PRS A SUCTION",
+      "note": "Actual Comp A Suction Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS A SUCTION",
+       "objectType": "AI",
+       "instance": 32
+      },
+      "modbus": {
+       "address": 545,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Discharge B",
+      "shortName": "PRS B DISCH",
+      "note": "Actual Comp B Discharge Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS B DISCH",
+       "objectType": "AI",
+       "instance": 33
+      },
+      "modbus": {
+       "address": 546,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Suction B",
+      "shortName": "PRS B SUCTION",
+      "note": "Actual Comp B Suction Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS B SUCTION",
+       "objectType": "AI",
+       "instance": 34
+      },
+      "modbus": {
+       "address": 547,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Discharge C",
+      "shortName": "PRS C DISCH",
+      "note": "Actual Comp C Discharge Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS C DISCH",
+       "objectType": "AI",
+       "instance": 35
+      },
+      "modbus": {
+       "address": 548,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Suction C",
+      "shortName": "PRS C SUCTION",
+      "note": "Actual Comp C Suction Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS C SUCTION",
+       "objectType": "AI",
+       "instance": 36
+      },
+      "modbus": {
+       "address": 549,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Discharge D",
+      "shortName": "PRS D DISCH",
+      "note": "Actual Comp D Discharge Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS D DISCH",
+       "objectType": "AI",
+       "instance": 80
+      },
+      "modbus": {
+       "address": 593,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Suction D",
+      "shortName": "PRS D SUCTION",
+      "note": "Actual Comp D Suction Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS D SUCTION",
+       "objectType": "AI",
+       "instance": 83
+      },
+      "modbus": {
+       "address": 596,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Discharge E",
+      "shortName": "PRS E DISCH",
+      "note": "Actual Comp E Discharge Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS E DISCH",
+       "objectType": "AI",
+       "instance": 81
+      },
+      "modbus": {
+       "address": 594,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Suction E",
+      "shortName": "PRS E SUCTION",
+      "note": "Actual Comp E Suction Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS E SUCTION",
+       "objectType": "AI",
+       "instance": 84
+      },
+      "modbus": {
+       "address": 597,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Discharge F",
+      "shortName": "PRS F DISCH",
+      "note": "Actual Comp F Discharge Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS F DISCH",
+       "objectType": "AI",
+       "instance": 82
+      },
+      "modbus": {
+       "address": 595,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Pressures Suction F",
+      "shortName": "PRS F SUC- TION",
+      "note": "Actual Comp F Suction Pressure (PSI)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "PRS F SUC- TION",
+       "objectType": "AI",
+       "instance": 85
+      },
+      "modbus": {
+       "address": 598,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Air Differential BAS",
+      "shortName": "RA DIFF BAS",
+      "note": "A Value can be Provided by the BAS to Pro- vide a Return Air Differential. FlexSys Only.",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RA DIFF BAS",
+       "objectType": "AV",
+       "instance": 48
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 177,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "RAT Heating Setp RAT Cooling Setp",
+      "shortName": "RAT HEAT SP RAT COOL SP",
+      "note": "On a VAV or FlexSys Unit this is the Return Air Temperature Setpoint Used to Determine when the Unit Should Switch to the Heating Mode (F) On a VAV or FlexSys Unit this Value is Used to Determine when the Unit Should Switch to the Cooling Mode (F)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RAT HEAT SP RAT COOL SP",
+       "objectType": "AV",
+       "instance": 15,
+       "alternates": [
+        "AV23"
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "MODBUS REGISTER ADDRESS": "1040 1048"
+      },
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "RAT for High SAT",
+      "shortName": "RAT HIGH SAT",
+      "note": "The Return Temperature the Control Uses when Using Return Air SAT Reset to Switch to the SAT High Limit Setpoint (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RAT HIGH SAT",
+       "objectType": "AV",
+       "instance": 24
+      },
+      "modbus": {
+       "address": 1049,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "RAT for Low SAT",
+      "shortName": "RAT LOW SAT",
+      "note": "The Return Temperature the Control Uses when Using Return Air Sat Reset to Switch to the SAT Low Limit Setpoint (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RAT LOW SAT",
+       "objectType": "AV",
+       "instance": 25
+      },
+      "modbus": {
+       "address": 1050,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Ready to Run Comp A",
+      "shortName": "RDY RUN C1A",
+      "note": "Identifies if Compressor A is Ready to Run if the Compressor is Off (Yes / No)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RDY RUN C1A",
+       "objectType": "BI",
+       "instance": 40
+      },
+      "modbus": {
+       "address": 1321,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Ready to Run Comp D",
+      "shortName": "RDY RUN C2B",
+      "note": "Identifies if Compressor D is Ready to Run if the Compressor is Off (Yes / No)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RDY RUN C2B",
+       "objectType": "BI",
+       "instance": 43
+      },
+      "modbus": {
+       "address": 1324,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Ready to Run Comp E",
+      "shortName": "RDY RUN C3A",
+      "note": "Identifies if Compressor E is Ready to Run if the Compressor is Off (Yes / No)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RDY RUN C3A",
+       "objectType": "BI",
+       "instance": 44
+      },
+      "modbus": {
+       "address": 1325,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Ready to Run Comp F",
+      "shortName": "RDY RUN C3B",
+      "note": "Identifies if Compressor F is Ready to Run if the Compressor is Off (Yes / No)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RDY RUN C3B",
+       "objectType": "BI",
+       "instance": 45
+      },
+      "modbus": {
+       "address": 1326,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Ready to Stop Comp A",
+      "shortName": "RDY STOP C1A",
+      "note": "Identifies if Compressor A is Ready to Stop if the Compressor is Running (Yes / No)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RDY STOP C1A",
+       "objectType": "BI",
+       "instance": 46
+      },
+      "modbus": {
+       "address": 1327,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Ready to Stop Comp B",
+      "shortName": "RDY STOP C1B",
+      "note": "Identifies if Compressor B is Ready to Stop if the Compressor is Running (Yes / No)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RDY STOP C1B",
+       "objectType": "BI",
+       "instance": 47
+      },
+      "modbus": {
+       "address": 1328,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Ready to Stop Comp C",
+      "shortName": "RDY STOP C2A",
+      "note": "Identifies if Compressor C is Ready to Stop if the Compressor is Running (Yes / No)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RDY STOP C2A",
+       "objectType": "BI",
+       "instance": 48
+      },
+      "modbus": {
+       "address": 1329,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Ready to Stop Comp D",
+      "shortName": "RDY STOP C2B",
+      "note": "Identifies if Compressor D is Ready to Stop if the Compressor is Running (Yes / No)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RDY STOP C2B",
+       "objectType": "BI",
+       "instance": 49
+      },
+      "modbus": {
+       "address": 1330,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Ready to Stop Comp E",
+      "shortName": "RDY STOP C3A",
+      "note": "Identifies if Compressor E is Ready to Stop if the Compressor is Running (Yes / No)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RDY STOP C3A",
+       "objectType": "BI",
+       "instance": 50
+      },
+      "modbus": {
+       "address": 1331,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Ready to Stop Comp F",
+      "shortName": "RDY STOP C3B",
+      "note": "Identifies if Compressor F is Ready to Stop if the Compressor is Running (Yes / No)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RDY STOP C3B",
+       "objectType": "BI",
+       "instance": 51
+      },
+      "modbus": {
+       "address": 1332,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Active Bypass Active Sp",
+      "shortName": "RET AIR BY S",
+      "note": "A Derived Value for the Current Setpoint of the Return Air Bypass Damper on a FlexSys Unit (%)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RET AIR BY S",
+       "objectType": "AI",
+       "instance": 37
+      },
+      "modbus": {
+       "address": 550,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Air Enthalpy",
+      "shortName": "RET AIR ENTH",
+      "note": "Actual Return Air Enthalpy (BTU/LB)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RET AIR ENTH",
+       "objectType": "AI",
+       "instance": 38
+      },
+      "modbus": {
+       "address": 551,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Air Humidity",
+      "shortName": "RET AIR HUMD",
+      "note": "Actual Return Air Relative Humidity (%)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RET AIR HUMD",
+       "objectType": "AI",
+       "instance": 39
+      },
+      "modbus": {
+       "address": 552,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Return Air Temp",
+      "shortName": "RET AIR TEMP",
+      "note": "Actual Return Air Temperature (F)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RET AIR TEMP",
+       "objectType": "AI",
+       "instance": 40
+      },
+      "modbus": {
+       "address": 553,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Reset Enthalpy BAS",
+      "shortName": "RST ENT BAS",
+      "note": "A Value can be Provided by the BAS to Pro- vide a Reset Enthalpy. FlexSys Only.",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "RST ENT BAS",
+       "objectType": "AV",
+       "instance": 47
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "SAT High Setpoint",
+      "shortName": "SAT HIGH SP",
+      "note": "The Upper Limit for the Supply Air Tempera- ture Setpoint on a VAV Unit (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SAT HIGH SP",
+       "objectType": "AV",
+       "instance": 26
+      },
+      "modbus": {
+       "address": 1051,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "SAT Low Setpoint",
+      "shortName": "SAT LOW SP",
+      "note": "The Lower Limit for the Supply Air Tempera- ture Setpoint On a VAV Unit (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SAT LOW SP",
+       "objectType": "AV",
+       "instance": 27
+      },
+      "modbus": {
+       "address": 1052,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 178,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Supply Air Temp RST BAS",
+      "shortName": "SAT RST BAS",
+      "note": "This is an Analog Input from the BAS System that Allows the Reset of the Active Supply Air Temperature Setpoint on VAV Units. 0 Volts Uses SAT High Limit and 5 Volts Uses SAT Low Limit (V).",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SAT RST BAS",
+       "objectType": "AV",
+       "instance": 28
+      },
+      "modbus": {
+       "address": 1053,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "SAT Tempering Enable",
+      "shortName": "SAT TEM- PER",
+      "note": "Identifies if Supply Air Tempering is Turned On (DIS/ENA)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SAT TEM- PER",
+       "objectType": "BI",
+       "instance": 53
+      },
+      "modbus": {
+       "address": 1334,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "SF Proving Switch",
+      "shortName": "SF PROV SW",
+      "note": "The Status of the Supply Fan Air Proving Circuit (Run - Verification Circuit Closed / STO - Stop - Verification Circuit Open)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SF PROV SW",
+       "objectType": "BI",
+       "instance": 55
+      },
+      "modbus": {
+       "address": 1312,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "SF Speed for High SAT",
+      "shortName": "SF SPD H SAT",
+      "note": "The Fan Speed the Control Uses when Using Supply Fan Speed SAT Reset to Switch to The SAT High Limit Setpoint (%)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SF SPD H SAT",
+       "objectType": "AV",
+       "instance": 29
+      },
+      "modbus": {
+       "address": 1054,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "SF Speed for Low SAT",
+      "shortName": "SF SPD L SAT",
+      "note": "The Fan Speed the Control Uses when Using Supply Fan Speed SAT Reset to Switch to the SAT Low Limit Setpoint (%)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SF SPD L SAT",
+       "objectType": "AV",
+       "instance": 30
+      },
+      "modbus": {
+       "address": 1055,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "SF VFD Bypass Mode",
+      "shortName": "SF VFD BYPAS",
+      "note": "Identifies if a VFD Bypass is Installed. DIS = Installed ENA = Not Installed",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SF VFD BYPAS",
+       "objectType": "BI",
+       "instance": 70
+      },
+      "modbus": {
+       "address": 1351,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "SF VFD Bypass Mode",
+      "shortName": "SF VFD BP MO",
+      "note": "This Gives the Status of the VFD Bypass Mode (0 = VFD Active; 1 = VFD Bypassed)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SF VFD BP MO",
+       "objectType": "AI",
+       "instance": 86
+      },
+      "modbus": {
+       "address": 599,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Stage 1 Cooling",
+      "shortName": "STG 1 COOL",
+      "note": "For a Constant Volume Unit this is the Ac- tive SAT Setpoint for a First Stage Cooling Demand (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "STG 1 COOL",
+       "objectType": "AV",
+       "instance": 31
+      },
+      "modbus": {
+       "address": 1056,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Stage 1 Heating",
+      "shortName": "STG 1 HEAT",
+      "note": "For a Constant Volume Unit this is the Ac- tive SAT Setpoint for a First Stage Heating Demand (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "STG 1 HEAT",
+       "objectType": "AV",
+       "instance": 32
+      },
+      "modbus": {
+       "address": 1057,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Stage 2 Cooling",
+      "shortName": "STG 2 COOL",
+      "note": "For a Constant Volume Unit this is the Active SAT Setpoint for a Second Stage Cooling Demand (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "STG 2 COOL",
+       "objectType": "AV",
+       "instance": 33
+      },
+      "modbus": {
+       "address": 1058,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Stage 2 Heating",
+      "shortName": "STG 2 HEAT",
+      "note": "For a Constant Volume Unit this is the Active SAT Setpoint for a Second Stage Heating Demand (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "STG 2 HEAT",
+       "objectType": "AV",
+       "instance": 34
+      },
+      "modbus": {
+       "address": 1059,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Piezometer Airflow (Displayed in CFM)",
+      "shortName": "SPLY AIR- FLOW",
+      "note": "Piezometer installed from factory; the unit produces a value for airflow as cubic feet a Minute (CFM)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SPLY AIR- FLOW",
+       "objectType": "AI",
+       "instance": 92
+      },
+      "modbus": {
+       "address": 605,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Supply Air Temp",
+      "shortName": "SUP AIR TEMP",
+      "note": "Actual Supply Air Temperature (F)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SUP AIR TEMP",
+       "objectType": "AI",
+       "instance": 46
+      },
+      "modbus": {
+       "address": 559,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Supply Fan VFD",
+      "shortName": "SUP FAN VFD",
+      "note": "The Actual Output to the Supply Fan VFD (%)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SUP FAN VFD",
+       "objectType": "AI",
+       "instance": 48
+      },
+      "modbus": {
+       "address": 561,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Supply Fan",
+      "shortName": "SUPPLY FAN",
+      "note": "The Status of the Binary Output from the Controller to the Supply Fan Circuit (On / Off)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SUPPLY FAN",
+       "objectType": "BI",
+       "instance": 59
+      },
+      "modbus": {
+       "address": 1339,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Supply System Status",
+      "shortName": "SUPPLY STAT",
+      "note": "Identifei s the Status of the Supply System (0 - Normal - Inactive; 1 - Normal - Active; 5 - Warn- ing; 8 - Safety Lockout)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SUPPLY STAT",
+       "objectType": "AI",
+       "instance": 87
+      },
+      "modbus": {
+       "address": 600,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 179,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "System Stop",
+      "shortName": "SYSTEM STOP",
+      "note": "A 0- Value Allows all Compressors to Oper- ate; 1 - Turns Off Compressor System A; 2 - Turns Off Compressor System B; 3 - Turns Off Compressor System C",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "SYSTEM STOP",
+       "objectType": "AV",
+       "instance": 35
+      },
+      "modbus": {
+       "address": 1059,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 180,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Under Floor Dew Point",
+      "shortName": "UND FLR DEWP",
+      "note": "The Calculated Dew Point of the Air Under The Floor in a FlexSys System (%)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "UND FLR DEWP",
+       "objectType": "AI",
+       "instance": 55
+      },
+      "modbus": {
+       "address": 568,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 180,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Under Floor Humidity",
+      "shortName": "UND FLR HUMD",
+      "note": "Humidity Value of the Air Under the Floor the Control is Controlling to in a FlexSys System (%)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "UND FLR HUMD",
+       "objectType": "AI",
+       "instance": 56
+      },
+      "modbus": {
+       "address": 569,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 180,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Under Floor Temp",
+      "shortName": "UND FLR TEMP",
+      "note": "Temperature of the Air Under the Floor the Control is Controlling to in a FlexSys System (F)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "UND FLR TEMP",
+       "objectType": "AI",
+       "instance": 57
+      },
+      "modbus": {
+       "address": 570,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 180,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Under Floor Humidity BAS",
+      "shortName": "UND HUMD BAS",
+      "note": "This Allows the BAS System to Input a Under Floor Humidity Value to the Control on a FlexSys System (%) “Under FLR HUMI BAS” Must be Enabled Using the Service Key to Use this Feature",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "UND HUMD BAS",
+       "objectType": "AV",
+       "instance": 36
+      },
+      "modbus": {
+       "address": 1061,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 180,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Under Floor Temp Bas",
+      "shortName": "UND TEMP BAS",
+      "note": "This Allows the BAS System to Input a Under Floor Temperature Value to the Control on a FlexSys System (F). “Under FLR TEMP BAS” Must be Enabled Using the Service Key to Use this Feature",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "UND TEMP BAS",
+       "objectType": "AV",
+       "instance": 37
+      },
+      "modbus": {
+       "address": 1062,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 180,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Mode",
+      "shortName": "UNIT MODE",
+      "note": "0 - Occupied Cooling 1 - Occupied Cooling Low 2 - Occupied Cooling High 3 - Occupied Cooling with Bypass 4 - Occupied Cooling without Bypass 5 - Occupied Heating 6 - Occupied Heating Low 7 - Occupied Heating High 8 - Occupied Standby 9 - Unoccupied Cooling 10 - Unoccupied Cooling Low 11 - Unoccupied Cooling High 12 - Unoccupied Heating 13 - Unoccupied Heating Low 14 - Unoccupied Heating High 15 - Unoccupied Standby 16 - Comfort Vent Cooling 17 - Comfort Vent Heat 19 - Morning Warm Up 20 - Power Up Standby 21 - Flushing Econo Coil",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "UNIT MODE",
+       "objectType": "AI",
+       "instance": 58
+      },
+      "modbus": {
+       "address": 571,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 180,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Overall Status",
+      "shortName": "UNIT STAT",
+      "note": "Identifies the Unit Overall Status (0 - Local Stop; 1 - Run; 4 - Unit Lockout; 15 - Warning)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "UNIT STAT",
+       "objectType": "AI",
+       "instance": 88
+      },
+      "modbus": {
+       "address": 601,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 180,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Unit Stop Unoccupied Zone Cool- ing",
+      "shortName": "UNIT STOP UNOCC ZN COOL",
+      "note": "This Command Allows the Unit to Be Shut Down Through The Bas System (0 = Normal Operation/ 1 = Stopped The Unoccupied Zone Cooling Setpoint (F)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "UNIT STOP UNOCC ZN COOL"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "BACnet OBJECT TYPE AND INSTANCE": "AV93, BV17 AV38",
+       "MODBUS REGISTER ADDRESS": "1118 1063"
+      },
+      "gaps": [
+       "오브젝트 표기를 못 갈랐다('AV93, BV17 AV38')"
+      ],
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Unoccupied Zone Heat- ing",
+      "shortName": "UNOCC ZN HEAT",
+      "note": "The Unoccupied Zone Heating Setpoint (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "UNOCC ZN HEAT",
+       "objectType": "AV",
+       "instance": 39
+      },
+      "modbus": {
+       "address": 1064,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "VAV Heat",
+      "shortName": "VAV HEAT",
+      "note": "Identifies the Status of the Binary Output TP Energize a VAV Heat Relay (Off / On)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "VAV HEAT",
+       "objectType": "BI",
+       "instance": 61
+      },
+      "modbus": {
+       "address": 1342,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Ventilation Enable",
+      "shortName": "VENT EN- ABLE",
+      "note": "This Command Allows the Ventilation Func- tion to be Turned On or Off (0 = Off / 1 = On)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "VENT EN- ABLE"
+      },
+      "modbus": {
+       "address": 1120,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "sourceColumns": {
+       "BACnet OBJECT TYPE AND INSTANCE": "AV95, BV19"
+      },
+      "gaps": [
+       "오브젝트 표기를 못 갈랐다('AV95, BV19')"
+      ],
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Vent Sys Status",
+      "shortName": "VENT STAT",
+      "note": "Identifies the Status of the Ventilation System (0 - Normal - Inactive; 1 - Normal - Active; 3 - None; 4 - Disabled)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "VENT STAT",
+       "objectType": "AI",
+       "instance": 89
+      },
+      "modbus": {
+       "address": 602,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Water Econo Delta",
+      "shortName": "WTR ECN DLTA",
+      "note": "This Item is Used in the Determination of when Waterside Economizer becomes Active (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "WTR ECN DLTA",
+       "objectType": "AV",
+       "instance": 44
+      },
+      "modbus": {
+       "address": 1069,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Water Econo Min Pos",
+      "shortName": "WTR ECN MIN",
+      "note": "The Minimum Allowable Opening for the Water Economizer Valve (%)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "WTR ECN MIN",
+       "objectType": "AV",
+       "instance": 45
+      },
+      "modbus": {
+       "address": 1070,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Water Flow Switch",
+      "shortName": "WTR FLOW SW",
+      "note": "Identifies if a Water Flow Switch is Installed ENA = Not Installed DIS = Installed",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "WTR FLOW SW",
+       "objectType": "BI",
+       "instance": 71
+      },
+      "modbus": {
+       "address": 1352,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Water Temp Entering",
+      "shortName": "WTR TEMP ENT",
+      "note": "The Temperature of the Condenser Water Entering the Unit",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "WTR TEMP ENT",
+       "objectType": "AI",
+       "instance": 90
+      },
+      "modbus": {
+       "address": 603,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Water Temp Leaving",
+      "shortName": "WTR TEMP LEV",
+      "note": "The Temperature of the Condenser Water Leaving the Unit",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "WTR TEMP LEV",
+       "objectType": "AI",
+       "instance": 91
+      },
+      "modbus": {
+       "address": 604,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Zone Temp",
+      "shortName": "ZONE TEMP",
+      "note": "Zone Temperature the Control is Controlling to (F)",
+      "readWrite": "R"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ZONE TEMP",
+       "objectType": "AI",
+       "instance": 60
+      },
+      "modbus": {
+       "address": 573,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    },
+    {
+     "common": {
+      "name": "Zone Temp BAS",
+      "shortName": "ZONE TMP BAS",
+      "note": "This Allows the BAS System to Input a Zone Temperature Value to the Control on a Con- stant Volume Unit with Communicated Zone Control (F)",
+      "readWrite": "R/W"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectName": "ZONE TMP BAS",
+       "objectType": "AV",
+       "instance": 40
+      },
+      "modbus": {
+       "address": 1065,
+       "addressBase": "unknown"
+      }
+     },
+     "provenance": {
+      "sourceFile": "JCI_IOM_145.05-NOM7.pdf",
+      "sourcePage": 181,
+      "family": "IPU/Series-100",
+      "interfaceId": "iom_145-05-nom7"
+     }
+    }
+   ],
+   "sourcePages": [
+    172,
+    181
+   ],
+   "note": "파서 vendor_jci_ipu · 원문 IOM 본문"
   }
  ],
- "summary": "BAS 포인트 표 1판에서 취입 — 오브젝트 4점",
+ "summary": "BAS 포인트 표 2판에서 취입 — 오브젝트 169점",
  "comm": [
   [
    "BACnet",
    "IPU/Series-100",
    "—",
-   "포인트 리스트 1판"
+   "포인트 리스트 2판"
   ],
   [
    "Modbus",
    "IPU/Series-100",
    "—",
-   "포인트 리스트 1판"
+   "포인트 리스트 2판"
   ]
  ]
 }

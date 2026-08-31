@@ -42,6 +42,12 @@ from collections import Counter
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 SCAN = os.path.join(DATA, "jci-body-scan.json")
+# 본문 스캔은 두 번 돌았다. 첫 판(jci-body-scan)은 1,492건 대상이라
+# 덕트·옥상형 포털을 다 덮지 못했고, 두 번째 판(jci-duct-verdict)이 1,207건을
+# 전수로 다시 훑어 L-Series 같은 누락분을 찾아냈다. 둘 다 스캔 산출물이라
+# 손으로 옮겨 적지 않고 여기서 합쳐 읽는다 — 한쪽만 보면 뒤에 찾은 문서가
+# 제품명을 잃고 파일이름으로 새 모델을 만들어 버린다.
+VERDICT = os.path.join(DATA, "jci-duct-verdict.json")
 RAW = os.path.join(DATA, "raw", "_scan_jci")
 FAMILY = "IPU/Series-100"
 sys.path.insert(0, HERE)
@@ -70,9 +76,56 @@ OBJ2 = re.compile(r"^([A-Za-z]{2,3}\s*\d{1,4})(?:\s+([A-Za-z]{2,3}\s*\d{1,4}))+$
 RW = {"R": "R", "W": "W", "R/W": "R/W", "RW": "R/W", "W/R": "R/W"}
 
 
+# 첨자를 받을 수 있는 원소 기호 — validate.SUBSCRIPT 와 같은 집합을 쓴다.
+# 넓히면(H·O·N 같은 한 글자) 'AI 2' 같은 멀쩡한 값까지 붙여 버린다.
+_ELEM = re.compile(r"\b(?:Re)?(?:CO|NO|SO|NH|CH)\b(?!\d)")
+# 첨자 줄 — 숫자만 있다. 한 줄에 첨자가 둘이면 '2 2' 로 온다.
+# 뒤에 '_' 가 붙어 오는 판도 있다('CO 1 OUT\n2_ _'): 원문의 밑줄이 첨자와 함께
+# 이 줄로 밀려난 것이다. 그 밑줄은 앞 줄의 공백 자리로 돌아가야 한다.
+_SUBLINE = re.compile(r"^(\d(?:\s+\d)*)((?:\s*_)*)$")
+
+
+def join_subscripts(s):
+    """아래첨자를 제자리에 되돌린다.
+
+    PyMuPDF 는 CO2 의 '2' 를 **제 줄로** 떼어낸다 — 셀 원문이 실제로 이렇게 온다:
+        'CO Level Of The\n2\nOutside Air'        -> CO2 Level Of The Outside Air
+        'Displays the actual OA air CO (PPM)\n2' -> ... CO2 (PPM)
+        'CO level. "CO lvl inside BAS" must\n2 2\n...'  첨자 둘이 한 줄에 온다
+    그냥 줄바꿈을 공백으로 바꾸면 'CO Level Of The 2 Outside Air' 로 굳는다.
+    각주 번호처럼 보여 검수를 통과한다 — 실제로 113건이 확정본에 들어갔었다(67fd3b6).
+    그때는 데이터만 고쳐 재파싱하면 되살아났다. 여기서 자리를 잡아야 끝난다.
+
+    ⚠ 숫자 개수와 앞 줄의 첨자 없는 원소 기호 개수가 **딱 맞을 때만** 붙인다.
+       어긋나면 손대지 않는다 — 짐작으로 채우면 시뮬레이터가 그대로 믿는다.
+       안 붙인 것은 validate 의 subscript-split 경고가 잡는다.
+    """
+    out = []
+    for ln in (s or "").split("\n"):
+        t = ln.strip()
+        m0 = _SUBLINE.match(t) if (out and t) else None
+        if m0:
+            digits = m0.group(1).split()
+            unders = m0.group(2).count("_")
+            spots = list(_ELEM.finditer(out[-1]))
+            if len(spots) == len(digits):
+                prev = out[-1]
+                for m, d in reversed(list(zip(spots, digits))):
+                    prev = prev[:m.end()] + d + prev[m.end():]
+                # 밀려난 밑줄 되돌리기 — 개수가 앞 줄 공백 수와 **딱 맞을 때만**.
+                # 'CO 1 OUT' + '2_ _' → 공백 2 · 밑줄 2 → 'CO2_1_OUT'. 어긋나면
+                # 어느 공백이 밑줄이었는지 알 수 없으므로 손대지 않는다.
+                if unders and unders == prev.count(" "):
+                    prev = prev.replace(" ", "_")
+                out[-1] = prev
+                continue
+        out.append(ln)
+    return "\n".join(out)
+
+
 def clean(v):
     """조판 아티팩트를 먼저 지운다 — 게이트를 그 앞에 걸면 오염된 값이 통과한다."""
-    s = (v or "").replace("\n", " ")
+    s = join_subscripts(v).replace("\n", " ")
     s = re.sub(r"(?:\s+_)+\s*$", "", s)          # 꼬리 '_ _'
     s = re.sub(r"\s+_\s+", " ", s)               # 낱말 사이에 홀로 선 '_'
     return re.sub(r"\s+", " ", s).strip()
@@ -278,6 +331,12 @@ def docs():
         for h in hits:
             if h["id"] in name_of:
                 by_file[name_of[h["id"]]] = h
+    if os.path.exists(VERDICT):
+        import sources as SRC
+        name_of = {i: n for i, _s, n in getattr(SRC, "JCI_IOM_POINTS", [])}
+        for h in json.load(io.open(VERDICT, encoding="utf-8"))["판정"]:
+            if h.get("id") in name_of:
+                by_file.setdefault(name_of[h["id"]], h)
     for path in collect.files_of(SOURCE):
         h = by_file.get(os.path.basename(path)) or {"id": os.path.basename(path),
                                                     "title": os.path.basename(path)}

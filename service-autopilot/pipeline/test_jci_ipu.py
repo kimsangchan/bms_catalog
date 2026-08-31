@@ -224,5 +224,48 @@ class IpuIngestTest(unittest.TestCase):
             self.assertIn("모델 0건 · 새 오브젝트 0점", out.getvalue())
 
 
+class JoinSubscripts(unittest.TestCase):
+    """아래첨자를 제자리에 되돌리는가.
+
+    왜 시험이 필요한가
+      PyMuPDF 는 CO2 의 '2' 를 제 줄로 떼어낸다. 예전에는 그것이 'CO … 2' 로 굳어
+      113건이 확정본에 들어갔고(67fd3b6), 그때는 **데이터만** 고쳐서 재파싱하면
+      되살아났다 — 2026-08-31 에 실제로 되살아나 YPAL 40건을 덮었다.
+      미끼는 전부 원문 셀에서 그대로 가져온 것이다(NOM10 p132 · jim-e-0119 p194).
+    """
+
+    def eq(self, raw, want):
+        self.assertEqual(IPU.clean(raw), want)
+
+    def test_subscript_between_lines(self):
+        self.eq("CO Level Of The\n2\nOutside Air", "CO2 Level Of The Outside Air")
+
+    def test_subscript_at_tail(self):
+        self.eq("Displays the actual OA air CO (PPM)\n2",
+                "Displays the actual OA air CO2 (PPM)")
+
+    def test_two_subscripts_on_one_line(self):
+        self.eq('CO level. "CO lvl inside BAS" must\n2 2\nbe enabled',
+                'CO2 level. "CO2 lvl inside BAS" must be enabled')
+
+    def test_displaced_underscores_return(self):
+        # 밑줄이 첨자와 함께 밀려난 판 — 개수가 앞 줄 공백과 맞으면 되돌린다
+        self.eq("CO 1 OUT\n2_ _", "CO2_1_OUT")
+        self.eq("CO OFFSET\n2_", "CO2_OFFSET")
+
+    def test_underscore_count_mismatch_left_alone(self):
+        # 밑줄 1개 · 공백 2개 — 어느 자리였는지 모른다. 짐작하지 않는다.
+        self.eq("CO A B\n2_", "CO2 A B")
+
+    def test_non_element_tokens_untouched(self):
+        # 'AI 2' 는 객체 타입과 인스턴스다 — 붙이면 주소가 깨진다
+        self.eq("AI\n2", "AI 2")
+        self.eq("Circuit\n2", "Circuit 2")
+
+    def test_element_count_mismatch_left_alone(self):
+        # 원소 하나에 숫자 둘 — 어느 것이 첨자인지 모른다
+        self.eq("CO Level\n2 2", "CO Level 2 2")
+
+
 if __name__ == "__main__":
     unittest.main()

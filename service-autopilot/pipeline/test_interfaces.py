@@ -110,5 +110,58 @@ class InterfaceGateTest(unittest.TestCase):
         self.assertIn(("E", "point-shape"), codes(model(interfaces=[iface(points=[p])])))
 
 
+class SubscriptSplit(unittest.TestCase):
+    """아래첨자가 떨어진 글자를 인터페이스 포인트에서도 잡는가.
+
+    왜 여기 있나
+      67fd3b6 이 데이터 113건을 고치고 가드를 넣었지만 그 가드는 **평면 points 만**
+      읽었다. 인터페이스형 모델은 평면이 0점이라 아무것도 못 봤고, 2026-08-31
+      `--apply-iom` 재실행이 YPAL 40건을 다시 깨뜨렸을 때도 경고 수가 그대로였다.
+      파서는 아직 CO₂ 를 흩으므로 재파싱 때마다 되살아난다 — 이 시험이 그 자리를 지킨다.
+      미끼 글자는 실제로 파서가 뱉은 것이다(JCI_IOM_100.50-NOM10.pdf).
+    """
+
+    def fires(self, **common):
+        p = point()
+        p["common"].update(common)
+        return ("W", "subscript-split") in codes(model(interfaces=[iface(points=[p])]))
+
+    def test_broken_name_fires(self):
+        self.assertTrue(self.fires(name="CO Level Of The 2 Outside Air"))
+
+    def test_broken_trailing_digit_fires(self):
+        self.assertTrue(self.fires(name="CO Offset SP 2"))
+
+    def test_broken_note_fires(self):
+        self.assertTrue(self.fires(note="Displays the actual OA air CO (PPM) 2"))
+
+    def test_broken_short_name_fires(self):
+        self.assertTrue(self.fires(shortName="CO 1 OUT 2_"))
+
+    def test_broken_state_label_fires(self):
+        self.assertTrue(self.fires(
+            states=[{"code": "1", "label": "1=CO 2=CO and air flow boost 2, 2"}]))
+
+    def test_broken_alt_name_fires(self):
+        self.assertTrue(self.fires(altNames=["CO LVL Inside 2 Value BAS"]))
+
+    def test_intact_subscript_is_quiet(self):
+        # 파서가 제대로 뽑은 것들 — 여기서 울리면 가드가 못 쓰게 된다
+        self.assertFalse(self.fires(name="CO2 Level Of The Outside Air"))
+        self.assertFalse(self.fires(shortName="CO2 1 OUT"))
+        self.assertFalse(self.fires(note="Actual indoor CO2 value (PPM)"))
+
+    def test_ordinary_trailing_numbers_are_quiet(self):
+        # 각주가 아니라 진짜 일련번호인 이름들 — 실제 카탈로그에 있다
+        self.assertFalse(self.fires(name="Circuit 2"))
+        self.assertFalse(self.fires(name="Comp VFD Alarms 1"))
+        self.assertFalse(self.fires(name="Configuration of I/O 1"))
+
+    def test_colorado_and_cutout_are_quiet(self):
+        # 67fd3b6 이 오탐으로 확인한 2건 — CO 가 Cutout·콜로라도주다
+        self.assertFalse(self.fires(name="COND REFRIG HI PRESS CO"))
+        self.assertFalse(self.fires(note="3=Pueblo, CO, USA"))
+
+
 if __name__ == "__main__":
     unittest.main()

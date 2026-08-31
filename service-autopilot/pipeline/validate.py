@@ -39,6 +39,25 @@ SUBSCRIPT = re.compile(
     r"|^(?=.*\b(?:Re)?CO\b(?!\d))(?=.*\s\d(?:\s|$))")
 
 
+def point_texts(p):
+    """포인트 하나가 담은 **사람이 읽는 문자열** 전부 → [(자리, 글자)].
+
+    이름만 보면 안 된다. 아래첨자가 떨어진 113건(67fd3b6)은 name·shortName·note·
+    열거값 label 에 고루 퍼져 있었다 — 한 자리만 지키면 나머지로 다시 들어온다.
+    """
+    c = p.get("common") or {}
+    for k in ("name", "shortName", "note"):
+        v = c.get(k)
+        if isinstance(v, str):
+            yield k, v
+    for v in (c.get("altNames") or []):
+        if isinstance(v, str):
+            yield "altNames", v
+    for st in (c.get("states") or []):
+        if isinstance(st, dict) and isinstance(st.get("label"), str):
+            yield "states.label", st["label"]
+
+
 def load_all():
     eq = {}
     for f in glob.glob(os.path.join(DATA, "equips", "*.json")):
@@ -298,7 +317,13 @@ def check_interfaces(m, add):
         bad, shape_bad, orphan, blkuse = (collections.Counter(), collections.Counter(),
                                           0, collections.Counter())
         longname, outrange = [], []
+        sub, sub_ex = collections.Counter(), []
         for p in pts:
+            for where, text in point_texts(p):
+                if SUBSCRIPT.search(text):
+                    sub[where] += 1
+                    if len(sub_ex) < 1:
+                        sub_ex.append(text)
             for top in p:
                 if top not in ("common", "blocks", "provenance"):
                     bad["최상위 %s" % top] += 1
@@ -348,6 +373,15 @@ def check_interfaces(m, add):
         if outrange:
             add("E", "point-instance", "%s: BACnet 인스턴스 범위 밖 %d점 예: %s"
                 % (iid, len(outrange), outrange[0]))
+        # 아래첨자가 떨어진 글자 — 평면 points 만 보던 검사(5a)를 인터페이스로 넓힌다.
+        # 이 모델들은 평면 0점·인터페이스 수천 점이라, 넓히기 전에는 깨진 채로 돌려도
+        # 경고 수가 그대로였다(2026-08-31 YPAL 40건 실증). 파서가 아직 CO₂ 를 흩으므로
+        # 재파싱 때마다 되살아난다 — 확정본을 덮기 전에 여기서 걸린다.
+        if sub:
+            add("W", "subscript-split",
+                "%s: 아래첨자가 떨어진 듯한 글자 %d건 (%s) 예: %r — 원문 대조 필요"
+                % (iid, sum(sub.values()),
+                   ", ".join("%s×%d" % kv for kv in sub.most_common(3)), sub_ex[0]))
         if longname:
             add("W", "point-longname", "%s: 이름 %d자 초과 %d점 — 설명 문단이 눌러붙었는지 확인: %r"
                 % (iid, vs["nameMaxLen"], len(longname), longname[0][:48]))
