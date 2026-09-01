@@ -248,6 +248,26 @@ JCI_CORROBORATION = [
 ]
 
 
+# Verasys VEC100 Generic RTU Controller 응용 노트 5종.
+# 덕트 포털을 **고친 문턱으로 다시 훑어** 나왔다 — 옛 문턱은 이 표를 버렸다.
+# 다섯이 재수록이 아니다: 쌍별 겹침 64~96%, 총 1,141행 → 고유 359 (조사 실측).
+# 하드웨어는 다섯 다 같은 LC-VEC100-0 이고 응용(난방·냉방 조합)만 다르므로
+# 모델 하나에 판 다섯으로 담는다.
+# ⚠ 이 표에는 **주소 열이 없다** — 매핑에 바로 못 쓰는 목록이다(계통 note 참조).
+JCI_VEC100_POINTS = [
+    ("HRkXqkar~UGfQYaDLNyt9g", "ductedsystems",
+     "JCI_VEC100_ModHeat-StgCool.pdf"),
+    ("X8u4VJtz2FVqimqlA0aeAg", "ductedsystems",
+     "JCI_VEC100_StgHeat-StgCool.pdf"),
+    ("lQwfdioPna0dkLOWucNrrg", "ductedsystems",
+     "JCI_VEC100_HeatPump.pdf"),
+    ("giiRvbxi0uOPF9g9oiwdGg", "ductedsystems",
+     "JCI_VEC100_StgHeat-ModCool.pdf"),
+    ("LzKJ8ISx2qUGoVkew3V_Dg", "ductedsystems",
+     "JCI_VEC100_ModHeat-ModCool.pdf"),
+]
+
+
 SOURCES = [
     {
         "id": "trane-points-list",
@@ -1164,6 +1184,23 @@ SOURCES = [
         "rename": {_JCI_KHUB % (site, i): n for i, site, n in JCI_CORROBORATION},
         "extractor": "none",
         "access": "무로그인",
+    },
+    {
+        "id": "jci-vec100-points",
+        "vendor": "Johnson Controls",
+        "kind": "포인트리스트",
+        "note": "Verasys VEC100 컨트롤러가 SBH 화면에 내보이는 메뉴 항목. 열은 "
+                "Object or parameter|Description|Adjustable|Defaults|"
+                "Enum set or range 다섯이고 **주소 열이 없다**. 표가 메뉴별 소표 "
+                "43~47개로 쪼개져 실리며 캡션의 메뉴 경로가 행 정체성의 절반이다 "
+                "— 같은 이름이 메뉴 여럿에 되풀이된다. 파서는 vendor_jci_vec100.py.",
+        "enumerate": "list",
+        "urls": [_JCI_KHUB % (site, i) for i, site, _n in JCI_VEC100_POINTS],
+        "rename": {_JCI_KHUB % (site, i): n for i, site, n in JCI_VEC100_POINTS},
+        "extractor": "vendor",
+        "access": "무로그인",
+        # 주소가 없어 줄 읽기 경로가 짝을 만들 열쇠가 없다 — 계통 전용 대조를 쓴다
+        "crosscheck_unreliable": r"JCI_VEC100_",
     },
 ]
 

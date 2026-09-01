@@ -2091,6 +2091,7 @@ XC_ADAPTERS = {
     "APOGEE/FLN": "vendor_jci_fln",
     "Drive/Modbus": "vendor_jci_ayk_modbus",
     "AirHandling/Modbus": "vendor_jci_air",
+    "Verasys/Menu": "vendor_jci_vec100",
 }
 
 
@@ -2114,7 +2115,12 @@ def refresh_model_meta(rec, path):
         mod = XC_ADAPTERS.get(fam)
         if not pl or not mod:
             continue
-        parts.append(__import__(mod).crosscheck(path, pl))
+        # ⚠ **판마다 제 원문으로** 대조한다. 경로 하나로 전부 대조하면 판이 여럿인
+        #   모델에서 남의 문서와 맞추게 된다 — VEC100 판 다섯이 그래서 90.2% 가
+        #   나왔다(데이터가 아니라 대조기가 틀린 것이다).
+        src = os.path.join(DATA, "raw", it.get("sourceFile") or "")
+        parts.append(__import__(mod).crosscheck(
+            src if os.path.exists(src) else path, pl))
     if parts:
         both = sum(x["both"] for x in parts)
         hit = sum(round(x["rate"] * x["both"]) for x in parts)
@@ -2131,6 +2137,125 @@ def refresh_model_meta(rec, path):
     rec["summary"] = "%s %d판에서 취입 — 오브젝트 %d점" % (
         " · ".join(fams) or "포인트 표", len(ifs), n)
     return rec
+
+
+# 문서(응용) → 판 id·라벨. 하드웨어는 다섯 다 같은 LC-VEC100-0 이고 응용만 다르므로
+# 모델 하나에 판 다섯으로 담는다.
+VEC100_IFACES = {
+    "JCI_VEC100_ModHeat-StgCool.pdf": ("an-modheat-stgcool", "변조 난방 · 단계 냉방"),
+    "JCI_VEC100_StgHeat-StgCool.pdf": ("an-stgheat-stgcool", "단계 난방 · 단계 냉방"),
+    "JCI_VEC100_HeatPump.pdf": ("an-heatpump", "히트펌프"),
+    "JCI_VEC100_StgHeat-ModCool.pdf": ("an-stgheat-modcool", "단계 난방 · 변조 냉방"),
+    "JCI_VEC100_ModHeat-ModCool.pdf": ("an-modheat-modcool", "변조 난방 · 변조 냉방"),
+}
+VEC100_MODEL = "Verasys VEC100 Generic RTU Controller"
+
+
+def apply_vec100(dry=False):
+    """VEC100 SBH 메뉴 항목 표 → 모델 하나에 판 다섯.
+
+    ⚠ 이 계통은 **주소가 없다** — blocks 를 못 만든다. 매핑에 바로 쓰는 목록이 아니라
+      이름·읽기쓰기·기본값·범위를 아는 목록이다. validate 의 points-unaddressed 가
+      그 수를 매번 드러낸다.
+    ⚠ 표가 메뉴별 소표로 쪼개져 실리고 **캡션의 메뉴 경로가 행 정체성의 절반**이다.
+      이름만으로 합치면 서로 다른 오브젝트가 뭉개진다(PID 파라미터 세 메뉴가 그렇다).
+    """
+    import vendor_jci_vec100 as V
+    import vendor_jci_ipu as IPU
+    import fitz
+    import scan_jci as SC
+
+    made = pts_total = 0
+    mid = S.model_id("Johnson Controls", VEC100_MODEL)
+    path_m = os.path.join(DATA, "models", mid + ".json")
+    rec = None
+    if os.path.exists(path_m):
+        with open(path_m, encoding="utf-8") as f:
+            rec = json.load(f)
+    before = json.dumps(rec, ensure_ascii=False, sort_keys=True) if rec else None
+    first_path = None
+
+    for path in sorted(CO.files_of(V.SOURCE)):
+        fname = os.path.basename(path)
+        spec = VEC100_IFACES.get(fname)
+        if not spec:
+            print("  \u26a0 %s \u2014 \ud310 \uc790\ub9ac\uac00 \uc815\ud574\uc9c0\uc9c0 \uc54a\uc558\ub2e4" % fname)
+            continue
+        iid, label = spec
+        rows_in = []
+        doc = fitz.open(path)
+        for pi in range(doc.page_count):
+            caps = [l.strip() for l in doc[pi].get_text().splitlines()
+                    if l.strip().lower().startswith("table ")]
+            try:
+                tabs = doc[pi].find_tables().tables
+            except Exception:
+                continue
+            for ti, t in enumerate(tabs):
+                data = t.extract()
+                if len(data) < 2:
+                    continue
+                hd = SC.table_header(data)
+                head = " | ".join((x or "").replace("\n", " ").strip() for x in data[0])
+                if not V.is_point_table(head) and not (hd and V.is_point_table(hd[0])):
+                    continue
+                menu = V.menu_of(caps[ti] if ti < len(caps) else (caps[0] if caps else ""))
+                for r in data[(hd[1] if hd else 1):]:
+                    cells = [IPU.join_subscripts(x or "").replace("\n", " ").strip()
+                             for x in r]
+                    if any(cells):
+                        rows_in.append((pi + 1, menu, cells))
+        doc.close()
+        points, skipped = V.parse_rows(rows_in, fname)
+        print("  \u00b7 %-38s %4d\uc810 %s" % (fname[:38], len(points), skipped or ""))
+        if not points:
+            continue
+        first_path = first_path or path
+        for pt in points:
+            pt["provenance"]["interfaceId"] = iid
+        iface = {"id": iid, "label": "%s (%s)" % (label, VEC100_MODEL),
+                 "family": V.FAMILY, "protocols": [], "sourceFile": fname,
+                 "sourcePages": sorted({pt["provenance"]["sourcePage"] for pt in points}),
+                 "pointCount": len(points), "status": "extracted",
+                 "note": "SBH \ud654\uba74\uc758 \uba54\ub274 \ud56d\ubaa9\uc774\ub2e4 \u2014 \uc624\ube0c\uc81d\ud2b8\ubcc4 \uc8fc\uc18c\uac00 \uc6d0\ubb38\uc5d0 "
+                         "\uc5c6\uc5b4 \ub9e4\ud551\uc5d0 \ubc14\ub85c \ubabb \uc4f4\ub2e4. \uac19\uc740 \uc774\ub984\uc774 \uba54\ub274 \uc5ec\ub7ff\uc5d0 \ub418\ud480\uc774\ub418\ubbc0\ub85c "
+                         "\uc5f4\uc1e0\ub294 (\uba54\ub274 \uacbd\ub85c, \uc774\ub984)\uc774\ub2e4 \u2014 common.group \uc5d0 \uacbd\ub85c\uac00 \uc788\ub2e4.",
+                 "points": points}
+        if rec is None:
+            rec = {"id": mid, "equipId": "e5", "vendor": "Johnson Controls",
+                   "model": VEC100_MODEL,
+                   "name": "Verasys VEC100 \ubc94\uc6a9 \uc625\uc0c1\ud615 \ucee8\ud2b8\ub864\ub7ec",
+                   "cat": "HVAC.AIR.RTU", "tag": "rooftop", "tags": ["rooftop"],
+                   "status": "active", "has": {"spec": False, "points": True},
+                   "ede": False, "spec": [], "io": [], "elec": None, "points": [],
+                   "classifiedBy": "Verasys \uc751\uc6a9 \ub178\ud2b8 \u2014 Generic RTU Controller",
+                   "gap": "\uc815\uaca9\u00b7\ud615\ubc88\uc774 \uc5c6\uace0 **\uc624\ube0c\uc81d\ud2b8\ubcc4 \uc8fc\uc18c\ub3c4 \uc5c6\ub2e4**. \uc751\uc6a9 \ub178\ud2b8\uac00 "
+                          "SBH \uba54\ub274 \ud56d\ubaa9\ub9cc \uc900\ub2e4 \u2014 \ubb38\uc11c\uac00 \ubc1d\ud788\ub294 \uc8fc\uc18c\ub294 \uc7a5\uce58 \uc218\uc900\ubfd0\uc774\ub2e4"
+                          "(\ucee8\ud2b8\ub864\ub7ec \uc8fc\uc18c 4~127 \u00b7 BACnet ID). \uc624\ube0c\uc81d\ud2b8 \ub9e4\ud551\uc740 \ub2e4\ub978 \ubb38\uc11c\uac00 \ud544\uc694\ud558\ub2e4.",
+                   "extractor": "vendor_jci_vec100", "sourceDoc": fname,
+                   "interfaces": []}
+        old = [i for i in (rec.get("interfaces") or [])
+               if not (i.get("id") == iid and i.get("sourceFile") == fname)]
+        rec["interfaces"] = old + [iface]
+        pts_total += len(points)
+
+    if rec is None:
+        print("\n\ubaa8\ub378 0\uac74")
+        return 0
+    refresh_model_meta(rec, first_path)
+    n = sum(i["pointCount"] for i in rec["interfaces"])
+    if before is not None and json.dumps(rec, ensure_ascii=False, sort_keys=True) == before:
+        print("    \u21b7 %s \u2014 \uc774\ubbf8 \ucde8\uc785\ud55c \ud310, \ubcc0\uacbd \uc5c6\uc74c" % mid)
+        return 0
+    made = 1
+    if dry:
+        print("    (dry) %s \u2014 \ud310 %d \u00b7 %d\uc810" % (mid, len(rec["interfaces"]), n))
+    else:
+        with open(path_m, "w", encoding="utf-8") as f:
+            json.dump(rec, f, ensure_ascii=False, indent=1)
+        print("    \u2192 %s \u2014 \ud310 %d \u00b7 %d\uc810" % (mid, len(rec["interfaces"]), n))
+    print("\n\ubaa8\ub378 %d\uac74 \u00b7 \uc0c8 \uc624\ube0c\uc81d\ud2b8 %d\uc810" % (made, pts_total))
+    return 0
 
 
 def apply_ayk_modbus(dry=False):
@@ -2524,6 +2649,8 @@ def main(argv):
     ap.add_argument("--apply", action="store_true", help="모델 레코드 생성")
     ap.add_argument("--dry", action="store_true", help="파싱은 하되 쓰지 않는다")
     ap.add_argument("--no-crosscheck", action="store_true", help="교차 대조 건너뛰기")
+    ap.add_argument("--apply-vec100", action="store_true",
+                    help="Verasys VEC100 SBH 메뉴 항목 취입 (주소 없는 목록)")
     ap.add_argument("--apply-ayk-modbus", action="store_true",
                     help="AYK550 4xxxx 고정 레지스터 창 취입 (FLN 판과 같은 문서)")
     ap.add_argument("--apply-fln", action="store_true",
@@ -2550,6 +2677,8 @@ def main(argv):
     a = ap.parse_args(argv)
     if a.audit_pages:
         return audit_pages(only=a.only)
+    if a.apply_vec100:
+        return apply_vec100(dry=a.dry)
     if a.apply_ayk_modbus:
         return apply_ayk_modbus(dry=a.dry)
     if a.apply_fln:

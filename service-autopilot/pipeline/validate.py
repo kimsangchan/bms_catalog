@@ -150,6 +150,7 @@ def check_model(m, eq, kg):
 
     check_raw_address_shown(m, add)
     check_conditional_notes(m, add)
+    check_unaddressed(m, add)
 
     # 7) 교차 대조 ★ 정답셋을 사람이 못 따라갈 때의 자동 방어선
     #    표 인식과 다른 경로(줄 읽기)로 원문을 한 번 더 읽어 비교한 결과를 쓴다.
@@ -490,6 +491,25 @@ REVIEW_PAGES = (("review/equip-catalog.html", "build.py"),
 # (어느 형번에 그 점이 있나)이지 운전 조건이 아니다.
 COND_NOTE = re.compile(r"\b(?:supported\s+only\s+if|only\s+(?:if|when)|valid\s+only|"
                        r"requires?\s+that|applies\s+only)\b", re.I)
+
+
+def check_unaddressed(m, add):
+    """주소 블록이 없는 포인트 수 — 매핑에 바로 못 쓰는 점이 몇인가.
+
+    카탈로그의 목적 하나가 "모델만 고르면 오브젝트 매핑이 자동으로" 인데, 주소가 없는
+    점은 그 일을 못 한다. 이름·읽기쓰기·기본값만 아는 목록이다. 섞어서 한 수로 세면
+    "오브젝트 N점" 이 두 가지 다른 것을 뜻하게 된다 — 그래서 매번 수를 드러낸다.
+    (Verasys VEC100 처럼 원문에 주소 열이 아예 없는 계통이 있다.)
+    """
+    n = 0
+    for it in (m.get("interfaces") or []):
+        for p in (it.get("points") or []):
+            b = p.get("blocks") or {}
+            if not b or not any(b.values()):
+                n += 1
+    if n:
+        add("I", "points-unaddressed",
+            "주소 블록이 없는 포인트 %d점 — 이름·설정만 아는 목록이라 매핑에 바로 못 쓴다" % n)
 
 
 def check_conditional_notes(m, add):

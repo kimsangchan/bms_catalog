@@ -668,6 +668,10 @@ class DatasetBuildTest(unittest.TestCase):
             # YKL 은 IOM 본문의 Modbus 레지스터 표만 가졌다 — 정격도 형번도 없다.
             # 사다리를 넓혀서 될 일이 아니라 제품 카탈로그를 더 받아야 하는 일이다.
             "johnson-controls-york-ykl-compact-low-profile-ahu",
+            # VEC100 은 응용 노트라 정격도 형번도 없다. 더욱이 오브젝트별 **주소도**
+            # 없는 메뉴 항목 목록이다(validate 의 points-unaddressed 가 그 수를 드러낸다).
+            # 사다리를 넓혀서 될 일이 아니라 제품 카탈로그가 따로 있어야 한다.
+            "johnson-controls-verasys-vec100-generic-rtu-controller",
         })
 
     def test_aaon_cabinet_text_yields_units_with_iom_tonnage(self):
