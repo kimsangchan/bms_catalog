@@ -1257,7 +1257,7 @@ function ifCell(v){
 }
 var IFCOLS = [['n','오브젝트명'],['s','짧은 이름'],['b','BACnet'],['m','Modbus'],['d','N2'],
               ['l','LON'],['y','York Talk'],['k','YT 종별'],['g','Logix'],['u','단위'],
-              ['w','R/W'],['a','적용 조건'],['t','상태·열거'],['o','비고'],['p','쪽']];
+              ['w','R/W'],['a','형번 적용'],['t','상태·열거'],['o','비고'],['p','쪽']];
 // 판 표 필터 상태 — 다른 판·모델에서는 의미가 없으므로 표 키가 달라지면 통째로 버린다
 var ifFkey = '', ifF = {pr:{}, rw:'', st:false, av:false};
 function renderInterfaces(m){
@@ -1335,12 +1335,17 @@ function renderInterfaces(m){
   var fch = prCols.map(function(c){ return ifc('pr', c[0], c[1], ifF.pr[c[0]]); })
     .concat(Object.keys(rwSet).sort().map(function(v){ return ifc('rw', v, v, ifF.rw===v); }))
     .concat(hasT ? [ifc('st','1','상태·열거 있음',ifF.st)] : [])
-    .concat(hasA ? [ifc('av','1','적용 조건 있음',ifF.av)] : []);
+    .concat(hasA ? [ifc('av','1','형번 적용 있음',ifF.av)] : []);
   if(fch.length) h += '<div class="iffbar">' + fch.join('')
     + (fon ? '<span class="ifn">'+pts.length+' / '+(it.points||[]).length+'행</span>' : '')
     + '</div>';
   var rows = pts.map(function(pp){
-    return use.map(function(c){ return esc(ifCell(pp[c[0]])); }); });
+    // 주소 칸은 **원문 표기를 앞세운다.** 정규화 값만 보이면 매뉴얼에서 그 줄을
+    // 못 찾는다 — 40001 은 표기이고 전문 주소는 0 이다. 둘 다 있어야 대조가 된다.
+    return use.map(function(c){
+      if(c[0]==='m' && pp.mr !== undefined && pp.mr !== null && pp.mr !== '')
+        return esc(pp.mr + ' (주소 ' + ifCell(pp.m) + ')');
+      return esc(ifCell(pp[c[0]])); }); });
   h += '<div class="qrow"><span class="qsrc">'+esc(it.label||'')+'</span>'
      + csvBtn(tkey, safeName(m.vendor+'_'+m.model+'_'+it.id)+'.csv',
               use.map(function(c){ return c[1]; }), rows, '이 판 CSV')

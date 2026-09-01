@@ -148,6 +148,9 @@ def check_model(m, eq, kg):
         add("W", "name-repeat", "같은 이름이 여러 인스턴스에: %s"
             % ", ".join("%r×%d" % (n[:28], c) for n, c in rep))
 
+    check_raw_address_shown(m, add)
+    check_conditional_notes(m, add)
+
     # 7) 교차 대조 ★ 정답셋을 사람이 못 따라갈 때의 자동 방어선
     #    표 인식과 다른 경로(줄 읽기)로 원문을 한 번 더 읽어 비교한 결과를 쓴다.
     xc = m.get("crosscheck")
@@ -476,6 +479,84 @@ def check_curated_units(m, add):
         add("I", "units-ok", "형번 확정본 %d건 (사람 확인 %d)" % (len(curated), n_ver))
 
 
+REVIEW_PAGES = (("review/equip-catalog.html", "build.py"),
+                ("review/jci-ingest.html", "ingest_jci.py --export"))
+
+
+# 비고에만 글로 남은 운전 조건 — 구조가 없어 걸러 볼 수 없다.
+# 'Supported only if the drive is configured to use the YORK Drives Profile (5305 = 0)'
+# 같은 문장이다. 조건이 사라진 것은 아니지만 필터로는 못 잡으니, 몇 점이 그런지
+# 드러내 둔다. 지어내서 availability 에 밀어 넣지 않는다 — 그 칸은 **형번 적용**
+# (어느 형번에 그 점이 있나)이지 운전 조건이 아니다.
+COND_NOTE = re.compile(r"\b(?:supported\s+only\s+if|only\s+(?:if|when)|valid\s+only|"
+                       r"requires?\s+that|applies\s+only)\b", re.I)
+
+
+def check_conditional_notes(m, add):
+    n = 0
+    for it in (m.get("interfaces") or []):
+        for pt in (it.get("points") or []):
+            c = pt.get("common") or {}
+            if c.get("availability"):
+                continue
+            if COND_NOTE.search(c.get("note") or ""):
+                n += 1
+    if n:
+        add("I", "condition-in-note",
+            "운전 조건이 비고에 글로만 있는 포인트 %d점 — 필터로는 못 거른다 "
+            "(구조화하려면 사전에 자리를 먼저 만들어야 한다)" % n)
+
+
+def check_review_pages():
+    """검토 화면이 데이터보다 낡았나 → [(등급, 코드, 메시지)].
+
+    왜 게이트가 필요한가
+      두 화면은 데이터에서 **구워 내는 것**이라 취입 뒤 안 구우면 조용히 낡는다.
+      하루에 두 번 그렇게 뒤처졌고, 둘 다 사용자가 화면을 열어 보고서야 드러났다
+      ("왜 안 나오지"). 파일 시각을 일부러 보지 않으면 알 수가 없다 — 사람 기억에
+      맡길 일이 아니다.
+    """
+    import glob as _g
+    root = os.path.dirname(DATA)
+    newest, newest_f = 0, ""
+    for f in _g.glob(os.path.join(DATA, "models", "*.json")):
+        t = os.path.getmtime(f)
+        if t > newest:
+            newest, newest_f = t, os.path.basename(f)
+    out = []
+    for rel, how in REVIEW_PAGES:
+        path = os.path.join(os.path.dirname(root), *rel.split("/"))
+        if not os.path.exists(path):
+            out.append(("I", "review-missing",
+                        "%s 가 없다 — 만들려면: %s" % (rel, how)))
+            continue
+        if newest and os.path.getmtime(path) < newest:
+            out.append(("W", "review-stale",
+                        "%s 가 데이터보다 낡았다 (최근 모델 %s) — 다시 구워라: %s"
+                        % (rel, newest_f, how)))
+    return out
+
+
+def check_raw_address_shown(m, add):
+    """주소 원문 표기가 화면으로 나가는가.
+
+    정규화 값만 실으면 매뉴얼에서 그 줄을 못 찾는다 — 화면의 '0' 을 보고 "이게 뭐냐"
+    는 물음이 실제로 나왔고, 재 보니 252점이 그 상태였다(40001→0 · '{03}'→3).
+    {03} 은 중괄호가 "필드 패널에서 unbundle 가능" 이라는 뜻이라 표기가 사라지면
+    정보 자체가 없어진다. 새 계통을 넣을 때마다 같은 함정이 재현되므로 게이트로 건다.
+    """
+    import ingest_jci as I
+
+    miss = 0
+    for it in (m.get("interfaces") or []):
+        for pt in (it.get("points") or []):
+            if I.raw_addr(pt) and I.view_point(pt).get("mr") is None:
+                miss += 1
+    if miss:
+        add("E", "raw-address-hidden",
+            "주소 원문 표기가 화면으로 안 나가는 포인트 %d점 — 매뉴얼과 대조할 수 없다" % miss)
+
+
 def main(argv):
     eq, md, docs, kg = load_all()
     only = None
@@ -502,6 +583,14 @@ def main(argv):
             print("\n■ %s  (%s · 포인트 %d)" % (cur, m["vendor"], n_points(m)))
         mark = {"E": "✗ 오류", "W": "△ 경고", "I": "· 정보"}[r["level"]]
         print("   %s [%s] %s" % (mark, r["code"], r["message"]))
+    if not only:
+        gl = check_review_pages()
+        if gl:
+            print("\n■ 검토 화면")
+            for lv, code, msg in gl:
+                tally[lv] += 1
+                print("   %s [%s] %s"
+                      % ({"E": "✗ 오류", "W": "△ 경고", "I": "· 정보"}[lv], code, msg))
     print("\n" + "─" * 72)
     print("모델 %d건 검사 — 오류 %d · 경고 %d · 정보 %d"
           % (len(md) if not only else 1, tally["E"], tally["W"], tally["I"]))

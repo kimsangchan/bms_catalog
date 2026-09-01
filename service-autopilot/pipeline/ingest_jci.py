@@ -1193,12 +1193,12 @@ function chipTail(x){ return x.id.replace(/^[a-z0-9]+-/, ''); }
 // description 열이 있는데 반영이 안 됐다"는 오해가 실제로 있었다(오브젝트명이 그것이다).
 var COLS = [['n','오브젝트명','POINT LIST DESCRIPTION'],
             ['s','짧은 이름','ISN LINC Descriptive Text'],
-            ['b','BACnet'],['m','Modbus'],['d','N2'],['l','LON'],
+            ['b','BACnet'],['m','Modbus','원문 표기가 다르면 «원문 (주소 N)» 로 적는다'],['d','N2'],['l','LON'],
             ['y','York Talk','ENG PAGE REF'],['k','YT 종별','York Talk Point Type'],
             ['c','문자 위치','York Talk Character Position'],
             ['x','ASCII 쪽','ASCII PAGE REF'],
             ['g','Logix'],['u','단위'],
-            ['w','R/W'],['a','적용 조건'],['t','상태·열거'],['o','비고'],['p','쪽']];
+            ['w','R/W'],['a','형번 적용','availability — 어느 형번에 그 점이 있나'],['t','상태·열거'],['o','비고'],['p','쪽']];
 
 // ── 진행 현황 ────────────────────────────────────────────────────────────────
 // "어디까지 됐나"에 답하는 화면. 두 축으로 본다 — 설비 타입별로 무엇이 쌓였나,
@@ -1393,6 +1393,7 @@ function render(){
   // 필터 칩 — 이미 데이터에 있는 열쇠만 쓴다. 프로토콜은 이 판이 실제로 가진 블록만,
   // t·a·u 는 값이 없어도 세운다(흐리게 남는 것 자체가 "이 판에는 없다"는 정보다).
   var chips = [];
+  // 주소 칸은 원문 표기를 앞세운다 — 매뉴얼과 대조하려면 40001 로 찾아야 한다
   [['b','BACnet'],['m','Modbus'],['d','N2'],['l','LON'],['y','York Talk'],['g','Logix']]
     .forEach(function(c){
       if(it.points.some(function(p){ return p[c[0]] !== undefined; }))
@@ -1401,7 +1402,10 @@ function render(){
   var rws = {};
   it.points.forEach(function(p){ if(p.w) rws[p.w] = 1; });
   Object.keys(rws).sort().forEach(function(v){ chips.push({k:'rw:' + v, lbl:'R/W ' + v}); });
-  [['t','상태·열거 있음'],['a','적용 조건 있음'],['u','단위 있음']].forEach(function(c){
+  // '형번 적용' 은 availability(어느 형번에 그 점이 있나)를 센다. 운전 조건
+  // ('YORK Drives Profile 일 때만 유효' 같은 것)은 비고에 글로 있고 이 칩이
+  // 세지 않는다 — 이름을 '적용 조건' 으로 두면 0 을 보고 조건이 없다고 읽는다.
+  [['t','상태·열거 있음'],['a','형번 적용 있음'],['u','단위 있음']].forEach(function(c){
     chips.push({k:'has:' + c[0], lbl:c[1]}); });
   // 켜진 칩은 전부 AND — rw 는 값 일치, 나머지는 그 열쇠의 존재로 본다
   function chipPass(k, p){
@@ -1499,6 +1503,11 @@ function render(){
         var at = p.p ? (' class="src" data-src="' + esc(it.src) + '" data-pg="' + p.p + '"') : '';
         return '<tr' + at + '>' + use.map(function(c){
           var v = p[c[0]];
+          // 주소 칸은 **원문 표기를 앞세운다.** 정규화 값만 보이면 매뉴얼에서 그 줄을
+          // 못 찾는다 — 화면의 '0' 을 보고 "이게 뭐냐" 는 물음이 실제로 나왔다.
+          // 40001 은 표기이고 전문 주소는 0 이다. 둘 다 있어야 대조가 된다.
+          if(c[0] === 'm' && p.mr !== undefined && p.mr !== null)
+            v = p.mr + ' (주소 ' + v + ')';
           var cls = (c[0] === 'n' || c[0] === 'o' || c[0] === 't') ? 'nm' : 'num mono';
           return '<td class="' + cls + '">' + esc(v === undefined ? '' : v) + '</td>';
         }).join('') + '</tr>';
@@ -1750,6 +1759,37 @@ def _charpos(v):
     return str(a) if b in (None, a) else "%s~%s" % (a, b)
 
 
+# 주소 열의 **원문 표기**가 정규화 값과 다를 때가 있다. 화면이 정규화 값만 실으면
+# 매뉴얼과 대조를 못 한다 — 사용자가 화면의 '0' 을 보고 "이게 뭐냐" 고 물어서 드러났다.
+# 실측 252점이 그랬다: YKL·AYK550 Modbus 는 40001 → 0, AYK550 FLN 은 '{03}' → 3.
+# {03} 은 더 나쁘다 — 중괄호가 "필드 패널에서 unbundle 가능" 이라는 뜻인데(원문 각주)
+# 화면에서 통째로 사라졌다.
+RAW_ADDR_COLUMNS = ("PLC register Address", "Modbus Register", "Point #",
+                    "Register Address")
+
+
+def raw_addr(p):
+    """포인트의 주소 원문 표기 — 정규화 값과 **다를 때만** 돌려준다.
+
+    같으면 None 이라 화면이 군더더기를 안 그린다.
+    """
+    b = p.get("blocks") or {}
+    shown = None
+    for blk in ("modbus", "fln", "bacnet"):
+        v = (b.get(blk) or {}).get("address")
+        if v is not None:
+            shown = str(v)
+            break
+    if shown is None:
+        return None
+    sc = (p.get("provenance") or {}).get("sourceColumns") or {}
+    for k in RAW_ADDR_COLUMNS:
+        if k in sc:
+            raw = str(sc[k]).strip()
+            return raw if raw and raw != shown else None
+    return None
+
+
 def view_point(p):
     """포인트 레코드 → 화면용 짧은 열쇠. 값이 있는 것만 담는다."""
     c = p.get("common") or {}
@@ -1764,7 +1804,7 @@ def view_point(p):
             obj += " /" + ",".join(bac["alternates"])
     row = {
         "n": c.get("name") or lon.get("nvName") or "", "s": c.get("shortName"),
-        "b": obj or None, "m": mb.get("address"),
+        "b": obj or None, "m": mb.get("address"), "mr": raw_addr(p),
         "d": ("%s %s" % (n2.get("pointType") or "", n2.get("address"))).strip() if n2 else None,
         "l": lon.get("snvtType"),
         # asciiPageRef 는 제 열('x')이 생겼다 — 여기 대신 넣으면 ENG/ASCII 구분이 사라진다
