@@ -260,7 +260,10 @@ class HeaderMarkTest(unittest.TestCase):
 HERE = os.path.dirname(os.path.abspath(__file__))
 SI0371 = os.path.join(HERE, "data", "raw", "JCI_SC-EQ-Firmware-3.0.0.1114-SI0371.pdf")
 # 짝 문서는 대장에 없다(판으로 삼지 않았다) — 전수 스캔본에서만 온다
-N1 = os.path.join(HERE, "data", "raw", "_scan_jci", "2P~o78Hw6Zd~F~_z12AEMg.pdf")
+# ⚠ 스캔 임시 폴더(_scan_jci)를 가리키면 안 된다 — scan_jci 가 안 걸린 원문을
+#   지우므로 재훑기 한 번에 사라지고 이 시험이 조용히 skip 이 된다(실제로 그랬다).
+#   소스 jci-corroboration 으로 등록했으니 collect.py --run 으로 재현된다.
+N1 = os.path.join(HERE, "data", "raw", "JCI_SC-EQ-Card-Install-450.50-N1.pdf")
 
 
 class RealDocumentTest(unittest.TestCase):

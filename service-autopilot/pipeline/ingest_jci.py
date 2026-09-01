@@ -1679,17 +1679,32 @@ KNOWN_GAPS = [
 ]
 
 
+def taken_doc_ids():
+    """이미 등록한 JCI 문서 id 전부 → set.
+
+    ⚠ 이름 붙은 목록(JCI_BAS_POINTS 등) 넷만 세면 안 된다. JCI khub 문서를 담은
+      소스는 **아홉 개**이고, 낱개로 등록된 것도 있다(jci-simplicity-se ·
+      jci-york-techguide-* 는 문서 1건씩이라 목록 상수가 없다).
+      네 목록만 보고 "새로 나온 11건" 이라고 셌다가 하나가 이미 취입된 것이었다 —
+      소스 대장이 정본이니 거기서 만든다. 새 소스를 추가해도 저절로 따라온다.
+    """
+    out = set()
+    for src in SRC.SOURCES:
+        for u in (src.get("urls") or []):
+            m = re.search(r"docs\.johnsoncontrols\.com/[^/]+/api/khub/documents/"
+                          r"([^/]+)/content", u)
+            if m:
+                out.add(m.group(1))
+    return out
+
+
 def coverage():
     """포털 스냅샷 대비 취입률. 스냅샷이 없으면 빈 값 — 화면이 그 절을 생략한다."""
     if not os.path.exists(SNAPSHOT):
         return []
     with open(SNAPSHOT, encoding="utf-8") as f:
         snap = json.load(f)
-    # 취입 집합은 **등록한 목록 전부**다. BAS 만 세면 IOM 17건·공조기 3건이
-    # 미취입으로 보인다 — 남은 일을 실제보다 많게 보여 준다.
-    taken = {i for lst in (SRC.JCI_BAS_POINTS, SRC.JCI_IOM_POINTS,
-                           SRC.JCI_AIR_POINTS, SRC.JCI_FLN_POINTS)
-             for i, _s, _n in lst}
+    taken = taken_doc_ids()
     out = []
     for site, lst in snap.items():
         # ⚠ 분모를 제목 힌트로만 만들면 안 된다 — IOM·공조기는 **제목에 낌새가 없어**
@@ -2242,7 +2257,15 @@ def apply_fln(dry=False):
         for pt in points:
             pt["provenance"]["interfaceId"] = iid
         pages = sorted({pt["provenance"]["sourcePage"] for pt in points})
-        iface = {"id": iid, "label": "APOGEE P1/FLN \ud3ec\uc778\ud2b8 \ub370\uc774\ud130\ubca0\uc774\uc2a4",
+        # 라벨은 화면에서 혼자 읽힌다. "포인트 데이터베이스" 는 원문 용어지만
+        # (문서가 표를 FLN Point Database 라 부른다) 그대로 쓰면 "DB 기반이냐" 로
+        # 읽힌다 — 실제로 그 물음을 받았다. 원문 p181 이 프로토콜이라고 밝힌다:
+        #   "The FLN (Floor Level Network) Fieldbus protocol is a serial communication
+        #    protocol, used by the Siemens APOGEE system."
+        #   "based on an industry standard RS-485 physical interface."
+        # 그래서 라벨에서 프로토콜임을 바로 알 수 있게 적는다.
+        iface = {"id": iid,
+                 "label": "APOGEE P1/FLN 포인트 목록 (Siemens 현장버스 · RS-485)",
                  "family": F.FAMILY, "protocols": ["fln"], "sourceFile": fname,
                  "sourcePages": pages, "pointCount": len(points),
                  "appliesTo": ["AYK550-UH 1-150 HP", "AYK550-UH 1-400 HP"],

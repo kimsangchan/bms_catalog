@@ -52,16 +52,34 @@ L-Series 를 넣으려 `--apply-iom` 을 돌렸더니 **YPAL 의 CO2 40건이 �
 - ⚠ 취입 뒤에는 화면을 다시 굽는다: `python build.py` · `python ingest_jci.py --export`.
   하루에 두 번 잊었다 — 이제 `validate.py` 가 잡아 준다.
 
-### [1순위-A] 덕트 재훑기로 새로 나온 11건 취입 — **여기부터**
-`data/jci-duct-rescan.json` 의 새 11건(2,861행). 큰 것부터:
-1. `Technical Guide: Smart Equipment™ Controls` 811행 (p36~)
-2. `Technical Supplement: Simplicity SE Point Mapping (Firmware v1072)` 553행 (p1~)
-3. `VEC100 Generic RTU Controller` 5종 189~229행 — 난방·냉방 조합별로 갈린 판이다.
-   ⚠ 서로 재수록일 수 있다. **취입 전에 행 글자를 대조해 갈라라**(YKH↔YKL 이 100%
-   같았던 전례). 방법은 `data/_air_rows.json` 을 만든 방식 그대로.
-4. `TempMaster OmniElite` · `YORK YPAL` Control Sequence 200·172행 — 기존 모델에
-   판을 잇는 것일 수 있다(같은 제품군이 이미 있다).
-5. `JDMA Series` Makeup Air 58행
+### [1순위-A] 취입 대기 — **조사 끝났다. 여기부터**
+
+⚠ **행수는 포인트 수가 아니다.** 아래는 문서를 열어 본 뒤의 수다(fable 조사 5갈래).
+
+| 갈래 | 행 | 고유 포인트 | 판정 |
+|---|---|---|---|
+| **VEC100 5종** | 1,141 | **359** | ✅ 재수록 아님(쌍별 겹침 64~96%). 새 모델 + 판 5 |
+| **JDMA** | 58 | **80** | ✅ 새 모델. BACnet 80 + Lon 80 = 같은 점, 창구 둘 |
+| **Smart Equipment** | 811 | 421 | ⚠ 기존 Simplicity SE 모델(364점)이 **순부분집합** — 신규 57점. **정본 결정 필요** |
+| Control Sequence 2종 | 372 | 185 | ❌ **취입 안 함** — 355점 전부 기존 판에 주소까지 일치 |
+| Simplicity SE | 553 | — | ❌ **이미 취입됨**(`jci-simplicity-se`) |
+
+1. **VEC100 359점** — 새 모델(하드웨어 동일 `LC-VEC100-0`), 응용별 판 5개.
+   주소 열이 없다(SBH 메뉴 오브젝트). 새 어댑터 필요.
+2. **JDMA 80점** — 새 모델. DOAS 하위형식이 `cat` 어휘에 없어 신설 여부 결정 필요.
+   새 어댑터 필요(머리글 `BMS Address | Name NV | TypeNV`).
+3. **Smart Equipment 421점** — 표 둘(BACnet+Modbus 9열 408행 · N2 6열 371행).
+   ⚠ 기존 flat 364점과 완전히 겹친다 — **같은 포인트가 카탈로그에 두 번 나오지 않게**
+   flat→interfaces 이관인지 새 판을 정본으로 세울지 먼저 정한다.
+   ⚠ `ROUTES` 의 SC-EQ 표식(`Long Name`)이 N2 표 머리글에 걸린다 — 라우팅 충돌 주의.
+
+### [1순위-B] 냉동기 재훑기 결과 취입 — **중복 판정 먼저**
+`data/jci-chiller-rescan.json` — 2,525건 전수(오류 0) · 적중 86 · **새것 29건 1,727행**.
+"냉동기 59/59 닫힘" 도 옛 문턱 안에서의 이야기였다.
+- 693행 `YKEP Mod A Control Panel` · 194행 `SC-EQ Firmware V4.3` · 108행 다제품
+- ⚠ 83~86행짜리 **7건**(`YCAL`·`YCIV`·`YLUA`·`QCC3` 계열)은 이름 패턴이 비슷해
+  **서로 재수록일 가능성이 높다.** VEC100 처럼 열어서 행 글자를 대조해 갈라라 —
+  덕트에서 Control Sequence 355점을 복제할 뻔한 자리와 같다.
 
 ### [1순위] 오브젝트 계속 채우기
 1. ✅ **L-Series 취입 완료** (2026-08-31) — `145.05-NOM7` `Table 42` p172~181 **165점**.
@@ -119,7 +137,7 @@ L-Series 를 넣으려 `--apply-iom` 을 돌렸더니 **YPAL 의 CO2 40건이 �
    - ⚠ 남은 한계: 두 줄 머리글인데 0행만으로도 표식이 걸리는 판(AYK550)은 둘째 줄을
      본문으로 세어 표마다 한 행씩 많다. 이 수는 **후보 규모**일 뿐 취입 수가 아니다.
 
-2-c. **[반쯤 끝남] 옛 문턱으로 낸 분모 다시 훑기**
+2-c. **[끝남] 옛 문턱으로 낸 분모 다시 훑기 — 두 포털 다 했다**
    ✅ **덕트 1,207건 재훑기 완료** (2026-08-31) — 오류 0, 적중 **29건**.
    그중 **11건 2,861행이 새로 걸렸다** — "덕트 100% 확인"은 사실이 아니었다.
    근거 `data/jci-duct-rescan.json` · 코퍼스 `data/_jci_duct_all_corpus.json`.
@@ -131,7 +149,8 @@ L-Series 를 넣으려 `--apply-iom` 을 돌렸더니 **YPAL 의 CO2 40건이 �
    | 229·228·216·205·189 | `VEC100 Generic RTU Controller` 5종 |
    | 200·172 | `TempMaster OmniElite` · `YORK YPAL` Control Sequence |
    | 58 | `JDMA Series` Makeup Air |
-   ⏳ **냉동기 2,525건은 아직 안 했다.** 같은 방법으로 하면 된다.
+   ✅ **냉동기 2,525건 재훑기 완료** (2026-09-01) — 오류 0 · 적중 86 · **새것 29건 1,727행**.
+   근거 `data/jci-chiller-rescan.json` · 코퍼스 `data/_jci_chiller_all_corpus.json`.
    ⚠ `--out` 을 반드시 새 이름으로 준다. 기본값 `jci-body-scan.json` 은 IOM 취입
    경로(`vendor_jci_ipu.docs()`)가 읽는 파일이다.
 3. **`industrialrefrigeration` 6건 확인** — `UniSAB 4 Modbus Communications Setup Guide`

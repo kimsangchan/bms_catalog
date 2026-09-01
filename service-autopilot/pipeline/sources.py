@@ -238,6 +238,16 @@ JCI_FLN_POINTS = [
 ]
 
 
+# 취입하지 않고 **대조에만** 쓰는 원문. 판으로 삼지 않지만 재현은 돼야 한다 —
+# 시험이 스캔 임시 폴더의 파일을 읽고 있다가 재훑기가 그것을 지우자 조용히
+# skip 으로 바뀌었다(실패가 아니라 커버리지가 준 것이라 총계로는 안 보인다).
+# 근거 관계는 ingest_jci.CORROBORATED 에 적혀 있다.
+JCI_CORROBORATION = [
+    ("2P~o78Hw6Zd~F~_z12AEMg", "chillers",
+     "JCI_SC-EQ-Card-Install-450.50-N1.pdf"),
+]
+
+
 SOURCES = [
     {
         "id": "trane-points-list",
@@ -1140,6 +1150,20 @@ SOURCES = [
         "access": "무로그인",
         # 280쪽 매뉴얼 본문에 묻힌 표라 줄 읽기 경로가 표를 못 따라간다
         "crosscheck_unreliable": r"JCI_AIR_AYK550",
+    },
+    {
+        "id": "jci-corroboration",
+        "vendor": "Johnson Controls / YORK",
+        "kind": "대조용",
+        "note": "판으로 삼지 않고 **다른 문서의 값을 대조**하는 데만 쓰는 원문. "
+                "450.50-N1 46쪽 Table 8 이 SI0371 과 같은 6점을 담고 있어 서로 "
+                "맞춰 본다(근거는 ingest_jci.CORROBORATED). 취입 경로는 이 소스를 "
+                "읽지 않는다 — 받아 두는 것은 시험이 재현되게 하기 위해서다.",
+        "enumerate": "list",
+        "urls": [_JCI_KHUB % (site, i) for i, site, _n in JCI_CORROBORATION],
+        "rename": {_JCI_KHUB % (site, i): n for i, site, n in JCI_CORROBORATION},
+        "extractor": "none",
+        "access": "무로그인",
     },
 ]
 
