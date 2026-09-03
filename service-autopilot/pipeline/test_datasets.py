@@ -1145,6 +1145,73 @@ class InterfacePointTemplateGateTest(unittest.TestCase):
         self.assertIn("급기온도", names)
         self.assertIn("필터 차압", names)
 
+    def test_zero_instance_wins_a_score_tie(self):
+        """주소 0은 결측값이 아니며 같은 점수에서는 1보다 먼저 선택된다."""
+        picked = datasets.find_template_candidates("e5.ahu", [
+            {"name": "Supply Air Temperature", "type": "AI", "inst": 1},
+            {"name": "Supply Air Temperature", "type": "AI", "inst": 0},
+        ])
+        supply = next(p for p in picked if p["templateName"] == "급기온도")
+        self.assertEqual(supply["instance"], 0)
+
+    def test_interface_models_are_mapped_one_interface_at_a_time(self):
+        """서로 다른 판을 합쳐 어느 판에도 없는 가상 매핑을 만들지 않는다."""
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"][
+            "johnson-controls-york-ypal-packaged-rooftop-unit"]
+        source = datasets.load_models()[model["id"]]
+
+        self.assertEqual(model["mappingScope"], "interface")
+        self.assertEqual(
+            [m["interfaceId"] for m in model["interfaceMappings"]],
+            [i["id"] for i in source["interfaces"]],
+        )
+        # 기존 최상위 필드는 합집합이 아니라 첫 판의 호환 별칭이다.
+        self.assertEqual(
+            model["templatePointMappings"],
+            model["interfaceMappings"][0]["templatePointMappings"],
+        )
+        self.assertEqual(
+            model["templatePointCandidates"],
+            model["interfaceMappings"][0]["templatePointCandidates"],
+        )
+        self.assertLess(
+            max(x["counts"]["templateCandidates"] for x in model["interfaceMappings"]),
+            25,
+        )
+
+    def test_interface_points_are_preserved_in_l3_with_their_interface_id(self):
+        """템플릿뿐 아니라 원문 L3 목록도 판 경계와 출처를 보존한다."""
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"][
+            "johnson-controls-york-ykl-compact-low-profile-ahu"]
+
+        self.assertEqual(model["counts"]["l3MappingPoints"], 157)
+        self.assertEqual(len(model["l3MappingPoints"]), 157)
+        self.assertEqual(
+            {p["interfaceId"] for p in model["l3MappingPoints"]}, {"air-modbus"})
+        self.assertTrue(all(p.get("sourceFile") for p in model["l3MappingPoints"]))
+        self.assertTrue(all(isinstance(p.get("sourcePage"), int)
+                            for p in model["l3MappingPoints"]))
+
+    def test_known_ypal_prose_false_positives_stay_unmatched(self):
+        """설명문에 낱말만 나온 상태·설정점·풍량을 제어 포인트로 집지 않는다."""
+        data = datasets.build_dataset(equip_ids={"e5"})
+        model = data["modelMappings"][
+            "johnson-controls-york-ypal-packaged-rooftop-unit"]
+        forbidden = {
+            ("급기팬 주파수 지령", "UNSTABLE SYSTEM"),
+            ("급기온도", "ACTIVE SUPPLY AIR TEMP SETP"),
+            ("외기댐퍼 개도", "OUTSIDE AIR TOTAL FLOW"),
+            ("가습 지령", "Underfloor Air Humidity BAS"),
+        }
+        actual = {
+            (p["templateName"], p["sourceName"])
+            for scope in model["interfaceMappings"]
+            for p in scope["templatePointCandidates"]
+        }
+        self.assertFalse(forbidden & actual)
+
 
 if __name__ == "__main__":
     unittest.main()
