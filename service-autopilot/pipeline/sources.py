@@ -1202,6 +1202,34 @@ SOURCES = [
         # 주소가 없어 줄 읽기 경로가 짝을 만들 열쇠가 없다 — 계통 전용 대조를 쓴다
         "crosscheck_unreliable": r"JCI_VEC100_",
     },
+    {
+        "id": "lg-bacnet-gateway",
+        "vendor": "LG",
+        "kind": "포인트리스트",
+        "note": "LG BACnet 게이트웨이(AC Smart BACnet)의 오브젝트 목록. 88쪽 설치 매뉴얼 "
+                "34~49쪽에 기기군별 포인트 표 13개가 실려 있다 — 실내기·환기·AHU·"
+                "실외기(ODU)·AWHP. 실측 165점(고유 이름 133종). "
+                "Object Type(BO/BI/MO/MI/AO/AI/AV/BV)·Object Name·상태값(Text-0~5)까지 준다. "
+                "⚠ **표가 전치돼 있다** — 행이 속성(Object Type·Object Name·Point No.)이고 "
+                "열이 포인트다. 세로로 세면 15점짜리 표가 10행으로 읽힌다. "
+                "⚠ 인스턴스 번호는 표에 없다. 주소는 (Device No.·Product No.·Point No.) "
+                "조합 규칙로 50~52·64쪽에서 만들어진다 — 그 규칙을 안 적용하면 "
+                "주소 없는 목록이다(VEC100 과 같은 자리). "
+                "⚠ 같은 포털의 PQNFB17C0 게이트웨이 설치 매뉴얼"
+                "(fileId=UACH2Z0fWvXvJBf6PlVQ, 17쪽)은 **열어 봤고 포인트 표가 없다** "
+                "— 다시 두드리지 마라.",
+        "enumerate": "list",
+        "urls": [
+            "https://gscs-b2c.lge.com/open/downloadFile?fileId=hMQE1OFTwB7RNB2fQRA8Q",
+        ],
+        # URL 끝이 'downloadFile' 이라 원 이름으로는 못 가른다 — URL 전체를 열쇠로 쓴다
+        "rename": {
+            "https://gscs-b2c.lge.com/open/downloadFile?fileId=hMQE1OFTwB7RNB2fQRA8Q":
+                "LG_ACSmart_BACnet_MFL69023101.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+    },
 ]
 
 
