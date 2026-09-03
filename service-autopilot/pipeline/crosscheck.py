@@ -426,6 +426,29 @@ def compare(pdf, table_rows=None, sect=None, pages=None):
             "verified": {"%s-%d" % k: na for _, k, na, _ in same}}
 
 
+def generate_html_report(pdf_path):
+    import opendataloader_pdf
+    out_dir = os.path.join(HERE, "..", "review")
+    print("      [+] 교차 검증 불일치 심각 — opendataloader-pdf 시각적 HTML 덤프 생성 중...")
+    
+    # 임시로 Java PATH 최상단에 올리기 (Windows System32 안의 Java 8 방지)
+    java_path = r"C:\Program Files\Java\jdk-21.0.10\bin"
+    old_path = os.environ.get("PATH", "")
+    if java_path not in old_path:
+        os.environ["PATH"] = java_path + os.pathsep + old_path
+        
+    try:
+        opendataloader_pdf.convert(
+            input_path=[pdf_path],
+            output_dir=out_dir,
+            format=["html"],
+            quiet=True
+        )
+        print("      [OK] 교차 검증용 HTML 덤프 완료 -> service-autopilot/review 폴더 확인")
+    except Exception as e:
+        print("      [!] HTML 덤프 실패: %s" % e)
+
+
 def main(argv):
     files = sorted(glob.glob(os.path.join(HERE, "data", "raw", "*.pdf"))) \
         if "--all" in argv else [argv[0]]
@@ -442,9 +465,12 @@ def main(argv):
                  r["both"], r["rate"] * 100, len(r["diff"]), "  ← 검수" if weak else ""))
         for si, k, na, nb in r["diff"][:3]:
             print("      구간%d %s-%s  표 %r ≠ 줄 %r" % (si + 1, k[0], k[1], na[:38], nb[:38]))
+        if weak:
+            generate_html_report(f)
     print("\n검수 필요 %d건 (일치율 98%% 미만 또는 겹침 50%% 미만)" % bad)
     return 1 if bad else 0
 
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
+

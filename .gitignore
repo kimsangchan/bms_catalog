@@ -44,3 +44,12 @@ service-autopilot/pipeline/data/_jci_ipu_docs.json
 # 현장 준공도면(자동제어 계통도) — DWG·PDF 원문 바이너리다.
 # D-008 과 같은 이유로 저장소에 넣지 않는다. 판독 결과가 필요하면 근거 파일로 남긴다.
 service-autopilot/자동제어 계통도/
+
+# 현장 포인트리스트(고객 제공 실물 자료) — 207MB · 1,428건.
+# D-008 과 같은 이유로 저장소에 넣지 않는다. 판독 결과만 근거 파일로 남긴다.
+# ⚠ 단순히 크기 때문이 아니다 — 고객 내부 네트워크 정보가 섞여 있다
+#   (예: 보안실·방재실 IBS IP 리스트). 커밋되면 되돌리기 어렵다.
+service-autopilot/포인트리스트/
+
+# 임시 디버깅 스크립트 보관소. 시험이 아니다(사유는 .scratch/README.md).
+service-autopilot/pipeline/.scratch/

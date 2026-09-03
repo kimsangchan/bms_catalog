@@ -492,7 +492,7 @@
      "Select GMT to display the current time in UTC (Greenwich Mean Time zone). To display local time, set this parameter to Local, then use GMT Offset (h) to display local time in the proper time zone."
     ],
     [
-     "GMT Offset (h)1",
+     "GMT Offset (h)",
      "+/- HH.0",
      "Available only when Meter Time is set to Local, use this to display the local time relative to GMT. Set the sign to plus (+) if local time is ahead of GMT, or minus (-) if local time is behind GMT."
     ]
@@ -649,22 +649,22 @@
      "Set this to Enabled to if you want the gateway meter to forward broadcast messages (sent to Unit ID 0) to the downstream serial devices."
     ],
     [
-     "Response Timeout1",
+     "Response Timeout",
      "0.1, 0.2, 0.3, 0.4, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
      "Set the time the gateway meter waits for an answer from a downstream serial device before generating an exception response."
     ],
     [
-     "Delay Between Frames1",
+     "Delay Between Frames",
      "0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100",
      "The minimum time in milliseconds between the end of a received response and the beginning of a new request. Set this parameter to help improve communications between the gateway and downstream slave devices with slower response times."
     ],
     [
-     "Silent Interval Extension1",
+     "Silent Interval Extension",
      "0 – 15",
      "Set this parameter to extend the silent interval (used to mark the end of a Modbus packet) beyond the default 3.5 characters defined in the Modbus standard. After the defined character time elapses without a new character, the gateway meter treats the next character as the start of a new message."
     ],
     [
-     "1 These are advanced settings that you can adjust if you have communications errors when communicating through the gateway to the downstream serial devices. They only apply if the meter is functioning as a gateway, and you should only change these settings if you have an advanced knowledge of Modbus communications and your communications network.",
+     "These are advanced settings that you can adjust if you have communications errors when communicating through the gateway to the downstream serial devices. They only apply if the meter is functioning as a gateway, and you should only change these settings if you have an advanced knowledge of Modbus communications and your communications network.",
      "",
      ""
     ]
@@ -1951,50 +1951,6 @@
      "Silent Interval Extension",
      "0 – 15",
      "Set this parameter to extend the silent interval (used to mark the end of a Modbus packet) beyond the default 3.5 characters defined in the Modbus standard. After the defined character time elapses without a new character, the gateway meter treats the next character as the start of a new message."
-    ]
-   ],
-   "source": "0900766b815685bf.pdf",
-   "kind": "rating"
-  },
-  {
-   "title": "7. Click Send to save your changes.",
-   "page": 84,
-   "orientation": "column",
-   "header": [
-    "Parameter Label",
-    "Values —",
-    "Description Use this field to change the default label and assign a descriptive name to this input metering channel."
-   ],
-   "quantities": [
-    null,
-    null,
-    "current"
-   ],
-   "rows": [
-    [
-     "Pulse Weight",
-     "0 to 99.99999",
-     "Use this field to specify the quantity or value each pulse represents."
-    ],
-    [
-     "Units",
-     "No units, Wh, kWh, MWh, VARh, kVARh, MVARh, VAh, kVAh, MVAh, gal, BTU, L, m3, MCF, lbs, kg, klbs, Therm",
-     "Select the unit of measurement associated with the monitored value."
-    ],
-    [
-     "Rate",
-     "Varies (based on the units selected)",
-     "For time-based values (such as kWh), this provides the associated demand units (kW) for demand calculations. For other values (such as kg), this can be configured to provide rate information (kg/h)."
-    ],
-    [
-     "Mode",
-     "Pulse or Transition",
-     "Set Mode to Pulse to count only complete pulses. Set Mode to Transition to count each ON-to-OFF or OFF-to-ON status change."
-    ],
-    [
-     "Available Inputs / Assigned Inputs",
-     "Digital input DI1 to DI4",
-     "Select the digital input from the Available inputs box and use the right arrow button to assign the input metering channel to that digital input."
     ]
    ],
    "source": "0900766b815685bf.pdf",

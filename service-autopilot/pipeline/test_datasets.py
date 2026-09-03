@@ -25,9 +25,12 @@ class DatasetBuildTest(unittest.TestCase):
         data = datasets.build_dataset(equip_ids={"e5"})
         ahu = data["equipmentTemplates"]["e5"]
 
-        self.assertEqual(ahu["templateProfileIds"], ["e5.ahu", "e5.rtu"])
+        # 2026-09-03 e5.pac(VRF/PAC) 신설 — template_profile_ids 가 sorted 라 가운데 온다.
+        self.assertEqual(ahu["templateProfileIds"], ["e5.ahu", "e5.pac", "e5.rtu"])
         self.assertNotIn("templatePoints", ahu)   # 계열 한 벌은 더 이상 없다
         self.assertGreaterEqual(len(ahu["simulatorSpecRequirements"]), 10)
+        # e5.pac 은 아직 행이 없다(빈 배열 = 신설 과제). 행 수 하한은 채워진 둘에만 건다 —
+        # 비어 있어도 되는 이유는 아래 test_empty_template_profile_must_say_why 가 지킨다.
         for pid in ("e5.rtu", "e5.ahu"):
             self.assertGreaterEqual(len(data["templateProfiles"][pid]["templatePoints"]), 20)
         self.assertIn("modelMappings", data)
@@ -44,7 +47,7 @@ class DatasetBuildTest(unittest.TestCase):
         req = set(RQ.profiles())
 
         self.assertEqual(tpl, req)
-        self.assertEqual(tpl, {"e5.rtu", "e5.ahu"})
+        self.assertEqual(tpl, {"e5.rtu", "e5.ahu", "e5.pac"})
         for pid, prof in datasets.load_template_profiles().items():
             self.assertNotIn("match", prof, "%s: 매치 규칙을 여기 복제하면 규칙이 두 벌이 된다" % pid)
 
@@ -139,6 +142,28 @@ class DatasetBuildTest(unittest.TestCase):
                for r in datasets.load_template_profiles()["e5.ahu"]["templatePoints"]}
         self.assertEqual(ahu["냉수밸브 개도"]["grade"], "필수")
         self.assertEqual(ahu["온수밸브 개도"]["grade"], "필수")
+
+    def test_empty_template_profile_must_say_why(self):
+        """게이트 — 행이 빈 프로파일은 '왜 비었나'를 적어야 한다.
+
+        e5.pac 은 `stub_template.py` 가 키를 `points` 로 잘못 써서 들어왔다. 그 바람에
+        `prof["templatePoints"]` 가 KeyError 로 터졌고, profiles 밖 최상위에도 같은 키가
+        **한 벌 더** 들어가 있었다. 빈 채로 두는 것 자체는 규칙 ④ 가 허용한다
+        (빈 배열 = 신설 과제) — 다만 **사유 없이 비면 그대로 잊힌다.**
+        """
+        for pid, prof in datasets.load_template_profiles().items():
+            self.assertIn("templatePoints", prof,
+                          "%s: 행 목록 키 이름이 templatePoints 여야 한다" % pid)
+            if not prof["templatePoints"]:
+                self.assertTrue(prof.get("pending"),
+                                "%s: 행이 비었는데 pending 사유가 없다" % pid)
+
+    def test_template_profiles_live_only_under_profiles(self):
+        """게이트 — 프로파일이 profiles 밖 최상위에 새면 조용히 두 벌이 된다."""
+        raw = datasets.load_json(datasets.TEMPLATES)
+        stray = [k for k in raw if k not in
+                 {"version", "description", "rules", "grades", "profiles"}]
+        self.assertEqual(stray, [], "profiles 밖에 샌 키: %s" % stray)
 
     def test_every_template_point_carries_a_haystack_basis(self):
         for pid, prof in datasets.load_template_profiles().items():

@@ -1609,7 +1609,7 @@
    "page": 21,
    "orientation": "column",
    "header": [
-    "Cable size: 6–50 mm2 (AWG 10-1/ 177HA646.10 Torque: 4 Nm (35.4 in-lb) MCD5-0021B to MCD5-0105B",
+    "177HA646.10 Cable size: 6–50 mm (AWG 10-1/0) Torque: 4 Nm (35.4 in-lb) MCD5-0021B to MCD5-0105B",
     "",
     "0) 14 mm (0.55 in) 177HA647.10",
     "",
@@ -2209,6 +2209,99 @@
    "titleRaw": "Models MCD5-0021B to MCD5-0961B are internally bypassed. Models MCD5-0245C to MCD5-1600C r"
   },
   {
+   "title": "4.4.4 Inside Delta Connection (Non-bypassed/Continuous)",
+   "page": 31,
+   "orientation": "column",
+   "header": [
+    "Type code",
+    "Ampere ratings [A]",
+    "",
+    ""
+   ],
+   "quantities": [
+    null,
+    "current",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "",
+     "AC-53a 3-30:50-6",
+     "AC-53a 4-20:50-6",
+     "AC-53a 4.5-30:50-6"
+    ],
+    [
+     "MCD5-0245C",
+     "368",
+     "293",
+     "257"
+    ],
+    [
+     "MCD5-0360C",
+     "540",
+     "455",
+     "389"
+    ],
+    [
+     "MCD5-0380C",
+     "570",
+     "522",
+     "438"
+    ],
+    [
+     "MCD5-0428C",
+     "643",
+     "533",
+     "451"
+    ],
+    [
+     "MCD5-0595C",
+     "893",
+     "773",
+     "629"
+    ],
+    [
+     "MCD5-0619C",
+     "929",
+     "798",
+     "656"
+    ],
+    [
+     "MCD5-0790C",
+     "1185",
+     "1042",
+     "851"
+    ],
+    [
+     "MCD5-0927C",
+     "1391",
+     "1200",
+     "966"
+    ],
+    [
+     "MCD5-1200C",
+     "1800",
+     "1702",
+     "1474"
+    ],
+    [
+     "MCD5-1410C",
+     "2115",
+     "1780",
+     "1535"
+    ],
+    [
+     "MCD5-1600C",
+     "2400",
+     "2149",
+     "1841"
+    ]
+   ],
+   "source": "MG17K802.pdf",
+   "kind": "rating"
+  },
+  {
    "title": "The minimum and maximum full load current settings depend on the model:",
    "page": 32,
    "orientation": "column",
@@ -2454,7 +2547,7 @@
    "orientation": "column",
    "header": [
     "Model",
-    "SCR I2t (A2s)",
+    "SCR It (As)",
     "Supply voltage (≤440 V AC)",
     "Supply voltage (≤575 V AC)",
     "Supply voltage (≤690 V AC)"
@@ -2701,7 +2794,7 @@
    "orientation": "column",
    "header": [
     "Model",
-    "SCR I2t (A2s)",
+    "SCR It (As)",
     "Supply voltage (<440 V AC)",
     "Supply voltage (<575 V AC)",
     "Supply voltage (<690 V AC)"
@@ -2943,12 +3036,506 @@
    "kind": "rating"
   },
   {
+   "title": "4.10.3 Ferraz Fuses",
+   "page": 36,
+   "orientation": "column",
+   "header": [
+    "Model",
+    "SCR It (As)",
+    "Supply voltage (<440 V AC)",
+    "Supply voltage (<575 V AC)",
+    "Supply voltage (<690 V AC)"
+   ],
+   "quantities": [
+    null,
+    null,
+    "voltage",
+    "voltage",
+    "voltage"
+   ],
+   "rows": [
+    [
+     "MCD5-0021B",
+     "1150",
+     "HSJ401)",
+     "HSJ401)",
+     "Not applicable"
+    ],
+    [
+     "MCD5-0037B",
+     "8000",
+     "HSJ801)",
+     "HSJ801)",
+     ""
+    ],
+    [
+     "MCD5-0043B",
+     "10500",
+     "HSJ901)",
+     "HSJ901)",
+     ""
+    ],
+    [
+     "MCD5-0053B",
+     "15000",
+     "HSJ1101)",
+     "HSJ1101)",
+     ""
+    ],
+    [
+     "MCD5-0068B",
+     "15000",
+     "HSJ1251)",
+     "HSJ1251)",
+     ""
+    ],
+    [
+     "MCD5-0084B",
+     "51200",
+     "HSJ175",
+     "HSJ1751)",
+     ""
+    ],
+    [
+     "MCD5-0089B",
+     "80000",
+     "HSJ175",
+     "HSJ175",
+     ""
+    ],
+    [
+     "MCD5-0105B",
+     "125000",
+     "HSJ225",
+     "HSJ225",
+     ""
+    ],
+    [
+     "MCD5-0131B",
+     "125000",
+     "HSJ250",
+     "HSJ2501)",
+     ""
+    ],
+    [
+     "MCD5-0141B",
+     "320000",
+     "HSJ300",
+     "HSJ300",
+     ""
+    ],
+    [
+     "MCD5-0195B",
+     "320000",
+     "HSJ350",
+     "HSJ350",
+     ""
+    ],
+    [
+     "MCD5-0215B",
+     "320000",
+     "HSJ4001)",
+     "HSJ4001)",
+     ""
+    ],
+    [
+     "MCD5-0245B",
+     "320000",
+     "HSJ4501)",
+     "HSJ4501)",
+     ""
+    ],
+    [
+     "MCD5-0331B",
+     "202000",
+     "HSJ5001)",
+     "Not applicable",
+     ""
+    ],
+    [
+     "MCD5-0396B",
+     "320000",
+     "Not applicable",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0469B",
+     "320000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0525B",
+     "781000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0632B",
+     "781000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0744B",
+     "1200000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0826B",
+     "2530000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0961B",
+     "2530000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0245C",
+     "320000",
+     "HSJ4501)",
+     "HSJ4501)",
+     ""
+    ],
+    [
+     "MCD5-0360C",
+     "320000",
+     "Not applicable",
+     "Not applicable",
+     ""
+    ],
+    [
+     "MCD5-0380C",
+     "320000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0428C",
+     "320000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0595C",
+     "1200000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0619C",
+     "1200000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0790C",
+     "2530000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-0927C",
+     "4500000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-1200C",
+     "4500000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-1410C",
+     "6480000",
+     "",
+     "",
+     ""
+    ],
+    [
+     "MCD5-1600C",
+     "12500000",
+     "",
+     "",
+     ""
+    ]
+   ],
+   "source": "MG17K802.pdf",
+   "kind": "etc"
+  },
+  {
+   "title": "Electrical Installation Operating Guide",
+   "page": 37,
+   "orientation": "column",
+   "header": [
+    "Model",
+    "SCR It (As)",
+    "Supply voltage (<440 V AC)",
+    "Supply voltage (<575 V AC)",
+    "Supply voltage (<690 V AC)"
+   ],
+   "quantities": [
+    null,
+    null,
+    "voltage",
+    "voltage",
+    "voltage"
+   ],
+   "rows": [
+    [
+     "MCD5-0021B",
+     "1150",
+     "A070URD30XXX0063",
+     "A070URD30XXX0063",
+     "–"
+    ],
+    [
+     "MCD5-0037B",
+     "8000",
+     "A070URD30XXX0125",
+     "A070URD30XXX0125",
+     "A070URD30XXX0125"
+    ],
+    [
+     "MCD5-0043B",
+     "10500",
+     "A070URD30XXX0125",
+     "A070URD30XXX0125",
+     "A070URD30XXX0125"
+    ],
+    [
+     "MCD5-0053B",
+     "15000",
+     "A070URD30XXX0125",
+     "A070URD30XXX0125",
+     "A070URD30XXX0125"
+    ],
+    [
+     "MCD5-0068B",
+     "15000",
+     "A070URD30XXX0160",
+     "A070URD30XXX0160",
+     "A070URD30XXX0160"
+    ],
+    [
+     "MCD5-0084B",
+     "51200",
+     "A070URD30XXX0200",
+     "A070URD30XXX0200",
+     "A070URD30XXX0200"
+    ],
+    [
+     "MCD5-0089B",
+     "80000",
+     "A070URD30XXX0200",
+     "A070URD30XXX0200",
+     "A070URD30XXX0200"
+    ],
+    [
+     "MCD5-0105B",
+     "125000",
+     "A070URD30XXX0315",
+     "A070URD30XXX0315",
+     "A070URD30XXX0315"
+    ],
+    [
+     "MCD5-0131B",
+     "125000",
+     "A070URD30XXX0315",
+     "A070URD30XXX0315",
+     "A070URD30XXX0315"
+    ],
+    [
+     "MCD5-0141B",
+     "320000",
+     "A070URD30XXX0315",
+     "A070URD30XXX0315",
+     "A070URD30XXX0315"
+    ],
+    [
+     "MCD5-0195B",
+     "320000",
+     "A070URD30XXX0450",
+     "A070URD30XXX0450",
+     "A070URD30XXX0450"
+    ],
+    [
+     "MCD5-0215B",
+     "320000",
+     "A070URD30XXX0450",
+     "A070URD30XXX0450",
+     "A070URD30XXX0450"
+    ],
+    [
+     "MCD5-0245B",
+     "32000",
+     "A070URD30XXX0450",
+     "A070URD30XXX0450",
+     "A070URD30XXX0450"
+    ],
+    [
+     "MCD5-0331B",
+     "202000",
+     "A070URD31XXX0550",
+     "–",
+     "–"
+    ],
+    [
+     "MCD5-0396B",
+     "238000",
+     "A070URD32XXX0630",
+     "–",
+     "–"
+    ],
+    [
+     "MCD5-0469B",
+     "320000",
+     "A070URD32XXX0700",
+     "–",
+     "–"
+    ],
+    [
+     "MCD5-0525B",
+     "781000",
+     "A070URD32XXX0800",
+     "–",
+     "–"
+    ],
+    [
+     "MCD5-0632B",
+     "781000",
+     "A070URD33XXX0900",
+     "–",
+     "–"
+    ],
+    [
+     "MCD5-0744B",
+     "1200000",
+     "A070URD33XXX1100",
+     "–",
+     "–"
+    ],
+    [
+     "MCD5-0826B",
+     "2530000",
+     "A070URD33XXX1250",
+     "–",
+     "–"
+    ],
+    [
+     "MCD5-0961B",
+     "2530000",
+     "A070URD33XXX1400",
+     "–",
+     "–"
+    ],
+    [
+     "MCD5-0245C",
+     "320000",
+     "A070URD30XXX0450",
+     "A070URD30XXX0450",
+     "A070URD30XXX0450"
+    ],
+    [
+     "MCD5-0360C",
+     "320000",
+     "A070URD33XXX0630",
+     "A070URD33XXX0630",
+     "A070URD33XXX0630"
+    ],
+    [
+     "MCD5-0380C",
+     "320000",
+     "A070URD33XXX0700",
+     "A070URD33XXX0700",
+     "–"
+    ],
+    [
+     "MCD5-0428C",
+     "320000",
+     "A070URD33XXX0700",
+     "A070URD33XXX0700",
+     "–"
+    ],
+    [
+     "MCD5-0595C",
+     "1200000",
+     "A070URD33XXX1000",
+     "A070URD33XXX1000",
+     "A070URD33XXX1000"
+    ],
+    [
+     "MCD5-0619C",
+     "1200000",
+     "A070URD33XXX1000",
+     "A070URD33XXX1000",
+     "A070URD33XXX1000"
+    ],
+    [
+     "MCD5-0790C",
+     "2530000",
+     "A070URD33XXX1400",
+     "A070URD33XXX1400",
+     "A070URD33XXX1400"
+    ],
+    [
+     "MCD5-0927C",
+     "4500000",
+     "A070URD33XXX1400",
+     "A070URD33XXX1400",
+     "A070URD33XXX1400"
+    ],
+    [
+     "MCD5-1200C",
+     "4500000",
+     "A055URD33XXX2250",
+     "–",
+     "–"
+    ],
+    [
+     "MCD5-1410C",
+     "6480000",
+     "A055URD33XXX2250",
+     "–",
+     "–"
+    ],
+    [
+     "MCD5-1600C",
+     "12500000",
+     "-",
+     "–",
+     "–"
+    ]
+   ],
+   "source": "MG17K802.pdf",
+   "kind": "rating"
+  },
+  {
    "title": "Table 4.10 North American Style (PSC 690)",
    "page": 37,
    "orientation": "column",
    "header": [
     "Model",
-    "SCR I2t (A2s)",
+    "SCR It (As)",
     "Supply voltage (<440 V AC)",
     "Supply voltage (<575 V AC)",
     "Supply voltage (<690 V AC)"
@@ -3076,7 +3663,7 @@
    "orientation": "column",
    "header": [
     "Model",
-    "SCR I2t (A2s)",
+    "SCR It (As)",
     "Supply voltage (<440 V AC)",
     "Supply voltage (<575 V AC)",
     "Supply voltage (<690 V AC)"

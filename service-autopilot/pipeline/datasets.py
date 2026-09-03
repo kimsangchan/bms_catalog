@@ -817,7 +817,8 @@ UNIT_FIELD_PICKS = {
     "seer": [r"^SEER \(Btuh"],
     "seer2": [r"^SEER2"],
     # 히트펌프(Lennox LHT)의 난방 성능 — 냉방 절의 값과 라벨이 겹치지 않는다
-    "heatingCapacity": [r"^Total High Heat Capacity",
+    "heatingCapacity": [r"난방\s*능력", r"Heating\s+Capacity",
+                        r"^Total High Heat Capacity",
                         # JCI Roomtop RTC/RTH 기술 가이드의 'Nominal capacities' 표
                         # (2026-08-21). 라벨에 단위가 붙어 있어(…W) 다른 벤더의
                         # 'Cooling capacity' 류와 겹치지 않는다 — 기존 모델 전수
@@ -1389,6 +1390,18 @@ def unit_models(model):
                 for col in range(1, len(header)):
                     if re.match(r"^[A-Z]$", header[col] or ""):
                         code_cols.append((col, "%s %s" % (fam2.group(1), header[col])))
+        if not code_cols:
+            for col in range(1, len(header)):
+                cell = header[col] or ""
+                if re.match(r"^(AM|RC|DV)\d+[A-Z0-9]+", cell, re.I):
+                    code_cols.append((col, cell))
+                elif re.match(r"^(ARUM|ARUN|PRHR|PAHC|LG)\d+[A-Z0-9]+", cell, re.I):
+                    code_cols.append((col, cell))
+        if not code_cols:
+            for col in range(1, len(first)):
+                cell = first[col] or ""
+                if re.match(r"^(AM|RC|DV|ARUM|ARUN|PRHR|PAHC|LG)\d+[A-Z0-9]+", cell, re.I):
+                    code_cols.append((col, cell))
         if not code_cols:
             capacity_units_from_table(table, model, capacity_units)
             continue

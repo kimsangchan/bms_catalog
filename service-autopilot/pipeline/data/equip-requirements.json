@@ -339,13 +339,120 @@
     },
     "e5.ahu": {
       "equipId": "e5",
-      "title": "공조기 (AHU) — 냉수·온수코일",
+      "title": "공조기 (AHU) — 냉수·온수코일 (Korea Standard)",
       "match": {
         "catPrefix": "HVAC.AIR.AHU"
       },
-      "matchNote": "이 접두가 '냉수코일 있음'의 대용물은 아니다. 여기 걸리는 8모델 중 LG AHU 통신킷 2건·Mitsubishi PAC-IF013B 1건은 직팽(DX) 인터페이스킷이다 — 통신 포인트 쪽은 data/equip-templates.json 의 appliesWhen 으로 갈라 두었다. trane-symbio-800-intellipak 2모델은 패키지 옥상형이라 cat 재검토 대상이다(이번 범위 밖).",
-      "pending": "정격 요구 항목 미정. 지금 data/equips/e5.json specTables 16행(냉수코일 능력·온수코일 능력·코일 열수·핀피치·가습 방식)이 계열 한 벌로 RTU 까지 채점하고 있다 — 그 정격 레인을 e5.rtu/e5.ahu 로 가르는 것은 별도 작업이다. 여기 items 를 비워 두면 requirements.py --check 가 경고로 계속 띄운다(규칙 ① 미충족 표시).",
-      "items": []
+      "matchNote": "LG, 센추리, 신성엔지니어링 등 국내 현장 표준 냉수/온수 코일 공조기",
+      "energyModel": {
+        "cooling": "냉방 코일 부하 = 풍량 × 엔탈피차 (냉수 유량 제어)",
+        "heating": "난방 코일 부하 = 풍량 × 비열 × 온도차",
+        "fan": "팬 전력 = 풍량 × 정압 ÷ 팬효율 (인버터 비례제어)"
+      },
+      "items": [
+        {
+          "id": "coolingCapacity",
+          "name": "정격 냉방능력",
+          "unit": "kW 또는 kcal/h",
+          "grade": "필수",
+          "usedBy": ["cooling"],
+          "why": "코일 용량 기준",
+          "features": ["grossCoolingCapacity"],
+          "sourceHint": "카탈로그 코일 사양표",
+          "searchTerms": ["냉방능력", "cooling capacity", "total capacity"]
+        },
+        {
+          "id": "heatingCapacity",
+          "name": "정격 난방능력",
+          "unit": "kW 또는 kcal/h",
+          "grade": "필수",
+          "usedBy": ["heating"],
+          "why": "겨울철 난방 부하 기준",
+          "features": ["heatingCapacity"],
+          "sourceHint": "카탈로그 코일 사양표",
+          "searchTerms": ["난방능력", "heating capacity"]
+        },
+        {
+          "id": "supplyAirflow",
+          "name": "정격 급기 풍량",
+          "unit": "CMM 또는 CMH",
+          "grade": "필수",
+          "usedBy": ["fan", "cooling", "heating"],
+          "why": "팬 동력 및 코일 열교환량 계산",
+          "features": ["ratedAirflow"],
+          "sourceHint": "송풍기 사양표",
+          "searchTerms": ["풍량", "airflow", "air volume"]
+        },
+        {
+          "id": "fanMotorPower",
+          "name": "팬 모터 동력",
+          "unit": "kW",
+          "grade": "필수",
+          "usedBy": ["fan"],
+          "why": "팬 소비전력 한계치 및 인버터 제어 기준",
+          "features": ["fanMotorHp"],
+          "sourceHint": "송풍기 사양표",
+          "searchTerms": ["모터", "전동기", "motor", "power"]
+        },
+        {
+          "id": "chilledWaterFlow",
+          "name": "냉수 유량",
+          "unit": "LPM 또는 m³/h",
+          "grade": "권장",
+          "usedBy": ["cooling"],
+          "why": "냉수 밸브 제어 및 펌프 동력 연계",
+          "features": [],
+          "sourceHint": "코일 수배관 사양표",
+          "searchTerms": ["수량", "유량", "water flow", "flow rate"]
+        }
+      ]
+    },
+    "e5.pac": {
+      "equipId": "e5",
+      "title": "시스템에어컨 (VRF/PAC) (Korea Standard)",
+      "match": {
+        "catPrefix": "HVAC.AIR.VRF"
+      },
+      "matchNote": "삼성 DVM S, LG Multi V 등 국내 현장 표준 VRF 장비",
+      "energyModel": {
+        "cooling": "실외기 압축기 전력 = 실내기 총 부하 ÷ COP (인버터 압축기 부분부하 특성 적용)",
+        "heating": "실외기 난방 전력 = 실내기 난방 부하 ÷ COP"
+      },
+      "items": [
+        {
+          "id": "coolingCapacity",
+          "name": "정격 냉방능력",
+          "unit": "kW",
+          "grade": "필수",
+          "usedBy": ["cooling"],
+          "why": "실외기 압축기 기준 용량",
+          "features": ["grossCoolingCapacity"],
+          "sourceHint": "실외기 사양표",
+          "searchTerms": ["냉방능력", "cooling capacity", "rated cooling"]
+        },
+        {
+          "id": "coolingPower",
+          "name": "정격 냉방 소비전력",
+          "unit": "kW",
+          "grade": "필수",
+          "usedBy": ["cooling"],
+          "why": "압축기 정격 전력, COP 산출",
+          "features": ["systemPower"],
+          "sourceHint": "실외기 사양표",
+          "searchTerms": ["소비전력", "power input", "cooling power"]
+        },
+        {
+          "id": "cop",
+          "name": "냉난방 효율 (COP/EER)",
+          "unit": "—",
+          "grade": "권장",
+          "usedBy": ["cooling", "heating"],
+          "why": "부분부하 운전시 전력 산출용 곡선 보정 기준",
+          "features": ["eer", "cop"],
+          "sourceHint": "효율 사양표",
+          "searchTerms": ["cop", "eer", "효율", "efficiency"]
+        }
+      ]
     }
   }
 }
