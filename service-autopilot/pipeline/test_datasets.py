@@ -1050,5 +1050,101 @@ class CuratedUnitDatasetTest(unittest.TestCase):
         self.assertEqual(net_st.get("sourcePage"), 15)
 
 
+class InterfacePointTemplateGateTest(unittest.TestCase):
+    """게이트 — 템플릿 매처가 인터페이스형 포인트를 보고 있나.
+
+    포인트는 모델이 아니라 인터페이스에 속하는데(D-016) 매처만 옛 자리
+    (model['points'])를 보고 있었다. JCI 취입분은 전부 인터페이스형이라
+    5,629점을 가진 e5 모델 8개가 **한 행도 못 채우고 'missing' 으로 보였다** —
+    남은 일을 실제보다 많게 보여 주는 쪽으로 틀린 것이다. 조용히 0 이 되는
+    부류라 총계만 봐서는 못 알아챈다.
+    """
+
+    def _e5_models(self):
+        out = []
+        for path in glob.glob(os.path.join(datasets.DATA, "models", "*.json")):
+            model = datasets.load_json(path)
+            if model.get("equipId") == "e5":
+                out.append(model)
+        return out
+
+    def test_interface_models_are_not_silently_empty(self):
+        """인터페이스형 e5 모델이 한 행도 못 채우면 운다."""
+        empty, seen, points = [], 0, 0
+        for model in self._e5_models():
+            if not model.get("interfaces"):
+                continue
+            pts = datasets.model_template_points(model)
+            if not pts:
+                continue
+            seen += 1
+            points += len(pts)
+            picked = datasets.find_template_candidates(
+                datasets.template_profile_for(model), pts)
+            if not picked:
+                empty.append(model["id"])
+
+        # 수를 박아 두면 새 모델마다 이 게이트가 '틀렸다'고 말한다. 확인할 것은
+        # **조용히 0 이 되지 않는다**는 것이다.
+        self.assertGreaterEqual(seen, 8)
+        # 시험이 0건을 훑으며 통과하는 상태가 되는 것을 막는다.
+        self.assertGreaterEqual(points, 5000)
+        self.assertEqual(empty, [])
+
+    def test_flat_models_feed_the_matcher_unchanged(self):
+        """회귀 — 평면형 모델의 매처 입력은 한 글자도 안 바뀐다."""
+        checked = 0
+        for model in self._e5_models():
+            if model.get("interfaces"):
+                continue
+            flat = [p for p in (model.get("points") or []) if isinstance(p, dict)]
+            if not flat:
+                continue
+            checked += 1
+            self.assertEqual(datasets.model_template_points(model), flat)
+        self.assertGreaterEqual(checked, 15)
+
+    def test_interface_point_type_is_copied_only_where_the_vocabulary_matches(self):
+        """어휘가 같은 계통만 옮긴다 — 번역하면 매칭이 조용히 틀어진다.
+
+        bacnet.objectType 은 값이 AI·AV·BI·BV·MSV 로 평면 type 과 글자가 같다.
+        n2(ADF·BD·ADI) · yorktalk('A. Monitor') · lon(nvo·nvi) 은 다른 어휘라
+        옮기지 않고 비운다. 비면 점수 가산만 못 받고 include/exclude 는 그대로 된다.
+        """
+        bac = datasets.flatten_interface_point({
+            "common": {"name": "Discharge Temperature 1"},
+            "blocks": {"bacnet": {"objectType": "AI", "instance": 7}},
+        })
+        self.assertEqual(bac["type"], "AI")
+        self.assertEqual(bac["inst"], 7)
+
+        n2 = datasets.flatten_interface_point({
+            "common": {"name": "Supply Air Temp"},
+            "blocks": {"n2": {"pointType": "ADF", "address": 3},
+                       "yorktalk": {"pointType": "A. Monitor"}},
+        })
+        self.assertIsNone(n2["type"])          # ADF 를 AI 로 옮기지 않는다
+        self.assertEqual(n2["name"], "Supply Air Temp")
+
+        # 주소가 0 인 점이 있다 — or 로 쓰면 0 이 사라진다(YKL 40001 이 그 자리다).
+        zero = datasets.flatten_interface_point({
+            "common": {"name": "Unit open and close variable"},
+            "blocks": {"modbus": {"address": 0}},
+        })
+        self.assertEqual(zero["inst"], 0)
+
+    def test_ykl_air_handling_points_reach_the_screen_template(self):
+        """공조기 포털에서 취입한 YKL 157점이 화면 행에 실제로 붙는다."""
+        model = datasets.load_json(os.path.join(
+            datasets.DATA, "models",
+            "johnson-controls-york-ykl-compact-low-profile-ahu.json"))
+        pts = datasets.model_template_points(model)
+        self.assertEqual(len(pts), 157)
+        names = {p["templateName"] for p in
+                 datasets.find_template_candidates("e5.ahu", pts)}
+        self.assertIn("급기온도", names)
+        self.assertIn("필터 차압", names)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -181,6 +181,54 @@ def point_text(point):
     return "%s %s" % (point.get("name") or "", point.get("note") or "")
 
 
+def flatten_interface_point(point):
+    """신형 포인트({common, blocks, provenance})를 매처가 읽는 평면 모양으로 옮긴다.
+
+    **곧이곧대로 옮길 수 있는 것만 옮긴다.** bacnet.objectType 은 값이
+    AI·AV·BI·BV·MSV 로 평면 type 어휘와 글자가 같아 그대로 쓴다. n2(ADF·BD·ADI) ·
+    yorktalk('A. Monitor') · lon(nvo·nvi) 은 어휘가 달라 **번역하지 않고 비운다** —
+    없는 type 은 점수 가산을 못 받을 뿐 include/exclude 매칭은 그대로 된다.
+    지어내서 옮기면 매칭이 조용히 틀어진다.
+    """
+    common = point.get("common") or {}
+    blocks = point.get("blocks") or {}
+    bacnet = blocks.get("bacnet") or {}
+    modbus = blocks.get("modbus") or {}
+    return {
+        "name": common.get("name") or common.get("shortName"),
+        "note": common.get("note") or "",
+        # 어휘가 같은 계통만. 나머지는 None 이 정답이다(위 주석).
+        "type": bacnet.get("objectType"),
+        # inst 는 동점일 때 정렬 열쇠로만 쓴다. 0 이 유효값이라 or 로 쓰면 안 된다.
+        "inst": bacnet.get("instance", modbus.get("address")),
+        "unit": common.get("unitSI") or common.get("unitIP"),
+        "unitRaw": common.get("unitSIRaw") or common.get("unitIPRaw"),
+    }
+
+
+def model_template_points(model):
+    """템플릿 매처에 넣을 포인트 — 평면 + 인터페이스.
+
+    전에는 model['points'] 만 넘겨서 **인터페이스형 모델이 통째로 빠졌다.** 포인트는
+    모델이 아니라 인터페이스에 속하는데(D-016) 매처만 옛 자리를 보고 있었다. JCI
+    취입분은 전부 인터페이스형이라, 5,629점을 가진 e5 모델 8개가 한 행도 못 채우고
+    'missing' 으로 보였다 — 남은 일을 실제보다 많게 보여 주는 쪽으로 틀린 것이다.
+    평면형 모델은 interfaces 가 없으므로 입력이 한 글자도 안 바뀐다.
+    """
+    points = [p for p in (model.get("points") or []) if isinstance(p, dict)]
+    for iface in model.get("interfaces") or []:
+        for point in iface.get("points") or []:
+            if not isinstance(point, dict):
+                continue
+            if "common" in point:
+                flat = flatten_interface_point(point)
+                if flat.get("name"):
+                    points.append(flat)
+            elif point.get("name"):
+                points.append(point)
+    return points
+
+
 def find_template_candidates(profile_id, points):
     """프로파일의 행 순서대로 원문 포인트를 하나씩 집는다(먼저 온 행이 이긴다).
 
@@ -1866,7 +1914,8 @@ def build_dataset(equip_ids=None):
 
     for model_id, model in sorted(models.items()):
         profile_id = template_profile_for(model)
-        candidates = find_template_candidates(profile_id, model.get("points") or [])
+        template_input = model_template_points(model)
+        candidates = find_template_candidates(profile_id, template_input)
         mapped = mapping_points(model.get("points") or [], candidates)
         refs = reference_tables(model)
         # 화면·산출물은 확정 데이터셋(data/units)만 읽는다 — 추출은 units.py 의 제안 원천
@@ -1883,7 +1932,7 @@ def build_dataset(equip_ids=None):
             profile_id,
             template_profile.get("templatePoints")
             or equip_template.get("templatePoints", []),
-            model.get("points") or [],
+            template_input,
         )
         simulator_mappings = simulator_requirement_mappings(
             equip_template.get("simulatorSpecRequirements", []),
