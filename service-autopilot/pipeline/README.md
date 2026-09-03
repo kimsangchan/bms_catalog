@@ -522,7 +522,10 @@ marker be applied to dicts which use the marker's subtypes"* 즉 **태그 공존
 
 | 필드 | 의미 |
 |---|---|
-| `templatePointMappings` | 장비 템플릿의 모든 기본 포인트를 나열하고, 해당 모델의 L3 원문 포인트와 매칭됐는지 `matched`/`missing` 으로 표시 |
+| `interfaceMappings` | 실제 인터페이스 판별 매핑. 인터페이스 한 판마다 후보·기본 포인트 매칭을 따로 두며 서로 다른 주소 체계를 합치지 않는다. 평면형 모델은 빈 배열이다 |
+| `defaultMappingScopeId` | 인터페이스형 모델의 기본 판. 화면이 처음 여는 `interfaces[0]` 과 같다. 평면형은 `null`이다 |
+| `templatePointMappings` | 기본 판 매핑의 호환 별칭. 다판 모델은 반드시 `interfaceMappings`에서 선택한 판을 읽는다 |
+| `l3MappingPoints` | 모델의 평면+인터페이스 원문 포인트 전체. 인터페이스형 행은 `interfaceId`와 원래 `common`·`blocks`·`provenance`를 보존해 다중 프로토콜 주소·RW·범위를 잃지 않는다 |
 | `unitModels` | 통신 프로파일/제품군 문서 안에 들어 있는 실제 Unit Model Number 후보. 형번별 풍량·능력·조합 장비를 분리 |
 | `electricalRows` | 전기 특성표를 `모델번호 1개 + 전압 1개 = 한 행`으로 정규화한 목록. RLA/LRA/FLA/MCA/MOP를 분리 |
 | `simulatorRequirementMappings` | 시뮬레이터가 원하는 모든 정격 항목을 나열하고, 원문 정격에서 찾은 입력값 또는 빈칸을 표시 |

@@ -40,7 +40,7 @@
      ],
      "match": {
       "include": "(?:supply|discharge).*air.*temp|discharge.*temp",
-      "exclude": "setpoint|sp\\b|reheat|refrigerant"
+      "exclude": "setpoint|setp\\b|sp\\b|reheat|refrigerant|tempering status"
      }
     },
     {
@@ -59,7 +59,7 @@
      ],
      "match": {
       "include": "return.*air.*temp|\\bra temp",
-      "exclude": "setpoint|sp\\b"
+      "exclude": "setpoint|sp\\b|control temperature type"
      }
     },
     {
@@ -204,7 +204,7 @@
      ],
      "match": {
       "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
-      "exclude": "setpoint|sp\\b"
+      "exclude": "setpoint|sp\\b|reset"
      }
     },
     {
@@ -258,7 +258,7 @@
      ],
      "match": {
       "include": "(?:return|space|room).*co2|carbon dioxide",
-      "exclude": "setpoint|sp\\b|limit|bad |sensor error|\\balarm\\b|\\bfault\\b"
+      "exclude": "setpoint|sp\\b|limit|offset|calibrat|bad |sensor error|\\balarm\\b|\\bfault\\b"
      }
     },
     {
@@ -291,7 +291,8 @@
       "fan"
      ],
      "match": {
-      "include": "static.*pressure.*setpoint|ductstaticsp|duct.*static.*sp"
+      "include": "static.*pressure.*setpoint|ductstaticsp|duct.*static.*(?:setpoint|\\bsp\\b)",
+      "exclude": "current|reset"
      }
     },
     {
@@ -308,8 +309,8 @@
      ],
      "exposure": "필수 → 권장 강등. RTU 는 정속·다단 팬이 많아 주파수 지령을 안 내는 모델이 대부분이다(Daikin SupFanCapNetIn 등 소수). '필수'로 두면 영원히 미충족이라 규칙 ④ 위반이다",
      "match": {
-      "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:command|speed|frequency|setpoint)|nci.*supplyfan",
-      "exclude": "type|configuration|identifier|status|hours|runtime"
+      "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:speed|frequency|setpoint)|nci.*supplyfan",
+      "exclude": "type|configuration|identifier|status|hours|runtime|unstable"
      }
     },
     {
@@ -326,7 +327,7 @@
      ],
      "match": {
       "include": "(?:return|exhaust|ret).*fan.*(?:cap|speed|freq).*netin|(?:return|exhaust).*fan.*(?:command|speed|frequency|setpoint)",
-      "exclude": "type|configuration|identifier|status|hours|runtime"
+      "exclude": "type|configuration|identifier|status|hours|runtime|pressure"
      }
     },
     {
@@ -343,7 +344,7 @@
      ],
      "match": {
       "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
-      "exclude": "minimum|min|setpoint|sp\\b|bypass|bp ?damper"
+      "exclude": "minimum|maximum|min|max|setpoint|sp\\b|bypass|bp ?damper|total flow"
      },
      "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다"
     },
@@ -450,8 +451,8 @@
       "oa"
      ],
      "match": {
-      "include": "appliccmd|application.*mode|hvac mode|unit.*(?:state|mode)|currentstate|operation.*mode|drive mode",
-      "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier"
+      "include": "appliccmd|application.*mode|hvac mode|unit.*(?:state(?![a-z])|mode(?![a-z]))|currentstate|operation.*mode|drive mode",
+      "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier|setpoint|sp\\b|occupancy|enabled for operation|exits.*mode"
      }
     },
     {
@@ -524,7 +525,7 @@
      "exposure": "AAON AI:34 Modulating Cooling Position(note: Current percentage of the Modulating Chilled Water Signal), Lennox AI:247 Cool Primary, Trane nvoCoolPrimary, Daikin AV:1 ClgCapacity, Carrier AV:9006 cool demand level, York MB:263 Staged Cooling Command, Trane RAUK AV:10139 Cooling Capacity Enable",
      "match": {
       "include": "cool.*(?:capacity|demand|primary|command|position)|(?:clg|cool)cap|cool.*enable|coolenable|modulating cooling|staged cooling",
-      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma"
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|limit|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma"
      }
     },
     {
@@ -542,7 +543,7 @@
      "exposure": "AAON AI:35 Modulating Heat Position(note: Modulating Heating signal, Hot Water or SCR heat — 한 오브젝트가 온수밸브와 SCR 히터를 함께 담는다), Lennox AI:245 Heat Primary·AI:246 Heat Secondary, Trane nvoHeatPrimary, Daikin AV:2 HtgCapacity, Carrier AV:9036 heat demand level, York MB:264 Staged Heating Command",
      "match": {
       "include": "heat.*(?:capacity|demand|primary|secondary|command|position)|(?:htg|heat)cap|heat.*enable|heatenable|modulating heat",
-      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma"
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|setback|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma"
      }
     },
     {
@@ -558,7 +559,7 @@
      "exposure": "include 에서 setpoint 를 뺐다. 전에는 Trane nciSpaceHumSP·Lennox Dehumidification Setpoint 같은 설정값이 '가습 지령'으로 확정 표시됐다",
      "match": {
       "include": "humid.*(?:command|enable|output)|humidifier",
-      "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit"
+      "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit|under\\s*floor.*humidity|air humidity bas"
      }
     },
     {
@@ -596,7 +597,7 @@
      "exposure": "필수 → 선택 + appliesWhen. include 에서 'mod gas heat valve' 를 뺐고 exclude 에 reheat·hot gas·rev acting 을 넣었다. 전에는 AAON 'Mod Hot Gas Reheat Valve Position'(핫가스 재열밸브)과 York 'HW Heat Valve Rev Acting'(역작동 설정 플래그)이 온수밸브로 확정 표시됐다",
      "match": {
       "include": "hot.*water.*valve|heat.*valve|heating.*valve",
-      "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
+      "exclude": "type|configuration|identifier|enable|action|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
      }
     }
    ]
@@ -623,7 +624,7 @@
      ],
      "match": {
       "include": "(?:supply|discharge).*air.*temp|discharge.*temp",
-      "exclude": "setpoint|sp\\b|reheat|refrigerant"
+      "exclude": "setpoint|setp\\b|sp\\b|reheat|refrigerant|tempering status"
      }
     },
     {
@@ -642,7 +643,7 @@
      ],
      "match": {
       "include": "return.*air.*temp|\\bra temp",
-      "exclude": "setpoint|sp\\b"
+      "exclude": "setpoint|sp\\b|control temperature type"
      }
     },
     {
@@ -786,8 +787,8 @@
       "fan"
      ],
      "match": {
-      "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
-      "exclude": "setpoint|sp\\b"
+     "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
+      "exclude": "setpoint|sp\\b|reset"
      }
     },
     {
@@ -840,8 +841,8 @@
       "oa"
      ],
      "match": {
-      "include": "(?:return|space|room).*co2|carbon dioxide",
-      "exclude": "setpoint|sp\\b|limit|bad |sensor error|\\balarm\\b|\\bfault\\b"
+     "include": "(?:return|space|room).*co2|carbon dioxide",
+      "exclude": "setpoint|sp\\b|limit|offset|calibrat|bad |sensor error|\\balarm\\b|\\bfault\\b"
      }
     },
     {
@@ -874,7 +875,8 @@
       "fan"
      ],
      "match": {
-      "include": "static.*pressure.*setpoint|ductstaticsp|duct.*static.*sp"
+      "include": "static.*pressure.*setpoint|ductstaticsp|duct.*static.*(?:setpoint|\\bsp\\b)",
+      "exclude": "current|reset"
      }
     },
     {
@@ -890,8 +892,8 @@
       "fan"
      ],
      "match": {
-      "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:command|speed|frequency|setpoint)|nci.*supplyfan",
-      "exclude": "type|configuration|identifier|status|hours|runtime"
+      "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:speed|frequency|setpoint)|nci.*supplyfan",
+      "exclude": "type|configuration|identifier|status|hours|runtime|unstable"
      }
     },
     {
@@ -908,7 +910,7 @@
      ],
      "match": {
       "include": "(?:return|exhaust|ret).*fan.*(?:cap|speed|freq).*netin|(?:return|exhaust).*fan.*(?:command|speed|frequency|setpoint)",
-      "exclude": "type|configuration|identifier|status|hours|runtime"
+      "exclude": "type|configuration|identifier|status|hours|runtime|pressure"
      }
     },
     {
@@ -925,7 +927,7 @@
      ],
      "match": {
       "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
-      "exclude": "minimum|min|setpoint|sp\\b|bypass|bp ?damper"
+      "exclude": "minimum|maximum|min|max|setpoint|sp\\b|bypass|bp ?damper|total flow"
      },
      "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다"
     },
@@ -1034,8 +1036,8 @@
      ],
      "exposure": "include 에 operation mode·drive mode 를 넣었다. LG MB:40001 Operation Mode·Mitsubishi MB:40002 Drive Mode 가 안 잡히고 있었다",
      "match": {
-      "include": "appliccmd|application.*mode|hvac mode|unit.*(?:state|mode)|currentstate|operation.*mode|drive mode",
-      "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier"
+      "include": "appliccmd|application.*mode|hvac mode|unit.*(?:state(?![a-z])|mode(?![a-z]))|currentstate|operation.*mode|drive mode",
+      "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier|setpoint|sp\\b|occupancy|enabled for operation|exits.*mode"
      }
     },
     {
@@ -1092,7 +1094,7 @@
      "exposure": "include 에서 'mod gas heat valve' 를 뺐다(가스 모듈레이팅 밸브는 '난방 지령'이다). 실제 값은 Swegon MB:30376 AYC Heat, valve output",
      "match": {
       "include": "hot.*water.*valve|heat.*valve|heating.*valve",
-      "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
+      "exclude": "type|configuration|identifier|enable|action|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
      }
     },
     {
@@ -1129,7 +1131,7 @@
      "exposure": "Trane nvoCoolPrimary, Siemens MSO:30094 CoolingCmdDxSt, Swegon MB:30392 AYC Chilled water cool demand. 유럽형 Systemair AY1/AY3/AY10 Sequence_ 는 어느 것이 냉방인지 문서에 정의가 없어 근거로 쓰지 않았다(gap)",
      "match": {
       "include": "cool.*(?:capacity|demand|primary|command|position)|(?:clg|cool)cap|cool.*enable|coolenable|modulating cooling|staged cooling",
-      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma"
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|limit|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma"
      }
     },
     {
@@ -1147,7 +1149,7 @@
      "exposure": "Trane nvoHeatPrimary, Siemens MSO:11590 ElectricalHtgCmdStSt",
      "match": {
       "include": "heat.*(?:capacity|demand|primary|secondary|command|position)|(?:htg|heat)cap|heat.*enable|heatenable|modulating heat",
-      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma"
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|setback|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma"
      }
     },
     {
@@ -1165,7 +1167,7 @@
      "exposure": "include 에서 setpoint 를 뺐다. Swegon 'Active alarm 189' 등 알람 비트가 가습 지령으로 잡히고 있었다",
      "match": {
       "include": "humid.*(?:command|enable|output)|humidifier",
-      "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit"
+      "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit|under\\s*floor.*humidity|air humidity bas"
      }
     }
    ]

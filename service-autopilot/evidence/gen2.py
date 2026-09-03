@@ -315,7 +315,7 @@ nav .sm{color:var(--accent)}
 .guide .why span{font-size:10.5px;padding:2px 7px;border-radius:4px;background:var(--sel);color:var(--dim)}
 .mtabs{display:flex;gap:2px;padding:10px 18px 0;border-bottom:1px solid var(--line2)}
 .mtabs button{padding:7px 10px;font-size:12px;color:var(--dim);border-bottom:2px solid transparent;margin-bottom:-1px}
-.mtabs button[aria-selected="true"]{color:var(--ink);font-weight:650;border-bottom-color:var(--accent)}
+.mtabs button[aria-pressed="true"]{color:var(--ink);font-weight:650;border-bottom-color:var(--accent)}
 .mtabs i{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-left:4px}
 .unitpick{padding:0 18px 8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px}
 .ucard{border:1px solid var(--line);border-radius:6px;padding:8px 10px;text-align:left;background:var(--bg)}
@@ -1140,8 +1140,8 @@ function renderAhuPurposeWorkspace(m){
     + '<div class="pstat"><span>Unit Model Number <b>'+((p.unitModels||[]).length||0)+'</b>개</span>'
     + '<span>제조사 원문 포인트 <b>'+((p.counts||{}).l3MappingPoints||0)+'</b>개 보존</span>'
     + '<span>원문표 <b>'+((m.specTables||[]).length||0)+'</b>개</span></div></div>';
-  h += '<div class="mtabs">' + views.map(function(v){
-      return '<button data-mview="'+v.id+'" aria-selected="'+(mview===v.id)+'">'
+  h += '<div class="mtabs" role="group" aria-label="모델 상세 보기">' + views.map(function(v){
+      return '<button data-mview="'+v.id+'" aria-pressed="'+(mview===v.id)+'">'
         + esc(v.label) + '<i>'+v.count+'</i></button>';
     }).join('') + '</div>';
   return h + renderModelViewPanel(m, p);
@@ -1150,6 +1150,10 @@ function renderAhuPurposeWorkspace(m){
 function availableModelViews(m, p){
   var views = [];
   if((p.unitModels||[]).length) views.push({id:'unit', label:'형번·정격', count:p.unitModels.length});
+  if((p.interfaceMappings||[]).length || (p.templatePointMappings||[]).length)
+    views.push({id:'bms', label:'BMS 기본화면', count:(p.templatePointMappings||[]).length});
+  if((p.simulatorRequirementMappings||[]).length)
+    views.push({id:'sim', label:'시뮬레이터 입력', count:p.simulatorRequirementMappings.length});
   views.push({id:'points', label:'오브젝트 목록', count:ptCount(m)});
   if((m.specTables||[]).length) views.push({id:'raw', label:'원문표', count:(m.specTables||[]).length});
   if((m.docs||[]).length) views.push({id:'docs', label:'근거', count:(m.docs||[]).length});
@@ -1167,10 +1171,23 @@ function renderModelViewPanel(m, p){
 }
 
 function renderBmsTemplatePanel(m, p){
-  var tm = p.templatePointMappings || [];
+  // 오브젝트 목록에서 고른 판과 같은 범위만 본다. 여러 판의 합집합은 실제 어느
+  // 제어반에도 없는 가상 기본화면을 만들 수 있다(D-016).
+  var scopes = p.interfaceMappings || [], scope = null;
+  if(scopes.length && (m.interfaces||[]).length){
+    var k = Math.min(isel[m.id]||0, m.interfaces.length-1);
+    var iid = m.interfaces[k].id;
+    scope = scopes.find(function(x){ return x.interfaceId === iid; });
+  }
+  if(!scope && scopes.length){
+    scope = scopes.find(function(x){ return x.id === p.defaultMappingScopeId; }) || scopes[0];
+  }
+  var tm = scope ? (scope.templatePointMappings || []) : (p.templatePointMappings || []);
   return sec('BMS 기본화면', tm.length)
     + '<div class="guide"><b>운영 화면에 먼저 올릴 포인트예요</b>'
-    + '<p>장비별 템플릿 데이터에서 온 항목입니다. 화면 코드가 목록을 정하는 것이 아니라 데이터셋의 <code>templatePointMappings</code>를 그대로 보여줍니다.</p></div>'
+    + '<p>장비별 템플릿 데이터에서 온 항목입니다. '
+    + (scope && scope.interfaceId ? '현재 고른 판 <b>'+esc(scope.label||scope.interfaceId)+'</b>만 매칭합니다. ' : '')
+    + '화면 코드가 목록을 정하는 것이 아니라 데이터셋의 판별 <code>templatePointMappings</code>를 그대로 보여줍니다.</p></div>'
     + table({header:['상태','화면 이름','원문 포인트','종류','단위'],
              rows:tm.map(function(x){
                var mp = x.matchedPoint || {};

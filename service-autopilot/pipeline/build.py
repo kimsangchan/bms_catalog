@@ -195,6 +195,18 @@ def load_purpose_dataset():
     for mid, m in raw["modelMappings"].items():
         out[mid] = {
             "counts": m["counts"],
+            "mappingScope": m.get("mappingScope"),
+            "defaultMappingScopeId": m.get("defaultMappingScopeId"),
+            "interfaceMappings": [{
+                "id": scope.get("id"),
+                "kind": scope.get("kind"),
+                "interfaceId": scope.get("interfaceId"),
+                "label": scope.get("label"),
+                "family": scope.get("family"),
+                "protocols": scope.get("protocols") or [],
+                "counts": scope.get("counts") or {},
+                "templatePointMappings": scope.get("templatePointMappings") or [],
+            } for scope in m.get("interfaceMappings") or []],
             "unitModels": m.get("unitModels", []),
             "electricalRows": m.get("electricalRows", []),
             "templatePointMappings": m["templatePointMappings"],

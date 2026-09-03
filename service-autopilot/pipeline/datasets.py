@@ -16,6 +16,7 @@
   python datasets.py --equip e5
 """
 import argparse
+import copy
 import glob
 import json
 import os
@@ -181,7 +182,7 @@ def point_text(point):
     return "%s %s" % (point.get("name") or "", point.get("note") or "")
 
 
-def flatten_interface_point(point):
+def flatten_interface_point(point, interface=None):
     """신형 포인트({common, blocks, provenance})를 매처가 읽는 평면 모양으로 옮긴다.
 
     **곧이곧대로 옮길 수 있는 것만 옮긴다.** bacnet.objectType 은 값이
@@ -194,6 +195,15 @@ def flatten_interface_point(point):
     blocks = point.get("blocks") or {}
     bacnet = blocks.get("bacnet") or {}
     modbus = blocks.get("modbus") or {}
+    provenance = point.get("provenance") or {}
+    interface = interface or {}
+    parent_interface_id = interface.get("id")
+    point_interface_id = provenance.get("interfaceId")
+    if parent_interface_id and point_interface_id and parent_interface_id != point_interface_id:
+        raise ValueError(
+            "포인트 interfaceId 불일치: %s != %s (%s)" % (
+                point_interface_id, parent_interface_id, common.get("name") or "이름 없음"))
+    interface_id = point_interface_id or parent_interface_id
     return {
         "name": common.get("name") or common.get("shortName"),
         "note": common.get("note") or "",
@@ -203,6 +213,15 @@ def flatten_interface_point(point):
         "inst": bacnet.get("instance", modbus.get("address")),
         "unit": common.get("unitSI") or common.get("unitIP"),
         "unitRaw": common.get("unitSIRaw") or common.get("unitIPRaw"),
+        "sourceFile": provenance.get("sourceFile") or interface.get("sourceFile"),
+        "sourcePage": provenance.get("sourcePage"),
+        "interfaceId": interface_id,
+        "protocols": list(interface.get("protocols") or []),
+        # L3는 매칭용 축약값만이 아니라 벤더 원문 구조를 보존해야 한다. 특히 한
+        # 행에 BACnet과 Modbus 주소가 함께 있으면 generic inst 하나로는 복원할 수 없다.
+        "common": copy.deepcopy(common),
+        "blocks": copy.deepcopy(blocks),
+        "provenance": copy.deepcopy(provenance),
     }
 
 
@@ -221,12 +240,53 @@ def model_template_points(model):
             if not isinstance(point, dict):
                 continue
             if "common" in point:
-                flat = flatten_interface_point(point)
+                flat = flatten_interface_point(point, iface)
                 if flat.get("name"):
                     points.append(flat)
             elif point.get("name"):
                 points.append(point)
     return points
+
+
+def model_mapping_inputs(model):
+    """매핑 범위별 입력을 돌려준다 — 평면 한 벌 또는 인터페이스 한 판씩.
+
+    서로 다른 판의 주소와 포인트를 합치면 어느 판에도 실제로 존재하지 않는 가상
+    기본화면이 생긴다. 평면 목록과 각 인터페이스를 독립된 범위로 유지한다.
+    """
+    scopes = []
+    flat = [p for p in (model.get("points") or []) if isinstance(p, dict)]
+    if flat:
+        scopes.append({
+            "id": "legacy-flat",
+            "kind": "legacy-flat",
+            "interfaceId": None,
+            "label": "기존 평면 포인트",
+            "family": None,
+            "protocols": [],
+            "points": flat,
+        })
+    for iface in model.get("interfaces") or []:
+        points = []
+        for point in iface.get("points") or []:
+            if not isinstance(point, dict):
+                continue
+            if "common" in point:
+                flat_point = flatten_interface_point(point, iface)
+            else:
+                flat_point = dict(point, interfaceId=iface.get("id"))
+            if flat_point.get("name"):
+                points.append(flat_point)
+        scopes.append({
+            "id": "interface:%s" % iface.get("id"),
+            "kind": "interface",
+            "interfaceId": iface.get("id"),
+            "label": iface.get("label"),
+            "family": iface.get("family"),
+            "protocols": list(iface.get("protocols") or []),
+            "points": points,
+        })
+    return sorted(scopes, key=lambda scope: scope["kind"] != "interface")
 
 
 def find_template_candidates(profile_id, points):
@@ -282,7 +342,15 @@ def find_template_candidates(profile_id, points):
             matches.append((score, point))
         if not matches:
             continue
-        point = sorted(matches, key=lambda item: (-item[0], item[1].get("inst") or 999999))[0][1]
+        def instance_key(item):
+            value = item[1].get("inst")
+            if value is None:
+                return (2, 0)
+            if isinstance(value, (int, float)):
+                return (0, value)
+            return (1, str(value))
+
+        point = sorted(matches, key=lambda item: (-item[0],) + instance_key(item))[0][1]
         seen_names.add(point.get("name"))
         picked.append({
             "templateName": rule["name"],
@@ -291,6 +359,7 @@ def find_template_candidates(profile_id, points):
             "instance": point.get("inst"),
             "unit": point.get("unit") or point.get("unitRaw"),
             "note": point.get("note", ""),
+            "interfaceId": point.get("interfaceId"),
         })
     return picked
 
@@ -324,6 +393,7 @@ def template_point_mappings(profile_id, template_rows, points):
                 "instance": candidate["instance"],
                 "unit": candidate["unit"],
                 "note": candidate["note"],
+                "interfaceId": candidate.get("interfaceId"),
             }
         out.append(item)
     return out
@@ -360,6 +430,11 @@ def mapping_points(points, template_candidates):
             "note": point.get("note", ""),
             "sourceFile": point.get("sourceFile"),
             "sourcePage": point.get("sourcePage"),
+            "interfaceId": point.get("interfaceId"),
+            "protocols": point.get("protocols") or [],
+            "common": copy.deepcopy(point.get("common")),
+            "blocks": copy.deepcopy(point.get("blocks")),
+            "provenance": copy.deepcopy(point.get("provenance")),
             "bacOid": point.get("bacOid"),
             "modbusRegister": point.get("modbusRegister"),
             "modbusScaleFactor": point.get("modbusScaleFactor"),
@@ -1914,9 +1989,7 @@ def build_dataset(equip_ids=None):
 
     for model_id, model in sorted(models.items()):
         profile_id = template_profile_for(model)
-        template_input = model_template_points(model)
-        candidates = find_template_candidates(profile_id, template_input)
-        mapped = mapping_points(model.get("points") or [], candidates)
+        mapping_inputs = model_mapping_inputs(model)
         refs = reference_tables(model)
         # 화면·산출물은 확정 데이터셋(data/units)만 읽는다 — 추출은 units.py 의 제안 원천
         units = load_curated_units(model)
@@ -1928,12 +2001,42 @@ def build_dataset(equip_ids=None):
         )
         equip_template = data["equipmentTemplates"].get(model.get("equipId"), {})
         template_profile = data["templateProfiles"].get(profile_id, {})
-        template_mappings = template_point_mappings(
-            profile_id,
+        template_rows = (
             template_profile.get("templatePoints")
-            or equip_template.get("templatePoints", []),
-            template_input,
-        )
+            or equip_template.get("templatePoints", []))
+        interface_mappings = []
+        mapped = []
+        default_mapping = None
+        for scope in mapping_inputs:
+            candidates = find_template_candidates(profile_id, scope["points"])
+            template_mappings = template_point_mappings(
+                profile_id, template_rows, scope["points"])
+            scope_mapping = {
+                "id": scope["id"],
+                "kind": scope["kind"],
+                "interfaceId": scope["interfaceId"],
+                "label": scope["label"],
+                "family": scope["family"],
+                "protocols": scope["protocols"],
+                "templatePointCandidates": candidates,
+                "templatePointMappings": template_mappings,
+                "counts": {
+                    "templateCandidates": len(candidates),
+                    "templatePointMappings": len(template_mappings),
+                    "l3MappingPoints": len(scope["points"]),
+                },
+            }
+            # interfaceMappings는 이름 그대로 실제 통신판만 공개한다. 평면형의
+            # legacy-flat은 최상위 호환 필드에만 남겨 판 수로 오인되지 않게 한다.
+            if scope["kind"] == "interface":
+                interface_mappings.append(scope_mapping)
+            if default_mapping is None:
+                default_mapping = scope_mapping
+            mapped.extend(mapping_points(scope["points"], candidates))
+        default_mapping = default_mapping or {
+            "id": None, "templatePointCandidates": [], "templatePointMappings": []}
+        candidates = default_mapping["templatePointCandidates"]
+        template_mappings = default_mapping["templatePointMappings"]
         simulator_mappings = simulator_requirement_mappings(
             equip_template.get("simulatorSpecRequirements", []),
             sim,
@@ -1942,6 +2045,11 @@ def build_dataset(equip_ids=None):
             "id": model_id,
             "equipmentId": model.get("equipId"),
             "templateProfileId": profile_id,
+            "mappingScope": default_mapping.get("kind"),
+            "defaultMappingScopeId": (
+                default_mapping.get("id")
+                if default_mapping.get("kind") == "interface" else None),
+            "interfaceMappings": interface_mappings,
             "vendor": model.get("vendor"),
             "model": model.get("model"),
             "name": model.get("name"),
@@ -1956,6 +2064,7 @@ def build_dataset(equip_ids=None):
             "counts": {
                 "templateCandidates": len(candidates),
                 "templatePointMappings": len(template_mappings),
+                "interfaceMappings": len(interface_mappings),
                 "unitModels": len(units),
                 "electricalRows": len(electrical),
                 "simulatorInputs": len(sim),

@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from contextlib import redirect_stdout
 import unittest
+from unittest import mock
 
 import build
 import datasets
@@ -1069,26 +1070,25 @@ class InterfacePointTemplateGateTest(unittest.TestCase):
         return out
 
     def test_interface_models_are_not_silently_empty(self):
-        """인터페이스형 e5 모델이 한 행도 못 채우면 운다."""
+        """인터페이스형 e5의 각 판이 한 행도 못 채우면 운다."""
         empty, seen, points = [], 0, 0
         for model in self._e5_models():
             if not model.get("interfaces"):
                 continue
-            pts = datasets.model_template_points(model)
-            if not pts:
-                continue
-            seen += 1
-            points += len(pts)
-            picked = datasets.find_template_candidates(
-                datasets.template_profile_for(model), pts)
-            if not picked:
-                empty.append(model["id"])
+            for scope in datasets.model_mapping_inputs(model):
+                if scope["kind"] != "interface":
+                    continue
+                seen += 1
+                points += len(scope["points"])
+                picked = datasets.find_template_candidates(
+                    datasets.template_profile_for(model), scope["points"])
+                if not picked:
+                    empty.append("%s/%s" % (model["id"], scope["interfaceId"]))
 
-        # 수를 박아 두면 새 모델마다 이 게이트가 '틀렸다'고 말한다. 확인할 것은
-        # **조용히 0 이 되지 않는다**는 것이다.
-        self.assertGreaterEqual(seen, 8)
-        # 시험이 0건을 훑으며 통과하는 상태가 되는 것을 막는다.
-        self.assertGreaterEqual(points, 5000)
+        # 하한은 시험이 일부 모델/판을 건너뛰며 통과하는 상태를 막는다. 새 판 추가는
+        # 통과하고, 기존 판이 통째로 사라지면 아래 L3 전수 게이트가 함께 운다.
+        self.assertGreaterEqual(seen, 27)
+        self.assertGreaterEqual(points, 5961)
         self.assertEqual(empty, [])
 
     def test_flat_models_feed_the_matcher_unchanged(self):
@@ -1194,6 +1194,53 @@ class InterfacePointTemplateGateTest(unittest.TestCase):
         self.assertTrue(all(isinstance(p.get("sourcePage"), int)
                             for p in model["l3MappingPoints"]))
 
+    def test_every_e5_source_point_reaches_l3_once(self):
+        """평면과 판별 원문 수의 합이 L3 보존 수와 전 모델에서 정확히 같다."""
+        data = datasets.build_dataset(equip_ids={"e5"})
+        sources = datasets.load_models()
+        for model_id, mapped in data["modelMappings"].items():
+            model = sources[model_id]
+            expected = len(model.get("points") or []) + sum(
+                len(scope.get("points") or []) for scope in model.get("interfaces") or [])
+            self.assertEqual(
+                mapped["counts"]["l3MappingPoints"], expected, model_id)
+
+    def test_structured_protocol_fields_survive_interface_l3_mapping(self):
+        """동시 프로토콜 주소·RW·범위를 얇은 instance 하나로 잃지 않는다."""
+        source = {
+            "common": {
+                "name": "Supply Air Temperature",
+                "readWrite": "R",
+                "range": {"min": -40, "max": 125},
+            },
+            "blocks": {
+                "bacnet": {"objectType": "AI", "instance": 1},
+                "modbus": {
+                    "address": 514,
+                    "refClass": "holding-register",
+                    "dataType": "int16",
+                },
+            },
+            "provenance": {
+                "interfaceId": "dual-protocol",
+                "sourceFile": "points.pdf",
+                "sourcePage": 7,
+            },
+        }
+        flat = datasets.flatten_interface_point(source, {
+            "id": "dual-protocol",
+            "protocols": ["bacnet", "modbus"],
+        })
+        mapped = datasets.mapping_points([flat], [])[0]
+
+        self.assertEqual(mapped["common"]["readWrite"], "R")
+        self.assertEqual(mapped["common"]["range"]["max"], 125)
+        self.assertEqual(mapped["blocks"]["bacnet"]["instance"], 1)
+        self.assertEqual(mapped["blocks"]["modbus"]["address"], 514)
+        self.assertEqual(mapped["blocks"]["modbus"]["refClass"], "holding-register")
+        self.assertEqual(mapped["provenance"]["sourcePage"], 7)
+        self.assertIsNot(mapped["blocks"], source["blocks"])
+
     def test_known_ypal_prose_false_positives_stay_unmatched(self):
         """설명문에 낱말만 나온 상태·설정점·풍량을 제어 포인트로 집지 않는다."""
         data = datasets.build_dataset(equip_ids={"e5"})
@@ -1211,6 +1258,90 @@ class InterfacePointTemplateGateTest(unittest.TestCase):
             for p in scope["templatePointCandidates"]
         }
         self.assertFalse(forbidden & actual)
+
+    def test_known_vec100_and_ykl_prose_false_positives_stay_unmatched(self):
+        """모델번호·설명문 열거·동결 설명을 운전값으로 집지 않는다."""
+        names = [
+            "johnson-controls-verasys-vec100-generic-rtu-controller.json",
+            "johnson-controls-york-l-series-lswu-lswd-lswf-self-contained.json",
+            "johnson-controls-york-tempmaster-omnielite-packaged-rooftop-unit.json",
+            "johnson-controls-york-ykl-compact-low-profile-ahu.json",
+            "johnson-controls-york-ypal-packaged-rooftop-unit.json",
+        ]
+        models = [datasets.load_json(os.path.join(datasets.DATA, "models", name))
+                  for name in names]
+        forbidden = {
+            ("운전 모드", "Unit Model Number"),
+            ("운전 모드", "VAV RAT Heating Setpoint"),
+            ("환기온도", "Control temperature type"),
+            ("운전 모드", "Heating coil freeze protection maximum temperature value"),
+            ("운전 모드", "Heat exchanger freeze protection maximum temperature value"),
+            ("급기팬 주파수 지령", "OA Damper Min Position"),
+            ("가습 지령", "Under Floor Humidity BAS"),
+            ("급기온도", "Supply Air Tempering Status"),
+            ("환기 CO2", "IAQ Offset"),
+            ("급기팬 주파수 지령", "Supply Fan Command"),
+            ("외기댐퍼 개도", "Demand Ventilation Maximum Economizer Position"),
+            ("급기 정압", "Duct Static Press Reset"),
+            ("급기 정압 설정값", "Duct Static Press Current"),
+            ("환기팬 주파수 지령", "Return Fan Pressure Current"),
+            ("운전 모드", "Occupancy Command"),
+            ("운전 모드", "Cooling Mode Enabled For Operation"),
+            ("냉방 지령", "SAT Limit for Cooling Enable"),
+            ("난방 지령", "Night Setback For Heating"),
+            ("온수밸브 개도", "Heating Valve Action"),
+        }
+        actual = {
+            (p["templateName"], p["sourceName"])
+            for model in models
+            for scope in datasets.model_mapping_inputs(model)
+            for p in datasets.find_template_candidates(
+                datasets.template_profile_for(model), scope["points"])
+        }
+        self.assertFalse(forbidden & actual)
+
+    def test_flat_models_do_not_publish_a_fake_interface_mapping(self):
+        """평면 포인트 호환 매핑을 실제 통신판으로 오인하게 만들지 않는다."""
+        source = {
+            "id": "flat-fixture",
+            "equipId": "e5",
+            "vendor": "test",
+            "model": "flat",
+            "name": "flat",
+            "cat": "HVAC.AIR.AHU",
+            "points": [{"name": "Supply Air Temperature", "type": "AI", "inst": 0}],
+            "interfaces": [],
+        }
+        with mock.patch.object(datasets, "load_models", return_value={source["id"]: source}):
+            data = datasets.build_dataset(equip_ids={"e5"})
+        mapped = data["modelMappings"][source["id"]]
+
+        self.assertEqual(mapped["mappingScope"], "legacy-flat")
+        self.assertIsNone(mapped["defaultMappingScopeId"])
+        self.assertEqual(mapped["interfaceMappings"], [])
+        self.assertEqual(mapped["counts"]["interfaceMappings"], 0)
+
+    def test_bms_and_simulator_views_are_reachable_native_button_groups(self):
+        """생성기에서 BMS/시뮬레이터 패널을 실제 버튼으로 열 수 있어야 한다."""
+        path = os.path.join(os.path.dirname(datasets.HERE), "evidence", "gen2.py")
+        with open(path, encoding="utf-8") as stream:
+            source = stream.read()
+
+        self.assertIn("views.push({id:'bms'", source)
+        self.assertIn("views.push({id:'sim'", source)
+        self.assertIn('role="group"', source)
+        self.assertIn('aria-pressed="', source)
+
+    def test_catalog_purpose_data_carries_interface_mappings_without_l3_duplication(self):
+        """HTML용 축약 데이터도 선택 판의 매핑을 찾을 수 있어야 한다."""
+        purpose = build.load_purpose_dataset()
+        model = purpose["johnson-controls-york-ypal-packaged-rooftop-unit"]
+
+        self.assertTrue(model["defaultMappingScopeId"].startswith("interface:"))
+        self.assertEqual(len(model["interfaceMappings"]), 11)
+        self.assertNotIn("l3MappingPoints", model)
+        self.assertTrue(all("templatePointMappings" in scope
+                            for scope in model["interfaceMappings"]))
 
 
 if __name__ == "__main__":
