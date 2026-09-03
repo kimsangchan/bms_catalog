@@ -1369,5 +1369,66 @@ class InterfacePointTemplateGateTest(unittest.TestCase):
                             for scope in model["interfaceMappings"]))
 
 
+class SourceLedgerGateTest(unittest.TestCase):
+    """게이트 — 모델이 인용하는 원문이 대장(collected.json)에 있나, 그리고
+    대장이 '부적합' 이라고 적어 둔 원문을 쓰는 모델이 그 사실을 말하고 있나.
+
+    두 번 밟았다. ⑴ 에너지회수 응용 가이드는 재훑기 임시 캐시에만 있어 다음
+    정리에서 사라질 뻔했다. ⑵ LG·삼성 데이터북은 `fetch_pdf.py` 가 검색 결과에서
+    받고 URL 을 안 남겨 **재수집 불가** 상태로 들어왔다 — 게다가 하나는 이름과
+    내용이 다르고(Multi V 5 가 0회, 4.4톤 1기종) 하나는 지역 사양이 다르다
+    (DVM S Desert, 50Hz — 한국은 60Hz). 값은 멀쩡해 보이므로 아무 데서도 안 운다.
+    """
+
+    def _ledger(self):
+        return datasets.load_json(os.path.join(datasets.DATA, "collected.json"))
+
+    def _cited(self):
+        """모델 → 그 모델이 인용하는 원문 파일이름 집합 (#앵커는 떼고 센다)."""
+        out = {}
+        for path in glob.glob(os.path.join(datasets.DATA, "models", "*.json")):
+            model = datasets.load_json(path)
+            srcs = set()
+            for table in model.get("specTables") or []:
+                if table.get("source"):
+                    srcs.add(str(table["source"]).split("#")[0])
+            if model.get("sourceDoc"):
+                srcs.add(str(model["sourceDoc"]).split("#")[0])
+            for iface in model.get("interfaces") or []:
+                if iface.get("sourceFile"):
+                    srcs.add(str(iface["sourceFile"]).split("#")[0])
+            if srcs:
+                out[model["id"]] = srcs
+        return out
+
+    def test_every_cited_source_is_in_the_ledger(self):
+        """원문이 대장에 없으면 그 PC 의 임시 파일에 매인 것이다 — 다른 데서 재현이 안 된다."""
+        known = {v.get("file") for v in self._ledger().values() if v.get("file")}
+        self.assertGreaterEqual(len(known), 200)   # 0건을 훑으며 통과하지 않게
+        orphan = {}
+        for mid, srcs in self._cited().items():
+            miss = sorted(s for s in srcs if s not in known)
+            if miss:
+                orphan[mid] = miss
+        self.assertEqual(orphan, {}, "대장에 없는 원문을 인용한다: %s" % orphan)
+
+    def test_models_on_unfit_sources_say_so_in_gap(self):
+        """대장이 '부적합' 이라 적은 원문을 쓰면 모델이 그 사실을 말해야 한다.
+
+        지역·범위가 다른 원문에서 뽑은 정격은 **값이 멀쩡해 보인다.** 시뮬레이터는
+        그대로 믿는다 — 그래서 모델 쪽에도 적혀 있어야 한다.
+        """
+        led = self._ledger()
+        unfit = {v["file"] for v in led.values() if v.get("file") and v.get("unfit")}
+        self.assertTrue(unfit, "대장에 unfit 표시가 하나도 없다 — 시험이 헛돈다")
+        silent = []
+        for mid, srcs in self._cited().items():
+            if srcs & unfit and "원문" not in (datasets.load_json(
+                    os.path.join(datasets.DATA, "models", mid + ".json")).get("gap") or ""):
+                silent.append(mid)
+        self.assertEqual(silent, [],
+                         "부적합 원문을 쓰면서 gap 에 안 적은 모델: %s" % silent)
+
+
 if __name__ == "__main__":
     unittest.main()

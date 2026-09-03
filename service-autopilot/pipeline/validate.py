@@ -58,6 +58,38 @@ def point_texts(p):
             yield "states.label", st["label"]
 
 
+_UNFIT = None
+
+
+def unfit_sources():
+    """대장(collected.json)이 '부적합' 이라 적어 둔 원문 파일이름.
+
+    지역·범위가 다른 원문에서 뽑은 정격은 **값이 멀쩡해 보인다** — 그래서
+    spec-core 가 "시뮬레이터용 물리량 확보" 라고 말해 버린다. 그 자리에 경고를 단다.
+    """
+    global _UNFIT
+    if _UNFIT is None:
+        path = os.path.join(DATA, "collected.json")
+        led = json.load(open(path, encoding="utf-8")) if os.path.exists(path) else {}
+        _UNFIT = {v["file"]: v["unfit"] for v in led.values()
+                  if v.get("file") and v.get("unfit")}
+    return _UNFIT
+
+
+def cited_sources(m):
+    """모델이 인용하는 원문 파일이름 (#앵커는 뗀다)."""
+    out = set()
+    for tb in m.get("specTables") or []:
+        if tb.get("source"):
+            out.add(str(tb["source"]).split("#")[0])
+    if m.get("sourceDoc"):
+        out.add(str(m["sourceDoc"]).split("#")[0])
+    for i in m.get("interfaces") or []:
+        if i.get("sourceFile"):
+            out.add(str(i["sourceFile"]).split("#")[0])
+    return out
+
+
 def load_all():
     eq = {}
     for f in glob.glob(os.path.join(DATA, "equips", "*.json")):
@@ -224,6 +256,11 @@ def check_model(m, eq, kg):
         else:
             add("I", "spec-core", "시뮬레이터용 물리량 확보: %s"
                 % ", ".join(sorted(core & set(qs))))
+        # 값이 있다고 쓸 수 있는 값은 아니다 — 원문이 목적에 안 맞으면 여기서 운다.
+        bad = sorted(cited_sources(m) & set(unfit_sources()))
+        for f in bad:
+            add("W", "spec-source-unfit",
+                "원문이 목적에 안 맞는다 (%s) — %s" % (f, unfit_sources()[f]))
     elif pts:
         add("W", "no-spec", "정격 사양 없음 — 통신 맵만 있다 (카탈로그·데이터시트 필요)")
 
