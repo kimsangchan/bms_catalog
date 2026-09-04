@@ -125,8 +125,13 @@ def row_of(p):
     #    세는데(BACnet 인스턴스는 타입별로 매겨진다) 숫자만 '9' 로 보이면
     #    같은 쪽의 AI9 인지 AV9 인지 알 수 없다. 더구나 AI9 의 **이름이 'AI1'**
     #    (드라이브 아날로그 입력 단자 1번)이라 숫자만 보여 주면 반드시 헷갈린다.
-    n = src.get("Instance ID") or src.get("Point No.") or (
-        str(inst) if inst is not None else "")
+    # Modbus 판은 인스턴스가 없다 — 원문이 인쇄한 **주소**가 그 자리다
+    # ('0h0009' · '00001'). 비워 두면 번호 칸이 통째로 빈다(실측: RS-485 157점).
+    mb = (p.get("blocks") or {}).get("modbus") or {}
+    n = (src.get("Instance ID") or src.get("Point No.") or src.get("Comm. Address")
+         or src.get("Register")
+         or (str(inst) if inst is not None else "")
+         or (str(mb.get("address")) if mb.get("address") is not None else ""))
     st = ", ".join("%s=%s" % (s.get("code"), s.get("label"))
                    for s in (c.get("states") or []))
     r = {"n": n, "t": bac.get("objectType") or "", "nm": c.get("name") or ""}
@@ -152,9 +157,13 @@ def row_of(p):
     #       들어 있어, 이미 세 열로 갈라 놓고 그 문장을 또 한 열로 보이면 같은 값이
     #       네 번 나온다. 조각들이 그 칸 **안에** 들어 있으면 읽은 것으로 본다.
     flat = lambda s: re.sub(r"\s+", "", str(s))
+    mbb = (p.get("blocks") or {}).get("modbus") or {}
     solo = {flat(x) for x in (r.get("n"), r.get("t"), r.get("nm"), r.get("d"),
                               r.get("u"), r.get("rg"), r.get("rw"), r.get("sr"),
-                              c.get("unitSI"), c.get("scaleRaw")) if x}
+                              c.get("unitSI"), c.get("scaleRaw"),
+                              # 구역 머리글과 배율 열에 이미 있는 것을 또 세우지 않는다
+                              c.get("group"), mbb.get("scaleRaw"),
+                              mbb.get("scale")) if x}
     solo |= {flat(s.get("label")) for s in (c.get("states") or [])}
     pieces = [flat(x) for x in (c.get("unitSIRaw") or c.get("unitIPRaw"),
                                 (c.get("range") or {}).get("raw"),
@@ -270,23 +279,37 @@ def main(argv):
         vendor = m.get("vendor") or "?"
         eid, vid = eq, "%s|%s" % (eq, vendor)
         mid = "%s|%s" % (vid, m["id"])
-        path = os.path.join(DATA, "raw", m.get("sourceDoc") or "")
-        doc = fitz.open(path) if os.path.exists(path) else None
-        if doc is None:
-            warns.append("%s: 원문이 없다(%s) — 쪽 그림 없이 담는다"
-                         % (m["id"], m.get("sourceDoc")))
-
-        # 판별로 인쇄 쪽 → 포인트
-        want, names = set(), {}
+        # ⚠ 원문을 **판마다** 찾는다. 한 모델의 판들이 서로 다른 문서에서 올 수 있다 —
+        #    LS H100 은 BACnet 판이 옵션 카드 매뉴얼, RS-485 판이 본체 매뉴얼이다.
+        #    모델의 sourceDoc 하나만 보면 뒤엣것의 쪽을 못 찾아 **원문이 안 뜬다**
+        #    (실측: 판 하나 157점이 통째로 그림 없이 떴다).
+        pdfmap, docof = {}, {}
         for iface in m["interfaces"]:
-            for p in iface.get("points") or []:
-                pr = (p.get("provenance") or {}).get("sourcePage")
-                if pr is None:
+            src = iface.get("sourceFile") or m.get("sourceDoc") or ""
+            docof[iface["id"]] = src
+            if src in pdfmap:
+                continue
+            path = os.path.join(DATA, "raw", src)
+            if not os.path.exists(path):
+                warns.append("%s / %s: 원문이 없다(%s) — 쪽 그림 없이 담는다"
+                             % (m["id"], iface["id"], src))
+                pdfmap[src] = {}
+                continue
+            want, names = set(), {}
+            for i2 in m["interfaces"]:
+                if (i2.get("sourceFile") or m.get("sourceDoc")) != src:
                     continue
-                want.add(pr)
-                names.setdefault(pr, []).append((p.get("common") or {}).get("name") or "")
-        pdfmap, w = ({}, []) if doc is None else resolve_pages(doc, want, names)
-        warns += ["%s: %s" % (m["id"], x) for x in w]
+                for p in i2.get("points") or []:
+                    pr = (p.get("provenance") or {}).get("sourcePage")
+                    if pr is None:
+                        continue
+                    want.add(pr)
+                    names.setdefault(pr, []).append(
+                        (p.get("common") or {}).get("name") or "")
+            dd = fitz.open(path)
+            pdfmap[src], w = resolve_pages(dd, want, names)
+            dd.close()
+            warns += ["%s / %s: %s" % (m["id"], src, x) for x in w]
 
         # 분류(cat)를 모델 줄에 늘 붙인다 — 계열(eN) 이름만으로는 어긋남이 안 보인다.
         # 실제로 LG 게이트웨이는 계열 e5(공조기)인데 분류가 HVAC.AIR.VRF 다.
@@ -304,10 +327,11 @@ def main(argv):
             n = 0
             for gi, (group, pts) in enumerate(by.items()):
                 rows, span = [], []
+                src = docof[iface["id"]]
                 for p in pts:
                     printed = (p.get("provenance") or {}).get("sourcePage")
-                    pdf = pdfmap.get(printed)
-                    key = "%s#%s" % (m["id"], pdf)
+                    pdf = (pdfmap.get(src) or {}).get(printed)
+                    key = "%s|%s#%s" % (m["id"], src, pdf)
                     r = row_of(p)
                     r["pg"] = printed
                     r["pdf"] = pdf or "?"
@@ -315,8 +339,9 @@ def main(argv):
                     rows.append(r)
                     if printed not in span:
                         span.append(printed)
-                    if doc is not None and pdf and not no_pages and key not in pages:
-                        pages[key] = (m["id"], pdf, path)
+                    if pdf and not no_pages and key not in pages:
+                        pages[key] = (m["id"], pdf,
+                                      os.path.join(DATA, "raw", src))
                 span = sorted(x for x in span if x is not None)
                 sec = {
                     "cols": columns(rows, iface["id"] in ptypes
@@ -350,8 +375,6 @@ def main(argv):
         v["children"].append(mnode)
         v["count"] += mnode["count"]
         e["count"] += mnode["count"]
-        if doc is not None:
-            doc.close()
 
     # 쪽 그림은 문서별로 한 번만 연다
     imgs = {}
