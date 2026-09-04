@@ -59,6 +59,39 @@ def printed_no(page, fallback):
     return fallback
 
 
+def ident(s, txt):
+    """오브젝트 이름의 조판 아티팩트를 지운다 — 빈칸 하나하나를 **원문에 물어본다.**
+
+    ⚠ re.sub(r"\\s+", " ") 로 뭉개면 안 된다. 그렇게 했다가 165점 중 43점의 이름이
+      'StartStopCommand_ XXX' 가 됐다 — 원문에 없는 빈칸이다.
+    ⚠ 그렇다고 빈칸을 전부 지워도 안 된다. 원문이 정말 띄어 쓰는 이름이 있다.
+      쪽 글자흐름을 세어 갈랐다(표 인식이 아닌 경로):
+        '_XXX'                   붙음 236회 · **빈칸 0회** · 줄바꿈 34회 → 조판이다
+        'Filter Sign'            빈칸 14회 · 줄바꿈 0회                 → 원문의 빈칸이다
+        'InverterDischarge Temp' 빈칸  0회 · 줄바꿈 2회                 → 조판이다
+    ⚠ 표 인식(find_tables)은 줄바꿈을 이미 빈칸으로 바꿔 놓아 셀만 봐서는 못 가른다.
+      그래서 같은 쪽의 **글자흐름**에서 이름을 다시 찾아 빈칸 자리의 진짜 구분자를 본다.
+      한 쪽에 여러 번 나오면 많이 나온 쪽을 따른다.
+      원문 그대로는 provenance.sourceColumns['Object Name'] 에 남는다(artifactCleanupFirst).
+    """
+    toks = [t for t in s.split() if t]
+    if len(toks) < 2:
+        return "".join(toks)
+    hits = list(re.finditer("(\\s*)".join(map(re.escape, toks)), txt))
+    if not hits:
+        return s.strip()
+    out = toks[0]
+    for i, t in enumerate(toks[1:]):
+        joined = sum(1 for h in hits if "\n" in h.group(i + 1) or not h.group(i + 1))
+        out += ("" if joined * 2 > len(hits) else " ") + t
+    return out
+
+
+def prose(s):
+    """설명문은 반대다 — 줄바꿈이 낱말 사이를 자른 것이라 빈칸으로 바꾼다."""
+    return re.sub(r"\s+", " ", s).strip()
+
+
 def row_of(rows, key):
     for r in rows:
         if r and str(r[0] or "").strip().startswith(key):
@@ -77,6 +110,7 @@ def extract(doc):
 
     tables = []
     for p in PAGES:
+        flow = doc[p - 1].get_text()         # 빈칸/줄바꿈을 가를 근거는 여기 있다
         for t in doc[p - 1].find_tables().tables:
             rows = t.extract()
             ot, on = row_of(rows, "Object Type"), row_of(rows, "Object Name")
@@ -95,10 +129,9 @@ def extract(doc):
                     v = (str(tr[c]).strip() if tr and c < len(tr) else "")
                     if v and v not in ("None", "-", ""):
                         states.append("%d=%s" % (i, v))
-                pts.append({"no": int(num), "name": re.sub(r"\s+", " ", name),
+                pts.append({"no": int(num), "name": ident(name, flow), "nameRaw": name,
                             "type": (str(ot[c]).strip() if c < len(ot) else ""),
-                            "desc": re.sub(r"\s+", " ", str(cm[c]).strip())
-                                    if cm and c < len(cm) else "",
+                            "desc": prose(str(cm[c]).strip()) if cm and c < len(cm) else "",
                             "states": ", ".join(states)})
             if pts:
                 ko, ptype = KO.get(group_of[p], (group_of[p] or "?", None))

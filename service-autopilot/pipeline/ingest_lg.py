@@ -138,6 +138,9 @@ def build(meta, url, tables, cc):
                         "sourceColumns": {
                             "Point No.": str(p["no"]),
                             "Object Type": p["type"] or "",
+                            # 조판 아티팩트를 지우기 전 원문 그대로(artifactCleanupFirst).
+                            # 이름의 '_ XXX' 빈칸은 원문에 없다 — verify_lg.ident 참고.
+                            "Object Name": p.get("nameRaw") or p["name"],
                             "Control/monitoring": p["desc"] or "",
                         },
                         "gaps": ["blocks.bacnet.instance"],

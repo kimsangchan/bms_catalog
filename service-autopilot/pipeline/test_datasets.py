@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+import collections
 import glob
 import os
+import re
 import io
 import json
 from pathlib import Path
@@ -1520,6 +1522,89 @@ class LgBacnetIngestTest(unittest.TestCase):
         self.assertIn("LG/ACSmart-BACnet", raw)
         for i in self.model["interfaces"]:
             self.assertEqual(i["family"], "LG/ACSmart-BACnet")
+
+    def test_object_names_carry_no_typesetting_space(self):
+        """이름의 '_ XXX' 빈칸은 **조판 아티팩트**다 — 원문에는 하나도 없다.
+
+        재현: verify_lg.extract 가 공백을 통째로 뭉개면 165점 중 43점이
+        'StartStopCommand_ XXX' 가 된다. BACnet 오브젝트 이름에 빈칸이 끼면 현장에서
+        그 이름으로 찾을 수 없다. 근거(원문 글자흐름): '_XXX' 붙은 꼴 236회 ·
+        빈칸 낀 꼴 0회 · 줄바꿈 34회.
+        ⚠ 반대로 빈칸을 전부 지워도 안 된다 — 원문이 정말 띄어 쓰는 이름이 넷 있다.
+        """
+        names = [p["common"]["name"] for i in self.model["interfaces"] for p in i["points"]]
+        bad = [n for n in names if re.search(r"_\s+XXX", n)]
+        self.assertEqual(bad, [], "원문에 없는 빈칸이 이름에 들어갔다")
+        # 원문이 띄어 쓰는 것은 지키다 — 다 붙여 버리는 반대쪽 실수를 함께 막는다
+        spaced = sorted({n for n in names if " " in n})
+        self.assertEqual(spaced, ["Fan LockCommand_XXX", "Filter Sign Reset_XXX",
+                                  "Filter Sign_XXX", "SetPipeOutWater TempCommand_XXX"])
+
+    def test_raw_name_is_kept_before_cleanup(self):
+        """아티팩트를 지우기 전 원문을 남긴다(point-schema artifactCleanupFirst)."""
+        n = 0
+        for i in self.model["interfaces"]:
+            for p in i["points"]:
+                raw = (p["provenance"].get("sourceColumns") or {}).get("Object Name")
+                self.assertTrue(raw, "%s: 원문 이름이 없다" % p["common"]["name"])
+                if raw != p["common"]["name"]:
+                    n += 1
+        self.assertGreater(n, 30, "지운 자국이 하나도 없다 — 원문 보존이 사후에 만들어졌나?")
+
+
+class LsH100IngestTest(unittest.TestCase):
+    """LS ELECTRIC H100 인버터 BACnet/IP 76점 — 현장 통신 장치 2위(인버터)의 첫 실체."""
+
+    def setUp(self):
+        self.model = datasets.load_json(os.path.join(
+            datasets.DATA, "models", "ls-electric-h100-vfd.json"))
+
+    def test_one_interface_76_points_by_object_class(self):
+        """오브젝트 계열별 수까지 박는다 — 한 계열이 조용히 빠지면 총계로는 안 보인다."""
+        self.assertEqual([i["id"] for i in self.model["interfaces"]], ["bacnet-ip"])
+        pts = self.model["interfaces"][0]["points"]
+        self.assertEqual(len(pts), 76)
+        got = collections.Counter(p["blocks"]["bacnet"]["objectType"] for p in pts)
+        self.assertEqual(dict(got), {"AV": 6, "MSV": 1, "BV": 11,
+                                     "AI": 27, "BI": 30, "MSI": 1})
+
+    def test_every_point_has_an_instance_number(self):
+        """LG 와 다르다 — 여기는 표가 인스턴스를 직접 준다(AV1·BI30). 비면 취입 실패다."""
+        for p in self.model["interfaces"][0]["points"]:
+            bac = p["blocks"]["bacnet"]
+            self.assertIsInstance(bac.get("instance"), int)
+            self.assertGreaterEqual(bac["instance"], 1)
+        seen = {(p["blocks"]["bacnet"]["objectType"], p["blocks"]["bacnet"]["instance"])
+                for p in self.model["interfaces"][0]["points"]}
+        self.assertEqual(len(seen), 76, "같은 오브젝트가 두 번 들어왔다")
+
+    def test_columns_are_read_by_name_not_by_position(self):
+        """4번째 열이 계열마다 다른 것을 담는다 — 위치로 읽으면 MSV 열거가 단위가 된다."""
+        by = {p["blocks"]["bacnet"]["objectType"] + str(p["blocks"]["bacnet"]["instance"]): p
+              for p in self.model["interfaces"][0]["points"]}
+        self.assertEqual([s["label"] for s in by["MSV1"]["common"]["states"]][:3],
+                         ["None", "FreeRun", "Dec"])
+        self.assertEqual([s["label"] for s in by["MSI1"]["common"]["states"]], ["Hz", "RPM"])
+        # 코드형의 단위 칸은 'MSG' 다 — 물리량이 아니라서 승격하지 않는다
+        self.assertNotIn("unitSI", by["MSV1"]["common"])
+        self.assertEqual(by["MSV1"]["provenance"]["sourceColumns"]["Units"], "MSG")
+        # 단위는 값을 보고 가른다 — HP 만 야드파운드다
+        self.assertEqual(by["AI1"]["common"]["unitSI"], "kW")
+        self.assertEqual(by["AI2"]["common"]["unitIP"], "HP")
+        self.assertNotIn("unitSI", by["AI2"]["common"])
+
+    def test_page_broken_description_is_stitched(self):
+        """쪽을 넘어 갈린 설명을 이어 붙인다 — 안 하면 AV4 가 'Command frequency' 에서 끊긴다."""
+        by = {p["blocks"]["bacnet"]["objectType"] + str(p["blocks"]["bacnet"]["instance"]): p
+              for p in self.model["interfaces"][0]["points"]}
+        self.assertEqual(by["AV4"]["common"]["note"], "Command frequency setting**")
+
+    def test_family_is_registered_in_the_schema(self):
+        """계통은 사전에 먼저 등재한다 — validate 의 iface-family 가 이것을 세운다."""
+        sch = datasets.load_json(os.path.join(datasets.DATA, "point-schema.json"))
+        self.assertIn("Drive/BACnet", json.dumps(sch, ensure_ascii=False))
+        self.assertEqual(self.model["interfaces"][0]["family"], "Drive/BACnet")
+
 
 
 if __name__ == "__main__":

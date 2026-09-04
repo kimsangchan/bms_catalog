@@ -1,0 +1,2354 @@
+{
+ "id": "ls-electric-h100-vfd",
+ "equipId": "e15",
+ "vendor": "LS ELECTRIC",
+ "model": "H100",
+ "name": "H100 팬·펌프 전용 인버터",
+ "cat": "HVAC.AUX.VFD",
+ "tag": "vfd",
+ "tags": [
+  "vfd"
+ ],
+ "status": "active",
+ "classifiedBy": "팬·펌프 전용 드라이브다 — Danfoss FC-101 을 HVAC.AUX.VFD 로 둔 것과 같은 자리.",
+ "summary": "BACnet/IP 옵션 매뉴얼 1건 · 판 1개에서 취입 — 오브젝트 76점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "points": [],
+ "gap": "정격·형번이 없다 — 이 문서는 통신 옵션 매뉴얼이다. 용량별 형번과 정격은 본체 매뉴얼(LS_H100_UserManual_EN_190621.pdf, 같은 소스로 대장에 있다)에 있고 아직 취입하지 않았다. 오브젝트의 'Range' 열도 sourceColumns 에만 있다 — 스키마에 단위중립 범위 자리가 없다.",
+ "extractor": "ingest_ls",
+ "sourceDoc": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+ "interfaces": [
+  {
+   "id": "bacnet-ip",
+   "label": "BACnet/IP 이더넷 옵션 모듈",
+   "family": "Drive/BACnet",
+   "protocols": [
+    "bacnet"
+   ],
+   "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+   "sourcePages": [
+    29,
+    30,
+    31,
+    32,
+    33,
+    34
+   ],
+   "pointCount": 76,
+   "appliesTo": [
+    "H100"
+   ],
+   "status": "extracted",
+   "note": "인버터에 꽂는 이더넷 통신 옵션 카드가 내보내는 오브젝트 목록. 오브젝트 인스턴스 번호는 표가 직접 준다(AV1·BI30 꼴). 디바이스 오브젝트의 인스턴스만 표에 없고 키패드 COM-84·COM-85 로 정한다(원문 28쪽). 같은 카드가 EtherNet/IP · Modbus TCP 도 하지만 그 둘은 오브젝트 목록이 아니라 별도의 인스턴스·레지스터 표라 이 판에 섞지 않았다.",
+   "gaps": [
+    "Device Object 의 인스턴스 번호 — 현장에서 COM-84·COM-85 로 정한다(원문 28쪽).",
+    "EtherNet/IP · Modbus TCP 표(원문 36~60쪽)는 아직 취입하지 않았다."
+   ],
+   "points": [
+    {
+     "common": {
+      "name": "CommTimeoutSet",
+      "note": "Command timeout setting",
+      "unitSI": "Secs",
+      "unitSIRaw": "Secs",
+      "readWrite": "R/W",
+      "pointKind": "analog",
+      "group": "11.2.5.1 Analog Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 1
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 29,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AV1",
+       "Object Name": "CommTimeoutSet",
+       "Description": "Command timeout setting",
+       "Range (REAL)": "0.1 - 120.0",
+       "Units": "Secs",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip",
+      "gaps": [
+       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "AccelTimeSet",
+      "note": "ACC time setting*",
+      "unitSI": "Secs",
+      "unitSIRaw": "Secs",
+      "readWrite": "R/W",
+      "pointKind": "analog",
+      "group": "11.2.5.1 Analog Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 2
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 29,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AV2",
+       "Object Name": "AccelTimeSet",
+       "Description": "ACC time setting*",
+       "Range (REAL)": "0.0 - 600.0",
+       "Units": "Secs",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip",
+      "gaps": [
+       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "DecelTimeSet",
+      "note": "DEC time setting*",
+      "unitSI": "Secs",
+      "unitSIRaw": "Secs",
+      "readWrite": "R/W",
+      "pointKind": "analog",
+      "group": "11.2.5.1 Analog Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 3
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 29,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AV3",
+       "Object Name": "DecelTimeSet",
+       "Description": "DEC time setting*",
+       "Range (REAL)": "0.0 - 600.0",
+       "Units": "Secs",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip",
+      "gaps": [
+       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "CommandFreqSet",
+      "note": "Command frequency setting**",
+      "unitSI": "Hz",
+      "unitSIRaw": "Hz",
+      "readWrite": "R/W",
+      "pointKind": "analog",
+      "group": "11.2.5.1 Analog Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 4
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 29,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AV4",
+       "Object Name": "CommandFreqSet",
+       "Description": "Command frequency setting**",
+       "Range (REAL)": "0.00 - DRV-20",
+       "Units": "Hz",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip",
+      "gaps": [
+       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "PIDReferenceSet",
+      "note": "PID Reference Set",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R/W",
+      "pointKind": "analog",
+      "group": "11.2.5.1 Analog Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 5
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 30,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AV5",
+       "Object Name": "PIDReferenceSet",
+       "Description": "PID Reference Set",
+       "Range (REAL)": "0 - 100.0",
+       "Units": "%",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip",
+      "gaps": [
+       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "PIDFeedbackSet",
+      "note": "PID Feedback Set",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R/W",
+      "pointKind": "analog",
+      "group": "11.2.5.1 Analog Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV",
+       "instance": 6
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 30,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AV6",
+       "Object Name": "PIDFeedbackSet",
+       "Description": "PID Feedback Set",
+       "Range (REAL)": "0 - 100.0",
+       "Units": "%",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip",
+      "gaps": [
+       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "LostCommand",
+      "note": "Command lost operation setting",
+      "states": [
+       {
+        "code": "0",
+        "label": "None"
+       },
+       {
+        "code": "1",
+        "label": "FreeRun"
+       },
+       {
+        "code": "2",
+        "label": "Dec"
+       },
+       {
+        "code": "3",
+        "label": "HoldInput"
+       },
+       {
+        "code": "4",
+        "label": "HoldOutput"
+       },
+       {
+        "code": "5",
+        "label": "LostPreset"
+       }
+      ],
+      "readWrite": "R/W",
+      "pointKind": "code",
+      "group": "11.2.5.2 MultiState Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSV",
+       "instance": 1
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 30,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "MSV1",
+       "Object Name": "LostCommand",
+       "Description": "Command lost operation setting",
+       "Range Enumeration": "0: None 1: FreeRun 2: Dec 3: HoldInput 4: HoldOutput 5: LostPreset",
+       "Units": "MSG",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip",
+      "gaps": [
+       "blocks.bacnet.msvOffset — 원문이 BACnet MSV 상태값 보정을 밝히지 않는다. 표의 코드는 0 부터다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "StopCmd",
+      "note": "Stop command",
+      "readWrite": "R/W",
+      "pointKind": "binary",
+      "group": "11.2.5.3 Binary Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 1
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BV1",
+       "Object Name": "StopCmd",
+       "Description": "Stop command",
+       "Active / Inactive Text Boolean": "False/True",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "RunForwardCmd",
+      "note": "Run forward command",
+      "readWrite": "R/W",
+      "pointKind": "binary",
+      "group": "11.2.5.3 Binary Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 2
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BV2",
+       "Object Name": "RunForwardCmd",
+       "Description": "Run forward command",
+       "Active / Inactive Text Boolean": "False/True",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "RunReverseCmd",
+      "note": "Reverse run command",
+      "readWrite": "R/W",
+      "pointKind": "binary",
+      "group": "11.2.5.3 Binary Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 3
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BV3",
+       "Object Name": "RunReverseCmd",
+       "Description": "Reverse run command",
+       "Active / Inactive Text Boolean": "False/True",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "ResetFaultCmd",
+      "note": "Fault reset command",
+      "readWrite": "R/W",
+      "pointKind": "binary",
+      "group": "11.2.5.3 Binary Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 4
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BV4",
+       "Object Name": "ResetFaultCmd",
+       "Description": "Fault reset command",
+       "Active / Inactive Text Boolean": "False/True",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "FreeRunStopCmd",
+      "note": "Free-run stop command",
+      "readWrite": "R/W",
+      "pointKind": "binary",
+      "group": "11.2.5.3 Binary Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 5
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BV5",
+       "Object Name": "FreeRunStopCmd",
+       "Description": "Free-run stop command",
+       "Active / Inactive Text Boolean": "False/True",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Relay1Cmd",
+      "note": "Relay 1 On/Off command",
+      "readWrite": "R/W",
+      "pointKind": "binary",
+      "group": "11.2.5.3 Binary Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 6
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BV6",
+       "Object Name": "Relay1Cmd",
+       "Description": "Relay 1 On/Off command",
+       "Active / Inactive Text Boolean": "False/True",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Relay2Cmd",
+      "note": "Relay 2 On/Off command",
+      "readWrite": "R/W",
+      "pointKind": "binary",
+      "group": "11.2.5.3 Binary Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 7
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BV7",
+       "Object Name": "Relay2Cmd",
+       "Description": "Relay 2 On/Off command",
+       "Active / Inactive Text Boolean": "False/True",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Relay3Cmd",
+      "note": "Relay 3 On/Off command",
+      "readWrite": "R/W",
+      "pointKind": "binary",
+      "group": "11.2.5.3 Binary Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 8
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BV8",
+       "Object Name": "Relay3Cmd",
+       "Description": "Relay 3 On/Off command",
+       "Active / Inactive Text Boolean": "False/True",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Relay4Cmd",
+      "note": "Relay 4 On/Off command",
+      "readWrite": "R/W",
+      "pointKind": "binary",
+      "group": "11.2.5.3 Binary Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 9
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BV9",
+       "Object Name": "Relay4Cmd",
+       "Description": "Relay 4 On/Off command",
+       "Active / Inactive Text Boolean": "False/True",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Relay5Cmd",
+      "note": "Relay 5 On/Off command",
+      "readWrite": "R/W",
+      "pointKind": "binary",
+      "group": "11.2.5.3 Binary Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 10
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BV10",
+       "Object Name": "Relay5Cmd",
+       "Description": "Relay 5 On/Off command",
+       "Active / Inactive Text Boolean": "False/True",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Q1Cmd",
+      "note": "Q1 On/Off command",
+      "readWrite": "R/W",
+      "pointKind": "binary",
+      "group": "11.2.5.3 Binary Value Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV",
+       "instance": 11
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BV11",
+       "Object Name": "Q1Cmd",
+       "Description": "Q1 On/Off command",
+       "Active / Inactive Text Boolean": "False/True",
+       "R/W": "R/W"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "InvCap (kW)",
+      "note": "Inverter capacity (kW)",
+      "unitSI": "kW",
+      "unitSIRaw": "kW",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 1
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI1",
+       "Object Name": "InvCap (kW)",
+       "Description": "Inverter capacity (kW)",
+       "Units REAL": "kW",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "InvCap(HP)",
+      "note": "Inverter capacity (HP)",
+      "unitIP": "HP",
+      "unitIPRaw": "HP",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 2
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI2",
+       "Object Name": "InvCap(HP)",
+       "Description": "Inverter capacity (HP)",
+       "Units REAL": "HP",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "InvVoltageClass",
+      "note": "Inverter voltage type",
+      "unitSI": "Volts",
+      "unitSIRaw": "Volts",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 3
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI3",
+       "Object Name": "InvVoltageClass",
+       "Description": "Inverter voltage type",
+       "Units REAL": "Volts",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "OutputCurrent",
+      "note": "Output current",
+      "unitSI": "Amps",
+      "unitSIRaw": "Amps",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 4
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 31,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI4",
+       "Object Name": "OutputCurrent",
+       "Description": "Output current",
+       "Units REAL": "Amps",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "OutputFreq",
+      "note": "Output frequency",
+      "unitSI": "Hz",
+      "unitSIRaw": "Hz",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 5
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI5",
+       "Object Name": "OutputFreq",
+       "Description": "Output frequency",
+       "Units REAL": "Hz",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "OutputVolgate",
+      "note": "Output voltage",
+      "unitSI": "Volts",
+      "unitSIRaw": "Volts",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 6
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI6",
+       "Object Name": "OutputVolgate",
+       "Description": "Output voltage",
+       "Units REAL": "Volts",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "DCLinkVoltage",
+      "note": "DC Link voltage",
+      "unitSI": "Volts",
+      "unitSIRaw": "Volts",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 7
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI7",
+       "Object Name": "DCLinkVoltage",
+       "Description": "DC Link voltage",
+       "Units REAL": "Volts",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "OutputPower",
+      "note": "Output power",
+      "unitSI": "kW",
+      "unitSIRaw": "kW",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 8
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI8",
+       "Object Name": "OutputPower",
+       "Description": "Output power",
+       "Units REAL": "kW",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "AI1",
+      "note": "Analog 1 value",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 9
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI9",
+       "Object Name": "AI1",
+       "Description": "Analog 1 value",
+       "Units REAL": "%",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "AI2",
+      "note": "Analog 2 value",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 10
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI10",
+       "Object Name": "AI2",
+       "Description": "Analog 2 value",
+       "Units REAL": "%",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "OutputRPM",
+      "note": "Output speed",
+      "unitSI": "RPM",
+      "unitSIRaw": "RPM",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 11
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI11",
+       "Object Name": "OutputRPM",
+       "Description": "Output speed",
+       "Units REAL": "RPM",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Pole",
+      "note": "Number of motor poles",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 12
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI12",
+       "Object Name": "Pole",
+       "Description": "Number of motor poles",
+       "Units REAL": "-",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "InvStatus",
+      "note": "Information of the inverter state (Refer to the common area parameter address 0h0305) (Note 1)",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 13
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI13",
+       "Object Name": "InvStatus",
+       "Description": "Information of the inverter state (Refer to the common area parameter address 0h0305) (Note 1)",
+       "Units REAL": "-",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "LatchTripInfo1",
+      "note": "Latch type fault trip information 1 (Refer to the common area parameter address 0h0330) (Note 1)",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 14
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI14",
+       "Object Name": "LatchTripInfo1",
+       "Description": "Latch type fault trip information 1 (Refer to the common area parameter address 0h0330) (Note 1)",
+       "Units REAL": "-",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "LatchTripInfo2",
+      "note": "Latch type fault trip information 2 (Refer to the common area parameter address 0h0331) (Note 1)",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 15
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI15",
+       "Object Name": "LatchTripInfo2",
+       "Description": "Latch type fault trip information 2 (Refer to the common area parameter address 0h0331) (Note 1)",
+       "Units REAL": "-",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "LatchTripInfo3",
+      "note": "Latch type fault trip information 3 (Refer to the common area parameter address 0h0335) (Note 1)",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 16
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI16",
+       "Object Name": "LatchTripInfo3",
+       "Description": "Latch type fault trip information 3 (Refer to the common area parameter address 0h0335) (Note 1)",
+       "Units REAL": "-",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "LevelTripInfo",
+      "note": "Level type trip information (Refer to the common area parameter address 0h0332) (Note 1)",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 17
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI17",
+       "Object Name": "LevelTripInfo",
+       "Description": "Level type trip information (Refer to the common area parameter address 0h0332) (Note 1)",
+       "Units REAL": "-",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "HWDIagInfo",
+      "note": "H/W Diagnosis fault trip information (Refer to the common area parameter address 0h0333) (Note 1)",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 18
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI18",
+       "Object Name": "HWDIagInfo",
+       "Description": "H/W Diagnosis fault trip information (Refer to the common area parameter address 0h0333) (Note 1)",
+       "Units REAL": "-",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "WarningInfo",
+      "note": "Warning information (Refer to the common area parameter address 0h0334) (Note 1)",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 19
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 32,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI19",
+       "Object Name": "WarningInfo",
+       "Description": "Warning information (Refer to the common area parameter address 0h0334) (Note 1)",
+       "Units REAL": "-",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "KiloWattHour",
+      "note": "Output power (kW/h)",
+      "unitSI": "KW/h",
+      "unitSIRaw": "KW/h",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 20
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI20",
+       "Object Name": "KiloWattHour",
+       "Description": "Output power (kW/h)",
+       "Units REAL": "KW/h",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "MegaWattHour",
+      "note": "Output power (MW/h)",
+      "unitSI": "MW/h",
+      "unitSIRaw": "MW/h",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 21
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI21",
+       "Object Name": "MegaWattHour",
+       "Description": "Output power (MW/h)",
+       "Units REAL": "MW/h",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "PowerFactor",
+      "note": "Power factor",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 22
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI22",
+       "Object Name": "PowerFactor",
+       "Description": "Power factor",
+       "Units REAL": "-",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "RunTimeDay",
+      "note": "Operation time (Day)",
+      "unitSI": "Day",
+      "unitSIRaw": "Day",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 23
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI23",
+       "Object Name": "RunTimeDay",
+       "Description": "Operation time (Day)",
+       "Units REAL": "Day",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "RunTimeMin",
+      "note": "Operation time (Min)",
+      "unitSI": "Day",
+      "unitSIRaw": "Day",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 24
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI24",
+       "Object Name": "RunTimeMin",
+       "Description": "Operation time (Min)",
+       "Units REAL": "Day",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "PidOutValue",
+      "note": "PID Output Value",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 25
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI25",
+       "Object Name": "PidOutValue",
+       "Description": "PID Output Value",
+       "Units REAL": "%",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "PidReferenceValue",
+      "note": "PID Reference Value",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 26
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI26",
+       "Object Name": "PidReferenceValue",
+       "Description": "PID Reference Value",
+       "Units REAL": "%",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "PidFeedbackValue",
+      "note": "PID Feedback Value",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "pointKind": "analog",
+      "group": "11.2.5.4 Analog Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI",
+       "instance": 27
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "AI27",
+       "Object Name": "PidFeedbackValue",
+       "Description": "PID Feedback Value",
+       "Units REAL": "%",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Stopped",
+      "note": "Stop state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 1
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI1",
+       "Object Name": "Stopped",
+       "Description": "Stop state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "RunningForward",
+      "note": "Running forward",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 2
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI2",
+       "Object Name": "RunningForward",
+       "Description": "Running forward",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "RunningReverse",
+      "note": "Running reverse",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 3
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI3",
+       "Object Name": "RunningReverse",
+       "Description": "Running reverse",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Tripped",
+      "note": "Trip occurred",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 4
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI4",
+       "Object Name": "Tripped",
+       "Description": "Trip occurred",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Accelerating",
+      "note": "Accelerating",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 5
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI5",
+       "Object Name": "Accelerating",
+       "Description": "Accelerating",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Decelerating",
+      "note": "Decelerating",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 6
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI6",
+       "Object Name": "Decelerating",
+       "Description": "Decelerating",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "SteadySpeed",
+      "note": "Operating at a steady speed",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 7
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI7",
+       "Object Name": "SteadySpeed",
+       "Description": "Operating at a steady speed",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "RunningDC",
+      "note": "Operating at a 0 step speed",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 8
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI8",
+       "Object Name": "RunningDC",
+       "Description": "Operating at a 0 step speed",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Stopping",
+      "note": "Stopping",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 9
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI9",
+       "Object Name": "Stopping",
+       "Description": "Stopping",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "FwdRunCommandState",
+      "note": "Forward run command state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 10
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI10",
+       "Object Name": "FwdRunCommandState",
+       "Description": "Forward run command state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "RevRunCommandState",
+      "note": "Reverse run command state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 11
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI11",
+       "Object Name": "RevRunCommandState",
+       "Description": "Reverse run command state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "P1",
+      "note": "P1 state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 12
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI12",
+       "Object Name": "P1",
+       "Description": "P1 state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "P2",
+      "note": "P2 state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 13
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI13",
+       "Object Name": "P2",
+       "Description": "P2 state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "P3",
+      "note": "P3 state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 14
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI14",
+       "Object Name": "P3",
+       "Description": "P3 state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "P4",
+      "note": "P4 state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 15
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 33,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI15",
+       "Object Name": "P4",
+       "Description": "P4 state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "P5",
+      "note": "P5 state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 16
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI16",
+       "Object Name": "P5",
+       "Description": "P5 state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "P6",
+      "note": "P6 state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 17
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI17",
+       "Object Name": "P6",
+       "Description": "P6 state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "P7",
+      "note": "P7 state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 18
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI18",
+       "Object Name": "P7",
+       "Description": "P7 state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Relay1",
+      "note": "Relay1 state*",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 19
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI19",
+       "Object Name": "Relay1",
+       "Description": "Relay1 state*",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Relay2",
+      "note": "Relay2 state*",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 20
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI20",
+       "Object Name": "Relay2",
+       "Description": "Relay2 state*",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Relay3",
+      "note": "Relay3 state*",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 21
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI21",
+       "Object Name": "Relay3",
+       "Description": "Relay3 state*",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Relay4",
+      "note": "Relay4 state*",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 22
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI22",
+       "Object Name": "Relay4",
+       "Description": "Relay4 state*",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Relay5",
+      "note": "Relay5 state*",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 23
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI23",
+       "Object Name": "Relay5",
+       "Description": "Relay5 state*",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Q1",
+      "note": "Q1 state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 24
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI24",
+       "Object Name": "Q1",
+       "Description": "Q1 state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "SpeedSearch",
+      "note": "Speed search operation in progress",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 25
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI25",
+       "Object Name": "SpeedSearch",
+       "Description": "Speed search operation in progress",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "HWOCS",
+      "note": "H/W OCS occurred",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 26
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI26",
+       "Object Name": "HWOCS",
+       "Description": "H/W OCS occurred",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "SWOCS",
+      "note": "S/W OCS occurred",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 27
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI27",
+       "Object Name": "SWOCS",
+       "Description": "S/W OCS occurred",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "RunningDwell",
+      "note": "Dwell operation status",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 28
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI28",
+       "Object Name": "RunningDwell",
+       "Description": "Dwell operation status",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "SteadyState",
+      "note": "Steady state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 29
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI29",
+       "Object Name": "SteadyState",
+       "Description": "Steady state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "Warning",
+      "note": "Warning state",
+      "readWrite": "R",
+      "pointKind": "binary",
+      "group": "11.2.5.5 Binary Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI",
+       "instance": 30
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "BI30",
+       "Object Name": "Warning",
+       "Description": "Warning state",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip"
+     }
+    },
+    {
+     "common": {
+      "name": "UnitsDisplay",
+      "note": "Displays unit settings",
+      "states": [
+       {
+        "code": "1",
+        "label": "Hz"
+       },
+       {
+        "code": "2",
+        "label": "RPM"
+       }
+      ],
+      "readWrite": "R",
+      "pointKind": "code",
+      "group": "11.2.5.6 MultiState Input Object Instance"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MSI",
+       "instance": 1
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+      "sourcePage": 34,
+      "family": "Drive/BACnet",
+      "sourceColumns": {
+       "Instance ID": "MSI1",
+       "Object Name": "UnitsDisplay",
+       "Description": "Displays unit settings",
+       "Units Enumeration": "1 Hz 2 RPM",
+       "R/W": "R"
+      },
+      "status": "extracted",
+      "interfaceId": "bacnet-ip",
+      "gaps": [
+       "blocks.bacnet.msvOffset — 원문이 BACnet MSV 상태값 보정을 밝히지 않는다. 표의 코드는 1 부터다."
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "crosscheck": {
+  "method": "쪽 글자 흐름에서 '인스턴스ID+오브젝트이름' 을 다시 읽어 맞췄다(표 인식 경로가 아니다)",
+  "total": 76,
+  "both": 76,
+  "rate": 1.0,
+  "diff": []
+ }
+}
