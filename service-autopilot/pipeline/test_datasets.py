@@ -1881,9 +1881,13 @@ class NoteComesFromOneColumnTest(unittest.TestCase):
        (실측: 그 모델들을 함께 걸었더니 정상인 것 2,500건이 빨강이 됐다).
     """
 
-    KEEPS_RAW = ("ingest_lg", "ingest_ls", "ingest_samsung")
+    KEEPS_RAW = ("ingest_lg", "ingest_lg_ahu", "ingest_ls", "ingest_samsung")
 
     def test_note_equals_exactly_one_source_column(self):
+        """⚠ 딱 하나 허용하는 조합: **원문이 스스로 가리키는 각주**를 풀어 붙인 것.
+        'A · 원문 각주 2) …' 처럼 **표시를 달아** 붙인 것만 통과한다 — 표시가 있으면
+        읽는 쪽이 어디까지가 표의 값이고 어디부터가 각주인지 안다. 표시 없이 두 칸을
+        이어 붙이면 여전히 걸린다."""
         flat = (lambda s: re.sub(r"\s+", "", str(s or "")))
         checked = 0
         for path in sorted(glob.glob(os.path.join(datasets.DATA, "models", "*.json"))):
@@ -1897,8 +1901,10 @@ class NoteComesFromOneColumnTest(unittest.TestCase):
                         continue
                     checked += 1
                     src = (p.get("provenance") or {}).get("sourceColumns") or {}
+                    head = flat(re.split(r"·\s*원문 각주", str(
+                        (p.get("common") or {}).get("note"))) [0])
                     self.assertTrue(
-                        any(flat(v) == note for v in src.values()),
+                        any(flat(v) == note or flat(v) == head for v in src.values()),
                         "%s / %s: 설명이 원문 칸 하나와 다르다 — 붙여 쓴 것인가?\n"
                         "  note = %r\n  원문 = %r"
                         % (model["id"], (p.get("common") or {}).get("name"),
@@ -1988,14 +1994,33 @@ class LgAhuKitReingestTest(unittest.TestCase):
             self.assertEqual(len(self.m[mid].get("specTables") or []), 17,
                              "%s: 재취입이 정격을 날렸다" % mid)
 
-    def test_ambiguous_cells_are_left_alone_with_a_reason(self):
-        """원문이 정말 애매한 칸은 고르지 않는다 — 사유가 gap 에 있어야 한다."""
+    def test_ambiguous_cells_are_left_alone_but_the_footnote_is_resolved(self):
+        """애매한 칸은 고르지 않되 **각주는 풀어 붙인다** — 안 풀면 아무 말도 아니다.
+
+        '1xxxx 2)' 는 그 자체로는 뜻이 없다. 각주 2 가 'Error Code : 1 x yyy
+        (x : Module Number, yyy : Error Code)' 라고 밝힌다.
+        ⚠ 각주 번호는 **킷마다 다른 뜻**이다(PAHCMR000 의 1)은 통신 설정,
+          PAHCMS000 의 1)은 용량비 표). 쪽으로 묶으면 68쪽 행이 70쪽 각주를 못 찾고,
+          한데 섞으면 엉뚱한 설명이 붙는다 — 킷 단위로 묶는다.
+        """
         pts = self._pts(self.MR) + self._pts(self.MS)
         odd = [p for p in pts if (p["provenance"].get("gaps") or [])]
-        self.assertGreaterEqual(len(odd), 3)
+        self.assertEqual(len(odd), 4)
         for p in odd:
             self.assertNotIn("range", p["common"])
             self.assertNotIn("states", p["common"])
+            self.assertIn("원문 각주", p["common"].get("note", ""),
+                          "%s: 각주를 안 풀었다" % p["common"]["name"])
+        by = {p["common"]["name"]: p for p in odd}
+        self.assertIn("x : Module Number", by["Error Code"]["common"]["note"])
+        self.assertIn("standard II", by["Cooling Target Temp."]["common"]["note"])
+
+    def test_footnote_marker_is_not_left_in_the_name(self):
+        """'Capacity 1)' 로 두면 BMS 가 그 이름으로 오브젝트를 찾는다."""
+        for p in self._pts(self.MR) + self._pts(self.MS):
+            self.assertNotRegex(p["common"]["name"], r"\d\)\s*$",
+                                "%s: 이름에 각주 표시가 남았다" % p["common"]["name"])
+        self.assertIn("Capacity", [p["common"]["name"] for p in self._pts(self.MS)])
 
     def test_family_is_registered_in_the_schema(self):
         sch = datasets.load_json(os.path.join(datasets.DATA, "point-schema.json"))

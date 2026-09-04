@@ -122,6 +122,37 @@ def read_rows(doc):
     return out
 
 
+FOOT = re.compile(r"^(\d)\)\s*(.+)$")
+
+
+def footnotes(doc):
+    """쪽마다 'Note' 아래 붙는 각주를 읽는다 — 표의 'N)' 이 가리키는 곳이다.
+
+    ⚠ 각주를 안 풀면 값이 통째로 뜻을 잃는다. '1xxxx 2)' 는 그 자체로는 아무 말도
+       아니지만 각주 2 가 'Error Code : 1 x yyy (x : Module Number, yyy : Error Code)'
+       라고 밝힌다. '16 ~ 30℃ 3), 12 ~ 50℃ 4)' 도 각주가 '유선 리모컨 standard II /
+       III' 라고 조건을 준다.
+    """
+    # ⚠ **쪽이 아니라 킷 단위로** 묶는다. 표가 쪽을 넘어가고(PAHCMS000 은 68~69쪽)
+    #    각주는 마지막 쪽에만 붙는다 — 쪽으로 묶으면 68쪽 행이 70쪽 각주를 못 찾는다.
+    #    게다가 번호가 킷마다 **다른 뜻**이다(PAHCMR000 의 1)은 통신 설정, PAHCMS000 의
+    #    1)은 용량비 표다). 섞으면 엉뚱한 설명이 붙는다.
+    out, kit = {}, None
+    for p in PAGES:
+        lines = [l.strip() for l in doc[p - 1].get_text().splitlines() if l.strip()]
+        for n, l in enumerate(lines):
+            m = re.match(r"^■\s*Modbus points of\s*(\w+)", l)
+            if m:
+                kit = m.group(1)
+            if l == "Note" and kit:
+                for x in lines[n + 1:]:
+                    f = FOOT.match(x)
+                    if not f:
+                        break
+                    out.setdefault(kit, {})[f.group(1)] = f.group(2).strip()
+    return out
+
+
 def crosscheck(doc, rows):
     """표 인식(find_tables)으로 한 번 더 읽어 레지스터·설명 짝을 맞춘다.
 
@@ -195,16 +226,27 @@ def parse_value(val):
         "않았다(%r). 상태 열거도 순수 범위도 아니다 — 원문 그대로 남겼다." % v]
 
 
-def build_iface(meta, kit, rows):
+def build_iface(meta, kit, rows, foot):
     iid, _proto, label, applies = KITS[kit][1], None, KITS[kit][2], KITS[kit][3]
     pts, pages = [], []
     for r in rows:
         pages.append(r["printed"])
         states, rng, unit, scale, sraw, prose, gaps = parse_value(r["val"])
         fcs = [n + 1 for n, x in enumerate(r["fc"]) if x == "●"]
-        common = {"name": r["desc"]}
-        if prose:
-            common["note"] = prose
+        # ⚠ 이름에 붙은 각주 표시를 뗀다 — 'Capacity 1)' 로 두면 BMS 가 그 이름으로
+        #    오브젝트를 찾는다. 원문 그대로는 sourceColumns['Description'] 에 남는다.
+        name = re.sub(r"\s*\d\)\s*$", "", r["desc"]).strip()
+        common = {"name": name}
+        notes = [prose] if prose else []
+        # 값·이름이 가리키는 각주를 풀어 붙인다 — 안 풀면 '1xxxx 2)' 가 아무 말도 아니다
+        seen = []
+        for mk in re.findall(r"(\d)\)", "%s %s" % (r["desc"], r["val"])):
+            txt = (foot.get(r["kit"]) or {}).get(mk)
+            if txt and mk not in seen:
+                seen.append(mk)
+                notes.append("원문 각주 %s) %s" % (mk, txt))
+        if notes:
+            common["note"] = " · ".join(notes)
         if unit:
             common["unitSI"] = common["unitSIRaw"] = unit
         if rng:
@@ -269,6 +311,7 @@ def main(argv):
     doc = fitz.open(path)
 
     rows = read_rows(doc)
+    foot = footnotes(doc)
     unknown = sorted({r["kit"] for r in rows} - set(KITS))
     if unknown:
         raise SystemExit("KITS 에 없는 킷: %s" % unknown)
@@ -284,7 +327,7 @@ def main(argv):
         mine = [r for r in real if r["kit"] == kit]
         if not mine:
             raise SystemExit("%s 의 행이 하나도 없다 — 판독을 봐라" % kit)
-        iface = build_iface(meta, kit, mine)
+        iface = build_iface(meta, kit, mine, foot)
         n_s = sum(1 for p in iface["points"] if p["common"].get("states"))
         n_r = sum(1 for p in iface["points"] if p["common"].get("range"))
         n_u = sum(1 for p in iface["points"] if p["common"].get("unitSI"))
