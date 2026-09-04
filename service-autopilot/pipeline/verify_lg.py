@@ -28,8 +28,15 @@ OUT = os.path.join(HERE, "..", "review", "lg-bacnet-verify.html")
 
 # 표가 실린 쪽. 쪽 제목이 기기군을 정하고, 제목 없는 쪽은 앞 제목을 승계한다.
 PAGES = [34, 35, 36, 38, 39, 41, 42, 43, 44, 46, 47, 48, 49]
-KO = {"Indoor Unit": "실내기", "Ventilation": "환기(HRV)", "AHU": "공조기(AHU)",
-      "ODU": "실외기(ODU)", "AWHP": "AWHP", "GENERAL": "게이트웨이 공통"}
+# 기기군 → (한글 이름, 제품유형). 제품유형은 원문 50쪽이 못 박았다:
+#   "Product Type(Indoor:0, Vent:1, AHU:2, ODU:3, AWHP:4, GENERAL:5)"
+#   "Device : Group of Product units(16EA)"
+# 그래서 instance = 제품유형*0x10000 + Device*0x1000 + Product*0x100 + Point 이고
+# 이름 끝 _XXX(= Unit address) = Device*16 + Product 다.
+# 원문 50~52쪽 예시 42행에 맞춰 봤다 — 42/42 일치.
+KO = {"Indoor Unit": ("실내기", 0), "Ventilation": ("환기(HRV)", 1),
+      "AHU": ("공조기(AHU)", 2), "ODU": ("실외기(ODU)", 3),
+      "AWHP": ("AWHP", 4), "GENERAL": ("게이트웨이 공통", 5)}
 
 
 def ledger_entry():
@@ -39,6 +46,16 @@ def ledger_entry():
         if v.get("source") == SRC_ID and v.get("file"):
             return url, v
     raise SystemExit("대장에 %s 가 없다 — 먼저 collect.py --run %s" % (SRC_ID, SRC_ID))
+
+
+def printed_no(page, fallback):
+    """머리글의 인쇄 쪽번호. 이 문서는 PDF 쪽 - 8 이지만 **가정하지 않고 읽는다** —
+    개정판에서 앞표지 장수가 바뀌면 오프셋이 조용히 틀린다."""
+    for line in page.get_text().splitlines()[:4]:
+        s = line.strip()
+        if s.isdigit() and 1 <= int(s) <= 999:
+            return int(s)
+    return fallback
 
 
 def row_of(rows, key):
@@ -83,19 +100,25 @@ def extract(doc):
                                     if cm and c < len(cm) else "",
                             "states": ", ".join(states)})
             if pts:
-                tables.append({"page": p, "group": KO.get(group_of[p], group_of[p] or "?"),
-                               "points": pts})
+                ko, ptype = KO.get(group_of[p], (group_of[p] or "?", None))
+                tables.append({"page": p, "printed": printed_no(doc[p - 1], p),
+                               "group": ko, "ptype": ptype, "points": pts})
     return tables
 
 
 def page_images(doc, pages):
-    """회색조 WebP. 컬러 JPEG 는 같은 쪽에서 몇 배가 된다(저장소 실측)."""
+    """회색조 WebP. 컬러 JPEG 는 같은 쪽에서 몇 배가 된다(저장소 실측).
+
+    ⚠ 표가 쪽 안에서 90도 눕혀 인쇄돼 있어 그대로 두면 고개를 돌려야 읽힌다.
+    **시계방향(-90)** 으로 돌려 담는다 — 그러면 포인트가 한 줄씩 가로로 읽혀
+    왼쪽 목록과 눈높이가 맞는다. 화면의 '세로로' 단추가 원래 방향으로 되돌린다.
+    """
     import fitz
     from PIL import Image
     out = {}
     for p in sorted(pages):
         pix = doc[p - 1].get_pixmap(dpi=140, colorspace=fitz.csGRAY)
-        im = Image.open(io.BytesIO(pix.tobytes("png")))
+        im = Image.open(io.BytesIO(pix.tobytes("png"))).rotate(-90, expand=True)
         buf = io.BytesIO()
         im.save(buf, "WEBP", quality=52, method=4)
         out[p] = base64.b64encode(buf.getvalue()).decode("ascii")
@@ -123,7 +146,8 @@ def main():
         TEMPLATE.replace("__PAYLOAD__", payload))
     print("표 %d개 · 포인트 %d점 · 쪽 그림 %d장" % (len(tables), total, len(imgs)))
     for t in tables:
-        print("   %3d쪽 %-14s %2d점" % (t["page"], t["group"], len(t["points"])))
+        print("   원문 %3d쪽(PDF %2d) %-14s %2d점"
+              % (t["printed"], t["page"], t["group"], len(t["points"])))
     print("→ %s  (%.2f MB)" % (os.path.relpath(OUT, HERE), os.path.getsize(OUT) / 1048576))
 
 
@@ -156,28 +180,54 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);
  font-size:13px;line-height:1.5;overflow:hidden}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 :focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-radius:3px}
+button{font:inherit}
+
+/* ── 맨 위 한 줄. 뷰 전환이 여기 있어야 어느 모드에서도 사라지지 않는다 ── */
+.top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+ padding:8px 14px;border-bottom:1px solid var(--line);background:var(--panel)}
+.brand{font-size:14px;font-weight:650;letter-spacing:-.01em;white-space:nowrap}
+.docmeta{font-size:11px;color:var(--faint);font-family:var(--mono);
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:36ch}
+.top .sp{flex:1}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg button{padding:4px 11px;border:0;border-right:1px solid var(--line);background:var(--bg);
+ color:var(--dim);font-size:11.5px;cursor:pointer}
+.seg button:last-child{border-right:0}
+.seg button:hover{background:var(--accent-soft);color:var(--ink)}
+.seg button[aria-pressed=true]{background:var(--accent);color:#fff;font-weight:600}
+.zbtn{padding:4px 9px;border:1px solid var(--line);border-radius:6px;background:var(--bg);
+ color:var(--dim);font-size:11.5px;cursor:pointer;white-space:nowrap}
+.zbtn:hover{background:var(--accent-soft);color:var(--ink)}
+.pgno{font-family:var(--mono);font-weight:700;color:var(--ink);white-space:nowrap}
 
 /* ── 2단 작업대. 팝업을 쓰지 않는다 — 대조는 둘을 동시에 봐야 되는 일이다 ── */
-.app{display:grid;grid-template-columns:var(--lw,52%) 7px 1fr;height:100dvh}
+.app{display:grid;grid-template-columns:var(--lw,50%) 7px 1fr;height:calc(100dvh - 41px)}
+.app.only-list{grid-template-columns:1fr 0 0}
+.app.only-page{grid-template-columns:0 0 1fr}
+.app.only-list .right,.app.only-page .left,
+.app.only-list .grip,.app.only-page .grip{display:none}
 .pane{min-width:0;display:flex;flex-direction:column;overflow:hidden}
 .left{border-right:1px solid var(--line);background:var(--panel)}
 .right{background:var(--rail)}
 .grip{cursor:col-resize;background:var(--line)}
 .grip:hover,.grip.on{background:var(--accent)}
 
-/* ── 머리 ── */
-.head{padding:12px 16px 10px;border-bottom:1px solid var(--line);background:var(--panel)}
-h1{margin:0;font-size:15px;font-weight:650;letter-spacing:-.01em}
-.meta{margin-top:3px;font-size:11.5px;color:var(--faint);
- word-break:break-all;font-family:var(--mono)}
-.tools{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:10px}
-input[type=search]{flex:1;min-width:130px;padding:5px 9px;border:1px solid var(--line);
+/* ── 왼쪽 머리 ── */
+.head{padding:10px 14px;border-bottom:1px solid var(--line);background:var(--panel)}
+.tools{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+input[type=search],input.addr{padding:5px 9px;border:1px solid var(--line);
  border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;font-size:12px}
+input[type=search]{flex:1;min-width:120px}
+input.addr{width:74px;font-family:var(--mono);text-align:right}
 .chip{padding:3px 9px;border:1px solid var(--line);border-radius:999px;background:var(--bg);
- color:var(--dim);font:inherit;font-size:11.5px;cursor:pointer;white-space:nowrap}
+ color:var(--dim);font-size:11.5px;cursor:pointer;white-space:nowrap}
 .chip:hover{border-color:var(--accent);color:var(--ink)}
 .chip[aria-pressed=true]{background:var(--accent-soft);border-color:var(--accent);
  color:var(--ink);font-weight:600}
+.addrbox{display:flex;align-items:center;gap:6px;margin-top:9px;padding:7px 9px;
+ border:1px solid var(--line);border-radius:7px;background:var(--bg);font-size:11.5px}
+.addrbox label{color:var(--dim);white-space:nowrap}
+.addrbox .why{color:var(--faint);font-size:11px;line-height:1.4}
 .prog{display:flex;align-items:center;gap:8px;margin-top:9px;font-size:11.5px;color:var(--dim)}
 .bar{flex:1;height:5px;border-radius:3px;background:var(--rail);overflow:hidden}
 .bar i{display:block;height:100%;background:var(--ok);width:0}
@@ -186,7 +236,7 @@ input[type=search]{flex:1;min-width:130px;padding:5px 9px;border:1px solid var(-
 /* ── 표 ── */
 .scroll{flex:1;overflow:auto}
 .gh{position:sticky;top:0;z-index:2;background:var(--panel);border-bottom:1px solid var(--line);
- padding:7px 16px 6px;font-size:11px;font-weight:700;letter-spacing:.06em;
+ padding:7px 14px 6px;font-size:11px;font-weight:700;letter-spacing:.06em;
  text-transform:uppercase;color:var(--faint);display:flex;gap:8px;align-items:baseline}
 .gh b{color:var(--accent);font-weight:700}
 .gh .pg{margin-left:auto;font-family:var(--mono);text-transform:none;letter-spacing:0}
@@ -196,27 +246,24 @@ tr.row{cursor:pointer}
 tr.row:hover{background:var(--accent-soft)}
 tr.row.sel{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
 tr.row.done td.nm{color:var(--faint)}
-td.ck{width:26px;padding-left:16px;color:var(--faint);text-align:center;user-select:none}
+td.ck{width:24px;padding-left:14px;color:var(--faint);text-align:center;user-select:none}
 tr.row.done td.ck{color:var(--ok)}
-td.no{width:34px;font-family:var(--mono);font-variant-numeric:tabular-nums;
+td.no{width:30px;font-family:var(--mono);font-variant-numeric:tabular-nums;
  color:var(--faint);text-align:right}
-td.ty{width:40px}
+td.ty{width:38px}
 .ty span{display:inline-block;padding:1px 5px;border-radius:4px;font-family:var(--mono);
  font-size:10.5px;font-weight:700;background:var(--rail);color:var(--dim)}
 .ty span.o{background:var(--accent-soft);color:var(--accent)}
 td.nm{font-family:var(--mono);font-size:11.5px;word-break:break-all}
+td.nm em{font-style:normal;color:var(--accent);font-weight:700}
+td.inst{width:120px;font-family:var(--mono);font-size:11px;color:var(--dim);
+ font-variant-numeric:tabular-nums;white-space:nowrap}
+td.inst b{color:var(--ink);font-weight:600}
 td.ds{color:var(--dim)}
 .st{display:block;margin-top:2px;font-size:10.5px;color:var(--faint);font-family:var(--mono)}
-.none{padding:26px 16px;color:var(--faint);text-align:center}
+.none{padding:26px 14px;color:var(--faint);text-align:center}
 
 /* ── 원문 쪽: 늘 보인다 ── */
-.rtop{display:flex;gap:6px;align-items:center;padding:8px 12px;
- border-bottom:1px solid var(--line);background:var(--panel);font-size:11.5px;color:var(--dim)}
-.rtop .sp{flex:1}
-.rtop button{padding:3px 8px;border:1px solid var(--line);border-radius:5px;background:var(--bg);
- color:var(--dim);font:inherit;font-size:11.5px;cursor:pointer}
-.rtop button:hover{background:var(--accent-soft);color:var(--ink)}
-.pgno{font-family:var(--mono);font-weight:700;color:var(--ink)}
 .view{flex:1;position:relative;overflow:hidden;background:var(--rail);cursor:grab;touch-action:none}
 .view.drag{cursor:grabbing}
 .view img{position:absolute;top:0;left:0;transform-origin:0 0;background:#fff;box-shadow:var(--shadow)}
@@ -226,21 +273,43 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
  border-radius:4px;padding:0 4px;color:var(--dim);background:var(--bg)}
 @media (max-width:860px){
   body{overflow:auto}
-  .app{grid-template-columns:1fr;height:auto}
+  .app,.app.only-list,.app.only-page{grid-template-columns:1fr;height:auto}
   .grip{display:none}
   .left{border-right:0;border-bottom:1px solid var(--line)}
   .view{height:70vh}
+  .docmeta{display:none}
 }
 </style>
+
+<div class="top">
+  <span class="brand">LG BACnet 대조대</span>
+  <span class="docmeta" id="meta"></span>
+  <span class="seg" id="vseg">
+    <button type="button" data-v="list" aria-pressed="false">표만</button>
+    <button type="button" data-v="both" aria-pressed="true">나란히</button>
+    <button type="button" data-v="page" aria-pressed="false">원문만</button>
+  </span>
+  <span class="sp"></span>
+  <span>원문 <span class="pgno" id="rpg">—</span></span>
+  <button class="zbtn" type="button" data-z="rot" id="rotb">세로로</button>
+  <button class="zbtn" type="button" data-z="fit">맞춤</button>
+  <button class="zbtn" type="button" data-z="1">100%</button>
+  <button class="zbtn" type="button" data-z="-">−</button>
+  <button class="zbtn" type="button" data-z="+">+</button>
+</div>
 
 <div class="app" id="app">
   <section class="pane left">
     <div class="head">
-      <h1>LG BACnet 대조대</h1>
-      <div class="meta" id="meta"></div>
       <div class="tools">
         <input type="search" id="q" placeholder="이름·설명 찾기" aria-label="포인트 찾기">
         <span id="chips"></span>
+      </div>
+      <div class="addrbox">
+        <label for="addr">유닛 주소 <span class="cnt">XXX</span></label>
+        <input class="addr" id="addr" type="number" min="0" max="255" placeholder="—"
+               aria-label="유닛 주소">
+        <span class="why" id="why"></span>
       </div>
       <div class="prog">
         <span>확인</span>
@@ -256,14 +325,6 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
        aria-label="좌우 폭 조절"></div>
 
   <section class="pane right">
-    <div class="rtop">
-      <span>원문 <span class="pgno" id="rpg">—</span></span>
-      <span class="sp"></span>
-      <button type="button" data-z="fit">맞춤</button>
-      <button type="button" data-z="1">100%</button>
-      <button type="button" data-z="-">−</button>
-      <button type="button" data-z="+">+</button>
-    </div>
     <div class="view" id="view">
       <img id="img" alt="원문 쪽">
       <div class="hint" id="hint"></div>
@@ -283,7 +344,7 @@ function esc(s){
 }
 
 document.getElementById("meta").textContent =
-  D.doc + "  ·  sha256 " + D.sha.slice(0, 12) + "…  ·  " + D.total + "점";
+  D.doc + " · sha " + D.sha.slice(0, 10) + "… · " + D.total + "점";
 
 /* 확인 표시는 브라우저에만 남는다. 저장이 막힌 환경에서도 화면은 돌아야 한다. */
 var KEY = "lg-bacnet-verify/v1", done = {};
@@ -292,7 +353,7 @@ function save(){ try { localStorage.setItem(KEY, JSON.stringify(done)); } catch 
 
 var groups = [];
 D.tables.forEach(function(t){ if (groups.indexOf(t.group) < 0) groups.push(t.group); });
-var filter = null, query = "", sel = null;
+var filter = null, query = "", sel = null, addr = null;
 
 var chips = document.getElementById("chips");
 chips.innerHTML = ['<button class="chip" type="button" data-g="" aria-pressed="true">전체</button>']
@@ -303,14 +364,33 @@ chips.innerHTML = ['<button class="chip" type="button" data-g="" aria-pressed="t
          + esc(g) + ' <span class="cnt">' + n + '</span></button>';
   })).join("");
 
-function key(t, p){ return t.page + ":" + p.no + ":" + p.name; }
+/* ── 인스턴스 번호. 원문 50쪽이 규칙을 준다 ──
+   Product Type(Indoor:0, Vent:1, AHU:2, ODU:3, AWHP:4, GENERAL:5)
+   Device : Group of Product units(16EA)
+   instance = 제품유형*0x10000 + Device*0x1000 + Product*0x100 + Point
+   XXX(유닛 주소) = Device*16 + Product
+   원문 예시 42행으로 맞춰 봤다 — 42/42 일치. */
+function instanceOf(ptype, address, point){
+  if (ptype == null || address == null) return null;
+  return ptype * 0x10000 + Math.floor(address / 16) * 0x1000 + (address % 16) * 0x100 + point;
+}
+function why(){
+  var el = document.getElementById("why");
+  if (addr == null) {
+    el.innerHTML = '이름 끝 <b>_XXX</b> 는 원문이 <b>(XXX : Unit address)</b> 라고 밝힌 '
+                 + '유닛 주소다. 주소를 넣으면 실제 이름과 BACnet 인스턴스 번호가 나온다.';
+  } else {
+    el.innerHTML = 'Device <b>' + Math.floor(addr / 16) + '</b> · Product <b>'
+      + (addr % 16) + '</b> — instance = 유형×0x10000 + Device×0x1000 + Product×0x100 + Point';
+  }
+}
 
+function key(t, p){ return t.page + ":" + p.no + ":" + p.name; }
 function match(p){
   if (!query) return true;
   var q = query.toLowerCase();
   return (p.name + " " + p.desc + " " + p.type + " " + p.states).toLowerCase().indexOf(q) >= 0;
 }
-
 function counts(){
   var n = 0, k;
   for (k in done) { if (done[k]) n++; }
@@ -325,16 +405,25 @@ function render(){
     var pts = t.points.filter(match);
     if (!pts.length) return;
     out.push('<div class="gh"><b>' + esc(t.group) + '</b><span>' + pts.length + '점</span>'
-           + '<span class="pg">원문 ' + t.page + '쪽</span></div><table><tbody>');
+           + '<span class="pg">원문 ' + t.printed + '쪽 <span style="color:var(--faint)">(PDF '
+           + t.page + ')</span></span></div><table><tbody>');
     pts.forEach(function(p){
       var k = key(t, p), isOut = /O$/.test(p.type || "");
+      var inst = instanceOf(t.ptype, addr, p.no);
+      var nm = esc(p.name);
+      if (addr != null) {
+        nm = nm.replace(/_XXX\b/g, "_<em>" + addr + "</em>");
+      }
       shown++;
       out.push('<tr class="row' + (done[k] ? " done" : "") + (sel === k ? " sel" : "")
-        + '" data-k="' + esc(k) + '" data-page="' + t.page + '" tabindex="0">'
+        + '" data-k="' + esc(k) + '" data-page="' + t.page
+        + '" data-printed="' + t.printed + '" tabindex="0">'
         + '<td class="ck">' + (done[k] ? "✓" : "○") + '</td>'
         + '<td class="no">' + p.no + '</td>'
         + '<td class="ty"><span class="' + (isOut ? "o" : "") + '">' + esc(p.type || "—") + '</span></td>'
-        + '<td class="nm">' + esc(p.name) + '</td>'
+        + '<td class="nm">' + nm + '</td>'
+        + (inst == null ? "" : '<td class="inst"><b>0x' + inst.toString(16).toUpperCase()
+            + '</b><br>' + inst + '</td>')
         + '<td class="ds">' + esc(p.desc || "")
         + (p.states ? '<span class="st">' + esc(p.states) + '</span>' : "") + '</td></tr>');
     });
@@ -347,33 +436,44 @@ function render(){
 
 /* ── 원문 쪽: 고른 행을 따라간다. 가리지 않는다 ── */
 var img = document.getElementById("img"), view = document.getElementById("view");
-var zoom = 1, ox = 12, oy = 12, natural = 0, curPage = null, fitMode = true;
+var zoom = 1, ox = 12, oy = 12, natural = 0, naturalH = 0, curPage = null;
+var fitMode = true, upright = true;   /* 기본은 표가 가로로 읽히는 방향 */
 
+function boxW(){ return upright ? natural : naturalH; }
+function boxH(){ return upright ? naturalH : natural; }
 function fit(){
   if (!natural) return;
-  zoom = (view.clientWidth - 24) / natural;
+  var w = view.clientWidth - 24, h = view.clientHeight - 40;
+  zoom = Math.min(w / boxW(), h / boxH());
+  if (!isFinite(zoom) || zoom <= 0) zoom = 1;
   ox = 12; oy = 12; fitMode = true; apply();
 }
 function apply(){
   img.style.width = (natural * zoom) + "px";
-  img.style.transform = "translate(" + ox + "px," + oy + "px)";
+  /* 세로 보기로 돌릴 때는 원래 방향(반시계 90도)으로 되돌린다 */
+  var r = upright ? "" : " rotate(-90deg) translate(" + (-natural * zoom) + "px,0)";
+  img.style.transform = "translate(" + ox + "px," + oy + "px)" + r;
 }
-function show(page){
+function show(page, printed){
   if (page === curPage) return;
   curPage = page;
-  document.getElementById("rpg").textContent = page + "쪽";
-  img.onload = function(){ natural = img.naturalWidth; if (fitMode) fit(); else apply(); };
+  document.getElementById("rpg").innerHTML = printed + "쪽 <span style=\"color:var(--faint);font-weight:400\">(PDF "
+    + page + ")</span>";
+  img.onload = function(){
+    natural = img.naturalWidth; naturalH = img.naturalHeight;
+    if (fitMode) fit(); else apply();
+  };
   img.src = "data:image/webp;base64," + D.pages[page];
 }
 document.getElementById("hint").innerHTML =
-  '행을 누르면 그 쪽이 여기 뜬다 — 표는 그대로 남는다. '
-  + '<kbd>↑</kbd><kbd>↓</kbd> 이동 · <kbd>Space</kbd> 확인 표시 · 끌어서 이동, 휠로 확대';
+  '원문 표를 <b>가로로 눕혀</b> 보여 준다 — 원문은 세로로 인쇄돼 있어 그대로는 읽기 어렵다. '
+  + '<kbd>↑</kbd><kbd>↓</kbd> 행 이동 · <kbd>Space</kbd> 확인 · 끌어서 이동, 휠로 확대';
 
 view.addEventListener("wheel", function(e){
   if (!natural) return;
   e.preventDefault();
   var r = view.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
-  var f = e.deltaY < 0 ? 1.12 : 1 / 1.12, z2 = Math.max(0.15, Math.min(6, zoom * f));
+  var f = e.deltaY < 0 ? 1.12 : 1 / 1.12, z2 = Math.max(0.1, Math.min(6, zoom * f));
   ox = mx - (mx - ox) * (z2 / zoom); oy = my - (my - oy) * (z2 / zoom);
   zoom = z2; fitMode = false; apply();
 }, { passive: false });
@@ -390,16 +490,37 @@ view.addEventListener("pointermove", function(e){
 ["pointerup", "pointercancel"].forEach(function(t){
   view.addEventListener(t, function(){ drag = null; view.classList.remove("drag"); });
 });
-document.querySelector(".rtop").addEventListener("click", function(e){
+
+document.querySelector(".top").addEventListener("click", function(e){
   var b = e.target.closest("button[data-z]");
-  if (!b || !natural) return;
+  if (!b) return;
   var z = b.dataset.z;
+  if (z === "rot") {
+    upright = !upright;
+    document.getElementById("rotb").textContent = upright ? "세로로" : "가로로";
+    fitMode = true; fit(); return;
+  }
+  if (!natural) return;
   if (z === "fit") { fit(); return; }
   if (z === "1") { zoom = 1; ox = 12; oy = 12; fitMode = false; apply(); return; }
-  zoom = Math.max(0.15, Math.min(6, zoom * (z === "+" ? 1.2 : 1 / 1.2)));
+  zoom = Math.max(0.1, Math.min(6, zoom * (z === "+" ? 1.2 : 1 / 1.2)));
   fitMode = false; apply();
 });
 addEventListener("resize", function(){ if (fitMode) fit(); });
+
+/* ── 뷰 전환. 맨 위에 있어 어느 모드에서도 사라지지 않는다 ── */
+var appEl = document.getElementById("app"), vseg = document.getElementById("vseg");
+vseg.addEventListener("click", function(e){
+  var b = e.target.closest("button[data-v]");
+  if (!b) return;
+  appEl.classList.remove("only-list", "only-page");
+  if (b.dataset.v === "list") appEl.classList.add("only-list");
+  if (b.dataset.v === "page") appEl.classList.add("only-page");
+  [].forEach.call(vseg.querySelectorAll("button"), function(x){
+    x.setAttribute("aria-pressed", String(x === b));
+  });
+  if (fitMode) setTimeout(fit, 0);
+});
 
 /* ── 고르기 ── */
 function pick(tr, scroll){
@@ -407,7 +528,7 @@ function pick(tr, scroll){
   var prev = document.querySelector("tr.sel");
   if (prev) prev.classList.remove("sel");
   tr.classList.add("sel"); sel = tr.dataset.k;
-  show(+tr.dataset.page);
+  show(+tr.dataset.page, tr.dataset.printed);
   if (scroll) tr.scrollIntoView({ block: "nearest" });
 }
 function toggle(tr){
@@ -449,30 +570,35 @@ chips.addEventListener("click", function(e){
 document.getElementById("q").addEventListener("input", function(e){
   query = e.target.value.trim(); render(); first();
 });
+document.getElementById("addr").addEventListener("input", function(e){
+  var v = e.target.value.trim();
+  addr = (v === "" || isNaN(+v)) ? null : Math.max(0, Math.min(255, parseInt(v, 10)));
+  why(); render();
+});
 document.getElementById("reset").addEventListener("click", function(){
   done = {}; save(); render(); first();
 });
 
 /* ── 폭 조절 ── */
-var grip = document.getElementById("grip"), app = document.getElementById("app"), gd = false;
+var grip = document.getElementById("grip"), gd = false;
 grip.addEventListener("pointerdown", function(e){
   gd = true; grip.classList.add("on"); grip.setPointerCapture(e.pointerId);
 });
 addEventListener("pointermove", function(e){
   if (!gd) return;
-  var pct = Math.max(24, Math.min(76, 100 * e.clientX / innerWidth));
-  app.style.setProperty("--lw", pct + "%");
+  var pct = Math.max(20, Math.min(80, 100 * e.clientX / innerWidth));
+  appEl.style.setProperty("--lw", pct + "%");
   if (fitMode) fit();
 });
 addEventListener("pointerup", function(){ gd = false; grip.classList.remove("on"); });
 grip.addEventListener("keydown", function(e){
-  var cur = parseFloat(getComputedStyle(app).getPropertyValue("--lw")) || 52;
-  if (e.key === "ArrowLeft") { app.style.setProperty("--lw", Math.max(24, cur - 3) + "%"); if (fitMode) fit(); }
-  if (e.key === "ArrowRight") { app.style.setProperty("--lw", Math.min(76, cur + 3) + "%"); if (fitMode) fit(); }
+  var cur = parseFloat(getComputedStyle(appEl).getPropertyValue("--lw")) || 50;
+  if (e.key === "ArrowLeft") { appEl.style.setProperty("--lw", Math.max(20, cur - 3) + "%"); if (fitMode) fit(); }
+  if (e.key === "ArrowRight") { appEl.style.setProperty("--lw", Math.min(80, cur + 3) + "%"); if (fitMode) fit(); }
 });
 
 function first(){ pick(document.querySelector("tr.row"), true); }
-render(); first();
+why(); render(); first();
 })();
 </script>
 """
