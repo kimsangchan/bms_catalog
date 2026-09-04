@@ -67,6 +67,36 @@ IFACE = {
                   "on the product.'"),
 }
 
+# 단위 칸에 **문장**으로 적힌 것 — 원문을 읽어 손으로 옮긴다.
+#
+# ⚠ 정규식으로 일반화하지 않는다. 문장은 문서마다 다르고, 잘못 읽으면 시뮬레이터가
+#    배율을 그대로 믿는다. 표에 없는 문장은 아래 build() 에서 gap 으로 떨어진다 —
+#    조용히 통과하지 않으므로 새 문장이 나오면 여기 손을 대야 한다.
+# ⚠ 배율의 방향은 point-schema 가 못 박은 것을 따른다: **공학값 = 원시값 × scale**.
+#    뒤집으면 CO2 200ppm 이 2ppm 이 된다.
+NOTE_CELLS = {
+    "0~255 (Real Value = Value*10, Example : In case Value is 20, "
+    "CO2 is 20*10=200ppm)": {
+        "range": {"raw": "0~255", "min": 0, "max": 255},
+        "scale": 10, "scaleRaw": "Real Value = Value*10",
+        "unitSI": "ppm", "unitSIRaw": "ppm",
+        # 원문이 예까지 든다 — 단위(ppm)와 배율(×10)이 둘 다 명시돼 있다.
+        # 0~255 는 **원시값**의 범위다. 공학 상한은 2550ppm 이다.
+        "why": "원문: 'In case Value is 20, CO2 is 20*10=200ppm'",
+    },
+    "Wattage values (Unit : 100Watt)": {
+        "scale": 100, "scaleRaw": "Unit : 100Watt",
+        "unitSI": "W", "unitSIRaw": "Watt",
+        "why": "원문: '(Unit : 100Watt)' — 원시값 1 이 100 W 다",
+    },
+    "Reference LG Original Error Code": {
+        # 값이 아니라 **참조**다. 코드표가 이 문서에 없으므로 states 를 만들지 않고
+        # 어디를 봐야 하는지만 남긴다(common.statesRef).
+        "statesRef": "Reference LG Original Error Code",
+        "why": "원문이 코드표를 가리킨다 — 이 문서에는 그 표가 없다",
+    },
+}
+
 RULE = ("instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point 이고 "
         "유닛 주소 XXX = Device×16 + Product 다. 제품유형은 Indoor:0 Vent:1 AHU:2 "
         "ODU:3 AWHP:4 GENERAL:5 (원문 50쪽). 원문 예시 42행에 42/42 일치를 확인했다.")
@@ -134,18 +164,31 @@ def build(meta, url, tables, cc):
                 #    야드파운드/SI 쌍을 주는 계통 전용).
                 u = p.get("unit") or ""
                 rng = SC.parse_range(u)
-                if rng:
+                read = NOTE_CELLS.get(u)
+                if read:
+                    # 문장으로 적힌 칸 — 읽은 내용을 그대로 옮긴다.
+                    for k in ("range", "scale", "scaleRaw", "unitSI", "unitSIRaw",
+                              "statesRef"):
+                        if k in read:
+                            common[k] = read[k]
+                elif rng:
                     common["range"] = rng
                 elif u and not SC.looks_like_range(u) and len(u) <= 12:
                     common["unitSIRaw"] = u
                     common["unitSI"] = u.replace("℃", "°C")
                 elif u:
-                    # 숫자가 섞였는데 양끝이 순수 숫자가 아닌 칸 —
-                    # '0~255 (Real Value = Value*10 …)' · 'Wattage values (Unit : 100Watt)'.
-                    # 숫자만 떼어 담으면 시뮬레이터가 그것을 실제 상한으로 믿는다.
+                    # 표에 없는 문장이다. **지어 읽지 않는다** — 숫자만 떼어 담으면
+                    # 시뮬레이터가 그것을 실제 상한으로 믿는다. 사람이 읽어
+                    # NOTE_CELLS 에 올릴 때까지 여기 남는다.
                     pgaps.append("common.range — 원문 Unit 칸이 단위도 순수 범위도 "
-                                 "아니다(%r). 배율·참조가 섞여 있어 min·max 를 만들지 "
-                                 "않았다. sourceColumns 에 원문 그대로 남겼다." % u)
+                                 "아니다(%r). ingest_lg.NOTE_CELLS 에 없는 문장이라 "
+                                 "읽지 않았다. sourceColumns 에 원문 그대로 남겼다." % u)
+                # 타입을 모르는 점 — 슬롯을 원문 그대로만 남기고 뜻을 붙이지 않는다.
+                for k, v in enumerate(p.get("slots") or []):
+                    pgaps.append("common.states / common.unitSI — 원문에 오브젝트 타입이 "
+                                 "없어 슬롯의 뜻을 정할 수 없다. 원문 칸: %r" % v)
+                if p.get("slots"):
+                    pgaps.append("blocks.bacnet.objectType — 원문 타입 칸이 비어 있다")
                 blocks = {}
                 if p["type"]:
                     blocks["bacnet"] = {"objectType": p["type"]}
@@ -169,6 +212,8 @@ def build(meta, url, tables, cc):
                             "Object Name": p.get("nameRaw") or p["name"],
                             "Control/monitoring": p["desc"] or "",
                             **({"Unit": p["unit"]} if p.get("unit") else {}),
+                            **({"슬롯(뜻 미상)": " | ".join(p["slots"])}
+                               if p.get("slots") else {}),
                             **({"Text-%s" % s.split("=", 1)[0]: s.split("=", 1)[1]
                                 for s in p["states"].split(", ") if "=" in s}
                                if p.get("states") else {}),

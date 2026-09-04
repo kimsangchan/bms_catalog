@@ -145,18 +145,26 @@ def extract(doc):
                 #   슬롯 1='Low' 이고 비고(인쇄 48쪽)가 "1:Low" 다. 즉 Text-N 의 N 이
                 #   그대로 present-value 다 — 보정(msvOffset)이 필요 없다.
                 #   BO/BI 는 슬롯 0=Inactive, 1=Active 로 BACnet 이진값 0/1 과 맞는다.
+                # ⚠ 타입을 모르면 슬롯의 뜻도 모른다 — **아무 것도 만들지 않는다.**
+                #    실제로 indoor-unit 16번(MalfunctionCode)은 원문에 타입 칸이 비어
+                #    있는데, 빈 타입을 멀티스테이트로 흘려보내 'code 5 = Reference LG
+                #    Original Error Code' 라는 없는 상태를 지어냈다. 슬롯 원본은
+                #    slots 로 넘겨 sourceColumns 에 남긴다.
+                known = ty in ("AI", "AO", "AV", "BI", "BO", "BV", "MI", "MO", "MV")
                 analog = ty in ("AI", "AO", "AV")
                 # ⚠ 아날로그의 단위 칸이 늘 슬롯 0 은 아니다 — 긴 값('0~255 (Real
                 #    Value = ...)')은 조판이 위 밴드로 밀어 넣는다. **처음 채워진**
                 #    슬롯을 단위 칸으로 본다(실측: 그렇게 하면 남는 슬롯이 0개다).
                 filled = [v for v in slots if v]
                 unit = filled[0] if (analog and filled) else ""
-                states = [] if analog else [(k, v) for k, v in enumerate(slots) if v]
+                states = ([(k, v) for k, v in enumerate(slots) if v]
+                          if (known and not analog) else [])
                 spill = filled[1:] if analog else []
                 pts.append({"no": int(num), "name": ident(name, flow), "nameRaw": name,
                             "type": ty,
                             "desc": prose(str(cm[c]).strip()) if cm and c < len(cm) else "",
                             "unit": unit, "spill": spill,
+                            "slots": filled if not known else [],
                             "states": ", ".join("%d=%s" % kv for kv in states)})
             if pts:
                 ko, ptype = KO.get(group_of[p], (group_of[p] or "?", None))

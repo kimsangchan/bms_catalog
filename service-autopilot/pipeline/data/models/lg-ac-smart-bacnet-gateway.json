@@ -668,13 +668,7 @@
     {
      "common": {
       "name": "MalfunctionCode_XXX",
-      "note": "Error Code",
-      "states": [
-       {
-        "code": "5",
-        "label": "Reference LG Original Error Code"
-       }
-      ]
+      "note": "Error Code"
      },
      "blocks": {},
      "provenance": {
@@ -686,10 +680,12 @@
        "Object Type": "",
        "Object Name": "MalfunctionCode_XXX",
        "Control/monitoring": "Error Code",
-       "Text-5": "Reference LG Original Error Code"
+       "슬롯(뜻 미상)": "Reference LG Original Error Code"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.states / common.unitSI — 원문에 오브젝트 타입이 없어 슬롯의 뜻을 정할 수 없다. 원문 칸: 'Reference LG Original Error Code'",
+       "blocks.bacnet.objectType — 원문 타입 칸이 비어 있다"
       ],
       "status": "extracted",
       "interfaceId": "indoor-unit"
@@ -728,7 +724,11 @@
     {
      "common": {
       "name": "AccumPowerStatus_XXX",
-      "note": "Power Distribution"
+      "note": "Power Distribution",
+      "scale": 100,
+      "scaleRaw": "Unit : 100Watt",
+      "unitSI": "W",
+      "unitSIRaw": "Watt"
      },
      "blocks": {
       "bacnet": {
@@ -747,8 +747,7 @@
        "Unit": "Wattage values (Unit : 100Watt)"
       },
       "gaps": [
-       "blocks.bacnet.instance",
-       "common.range — 원문 Unit 칸이 단위도 순수 범위도 아니다('Wattage values (Unit : 100Watt)'). 배율·참조가 섞여 있어 min·max 를 만들지 않았다. sourceColumns 에 원문 그대로 남겼다."
+       "blocks.bacnet.instance"
       ],
       "status": "extracted",
       "interfaceId": "indoor-unit"
@@ -1992,7 +1991,8 @@
     {
      "common": {
       "name": "MalfunctionCode_XXX",
-      "note": "Error Code"
+      "note": "Error Code",
+      "statesRef": "Reference LG Original Error Code"
      },
      "blocks": {
       "bacnet": {
@@ -2011,8 +2011,7 @@
        "Unit": "Reference LG Original Error Code"
       },
       "gaps": [
-       "blocks.bacnet.instance",
-       "common.range — 원문 Unit 칸이 단위도 순수 범위도 아니다('Reference LG Original Error Code'). 배율·참조가 섞여 있어 min·max 를 만들지 않았다. sourceColumns 에 원문 그대로 남겼다."
+       "blocks.bacnet.instance"
       ],
       "status": "extracted",
       "interfaceId": "ventilation"
@@ -2800,7 +2799,8 @@
     },
     {
      "common": {
-      "name": "MalfunctionCode_XXX"
+      "name": "MalfunctionCode_XXX",
+      "statesRef": "Reference LG Original Error Code"
      },
      "blocks": {
       "bacnet": {
@@ -2819,8 +2819,7 @@
        "Unit": "Reference LG Original Error Code"
       },
       "gaps": [
-       "blocks.bacnet.instance",
-       "common.range — 원문 Unit 칸이 단위도 순수 범위도 아니다('Reference LG Original Error Code'). 배율·참조가 섞여 있어 min·max 를 만들지 않았다. sourceColumns 에 원문 그대로 남겼다."
+       "blocks.bacnet.instance"
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -3357,7 +3356,16 @@
     {
      "common": {
       "name": "CO2ValueStatus_XXX",
-      "note": "CO2 Value (Status)"
+      "note": "CO2 Value (Status)",
+      "range": {
+       "raw": "0~255",
+       "min": 0,
+       "max": 255
+      },
+      "scale": 10,
+      "scaleRaw": "Real Value = Value*10",
+      "unitSI": "ppm",
+      "unitSIRaw": "ppm"
      },
      "blocks": {
       "bacnet": {
@@ -3376,8 +3384,7 @@
        "Unit": "0~255 (Real Value = Value*10, Example : In case Value is 20, CO2 is 20*10=200ppm)"
       },
       "gaps": [
-       "blocks.bacnet.instance",
-       "common.range — 원문 Unit 칸이 단위도 순수 범위도 아니다('0~255 (Real Value = Value*10, Example : In case Value is 20, CO2 is 20*10=200ppm)'). 배율·참조가 섞여 있어 min·max 를 만들지 않았다. sourceColumns 에 원문 그대로 남겼다."
+       "blocks.bacnet.instance"
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -5265,7 +5272,8 @@
     {
      "common": {
       "name": "MalfunctionCode_XXX",
-      "note": "Malfunction Code"
+      "note": "Malfunction Code",
+      "statesRef": "Reference LG Original Error Code"
      },
      "blocks": {
       "bacnet": {
@@ -5284,8 +5292,7 @@
        "Unit": "Reference LG Original Error Code"
       },
       "gaps": [
-       "blocks.bacnet.instance",
-       "common.range — 원문 Unit 칸이 단위도 순수 범위도 아니다('Reference LG Original Error Code'). 배율·참조가 섞여 있어 min·max 를 만들지 않았다. sourceColumns 에 원문 그대로 남겼다."
+       "blocks.bacnet.instance"
       ],
       "status": "extracted",
       "interfaceId": "awhp"

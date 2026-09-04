@@ -132,7 +132,10 @@ def row_of(p):
     if inst is not None:
         r["i"] = inst
     rg = (c.get("range") or {}).get("raw")
+    # 배율은 **방향까지 보여 준다** — 숫자만 '10' 이라고 두면 곱인지 나눗셈인지 모른다
+    sc = ("×%s  (%s)" % (c["scale"], c.get("scaleRaw") or "")).strip()         if c.get("scale") is not None else None
     for k, v in (("u", c.get("unitSIRaw") or c.get("unitIPRaw")), ("rg", rg),
+                 ("sc", sc), ("sr", c.get("statesRef")),
                  ("rw", c.get("readWrite")), ("d", c.get("note")), ("s", st)):
         if v:
             r[k] = v
@@ -145,7 +148,8 @@ def row_of(p):
     #       그건 빠진 값이 아니라 지운 자국이고, 그 기록은 모델에 이미 남아 있다.
     flat = lambda s: re.sub(r"\s+", "", str(s))
     used = {flat(x) for x in (r.get("n"), r.get("t"), r.get("nm"), r.get("d"),
-                              r.get("u"), r.get("rg"), r.get("rw")) if x}
+                              r.get("u"), r.get("rg"), r.get("rw"), r.get("sr"),
+                              c.get("unitSI"), c.get("scaleRaw")) if x}
     used |= {flat(s.get("label")) for s in (c.get("states") or [])}
     extra = {k: v for k, v in src.items() if v and flat(v) not in used}
     if extra:
@@ -157,7 +161,8 @@ def row_of(p):
 # ⚠ 단위와 범위를 **다른 열**로 세운다. 원문은 한 칸에 섞어 넣지만
 #    '-127~127' 은 단위가 아니다 — 같은 열에 두면 BMS 가 그것을 단위로 읽는다.
 DERIVED = [("n", "번호"), ("t", "타입"), ("nm", "이름"), ("u", "단위"), ("rg", "범위"),
-           ("rw", "R/W"), ("s", "상태 TEXT"), ("d", "설명")]
+           ("sc", "배율"), ("rw", "R/W"), ("s", "상태 TEXT"), ("sr", "코드표"),
+           ("d", "설명")]
 
 
 def columns(rows, addr, manypages):

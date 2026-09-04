@@ -57,7 +57,8 @@ HEAD = ["pointKey", "modelId", "vendor", "model", "equipId", "cat", "tag",
 # 포인트 자체를 말하는 열
 BODY = ["pointNo", "name", "nameVariable", "addressVar", "instanceFormula",
         "pointKind", "readWrite", "unit", "unitRaw", "unitSystem",
-        "range", "rangeMin", "rangeMax", "states", "statesNote", "group", "note"]
+        "range", "rangeMin", "rangeMax", "scale", "scaleRaw",
+        "states", "statesNote", "statesRef", "group", "note"]
 # 출처 (값을 의심할 때 되짚는 자리)
 TAIL = ["sourceFile", "sourcePage", "status", "gaps", "rawColumns"]
 
@@ -68,6 +69,9 @@ COLDOC = {
     "addressVar": "_XXX 가 무엇인지 — 예: 유닛 주소(Device*16+Product)",
     "instanceFormula": "인스턴스를 현장값에서 만드는 식. 값이 정해져 있으면 빈칸",
     "unitSystem": "SI · IP — 어느 단위계 열에서 왔는지",
+    "scale": "공학값 = 원시값 × scale. 방향이 정의로 고정돼 있다 — 뒤집으면 200ppm 이 2ppm 이 된다",
+    "scaleRaw": "배율을 문서가 적은 말 그대로. scale 이 있으면 반드시 함께 있다",
+    "statesRef": "상태 코드표가 이 문서 밖에 있을 때 어디를 봐야 하는지",
     "range": "값 범위 원문. 벤더는 단위 칸에 범위를 섞어 넣는다 — 단위 열과 갈라 둔다",
     "rangeMin": "범위 아래끝. **양끝이 순수 숫자일 때만** 채운다(안 채워졌으면 range 원문을 봐라)",
     "rangeMax": "범위 위끝. 같은 규칙 — '0.00 - DRV-20' 처럼 파라미터를 가리키면 비운다",
@@ -136,6 +140,7 @@ def row(m, iface, p, pcols):
     snote = ("표의 코드 + %d = BACnet present-value" % off) if off is not None else ""
 
     used = {str(x) for x in (no, name, c.get("note"), unit, rng.get("raw"),
+                             c.get("scaleRaw"), c.get("statesRef"),
                              c.get("unitSIRaw"), c.get("unitIPRaw"),
                              c.get("readWrite"), bac.get("objectType")) if x}
     used |= {s.get("label") for s in (c.get("states") or [])}
@@ -162,6 +167,9 @@ def row(m, iface, p, pcols):
         "range": rng.get("raw", ""),
         "rangeMin": rng.get("min", "") if rng.get("min") is not None else "",
         "rangeMax": rng.get("max", "") if rng.get("max") is not None else "",
+        "scale": c.get("scale", "") if c.get("scale") is not None else "",
+        "scaleRaw": c.get("scaleRaw") or "",
+        "statesRef": c.get("statesRef") or "",
         "states": states, "statesNote": snote,
         "group": c.get("group") or "", "note": c.get("note") or "",
         "sourceFile": prov.get("sourceFile") or "",

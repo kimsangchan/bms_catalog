@@ -1569,7 +1569,8 @@ class LgBacnetIngestTest(unittest.TestCase):
             u = p["common"]["unitSI"]
             self.assertNotRegex(u, r"\d", "%s: 범위를 단위로 올렸다 (%s)"
                                 % (p["common"]["name"], u))
-            self.assertIn(p["provenance"]["sourceColumns"].get("Unit"), (u, "℃", u))
+            self.assertTrue(p["common"].get("unitSIRaw"),
+                            "%s: 단위 원표기가 없다" % p["common"]["name"])
 
     def test_multistate_codes_match_the_documents_own_remark(self):
         """Text-N 의 N 이 곧 present-value 다 — 원문 비고가 그렇게 못 박았다.
@@ -1615,14 +1616,67 @@ class LgBacnetIngestTest(unittest.TestCase):
         # 셋 다 실제로 나온다 — 하나라도 0이면 가르는 코드가 죽은 것이다
         n_u = sum(1 for p in pts if p["common"].get("unitSI"))
         n_r = sum(1 for p in pts if p["common"].get("range"))
-        n_x = sum(1 for p in pts if any("common.range" in g
-                                        for g in (p["provenance"].get("gaps") or [])))
+        n_s = sum(1 for p in pts if p["common"].get("scale") is not None)
+        n_f = sum(1 for p in pts if p["common"].get("statesRef"))
         self.assertGreater(n_u, 20)
         self.assertGreater(n_r, 20)
-        self.assertGreater(n_x, 0, "배율·참조가 섞인 칸을 걸러 낸 흔적이 없다")
+        # 문장 칸은 배율·코드표 참조로 간다 — 셋 다 0이 아니어야 가르는 코드가 산 것이다
+        self.assertGreater(n_s, 0, "배율을 읽어 낸 흔적이 없다")
+        self.assertGreater(n_f, 0, "코드표 참조를 읽어 낸 흔적이 없다")
+        # 판정 로직을 직접 태운다 — 위 숫자가 0이 되어도(다 읽혀도) 이건 살아 있어야 한다
+        self.assertIsNone(SC.parse_range("Wattage values (Unit : 100Watt)"))
+        self.assertEqual(SC.parse_range("0~90"), {"raw": "0~90", "min": 0, "max": 90})
         # 배율·참조가 섞인 칸은 min·max 를 만들지 않는다 — 거짓 상한이 된다
         self.assertIsNone(SC.parse_range("0~255 (Real Value = Value*10)"))
         self.assertIsNone(SC.parse_range("Reference LG Original Error Code"))
+
+
+    def test_prose_cells_are_read_by_hand_not_by_regex(self):
+        """단위 칸에 **문장**으로 적힌 것 — 범위·배율·단위가 한 칸에 뭉쳐 있다.
+
+        배율을 안 적으면 CO2 는 255 가 상한처럼 보이는데 실제 상한은 2550ppm 이고,
+        적산전력은 100배가 어긋난다. 방향(공학값 = 원시값 × scale)을 뒤집으면
+        200ppm 이 2ppm 이 된다.
+        """
+        by = {}
+        for i in self.model["interfaces"]:
+            for p in i["points"]:
+                by.setdefault((i["id"], p["common"]["name"]), p)
+        co2 = by[("ahu", "CO2ValueStatus_XXX")]["common"]
+        self.assertEqual(co2["unitSI"], "ppm")
+        self.assertEqual(co2["scale"], 10)
+        self.assertEqual(co2["scaleRaw"], "Real Value = Value*10")
+        self.assertEqual(co2["range"], {"raw": "0~255", "min": 0, "max": 255})
+        pw = by[("indoor-unit", "AccumPowerStatus_XXX")]["common"]
+        self.assertEqual((pw["unitSI"], pw["scale"]), ("W", 100))
+        # 배율은 원표기 없이 저장 금지 — point-schema 의 게이트
+        for i in self.model["interfaces"]:
+            for p in i["points"]:
+                if p["common"].get("scale") is not None:
+                    self.assertTrue(p["common"].get("scaleRaw"),
+                                    "%s: scale 만 있고 scaleRaw 가 없다" % p["common"]["name"])
+        # 값이 아니라 **참조**인 칸은 states 를 만들지 않는다
+        err = by[("ahu", "MalfunctionCode_XXX")]["common"]
+        self.assertEqual(err["statesRef"], "Reference LG Original Error Code")
+        self.assertNotIn("states", err)
+
+    def test_unknown_object_type_does_not_invent_states(self):
+        """타입을 모르면 슬롯의 뜻도 모른다 — 아무 것도 만들지 않는다.
+
+        재현: indoor-unit 16번(MalfunctionCode)은 원문에 타입 칸이 비어 있는데,
+        빈 타입을 멀티스테이트로 흘려보내 'code 5 = Reference LG Original Error Code'
+        라는 **없는 상태**를 지어냈다. 원문에 없는 코드는 현장에서 못 찾는다.
+        """
+        by = {(i["id"], p["common"]["name"]): p
+              for i in self.model["interfaces"] for p in i["points"]}
+        p = by[("indoor-unit", "MalfunctionCode_XXX")]
+        self.assertEqual(p["blocks"], {})
+        self.assertNotIn("states", p["common"])
+        self.assertNotIn("unitSI", p["common"])
+        gaps = " ".join(p["provenance"]["gaps"])
+        self.assertIn("blocks.bacnet.objectType", gaps)
+        self.assertIn("Reference LG Original Error Code",
+                      p["provenance"]["sourceColumns"]["슬롯(뜻 미상)"])
 
 
 class LsH100IngestTest(unittest.TestCase):
