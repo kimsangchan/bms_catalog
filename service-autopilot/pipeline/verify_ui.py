@@ -156,11 +156,13 @@ button{font:inherit}
  height:calc(100dvh - 41px)}
 .app.no-tree{grid-template-columns:0 var(--lw,44%) 7px 1fr}
 .app.no-list{grid-template-columns:var(--tw,224px) 0 0 1fr}
-.app.no-page{grid-template-columns:var(--tw,224px) 1fr 0 0}
+.app.min-page{grid-template-columns:var(--tw,224px) 1fr 0 30px}
 .app.no-tree.no-list{grid-template-columns:0 0 0 1fr}
-.app.no-tree.no-page{grid-template-columns:0 1fr 0 0}
-.app.no-tree .tree,.app.no-list .left,.app.no-page .right,
-.app.no-list .grip,.app.no-page .grip{display:none}
+.app.no-tree.min-page{grid-template-columns:0 1fr 0 30px}
+.app.no-tree .tree,.app.no-list .left,
+.app.no-list .grip,.app.min-page .grip{display:none}
+.app.min-page .view{display:none}
+.app.min-page .right{background:var(--panel);border-left:1px solid var(--line)}
 .pane{min-width:0;display:flex;flex-direction:column;overflow:hidden}
 .tree{border-right:1px solid var(--line);background:var(--panel);overflow:auto;padding:8px 0 20px}
 .left{border-right:1px solid var(--line);background:var(--panel)}
@@ -178,7 +180,8 @@ button{font:inherit}
 .tnode[aria-current=true]{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent);
  font-weight:650}
 .tnode .tw{width:14px;flex:none;color:var(--faint);font-size:9px;text-align:center}
-.tnode .tl{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* 잘라내지 않는다 — 잘리면 정작 다른 부분(실내기·ODU)이 사라진다. 접어 내린다 */
+.tnode .tl{flex:1;min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.35}
 .tnode .tc{font-family:var(--mono);font-size:10.5px;color:var(--faint);
  font-variant-numeric:tabular-nums}
 .tnode.d0{font-weight:650;letter-spacing:-.01em}
@@ -223,8 +226,9 @@ tr.row.sel{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
 tr.row.done td.nm{color:var(--faint)}
 td.ck{width:22px;padding-left:13px;color:var(--faint);text-align:center;user-select:none}
 tr.row.done td.ck{color:var(--ok)}
-td.no{width:44px;font-family:var(--mono);font-variant-numeric:tabular-nums;
+td.no{width:52px;font-family:var(--mono);font-variant-numeric:tabular-nums;
  color:var(--faint);text-align:right;white-space:nowrap}
+td.no i{font-style:normal;display:block;font-size:10px;opacity:.7}
 td.ty{width:38px}
 .ty span{display:inline-block;padding:1px 5px;border-radius:4px;font-family:var(--mono);
  font-size:10.5px;font-weight:700;background:var(--rail);color:var(--dim)}
@@ -240,6 +244,15 @@ td.ds{color:var(--dim)}
 .none{padding:26px 13px;color:var(--faint);text-align:center}
 
 /* ── 원문 쪽: 늘 보인다 ── */
+/* 접었다 펴는 단추 — 원문창 안(접기)과 접힌 띠(펴기) 양쪽에 둔다 */
+.fold{position:absolute;top:7px;right:9px;z-index:3;padding:2px 8px;border-radius:6px;
+ border:1px solid var(--line);background:var(--panel);color:var(--dim);font-size:11.5px;
+ cursor:pointer;opacity:.85}
+.fold:hover{opacity:1;background:var(--accent-soft);color:var(--ink)}
+.unfold{display:none;width:100%;height:100%;border:0;background:none;color:var(--dim);
+ cursor:pointer;font-size:11.5px;writing-mode:vertical-rl;padding:10px 0;letter-spacing:.08em}
+.unfold:hover{background:var(--accent-soft);color:var(--ink)}
+.app.min-page .unfold{display:block}
 .view{flex:1;position:relative;overflow:hidden;background:var(--rail);cursor:grab;touch-action:none}
 .view.drag{cursor:grabbing}
 .view img{position:absolute;top:0;left:0;transform-origin:0 0;background:#fff;box-shadow:var(--shadow)}
@@ -249,7 +262,9 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
  border-radius:4px;padding:0 4px;color:var(--dim);background:var(--bg)}
 @media (max-width:900px){
   body{overflow:auto}
-  .app,.app.no-tree,.app.no-list,.app.no-page{grid-template-columns:1fr;height:auto}
+  .app,.app.no-tree,.app.no-list,.app.min-page{grid-template-columns:1fr;height:auto}
+  .app.min-page .view{display:block;height:0}   /* 좁은 화면에서도 접기가 먹는다 */
+  .app.min-page .unfold{width:100%;height:auto;writing-mode:horizontal-tb;padding:6px 0}
   .grip{display:none}
   .tree{max-height:34vh;border-right:0;border-bottom:1px solid var(--line)}
   .left{border-right:0;border-bottom:1px solid var(--line)}
@@ -306,7 +321,9 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
        aria-label="좌우 폭 조절"></div>
 
   <section class="pane right">
+    <button class="unfold" type="button" data-v="page" title="원문 펼치기">원문 펼치기 ▸</button>
     <div class="view" id="view">
+      <button class="fold" type="button" data-v="page" title="원문 접기">─ 접기</button>
       <img id="img" alt="원문 쪽">
       <div class="hint" id="hint"></div>
     </div>
@@ -350,6 +367,7 @@ function treeHTML(nodes, depth){
     var open = openSet[n.id] !== false;
     return '<li class="' + (kids.length && !open ? "closed" : "") + '" data-id="' + esc(n.id) + '">'
       + '<button class="tnode d' + depth + '" type="button" data-id="' + esc(n.id) + '"'
+      + ' title="' + esc(n.full || n.label) + '"'
       + ' aria-current="false"><span class="tw">' + (kids.length ? (open ? "▾" : "▸") : "") + '</span>'
       + '<span class="tl">' + esc(n.label) + '</span>'
       + '<span class="tc">' + n.count + '</span></button>'
@@ -422,9 +440,10 @@ function render(){
     if (!pts.length) return;
     var path = t.path.join(" › ");
     out.push('<div class="gh"><b>' + esc(path) + '</b><span>' + pts.length + '점</span>'
-           + '<span class="pg">원문 ' + t.printed + '쪽 <span style="color:var(--faint)">(PDF '
-           + t.page + ')</span></span></div><table><tbody>');
+           + '<span class="pg">원문 ' + esc(t.span) + '쪽</span></div><table><tbody>');
     lastPath = path;
+    var manyPages = t.points.length && t.points.some(function(x){
+      return x.pg !== t.points[0].pg; });
     pts.forEach(function(p){
       var k = t.id + ":" + (p.n || p.nm);
       var isOut = p.rw ? p.rw.indexOf("W") >= 0 : /O$/.test(p.t || "");
@@ -436,10 +455,11 @@ function render(){
       if (p.rw) sub.push(esc(p.rw));
       shown++;
       out.push('<tr class="row' + (done[k] ? " done" : "") + (sel === k ? " sel" : "")
-        + '" data-k="' + esc(k) + '" data-page="' + esc(t.pageKey)
-        + '" data-printed="' + t.printed + '" data-pdf="' + t.page + '" tabindex="0">'
+        + '" data-k="' + esc(k) + '" data-page="' + esc(p.pk)
+        + '" data-printed="' + esc(p.pg) + '" data-pdf="' + esc(p.pdf) + '" tabindex="0">'
         + '<td class="ck">' + (done[k] ? "✓" : "○") + '</td>'
-        + '<td class="no">' + esc(p.n == null ? "" : p.n) + '</td>'
+        + '<td class="no">' + esc(p.n == null ? "" : p.n)
+        + (manyPages ? '<i>p' + esc(p.pg) + '</i>' : "") + '</td>'
         + '<td class="ty"><span class="' + (isOut ? "o" : "") + '">'
         + esc(p.t || "—") + '</span></td>'
         + '<td class="nm">' + nm
@@ -544,15 +564,22 @@ addEventListener("resize", function(){ if (mode !== "free") fit(mode); });
 
 /* ── 뷰 전환. 맨 위에 있어 어느 모드에서도 사라지지 않는다 ── */
 var appEl = document.getElementById("app"), vseg = document.getElementById("vseg");
-vseg.addEventListener("click", function(e){
-  var b = e.target.closest("button[data-v]");
-  if (!b) return;
-  var on = b.getAttribute("aria-pressed") !== "true";
+/* 원문창은 감추지 않고 **접는다**(min-page) — 되펴는 단추가 늘 띠에 남아 있어야
+   "어디로 사라졌지" 가 안 생긴다. 트리·표는 그냥 감춘다(no-tree·no-list). */
+function cls(v){ return v === "page" ? "min-page" : "no-" + v; }
+function toggleView(v, force){
+  var b = vseg.querySelector('button[data-v="' + v + '"]');
+  var on = force == null ? b.getAttribute("aria-pressed") !== "true" : force;
   /* 셋 다 끄면 볼 것이 없어진다 — 마지막 하나는 못 끈다 */
   if (!on && vseg.querySelectorAll('button[aria-pressed=true]').length < 2) return;
   b.setAttribute("aria-pressed", String(on));
-  appEl.classList.toggle("no-" + b.dataset.v, !on);
+  appEl.classList.toggle(cls(v), !on);
   if (mode !== "free") setTimeout(function(){ fit(mode); }, 0);
+}
+/* 접기·펴기 단추가 뷰 전환 밖(원문창 안·접힌 띠)에도 있어 문서 전체에서 받는다 */
+document.addEventListener("click", function(e){
+  var b = e.target.closest("button[data-v]");
+  if (b) toggleView(b.dataset.v);
 });
 
 /* ── 고르기 ── */

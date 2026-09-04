@@ -80,6 +80,25 @@ LG_HELP = ('이름 끝 <b>_XXX</b> 는 원문이 <b>(XXX : Unit address)</b> 라
 LG_RULE = ('instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point')
 
 
+def shorten(nodes):
+    """형제들이 똑같이 되풀이하는 앞머리를 트리에서 뗀다.
+
+    LG 판 여섯이 전부 'BACnet Point List : …' 로 시작해 트리에서 정작 다른 부분
+    (실내기·ODU·AWHP)이 잘려 나갔다. 뗀 앞머리는 구역 머리글에 그대로 남고,
+    노드에는 full 로 실어 마우스를 올리면 원래 이름이 보인다.
+    """
+    labs = [n["label"] for n in nodes]
+    if len(labs) < 2:
+        return
+    pre = os.path.commonprefix(labs)
+    cut = max([pre.rfind(c) + 1 for c in (":", "-", "·", " ")] or [0])
+    if cut < 4 or any(len(l) - cut < 2 for l in labs):
+        return
+    for n in nodes:
+        n["full"] = n["label"]
+        n["label"] = n["label"][cut:].strip()
+
+
 def load_models(only, take_all):
     out = []
     for f in sorted(glob.glob(os.path.join(DATA, "models", "*.json"))):
@@ -101,7 +120,12 @@ def row_of(p):
     bac = (p.get("blocks") or {}).get("bacnet") or {}
     src = (p.get("provenance") or {}).get("sourceColumns") or {}
     inst = bac.get("instance")
-    n = str(inst) if inst is not None else (src.get("Point No.") or "")
+    # ⚠ 번호 칸은 **원문이 인쇄한 그대로** 쓴다. LS H100 은 계열마다 1부터 다시
+    #    세는데(BACnet 인스턴스는 타입별로 매겨진다) 숫자만 '9' 로 보이면
+    #    같은 쪽의 AI9 인지 AV9 인지 알 수 없다. 더구나 AI9 의 **이름이 'AI1'**
+    #    (드라이브 아날로그 입력 단자 1번)이라 숫자만 보여 주면 반드시 헷갈린다.
+    n = src.get("Instance ID") or src.get("Point No.") or (
+        str(inst) if inst is not None else "")
     st = ", ".join("%s=%s" % (s.get("code"), s.get("label"))
                    for s in (c.get("states") or []))
     r = {"n": n, "t": bac.get("objectType") or "", "nm": c.get("name") or ""}
@@ -200,34 +224,51 @@ def main(argv):
         mnode = {"id": mid, "label": label, "count": 0, "children": []}
         for iface in m["interfaces"]:
             iid = "%s|%s" % (mid, iface["id"])
+            # ⚠ 쪽으로 가르지 않는다. 원문의 한 표가 쪽을 넘어 이어질 뿐인데 쪽으로
+            #    자르면 같은 표가 여러 토막이 된다(LS H100 은 AI 27점이 세 쪽에 걸친다).
+            #    문서가 스스로 절을 나눠 뒀으면(common.group) 그것을 따르고,
+            #    안 나눠 뒀으면 판 하나를 한 구역으로 둔다. 쪽은 **행마다** 붙는다.
             by = collections.OrderedDict()
             for p in iface.get("points") or []:
-                by.setdefault((p.get("provenance") or {}).get("sourcePage"), []).append(p)
+                by.setdefault((p.get("common") or {}).get("group") or "", []).append(p)
             n = 0
-            for printed, pts in by.items():
-                pdf = pdfmap.get(printed)
-                key = "%s#%s" % (m["id"], pdf)
+            for gi, (group, pts) in enumerate(by.items()):
+                rows, span = [], []
+                for p in pts:
+                    printed = (p.get("provenance") or {}).get("sourcePage")
+                    pdf = pdfmap.get(printed)
+                    key = "%s#%s" % (m["id"], pdf)
+                    r = row_of(p)
+                    r["pg"] = printed
+                    r["pdf"] = pdf or "?"
+                    r["pk"] = key
+                    rows.append(r)
+                    if printed not in span:
+                        span.append(printed)
+                    if doc is not None and pdf and not no_pages and key not in pages:
+                        pages[key] = (m["id"], pdf, path)
+                span = sorted(x for x in span if x is not None)
                 sec = {
-                    "id": "%s/%s/p%s" % (m["id"], iface["id"], printed),
+                    "id": "%s/%s/%s" % (m["id"], iface["id"], group or gi),
                     "node": iid,
-                    "path": [m.get("model") or m["id"], iface.get("label") or iface["id"]],
+                    "path": [m.get("model") or m["id"], iface.get("label") or iface["id"]]
+                            + ([group] if group else []),
                     "doc": m.get("sourceDoc") or "",
-                    "printed": printed, "page": pdf or "?", "pageKey": key,
-                    "points": [row_of(p) for p in pts],
+                    "span": ("%d–%d" % (span[0], span[-1])) if len(span) > 1
+                            else (str(span[0]) if span else "?"),
+                    "points": rows,
                 }
                 if iface["id"] in ptypes and m.get("extractor") == "ingest_lg":
                     sec["addr"] = {"label": "유닛 주소 XXX", "ptype": ptypes[iface["id"]],
                                    "rule": LG_RULE, "help": LG_HELP}
                 sections.append(sec)
-                n += len(pts)
-                if doc is not None and pdf and not no_pages and key not in pages:
-                    pages[key] = None          # 자리를 잡아 두고 아래에서 한 번에 굽는다
-                    pages[key] = (m["id"], pdf, path)
+                n += len(rows)
             mnode["children"].append({"id": iid, "label": iface.get("label") or iface["id"],
                                       "count": n, "children": []})
             mnode["count"] += n
             total += n
 
+        shorten(mnode["children"])
         e = tree.setdefault(eid, {"id": eid, "count": 0,
                                   "label": ("%s %s" % (eid, enames.get(eid, ""))).strip(),
                                   "children": collections.OrderedDict()})
