@@ -162,6 +162,9 @@ def main(argv):
     models = load_models(only, take_all)
     if not models:
         raise SystemExit("담을 모델이 없다 — --only 이름을 확인하거나 --all")
+    scope = ("고른 모델만" if only else
+             "카탈로그 전체" if take_all else
+             "국내 벤더 취입분만 (%s)" % " · ".join(DOMESTIC))
 
     enames = equip_names()
     ptypes = addr_rules()
@@ -251,8 +254,11 @@ def main(argv):
 
     payload = {
         "title": "취입 대조대",
-        "subtitle": "모델 %d · 판 %d · 오브젝트 %d점"
-                    % (len(models), sum(len(m["interfaces"]) for m in models), total),
+        # ⚠ 범위를 제목 옆에 박는다. 범위 없는 숫자는 전체로 읽힌다 —
+        #    이 화면은 카탈로그 157모델이 아니라 **여기 적힌 것만** 담는다.
+        "scope": scope,
+        "subtitle": "%s — 모델 %d · 판 %d · 오브젝트 %d점"
+                    % (scope, len(models), sum(len(m["interfaces"]) for m in models), total),
         "storeKey": "point-verify/v1",
         "total": total,
         "tree": [dict(e, children=list(e["children"].values())) for e in tree.values()],

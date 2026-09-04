@@ -126,7 +126,10 @@ button{font:inherit}
  padding:8px 13px;border-bottom:1px solid var(--line);background:var(--panel)}
 .brand{font-size:14px;font-weight:650;letter-spacing:-.01em;white-space:nowrap}
 .docmeta{font-size:11px;color:var(--faint);font-family:var(--mono);
- white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:34ch}
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40ch}
+/* 범위 배지 — 이 화면이 카탈로그 전체가 아님을 제목 옆에서 못 박는다 */
+.scope{padding:2px 9px;border-radius:999px;font-size:11px;font-weight:650;
+ background:var(--accent-soft);color:var(--accent);white-space:nowrap}
 .top .sp{flex:1}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
 .seg button{padding:4px 10px;border:0;border-right:1px solid var(--line);background:var(--bg);
@@ -257,6 +260,7 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
 
 <div class="top">
   <span class="brand" id="brand"></span>
+  <span class="scope" id="scope" hidden></span>
   <span class="docmeta" id="meta"></span>
   <span class="seg" id="vseg">
     <button type="button" data-v="tree" aria-pressed="true">트리</button>
@@ -323,6 +327,10 @@ function esc(s){
 document.title = D.title;
 document.getElementById("brand").textContent = D.title;
 document.getElementById("meta").textContent = D.subtitle || "";
+if (D.scope) {
+  var sc = document.getElementById("scope");
+  sc.textContent = D.scope; sc.hidden = false;
+}
 document.getElementById("hint").innerHTML = D.hint ||
   ('<kbd>↑</kbd><kbd>↓</kbd> 행 이동 · <kbd>Space</kbd> 확인 · 끌어서 이동 · 휠/'
    + '<kbd>+</kbd><kbd>−</kbd> 확대 · <kbd>0</kbd> 맞춤 · 더블클릭 확대');
