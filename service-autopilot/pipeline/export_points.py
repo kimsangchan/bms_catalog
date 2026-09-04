@@ -48,6 +48,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 sys.path.insert(0, HERE)
 
+import schema as SC  # noqa: E402  — 빈 값 어휘의 정본
+
 DEFAULT_OUT = os.path.join(HERE, "..", "review", "export")
 DOMESTIC = ("ingest_lg", "ingest_ls")
 
@@ -139,13 +141,31 @@ def row(m, iface, p, pcols):
     off = bac.get("msvOffset")
     snote = ("표의 코드 + %d = BACnet present-value" % off) if off is not None else ""
 
+    # ⚠ 이미 열로 갈라 놓은 것은 rawColumns 에 다시 담지 않는다 — 같은 값이 두 번
+    #    나오면 읽는 쪽이 어느 것이 정본인지 모른다. 문장 칸(CO2 의 Unit 처럼 단위·
+    #    범위·배율이 한 칸에 뭉친 것)은 조각들이 그 안에 들어 있으면 읽은 것으로 본다.
     used = {str(x) for x in (no, name, c.get("note"), unit, rng.get("raw"),
                              c.get("scaleRaw"), c.get("statesRef"),
                              c.get("unitSIRaw"), c.get("unitIPRaw"),
                              c.get("readWrite"), bac.get("objectType")) if x}
     used |= {s.get("label") for s in (c.get("states") or [])}
+    pieces = [str(x) for x in (c.get("unitSIRaw") or c.get("unitIPRaw"),
+                               rng.get("raw"), c.get("scaleRaw"),
+                               c.get("statesRef")) if x]
+
+    labels = [str(s.get("label")) for s in (c.get("states") or [])]
+
+    def _read(v):
+        if str(v) in used:
+            return True
+        if labels and all(x in str(v) for x in labels):
+            return True
+        inside = [x for x in pieces if x and x in str(v)]
+        return len(inside) >= 2 or (len(inside) == 1 and inside[0] == str(v))
+
+    # '-' · 'N/A' 는 값이 아니다(point-schema emptyMeansAbsent)
     raw = ";".join("%s=%s" % (k, v) for k, v in src.items()
-                   if v and str(v) not in used)
+                   if v and str(v).strip() not in SC.NO_UNIT and not _read(v))
 
     r = {
         "pointKey": "%s|%s|%s" % (m["id"], iface["id"], ident),

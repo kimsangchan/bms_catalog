@@ -36,6 +36,7 @@ DATA = os.path.join(HERE, "data")
 CATALOG = os.path.join(HERE, "..", "08-equip-spec-tag-catalog.md")
 OUT = os.path.join(HERE, "..", "review", "point-verify.html")
 sys.path.insert(0, HERE)
+import schema as SC  # noqa: E402  — 빈 값 어휘의 정본
 import verify_ui as UI  # noqa: E402
 
 # 이 대조대가 기본으로 담는 것 = 지금 손으로 몰아 가는 **국내 벤더 취입분**.
@@ -146,12 +147,34 @@ def row_of(p):
     #    ⚠ 빈칸만 다른 값은 같은 값으로 본다. 안 그러면 조판 아티팩트를 지우기 전
     #       원문 이름('StartStopCommand_ XXX')이 91행에 덧붙어 화면이 시끄러워진다 —
     #       그건 빠진 값이 아니라 지운 자국이고, 그 기록은 모델에 이미 남아 있다.
+    #    ⚠ **문장 칸은 통째로 다 읽었으면 다시 보여 주지 않는다.** CO2 의 Unit 칸은
+    #       '0~255 (Real Value = Value*10, … 200ppm)' 하나에 단위·범위·배율이 다
+    #       들어 있어, 이미 세 열로 갈라 놓고 그 문장을 또 한 열로 보이면 같은 값이
+    #       네 번 나온다. 조각들이 그 칸 **안에** 들어 있으면 읽은 것으로 본다.
     flat = lambda s: re.sub(r"\s+", "", str(s))
-    used = {flat(x) for x in (r.get("n"), r.get("t"), r.get("nm"), r.get("d"),
+    solo = {flat(x) for x in (r.get("n"), r.get("t"), r.get("nm"), r.get("d"),
                               r.get("u"), r.get("rg"), r.get("rw"), r.get("sr"),
                               c.get("unitSI"), c.get("scaleRaw")) if x}
-    used |= {flat(s.get("label")) for s in (c.get("states") or [])}
-    extra = {k: v for k, v in src.items() if v and flat(v) not in used}
+    solo |= {flat(s.get("label")) for s in (c.get("states") or [])}
+    pieces = [flat(x) for x in (c.get("unitSIRaw") or c.get("unitIPRaw"),
+                                (c.get("range") or {}).get("raw"),
+                                c.get("scaleRaw"), c.get("statesRef")) if x]
+
+    labels = [flat(s.get("label")) for s in (c.get("states") or [])]
+
+    def read(v):
+        f = flat(v)
+        if f in solo:
+            return True
+        # 상태를 뽑아낸 칸도 다 읽은 것이다 — '0: None 1: FreeRun …' 은 상태 열과 같다
+        if labels and all(x in f for x in labels):
+            return True
+        inside = [x for x in pieces if x and x in f]
+        return len(inside) >= 2 or (len(inside) == 1 and inside[0] == f)
+
+    # '-' · 'N/A' 는 값이 아니다(point-schema emptyMeansAbsent) — 열로 세우지 않는다
+    extra = {k: v for k, v in src.items()
+             if v and str(v).strip() not in SC.NO_UNIT and not read(v)}
     if extra:
         r["x"] = extra
     return r
