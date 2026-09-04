@@ -1,0 +1,4436 @@
+{
+ "id": "lg-ac-smart-bacnet-gateway",
+ "equipId": "e5",
+ "vendor": "LG",
+ "model": "AC Smart BACnet",
+ "name": "AC Smart BACnet Gateway",
+ "cat": "HVAC.AIR.VRF",
+ "tag": "vrf",
+ "tags": [
+  "vrf"
+ ],
+ "status": "active",
+ "coversDevices": "원문 5쪽이 붙는 장치를 직접 열거한다 — Indoor units · ERV · DI/DOs · DOKITs · AWHPs · AHUs · I/O Module. 전부 LG 485 망의 LG 장치다(2CH: CH1 이 AHU, CH2 가 그 밖). 타사 벤더 것을 섞지 않았다 — 165점 전부 이 문서 하나에서 나왔다. ⚠ DI/DO · DOKIT · I/O Module 은 이 문서에 포인트 표가 없어 취입하지 않았다.",
+ "classifiedBy": "게이트웨이지만 덮는 기기군의 주력이 VRF(실내기·실외기)라 cat 을 HVAC.AIR.VRF 로 둔다. JCI YKN2Open 게이트웨이를 그것이 덮는 옥상형(HVAC.AIR.RTU)으로 둔 것과 같은 방식이다.",
+ "summary": "BACnet 게이트웨이 매뉴얼 1건 · 판 6개에서 취입 — 오브젝트 165점",
+ "has": {
+  "spec": false,
+  "points": true
+ },
+ "ede": false,
+ "spec": [],
+ "io": [],
+ "elec": null,
+ "points": [],
+ "gap": "정격·형번이 없다 — 게이트웨이 매뉴얼이라 제품 카탈로그가 따로 필요하다. 그리고 오브젝트의 BACnet 인스턴스 번호가 비어 있다: 원문이 규칙은 주지만(50쪽) 실제 번호는 **유닛 주소가 정해져야** 나온다. instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point 이고 유닛 주소 XXX = Device×16 + Product 다. 제품유형은 Indoor:0 Vent:1 AHU:2 ODU:3 AWHP:4 GENERAL:5 (원문 50쪽). 원문 예시 42행에 42/42 일치를 확인했다.",
+ "extractor": "ingest_lg",
+ "sourceDoc": "LG_ACSmart_BACnet_MFL69023101.pdf",
+ "interfaces": [
+  {
+   "id": "indoor-unit",
+   "label": "BACnet Point List : 실내기",
+   "family": "LG/ACSmart-BACnet",
+   "protocols": [
+    "bacnet"
+   ],
+   "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+   "sourcePages": [
+    26,
+    27,
+    28
+   ],
+   "pointCount": 41,
+   "appliesTo": [
+    "Indoor unit"
+   ],
+   "status": "extracted",
+   "note": "게이트웨이가 이 기기군에 대해 내보내는 오브젝트 목록. ⚠ 인스턴스 번호는 표에 없고 **유닛 주소가 정해져야** 정해진다 — instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point 이고 유닛 주소 XXX = Device×16 + Product 다. 제품유형은 Indoor:0 Vent:1 AHU:2 ODU:3 AWHP:4 GENERAL:5 (원문 50쪽). 원문 예시 42행에 42/42 일치를 확인했다.",
+   "gaps": [
+    "blocks.bacnet.instance — 유닛 주소(현장 설정값)가 있어야 정해진다. 규칙은 note 에 있다. 주소 0 일 때의 값을 넣으면 다른 주소에서 전부 틀린다."
+   ],
+   "points": [
+    {
+     "common": {
+      "name": "StartStopCommand_ XXX",
+      "note": "ON/OFF (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "1",
+       "Object Type": "BO",
+       "Control/monitoring": "ON/OFF (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "StartStopStatus_XXX",
+      "note": "ON/OFF (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "2",
+       "Object Type": "BI",
+       "Control/monitoring": "ON/OFF (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "LockCommand_XXX",
+      "note": "Lock (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "3",
+       "Object Type": "BO",
+       "Control/monitoring": "Lock (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "LockStatus_XXX",
+      "note": "Lock (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "4",
+       "Object Type": "BI",
+       "Control/monitoring": "Lock (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Sign_XXX",
+      "note": "Filter Sign"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "5",
+       "Object Type": "BI",
+       "Control/monitoring": "Filter Sign"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Sign Reset_ XXX",
+      "note": "Filter Sign Reset"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "6",
+       "Object Type": "BV",
+       "Control/monitoring": "Filter Sign Reset"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "ModeCommand_XXX",
+      "note": "Operation Mode (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "7",
+       "Object Type": "MO",
+       "Control/monitoring": "Operation Mode (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "ModeStatus_XXX",
+      "note": "Operation Mode (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "8",
+       "Object Type": "MI",
+       "Control/monitoring": "Operation Mode (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "SwingCommand_ XXX",
+      "note": "Swing (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "9",
+       "Object Type": "BO",
+       "Control/monitoring": "Swing (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "SwingStatus_XXX",
+      "note": "Swing (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "10",
+       "Object Type": "BI",
+       "Control/monitoring": "Swing (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "FanSpeedCommand_ XXX",
+      "note": "Fan Speed (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "11",
+       "Object Type": "MO",
+       "Control/monitoring": "Fan Speed (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "FanSpeedStatus_ XXX",
+      "note": "Fan Speed (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "12",
+       "Object Type": "MI",
+       "Control/monitoring": "Fan Speed (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "SetRoomTemp_XXX",
+      "note": "Set Room Temperature"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "13",
+       "Object Type": "AV",
+       "Control/monitoring": "Set Room Temperature"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "RoomTemp_XXX",
+      "note": "Room Temperature"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "14",
+       "Object Type": "AI",
+       "Control/monitoring": "Room Temperature"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "Alarm_XXX",
+      "note": "Alarm"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 26,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "15",
+       "Object Type": "BI",
+       "Control/monitoring": "Alarm"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "MalfunctionCode_XXX",
+      "note": "Error Code"
+     },
+     "blocks": {},
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 27,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "16",
+       "Object Type": "",
+       "Control/monitoring": "Error Code"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "SetTempStatus_XXX",
+      "note": "Set Temperature Status"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 27,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "19",
+       "Object Type": "AI",
+       "Control/monitoring": "Set Temperature Status"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "AccumPowerStatus_XXX",
+      "note": "Power Distribution"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 27,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "20",
+       "Object Type": "AI",
+       "Control/monitoring": "Power Distribution"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "SetUpperTempCommand_ XXX",
+      "note": "Set Upper Temperature Setting"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 27,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "27",
+       "Object Type": "AV",
+       "Control/monitoring": "Set Upper Temperature Setting"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "SetLowerTempCommand_ XXX",
+      "note": "Set Lower Temperature Setting"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 27,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "28",
+       "Object Type": "AI",
+       "Control/monitoring": "Set Lower Temperature Setting"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "SetUpperTempStatus_XXX",
+      "note": "Set Upper Temperature Status"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 27,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "29",
+       "Object Type": "AI",
+       "Control/monitoring": "Set Upper Temperature Status"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "SetLowerTempStatus_XXX",
+      "note": "Set Lower Temperature Status"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 27,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "30",
+       "Object Type": "AI",
+       "Control/monitoring": "Set Lower Temperature Status"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "ModeLockCommand_XXX",
+      "note": "Mode Lock Setting"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 27,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "31",
+       "Object Type": "BO",
+       "Control/monitoring": "Mode Lock Setting"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "ModeLockStatus_XXX",
+      "note": "Mode Lock Status"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 27,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "32",
+       "Object Type": "BI",
+       "Control/monitoring": "Mode Lock Status"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "Fan LockCommand_XXX",
+      "note": "Fan Lock Setting"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 27,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "33",
+       "Object Type": "BO",
+       "Control/monitoring": "Fan Lock Setting"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "FanLockStatus_XXX",
+      "note": "Fan Lock Status"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 27,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "34",
+       "Object Type": "BI",
+       "Control/monitoring": "Fan Lock Status"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "OccupancyCommand_XXX",
+      "note": "Occupancy (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "35",
+       "Object Type": "BO",
+       "Control/monitoring": "Occupancy (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "OccupancyStatus_XXX",
+      "note": "Occupancy (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "36",
+       "Object Type": "BI",
+       "Control/monitoring": "Occupancy (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetCoolingTempCommand_XXX",
+      "note": "2Set Cooling Set Temperature (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "37",
+       "Object Type": "AV",
+       "Control/monitoring": "2Set Cooling Set Temperature (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetCoolingTempStatus_XXX",
+      "note": "2Set Cooling Set Temperature (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "38",
+       "Object Type": "AI",
+       "Control/monitoring": "2Set Cooling Set Temperature (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetHeatingTempCommand_XXX",
+      "note": "2Set Heating Set Temperature (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "39",
+       "Object Type": "AV",
+       "Control/monitoring": "2Set Heating Set Temperature (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetHeatingTempStatus_XXX",
+      "note": "2Set Heating Set Temperature (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "40",
+       "Object Type": "AI",
+       "Control/monitoring": "2Set Heating Set Temperature (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetCoolingUpperLimitCommand_ XXX",
+      "note": "2Set Cooling Upper Temperature (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "41",
+       "Object Type": "AV",
+       "Control/monitoring": "2Set Cooling Upper Temperature (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetCoolingUpperLimitStatus_XXX",
+      "note": "2Set Cooling Upper Temperature (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "42",
+       "Object Type": "AI",
+       "Control/monitoring": "2Set Cooling Upper Temperature (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetHeatingUpperLimitCommand_ XXX",
+      "note": "2Set Heating Upper Temperature (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "43",
+       "Object Type": "AV",
+       "Control/monitoring": "2Set Heating Upper Temperature (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetHeatingUpperLimitStatus_XXX",
+      "note": "2Set Heating Upper Temperature (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "44",
+       "Object Type": "AI",
+       "Control/monitoring": "2Set Heating Upper Temperature (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetCoolingLowerLimitCommand_ XXX",
+      "note": "2Set Cooling Lower Temperature (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "45",
+       "Object Type": "AV",
+       "Control/monitoring": "2Set Cooling Lower Temperature (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetCoolingLowerLimitStatus_XXX",
+      "note": "2Set Cooling Lower Temperature (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "46",
+       "Object Type": "AI",
+       "Control/monitoring": "2Set Cooling Lower Temperature (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetHeatingLowerLimitCommand_ XXX",
+      "note": "2Set Heating Lower Temperature (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "47",
+       "Object Type": "AV",
+       "Control/monitoring": "2Set Heating Lower Temperature (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "2SetHeatingLowerLimitStatus_XXX",
+      "note": "2Set Heating Lower Temperature (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "48",
+       "Object Type": "AI",
+       "Control/monitoring": "2Set Heating Lower Temperature (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    },
+    {
+     "common": {
+      "name": "ThermoStatus_XXX",
+      "note": "Thermo Status (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 28,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "49",
+       "Object Type": "BI",
+       "Control/monitoring": "Thermo Status (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "indoor-unit"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ventilation",
+   "label": "BACnet Point List : 환기(ERV)",
+   "family": "LG/ACSmart-BACnet",
+   "protocols": [
+    "bacnet"
+   ],
+   "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+   "sourcePages": [
+    30,
+    31
+   ],
+   "pointCount": 20,
+   "appliesTo": [
+    "ERV"
+   ],
+   "status": "extracted",
+   "note": "게이트웨이가 이 기기군에 대해 내보내는 오브젝트 목록. ⚠ 인스턴스 번호는 표에 없고 **유닛 주소가 정해져야** 정해진다 — instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point 이고 유닛 주소 XXX = Device×16 + Product 다. 제품유형은 Indoor:0 Vent:1 AHU:2 ODU:3 AWHP:4 GENERAL:5 (원문 50쪽). 원문 예시 42행에 42/42 일치를 확인했다.",
+   "gaps": [
+    "blocks.bacnet.instance — 유닛 주소(현장 설정값)가 있어야 정해진다. 규칙은 note 에 있다. 주소 0 일 때의 값을 넣으면 다른 주소에서 전부 틀린다."
+   ],
+   "points": [
+    {
+     "common": {
+      "name": "StartStopCommand_ XXX",
+      "note": "ON/OFF (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 30,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "1",
+       "Object Type": "BO",
+       "Control/monitoring": "ON/OFF (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "StartStopStatus_XXX",
+      "note": "ON/OFF (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 30,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "2",
+       "Object Type": "BI",
+       "Control/monitoring": "ON/OFF (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "LockCommand_XXX",
+      "note": "Lock (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 30,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "3",
+       "Object Type": "BO",
+       "Control/monitoring": "Lock (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "LockStatus_XXX",
+      "note": "Lock (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 30,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "4",
+       "Object Type": "BI",
+       "Control/monitoring": "Lock (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Sign_XXX",
+      "note": "Filter Sign"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 30,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "5",
+       "Object Type": "BI",
+       "Control/monitoring": "Filter Sign"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Sign Reset_ XXX",
+      "note": "Filter Sign Reset"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 30,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "6",
+       "Object Type": "BV",
+       "Control/monitoring": "Filter Sign Reset"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "ModeCommand_XXX",
+      "note": "Operation Mode (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 30,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "7",
+       "Object Type": "MO",
+       "Control/monitoring": "Operation Mode (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "ModeStatus_XXX",
+      "note": "Operation Mode (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 30,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "8",
+       "Object Type": "MI",
+       "Control/monitoring": "Operation Mode (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "FanSpeedCommand_ XXX",
+      "note": "Fan Speed (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 30,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "11",
+       "Object Type": "MO",
+       "Control/monitoring": "Fan Speed (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "FanSpeedStatus_ XXX",
+      "note": "Fan Speed (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 30,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "12",
+       "Object Type": "MI",
+       "Control/monitoring": "Fan Speed (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "Alarm_XXX",
+      "note": "Alarm"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 30,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "15",
+       "Object Type": "BI",
+       "Control/monitoring": "Alarm"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "MalfunctionCode_XXX",
+      "note": "Error Code"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 31,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "16",
+       "Object Type": "AI",
+       "Control/monitoring": "Error Code"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "UserModeCommand_ XXX",
+      "note": "User Mode(Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 31,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "17",
+       "Object Type": "MO",
+       "Control/monitoring": "User Mode(Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "UserModeStatus_XXX",
+      "note": "User Mode(Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 31,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "18",
+       "Object Type": "MI",
+       "Control/monitoring": "User Mode(Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "HrvModeCommand_XXX",
+      "note": "AC Operation Mode (setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 31,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "21",
+       "Object Type": "MO",
+       "Control/monitoring": "AC Operation Mode (setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "HrvModeStatus_XXX",
+      "note": "AC Operation Mode (status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 31,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "22",
+       "Object Type": "MI",
+       "Control/monitoring": "AC Operation Mode (status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "HrvStartStopCommand_ XXX",
+      "note": "AC ON/OFF (setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 31,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "23",
+       "Object Type": "BO",
+       "Control/monitoring": "AC ON/OFF (setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "HrvStartStopStatus_XXX",
+      "note": "AC ON/OFF (status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 31,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "24",
+       "Object Type": "BI",
+       "Control/monitoring": "AC ON/OFF (status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "HrvHumidifyCommand_ XXX",
+      "note": "AC Humidify (setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 31,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "25",
+       "Object Type": "BO",
+       "Control/monitoring": "AC Humidify (setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    },
+    {
+     "common": {
+      "name": "HrvHumidifyStatus_XXX",
+      "note": "AC Humidify (status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 31,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "26",
+       "Object Type": "BI",
+       "Control/monitoring": "AC Humidify (status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ventilation"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ahu",
+   "label": "BACnet Point List : 공조기(AHU)",
+   "family": "LG/ACSmart-BACnet",
+   "protocols": [
+    "bacnet"
+   ],
+   "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+   "sourcePages": [
+    33,
+    34,
+    35,
+    36
+   ],
+   "pointCount": 53,
+   "appliesTo": [
+    "AHU"
+   ],
+   "status": "extracted",
+   "note": "게이트웨이가 이 기기군에 대해 내보내는 오브젝트 목록. ⚠ 인스턴스 번호는 표에 없고 **유닛 주소가 정해져야** 정해진다 — instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point 이고 유닛 주소 XXX = Device×16 + Product 다. 제품유형은 Indoor:0 Vent:1 AHU:2 ODU:3 AWHP:4 GENERAL:5 (원문 50쪽). 원문 예시 42행에 42/42 일치를 확인했다.",
+   "gaps": [
+    "blocks.bacnet.instance — 유닛 주소(현장 설정값)가 있어야 정해진다. 규칙은 note 에 있다. 주소 0 일 때의 값을 넣으면 다른 주소에서 전부 틀린다.",
+    "⚠ 원문 제약: 'BACnet protocol is not supported for Modular AHU and I/O module.' — 모듈러 AHU 는 이 목록으로 못 읽는다. 또 485 포트가 채널 둘로 갈려 있고 'CH1: AHU, CH2: devices other than AHU' 다."
+   ],
+   "points": [
+    {
+     "common": {
+      "name": "StartStopCommand_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "1",
+       "Object Type": "BO",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "StartStopStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "2",
+       "Object Type": "BI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "LockCommand_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "3",
+       "Object Type": "BO",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "LockStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "4",
+       "Object Type": "BI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Sign_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "5",
+       "Object Type": "BI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "Filter Sign Reset_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "6",
+       "Object Type": "BV",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "ModeCommand_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "7",
+       "Object Type": "MO",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "ModeStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "8",
+       "Object Type": "MI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "SetRoomTemp_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "13",
+       "Object Type": "AV",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "RoomTemp_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "14",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "Alarm_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "15",
+       "Object Type": "BI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "MalfunctionCode_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 33,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "16",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "SetTempStatus_XXX",
+      "note": "Set Temperature (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "19",
+       "Object Type": "AI",
+       "Control/monitoring": "Set Temperature (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "EmergencySensorCommand_ XXX",
+      "note": "Emergency Sensor (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "20",
+       "Object Type": "BO",
+       "Control/monitoring": "Emergency Sensor (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "EmergencySensorStatus_ XXX",
+      "note": "Emergency Sensor (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "21",
+       "Object Type": "BI",
+       "Control/monitoring": "Emergency Sensor (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "SetHumidifyCommand_XXX",
+      "note": "Set Humidify (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "22",
+       "Object Type": "AV",
+       "Control/monitoring": "Set Humidify (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "SetHumidifyStatus_XXX",
+      "note": "Set Humidify (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "23",
+       "Object Type": "AI",
+       "Control/monitoring": "Set Humidify (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "HumidifyCommand_XXX",
+      "note": "Humidify (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "24",
+       "Object Type": "BO",
+       "Control/monitoring": "Humidify (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "HumidifyStatus_XXX",
+      "note": "Humidify (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "25",
+       "Object Type": "BI",
+       "Control/monitoring": "Humidify (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "AutoVentilCommand_XXX",
+      "note": "Auto Ventilation (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "26",
+       "Object Type": "BO",
+       "Control/monitoring": "Auto Ventilation (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "AutoVentilStatus_XXX",
+      "note": "Auto Ventilation (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "27",
+       "Object Type": "BI",
+       "Control/monitoring": "Auto Ventilation (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "SupplyTempStatus_XXX",
+      "note": "Supply Temperature (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "28",
+       "Object Type": "AI",
+       "Control/monitoring": "Supply Temperature (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "OutdoorTempStatus_XXX",
+      "note": "Outdoor Temperature (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "29",
+       "Object Type": "AI",
+       "Control/monitoring": "Outdoor Temperature (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "MixTempStatus_XXX",
+      "note": "Mix Temperature (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "30",
+       "Object Type": "AI",
+       "Control/monitoring": "Mix Temperature (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "SuppyHumidifyStatus_XXX",
+      "note": "Supply Humidity (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "31",
+       "Object Type": "AI",
+       "Control/monitoring": "Supply Humidity (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "OutdoorHumidifyStatus_XXX",
+      "note": "Outdoor Humidity (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "32",
+       "Object Type": "AI",
+       "Control/monitoring": "Outdoor Humidity (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "VentilHumidifyStatus_XXX",
+      "note": "Ventilation Humidity (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "33",
+       "Object Type": "AI",
+       "Control/monitoring": "Ventilation Humidity (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "CO2ValueStatus_XXX",
+      "note": "CO2 Value (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "34",
+       "Object Type": "AI",
+       "Control/monitoring": "CO2 Value (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "HumidifyUnitStatus_XXX",
+      "note": "Humidify Unit (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "35",
+       "Object Type": "BI",
+       "Control/monitoring": "Humidify Unit (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "HeaterUnitStatus_XXX",
+      "note": "Heater Unit (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 34,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "36",
+       "Object Type": "BI",
+       "Control/monitoring": "Heater Unit (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "VentilFANStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "37",
+       "Object Type": "BI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "SupplyFANStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "38",
+       "Object Type": "BI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "CurOADamperStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "39",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "CurEADamperStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "40",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "CurMixDamperStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "41",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "OADamperCoolCommand_ XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "42",
+       "Object Type": "AV",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "OADamperCoolStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "43",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "EADamperCoolCommand_ XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "44",
+       "Object Type": "AV",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "EADamperCoolStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "45",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "MixDamperCoolCommand_ XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "46",
+       "Object Type": "AV",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "MixDamperCoolStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "47",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "OADamperHeatCommand_ XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 35,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "48",
+       "Object Type": "AV",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "OADamperHeatStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 36,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "49",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "EADamperHeatCommand_ XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 36,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "50",
+       "Object Type": "AV",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "EADamperHeatStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 36,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "51",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "MixDamperHeatCommand_ XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 36,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "52",
+       "Object Type": "AV",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "MixDamperHeatStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 36,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "53",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "OADamperFANCommand_ XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 36,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "54",
+       "Object Type": "AV",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "OADamperFANStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 36,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "55",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "EADamperFANCommand_ XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 36,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "56",
+       "Object Type": "AV",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "EADamperFANStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 36,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "57",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "MixDamperFANCommand_ XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 36,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "58",
+       "Object Type": "AV",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    },
+    {
+     "common": {
+      "name": "MixDamperFANStatus_XXX"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 36,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "59",
+       "Object Type": "AI",
+       "Control/monitoring": ""
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "ahu"
+     }
+    }
+   ]
+  },
+  {
+   "id": "odu",
+   "label": "BACnet Point List : 실외기(ODU)",
+   "family": "LG/ACSmart-BACnet",
+   "protocols": [
+    "bacnet"
+   ],
+   "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+   "sourcePages": [
+    38
+   ],
+   "pointCount": 14,
+   "appliesTo": [
+    "ODU"
+   ],
+   "status": "extracted",
+   "note": "게이트웨이가 이 기기군에 대해 내보내는 오브젝트 목록. ⚠ 인스턴스 번호는 표에 없고 **유닛 주소가 정해져야** 정해진다 — instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point 이고 유닛 주소 XXX = Device×16 + Product 다. 제품유형은 Indoor:0 Vent:1 AHU:2 ODU:3 AWHP:4 GENERAL:5 (원문 50쪽). 원문 예시 42행에 42/42 일치를 확인했다.",
+   "gaps": [
+    "blocks.bacnet.instance — 유닛 주소(현장 설정값)가 있어야 정해진다. 규칙은 note 에 있다. 주소 0 일 때의 값을 넣으면 다른 주소에서 전부 틀린다.",
+    "⚠ 원문 제약: 'ODU Point List may not be supported depending on the product.' — 제품에 따라 안 될 수 있다."
+   ],
+   "points": [
+    {
+     "common": {
+      "name": "CompOperStatus_ XXX",
+      "note": "Compressor Operation Status"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "1",
+       "Object Type": "BI",
+       "Control/monitoring": "Compressor Operation Status"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "RefrigentType_XXX",
+      "note": "Refrigent Type"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "2",
+       "Object Type": "MI",
+       "Control/monitoring": "Refrigent Type"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "InverterFanFreq_ XXX",
+      "note": "Inverter Fan 1 frequency"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "3",
+       "Object Type": "AI",
+       "Control/monitoring": "Inverter Fan 1 frequency"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "HighPressure_XXX",
+      "note": "High Pressure"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "4",
+       "Object Type": "AI",
+       "Control/monitoring": "High Pressure"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "LowPressure_XXX",
+      "note": "Low Pressure"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "5",
+       "Object Type": "AI",
+       "Control/monitoring": "Low Pressure"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "SunctionTemp_XXX",
+      "note": "Sunction Temperature"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "6",
+       "Object Type": "AI",
+       "Control/monitoring": "Sunction Temperature"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "LiquidPipeTemp_XXX",
+      "note": "Liquid Pipe Temperature"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "7",
+       "Object Type": "AI",
+       "Control/monitoring": "Liquid Pipe Temperature"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "HexTemp_XXX",
+      "note": "Heat Exchanger Temperature"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "8",
+       "Object Type": "AI",
+       "Control/monitoring": "Heat Exchanger Temperature"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "OutdoorEEV_XXX",
+      "note": "Outdoor EEV"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "9",
+       "Object Type": "AI",
+       "Control/monitoring": "Outdoor EEV"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "SubCoolEEV_XXX",
+      "note": "Subcool EEV"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "10",
+       "Object Type": "AI",
+       "Control/monitoring": "Subcool EEV"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "HotgasValue_XXX",
+      "note": "Hot Gas Valve"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "11",
+       "Object Type": "BI",
+       "Control/monitoring": "Hot Gas Valve"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "InverterDischarge Temp_XXX",
+      "note": "InverterDischarge Temperature"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "12",
+       "Object Type": "AI",
+       "Control/monitoring": "InverterDischarge Temperature"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "OutdoorTemp_XXX",
+      "note": "Outdoor Temperature"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "13",
+       "Object Type": "AI",
+       "Control/monitoring": "Outdoor Temperature"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    },
+    {
+     "common": {
+      "name": "OperationMode_XXX",
+      "note": "Operation Mode"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 38,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "14",
+       "Object Type": "MI",
+       "Control/monitoring": "Operation Mode"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "odu"
+     }
+    }
+   ]
+  },
+  {
+   "id": "awhp",
+   "label": "BACnet Point List : AWHP",
+   "family": "LG/ACSmart-BACnet",
+   "protocols": [
+    "bacnet"
+   ],
+   "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+   "sourcePages": [
+    39,
+    40
+   ],
+   "pointCount": 23,
+   "appliesTo": [
+    "AWHP"
+   ],
+   "status": "extracted",
+   "note": "게이트웨이가 이 기기군에 대해 내보내는 오브젝트 목록. ⚠ 인스턴스 번호는 표에 없고 **유닛 주소가 정해져야** 정해진다 — instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point 이고 유닛 주소 XXX = Device×16 + Product 다. 제품유형은 Indoor:0 Vent:1 AHU:2 ODU:3 AWHP:4 GENERAL:5 (원문 50쪽). 원문 예시 42행에 42/42 일치를 확인했다.",
+   "gaps": [
+    "blocks.bacnet.instance — 유닛 주소(현장 설정값)가 있어야 정해진다. 규칙은 note 에 있다. 주소 0 일 때의 값을 넣으면 다른 주소에서 전부 틀린다."
+   ],
+   "points": [
+    {
+     "common": {
+      "name": "StartStopCommand_XXX",
+      "note": "Run/Stop (setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "1",
+       "Object Type": "BO",
+       "Control/monitoring": "Run/Stop (setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "StartStopStatus_XXX",
+      "note": "Run/Stop (status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "2",
+       "Object Type": "BI",
+       "Control/monitoring": "Run/Stop (status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "LockCommand_XXX",
+      "note": "Lock (setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "3",
+       "Object Type": "BO",
+       "Control/monitoring": "Lock (setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "LockStatus_XXX",
+      "note": "Lock (status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "4",
+       "Object Type": "BI",
+       "Control/monitoring": "Lock (status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "ModeCommand_XXX",
+      "note": "Operation Mode (setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "5",
+       "Object Type": "MO",
+       "Control/monitoring": "Operation Mode (setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "ModeStatus_XXX",
+      "note": "Operation Mode (status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "MI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "6",
+       "Object Type": "MI",
+       "Control/monitoring": "Operation Mode (status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "SetRoomTempCommand_ XXX",
+      "note": "Set Room Temperature (setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "7",
+       "Object Type": "AO",
+       "Control/monitoring": "Set Room Temperature (setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "SetRoomTempStatus_ XXX",
+      "note": "Set Room Temperature (status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "8",
+       "Object Type": "AI",
+       "Control/monitoring": "Set Room Temperature (status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "SetHotWaterTemp Command_XXX",
+      "note": "Set Hot Water Temperature (setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "9",
+       "Object Type": "AO",
+       "Control/monitoring": "Set Hot Water Temperature (setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "SetHotWaterTempStatus_ XXX",
+      "note": "Set Hot Water Temperature (status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "10",
+       "Object Type": "AI",
+       "Control/monitoring": "Set Hot Water Temperature (status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "SetPipeOutWater Temp Command_XXX",
+      "note": "Set PipeOut Water Temperature (setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "11",
+       "Object Type": "AO",
+       "Control/monitoring": "Set PipeOut Water Temperature (setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "SetPipeOutWater TempStatus_XXX",
+      "note": "Set PipeOut Water Temperature (status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 39,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "12",
+       "Object Type": "AI",
+       "Control/monitoring": "Set PipeOut Water Temperature (status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "AirWaterFlag_XXX",
+      "note": "Setting Temperature Reference (Air/Water)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 40,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "13",
+       "Object Type": "BI",
+       "Control/monitoring": "Setting Temperature Reference (Air/Water)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "HotWaterOnlyFlag_XXX",
+      "note": "Hot Water Only Mode"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 40,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "14",
+       "Object Type": "BI",
+       "Control/monitoring": "Hot Water Only Mode"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "RoomTemp_XXX",
+      "note": "Current Room Temperature"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 40,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "15",
+       "Object Type": "AI",
+       "Control/monitoring": "Current Room Temperature"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "Alarm_XXX",
+      "note": "Alarm Event"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 40,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "16",
+       "Object Type": "BI",
+       "Control/monitoring": "Alarm Event"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "MalfunctionCode_XXX",
+      "note": "Malfunction Code"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 40,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "17",
+       "Object Type": "AI",
+       "Control/monitoring": "Malfunction Code"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "HotWaterCommand_XXX",
+      "note": "HotWater On/Off (setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 40,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "18",
+       "Object Type": "BO",
+       "Control/monitoring": "HotWater On/Off (setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "HotWaterStatus_XXX",
+      "note": "HotWater On/Off (status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 40,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "19",
+       "Object Type": "BI",
+       "Control/monitoring": "HotWater On/Off (status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "PipeInTempStatus_XXX",
+      "note": "Pipe Inlet Temperature Status"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 40,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "20",
+       "Object Type": "AI",
+       "Control/monitoring": "Pipe Inlet Temperature Status"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "TankTempStatus_XXX",
+      "note": "Water Tank Temperature Status"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 40,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "21",
+       "Object Type": "AI",
+       "Control/monitoring": "Water Tank Temperature Status"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "SolarTempStatus_XXX",
+      "note": "Solar Temperature Status"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 40,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "22",
+       "Object Type": "AI",
+       "Control/monitoring": "Solar Temperature Status"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    },
+    {
+     "common": {
+      "name": "PipeOutTempStatus_XXX",
+      "note": "Pipe Outlet Temperature Status"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 40,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "23",
+       "Object Type": "AI",
+       "Control/monitoring": "Pipe Outlet Temperature Status"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "awhp"
+     }
+    }
+   ]
+  },
+  {
+   "id": "gateway-general",
+   "label": "BACnet Point List : 게이트웨이 공통",
+   "family": "LG/ACSmart-BACnet",
+   "protocols": [
+    "bacnet"
+   ],
+   "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+   "sourcePages": [
+    41
+   ],
+   "pointCount": 14,
+   "appliesTo": [
+    "AC Smart BACnet"
+   ],
+   "status": "extracted",
+   "note": "게이트웨이가 이 기기군에 대해 내보내는 오브젝트 목록. ⚠ 인스턴스 번호는 표에 없고 **유닛 주소가 정해져야** 정해진다 — instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point 이고 유닛 주소 XXX = Device×16 + Product 다. 제품유형은 Indoor:0 Vent:1 AHU:2 ODU:3 AWHP:4 GENERAL:5 (원문 50쪽). 원문 예시 42행에 42/42 일치를 확인했다.",
+   "gaps": [
+    "blocks.bacnet.instance — 유닛 주소(현장 설정값)가 있어야 정해진다. 규칙은 note 에 있다. 주소 0 일 때의 값을 넣으면 다른 주소에서 전부 틀린다.",
+    "⚠ 원문 제약: 'Some of GENERAL Points may not be supported depending on the product.'"
+   ],
+   "points": [
+    {
+     "common": {
+      "name": "AllStartStopCommand",
+      "note": "All Unit Run/Stop (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "1",
+       "Object Type": "BO",
+       "Control/monitoring": "All Unit Run/Stop (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "AllSetRoomTempCommand",
+      "note": "All Unit Set Room Temperature (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "2",
+       "Object Type": "AV",
+       "Control/monitoring": "All Unit Set Room Temperature (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "AllTempLockCommand",
+      "note": "All Unit Temperature Lock (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "3",
+       "Object Type": "AV",
+       "Control/monitoring": "All Unit Temperature Lock (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "TotalAccumulatedPower",
+      "note": "Total Accumulated Power (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "4",
+       "Object Type": "AI",
+       "Control/monitoring": "Total Accumulated Power (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "PeakStartStopCommand",
+      "note": "Peak Control Operation (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "5",
+       "Object Type": "BO",
+       "Control/monitoring": "Peak Control Operation (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "PeakStartStopStatus",
+      "note": "Peak Control Operation (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "6",
+       "Object Type": "BI",
+       "Control/monitoring": "Peak Control Operation (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "PeakShiftTimeCommand",
+      "note": "Peak Shift Time(Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "7",
+       "Object Type": "AV",
+       "Control/monitoring": "Peak Shift Time(Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "PeakShiftTimeStatus",
+      "note": "Peak Shift Time(Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "8",
+       "Object Type": "AI",
+       "Control/monitoring": "Peak Shift Time(Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "PeakTargetCommand",
+      "note": "Peak Target Ratio(Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AV"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "9",
+       "Object Type": "AV",
+       "Control/monitoring": "Peak Target Ratio(Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "PeakTargetStatus",
+      "note": "Peak Target Ratio(Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "10",
+       "Object Type": "AI",
+       "Control/monitoring": "Peak Target Ratio(Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "PeakCurrentStatus",
+      "note": "Peak Current Running Ratio(Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "AI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "11",
+       "Object Type": "AI",
+       "Control/monitoring": "Peak Current Running Ratio(Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "RemoteShutDownCommand",
+      "note": "Remote Shutdown(Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "12",
+       "Object Type": "BO",
+       "Control/monitoring": "Remote Shutdown(Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "TempUnitCommand",
+      "note": "Temperature Unit Setting (Setting)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BO"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "13",
+       "Object Type": "BO",
+       "Control/monitoring": "Temperature Unit Setting (Setting)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    },
+    {
+     "common": {
+      "name": "TempUnitStatus",
+      "note": "Temperature Unit Setting (Status)"
+     },
+     "blocks": {
+      "bacnet": {
+       "objectType": "BI"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 41,
+      "family": "LG/ACSmart-BACnet",
+      "sourceColumns": {
+       "Point No.": "14",
+       "Object Type": "BI",
+       "Control/monitoring": "Temperature Unit Setting (Status)"
+      },
+      "gaps": [
+       "blocks.bacnet.instance"
+      ],
+      "status": "extracted",
+      "interfaceId": "gateway-general"
+     }
+    }
+   ]
+  }
+ ],
+ "crosscheck": {
+  "method": "쪽 글자 흐름에서 이름을 다시 읽어 맞췄다(표 인식 경로가 아니다)",
+  "total": 165,
+  "both": 165,
+  "rate": 1.0,
+  "diff": []
+ }
+}

@@ -34,7 +34,8 @@ PAGES = [34, 35, 36, 38, 39, 41, 42, 43, 44, 46, 47, 48, 49]
 # 그래서 instance = 제품유형*0x10000 + Device*0x1000 + Product*0x100 + Point 이고
 # 이름 끝 _XXX(= Unit address) = Device*16 + Product 다.
 # 원문 50~52쪽 예시 42행에 맞춰 봤다 — 42/42 일치.
-KO = {"Indoor Unit": ("실내기", 0), "Ventilation": ("환기(HRV)", 1),
+# ⚠ 이름은 원문 낱말만 쓴다. 원문은 HRV 가 아니라 **ERV** 라고 쓴다(5쪽 장치 목록).
+KO = {"Indoor Unit": ("실내기", 0), "Ventilation": ("환기(ERV)", 1),
       "AHU": ("공조기(AHU)", 2), "ODU": ("실외기(ODU)", 3),
       "AWHP": ("AWHP", 4), "GENERAL": ("게이트웨이 공통", 5)}
 

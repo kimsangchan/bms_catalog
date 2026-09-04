@@ -698,6 +698,10 @@ class DatasetBuildTest(unittest.TestCase):
             # 없는 메뉴 항목 목록이다(validate 의 points-unaddressed 가 그 수를 드러낸다).
             # 사다리를 넓혀서 될 일이 아니라 제품 카탈로그가 따로 있어야 한다.
             "johnson-controls-verasys-vec100-generic-rtu-controller",
+            # ── LG AC Smart BACnet 게이트웨이 (2026-09-04) ─────────
+            # 게이트웨이 매뉴얼이라 정격도 형번도 없다. 오브젝트 165점만 있다.
+            # 사다리를 넓혀서 될 일이 아니라 제품 카탈로그가 따로 있어야 한다.
+            "lg-ac-smart-bacnet-gateway",
         })
 
     def test_aaon_cabinet_text_yields_units_with_iom_tonnage(self):
@@ -1096,17 +1100,26 @@ class InterfacePointTemplateGateTest(unittest.TestCase):
 
     def test_interface_models_are_not_silently_empty(self):
         """인터페이스형 e5의 각 판이 한 행도 못 채우면 운다."""
-        empty, seen, points = [], 0, 0
+        empty, seen, points, noRows = [], 0, 0, []
+        profiles = datasets.load_template_profiles()
         for model in self._e5_models():
             if not model.get("interfaces"):
+                continue
+            pid = datasets.template_profile_for(model)
+            # ⚠ '매처가 못 본다' 와 '맞출 행이 아직 없다' 는 다른 실패다.
+            #    화면 행이 0 인 프로파일(e5.pac 처럼 신설 과제)은 여기서 가른다 —
+            #    LG 게이트웨이 165점은 매처가 다 보는데 e5.pac 에 행이 없어 0 이 나왔다.
+            #    사유(pending)가 적혀 있어야 한다는 강제는
+            #    test_empty_template_profile_must_say_why 가 한다.
+            if not (profiles.get(pid) or {}).get("templatePoints"):
+                noRows.append(model["id"])
                 continue
             for scope in datasets.model_mapping_inputs(model):
                 if scope["kind"] != "interface":
                     continue
                 seen += 1
                 points += len(scope["points"])
-                picked = datasets.find_template_candidates(
-                    datasets.template_profile_for(model), scope["points"])
+                picked = datasets.find_template_candidates(pid, scope["points"])
                 if not picked:
                     empty.append("%s/%s" % (model["id"], scope["interfaceId"]))
 
@@ -1420,14 +1433,93 @@ class SourceLedgerGateTest(unittest.TestCase):
         """
         led = self._ledger()
         unfit = {v["file"] for v in led.values() if v.get("file") and v.get("unfit")}
-        self.assertTrue(unfit, "대장에 unfit 표시가 하나도 없다 — 시험이 헛돈다")
-        silent = []
-        for mid, srcs in self._cited().items():
-            if srcs & unfit and "원문" not in (datasets.load_json(
-                    os.path.join(datasets.DATA, "models", mid + ".json")).get("gap") or ""):
-                silent.append(mid)
-        self.assertEqual(silent, [],
-                         "부적합 원문을 쓰면서 gap 에 안 적은 모델: %s" % silent)
+
+        def silent_users(unfit_files, cited, gap_of):
+            """부적합 원문을 쓰면서 gap 에 그 사실을 안 적은 모델."""
+            return sorted(m for m, srcs in cited.items()
+                          if srcs & unfit_files and "원문" not in (gap_of(m) or ""))
+
+        # ⑴ 실제 자료 — 지금은 unfit 이 0 건일 수 있다(2026-09-04 에 잘못된 원문을 전부
+        #    지웠다). 0 건인 것은 **좋은 상태**지 시험이 헛도는 것이 아니다.
+        real = silent_users(unfit, self._cited(), lambda m: datasets.load_json(
+            os.path.join(datasets.DATA, "models", m + ".json")).get("gap"))
+        self.assertEqual(real, [], "부적합 원문을 쓰면서 gap 에 안 적은 모델: %s" % real)
+
+        # ⑵ 판정 자체가 도는지 — 없는 자료를 기다리지 않고 여기서 세운다.
+        #    (전에는 "unfit 이 하나도 없으면 실패" 로 세웠는데, 자료를 고치자 그 가드가
+        #     울었다. 좋은 상태를 실패로 부르면 안 된다 — 대신 판정을 직접 태운다.)
+        self.assertEqual(
+            silent_users({"bad.pdf"}, {"m1": {"bad.pdf"}, "m2": {"ok.pdf"}},
+                         lambda m: "" if m == "m1" else "원문이 안 맞는다"),
+            ["m1"], "부적합 판정이 안 돈다")
+        self.assertEqual(
+            silent_users({"bad.pdf"}, {"m1": {"bad.pdf"}},
+                         lambda m: "⚠ 원문이 목적과 다르다"),
+            [], "gap 에 적힌 것을 잘못 잡는다")
+
+
+class LgBacnetIngestTest(unittest.TestCase):
+    """LG AC Smart BACnet 게이트웨이 취입 165점 — 이 부류가 조용히 줄지 않게."""
+
+    def setUp(self):
+        self.model = datasets.load_json(os.path.join(
+            datasets.DATA, "models", "lg-ac-smart-bacnet-gateway.json"))
+
+    def test_six_device_families_and_165_points(self):
+        """기기군 여섯 · 165점. 판마다 몇 점인지도 박는다 — 한 판이 조용히 비면 잡는다."""
+        got = {i["id"]: i["pointCount"] for i in self.model["interfaces"]}
+        self.assertEqual(got, {"indoor-unit": 41, "ventilation": 20, "ahu": 53,
+                               "odu": 14, "awhp": 23, "gateway-general": 14})
+        n = sum(len(i["points"]) for i in self.model["interfaces"])
+        self.assertEqual(n, 165)
+        self.assertEqual(sum(got.values()), n)
+
+    def test_crosscheck_read_the_document_a_second_way(self):
+        """교차 대조는 **표 인식이 아닌 경로**로 해야 뜻이 있다."""
+        cc = self.model["crosscheck"]
+        self.assertEqual(cc["both"], 165)
+        self.assertEqual(cc["rate"], 1.0)
+        self.assertIn("표 인식", cc["method"])   # 다른 경로임을 방법에 적어 둔다
+
+    def test_instance_is_left_empty_because_it_needs_a_site_address(self):
+        """인스턴스를 채우면 안 된다 — 유닛 주소가 정해져야 나온다.
+
+        주소 0 일 때의 값을 넣으면 다른 주소에서 **전부** 틀린다. 규칙(원문 50쪽)은
+        판의 note 와 gaps 에 글로 남긴다. 스키마에 공식·포인트번호를 담을 필드가
+        없으므로 포인트 번호는 provenance.sourceColumns 에 원문 그대로 둔다.
+        """
+        filled = 0
+        for i in self.model["interfaces"]:
+            self.assertIn("instance", " ".join(i["gaps"]))
+            self.assertIn("Device×16", i["note"])
+            for p in i["points"]:
+                if (p.get("blocks", {}).get("bacnet") or {}).get("instance") is not None:
+                    filled += 1
+                self.assertIn("Point No.", p["provenance"]["sourceColumns"])
+        self.assertEqual(filled, 0, "인스턴스가 채워졌다 — 유닛 주소 없이는 못 채운다")
+
+    def test_object_types_come_from_the_document_only(self):
+        """오브젝트 타입은 원문이 준 것만. 없으면 비운다(지어내지 않는다)."""
+        ok = {"AI", "AO", "AV", "BI", "BO", "BV", "MI", "MO", "MSI", "MSO", "MSV"}
+        typed = 0
+        for i in self.model["interfaces"]:
+            for p in i["points"]:
+                bt = (p.get("blocks", {}).get("bacnet") or {}).get("objectType")
+                if bt:
+                    typed += 1
+                    self.assertIn(bt, ok, "%s: 모르는 오브젝트 타입" % p["common"]["name"])
+        # 원문에 타입이 없는 점이 있다 — 그것까지 채웠으면 지어낸 것이다
+        self.assertGreater(typed, 150)
+        self.assertLess(typed, 165)
+
+    def test_family_is_registered_in_the_schema(self):
+        """계통은 사전에 먼저 등재한다 — validate 의 iface-family 가 이것을 세운다."""
+        sch = datasets.load_json(os.path.join(datasets.DATA, "point-schema.json"))
+        fams = sch["interfaces"]["fields"]["family"]
+        raw = json.dumps(sch, ensure_ascii=False)
+        self.assertIn("LG/ACSmart-BACnet", raw)
+        for i in self.model["interfaces"]:
+            self.assertEqual(i["family"], "LG/ACSmart-BACnet")
 
 
 if __name__ == "__main__":

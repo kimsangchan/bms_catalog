@@ -7,6 +7,7 @@
   "v1 (2026-08-12) — 최초. JCI 포인트 리스트 57건 실측에서 8계통·열 합집합 45종을 얻어 세웠다.",
   "v2.1 (2026-08-31) — 계통 'AirHandling/Modbus' 등재. 공조기 포털의 유닛 제어반 Modbus 레지스터 표(PLC register Address|Parameter number|Name|Range|Details)는 BACnet 이름도 오브젝트 타입도 없어 기존 8계통 어느 것과도 열이 겹치지 않는다. 본문 스캔이 이 표를 오래 못 찾았던 것도 아는 열 이름이 하나뿐이어서였다.",
   "v2.2 (2026-08-31) — 계통 'APOGEE/FLN' 과 blocks.fln 등재. Siemens APOGEE 의 FLN 포인트 데이터베이스는 BACnet 오브젝트도 Modbus 레지스터도 아니라 기존 7블록 어디에도 안 들어간다. ⚠ 이 표는 원문이 안 밝히는 것이 많다 — Type 코드 풀이, On/Off Text 의 코드 대응, '공학값 = 원시값×slope+intercept' 라는 변환 방향이 전부 문서에 없다. 그래서 코드·글자를 보존만 하고 해석은 gaps 로 남긴다.",
+  "v2.4 (2026-09-04) — 계통 'LG/ACSmart-BACnet' 등재. LG AC Smart BACnet 게이트웨이가 연결 기기군(실내기·환기·AHU·실외기·AWHP·게이트웨이 공통)에 대해 내보내는 오브젝트 목록이다. 기존 12계통과 두 가지가 다르다. ⑴ **표가 전치돼 있다** — 행이 속성(Object Type·Object Name·Point No.)이고 열이 포인트라, 세로로 세면 15점짜리 표가 10행으로 읽힌다. ⑵ **인스턴스 번호가 표에 없다** — 원문 50쪽이 규칙만 준다(instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point, 유닛 주소 = Device×16 + Product). 즉 번호는 **현장 유닛 주소가 정해져야** 나온다. 문서의 결손이 아니라 설정값이므로 blocks.bacnet.instance 를 비우고 규칙을 note·gaps 에 적는다 — 주소 0 일 때의 값을 넣으면 다른 주소에서 전부 틀린다. Verasys/Menu(주소를 만들 규칙 자체가 없는 목록)와는 다른 자리다.",
   "v2.3 (2026-08-31) — 계통 'Drive/Modbus' 등재. 인버터가 내보내는 4xxxx 고정 레지스터 창(Modbus Register | 표준 프로파일 이름 | Access | Remarks). AirHandling/Modbus(유닛 제어반)와 열이 다르고, 같은 문서의 FLN 표와도 항목이 겹치지 않는다(이름 일치 0/16) — 같은 장비의 다른 프로토콜 창구다.",
   "v2.4 (2026-09-01) — 계통 'Verasys/Menu' 등재. Verasys VEC100 컨트롤러가 SBH (Smart Building Hub) 화면에 내보이는 메뉴 항목 표다. ⚠ **주소 열이 없다** — 오브젝트별 BACnet 타입·인스턴스도 Modbus 레지스터도 원문 어디에도 없어 blocks 를 만들 수 없다. 문서가 밝히는 주소는 장치 수준뿐(컨트롤러 주소 4~127 · 'Sets the BACnet ID of the device'). 그래서 이 계통의 점은 **매핑에 바로 못 쓴다** — 이름·읽기쓰기·기본값·범위를 아는 목록이다. 주소 있는 목록과 섞어 세지 않도록 validate 의 points-unaddressed 가 매번 수를 드러낸다."
  ],
@@ -227,7 +228,8 @@
     "AirHandling/Modbus",
     "APOGEE/FLN",
     "Drive/Modbus",
-    "Verasys/Menu"
+    "Verasys/Menu",
+    "LG/ACSmart-BACnet"
    ],
    "required": true,
    "note": "IPU/Series-100 은 냉동기가 아니라 **옥상형·자립형 IOM 본문**에 묻힌 표다(2026-08-18 본문 전수 스캔에서 찾았다 — 제목에는 낌새가 없어 그때까지 통째로 빠져 있었다). **columnGuards 의 절반이 계통 조건부다** — 'YZD 문서에서 bacnet 블록 생성은 오류'·'GPIC형과 Typ-Ins형의 라우팅이 다르다' 같은 규칙은 레코드가 출신 계통을 모르면 강제할 수 없다. 초안에 이 자리가 없어 가드 3개가 작동 불능이었다(2026-08-12 검증). 계통은 취입할 때 어댑터가 적는다. YKN2Open 은 9번째 계통이자 **처음으로 장비가 아닌 것**이다 — 장비의 N2 를 BACnet/IP·Modbus TCP 로 바꿔 주는 FieldServer QuickServer 게이트웨이 키트라 표가 게이트웨이 설정표 모양이고, 그래서 앞의 파서 넷이 다 못 잡았다(2026-08-21). 이 계통만 한 포인트가 표 두 개(Modbus·BACnet)에 나뉘어 실린다 → provenance.sourcePages. SC-EQ/Config 는 10번째 계통이다(2026-08-31) — 'SC-EQ' 계통이 **냉동기가 카드를 통해 내보내는** 목록인 데 반해, 이것은 **카드 자신의 설정 포인트** 6점이다(장치 이름·인스턴스 ID·인코딩·단위계·기종 선택). 머리글이 'Point name | BACnet | Modbus | N2 | Description' 으로 통째로 달라 기존 파서 아홉이 다 못 잡았다. 계통을 'SC-EQ' 로 합치면 안 된다 — columnGuards 의 'Enum Set(코드표 참조형)' 가드가 SC-EQ 코드표의 'add 1 to number' 노트를 전제하는데 이 문서에는 그 노트가 없다."
