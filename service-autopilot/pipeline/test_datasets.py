@@ -1840,7 +1840,13 @@ class SamsungDmsBacnetIngestTest(unittest.TestCase):
             if p["blocks"]["bacnet"]["objectType"] == "NC":
                 self.assertNotIn("states", p["common"],
                                  "%s: NC 에 상태를 지어냈다" % name)
-                self.assertIn("recipient_list", p["common"].get("note", ""))
+                # 설명문은 버리지 않는다 — 원문 칸에 제 이름으로 남는다.
+                # (note 에 붙이지 않는다. 'Object' 열과 다른 열이라 뭉치면
+                #  한 문장으로 읽혀 지어낸 말처럼 보인다.)
+                raw = p["provenance"]["sourceColumns"]
+                self.assertIn("recipient_list",
+                              raw.get("Status value / 비고", ""),
+                              "%s: NC 설명문이 사라졌다" % name)
         self.assertTrue(any(p["blocks"]["bacnet"]["objectType"] == "NC"
                             for p in self.by.values()), "NC 가 하나도 없다")
 
