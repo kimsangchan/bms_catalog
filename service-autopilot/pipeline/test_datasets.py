@@ -1906,5 +1906,101 @@ class NoteComesFromOneColumnTest(unittest.TestCase):
         self.assertGreater(checked, 300, "설명을 가진 포인트가 너무 적다 — 게이트가 헛돈다")
 
 
+class LgAhuKitReingestTest(unittest.TestCase):
+    """LG AHU 통신 킷 47점 — 옛 추출본이 버린 것을 되찾은 자리."""
+
+    MR = "lg-ahu-comm-kit-0caa0-02m-multi-v-single-ahu-interface-modbus-pahcmr000"
+    MS = "lg-ahu-comm-kit-0caa0-02m-multi-v-single-ahu-interface-modbus-pahcms000"
+
+    def setUp(self):
+        self.m = {k: datasets.load_json(
+            os.path.join(datasets.DATA, "models", k + ".json")) for k in (self.MR, self.MS)}
+
+    def _pts(self, mid):
+        return [p for i in self.m[mid]["interfaces"] for p in i["points"]]
+
+    def test_points_live_in_an_interface_now(self):
+        """판이 없으면 대조대가 걸러 낸다 — 사용자가 'LG 공조기가 안 보인다'고 짚었다."""
+        for mid in (self.MR, self.MS):
+            self.assertEqual(len(self.m[mid]["interfaces"]), 1)
+            self.assertEqual(self.m[mid]["points"], [])
+            self.assertEqual(self.m[mid]["extractor"], "ingest_lg_ahu")
+        self.assertEqual(len(self._pts(self.MR)), 19)
+        self.assertEqual(len(self._pts(self.MS)), 28)
+
+    def test_value_explanation_is_no_longer_thrown_away(self):
+        """원문 47점이 전부 Value explanation 을 갖는데 옛 추출본은 0개였다.
+
+        재현: extractor='table' 이 그 열을 아예 안 읽고, note 자리에는 설명이 아니라
+        **함수코드 표시 글리프(●)** 를 넣었다. 개수(19+28)만 맞고 내용이 비어 있었다.
+        """
+        pts = self._pts(self.MR) + self._pts(self.MS)
+        self.assertEqual(len(pts), 47)
+        st = sum(1 for p in pts if p["common"].get("states"))
+        rg = sum(1 for p in pts if p["common"].get("range"))
+        self.assertGreaterEqual(st, 30, "상태가 통째로 빠졌다")
+        self.assertGreaterEqual(rg, 8, "범위가 통째로 빠졌다")
+        for p in pts:
+            self.assertNotEqual(p["common"].get("note"), "\u25cf",
+                                "설명 자리에 함수코드 표시가 들어갔다")
+
+    def test_scale_direction_is_not_flipped(self):
+        """'x10' 은 여기서 **원시값이 실제값의 10배**다 — 뒤집으면 25℃가 250℃가 된다.
+
+        근거: 원문이 범위를 '-50.0℃~100.0℃' 처럼 소수점으로 적는데 정수 레지스터에
+        그대로 실을 수 없다. 같은 'x10' 표기라도 삼성 CO2 는 'Real Value = Value*10'
+        이라 scale=10 이다 — 표기가 같다고 방향이 같지 않다.
+        """
+        ra = [p for p in self._pts(self.MR) if p["common"]["name"] == "RA Temp."][0]
+        self.assertEqual(ra["common"]["unitSI"], "\u00b0C")
+        self.assertEqual(ra["common"]["range"]["min"], -50.0)
+        self.assertEqual(ra["common"]["range"]["max"], 100.0)
+        self.assertEqual(ra["blocks"]["modbus"]["scale"], 0.1)
+        self.assertEqual(ra["blocks"]["modbus"]["scaleRaw"], "x10")
+        # 배율은 원표기 없이 저장 금지 — point-schema 의 게이트
+        for p in self._pts(self.MR) + self._pts(self.MS):
+            mb = p["blocks"]["modbus"]
+            if mb.get("scale") is not None:
+                self.assertTrue(mb.get("scaleRaw"), "%s: scaleRaw 가 없다"
+                                % p["common"]["name"])
+
+    def test_register_class_and_function_codes_come_from_the_document(self):
+        """레지스터 앞자리가 종류를 정한다 — 원문 함수코드 표가 그렇게 못 박았다."""
+        by = {p["common"]["name"]: p for p in self._pts(self.MR)}
+        onoff = by["Operating On / Off"]["blocks"]["modbus"]
+        self.assertEqual((onoff["address"], onoff["refClass"]), (1, "coil"))
+        self.assertEqual(onoff["functionCodes"], [1, 5])       # 0x01 읽기 · 0x05 쓰기
+        self.assertEqual(by["Operating On / Off"]["common"]["readWrite"], "R/W")
+        ra = by["RA Temp."]["blocks"]["modbus"]
+        self.assertEqual((ra["address"], ra["refClass"]), (30002, "inputRegister"))
+        self.assertEqual(by["RA Temp."]["common"]["readWrite"], "R")
+        mode = by["Operation Mode"]["blocks"]["modbus"]
+        self.assertEqual((mode["address"], mode["refClass"]), (40001, "holdingRegister"))
+        # 킷마다 주소가 다르다 — PAHCMR000 의 40002 는 Fan Speed 이고
+        # PAHCMS000 의 Fan Speed 는 40028 이다(원문 확인). 섞이면 여기서 걸린다.
+        self.assertEqual(by["Fan Speed"]["blocks"]["modbus"]["address"], 40002)
+        ms = {p["common"]["name"]: p for p in self._pts(self.MS)}
+        self.assertEqual(ms["Fan Speed"]["blocks"]["modbus"]["address"], 40028)
+
+    def test_reingest_did_not_destroy_the_ratings(self):
+        """포인트만 갈아 끼운다 — 정격(사양 표·형번)은 그대로 있어야 한다."""
+        for mid in (self.MR, self.MS):
+            self.assertEqual(len(self.m[mid].get("specTables") or []), 17,
+                             "%s: 재취입이 정격을 날렸다" % mid)
+
+    def test_ambiguous_cells_are_left_alone_with_a_reason(self):
+        """원문이 정말 애매한 칸은 고르지 않는다 — 사유가 gap 에 있어야 한다."""
+        pts = self._pts(self.MR) + self._pts(self.MS)
+        odd = [p for p in pts if (p["provenance"].get("gaps") or [])]
+        self.assertGreaterEqual(len(odd), 3)
+        for p in odd:
+            self.assertNotIn("range", p["common"])
+            self.assertNotIn("states", p["common"])
+
+    def test_family_is_registered_in_the_schema(self):
+        sch = datasets.load_json(os.path.join(datasets.DATA, "point-schema.json"))
+        self.assertIn("LG/AHUKit-Modbus", json.dumps(sch, ensure_ascii=False))
+
+
 if __name__ == "__main__":
     unittest.main()

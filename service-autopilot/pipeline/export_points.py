@@ -51,7 +51,7 @@ sys.path.insert(0, HERE)
 import schema as SC  # noqa: E402  — 빈 값 어휘의 정본
 
 DEFAULT_OUT = os.path.join(HERE, "..", "review", "export")
-DOMESTIC = ("ingest_lg", "ingest_ls", "ingest_samsung")
+DOMESTIC = ("ingest_lg", "ingest_lg_ahu", "ingest_ls", "ingest_samsung")
 
 # 모델·판을 말하는 열 (모든 행에 같은 값이 반복된다 — 파일 하나만 떼어 가도 뜻이 산다)
 HEAD = ["pointKey", "modelId", "vendor", "model", "equipId", "cat", "tag",
