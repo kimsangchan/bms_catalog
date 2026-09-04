@@ -56,6 +56,11 @@
      "common": {
       "name": "CommTimeoutSet",
       "note": "Command timeout setting",
+      "range": {
+       "raw": "0.1 - 120.0",
+       "min": 0.1,
+       "max": 120
+      },
       "unitSI": "Secs",
       "unitSIRaw": "Secs",
       "readWrite": "R/W",
@@ -81,16 +86,18 @@
        "R/W": "R/W"
       },
       "status": "extracted",
-      "interfaceId": "bacnet-ip",
-      "gaps": [
-       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
-      ]
+      "interfaceId": "bacnet-ip"
      }
     },
     {
      "common": {
       "name": "AccelTimeSet",
       "note": "ACC time setting*",
+      "range": {
+       "raw": "0.0 - 600.0",
+       "min": 0,
+       "max": 600
+      },
       "unitSI": "Secs",
       "unitSIRaw": "Secs",
       "readWrite": "R/W",
@@ -116,16 +123,18 @@
        "R/W": "R/W"
       },
       "status": "extracted",
-      "interfaceId": "bacnet-ip",
-      "gaps": [
-       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
-      ]
+      "interfaceId": "bacnet-ip"
      }
     },
     {
      "common": {
       "name": "DecelTimeSet",
       "note": "DEC time setting*",
+      "range": {
+       "raw": "0.0 - 600.0",
+       "min": 0,
+       "max": 600
+      },
       "unitSI": "Secs",
       "unitSIRaw": "Secs",
       "readWrite": "R/W",
@@ -151,10 +160,7 @@
        "R/W": "R/W"
       },
       "status": "extracted",
-      "interfaceId": "bacnet-ip",
-      "gaps": [
-       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
-      ]
+      "interfaceId": "bacnet-ip"
      }
     },
     {
@@ -188,7 +194,7 @@
       "status": "extracted",
       "interfaceId": "bacnet-ip",
       "gaps": [
-       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
+       "common.range — 원문 범위의 양끝이 순수 숫자가 아니다('0.00 - DRV-20'). sourceColumns 에 원문 그대로 남겼다."
       ]
      }
     },
@@ -196,6 +202,11 @@
      "common": {
       "name": "PIDReferenceSet",
       "note": "PID Reference Set",
+      "range": {
+       "raw": "0 - 100.0",
+       "min": 0,
+       "max": 100
+      },
       "unitSI": "%",
       "unitSIRaw": "%",
       "readWrite": "R/W",
@@ -221,16 +232,18 @@
        "R/W": "R/W"
       },
       "status": "extracted",
-      "interfaceId": "bacnet-ip",
-      "gaps": [
-       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
-      ]
+      "interfaceId": "bacnet-ip"
      }
     },
     {
      "common": {
       "name": "PIDFeedbackSet",
       "note": "PID Feedback Set",
+      "range": {
+       "raw": "0 - 100.0",
+       "min": 0,
+       "max": 100
+      },
       "unitSI": "%",
       "unitSIRaw": "%",
       "readWrite": "R/W",
@@ -256,10 +269,7 @@
        "R/W": "R/W"
       },
       "status": "extracted",
-      "interfaceId": "bacnet-ip",
-      "gaps": [
-       "common.range — 원문 'Range' 열은 sourceColumns 에만 남겼다. 포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용)."
-      ]
+      "interfaceId": "bacnet-ip"
      }
     },
     {

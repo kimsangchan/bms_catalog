@@ -32,6 +32,8 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
+sys.path.insert(0, HERE)
+import schema as SC  # noqa: E402  — 단위·범위 판정의 정본
 
 SRC_ID = "ls-electric-h100"
 DOC = "LS_H100_BACnetIP_EN_V1.0_210526.pdf"     # 두 문서 중 오브젝트 목록을 가진 쪽
@@ -257,9 +259,14 @@ def build(meta, tables, sect, cc):
                                     "보정을 밝히지 않는다. 표의 코드는 %s 부터다."
                                     % st[0]["code"])
                 elif r == "range":
-                    gaps.append("common.range — 원문 'Range' 열은 sourceColumns 에만 "
-                                "남겼다. 포인트 스키마에 단위중립 범위 자리가 없다"
-                                "(rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통 전용).")
+                    rng = SC.parse_range(v)
+                    if rng:
+                        common["range"] = rng
+                    else:
+                        # '0.00 - DRV-20' — 위끝이 숫자가 아니라 **다른 파라미터를
+                        # 가리키는 말**이다. 숫자만 떼면 거짓 상한이 된다.
+                        gaps.append("common.range — 원문 범위의 양끝이 순수 숫자가 "
+                                    "아니다(%r). sourceColumns 에 원문 그대로 남겼다." % v)
             kind = KIND.get(p["type"])
             if kind:
                 common["pointKind"] = kind

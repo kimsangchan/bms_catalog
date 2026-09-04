@@ -7,6 +7,7 @@
   "v1 (2026-08-12) — 최초. JCI 포인트 리스트 57건 실측에서 8계통·열 합집합 45종을 얻어 세웠다.",
   "v2.1 (2026-08-31) — 계통 'AirHandling/Modbus' 등재. 공조기 포털의 유닛 제어반 Modbus 레지스터 표(PLC register Address|Parameter number|Name|Range|Details)는 BACnet 이름도 오브젝트 타입도 없어 기존 8계통 어느 것과도 열이 겹치지 않는다. 본문 스캔이 이 표를 오래 못 찾았던 것도 아는 열 이름이 하나뿐이어서였다.",
   "v2.2 (2026-08-31) — 계통 'APOGEE/FLN' 과 blocks.fln 등재. Siemens APOGEE 의 FLN 포인트 데이터베이스는 BACnet 오브젝트도 Modbus 레지스터도 아니라 기존 7블록 어디에도 안 들어간다. ⚠ 이 표는 원문이 안 밝히는 것이 많다 — Type 코드 풀이, On/Off Text 의 코드 대응, '공학값 = 원시값×slope+intercept' 라는 변환 방향이 전부 문서에 없다. 그래서 코드·글자를 보존만 하고 해석은 gaps 로 남긴다.",
+  "v2.6 (2026-09-04) — common.range 신설(단위계 중립 범위). 그동안 LG 29점·LS 5점의 범위가 sourceColumns 에만 남아 있었다 — rangeIP·rangeSI 가 야드파운드/SI 쌍 전용이라 넣을 자리가 없었기 때문이다. dictionaryFirst 순서대로 ① 원문 보존 ② 사전 등재 ③ 필드 승격을 밟았다. ⚠ 같은 자리에서 배운 것: 벤더는 단위 칸 하나에 단위·범위·비고를 섞어 넣는다. 열 이름으로 정하면 '-127~127' 이 단위가 되고 'Reference LG Original Error Code' 도 단위가 된다 — 값을 보고 가른다(schema.parse_range·canon_unit). ⚠ 양끝이 순수 숫자가 아닌 칸은 range 를 만들지 않는다: 숫자만 떼면 시뮬레이터가 거짓 상한을 믿는다.",
   "v2.5 (2026-09-04) — 계통 'Drive/BACnet' 등재. LS ELECTRIC H100 인버터의 BACnet/IP 이더넷 옵션 카드가 내보내는 오브젝트 목록이다. 이미 있던 'Drive/Modbus'(같은 드라이브류가 내보내는 Modbus 레지스터 창)와 짝을 이룬다 — 벤더 축이 아니라 **문서 계통 축**이라 드라이브+BACnet 이 한 값이 된다. 새 필드는 없다. ⚠ 이 문서의 'Range' 열(AV 계열)은 어느 필드로도 승격하지 않았다 — rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통(YMAE-15) 전용이고 단위중립 범위 자리가 사전에 없다. sourceColumns 에 원문 보존 + provenance.gaps 에 사유를 남긴다(dictionaryFirst 규칙 ①). ⚠ 단위 열이 하나뿐이라 값을 보고 가른다 — 'HP' 만 unitIP, 나머지는 unitSI. 코드형(MSV·MSI)의 단위 칸 'MSG' 는 물리량이 아니라 자료형 표시라 승격하지 않는다.",
   "v2.4 (2026-09-04) — 계통 'LG/ACSmart-BACnet' 등재. LG AC Smart BACnet 게이트웨이가 연결 기기군(실내기·환기·AHU·실외기·AWHP·게이트웨이 공통)에 대해 내보내는 오브젝트 목록이다. 기존 12계통과 두 가지가 다르다. ⑴ **표가 전치돼 있다** — 행이 속성(Object Type·Object Name·Point No.)이고 열이 포인트라, 세로로 세면 15점짜리 표가 10행으로 읽힌다. ⑵ **인스턴스 번호가 표에 없다** — 원문 50쪽이 규칙만 준다(instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point, 유닛 주소 = Device×16 + Product). 즉 번호는 **현장 유닛 주소가 정해져야** 나온다. 문서의 결손이 아니라 설정값이므로 blocks.bacnet.instance 를 비우고 규칙을 note·gaps 에 적는다 — 주소 0 일 때의 값을 넣으면 다른 주소에서 전부 틀린다. Verasys/Menu(주소를 만들 규칙 자체가 없는 목록)와는 다른 자리다.",
   "v2.3 (2026-08-31) — 계통 'Drive/Modbus' 등재. 인버터가 내보내는 4xxxx 고정 레지스터 창(Modbus Register | 표준 프로파일 이름 | Access | Remarks). AirHandling/Modbus(유닛 제어반)와 열이 다르고, 같은 문서의 FLN 표와도 항목이 겹치지 않는다(이름 일치 0/16) — 같은 장비의 다른 프로토콜 창구다.",
@@ -130,6 +131,12 @@
    "ko": "값 범위(야드파운드)",
    "shape": "object {min, max}",
    "note": "YMAE-15 계통만 준다('IP Min/Max Value') — 시뮬레이터 값 클램핑에 쓸 수 있는 유일한 출처. 다른 계통에서 지어 넣지 않는다"
+  },
+  "range": {
+   "ko": "값 범위 (단위계 중립)",
+   "shape": "object {raw, min?, max?}",
+   "note": "문서가 단위계를 갈라 주지 않고 범위 하나만 줄 때. rangeIP·rangeSI 는 YMAE-15 처럼 야드파운드/SI **쌍**을 주는 계통 전용이라 여기에 못 넣는다 — 억지로 넣으면 '이 값은 야드파운드다' 라고 거짓을 적게 된다. ⚠ 벤더는 **단위 칸 하나에 단위·범위·비고를 섞어** 넣는다(LG 'Unit' 68점 = 단위 34 · 범위 29 · 비고 5, LS 'Range (REAL)' 6점 = 숫자 5 · 파라미터 참조 1). 열 이름이 아니라 **값을 보고** 가른다 — 판정은 schema.parse_range 가 정본이다. raw 는 늘 원문 그대로. min·max 는 **양끝이 순수 숫자일 때만** 붙는다: '0.00 - DRV-20' 의 위끝은 다른 파라미터를 가리키는 말이고 '0~255 (Real Value = Value*10 …)' 은 배율이 따로 있어, 숫자만 떼어 담으면 시뮬레이터가 그것을 실제 상한으로 믿는다. 그런 칸은 raw 도 만들지 않고 sourceColumns 에만 두고 provenance.gaps 에 사유를 적는다",
+   "authority": "schema.py 의 parse_range"
   },
   "rangeSI": {
    "ko": "값 범위(SI)",

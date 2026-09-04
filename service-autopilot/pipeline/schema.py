@@ -150,6 +150,43 @@ def is_state_text(u):
     return "=" in str(u or "")
 
 
+# 값 범위를 적는 칸 — '0~90' · '-127~127' · '0.1 - 120.0' · '0 - 100.0'.
+# ⚠ 벤더 문서는 **단위 칸 하나에 단위·범위·비고를 섞어** 넣는다. 실측:
+#     LG   'Unit' 칸 68점 = °C 29 · 범위 29 · 비고 5 · % 3 · Minute 2
+#     LS   'Range (REAL)' 칸 6점 = 숫자 범위 5 · 'DRV-20'(파라미터 참조) 1
+#   그래서 열 이름으로 정하지 않고 **값을 보고 가른다**.
+# ⚠ 양쪽이 모두 순수한 숫자일 때만 min·max 를 만든다. '0.00 - DRV-20' 의 위끝은
+#   다른 파라미터를 가리키는 말이고, '0~255 (Real Value = Value*10 …)' 은 배율이
+#   따로 있다 — 숫자만 떼어 담으면 시뮬레이터가 그것을 실제 상한으로 믿는다.
+_RANGE = re.compile(r"^\s*(-?\d+(?:\.\d+)?)\s*(?:~|--|–|-|to)\s*(-?\d+(?:\.\d+)?)\s*$",
+                    re.I)
+
+
+def parse_range(v):
+    """범위 칸 → {'raw':…, 'min':…, 'max':…} · 범위가 아니면 None.
+
+    raw 는 늘 원문 그대로다. min·max 는 양끝이 순수 숫자일 때만 붙는다.
+    """
+    if v is None:
+        return None
+    raw = str(v).strip()
+    if not raw or raw in NO_UNIT:
+        return None
+    m = _RANGE.match(raw)
+    if not m:
+        return None
+    lo, hi = float(m.group(1)), float(m.group(2))
+    out = {"raw": raw, "min": int(lo) if lo == int(lo) else lo,
+           "max": int(hi) if hi == int(hi) else hi}
+    return out
+
+
+def looks_like_range(v):
+    """숫자 범위는 아니지만 **단위도 아닌** 칸인가 — 숫자가 섞여 있으면 참."""
+    t = str(v or "").strip()
+    return bool(t) and bool(re.search(r"\d", t))
+
+
 def unit_state(u):
     if u is None or str(u).strip() in NO_UNIT:
         return "unitless"

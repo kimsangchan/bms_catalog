@@ -37,6 +37,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 sys.path.insert(0, HERE)
+import schema as SC  # noqa: E402  — 단위·범위 판정의 정본
 import verify_lg as V  # noqa: E402  — 추출은 대조 화면과 같은 것을 쓴다
 
 MODEL_ID = "lg-ac-smart-bacnet-gateway"
@@ -132,12 +133,19 @@ def build(meta, url, tables, cc):
                 #    포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는
                 #    야드파운드/SI 쌍을 주는 계통 전용).
                 u = p.get("unit") or ""
-                if u and not re.search(r"\d", u) and len(u) <= 12:
+                rng = SC.parse_range(u)
+                if rng:
+                    common["range"] = rng
+                elif u and not SC.looks_like_range(u) and len(u) <= 12:
                     common["unitSIRaw"] = u
                     common["unitSI"] = u.replace("℃", "°C")
                 elif u:
-                    pgaps.append("common.unitSI — 원문 Unit 칸이 단위가 아니라 "
-                                 "범위·비고다(%r). sourceColumns 에 원문 그대로 남겼다." % u)
+                    # 숫자가 섞였는데 양끝이 순수 숫자가 아닌 칸 —
+                    # '0~255 (Real Value = Value*10 …)' · 'Wattage values (Unit : 100Watt)'.
+                    # 숫자만 떼어 담으면 시뮬레이터가 그것을 실제 상한으로 믿는다.
+                    pgaps.append("common.range — 원문 Unit 칸이 단위도 순수 범위도 "
+                                 "아니다(%r). 배율·참조가 섞여 있어 min·max 를 만들지 "
+                                 "않았다. sourceColumns 에 원문 그대로 남겼다." % u)
                 blocks = {}
                 if p["type"]:
                     blocks["bacnet"] = {"objectType": p["type"]}

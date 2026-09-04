@@ -1595,6 +1595,36 @@ class LgBacnetIngestTest(unittest.TestCase):
                          [("0", "Stop"), ("1", "Start")])
 
 
+    def test_unit_column_holds_units_ranges_and_notes_and_they_are_split(self):
+        """원문 'Unit' 칸 하나에 셋이 섞여 있다 — 단위·범위·비고.
+
+        열 이름으로 정하면 '-127~127' 이 단위가 되고 'Reference LG Original Error
+        Code' 도 단위가 된다. BMS 가 그것을 단위로 읽으면 화면에 그대로 찍힌다.
+        값을 보고 가른다(schema.parse_range · looks_like_range).
+        """
+        import schema as SC
+        pts = [p for i in self.model["interfaces"] for p in i["points"]]
+        by = {p["common"]["name"]: p for p in pts}
+        # 사용자가 짚은 자리: 28 AI SupplyTempStatus_XXX -127~127 → 단위가 아니라 범위
+        sup = by["SupplyTempStatus_XXX"]["common"]
+        self.assertNotIn("unitSI", sup, "범위를 단위로 올렸다")
+        self.assertEqual(sup["range"], {"raw": "-127~127", "min": -127, "max": 127})
+        # 같은 칸의 진짜 단위는 단위로 간다
+        self.assertEqual(by["SetTempStatus_XXX"]["common"]["unitSI"], "°C")
+        self.assertNotIn("range", by["SetTempStatus_XXX"]["common"])
+        # 셋 다 실제로 나온다 — 하나라도 0이면 가르는 코드가 죽은 것이다
+        n_u = sum(1 for p in pts if p["common"].get("unitSI"))
+        n_r = sum(1 for p in pts if p["common"].get("range"))
+        n_x = sum(1 for p in pts if any("common.range" in g
+                                        for g in (p["provenance"].get("gaps") or [])))
+        self.assertGreater(n_u, 20)
+        self.assertGreater(n_r, 20)
+        self.assertGreater(n_x, 0, "배율·참조가 섞인 칸을 걸러 낸 흔적이 없다")
+        # 배율·참조가 섞인 칸은 min·max 를 만들지 않는다 — 거짓 상한이 된다
+        self.assertIsNone(SC.parse_range("0~255 (Real Value = Value*10)"))
+        self.assertIsNone(SC.parse_range("Reference LG Original Error Code"))
+
+
 class LsH100IngestTest(unittest.TestCase):
     """LS ELECTRIC H100 인버터 BACnet/IP 76점 — 현장 통신 장치 2위(인버터)의 첫 실체."""
 
@@ -1641,6 +1671,22 @@ class LsH100IngestTest(unittest.TestCase):
         by = {p["blocks"]["bacnet"]["objectType"] + str(p["blocks"]["bacnet"]["instance"]): p
               for p in self.model["interfaces"][0]["points"]}
         self.assertEqual(by["AV4"]["common"]["note"], "Command frequency setting**")
+
+    def test_range_column_is_promoted_but_not_when_it_names_a_parameter(self):
+        """'Range' 열을 올리되 **양끝이 순수 숫자일 때만** min·max 를 만든다.
+
+        AV4 의 위끝은 '0.00 - DRV-20' 으로 다른 키패드 파라미터를 가리키는 말이다.
+        숫자만 떼어 담으면 시뮬레이터가 20Hz 를 상한으로 믿는다.
+        """
+        by = {p["blocks"]["bacnet"]["objectType"] + str(p["blocks"]["bacnet"]["instance"]): p
+              for p in self.model["interfaces"][0]["points"]}
+        self.assertEqual(by["AV1"]["common"]["range"],
+                         {"raw": "0.1 - 120.0", "min": 0.1, "max": 120})
+        self.assertNotIn("range", by["AV4"]["common"])
+        self.assertTrue(any("common.range" in g
+                            for g in by["AV4"]["provenance"]["gaps"]))
+        self.assertEqual(by["AV4"]["provenance"]["sourceColumns"]["Range (REAL)"],
+                         "0.00 - DRV-20")
 
     def test_family_is_registered_in_the_schema(self):
         """계통은 사전에 먼저 등재한다 — validate 의 iface-family 가 이것을 세운다."""

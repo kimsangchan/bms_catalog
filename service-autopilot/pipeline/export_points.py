@@ -57,7 +57,7 @@ HEAD = ["pointKey", "modelId", "vendor", "model", "equipId", "cat", "tag",
 # 포인트 자체를 말하는 열
 BODY = ["pointNo", "name", "nameVariable", "addressVar", "instanceFormula",
         "pointKind", "readWrite", "unit", "unitRaw", "unitSystem",
-        "states", "statesNote", "group", "note"]
+        "range", "rangeMin", "rangeMax", "states", "statesNote", "group", "note"]
 # 출처 (값을 의심할 때 되짚는 자리)
 TAIL = ["sourceFile", "sourcePage", "status", "gaps", "rawColumns"]
 
@@ -68,6 +68,9 @@ COLDOC = {
     "addressVar": "_XXX 가 무엇인지 — 예: 유닛 주소(Device*16+Product)",
     "instanceFormula": "인스턴스를 현장값에서 만드는 식. 값이 정해져 있으면 빈칸",
     "unitSystem": "SI · IP — 어느 단위계 열에서 왔는지",
+    "range": "값 범위 원문. 벤더는 단위 칸에 범위를 섞어 넣는다 — 단위 열과 갈라 둔다",
+    "rangeMin": "범위 아래끝. **양끝이 순수 숫자일 때만** 채운다(안 채워졌으면 range 원문을 봐라)",
+    "rangeMax": "범위 위끝. 같은 규칙 — '0.00 - DRV-20' 처럼 파라미터를 가리키면 비운다",
     "states": "코드=이름 을 ; 로 이음. 예: 1=Cool;2=Dry",
     "statesNote": "BACnet present-value 와의 관계(보정값 msvOffset)",
     "rawColumns": "스키마 필드로 못 올린 원문 칸. 이름=값 을 ; 로 이음",
@@ -126,12 +129,13 @@ def row(m, iface, p, pcols):
     unit = c.get("unitSI") or c.get("unitIP") or ""
     usys = "SI" if c.get("unitSI") else ("IP" if c.get("unitIP") else "")
 
+    rng = c.get("range") or {}
     states = ";".join("%s=%s" % (s.get("code"), s.get("label"))
                       for s in (c.get("states") or []))
     off = bac.get("msvOffset")
     snote = ("표의 코드 + %d = BACnet present-value" % off) if off is not None else ""
 
-    used = {str(x) for x in (no, name, c.get("note"), unit,
+    used = {str(x) for x in (no, name, c.get("note"), unit, rng.get("raw"),
                              c.get("unitSIRaw"), c.get("unitIPRaw"),
                              c.get("readWrite"), bac.get("objectType")) if x}
     used |= {s.get("label") for s in (c.get("states") or [])}
@@ -155,6 +159,9 @@ def row(m, iface, p, pcols):
         "readWrite": c.get("readWrite") or "",
         "unit": unit, "unitRaw": c.get("unitSIRaw") or c.get("unitIPRaw") or "",
         "unitSystem": usys,
+        "range": rng.get("raw", ""),
+        "rangeMin": rng.get("min", "") if rng.get("min") is not None else "",
+        "rangeMax": rng.get("max", "") if rng.get("max") is not None else "",
         "states": states, "statesNote": snote,
         "group": c.get("group") or "", "note": c.get("note") or "",
         "sourceFile": prov.get("sourceFile") or "",
