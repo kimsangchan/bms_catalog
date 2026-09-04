@@ -1235,6 +1235,56 @@ SOURCES = [
         "access": "무로그인",
     },
     {
+        "id": "samsung-dms25-bacnet",
+        "vendor": "Samsung",
+        "kind": "포인트리스트",
+        "note": "삼성 **MIM-B17BN BACnet 게이트웨이 / DMS2.5** 매뉴얼. 현장 DVM 계통의 "
+                "오브젝트 목록이 나올 유일한 경로다 — 이미 받아 둔 "
+                "Samsung_SEC_SpecGuide_KR_2017-03.pdf 는 라인업·용량·COP 만 주는 "
+                "**정격 카탈로그**라 오브젝트가 0건이다(BACnet 1회·Object 0회·Modbus 0회, "
+                "2026-09-04 본문 실측). "
+                "MIM-B17BN 과 MIM-B17BUN 은 같은 장치이고 전원 코드만 북미형으로 다르다. "
+                "두 문서를 함께 받는다. ⚠ **포인트는 18MB 사용설명서가 아니라 1.3MB "
+                "설치설명서에 있다** — 받기 전에 반대로 짐작했다가 열어 보고 뒤집혔다"
+                "(규칙 0: 표를 뽑기 전에 표지·목차를 센다). 본문 실측 2026-09-04 — "
+                "UserManual 192쪽은 Object **0회**·Point List 0회·SNVT 0회로 DMS2.5 "
+                "웹화면 조작 설명서다(포인트가 없다, 다시 열지 마라). InstallGuide "
+                "104쪽은 Object 111회·Point List 25회·SNVT 124회·Instance 21회이고 "
+                "BACnet 포인트 표가 **E-62~73**, LonWorks SNVT 표가 E-88~100 이다. "
+                "BACnet 표는 기기군별로 갈린다 — 실내기(E-62·63) · AHU(E-65·66) · "
+                "Hydro/EHS(E-68·69) · ERV/ERV Plus(E-70) · DVM CHILLER(E-71·72) · "
+                "제어감시(E-73). LG AC Smart 와 같은 짜임이다(판 = 기기군). "
+                "머리글은 Instance Number | Object | Object Type | Object Name | Unit | "
+                "Status value(Inactive · Active · Text-1~Text-5) 다. "
+                "⚠ LG 와 달리 **인스턴스 번호가 표에 있다**. 대신 이름에 자리표시가 "
+                "있다(AC_RoomTemp_xx_xxxxxx) — 그 xx 가 무엇인지는 E-61 의 device ID "
+                "규칙을 함께 읽어야 한다. "
+                "⚠ **이름을 표 인식에서 바로 꺼내면 안 된다** — 밑줄이 조각으로 떨어져 "
+                "'ACRoomTempxxxxxxxx _ _' 로 나온다. 쪽 글자 흐름에서 이름을 다시 "
+                "읽어야 한다(LG 에서 겪은 것과 같은 조판 아티팩트, "
+                "point-schema artifactCleanupFirst). "
+                "⚠ 공식 경로로만 받는다. manualslib·all-guides 같은 제3자 호스트는 쓰지 "
+                "않는다 — 재현이 안 되고 개정판 추적이 끊긴다(aiibook 을 뺀 것과 같은 이유). "
+                "여기 URL 은 삼성 자체 다운로드센터(org.downloadcenter.samsung.com)다. "
+                "⚠ 영국(UNI_UK) 판이다. 한국 판이 따로 있으면 그쪽이 낫다 — 다만 "
+                "BACnet 오브젝트 목록은 지역별로 갈리지 않는 것이 보통이라 우선 이것으로 "
+                "시작하고, 국내 판을 찾으면 대체한다.",
+        "enumerate": "list",
+        "urls": [
+            'https://org.downloadcenter.samsung.com/downloadfile/ContentsFile.aspx?CDSite=UNI_UK&OriginYN=N&ModelType=N&ModelName=MIM-B17BN&CttFileID=7996541&CDCttType=UM&VPath=UM%2F202103%2F20210310164931477%2FSOL_NASA_DMS2_5_BAC_LW_IB_EN_DB68-06098A-12_web.pdf',
+            'https://org.downloadcenter.samsung.com/downloadfile/ContentsFile.aspx?CDSite=UNI_UK&OriginYN=N&ModelType=N&ModelName=MIM-B17BN&CttFileID=9111650&CDCttType=UM&VPath=UM%2F202303%2F20230330094513360%2FDB68-06095A-05_IBIM_NASA_DMS2.5_BACnet_LW_EU_EN_221128-D01.pdf',
+        ],
+        # URL 끝이 'ContentsFile.aspx' 라 원 이름으로는 못 가른다 — URL 전체를 열쇠로 쓴다
+        "rename": {
+            'https://org.downloadcenter.samsung.com/downloadfile/ContentsFile.aspx?CDSite=UNI_UK&OriginYN=N&ModelType=N&ModelName=MIM-B17BN&CttFileID=7996541&CDCttType=UM&VPath=UM%2F202103%2F20210310164931477%2FSOL_NASA_DMS2_5_BAC_LW_IB_EN_DB68-06098A-12_web.pdf':
+                "Samsung_DMS25_BACnet_LonWorks_UserManual_EN_DB68-06098A-12.pdf",
+            'https://org.downloadcenter.samsung.com/downloadfile/ContentsFile.aspx?CDSite=UNI_UK&OriginYN=N&ModelType=N&ModelName=MIM-B17BN&CttFileID=9111650&CDCttType=UM&VPath=UM%2F202303%2F20230330094513360%2FDB68-06095A-05_IBIM_NASA_DMS2.5_BACnet_LW_EU_EN_221128-D01.pdf':
+                "Samsung_DMS25_BACnet_LonWorks_InstallGuide_EN_DB68-06095A-05.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+    },
+    {
         "id": "ls-electric-h100",
         "vendor": "LS ELECTRIC",
         "kind": "인터페이스·레지스터",
