@@ -52,7 +52,17 @@
     {
      "common": {
       "name": "StartStopCommand_XXX",
-      "note": "ON/OFF (Setting)"
+      "note": "ON/OFF (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Start"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -67,7 +77,9 @@
        "Point No.": "1",
        "Object Type": "BO",
        "Object Name": "StartStopCommand_ XXX",
-       "Control/monitoring": "ON/OFF (Setting)"
+       "Control/monitoring": "ON/OFF (Setting)",
+       "Text-0": "Stop",
+       "Text-1": "Start"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -79,7 +91,17 @@
     {
      "common": {
       "name": "StartStopStatus_XXX",
-      "note": "ON/OFF (Status)"
+      "note": "ON/OFF (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -94,7 +116,9 @@
        "Point No.": "2",
        "Object Type": "BI",
        "Object Name": "StartStopStatus_XXX",
-       "Control/monitoring": "ON/OFF (Status)"
+       "Control/monitoring": "ON/OFF (Status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -106,7 +130,17 @@
     {
      "common": {
       "name": "LockCommand_XXX",
-      "note": "Lock (Setting)"
+      "note": "Lock (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -121,7 +155,9 @@
        "Point No.": "3",
        "Object Type": "BO",
        "Object Name": "LockCommand_XXX",
-       "Control/monitoring": "Lock (Setting)"
+       "Control/monitoring": "Lock (Setting)",
+       "Text-0": "Permit",
+       "Text-1": "Prohibit"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -133,7 +169,17 @@
     {
      "common": {
       "name": "LockStatus_XXX",
-      "note": "Lock (Status)"
+      "note": "Lock (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -148,7 +194,9 @@
        "Point No.": "4",
        "Object Type": "BI",
        "Object Name": "LockStatus_XXX",
-       "Control/monitoring": "Lock (Status)"
+       "Control/monitoring": "Lock (Status)",
+       "Text-0": "Permit",
+       "Text-1": "Prohibit"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -160,7 +208,17 @@
     {
      "common": {
       "name": "Filter Sign_XXX",
-      "note": "Filter Sign"
+      "note": "Filter Sign",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -175,7 +233,9 @@
        "Point No.": "5",
        "Object Type": "BI",
        "Object Name": "Filter Sign_XXX",
-       "Control/monitoring": "Filter Sign"
+       "Control/monitoring": "Filter Sign",
+       "Text-0": "Off",
+       "Text-1": "On"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -187,7 +247,13 @@
     {
      "common": {
       "name": "Filter Sign Reset_XXX",
-      "note": "Filter Sign Reset"
+      "note": "Filter Sign Reset",
+      "states": [
+       {
+        "code": "1",
+        "label": "Reset"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -202,7 +268,8 @@
        "Point No.": "6",
        "Object Type": "BV",
        "Object Name": "Filter Sign Reset_ XXX",
-       "Control/monitoring": "Filter Sign Reset"
+       "Control/monitoring": "Filter Sign Reset",
+       "Text-1": "Reset"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -214,11 +281,34 @@
     {
      "common": {
       "name": "ModeCommand_XXX",
-      "note": "Operation Mode (Setting)"
+      "note": "Operation Mode (Setting)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Dry"
+       },
+       {
+        "code": "3",
+        "label": "Fan"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       },
+       {
+        "code": "5",
+        "label": "Heat"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MO"
+       "objectType": "MO",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -229,7 +319,12 @@
        "Point No.": "7",
        "Object Type": "MO",
        "Object Name": "ModeCommand_XXX",
-       "Control/monitoring": "Operation Mode (Setting)"
+       "Control/monitoring": "Operation Mode (Setting)",
+       "Text-1": "Cool",
+       "Text-2": "Dry",
+       "Text-3": "Fan",
+       "Text-4": "Auto",
+       "Text-5": "Heat"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -241,11 +336,34 @@
     {
      "common": {
       "name": "ModeStatus_XXX",
-      "note": "Operation Mode (Status)"
+      "note": "Operation Mode (Status)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Dry"
+       },
+       {
+        "code": "3",
+        "label": "Fan"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       },
+       {
+        "code": "5",
+        "label": "Heat"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MI"
+       "objectType": "MI",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -256,7 +374,12 @@
        "Point No.": "8",
        "Object Type": "MI",
        "Object Name": "ModeStatus_XXX",
-       "Control/monitoring": "Operation Mode (Status)"
+       "Control/monitoring": "Operation Mode (Status)",
+       "Text-1": "Cool",
+       "Text-2": "Dry",
+       "Text-3": "Fan",
+       "Text-4": "Auto",
+       "Text-5": "Heat"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -268,7 +391,17 @@
     {
      "common": {
       "name": "SwingCommand_XXX",
-      "note": "Swing (Setting)"
+      "note": "Swing (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -283,7 +416,9 @@
        "Point No.": "9",
        "Object Type": "BO",
        "Object Name": "SwingCommand_ XXX",
-       "Control/monitoring": "Swing (Setting)"
+       "Control/monitoring": "Swing (Setting)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -295,7 +430,17 @@
     {
      "common": {
       "name": "SwingStatus_XXX",
-      "note": "Swing (Status)"
+      "note": "Swing (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -310,7 +455,9 @@
        "Point No.": "10",
        "Object Type": "BI",
        "Object Name": "SwingStatus_XXX",
-       "Control/monitoring": "Swing (Status)"
+       "Control/monitoring": "Swing (Status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -322,11 +469,30 @@
     {
      "common": {
       "name": "FanSpeedCommand_XXX",
-      "note": "Fan Speed (Setting)"
+      "note": "Fan Speed (Setting)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Low"
+       },
+       {
+        "code": "2",
+        "label": "Middle"
+       },
+       {
+        "code": "3",
+        "label": "High"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MO"
+       "objectType": "MO",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -337,7 +503,11 @@
        "Point No.": "11",
        "Object Type": "MO",
        "Object Name": "FanSpeedCommand_ XXX",
-       "Control/monitoring": "Fan Speed (Setting)"
+       "Control/monitoring": "Fan Speed (Setting)",
+       "Text-1": "Low",
+       "Text-2": "Middle",
+       "Text-3": "High",
+       "Text-4": "Auto"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -349,11 +519,30 @@
     {
      "common": {
       "name": "FanSpeedStatus_XXX",
-      "note": "Fan Speed (Status)"
+      "note": "Fan Speed (Status)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Low"
+       },
+       {
+        "code": "2",
+        "label": "Middle"
+       },
+       {
+        "code": "3",
+        "label": "High"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MI"
+       "objectType": "MI",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -364,7 +553,11 @@
        "Point No.": "12",
        "Object Type": "MI",
        "Object Name": "FanSpeedStatus_ XXX",
-       "Control/monitoring": "Fan Speed (Status)"
+       "Control/monitoring": "Fan Speed (Status)",
+       "Text-1": "Low",
+       "Text-2": "Middle",
+       "Text-3": "High",
+       "Text-4": "Auto"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -376,7 +569,9 @@
     {
      "common": {
       "name": "SetRoomTemp_XXX",
-      "note": "Set Room Temperature"
+      "note": "Set Room Temperature",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -391,7 +586,8 @@
        "Point No.": "13",
        "Object Type": "AV",
        "Object Name": "SetRoomTemp_XXX",
-       "Control/monitoring": "Set Room Temperature"
+       "Control/monitoring": "Set Room Temperature",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -403,7 +599,9 @@
     {
      "common": {
       "name": "RoomTemp_XXX",
-      "note": "Room Temperature"
+      "note": "Room Temperature",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -418,7 +616,8 @@
        "Point No.": "14",
        "Object Type": "AI",
        "Object Name": "RoomTemp_XXX",
-       "Control/monitoring": "Room Temperature"
+       "Control/monitoring": "Room Temperature",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -430,7 +629,17 @@
     {
      "common": {
       "name": "Alarm_XXX",
-      "note": "Alarm"
+      "note": "Alarm",
+      "states": [
+       {
+        "code": "0",
+        "label": "Normal"
+       },
+       {
+        "code": "1",
+        "label": "Abnormal"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -445,7 +654,9 @@
        "Point No.": "15",
        "Object Type": "BI",
        "Object Name": "Alarm_XXX",
-       "Control/monitoring": "Alarm"
+       "Control/monitoring": "Alarm",
+       "Text-0": "Normal",
+       "Text-1": "Abnormal"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -457,7 +668,13 @@
     {
      "common": {
       "name": "MalfunctionCode_XXX",
-      "note": "Error Code"
+      "note": "Error Code",
+      "states": [
+       {
+        "code": "5",
+        "label": "Reference LG Original Error Code"
+       }
+      ]
      },
      "blocks": {},
      "provenance": {
@@ -468,7 +685,8 @@
        "Point No.": "16",
        "Object Type": "",
        "Object Name": "MalfunctionCode_XXX",
-       "Control/monitoring": "Error Code"
+       "Control/monitoring": "Error Code",
+       "Text-5": "Reference LG Original Error Code"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -480,7 +698,9 @@
     {
      "common": {
       "name": "SetTempStatus_XXX",
-      "note": "Set Temperature Status"
+      "note": "Set Temperature Status",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -495,7 +715,8 @@
        "Point No.": "19",
        "Object Type": "AI",
        "Object Name": "SetTempStatus_XXX",
-       "Control/monitoring": "Set Temperature Status"
+       "Control/monitoring": "Set Temperature Status",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -522,10 +743,12 @@
        "Point No.": "20",
        "Object Type": "AI",
        "Object Name": "AccumPowerStatus_XXX",
-       "Control/monitoring": "Power Distribution"
+       "Control/monitoring": "Power Distribution",
+       "Unit": "Wattage values (Unit : 100Watt)"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('Wattage values (Unit : 100Watt)'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "indoor-unit"
@@ -534,7 +757,9 @@
     {
      "common": {
       "name": "SetUpperTempCommand_XXX",
-      "note": "Set Upper Temperature Setting"
+      "note": "Set Upper Temperature Setting",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -549,7 +774,8 @@
        "Point No.": "27",
        "Object Type": "AV",
        "Object Name": "SetUpperTempCommand_ XXX",
-       "Control/monitoring": "Set Upper Temperature Setting"
+       "Control/monitoring": "Set Upper Temperature Setting",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -561,7 +787,9 @@
     {
      "common": {
       "name": "SetLowerTempCommand_XXX",
-      "note": "Set Lower Temperature Setting"
+      "note": "Set Lower Temperature Setting",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -576,7 +804,8 @@
        "Point No.": "28",
        "Object Type": "AI",
        "Object Name": "SetLowerTempCommand_ XXX",
-       "Control/monitoring": "Set Lower Temperature Setting"
+       "Control/monitoring": "Set Lower Temperature Setting",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -588,7 +817,9 @@
     {
      "common": {
       "name": "SetUpperTempStatus_XXX",
-      "note": "Set Upper Temperature Status"
+      "note": "Set Upper Temperature Status",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -603,7 +834,8 @@
        "Point No.": "29",
        "Object Type": "AI",
        "Object Name": "SetUpperTempStatus_XXX",
-       "Control/monitoring": "Set Upper Temperature Status"
+       "Control/monitoring": "Set Upper Temperature Status",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -615,7 +847,9 @@
     {
      "common": {
       "name": "SetLowerTempStatus_XXX",
-      "note": "Set Lower Temperature Status"
+      "note": "Set Lower Temperature Status",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -630,7 +864,8 @@
        "Point No.": "30",
        "Object Type": "AI",
        "Object Name": "SetLowerTempStatus_XXX",
-       "Control/monitoring": "Set Lower Temperature Status"
+       "Control/monitoring": "Set Lower Temperature Status",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -642,7 +877,17 @@
     {
      "common": {
       "name": "ModeLockCommand_XXX",
-      "note": "Mode Lock Setting"
+      "note": "Mode Lock Setting",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -657,7 +902,9 @@
        "Point No.": "31",
        "Object Type": "BO",
        "Object Name": "ModeLockCommand_XXX",
-       "Control/monitoring": "Mode Lock Setting"
+       "Control/monitoring": "Mode Lock Setting",
+       "Text-0": "Permit",
+       "Text-1": "Prohibit"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -669,7 +916,17 @@
     {
      "common": {
       "name": "ModeLockStatus_XXX",
-      "note": "Mode Lock Status"
+      "note": "Mode Lock Status",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -684,7 +941,9 @@
        "Point No.": "32",
        "Object Type": "BI",
        "Object Name": "ModeLockStatus_XXX",
-       "Control/monitoring": "Mode Lock Status"
+       "Control/monitoring": "Mode Lock Status",
+       "Text-0": "Permit",
+       "Text-1": "Prohibit"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -696,7 +955,17 @@
     {
      "common": {
       "name": "Fan LockCommand_XXX",
-      "note": "Fan Lock Setting"
+      "note": "Fan Lock Setting",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -711,7 +980,9 @@
        "Point No.": "33",
        "Object Type": "BO",
        "Object Name": "Fan LockCommand_XXX",
-       "Control/monitoring": "Fan Lock Setting"
+       "Control/monitoring": "Fan Lock Setting",
+       "Text-0": "Permit",
+       "Text-1": "Prohibit"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -723,7 +994,17 @@
     {
      "common": {
       "name": "FanLockStatus_XXX",
-      "note": "Fan Lock Status"
+      "note": "Fan Lock Status",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -738,7 +1019,9 @@
        "Point No.": "34",
        "Object Type": "BI",
        "Object Name": "FanLockStatus_XXX",
-       "Control/monitoring": "Fan Lock Status"
+       "Control/monitoring": "Fan Lock Status",
+       "Text-0": "Permit",
+       "Text-1": "Prohibit"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -750,7 +1033,17 @@
     {
      "common": {
       "name": "OccupancyCommand_XXX",
-      "note": "Occupancy (Setting)"
+      "note": "Occupancy (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Unoccupied"
+       },
+       {
+        "code": "1",
+        "label": "Occupied"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -765,7 +1058,9 @@
        "Point No.": "35",
        "Object Type": "BO",
        "Object Name": "OccupancyCommand_XXX",
-       "Control/monitoring": "Occupancy (Setting)"
+       "Control/monitoring": "Occupancy (Setting)",
+       "Text-0": "Unoccupied",
+       "Text-1": "Occupied"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -777,7 +1072,17 @@
     {
      "common": {
       "name": "OccupancyStatus_XXX",
-      "note": "Occupancy (Status)"
+      "note": "Occupancy (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Unoccupied"
+       },
+       {
+        "code": "1",
+        "label": "Occupied"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -792,7 +1097,9 @@
        "Point No.": "36",
        "Object Type": "BI",
        "Object Name": "OccupancyStatus_XXX",
-       "Control/monitoring": "Occupancy (Status)"
+       "Control/monitoring": "Occupancy (Status)",
+       "Text-0": "Unoccupied",
+       "Text-1": "Occupied"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -804,7 +1111,9 @@
     {
      "common": {
       "name": "2SetCoolingTempCommand_XXX",
-      "note": "2Set Cooling Set Temperature (Setting)"
+      "note": "2Set Cooling Set Temperature (Setting)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -819,7 +1128,8 @@
        "Point No.": "37",
        "Object Type": "AV",
        "Object Name": "2SetCoolingTempCommand_XXX",
-       "Control/monitoring": "2Set Cooling Set Temperature (Setting)"
+       "Control/monitoring": "2Set Cooling Set Temperature (Setting)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -831,7 +1141,9 @@
     {
      "common": {
       "name": "2SetCoolingTempStatus_XXX",
-      "note": "2Set Cooling Set Temperature (Status)"
+      "note": "2Set Cooling Set Temperature (Status)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -846,7 +1158,8 @@
        "Point No.": "38",
        "Object Type": "AI",
        "Object Name": "2SetCoolingTempStatus_XXX",
-       "Control/monitoring": "2Set Cooling Set Temperature (Status)"
+       "Control/monitoring": "2Set Cooling Set Temperature (Status)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -858,7 +1171,9 @@
     {
      "common": {
       "name": "2SetHeatingTempCommand_XXX",
-      "note": "2Set Heating Set Temperature (Setting)"
+      "note": "2Set Heating Set Temperature (Setting)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -873,7 +1188,8 @@
        "Point No.": "39",
        "Object Type": "AV",
        "Object Name": "2SetHeatingTempCommand_XXX",
-       "Control/monitoring": "2Set Heating Set Temperature (Setting)"
+       "Control/monitoring": "2Set Heating Set Temperature (Setting)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -885,7 +1201,9 @@
     {
      "common": {
       "name": "2SetHeatingTempStatus_XXX",
-      "note": "2Set Heating Set Temperature (Status)"
+      "note": "2Set Heating Set Temperature (Status)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -900,7 +1218,8 @@
        "Point No.": "40",
        "Object Type": "AI",
        "Object Name": "2SetHeatingTempStatus_XXX",
-       "Control/monitoring": "2Set Heating Set Temperature (Status)"
+       "Control/monitoring": "2Set Heating Set Temperature (Status)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -912,7 +1231,9 @@
     {
      "common": {
       "name": "2SetCoolingUpperLimitCommand_XXX",
-      "note": "2Set Cooling Upper Temperature (Setting)"
+      "note": "2Set Cooling Upper Temperature (Setting)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -927,7 +1248,8 @@
        "Point No.": "41",
        "Object Type": "AV",
        "Object Name": "2SetCoolingUpperLimitCommand_ XXX",
-       "Control/monitoring": "2Set Cooling Upper Temperature (Setting)"
+       "Control/monitoring": "2Set Cooling Upper Temperature (Setting)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -939,7 +1261,9 @@
     {
      "common": {
       "name": "2SetCoolingUpperLimitStatus_XXX",
-      "note": "2Set Cooling Upper Temperature (Status)"
+      "note": "2Set Cooling Upper Temperature (Status)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -954,7 +1278,8 @@
        "Point No.": "42",
        "Object Type": "AI",
        "Object Name": "2SetCoolingUpperLimitStatus_XXX",
-       "Control/monitoring": "2Set Cooling Upper Temperature (Status)"
+       "Control/monitoring": "2Set Cooling Upper Temperature (Status)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -966,7 +1291,9 @@
     {
      "common": {
       "name": "2SetHeatingUpperLimitCommand_XXX",
-      "note": "2Set Heating Upper Temperature (Setting)"
+      "note": "2Set Heating Upper Temperature (Setting)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -981,7 +1308,8 @@
        "Point No.": "43",
        "Object Type": "AV",
        "Object Name": "2SetHeatingUpperLimitCommand_ XXX",
-       "Control/monitoring": "2Set Heating Upper Temperature (Setting)"
+       "Control/monitoring": "2Set Heating Upper Temperature (Setting)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -993,7 +1321,9 @@
     {
      "common": {
       "name": "2SetHeatingUpperLimitStatus_XXX",
-      "note": "2Set Heating Upper Temperature (Status)"
+      "note": "2Set Heating Upper Temperature (Status)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -1008,7 +1338,8 @@
        "Point No.": "44",
        "Object Type": "AI",
        "Object Name": "2SetHeatingUpperLimitStatus_XXX",
-       "Control/monitoring": "2Set Heating Upper Temperature (Status)"
+       "Control/monitoring": "2Set Heating Upper Temperature (Status)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1020,7 +1351,9 @@
     {
      "common": {
       "name": "2SetCoolingLowerLimitCommand_XXX",
-      "note": "2Set Cooling Lower Temperature (Setting)"
+      "note": "2Set Cooling Lower Temperature (Setting)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -1035,7 +1368,8 @@
        "Point No.": "45",
        "Object Type": "AV",
        "Object Name": "2SetCoolingLowerLimitCommand_ XXX",
-       "Control/monitoring": "2Set Cooling Lower Temperature (Setting)"
+       "Control/monitoring": "2Set Cooling Lower Temperature (Setting)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1047,7 +1381,9 @@
     {
      "common": {
       "name": "2SetCoolingLowerLimitStatus_XXX",
-      "note": "2Set Cooling Lower Temperature (Status)"
+      "note": "2Set Cooling Lower Temperature (Status)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -1062,7 +1398,8 @@
        "Point No.": "46",
        "Object Type": "AI",
        "Object Name": "2SetCoolingLowerLimitStatus_XXX",
-       "Control/monitoring": "2Set Cooling Lower Temperature (Status)"
+       "Control/monitoring": "2Set Cooling Lower Temperature (Status)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1074,7 +1411,9 @@
     {
      "common": {
       "name": "2SetHeatingLowerLimitCommand_XXX",
-      "note": "2Set Heating Lower Temperature (Setting)"
+      "note": "2Set Heating Lower Temperature (Setting)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -1089,7 +1428,8 @@
        "Point No.": "47",
        "Object Type": "AV",
        "Object Name": "2SetHeatingLowerLimitCommand_ XXX",
-       "Control/monitoring": "2Set Heating Lower Temperature (Setting)"
+       "Control/monitoring": "2Set Heating Lower Temperature (Setting)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1101,7 +1441,9 @@
     {
      "common": {
       "name": "2SetHeatingLowerLimitStatus_XXX",
-      "note": "2Set Heating Lower Temperature (Status)"
+      "note": "2Set Heating Lower Temperature (Status)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -1116,7 +1458,8 @@
        "Point No.": "48",
        "Object Type": "AI",
        "Object Name": "2SetHeatingLowerLimitStatus_XXX",
-       "Control/monitoring": "2Set Heating Lower Temperature (Status)"
+       "Control/monitoring": "2Set Heating Lower Temperature (Status)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1128,7 +1471,17 @@
     {
      "common": {
       "name": "ThermoStatus_XXX",
-      "note": "Thermo Status (Status)"
+      "note": "Thermo Status (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1143,7 +1496,9 @@
        "Point No.": "49",
        "Object Type": "BI",
        "Object Name": "ThermoStatus_XXX",
-       "Control/monitoring": "Thermo Status (Status)"
+       "Control/monitoring": "Thermo Status (Status)",
+       "Text-0": "Off",
+       "Text-1": "On"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1179,7 +1534,17 @@
     {
      "common": {
       "name": "StartStopCommand_XXX",
-      "note": "ON/OFF (Setting)"
+      "note": "ON/OFF (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Start"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1194,7 +1559,9 @@
        "Point No.": "1",
        "Object Type": "BO",
        "Object Name": "StartStopCommand_ XXX",
-       "Control/monitoring": "ON/OFF (Setting)"
+       "Control/monitoring": "ON/OFF (Setting)",
+       "Text-0": "Stop",
+       "Text-1": "Start"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1206,7 +1573,17 @@
     {
      "common": {
       "name": "StartStopStatus_XXX",
-      "note": "ON/OFF (Status)"
+      "note": "ON/OFF (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1221,7 +1598,9 @@
        "Point No.": "2",
        "Object Type": "BI",
        "Object Name": "StartStopStatus_XXX",
-       "Control/monitoring": "ON/OFF (Status)"
+       "Control/monitoring": "ON/OFF (Status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1233,7 +1612,17 @@
     {
      "common": {
       "name": "LockCommand_XXX",
-      "note": "Lock (Setting)"
+      "note": "Lock (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1248,7 +1637,9 @@
        "Point No.": "3",
        "Object Type": "BO",
        "Object Name": "LockCommand_XXX",
-       "Control/monitoring": "Lock (Setting)"
+       "Control/monitoring": "Lock (Setting)",
+       "Text-0": "Permit",
+       "Text-1": "Prohibit"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1260,7 +1651,17 @@
     {
      "common": {
       "name": "LockStatus_XXX",
-      "note": "Lock (Status)"
+      "note": "Lock (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1275,7 +1676,9 @@
        "Point No.": "4",
        "Object Type": "BI",
        "Object Name": "LockStatus_XXX",
-       "Control/monitoring": "Lock (Status)"
+       "Control/monitoring": "Lock (Status)",
+       "Text-0": "Permit",
+       "Text-1": "Prohibit"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1287,7 +1690,17 @@
     {
      "common": {
       "name": "Filter Sign_XXX",
-      "note": "Filter Sign"
+      "note": "Filter Sign",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1302,7 +1715,9 @@
        "Point No.": "5",
        "Object Type": "BI",
        "Object Name": "Filter Sign_XXX",
-       "Control/monitoring": "Filter Sign"
+       "Control/monitoring": "Filter Sign",
+       "Text-0": "Off",
+       "Text-1": "On"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1314,7 +1729,13 @@
     {
      "common": {
       "name": "Filter Sign Reset_XXX",
-      "note": "Filter Sign Reset"
+      "note": "Filter Sign Reset",
+      "states": [
+       {
+        "code": "1",
+        "label": "Reset"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1329,7 +1750,8 @@
        "Point No.": "6",
        "Object Type": "BV",
        "Object Name": "Filter Sign Reset_ XXX",
-       "Control/monitoring": "Filter Sign Reset"
+       "Control/monitoring": "Filter Sign Reset",
+       "Text-1": "Reset"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1341,11 +1763,26 @@
     {
      "common": {
       "name": "ModeCommand_XXX",
-      "note": "Operation Mode (Setting)"
+      "note": "Operation Mode (Setting)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Heat Exchange"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Normal"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MO"
+       "objectType": "MO",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -1356,7 +1793,10 @@
        "Point No.": "7",
        "Object Type": "MO",
        "Object Name": "ModeCommand_XXX",
-       "Control/monitoring": "Operation Mode (Setting)"
+       "Control/monitoring": "Operation Mode (Setting)",
+       "Text-1": "Heat Exchange",
+       "Text-2": "Auto",
+       "Text-3": "Normal"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1368,11 +1808,26 @@
     {
      "common": {
       "name": "ModeStatus_XXX",
-      "note": "Operation Mode (Status)"
+      "note": "Operation Mode (Status)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Heat Exchange"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Normal"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MI"
+       "objectType": "MI",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -1383,7 +1838,10 @@
        "Point No.": "8",
        "Object Type": "MI",
        "Object Name": "ModeStatus_XXX",
-       "Control/monitoring": "Operation Mode (Status)"
+       "Control/monitoring": "Operation Mode (Status)",
+       "Text-1": "Heat Exchange",
+       "Text-2": "Auto",
+       "Text-3": "Normal"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1395,11 +1853,30 @@
     {
      "common": {
       "name": "FanSpeedCommand_XXX",
-      "note": "Fan Speed (Setting)"
+      "note": "Fan Speed (Setting)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Low"
+       },
+       {
+        "code": "2",
+        "label": "High"
+       },
+       {
+        "code": "3",
+        "label": "Super High"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MO"
+       "objectType": "MO",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -1410,7 +1887,11 @@
        "Point No.": "11",
        "Object Type": "MO",
        "Object Name": "FanSpeedCommand_ XXX",
-       "Control/monitoring": "Fan Speed (Setting)"
+       "Control/monitoring": "Fan Speed (Setting)",
+       "Text-1": "Low",
+       "Text-2": "High",
+       "Text-3": "Super High",
+       "Text-4": "Auto"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1422,11 +1903,30 @@
     {
      "common": {
       "name": "FanSpeedStatus_XXX",
-      "note": "Fan Speed (Status)"
+      "note": "Fan Speed (Status)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Low"
+       },
+       {
+        "code": "2",
+        "label": "High"
+       },
+       {
+        "code": "3",
+        "label": "Super High"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MI"
+       "objectType": "MI",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -1437,7 +1937,11 @@
        "Point No.": "12",
        "Object Type": "MI",
        "Object Name": "FanSpeedStatus_ XXX",
-       "Control/monitoring": "Fan Speed (Status)"
+       "Control/monitoring": "Fan Speed (Status)",
+       "Text-1": "Low",
+       "Text-2": "High",
+       "Text-3": "Super High",
+       "Text-4": "Auto"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1449,7 +1953,17 @@
     {
      "common": {
       "name": "Alarm_XXX",
-      "note": "Alarm"
+      "note": "Alarm",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1464,7 +1978,9 @@
        "Point No.": "15",
        "Object Type": "BI",
        "Object Name": "Alarm_XXX",
-       "Control/monitoring": "Alarm"
+       "Control/monitoring": "Alarm",
+       "Text-0": "Off",
+       "Text-1": "On"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1491,10 +2007,12 @@
        "Point No.": "16",
        "Object Type": "AI",
        "Object Name": "MalfunctionCode_XXX",
-       "Control/monitoring": "Error Code"
+       "Control/monitoring": "Error Code",
+       "Unit": "Reference LG Original Error Code"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('Reference LG Original Error Code'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ventilation"
@@ -1503,11 +2021,26 @@
     {
      "common": {
       "name": "UserModeCommand_XXX",
-      "note": "User Mode(Setting)"
+      "note": "User Mode(Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Quick Fresh"
+       },
+       {
+        "code": "1",
+        "label": "Energy Saving"
+       },
+       {
+        "code": "2",
+        "label": "Heater"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MO"
+       "objectType": "MO",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -1518,7 +2051,10 @@
        "Point No.": "17",
        "Object Type": "MO",
        "Object Name": "UserModeCommand_ XXX",
-       "Control/monitoring": "User Mode(Setting)"
+       "Control/monitoring": "User Mode(Setting)",
+       "Text-0": "Quick Fresh",
+       "Text-1": "Energy Saving",
+       "Text-2": "Heater"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1530,11 +2066,26 @@
     {
      "common": {
       "name": "UserModeStatus_XXX",
-      "note": "User Mode(Status)"
+      "note": "User Mode(Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Quick Fresh"
+       },
+       {
+        "code": "1",
+        "label": "Energy Saving"
+       },
+       {
+        "code": "2",
+        "label": "Heater"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MI"
+       "objectType": "MI",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -1545,7 +2096,10 @@
        "Point No.": "18",
        "Object Type": "MI",
        "Object Name": "UserModeStatus_XXX",
-       "Control/monitoring": "User Mode(Status)"
+       "Control/monitoring": "User Mode(Status)",
+       "Text-0": "Quick Fresh",
+       "Text-1": "Energy Saving",
+       "Text-2": "Heater"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1557,11 +2111,26 @@
     {
      "common": {
       "name": "HrvModeCommand_XXX",
-      "note": "AC Operation Mode (setting)"
+      "note": "AC Operation Mode (setting)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Heat"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MO"
+       "objectType": "MO",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -1572,7 +2141,10 @@
        "Point No.": "21",
        "Object Type": "MO",
        "Object Name": "HrvModeCommand_XXX",
-       "Control/monitoring": "AC Operation Mode (setting)"
+       "Control/monitoring": "AC Operation Mode (setting)",
+       "Text-1": "Cool",
+       "Text-2": "Auto",
+       "Text-3": "Heat"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1584,11 +2156,26 @@
     {
      "common": {
       "name": "HrvModeStatus_XXX",
-      "note": "AC Operation Mode (status)"
+      "note": "AC Operation Mode (status)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Heat"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MI"
+       "objectType": "MI",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -1599,7 +2186,10 @@
        "Point No.": "22",
        "Object Type": "MI",
        "Object Name": "HrvModeStatus_XXX",
-       "Control/monitoring": "AC Operation Mode (status)"
+       "Control/monitoring": "AC Operation Mode (status)",
+       "Text-1": "Cool",
+       "Text-2": "Auto",
+       "Text-3": "Heat"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1611,7 +2201,17 @@
     {
      "common": {
       "name": "HrvStartStopCommand_XXX",
-      "note": "AC ON/OFF (setting)"
+      "note": "AC ON/OFF (setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1626,7 +2226,9 @@
        "Point No.": "23",
        "Object Type": "BO",
        "Object Name": "HrvStartStopCommand_ XXX",
-       "Control/monitoring": "AC ON/OFF (setting)"
+       "Control/monitoring": "AC ON/OFF (setting)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1638,7 +2240,17 @@
     {
      "common": {
       "name": "HrvStartStopStatus_XXX",
-      "note": "AC ON/OFF (status)"
+      "note": "AC ON/OFF (status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1653,7 +2265,9 @@
        "Point No.": "24",
        "Object Type": "BI",
        "Object Name": "HrvStartStopStatus_XXX",
-       "Control/monitoring": "AC ON/OFF (status)"
+       "Control/monitoring": "AC ON/OFF (status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1665,7 +2279,17 @@
     {
      "common": {
       "name": "HrvHumidifyCommand_XXX",
-      "note": "AC Humidify (setting)"
+      "note": "AC Humidify (setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1680,7 +2304,9 @@
        "Point No.": "25",
        "Object Type": "BO",
        "Object Name": "HrvHumidifyCommand_ XXX",
-       "Control/monitoring": "AC Humidify (setting)"
+       "Control/monitoring": "AC Humidify (setting)",
+       "Text-0": "Off",
+       "Text-1": "On"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1692,7 +2318,17 @@
     {
      "common": {
       "name": "HrvHumidifyStatus_XXX",
-      "note": "AC Humidify (status)"
+      "note": "AC Humidify (status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1707,7 +2343,9 @@
        "Point No.": "26",
        "Object Type": "BI",
        "Object Name": "HrvHumidifyStatus_XXX",
-       "Control/monitoring": "AC Humidify (status)"
+       "Control/monitoring": "AC Humidify (status)",
+       "Text-0": "Off",
+       "Text-1": "On"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1745,7 +2383,17 @@
    "points": [
     {
      "common": {
-      "name": "StartStopCommand_XXX"
+      "name": "StartStopCommand_XXX",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1760,7 +2408,9 @@
        "Point No.": "1",
        "Object Type": "BO",
        "Object Name": "StartStopCommand_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1771,7 +2421,17 @@
     },
     {
      "common": {
-      "name": "StartStopStatus_XXX"
+      "name": "StartStopStatus_XXX",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1786,7 +2446,9 @@
        "Point No.": "2",
        "Object Type": "BI",
        "Object Name": "StartStopStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1797,7 +2459,17 @@
     },
     {
      "common": {
-      "name": "LockCommand_XXX"
+      "name": "LockCommand_XXX",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1812,7 +2484,9 @@
        "Point No.": "3",
        "Object Type": "BO",
        "Object Name": "LockCommand_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Text-0": "Permit",
+       "Text-1": "Prohibit"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1823,7 +2497,17 @@
     },
     {
      "common": {
-      "name": "LockStatus_XXX"
+      "name": "LockStatus_XXX",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1838,7 +2522,9 @@
        "Point No.": "4",
        "Object Type": "BI",
        "Object Name": "LockStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Text-0": "Permit",
+       "Text-1": "Prohibit"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1849,7 +2535,17 @@
     },
     {
      "common": {
-      "name": "Filter Sign_XXX"
+      "name": "Filter Sign_XXX",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1864,7 +2560,9 @@
        "Point No.": "5",
        "Object Type": "BI",
        "Object Name": "Filter Sign_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Text-0": "Off",
+       "Text-1": "On"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1875,7 +2573,13 @@
     },
     {
      "common": {
-      "name": "Filter Sign Reset_XXX"
+      "name": "Filter Sign Reset_XXX",
+      "states": [
+       {
+        "code": "1",
+        "label": "Reset"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -1890,7 +2594,8 @@
        "Point No.": "6",
        "Object Type": "BV",
        "Object Name": "Filter Sign Reset_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Text-1": "Reset"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1901,11 +2606,30 @@
     },
     {
      "common": {
-      "name": "ModeCommand_XXX"
+      "name": "ModeCommand_XXX",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Dry"
+       },
+       {
+        "code": "3",
+        "label": "Fan"
+       },
+       {
+        "code": "4",
+        "label": "Heat"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MO"
+       "objectType": "MO",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -1916,7 +2640,11 @@
        "Point No.": "7",
        "Object Type": "MO",
        "Object Name": "ModeCommand_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Text-1": "Cool",
+       "Text-2": "Dry",
+       "Text-3": "Fan",
+       "Text-4": "Heat"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1927,11 +2655,30 @@
     },
     {
      "common": {
-      "name": "ModeStatus_XXX"
+      "name": "ModeStatus_XXX",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Dry"
+       },
+       {
+        "code": "3",
+        "label": "Fan"
+       },
+       {
+        "code": "4",
+        "label": "Heat"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MI"
+       "objectType": "MI",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -1942,7 +2689,11 @@
        "Point No.": "8",
        "Object Type": "MI",
        "Object Name": "ModeStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Text-1": "Cool",
+       "Text-2": "Dry",
+       "Text-3": "Fan",
+       "Text-4": "Heat"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1953,7 +2704,9 @@
     },
     {
      "common": {
-      "name": "SetRoomTemp_XXX"
+      "name": "SetRoomTemp_XXX",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -1968,7 +2721,8 @@
        "Point No.": "13",
        "Object Type": "AV",
        "Object Name": "SetRoomTemp_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -1979,7 +2733,9 @@
     },
     {
      "common": {
-      "name": "RoomTemp_XXX"
+      "name": "RoomTemp_XXX",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -1994,7 +2750,8 @@
        "Point No.": "14",
        "Object Type": "AI",
        "Object Name": "RoomTemp_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2005,7 +2762,17 @@
     },
     {
      "common": {
-      "name": "Alarm_XXX"
+      "name": "Alarm_XXX",
+      "states": [
+       {
+        "code": "0",
+        "label": "Normal"
+       },
+       {
+        "code": "1",
+        "label": "Abnormal"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -2020,7 +2787,9 @@
        "Point No.": "15",
        "Object Type": "BI",
        "Object Name": "Alarm_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Text-0": "Normal",
+       "Text-1": "Abnormal"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2046,10 +2815,12 @@
        "Point No.": "16",
        "Object Type": "AI",
        "Object Name": "MalfunctionCode_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "Reference LG Original Error Code"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('Reference LG Original Error Code'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2058,7 +2829,9 @@
     {
      "common": {
       "name": "SetTempStatus_XXX",
-      "note": "Set Temperature (Status)"
+      "note": "Set Temperature (Status)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -2073,7 +2846,8 @@
        "Point No.": "19",
        "Object Type": "AI",
        "Object Name": "SetTempStatus_XXX",
-       "Control/monitoring": "Set Temperature (Status)"
+       "Control/monitoring": "Set Temperature (Status)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2085,7 +2859,17 @@
     {
      "common": {
       "name": "EmergencySensorCommand_XXX",
-      "note": "Emergency Sensor (Setting)"
+      "note": "Emergency Sensor (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -2100,7 +2884,9 @@
        "Point No.": "20",
        "Object Type": "BO",
        "Object Name": "EmergencySensorCommand_ XXX",
-       "Control/monitoring": "Emergency Sensor (Setting)"
+       "Control/monitoring": "Emergency Sensor (Setting)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2112,7 +2898,17 @@
     {
      "common": {
       "name": "EmergencySensorStatus_XXX",
-      "note": "Emergency Sensor (Status)"
+      "note": "Emergency Sensor (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -2127,7 +2923,9 @@
        "Point No.": "21",
        "Object Type": "BI",
        "Object Name": "EmergencySensorStatus_ XXX",
-       "Control/monitoring": "Emergency Sensor (Status)"
+       "Control/monitoring": "Emergency Sensor (Status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2154,10 +2952,12 @@
        "Point No.": "22",
        "Object Type": "AV",
        "Object Name": "SetHumidifyCommand_XXX",
-       "Control/monitoring": "Set Humidify (Setting)"
+       "Control/monitoring": "Set Humidify (Setting)",
+       "Unit": "40~60"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('40~60'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2181,10 +2981,12 @@
        "Point No.": "23",
        "Object Type": "AI",
        "Object Name": "SetHumidifyStatus_XXX",
-       "Control/monitoring": "Set Humidify (Status)"
+       "Control/monitoring": "Set Humidify (Status)",
+       "Unit": "40~60"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('40~60'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2193,7 +2995,17 @@
     {
      "common": {
       "name": "HumidifyCommand_XXX",
-      "note": "Humidify (Setting)"
+      "note": "Humidify (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -2208,7 +3020,9 @@
        "Point No.": "24",
        "Object Type": "BO",
        "Object Name": "HumidifyCommand_XXX",
-       "Control/monitoring": "Humidify (Setting)"
+       "Control/monitoring": "Humidify (Setting)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2220,7 +3034,17 @@
     {
      "common": {
       "name": "HumidifyStatus_XXX",
-      "note": "Humidify (Status)"
+      "note": "Humidify (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -2235,7 +3059,9 @@
        "Point No.": "25",
        "Object Type": "BI",
        "Object Name": "HumidifyStatus_XXX",
-       "Control/monitoring": "Humidify (Status)"
+       "Control/monitoring": "Humidify (Status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2247,7 +3073,17 @@
     {
      "common": {
       "name": "AutoVentilCommand_XXX",
-      "note": "Auto Ventilation (Setting)"
+      "note": "Auto Ventilation (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -2262,7 +3098,9 @@
        "Point No.": "26",
        "Object Type": "BO",
        "Object Name": "AutoVentilCommand_XXX",
-       "Control/monitoring": "Auto Ventilation (Setting)"
+       "Control/monitoring": "Auto Ventilation (Setting)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2274,7 +3112,17 @@
     {
      "common": {
       "name": "AutoVentilStatus_XXX",
-      "note": "Auto Ventilation (Status)"
+      "note": "Auto Ventilation (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -2289,7 +3137,9 @@
        "Point No.": "27",
        "Object Type": "BI",
        "Object Name": "AutoVentilStatus_XXX",
-       "Control/monitoring": "Auto Ventilation (Status)"
+       "Control/monitoring": "Auto Ventilation (Status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2316,10 +3166,12 @@
        "Point No.": "28",
        "Object Type": "AI",
        "Object Name": "SupplyTempStatus_XXX",
-       "Control/monitoring": "Supply Temperature (Status)"
+       "Control/monitoring": "Supply Temperature (Status)",
+       "Unit": "-127~127"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('-127~127'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2343,10 +3195,12 @@
        "Point No.": "29",
        "Object Type": "AI",
        "Object Name": "OutdoorTempStatus_XXX",
-       "Control/monitoring": "Outdoor Temperature (Status)"
+       "Control/monitoring": "Outdoor Temperature (Status)",
+       "Unit": "-127~127"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('-127~127'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2370,10 +3224,12 @@
        "Point No.": "30",
        "Object Type": "AI",
        "Object Name": "MixTempStatus_XXX",
-       "Control/monitoring": "Mix Temperature (Status)"
+       "Control/monitoring": "Mix Temperature (Status)",
+       "Unit": "-127~127"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('-127~127'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2397,10 +3253,12 @@
        "Point No.": "31",
        "Object Type": "AI",
        "Object Name": "SuppyHumidifyStatus_XXX",
-       "Control/monitoring": "Supply Humidity (Status)"
+       "Control/monitoring": "Supply Humidity (Status)",
+       "Unit": "30~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('30~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2424,10 +3282,12 @@
        "Point No.": "32",
        "Object Type": "AI",
        "Object Name": "OutdoorHumidifyStatus_XXX",
-       "Control/monitoring": "Outdoor Humidity (Status)"
+       "Control/monitoring": "Outdoor Humidity (Status)",
+       "Unit": "30~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('30~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2451,10 +3311,12 @@
        "Point No.": "33",
        "Object Type": "AI",
        "Object Name": "VentilHumidifyStatus_XXX",
-       "Control/monitoring": "Ventilation Humidity (Status)"
+       "Control/monitoring": "Ventilation Humidity (Status)",
+       "Unit": "30~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('30~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2478,10 +3340,12 @@
        "Point No.": "34",
        "Object Type": "AI",
        "Object Name": "CO2ValueStatus_XXX",
-       "Control/monitoring": "CO2 Value (Status)"
+       "Control/monitoring": "CO2 Value (Status)",
+       "Unit": "0~255 (Real Value = Value*10, Example : In case Value is 20, CO2 is 20*10=200ppm)"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~255 (Real Value = Value*10, Example : In case Value is 20, CO2 is 20*10=200ppm)'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2490,7 +3354,17 @@
     {
      "common": {
       "name": "HumidifyUnitStatus_XXX",
-      "note": "Humidify Unit (Status)"
+      "note": "Humidify Unit (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -2505,7 +3379,9 @@
        "Point No.": "35",
        "Object Type": "BI",
        "Object Name": "HumidifyUnitStatus_XXX",
-       "Control/monitoring": "Humidify Unit (Status)"
+       "Control/monitoring": "Humidify Unit (Status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2517,7 +3393,17 @@
     {
      "common": {
       "name": "HeaterUnitStatus_XXX",
-      "note": "Heater Unit (Status)"
+      "note": "Heater Unit (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -2532,7 +3418,9 @@
        "Point No.": "36",
        "Object Type": "BI",
        "Object Name": "HeaterUnitStatus_XXX",
-       "Control/monitoring": "Heater Unit (Status)"
+       "Control/monitoring": "Heater Unit (Status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2543,7 +3431,17 @@
     },
     {
      "common": {
-      "name": "VentilFANStatus_XXX"
+      "name": "VentilFANStatus_XXX",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -2558,7 +3456,9 @@
        "Point No.": "37",
        "Object Type": "BI",
        "Object Name": "VentilFANStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2569,7 +3469,17 @@
     },
     {
      "common": {
-      "name": "SupplyFANStatus_XXX"
+      "name": "SupplyFANStatus_XXX",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -2584,7 +3494,9 @@
        "Point No.": "38",
        "Object Type": "BI",
        "Object Name": "SupplyFANStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -2610,10 +3522,12 @@
        "Point No.": "39",
        "Object Type": "AI",
        "Object Name": "CurOADamperStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2636,10 +3550,12 @@
        "Point No.": "40",
        "Object Type": "AI",
        "Object Name": "CurEADamperStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2662,10 +3578,12 @@
        "Point No.": "41",
        "Object Type": "AI",
        "Object Name": "CurMixDamperStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2688,10 +3606,12 @@
        "Point No.": "42",
        "Object Type": "AV",
        "Object Name": "OADamperCoolCommand_ XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2714,10 +3634,12 @@
        "Point No.": "43",
        "Object Type": "AI",
        "Object Name": "OADamperCoolStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2740,10 +3662,12 @@
        "Point No.": "44",
        "Object Type": "AV",
        "Object Name": "EADamperCoolCommand_ XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2766,10 +3690,12 @@
        "Point No.": "45",
        "Object Type": "AI",
        "Object Name": "EADamperCoolStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2792,10 +3718,12 @@
        "Point No.": "46",
        "Object Type": "AV",
        "Object Name": "MixDamperCoolCommand_ XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2818,10 +3746,12 @@
        "Point No.": "47",
        "Object Type": "AI",
        "Object Name": "MixDamperCoolStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2844,10 +3774,12 @@
        "Point No.": "48",
        "Object Type": "AV",
        "Object Name": "OADamperHeatCommand_ XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2870,10 +3802,12 @@
        "Point No.": "49",
        "Object Type": "AI",
        "Object Name": "OADamperHeatStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2896,10 +3830,12 @@
        "Point No.": "50",
        "Object Type": "AV",
        "Object Name": "EADamperHeatCommand_ XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2922,10 +3858,12 @@
        "Point No.": "51",
        "Object Type": "AI",
        "Object Name": "EADamperHeatStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2948,10 +3886,12 @@
        "Point No.": "52",
        "Object Type": "AV",
        "Object Name": "MixDamperHeatCommand_ XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -2974,10 +3914,12 @@
        "Point No.": "53",
        "Object Type": "AI",
        "Object Name": "MixDamperHeatStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -3000,10 +3942,12 @@
        "Point No.": "54",
        "Object Type": "AV",
        "Object Name": "OADamperFANCommand_ XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -3026,10 +3970,12 @@
        "Point No.": "55",
        "Object Type": "AI",
        "Object Name": "OADamperFANStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -3052,10 +3998,12 @@
        "Point No.": "56",
        "Object Type": "AV",
        "Object Name": "EADamperFANCommand_ XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -3078,10 +4026,12 @@
        "Point No.": "57",
        "Object Type": "AI",
        "Object Name": "EADamperFANStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -3104,10 +4054,12 @@
        "Point No.": "58",
        "Object Type": "AV",
        "Object Name": "MixDamperFANCommand_ XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -3130,10 +4082,12 @@
        "Point No.": "59",
        "Object Type": "AI",
        "Object Name": "MixDamperFANStatus_XXX",
-       "Control/monitoring": ""
+       "Control/monitoring": "",
+       "Unit": "0~90"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('0~90'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "ahu"
@@ -3166,7 +4120,17 @@
     {
      "common": {
       "name": "CompOperStatus_XXX",
-      "note": "Compressor Operation Status"
+      "note": "Compressor Operation Status",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -3181,7 +4145,9 @@
        "Point No.": "1",
        "Object Type": "BI",
        "Object Name": "CompOperStatus_ XXX",
-       "Control/monitoring": "Compressor Operation Status"
+       "Control/monitoring": "Compressor Operation Status",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3193,11 +4159,26 @@
     {
      "common": {
       "name": "RefrigentType_XXX",
-      "note": "Refrigent Type"
+      "note": "Refrigent Type",
+      "states": [
+       {
+        "code": "1",
+        "label": "R407C"
+       },
+       {
+        "code": "2",
+        "label": "422"
+       },
+       {
+        "code": "3",
+        "label": "R410A"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MI"
+       "objectType": "MI",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -3208,7 +4189,10 @@
        "Point No.": "2",
        "Object Type": "MI",
        "Object Name": "RefrigentType_XXX",
-       "Control/monitoring": "Refrigent Type"
+       "Control/monitoring": "Refrigent Type",
+       "Text-1": "R407C",
+       "Text-2": "422",
+       "Text-3": "R410A"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3301,7 +4285,9 @@
     {
      "common": {
       "name": "SunctionTemp_XXX",
-      "note": "Sunction Temperature"
+      "note": "Sunction Temperature",
+      "unitSIRaw": "℃",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -3316,7 +4302,8 @@
        "Point No.": "6",
        "Object Type": "AI",
        "Object Name": "SunctionTemp_XXX",
-       "Control/monitoring": "Sunction Temperature"
+       "Control/monitoring": "Sunction Temperature",
+       "Unit": "℃"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3328,7 +4315,9 @@
     {
      "common": {
       "name": "LiquidPipeTemp_XXX",
-      "note": "Liquid Pipe Temperature"
+      "note": "Liquid Pipe Temperature",
+      "unitSIRaw": "℃",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -3343,7 +4332,8 @@
        "Point No.": "7",
        "Object Type": "AI",
        "Object Name": "LiquidPipeTemp_XXX",
-       "Control/monitoring": "Liquid Pipe Temperature"
+       "Control/monitoring": "Liquid Pipe Temperature",
+       "Unit": "℃"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3355,7 +4345,9 @@
     {
      "common": {
       "name": "HexTemp_XXX",
-      "note": "Heat Exchanger Temperature"
+      "note": "Heat Exchanger Temperature",
+      "unitSIRaw": "℃",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -3370,7 +4362,8 @@
        "Point No.": "8",
        "Object Type": "AI",
        "Object Name": "HexTemp_XXX",
-       "Control/monitoring": "Heat Exchanger Temperature"
+       "Control/monitoring": "Heat Exchanger Temperature",
+       "Unit": "℃"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3436,7 +4429,17 @@
     {
      "common": {
       "name": "HotgasValue_XXX",
-      "note": "Hot Gas Valve"
+      "note": "Hot Gas Valve",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -3451,7 +4454,9 @@
        "Point No.": "11",
        "Object Type": "BI",
        "Object Name": "HotgasValue_XXX",
-       "Control/monitoring": "Hot Gas Valve"
+       "Control/monitoring": "Hot Gas Valve",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3463,7 +4468,9 @@
     {
      "common": {
       "name": "InverterDischargeTemp_XXX",
-      "note": "InverterDischarge Temperature"
+      "note": "InverterDischarge Temperature",
+      "unitSIRaw": "℃",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -3478,7 +4485,8 @@
        "Point No.": "12",
        "Object Type": "AI",
        "Object Name": "InverterDischarge Temp_XXX",
-       "Control/monitoring": "InverterDischarge Temperature"
+       "Control/monitoring": "InverterDischarge Temperature",
+       "Unit": "℃"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3490,7 +4498,9 @@
     {
      "common": {
       "name": "OutdoorTemp_XXX",
-      "note": "Outdoor Temperature"
+      "note": "Outdoor Temperature",
+      "unitSIRaw": "℃",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -3505,7 +4515,8 @@
        "Point No.": "13",
        "Object Type": "AI",
        "Object Name": "OutdoorTemp_XXX",
-       "Control/monitoring": "Outdoor Temperature"
+       "Control/monitoring": "Outdoor Temperature",
+       "Unit": "℃"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3517,11 +4528,26 @@
     {
      "common": {
       "name": "OperationMode_XXX",
-      "note": "Operation Mode"
+      "note": "Operation Mode",
+      "states": [
+       {
+        "code": "1",
+        "label": "Stop"
+       },
+       {
+        "code": "2",
+        "label": "Cool"
+       },
+       {
+        "code": "3",
+        "label": "Heat"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MI"
+       "objectType": "MI",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -3532,7 +4558,10 @@
        "Point No.": "14",
        "Object Type": "MI",
        "Object Name": "OperationMode_XXX",
-       "Control/monitoring": "Operation Mode"
+       "Control/monitoring": "Operation Mode",
+       "Text-1": "Stop",
+       "Text-2": "Cool",
+       "Text-3": "Heat"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3568,7 +4597,17 @@
     {
      "common": {
       "name": "StartStopCommand_XXX",
-      "note": "Run/Stop (setting)"
+      "note": "Run/Stop (setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -3583,7 +4622,9 @@
        "Point No.": "1",
        "Object Type": "BO",
        "Object Name": "StartStopCommand_XXX",
-       "Control/monitoring": "Run/Stop (setting)"
+       "Control/monitoring": "Run/Stop (setting)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3595,7 +4636,17 @@
     {
      "common": {
       "name": "StartStopStatus_XXX",
-      "note": "Run/Stop (status)"
+      "note": "Run/Stop (status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -3610,7 +4661,9 @@
        "Point No.": "2",
        "Object Type": "BI",
        "Object Name": "StartStopStatus_XXX",
-       "Control/monitoring": "Run/Stop (status)"
+       "Control/monitoring": "Run/Stop (status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3622,7 +4675,17 @@
     {
      "common": {
       "name": "LockCommand_XXX",
-      "note": "Lock (setting)"
+      "note": "Lock (setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -3637,7 +4700,9 @@
        "Point No.": "3",
        "Object Type": "BO",
        "Object Name": "LockCommand_XXX",
-       "Control/monitoring": "Lock (setting)"
+       "Control/monitoring": "Lock (setting)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3649,7 +4714,17 @@
     {
      "common": {
       "name": "LockStatus_XXX",
-      "note": "Lock (status)"
+      "note": "Lock (status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -3664,7 +4739,9 @@
        "Point No.": "4",
        "Object Type": "BI",
        "Object Name": "LockStatus_XXX",
-       "Control/monitoring": "Lock (status)"
+       "Control/monitoring": "Lock (status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3676,11 +4753,26 @@
     {
      "common": {
       "name": "ModeCommand_XXX",
-      "note": "Operation Mode (setting)"
+      "note": "Operation Mode (setting)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Heat"
+       },
+       {
+        "code": "3",
+        "label": "Auto"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MO"
+       "objectType": "MO",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -3691,7 +4783,10 @@
        "Point No.": "5",
        "Object Type": "MO",
        "Object Name": "ModeCommand_XXX",
-       "Control/monitoring": "Operation Mode (setting)"
+       "Control/monitoring": "Operation Mode (setting)",
+       "Text-1": "Cool",
+       "Text-2": "Heat",
+       "Text-3": "Auto"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3703,11 +4798,26 @@
     {
      "common": {
       "name": "ModeStatus_XXX",
-      "note": "Operation Mode (status)"
+      "note": "Operation Mode (status)",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Heat"
+       },
+       {
+        "code": "3",
+        "label": "Auto"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
-       "objectType": "MI"
+       "objectType": "MI",
+       "msvOffset": 0
       }
      },
      "provenance": {
@@ -3718,7 +4828,10 @@
        "Point No.": "6",
        "Object Type": "MI",
        "Object Name": "ModeStatus_XXX",
-       "Control/monitoring": "Operation Mode (status)"
+       "Control/monitoring": "Operation Mode (status)",
+       "Text-1": "Cool",
+       "Text-2": "Heat",
+       "Text-3": "Auto"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3892,7 +5005,17 @@
     {
      "common": {
       "name": "AirWaterFlag_XXX",
-      "note": "Setting Temperature Reference (Air/Water)"
+      "note": "Setting Temperature Reference (Air/Water)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Air"
+       },
+       {
+        "code": "1",
+        "label": "Water"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -3907,7 +5030,9 @@
        "Point No.": "13",
        "Object Type": "BI",
        "Object Name": "AirWaterFlag_XXX",
-       "Control/monitoring": "Setting Temperature Reference (Air/Water)"
+       "Control/monitoring": "Setting Temperature Reference (Air/Water)",
+       "Text-0": "Air",
+       "Text-1": "Water"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3919,7 +5044,17 @@
     {
      "common": {
       "name": "HotWaterOnlyFlag_XXX",
-      "note": "Hot Water Only Mode"
+      "note": "Hot Water Only Mode",
+      "states": [
+       {
+        "code": "0",
+        "label": "Normal"
+       },
+       {
+        "code": "1",
+        "label": "Hot Water Only"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -3934,7 +5069,9 @@
        "Point No.": "14",
        "Object Type": "BI",
        "Object Name": "HotWaterOnlyFlag_XXX",
-       "Control/monitoring": "Hot Water Only Mode"
+       "Control/monitoring": "Hot Water Only Mode",
+       "Text-0": "Normal",
+       "Text-1": "Hot Water Only"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -3973,7 +5110,17 @@
     {
      "common": {
       "name": "Alarm_XXX",
-      "note": "Alarm Event"
+      "note": "Alarm Event",
+      "states": [
+       {
+        "code": "0",
+        "label": "No error"
+       },
+       {
+        "code": "1",
+        "label": "Error"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -3988,7 +5135,9 @@
        "Point No.": "16",
        "Object Type": "BI",
        "Object Name": "Alarm_XXX",
-       "Control/monitoring": "Alarm Event"
+       "Control/monitoring": "Alarm Event",
+       "Text-0": "No error",
+       "Text-1": "Error"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4015,10 +5164,12 @@
        "Point No.": "17",
        "Object Type": "AI",
        "Object Name": "MalfunctionCode_XXX",
-       "Control/monitoring": "Malfunction Code"
+       "Control/monitoring": "Malfunction Code",
+       "Unit": "Reference LG Original Error Code"
       },
       "gaps": [
-       "blocks.bacnet.instance"
+       "blocks.bacnet.instance",
+       "common.unitSI — 원문 Unit 칸이 단위가 아니라 범위·비고다('Reference LG Original Error Code'). sourceColumns 에 원문 그대로 남겼다."
       ],
       "status": "extracted",
       "interfaceId": "awhp"
@@ -4213,7 +5364,17 @@
     {
      "common": {
       "name": "AllStartStopCommand",
-      "note": "All Unit Run/Stop (Setting)"
+      "note": "All Unit Run/Stop (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -4228,7 +5389,9 @@
        "Point No.": "1",
        "Object Type": "BO",
        "Object Name": "AllStartStopCommand",
-       "Control/monitoring": "All Unit Run/Stop (Setting)"
+       "Control/monitoring": "All Unit Run/Stop (Setting)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4240,7 +5403,9 @@
     {
      "common": {
       "name": "AllSetRoomTempCommand",
-      "note": "All Unit Set Room Temperature (Setting)"
+      "note": "All Unit Set Room Temperature (Setting)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -4255,7 +5420,8 @@
        "Point No.": "2",
        "Object Type": "AV",
        "Object Name": "AllSetRoomTempCommand",
-       "Control/monitoring": "All Unit Set Room Temperature (Setting)"
+       "Control/monitoring": "All Unit Set Room Temperature (Setting)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4267,7 +5433,9 @@
     {
      "common": {
       "name": "AllTempLockCommand",
-      "note": "All Unit Temperature Lock (Setting)"
+      "note": "All Unit Temperature Lock (Setting)",
+      "unitSIRaw": "°C",
+      "unitSI": "°C"
      },
      "blocks": {
       "bacnet": {
@@ -4282,7 +5450,8 @@
        "Point No.": "3",
        "Object Type": "AV",
        "Object Name": "AllTempLockCommand",
-       "Control/monitoring": "All Unit Temperature Lock (Setting)"
+       "Control/monitoring": "All Unit Temperature Lock (Setting)",
+       "Unit": "°C"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4321,7 +5490,17 @@
     {
      "common": {
       "name": "PeakStartStopCommand",
-      "note": "Peak Control Operation (Setting)"
+      "note": "Peak Control Operation (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -4336,7 +5515,9 @@
        "Point No.": "5",
        "Object Type": "BO",
        "Object Name": "PeakStartStopCommand",
-       "Control/monitoring": "Peak Control Operation (Setting)"
+       "Control/monitoring": "Peak Control Operation (Setting)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4348,7 +5529,17 @@
     {
      "common": {
       "name": "PeakStartStopStatus",
-      "note": "Peak Control Operation (Status)"
+      "note": "Peak Control Operation (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -4363,7 +5554,9 @@
        "Point No.": "6",
        "Object Type": "BI",
        "Object Name": "PeakStartStopStatus",
-       "Control/monitoring": "Peak Control Operation (Status)"
+       "Control/monitoring": "Peak Control Operation (Status)",
+       "Text-0": "Stop",
+       "Text-1": "Run"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4375,7 +5568,9 @@
     {
      "common": {
       "name": "PeakShiftTimeCommand",
-      "note": "Peak Shift Time(Setting)"
+      "note": "Peak Shift Time(Setting)",
+      "unitSIRaw": "Minute",
+      "unitSI": "Minute"
      },
      "blocks": {
       "bacnet": {
@@ -4390,7 +5585,8 @@
        "Point No.": "7",
        "Object Type": "AV",
        "Object Name": "PeakShiftTimeCommand",
-       "Control/monitoring": "Peak Shift Time(Setting)"
+       "Control/monitoring": "Peak Shift Time(Setting)",
+       "Unit": "Minute"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4402,7 +5598,9 @@
     {
      "common": {
       "name": "PeakShiftTimeStatus",
-      "note": "Peak Shift Time(Status)"
+      "note": "Peak Shift Time(Status)",
+      "unitSIRaw": "Minute",
+      "unitSI": "Minute"
      },
      "blocks": {
       "bacnet": {
@@ -4417,7 +5615,8 @@
        "Point No.": "8",
        "Object Type": "AI",
        "Object Name": "PeakShiftTimeStatus",
-       "Control/monitoring": "Peak Shift Time(Status)"
+       "Control/monitoring": "Peak Shift Time(Status)",
+       "Unit": "Minute"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4429,7 +5628,9 @@
     {
      "common": {
       "name": "PeakTargetCommand",
-      "note": "Peak Target Ratio(Setting)"
+      "note": "Peak Target Ratio(Setting)",
+      "unitSIRaw": "%",
+      "unitSI": "%"
      },
      "blocks": {
       "bacnet": {
@@ -4444,7 +5645,8 @@
        "Point No.": "9",
        "Object Type": "AV",
        "Object Name": "PeakTargetCommand",
-       "Control/monitoring": "Peak Target Ratio(Setting)"
+       "Control/monitoring": "Peak Target Ratio(Setting)",
+       "Unit": "%"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4456,7 +5658,9 @@
     {
      "common": {
       "name": "PeakTargetStatus",
-      "note": "Peak Target Ratio(Status)"
+      "note": "Peak Target Ratio(Status)",
+      "unitSIRaw": "%",
+      "unitSI": "%"
      },
      "blocks": {
       "bacnet": {
@@ -4471,7 +5675,8 @@
        "Point No.": "10",
        "Object Type": "AI",
        "Object Name": "PeakTargetStatus",
-       "Control/monitoring": "Peak Target Ratio(Status)"
+       "Control/monitoring": "Peak Target Ratio(Status)",
+       "Unit": "%"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4483,7 +5688,9 @@
     {
      "common": {
       "name": "PeakCurrentStatus",
-      "note": "Peak Current Running Ratio(Status)"
+      "note": "Peak Current Running Ratio(Status)",
+      "unitSIRaw": "%",
+      "unitSI": "%"
      },
      "blocks": {
       "bacnet": {
@@ -4498,7 +5705,8 @@
        "Point No.": "11",
        "Object Type": "AI",
        "Object Name": "PeakCurrentStatus",
-       "Control/monitoring": "Peak Current Running Ratio(Status)"
+       "Control/monitoring": "Peak Current Running Ratio(Status)",
+       "Unit": "%"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4510,7 +5718,17 @@
     {
      "common": {
       "name": "RemoteShutDownCommand",
-      "note": "Remote Shutdown(Setting)"
+      "note": "Remote Shutdown(Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "Normal"
+       },
+       {
+        "code": "1",
+        "label": "Shutdown"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -4525,7 +5743,9 @@
        "Point No.": "12",
        "Object Type": "BO",
        "Object Name": "RemoteShutDownCommand",
-       "Control/monitoring": "Remote Shutdown(Setting)"
+       "Control/monitoring": "Remote Shutdown(Setting)",
+       "Text-0": "Normal",
+       "Text-1": "Shutdown"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4537,7 +5757,17 @@
     {
      "common": {
       "name": "TempUnitCommand",
-      "note": "Temperature Unit Setting (Setting)"
+      "note": "Temperature Unit Setting (Setting)",
+      "states": [
+       {
+        "code": "0",
+        "label": "°C"
+       },
+       {
+        "code": "1",
+        "label": "˚F"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -4552,7 +5782,9 @@
        "Point No.": "13",
        "Object Type": "BO",
        "Object Name": "TempUnitCommand",
-       "Control/monitoring": "Temperature Unit Setting (Setting)"
+       "Control/monitoring": "Temperature Unit Setting (Setting)",
+       "Text-0": "°C",
+       "Text-1": "˚F"
       },
       "gaps": [
        "blocks.bacnet.instance"
@@ -4564,7 +5796,17 @@
     {
      "common": {
       "name": "TempUnitStatus",
-      "note": "Temperature Unit Setting (Status)"
+      "note": "Temperature Unit Setting (Status)",
+      "states": [
+       {
+        "code": "0",
+        "label": "°C"
+       },
+       {
+        "code": "1",
+        "label": "˚F"
+       }
+      ]
      },
      "blocks": {
       "bacnet": {
@@ -4579,7 +5821,9 @@
        "Point No.": "14",
        "Object Type": "BI",
        "Object Name": "TempUnitStatus",
-       "Control/monitoring": "Temperature Unit Setting (Status)"
+       "Control/monitoring": "Temperature Unit Setting (Status)",
+       "Text-0": "°C",
+       "Text-1": "˚F"
       },
       "gaps": [
        "blocks.bacnet.instance"

@@ -135,7 +135,46 @@ def row_of(p):
                  ("rw", c.get("readWrite")), ("d", c.get("note")), ("s", st)):
         if v:
             r[k] = v
+    # ⚠ 화면이 원문 칸을 **하나도 숨기지 않는다.** 스키마 필드로 못 올린 것
+    #    (H100 의 'Range (REAL)'·'Active / Inactive Text', LG 의 범위형 'Unit')이
+    #    화면에서 사라지면 대조가 안 된다 — 대조대의 존재 이유가 그것이다.
+    #    어떤 칸이 이미 쓰였는지는 **값으로** 가른다(벤더마다 열 이름이 다르다).
+    #    ⚠ 빈칸만 다른 값은 같은 값으로 본다. 안 그러면 조판 아티팩트를 지우기 전
+    #       원문 이름('StartStopCommand_ XXX')이 91행에 덧붙어 화면이 시끄러워진다 —
+    #       그건 빠진 값이 아니라 지운 자국이고, 그 기록은 모델에 이미 남아 있다.
+    flat = lambda s: re.sub(r"\s+", "", str(s))
+    used = {flat(x) for x in (r.get("n"), r.get("t"), r.get("nm"), r.get("d"),
+                              r.get("u"), r.get("rw")) if x}
+    used |= {flat(s.get("label")) for s in (c.get("states") or [])}
+    extra = {k: v for k, v in src.items() if v and flat(v) not in used}
+    if extra:
+        r["x"] = extra
     return r
+
+
+# 화면 열 — 값이 하나라도 있는 것만 세운다(빈 열은 눈만 어지럽힌다)
+DERIVED = [("n", "번호"), ("t", "타입"), ("nm", "이름"), ("u", "단위"),
+           ("rw", "R/W"), ("s", "상태 TEXT"), ("d", "설명")]
+
+
+def columns(rows, addr, manypages):
+    """구역의 열 목록. 원문 칸은 **원문 열 이름 그대로** 제 열을 갖는다.
+
+    ⚠ 설명 칸 밑에 덧붙이지 않는다 — 원문 표와 눈으로 맞추려면 칸이 칸끼리
+       세로로 서 있어야 한다.
+    """
+    cols = [{"k": k, "h": h} for k, h in DERIVED if any(r.get(k) for r in rows)]
+    if addr:
+        cols.append({"k": "inst", "h": "인스턴스"})
+    seen = []
+    for r in rows:
+        for k in (r.get("x") or {}):
+            if k not in seen:
+                seen.append(k)
+    cols += [{"k": "x:" + k, "h": k} for k in seen]
+    if manypages:
+        cols.append({"k": "pg", "h": "쪽"})
+    return cols
 
 
 def resolve_pages(doc, wanted, names_by_printed):
@@ -249,6 +288,9 @@ def main(argv):
                         pages[key] = (m["id"], pdf, path)
                 span = sorted(x for x in span if x is not None)
                 sec = {
+                    "cols": columns(rows, iface["id"] in ptypes
+                                    and m.get("extractor") == "ingest_lg",
+                                    len(span) > 1),
                     "id": "%s/%s/%s" % (m["id"], iface["id"], group or gi),
                     "node": iid,
                     "path": [m.get("model") or m["id"], iface.get("label") or iface["id"]]

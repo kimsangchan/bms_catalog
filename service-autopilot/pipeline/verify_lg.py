@@ -117,24 +117,47 @@ def extract(doc):
             rows = t.extract()
             ot, on = row_of(rows, "Object Type"), row_of(rows, "Object Name")
             cm, pn = row_of(rows, "Control/monitoring"), row_of(rows, "Point No.")
-            txt = [row_of(rows, "Text-%d" % i) for i in range(6)]
             if not (ot and on and pn):
                 continue
+            # ⚠ 'Text-0'..'Text-5' 로 행을 찾으면 **하나도 못 찾는다** — 그 라벨들은
+            #    표 인식이 'Unit' 행 하나로 합쳐 버린 세 갈래 열의 일부다.
+            #    낱말 좌표로 재 보면 라벨 셋이 같은 행 밴드를 나눠 쓴다(원문 26쪽 실측):
+            #        Unit x=41.6 · Inactive/Active x=55.4 · Text-0..5 x=69.3
+            #    즉 'Unit' 행부터 위로 올라가며 슬롯 0,1,2… 가 된다.
+            ui = next((i for i, r in enumerate(rows)
+                       if str(r[0] or "").strip().startswith("Unit")), None)
+            stack = [rows[ui - k] for k in range(ui + 1)] if ui is not None else []
             pts = []
             for c in range(len(pn)):
                 num = str(pn[c] or "").strip()
                 name = (str(on[c]) if c < len(on) else "").strip()
                 if not num.isdigit() or not name or name in ("-", "None"):
                     continue
-                states = []
-                for i, tr in enumerate(txt):
-                    v = (str(tr[c]).strip() if tr and c < len(tr) else "")
-                    if v and v not in ("None", "-", ""):
-                        states.append("%d=%s" % (i, v))
+                ty = (str(ot[c]).strip() if c < len(ot) else "")
+                slots = []
+                for r in stack:
+                    v = prose(str(r[c])) if c < len(r) and r[c] else ""
+                    slots.append("" if v in ("None", "-") else v)
+                # 슬롯의 뜻은 **오브젝트 타입**이 정한다. 아날로그면 첫 슬롯이 단위(또는
+                # 범위·비고)이고, 그 밖이면 슬롯 번호가 곧 상태값이다.
+                #   근거: Point 7(MO) 의 슬롯 1 이 'Cool' 인데 원문 비고(인쇄 29쪽)가
+                #   "Present_Value ... “1: Cool”" 이라 적었다. FanSpeedStatus 도
+                #   슬롯 1='Low' 이고 비고(인쇄 48쪽)가 "1:Low" 다. 즉 Text-N 의 N 이
+                #   그대로 present-value 다 — 보정(msvOffset)이 필요 없다.
+                #   BO/BI 는 슬롯 0=Inactive, 1=Active 로 BACnet 이진값 0/1 과 맞는다.
+                analog = ty in ("AI", "AO", "AV")
+                # ⚠ 아날로그의 단위 칸이 늘 슬롯 0 은 아니다 — 긴 값('0~255 (Real
+                #    Value = ...)')은 조판이 위 밴드로 밀어 넣는다. **처음 채워진**
+                #    슬롯을 단위 칸으로 본다(실측: 그렇게 하면 남는 슬롯이 0개다).
+                filled = [v for v in slots if v]
+                unit = filled[0] if (analog and filled) else ""
+                states = [] if analog else [(k, v) for k, v in enumerate(slots) if v]
+                spill = filled[1:] if analog else []
                 pts.append({"no": int(num), "name": ident(name, flow), "nameRaw": name,
-                            "type": (str(ot[c]).strip() if c < len(ot) else ""),
+                            "type": ty,
                             "desc": prose(str(cm[c]).strip()) if cm and c < len(cm) else "",
-                            "states": ", ".join(states)})
+                            "unit": unit, "spill": spill,
+                            "states": ", ".join("%d=%s" % kv for kv in states)})
             if pts:
                 ko, ptype = KO.get(group_of[p], (group_of[p] or "?", None))
                 tables.append({"page": p, "printed": printed_no(doc[p - 1], p),
@@ -170,13 +193,21 @@ def main():
         for t in ts:
             for p in t["points"]:
                 rows.append({"n": str(p["no"]), "t": p["type"], "nm": p["name"],
-                             "d": p["desc"], "s": p["states"],
+                             "u": p["unit"], "d": p["desc"], "s": p["states"],
                              "pg": t["printed"], "pdf": t["page"], "pk": str(t["page"])})
             if t["printed"] not in span:
                 span.append(t["printed"])
         span = sorted(span)
         tree.append({"id": g, "label": g, "count": len(rows), "children": []})
+        cols = [{"k": k, "h": h} for k, h in
+                (("n", "번호"), ("t", "타입"), ("nm", "이름"), ("u", "단위"),
+                 ("s", "상태 TEXT"), ("d", "설명"))
+                if any(r.get(k) for r in rows)]
+        cols.append({"k": "inst", "h": "인스턴스"})
+        if len(span) > 1:
+            cols.append({"k": "pg", "h": "쪽"})
         sections.append({
+            "cols": cols,
             "id": g, "node": g, "path": [g], "doc": meta["file"],
             "span": ("%d–%d" % (span[0], span[-1])) if len(span) > 1 else str(span[0]),
             "addr": {"label": "유닛 주소 XXX", "ptype": ts[0]["ptype"],

@@ -1552,6 +1552,49 @@ class LgBacnetIngestTest(unittest.TestCase):
         self.assertGreater(n, 30, "지운 자국이 하나도 없다 — 원문 보존이 사후에 만들어졌나?")
 
 
+    def test_unit_and_state_text_are_read(self):
+        """단위·상태 TEXT 를 읽는다 — 한동안 통째로 빠져 있었다.
+
+        재현: 'Text-0'..'Text-5' 로 행을 찾으면 **하나도 안 걸린다**. 그 라벨들은 표
+        인식이 'Unit' 행 하나로 합쳐 버린 세 갈래 열(Unit / Inactive·Active /
+        Text-0..5)의 일부라, 그렇게 찾으면 165점 전부가 단위도 상태도 없이 들어온다.
+        """
+        pts = [p for i in self.model["interfaces"] for p in i["points"]]
+        units = [p for p in pts if (p["common"].get("unitSI"))]
+        states = [p for p in pts if (p["common"].get("states"))]
+        self.assertGreaterEqual(len(units), 30, "단위가 통째로 빠졌다")
+        self.assertGreaterEqual(len(states), 70, "상태 TEXT 가 통째로 빠졌다")
+        # 단위는 값을 보고 가른다 — 범위('0~90')·비고는 단위가 아니다
+        for p in units:
+            u = p["common"]["unitSI"]
+            self.assertNotRegex(u, r"\d", "%s: 범위를 단위로 올렸다 (%s)"
+                                % (p["common"]["name"], u))
+            self.assertIn(p["provenance"]["sourceColumns"].get("Unit"), (u, "℃", u))
+
+    def test_multistate_codes_match_the_documents_own_remark(self):
+        """Text-N 의 N 이 곧 present-value 다 — 원문 비고가 그렇게 못 박았다.
+
+        인쇄 29쪽: ModeCommand 기본값 "1: Cool" · 인쇄 48쪽: FanSpeedStatus "1:Low".
+        표의 슬롯 1 이 각각 Cool·Low 라 보정(msvOffset)이 0 이다. 여기서 코드를
+        0부터 매기면 현장에서 냉방을 틀어야 할 때 제습이 걸린다.
+        """
+        by = {}
+        for i in self.model["interfaces"]:
+            for p in i["points"]:
+                by.setdefault(p["common"]["name"], p)
+        mode = by["ModeCommand_XXX"]
+        self.assertEqual([(s["code"], s["label"]) for s in mode["common"]["states"]],
+                         [("1", "Cool"), ("2", "Dry"), ("3", "Fan"),
+                          ("4", "Auto"), ("5", "Heat")])
+        self.assertEqual(mode["blocks"]["bacnet"]["msvOffset"], 0)
+        fan = by["FanSpeedStatus_XXX"]
+        self.assertEqual(fan["common"]["states"][0], {"code": "1", "label": "Low"})
+        # 이진은 0=Inactive · 1=Active 다
+        self.assertEqual([(s["code"], s["label"])
+                          for s in by["StartStopCommand_XXX"]["common"]["states"]],
+                         [("0", "Stop"), ("1", "Start")])
+
+
 class LsH100IngestTest(unittest.TestCase):
     """LS ELECTRIC H100 인버터 BACnet/IP 76점 — 현장 통신 장치 2위(인버터)의 첫 실체."""
 

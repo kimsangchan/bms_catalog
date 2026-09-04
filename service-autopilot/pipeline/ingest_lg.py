@@ -121,13 +121,31 @@ def build(meta, url, tables, cc):
                 common = {"name": p["name"]}
                 if p["desc"]:
                     common["note"] = p["desc"]
+                pgaps = ["blocks.bacnet.instance"]
                 if p["states"]:
                     common["states"] = [
                         {"code": s.split("=", 1)[0], "label": s.split("=", 1)[1]}
                         for s in p["states"].split(", ") if "=" in s]
+                # ⚠ 단위 칸에는 단위·범위·비고가 섞여 있다. **값을 보고 가른다** —
+                #    숫자가 없고 짧은 것만 단위로 올리고(°C·℃·%·Minute), 범위('0~90')와
+                #    비고('Reference LG Original Error Code')는 원문 칸에만 남긴다.
+                #    포인트 스키마에 단위중립 범위 자리가 없다(rangeIP·rangeSI 는
+                #    야드파운드/SI 쌍을 주는 계통 전용).
+                u = p.get("unit") or ""
+                if u and not re.search(r"\d", u) and len(u) <= 12:
+                    common["unitSIRaw"] = u
+                    common["unitSI"] = u.replace("℃", "°C")
+                elif u:
+                    pgaps.append("common.unitSI — 원문 Unit 칸이 단위가 아니라 "
+                                 "범위·비고다(%r). sourceColumns 에 원문 그대로 남겼다." % u)
                 blocks = {}
                 if p["type"]:
                     blocks["bacnet"] = {"objectType": p["type"]}
+                    # Text-N 의 N 이 곧 present-value 다 — 보정이 필요 없다.
+                    # 근거: 원문 비고가 ModeCommand 를 "1: Cool", FanSpeedStatus 를
+                    # "1:Low" 라 적었고 표의 슬롯 1 이 각각 Cool·Low 다(둘 다 일치).
+                    if p["type"] in ("MI", "MO", "MV") and p["states"]:
+                        blocks["bacnet"]["msvOffset"] = 0
                 pts.append({
                     "common": common,
                     "blocks": blocks,
@@ -142,8 +160,12 @@ def build(meta, url, tables, cc):
                             # 이름의 '_ XXX' 빈칸은 원문에 없다 — verify_lg.ident 참고.
                             "Object Name": p.get("nameRaw") or p["name"],
                             "Control/monitoring": p["desc"] or "",
+                            **({"Unit": p["unit"]} if p.get("unit") else {}),
+                            **({"Text-%s" % s.split("=", 1)[0]: s.split("=", 1)[1]
+                                for s in p["states"].split(", ") if "=" in s}
+                               if p.get("states") else {}),
                         },
-                        "gaps": ["blocks.bacnet.instance"],
+                        "gaps": pgaps,
                         "status": "extracted",
                         "interfaceId": iid,
                     },

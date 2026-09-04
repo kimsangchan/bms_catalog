@@ -219,28 +219,45 @@ input.addr{width:74px;font-family:var(--mono);text-align:right}
 .gh b{color:var(--accent);font-weight:700}
 .gh .pg{margin-left:auto;font-family:var(--mono);letter-spacing:0;white-space:nowrap}
 table{border-collapse:collapse;width:100%;font-size:12px}
-td{padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+td,th{padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+/* 열 머리글 — 구역 머리글 바로 밑에 붙어 같이 따라온다 */
+thead th{position:sticky;top:29px;z-index:1;background:var(--panel);text-align:left;
+ font-size:10.5px;font-weight:700;letter-spacing:.03em;color:var(--faint);
+ border-bottom:1px solid var(--line);white-space:nowrap}
+thead th.ck{width:22px;padding-left:13px}
+.c-n{width:56px;font-family:var(--mono);font-variant-numeric:tabular-nums;
+ color:var(--faint);text-align:right;white-space:nowrap}
+.c-t{width:42px}
+.c-t span{display:inline-block;padding:1px 5px;border-radius:4px;font-family:var(--mono);
+ font-size:10.5px;font-weight:700;background:var(--rail);color:var(--dim)}
+.c-t span.o{background:var(--accent-soft);color:var(--accent)}
+.c-nm{font-family:var(--mono);font-size:11.5px;word-break:break-all;min-width:14ch}
+.c-nm em{font-style:normal;color:var(--accent);font-weight:700}
+.c-u,.c-rw{width:62px;font-family:var(--mono);font-size:11px;color:var(--dim);white-space:nowrap}
+.c-rw{width:44px}
+.c-s{font-size:11px;color:var(--dim);font-family:var(--mono);min-width:12ch}
+.c-d{color:var(--dim)}
+.c-pg{width:38px;font-family:var(--mono);font-size:11px;color:var(--faint);text-align:right}
+.c-inst{width:110px;font-family:var(--mono);font-size:11px;color:var(--dim);
+ font-variant-numeric:tabular-nums;white-space:nowrap}
+.c-inst b{color:var(--ink);font-weight:600}
+/* 원문 칸(스키마 필드로 못 올린 것)은 열 이름을 그대로 쓰고 바탕을 옅게 깐다 */
+.c-x{font-size:11px;color:var(--dim);background:color-mix(in srgb,var(--rail) 55%,transparent)}
+thead th.c-x{background:var(--panel);color:var(--accent)}
 tr.row{cursor:pointer}
 tr.row:hover{background:var(--accent-soft)}
 tr.row.sel{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
-tr.row.done td.nm{color:var(--faint)}
+tr.row.done td.c-nm{color:var(--faint)}
 td.ck{width:22px;padding-left:13px;color:var(--faint);text-align:center;user-select:none}
+
 tr.row.done td.ck{color:var(--ok)}
-td.no{width:52px;font-family:var(--mono);font-variant-numeric:tabular-nums;
- color:var(--faint);text-align:right;white-space:nowrap}
-td.no i{font-style:normal;display:block;font-size:10px;opacity:.7}
-td.ty{width:38px}
-.ty span{display:inline-block;padding:1px 5px;border-radius:4px;font-family:var(--mono);
- font-size:10.5px;font-weight:700;background:var(--rail);color:var(--dim)}
-.ty span.o{background:var(--accent-soft);color:var(--accent)}
-td.nm{font-family:var(--mono);font-size:11.5px;word-break:break-all}
-td.nm em{font-style:normal;color:var(--accent);font-weight:700}
-td.nm i{font-style:normal;display:block;color:var(--faint);font-size:10.5px}
-td.inst{width:118px;font-family:var(--mono);font-size:11px;color:var(--dim);
- font-variant-numeric:tabular-nums;white-space:nowrap}
-td.inst b{color:var(--ink);font-weight:600}
-td.ds{color:var(--dim)}
-.st{display:block;margin-top:2px;font-size:10.5px;color:var(--faint);font-family:var(--mono)}
+
+
+
+
+
+
+
 .none{padding:26px 13px;color:var(--faint);text-align:center}
 
 /* ── 원문 쪽: 늘 보인다 ── */
@@ -284,6 +301,7 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
   </span>
   <span class="sp"></span>
   <span>원문 <span class="pgno" id="rpg">—</span></span>
+  <button class="zbtn" type="button" id="csv" title="지금 보이는 행만 CSV 로">CSV</button>
   <button class="zbtn" type="button" data-z="rot" id="rotb">세로로</button>
   <button class="zbtn" type="button" data-z="fitw">폭맞춤</button>
   <span class="zoomer">
@@ -433,41 +451,53 @@ function counts(){
   document.getElementById("pbar").style.width = (100 * n / D.total).toFixed(1) + "%";
 }
 
+/* 한 칸의 값을 꺼낸다. 원문 칸은 'x:<원문 열 이름>' 으로 온다 —
+   벤더마다 열 이름이 달라 이름을 코드에 박지 않는다. */
+function cell(t, p, c){
+  if (c.k === "inst") {
+    var v = t.addr ? instanceOf(addr, t.addr.ptype, p.i != null ? p.i : +p.n) : null;
+    return v == null ? "" : '<b>0x' + v.toString(16).toUpperCase() + '</b><br>' + v;
+  }
+  if (c.k === "nm") {
+    var nm = esc(p.nm);
+    return addr == null ? nm : nm.replace(/_XXX/g, "_<em>" + addr + "</em>");
+  }
+  if (c.k === "t") {
+    var isOut = p.rw ? p.rw.indexOf("W") >= 0 : /O$/.test(p.t || "");
+    return '<span class="' + (isOut ? "o" : "") + '">' + esc(p.t || "—") + '</span>';
+  }
+  if (c.k.slice(0, 2) === "x:") return esc((p.x || {})[c.k.slice(2)] || "");
+  return esc(p[c.k] == null ? "" : p[c.k]);
+}
+
 function render(){
-  var out = [], shown = 0, lastPath = "";
+  var out = [], shown = 0;
   shownSections().forEach(function(t){
     var pts = t.points.filter(match);
     if (!pts.length) return;
-    var path = t.path.join(" › ");
-    out.push('<div class="gh"><b>' + esc(path) + '</b><span>' + pts.length + '점</span>'
-           + '<span class="pg">원문 ' + esc(t.span) + '쪽</span></div><table><tbody>');
-    lastPath = path;
-    var manyPages = t.points.length && t.points.some(function(x){
-      return x.pg !== t.points[0].pg; });
+    /* 열은 구역마다 다르다 — 원문 표가 주는 칸이 다르기 때문이다.
+       머리글을 세워야 어느 값이 어느 칸인지 눈으로 맞출 수 있다. */
+    var cols = (t.cols || []).filter(function(c){
+      return c.k !== "inst" || t.addr;
+    });
+    out.push('<div class="gh"><b>' + esc(t.path.join(" › ")) + '</b><span>'
+           + pts.length + '점</span><span class="pg">원문 ' + esc(t.span)
+           + '쪽</span></div><table><thead><tr><th class="ck"></th>'
+           + cols.map(function(c){
+               return '<th class="c-' + esc(c.k.replace(/[^a-zA-Z]/g, "")) + '">'
+                    + esc(c.h) + '</th>';
+             }).join("") + '</tr></thead><tbody>');
     pts.forEach(function(p){
       var k = t.id + ":" + (p.n || p.nm);
-      var isOut = p.rw ? p.rw.indexOf("W") >= 0 : /O$/.test(p.t || "");
-      var inst = t.addr ? instanceOf(addr, t.addr.ptype, p.i != null ? p.i : +p.n) : null;
-      var nm = esc(p.nm);
-      if (addr != null) nm = nm.replace(/_XXX/g, "_<em>" + addr + "</em>");
-      var sub = [];
-      if (p.u) sub.push(esc(p.u));
-      if (p.rw) sub.push(esc(p.rw));
       shown++;
       out.push('<tr class="row' + (done[k] ? " done" : "") + (sel === k ? " sel" : "")
         + '" data-k="' + esc(k) + '" data-page="' + esc(p.pk)
         + '" data-printed="' + esc(p.pg) + '" data-pdf="' + esc(p.pdf) + '" tabindex="0">'
         + '<td class="ck">' + (done[k] ? "✓" : "○") + '</td>'
-        + '<td class="no">' + esc(p.n == null ? "" : p.n)
-        + (manyPages ? '<i>p' + esc(p.pg) + '</i>' : "") + '</td>'
-        + '<td class="ty"><span class="' + (isOut ? "o" : "") + '">'
-        + esc(p.t || "—") + '</span></td>'
-        + '<td class="nm">' + nm
-        + (sub.length ? '<i>' + sub.join(" · ") + '</i>' : "") + '</td>'
-        + (inst == null ? "" : '<td class="inst"><b>0x' + inst.toString(16).toUpperCase()
-            + '</b><br>' + inst + '</td>')
-        + '<td class="ds">' + esc(p.d || "")
-        + (p.s ? '<span class="st">' + esc(p.s) + '</span>' : "") + '</td></tr>');
+        + cols.map(function(c){
+            return '<td class="c-' + esc(c.k.replace(/[^a-zA-Z]/g, "")) + '">'
+                 + cell(t, p, c) + '</td>';
+          }).join("") + '</tr>');
     });
     out.push('</tbody></table>');
   });
@@ -659,6 +689,50 @@ grip.addEventListener("keydown", function(e){
   if (e.key === "ArrowLeft") appEl.style.setProperty("--lw", Math.max(18, cur - 3) + "%");
   if (e.key === "ArrowRight") appEl.style.setProperty("--lw", Math.min(78, cur + 3) + "%");
   if (mode !== "free") fit(mode);
+});
+
+/* ── CSV 내보내기 ──
+   지금 트리·찾기로 걸러 놓은 것 그대로 내보낸다 — 화면에 보이는 것과 파일이 같아야
+   대조한 보람이 있다. 전 모델·전 열이 필요하면 pipeline/export_points.py 가 정본이다
+   (프로토콜 주소를 접두 열로 펴고 판별 파일까지 낸다).
+   ⚠ BOM 을 붙인다 — 없으면 Windows Excel 이 한글을 깨뜨린다. */
+document.getElementById("csv").addEventListener("click", function(){
+  /* 화면의 열을 그대로 쓴다 — 보이는 표와 파일이 달라지면 대조한 보람이 없다.
+     전 모델·전 열(프로토콜 주소 접두 열까지)이 필요하면
+     pipeline/export_points.py 가 정본이다. */
+  var q = String.fromCharCode(34), lines = [], head = null;
+  shownSections().forEach(function(t){
+    var pts = t.points.filter(match);
+    if (!pts.length) return;
+    var cols = (t.cols || []).filter(function(c){ return c.k !== "inst" || t.addr; });
+    var h = ["설비", "모델", "판", "구역"].concat(cols.map(function(c){ return c.h; }));
+    if (!head || head.join("|") !== h.join("|")) { head = h; lines.push(h); }
+    pts.forEach(function(p){
+      lines.push([D.title, t.path[0] || "", t.path[1] || "", t.path[2] || ""]
+        .concat(cols.map(function(c){
+          if (c.k.slice(0, 2) === "x:") return (p.x || {})[c.k.slice(2)] || "";
+          if (c.k === "inst") {
+            var v = t.addr ? instanceOf(addr, t.addr.ptype, p.i != null ? p.i : +p.n) : null;
+            return v == null ? "" : v;
+          }
+          return p[c.k] == null ? "" : p[c.k];
+        })));
+    });
+  });
+  var CRLF = String.fromCharCode(13, 10), BOM = String.fromCharCode(0xFEFF);
+  var body = lines.map(function(r){
+    return r.map(function(v){
+      v = String(v == null ? "" : v);
+      return q + v.split(q).join(q + q) + q;
+    }).join(",");
+  }).join(CRLF);
+  /* BOM 을 붙인다 — 없으면 Windows Excel 이 한글을 깨뜨린다 */
+  var blob = new Blob([BOM + body], { type: "text/csv;charset=utf-8" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = (D.storeKey || "points").split("/")[0] + ".csv";
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 0);
 });
 
 function first(){ pick(document.querySelector("tr.row"), true); }
