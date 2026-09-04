@@ -411,11 +411,9 @@ def build(meta, tables, cc):
                 common, gaps = {"name": r["name"].split(" (")[0]}, list(vgaps)
                 if r["desc"]:
                     common["note"] = r["desc"]
-                if " (" in r["name"]:
-                    # 괄호 주석은 이름이 아니다 — 붙여 두면 BMS 가 그 이름으로 찾는다.
-                    # 괄호째 비고로 옮긴다.
-                    common["note"] = ((common.get("note", "") + " (")
-                                      + r["name"].split(" (", 1)[1]).strip()
+                # 괄호 주석은 이름이 아니다 — 이름에서는 뗀다(BMS 가 그 이름으로 찾는다).
+                # 그렇다고 설명에 붙이지도 않는다 — 다른 열이다. 원문 이름 칸이
+                # sourceColumns["Object Name"] 에 통째로 남아 있어 화면에 그대로 뜬다.
                 kind = KIND.get(r["type"])
                 if kind:
                     common["pointKind"] = kind
@@ -432,9 +430,12 @@ def build(meta, tables, cc):
                     common["states"] = states
                 if ref:
                     common["statesRef"] = ref
-                if prose:
-                    common["note"] = (common.get("note", "") + " "
-                                      + prose).strip()
+                # ⚠ 서로 다른 열을 note 하나로 뭉치지 않는다. 'Object' 열은 그 점이
+                #    무엇인지이고, 값 칸의 산문은 **원문이 따로 적은 단서**다
+                #    ("Use when displayed temperature type is set to 'Room'.").
+                #    붙여 놓으면 한 문장으로 읽혀 지어낸 말처럼 보인다 — 실제로
+                #    사용자가 "이 설명은 네가 만든 거냐"고 물었다.
+                #    원문 칸에 제 이름으로 남기면 화면·CSV 에서 제 열로 선다.
                 gaps.append("이름의 자리표시(xx·xxxxxx) — 이 문서는 무엇이 들어가는지 "
                             "밝히지 않는다. E-61 이 주는 것은 Device ID 규칙뿐이다.")
                 src = {"Instance Number": str(r["no"]), "Object Type": r["type"],
