@@ -1234,6 +1234,36 @@ SOURCES = [
         "extractor": "auto",
         "access": "무로그인",
     },
+    {
+        "id": "ls-electric-h100",
+        "vendor": "LS ELECTRIC",
+        "kind": "인터페이스·레지스터",
+        "note": "H100 은 LS ELECTRIC 의 **팬·펌프 전용 드라이브**다. 현장 조사에서 삼성 캠퍼스의 "
+                "통신 장치 1위가 인버터(222대·1,722점)였고 그중 215대가 똑같은 7점"
+                "(DCLINK_VOLTAGE·INV_OUT_VOLTAGE/CURRENT/PWR·INV_ACCUM_PWR·INV_RUN_TIME·"
+                "INV_SPEED·INV_HEATsink TEMP)을 쓴다 — 용도가 정확히 겹친다. "
+                "⚠ **현장 인버터의 제조사는 확인되지 않았다.** 포인트 이름이 어느 인버터나 "
+                "쓰는 일반 어휘라 데이터로는 못 가린다(장치 이름·설명·나이아가라 내보내기 모두 "
+                "제조사를 안 밝힌다). H100 을 먼저 넣는 이유는 **용도가 같고 국내 최다이며 "
+                "카탈로그의 VFD 가 4모델뿐**이라 어느 쪽이든 필요하기 때문이다. "
+                "브랜드가 확인되면 그때 해당 벤더를 더한다. "
+                "두 문서를 함께 받는다 — 본체 매뉴얼(7장 통신·8장 기능표 = 레지스터 맵)과 "
+                "BACnet/IP 옵션 매뉴얼(오브젝트 목록).",
+        "enumerate": "list",
+        "urls": [
+            "https://www.ls-electric.com/upload/customer/download/"
+            "a0f00312-4c52-4ccf-a8b8-f8930f4e2199/H100%20English%20Manual_190621.pdf",
+            "https://ssq.ls-electric.com/uploads/document/16835073153340/"
+            "1+H100+BACNET+IP_Ethernet_User+Manual_EN_V1.0_210526.pdf",
+        ],
+        "rename": {
+            "H100 English Manual_190621.pdf": "LS_H100_UserManual_EN_190621.pdf",
+            "1+H100+BACNET+IP_Ethernet_User+Manual_EN_V1.0_210526.pdf":
+                "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+    },
 ]
 
 
