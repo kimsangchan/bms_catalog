@@ -1264,6 +1264,30 @@ SOURCES = [
         "extractor": "auto",
         "access": "무로그인",
     },
+    {
+        "id": "samsung-sec-spec-guide",
+        "vendor": "Samsung",
+        "kind": "정격 카탈로그",
+        "note": "삼성전자 **국내(SEC)** 스펙 가이드 64쪽. 표 233개가 62쪽에 걸쳐 있고 "
+                "DVM S 국내 라인업(프리미엄·고효율 한랭지형·한랭지형·동시냉난방·표준형·공장전원 / "
+                "kW 23~45…)과 소비전력·COP 를 준다. AHU 도 44회 나온다. "
+                "⚠ 이 문서가 필요한 이유 — 기존에 들어와 있던 Samsung_DVM_S_Data_Book.pdf 는 "
+                "표지가 'DVM S **Desert for ME** (R410A, **50Hz**)' 인 중동 사막 사양이라 "
+                "한국(60Hz) 현장 계산에 쓰면 틀린다(대장의 unfit 참고). 이쪽이 국내판이다. "
+                "⚠ 2017년 3월 제작이라 최신 형번은 없을 수 있다 — 형번별 정격을 쓸 때 제작일을 함께 본다. "
+                "⚠ 같은 내용의 종합 카탈로그(48MB)가 samsung.aiibook.net 에도 있으나 "
+                "**제3자 호스트라 넣지 않았다** — 공식 도메인(images.samsung.com/.../sec/)만 쓴다.",
+        "enumerate": "list",
+        "urls": [
+            "https://images.samsung.com/is/content/samsung/p5/sec/"
+            "business/business-insights/SP00-0-0.pdf",
+        ],
+        "rename": {
+            "SP00-0-0.pdf": "Samsung_SEC_SpecGuide_KR_2017-03.pdf",
+        },
+        "extractor": "auto",
+        "access": "무로그인",
+    },
 ]
 
 
