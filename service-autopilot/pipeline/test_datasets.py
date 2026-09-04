@@ -1865,5 +1865,46 @@ class SamsungDmsBacnetIngestTest(unittest.TestCase):
             self.assertEqual(i["family"], "Samsung/DMS-BACnet")
 
 
+class NoteComesFromOneColumnTest(unittest.TestCase):
+    """설명은 **원문 칸 하나**에서만 온다 — 두 칸을 붙이면 지어낸 말처럼 읽힌다.
+
+    재현: 삼성 EHS 5번의 설명이
+      'Setting lower temperature limit Use when displayed temperature type is set
+       to \'Room\'.'
+    이었다. 두 문장 다 원문에 있지만 **원문에서는 다른 열**이다 — 앞은 Object 열,
+    뒤는 값 칸에 원문이 따로 적은 단서다. 붙여 놓으니 한 문장으로 읽혀 사용자가
+    "이 설명은 네가 만든 거냐"고 물었다. 대조대의 존재 이유가 원문과 값을 맞추는
+    것인데 열을 뭉치면 그게 안 된다.
+
+    ⚠ 이 게이트는 **원문 칸을 통째로 남기는 취입기**에만 건다. 옛 JCI 어댑터는
+       알아본 열을 sourceColumns 에 되남기지 않아 이 잣대로는 판정할 수 없다
+       (실측: 그 모델들을 함께 걸었더니 정상인 것 2,500건이 빨강이 됐다).
+    """
+
+    KEEPS_RAW = ("ingest_lg", "ingest_ls", "ingest_samsung")
+
+    def test_note_equals_exactly_one_source_column(self):
+        flat = (lambda s: re.sub(r"\s+", "", str(s or "")))
+        checked = 0
+        for path in sorted(glob.glob(os.path.join(datasets.DATA, "models", "*.json"))):
+            model = datasets.load_json(path)
+            if model.get("extractor") not in self.KEEPS_RAW:
+                continue
+            for iface in model.get("interfaces") or []:
+                for p in iface.get("points") or []:
+                    note = flat((p.get("common") or {}).get("note"))
+                    if not note:
+                        continue
+                    checked += 1
+                    src = (p.get("provenance") or {}).get("sourceColumns") or {}
+                    self.assertTrue(
+                        any(flat(v) == note for v in src.values()),
+                        "%s / %s: 설명이 원문 칸 하나와 다르다 — 붙여 쓴 것인가?\n"
+                        "  note = %r\n  원문 = %r"
+                        % (model["id"], (p.get("common") or {}).get("name"),
+                           (p.get("common") or {}).get("note"), src))
+        self.assertGreater(checked, 300, "설명을 가진 포인트가 너무 적다 — 게이트가 헛돈다")
+
+
 if __name__ == "__main__":
     unittest.main()
