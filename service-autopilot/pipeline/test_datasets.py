@@ -704,6 +704,13 @@ class DatasetBuildTest(unittest.TestCase):
             # 게이트웨이 매뉴얼이라 정격도 형번도 없다. 오브젝트 165점만 있다.
             # 사다리를 넓혀서 될 일이 아니라 제품 카탈로그가 따로 있어야 한다.
             "lg-ac-smart-bacnet-gateway",
+            # ── 삼성 MIM-B17BN BACnet 게이트웨이 (2026-09-04) ──────
+            # 같은 이유다 — 설치설명서라 정격도 형번도 없고 오브젝트 264점만 있다.
+            # 같은 소스로 받아 둔 사용설명서(192쪽)에도 정격이 없다(웹화면 조작서다).
+            # ⚠ 정격은 이미 받아 둔 Samsung_SEC_SpecGuide_KR_2017-03.pdf 에 있다 —
+            #   국내 60Hz DVM S 라인업·용량·COP. 아직 취입하지 않았을 뿐이라
+            #   그걸 넣으면 이 면제는 없어져야 한다.
+            "samsung-mim-b17bn-bacnet-gateway",
         })
 
     def test_aaon_cabinet_text_yields_units_with_iom_tonnage(self):
@@ -1748,6 +1755,108 @@ class LsH100IngestTest(unittest.TestCase):
         self.assertIn("Drive/BACnet", json.dumps(sch, ensure_ascii=False))
         self.assertEqual(self.model["interfaces"][0]["family"], "Drive/BACnet")
 
+
+
+class SamsungDmsBacnetIngestTest(unittest.TestCase):
+    """삼성 MIM-B17BN BACnet 게이트웨이 264점 — 판 14개가 조용히 줄지 않게."""
+
+    def setUp(self):
+        self.model = datasets.load_json(os.path.join(
+            datasets.DATA, "models", "samsung-mim-b17bn-bacnet-gateway.json"))
+        self.by = {(i["id"], p["common"]["name"]): p
+                   for i in self.model["interfaces"] for p in i["points"]}
+
+    def test_fourteen_interfaces_and_264_points(self):
+        """판마다 몇 점인지 박는다.
+
+        재현한 사고 둘 — ⑴ 머리글 높이를 고정값(+24)으로 건너뛰어 **모든 표의 1번
+        행이 잘렸다**. ⑵ 값 칸 경계를 잘못 재서 **판 셋이 통째로 0행**이 됐다.
+        둘 다 총계만 보면 알아채기 어렵다.
+        """
+        got = {i["id"]: i["pointCount"] for i in self.model["interfaces"]}
+        self.assertEqual(got, {
+            "indoor-basic": 25, "indoor-advanced": 38,
+            "ahu-basic": 27, "ahu-advanced": 33,
+            "ehs-basic": 32, "ehs-advanced": 42,
+            "erv": 14, "dvm-chiller": 13, "sim-pim": 2,
+            "centralized-controller": 2,
+            "interface-module-odu-basic": 6, "interface-module-odu-advanced": 8,
+            "gateway": 4, "ddc": 18})
+        self.assertEqual(sum(got.values()), 264)
+        # 1번 행이 살아 있나 — 잘려 나갔던 자리다
+        for iid in got:
+            first = min(p["blocks"]["bacnet"]["instance"]
+                        for i in self.model["interfaces"] if i["id"] == iid
+                        for p in i["points"])
+            self.assertEqual(first, 1, "%s: 1번 행이 없다" % iid)
+
+    def test_instance_numbers_come_from_the_table(self):
+        """LG 와 다르다 — 이 문서는 인스턴스를 표가 직접 준다."""
+        for i in self.model["interfaces"]:
+            nums = [p["blocks"]["bacnet"]["instance"] for p in i["points"]]
+            self.assertTrue(all(isinstance(n, int) and n >= 1 for n in nums))
+            self.assertEqual(len(set(nums)), len(nums),
+                             "%s: 같은 인스턴스가 두 번" % i["id"])
+
+    def test_object_names_survived_the_underline_artifact(self):
+        """이름을 표 인식에서 꺼내면 'ACRoomTempxxxxxxxx _ _' 가 된다 — 좌표로 읽는다."""
+        for (iid, name), p in self.by.items():
+            # BACnet 오브젝트 이름에 빈칸이 끼면 현장에서 그 이름으로 못 찾는다.
+            # 원문은 '_xx' 를 518회 전부 붙여 쓴다(빈칸 낀 꼴 0회 · 실측).
+            self.assertNotIn(" ", name, "%s: 이름에 빈칸이 있다" % name)
+            self.assertRegex(name, r"^[A-Za-z][\w.]+$",
+                             "%s: 이름 모양이 원문과 다르다" % name)
+        self.assertIn(("indoor-basic", "AC_RoomTemp_xx_xxxxxx"), self.by)
+        self.assertIn(("gateway", "BACnetApp_Error_Code_xx"), self.by)   # 줄바꿈된 이름
+        self.assertIn(("indoor-advanced", "AC_BV_1_Reserved_xx_xxxxxx"), self.by)
+        # 자리표시가 아예 없는 이름도 있다 — 지어 붙이지 않는다
+        self.assertIn(("indoor-advanced", "AC_Dust_Sensor_PM_10_0"), self.by)
+        self.assertEqual(
+            self.by[("indoor-advanced", "AC_Dust_Sensor_PM_10_0")]["common"]["unitSI"],
+            "μg/m3")
+
+    def test_value_column_is_routed_by_object_type(self):
+        """값 칸 하나에 단위·코드표·열거·산문이 섞여 온다 — 타입이 뜻을 정한다."""
+        c = self.by[("indoor-basic", "AC_RoomTemp_xx_xxxxxx")]["common"]
+        self.assertEqual(c["unitSI"], "\u00b0C")
+        # 멀티스테이트는 Text-N 이 그대로 present-value 다(1부터).
+        # 근거: 원문 16번 AC_FanFlow 가 '1: None, 2: Vertical, …' 이라고 적었다.
+        fan = self.by[("indoor-basic", "AC_FanSpeed_xx_xxxxxx")]["common"]
+        self.assertEqual(fan["states"][0], {"code": "1", "label": "Auto"})
+        flow = self.by[("indoor-basic", "AC_FanFlow_xx_xxxxxx")]["common"]
+        self.assertEqual(flow["states"][0], {"code": "1", "label": "None"})
+        # 이진은 0=Inactive · 1=Active
+        pw = self.by[("indoor-basic", "AC_Power_xx_xxxxxx")]["common"]
+        self.assertEqual([(s["code"], s["label"]) for s in pw["states"]],
+                         [("0", "Off"), ("1", "On")])
+        # 코드표가 문서 밖에 있으면 states 를 만들지 않는다
+        err = self.by[("indoor-advanced", "AC_Error_Code_xx_xxxxxx")]["common"]
+        self.assertEqual(err["statesRef"], "Refer to list of error code")
+        self.assertNotIn("states", err)
+
+    def test_notification_class_does_not_invent_states(self):
+        """NC 의 값은 상태가 아니라 동작 설명이다 — 상태로 만들면 없는 코드가 생긴다."""
+        for (iid, name), p in self.by.items():
+            if p["blocks"]["bacnet"]["objectType"] == "NC":
+                self.assertNotIn("states", p["common"],
+                                 "%s: NC 에 상태를 지어냈다" % name)
+                self.assertIn("recipient_list", p["common"].get("note", ""))
+        self.assertTrue(any(p["blocks"]["bacnet"]["objectType"] == "NC"
+                            for p in self.by.values()), "NC 가 하나도 없다")
+
+    def test_slash_separated_enumeration_is_left_alone(self):
+        """'8 : 33 kg/cm² / 14 : Auto control' — 라벨 안에 '/' 가 있어 기계로 못 자른다."""
+        odd = [p for p in self.by.values()
+               if any("'/'" in g for g in (p["provenance"].get("gaps") or []))]
+        self.assertGreaterEqual(len(odd), 2)
+        for p in odd:
+            self.assertNotIn("states", p["common"])
+
+    def test_family_is_registered_in_the_schema(self):
+        sch = datasets.load_json(os.path.join(datasets.DATA, "point-schema.json"))
+        self.assertIn("Samsung/DMS-BACnet", json.dumps(sch, ensure_ascii=False))
+        for i in self.model["interfaces"]:
+            self.assertEqual(i["family"], "Samsung/DMS-BACnet")
 
 
 if __name__ == "__main__":

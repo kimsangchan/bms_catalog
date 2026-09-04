@@ -41,7 +41,7 @@ import verify_ui as UI  # noqa: E402
 
 # 이 대조대가 기본으로 담는 것 = 지금 손으로 몰아 가는 **국내 벤더 취입분**.
 # 157모델을 전부 담으면 쪽 그림이 수백 MB 가 된다 — 필요하면 --only · --all.
-DOMESTIC = ("ingest_lg", "ingest_ls")
+DOMESTIC = ("ingest_lg", "ingest_ls", "ingest_samsung")
 
 
 def equip_names():

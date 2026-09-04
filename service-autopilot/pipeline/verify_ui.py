@@ -30,10 +30,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 def printed_no(page, fallback, scan=5):
     """머리글의 인쇄 쪽번호. 오프셋을 **가정하지 않고 읽는다** —
     개정판에서 앞표지 장수가 바뀌면 'PDF 쪽 - 8' 같은 셈이 조용히 틀린다."""
+    import re
     for line in page.get_text().splitlines()[:scan]:
-        s = line.strip()
-        if s.isdigit() and 1 <= int(s) <= 999:
-            return int(s)
+        # 'E-73' 처럼 앞에 절 기호가 붙는 문서가 있다(삼성 설치설명서) — 숫자만 찾으면
+        # 못 찾고 이름으로 되찾느라 경고가 뜬다.
+        m = re.match(r"^[A-Za-z]{0,2}\s*-?\s*(\d{1,3})$", line.strip())
+        if m and 1 <= int(m.group(1)) <= 999:
+            return int(m.group(1))
     return fallback
 
 
