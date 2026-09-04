@@ -11,7 +11,7 @@
  ],
  "status": "active",
  "classifiedBy": "팬·펌프 전용 드라이브다 — Danfoss FC-101 을 HVAC.AUX.VFD 로 둔 것과 같은 자리.",
- "summary": "BACnet/IP 옵션 매뉴얼 1건 · 판 1개에서 취입 — 오브젝트 76점",
+ "summary": "BACnet/IP 옵션 매뉴얼 + 본체 매뉴얼 · 판 2개에서 취입 — 오브젝트 233점",
  "has": {
   "spec": false,
   "points": true
@@ -2351,13 +2351,5644 @@
       ]
      }
     }
+   ],
+   "crosscheck": {
+    "method": "쪽 글자 흐름에서 '인스턴스ID+오브젝트이름' 을 다시 읽어 맞췄다(표 인식 경로가 아니다)",
+    "total": 76,
+    "both": 76,
+    "rate": 1.0,
+    "diff": []
+   }
+  },
+  {
+   "id": "rs485-modbus",
+   "label": "내장 RS-485 (LS INV 485 / Modbus-RTU)",
+   "family": "Drive/Modbus",
+   "protocols": [
+    "modbus"
+   ],
+   "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+   "sourcePages": [
+    362,
+    363,
+    364,
+    365,
+    367,
+    368,
+    369,
+    370,
+    371,
+    372,
+    373,
+    374,
+    375,
+    376,
+    377,
+    378,
+    379,
+    380
+   ],
+   "pointCount": 157,
+   "appliesTo": [
+    "H100"
+   ],
+   "status": "extracted",
+   "note": "본체에 내장된 RS-485 가 여는 공통영역 레지스터 창. BACnet/IP 옵션 카드 판(bacnet-ip)과 **같은 제품의 다른 통로**다 — 그 판의 AI13~AI19 가 'Refer to the common area parameter address 0h0305' 라고 가리키던 표가 바로 이것이다. 주소는 원문이 16진('0h0305')으로 적고 여기서는 10진으로 정규화했다(원표기는 sourceColumns 에). Scale 열은 분해능이라 공학값 = 원시값 × Scale 이다.",
+   "crosscheck": {
+    "method": "쪽 글자 흐름에서 주소 곁에 이름이 있는지 다시 읽어 맞췄다(본 판독은 좌표 경로다)",
+    "total": 157,
+    "both": 157,
+    "rate": 1.0,
+    "diff": []
+   },
+   "gaps": [
+    "비트필드 행(B15~B0 배정)은 states 로 만들지 않았다 — 스키마에 비트 배정을 담을 자리가 없다. 원문 그대로 note 에 있다.",
+    "슬레이브 ID·통신속도는 현장 설정값이라 이 표에 없다(원문 COM 그룹)."
+   ],
+   "points": [
+    {
+     "common": {
+      "name": "Inverter model",
+      "readWrite": "R",
+      "note": "F: H100",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 0,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 362,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0000",
+       "Parameter": "Inverter model",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "F: H100",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Inverter capacity",
+      "readWrite": "R",
+      "states": [
+       {
+        "code": "0",
+        "label": "0.75kW"
+       },
+       {
+        "code": "1",
+        "label": "1.5kW"
+       },
+       {
+        "code": "2",
+        "label": "2.2kW"
+       },
+       {
+        "code": "3",
+        "label": "3.7kW"
+       },
+       {
+        "code": "4",
+        "label": "5.5kW"
+       },
+       {
+        "code": "5",
+        "label": "7.5kW"
+       },
+       {
+        "code": "6",
+        "label": "11kW"
+       },
+       {
+        "code": "7",
+        "label": "15kW"
+       },
+       {
+        "code": "8",
+        "label": "18.5kW"
+       },
+       {
+        "code": "9",
+        "label": "22kW"
+       },
+       {
+        "code": "10",
+        "label": "30kW"
+       },
+       {
+        "code": "11",
+        "label": "37kW"
+       },
+       {
+        "code": "12",
+        "label": "45kW"
+       },
+       {
+        "code": "13",
+        "label": "55kW"
+       },
+       {
+        "code": "14",
+        "label": "75kW"
+       },
+       {
+        "code": "15",
+        "label": "90kW"
+       },
+       {
+        "code": "16",
+        "label": "110kW"
+       },
+       {
+        "code": "17",
+        "label": "132kW"
+       },
+       {
+        "code": "18",
+        "label": "160kW"
+       },
+       {
+        "code": "19",
+        "label": "185kW"
+       },
+       {
+        "code": "20",
+        "label": "220kW"
+       },
+       {
+        "code": "21",
+        "label": "250kW"
+       },
+       {
+        "code": "22",
+        "label": "315kW"
+       },
+       {
+        "code": "23",
+        "label": "355kW"
+       },
+       {
+        "code": "24",
+        "label": "400kW"
+       },
+       {
+        "code": "25",
+        "label": "500kW"
+       }
+      ],
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 362,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0001",
+       "Parameter": "Inverter capacity",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "0: 0.75kW, 1: 1.5kW, 2: 2.2kW 3: 3.7kW 4: 5.5kW, 5: 7.5kW 6: 11kW, 7: 15kW, 8: 18.5kW 9: 22kW, 10: 30kW, 11: 37kW 12: 45kW ,13: 55kW, 14: 75kW, 15: 90kW, 16: 110kW, 17: 132kW 18: 160kW, 19: 185kW, 20: 220kW 21: 250kW, 22: 315kW, 23: 355kW 24: 400kW, 25: 500kW",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Inverter input voltage",
+      "readWrite": "R",
+      "states": [
+       {
+        "code": "0",
+        "label": "220 V product"
+       },
+       {
+        "code": "1",
+        "label": "440 V product"
+       }
+      ],
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 362,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0002",
+       "Parameter": "Inverter input voltage",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "0: 220 V product 1: 440 V product",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Version",
+      "readWrite": "R",
+      "states": [
+       {
+        "code": "0064",
+        "label": "Version 1.00 (Example) 0h"
+       },
+       {
+        "code": "0065",
+        "label": "Version 1.01"
+       }
+      ],
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 362,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0003",
+       "Parameter": "Version",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "(Example) 0h0064: Version 1.00 (Example) 0h0065: Version 1.01",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 362,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0004",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Command frequency",
+      "unitSI": "Hz",
+      "unitSIRaw": "Hz",
+      "readWrite": "R/W",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 362,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0005",
+       "Parameter": "Command frequency",
+       "Scale": "0.01",
+       "Unit": "Hz",
+       "R/W": "R/W",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Operation command (option)",
+      "readWrite": "R",
+      "note": "B15 Reserved B14 0: Keypad Freq, 2-8: Terminal block multi- B13 step speed B12 17: Up, 18: Down 19: STEADY B11 22: V1, 24: V2, 25: I2, B10 26: PULSE 27: Built-in 485 B9 28: Communication option 30: JOG, 31: PID B8 0: Keypad 1: Fx/Rx-1 B7 2: Fx/Rx-2 3: Built-in 485 B6 4: Communication option 5: Time Event",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 362,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0006",
+       "Parameter": "Operation command (option)",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "B15 Reserved B14 0: Keypad Freq, 2-8: Terminal block multi- B13 step speed B12 17: Up, 18: Down 19: STEADY B11 22: V1, 24: V2, 25: I2, B10 26: PULSE 27: Built-in 485 B9 28: Communication option 30: JOG, 31: PID B8 0: Keypad 1: Fx/Rx-1 B7 2: Fx/Rx-2 3: Built-in 485 B6 4: Communication option 5: Time Event",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Acceleration time",
+      "unitSI": "sec",
+      "unitSIRaw": "sec",
+      "readWrite": "R/W",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 7,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 363,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0007",
+       "Parameter": "Acceleration time",
+       "Scale": "0.1",
+       "Unit": "sec",
+       "R/W": "R/W",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Deceleration time",
+      "unitSI": "sec",
+      "unitSIRaw": "sec",
+      "readWrite": "R/W",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 8,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 363,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0008",
+       "Parameter": "Deceleration time",
+       "Scale": "0.1",
+       "Unit": "sec",
+       "R/W": "R/W",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Output current",
+      "unitSI": "A",
+      "unitSIRaw": "A",
+      "readWrite": "R",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 9,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 363,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0009",
+       "Parameter": "Output current",
+       "Scale": "0.1",
+       "Unit": "A",
+       "R/W": "R",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Output frequency",
+      "unitSI": "Hz",
+      "unitSIRaw": "Hz",
+      "readWrite": "R",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 10,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 363,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h000A",
+       "Parameter": "Output frequency",
+       "Scale": "0.01",
+       "Unit": "Hz",
+       "R/W": "R",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Output voltage",
+      "unitSI": "V",
+      "unitSIRaw": "V",
+      "readWrite": "R",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 11,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 363,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h000B",
+       "Parameter": "Output voltage",
+       "Scale": "1",
+       "Unit": "V",
+       "R/W": "R",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "DC link voltage",
+      "unitSI": "V",
+      "unitSIRaw": "V",
+      "readWrite": "R",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 12,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 363,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h000C",
+       "Parameter": "DC link voltage",
+       "Scale": "1",
+       "Unit": "V",
+       "R/W": "R",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Output power",
+      "unitSI": "kW",
+      "unitSIRaw": "kW",
+      "readWrite": "R",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 13,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 363,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h000D",
+       "Parameter": "Output power",
+       "Scale": "0.1",
+       "Unit": "kW",
+       "R/W": "R",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Operation status",
+      "readWrite": "R",
+      "note": "B15 0: HAND, 1: AUTO 1: Frequency command B14 source by communication (built-in, option) 1: Operation command B13 source by communication (built-in, option) B12 Reverse operation command B11 Forward operation command B10 Reserved B9 Jog mode B8 Drive stopping B7 DC Braking B6 Speed reached B5 Decelerating B4 Accelerating Fault Trip - operates B3 according to OUT-30 setting",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 14,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 363,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h000E",
+       "Parameter": "Operation status",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "B15 0: HAND, 1: AUTO 1: Frequency command B14 source by communication (built-in, option) 1: Operation command B13 source by communication (built-in, option) B12 Reverse operation command B11 Forward operation command B10 Reserved B9 Jog mode B8 Drive stopping B7 DC Braking B6 Speed reached B5 Decelerating B4 Accelerating Fault Trip - operates B3 according to OUT-30 setting",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Fault trip information",
+      "readWrite": "R",
+      "note": "B15 Reserved B14 Reserved B13 Reserved B12 Reserved B11 Reserved B10 H/W-Diag B9 Reserved B8 Reserved B7 Reserved B6 Reserved B5 Reserved B4 Reserved B3 Level Type trip B2 Reserved B1 Reserved B0 Latch Type trip",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 15,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 364,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h000F",
+       "Parameter": "Fault trip information",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "B15 Reserved B14 Reserved B13 Reserved B12 Reserved B11 Reserved B10 H/W-Diag B9 Reserved B8 Reserved B7 Reserved B6 Reserved B5 Reserved B4 Reserved B3 Level Type trip B2 Reserved B1 Reserved B0 Latch Type trip",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Input terminal information",
+      "readWrite": "R",
+      "note": "B15 Reserved –B7 B6 P7 B5 P6 B4 P5 B3 P4 B2 P3 B1 P2 B0 P1",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 16,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 364,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0010",
+       "Parameter": "Input terminal information",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "B15 Reserved –B7 B6 P7 B5 P6 B4 P5 B3 P4 B2 P3 B1 P2 B0 P1",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Output terminal information",
+      "readWrite": "R",
+      "note": "B15 Reserved B14 Reserved",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 17,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 364,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0011",
+       "Parameter": "Output terminal information",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "B15 Reserved B14 Reserved",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "V1",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "V1 input voltage",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 18,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 365,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0012",
+       "Parameter": "V1",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "R",
+       "Assigned Content by Bit": "V1 input voltage",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Thermal",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "Input Thermal",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 19,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 365,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0013",
+       "Parameter": "Thermal",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "R",
+       "Assigned Content by Bit": "Input Thermal",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "V2",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "V2 input voltage",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 20,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 365,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0014",
+       "Parameter": "V2",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "R",
+       "Assigned Content by Bit": "V2 input voltage",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "I2",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "I2 input Current",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 21,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 365,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0015",
+       "Parameter": "I2",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "R",
+       "Assigned Content by Bit": "I2 input Current",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor rotation speed",
+      "unitSI": "Rpm",
+      "unitSIRaw": "Rpm",
+      "readWrite": "R",
+      "note": "Displays existing motor rotation speed",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 22,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 365,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0016",
+       "Parameter": "Motor rotation speed",
+       "Scale": "1",
+       "Unit": "Rpm",
+       "R/W": "R",
+       "Assigned Content by Bit": "Displays existing motor rotation speed",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 23,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 365,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0017",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Select Hz/rpm",
+      "readWrite": "R",
+      "states": [
+       {
+        "code": "0",
+        "label": "Hz unit"
+       },
+       {
+        "code": "1",
+        "label": "rpm unit"
+       }
+      ],
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 26,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 365,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h001A",
+       "Parameter": "Select Hz/rpm",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "0: Hz unit, 1: rpm unit",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Display the number of poles for the selected motor",
+      "readWrite": "R",
+      "note": "Display the number of poles for the selected motor",
+      "group": "7.3.8 Compatible Common Area Parameter"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 27,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 365,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h001B",
+       "Parameter": "Display the number of poles for the selected motor",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "R",
+       "Assigned Content by Bit": "Display the number of poles for the selected motor",
+       "절": "7.3.8 Compatible Common Area Parameter"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Inverter model",
+      "readWrite": "R",
+      "note": "H100: 000Fh",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 768,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 367,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0300",
+       "Parameter": "Inverter model",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "H100: 000Fh",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Inverter capacity",
+      "readWrite": "R",
+      "note": "0.75 kW: 4008h, 1.5 kW: 4015h 2.2 kW: 4022h, 3.7 kW: 4037h 5.5 kW: 4055h, 7.5 kW: 4075h 11 kW: 40B0h, 15 kW: 40F0h 18.5 kW: 4125h, 22 kW: 4160h 30 kW: 41E0h, 37 kW: 4250h, 45 kW: 42D0h,55 kW: 4370h, 75 kW: 44B0h,90 kW: 45A0h, 110 kW: 46E0h, 132 kW: 4840h 160 kW: 4A00h, 185kW: 4B90h, 220 kW: 4DC0h, 250 kW: 4FA0h, 315 kW: 53B0h, 355 kW: 5630h, 400 kW: 5900h, 500 kW: 5F40h",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 769,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 367,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0301",
+       "Parameter": "Inverter capacity",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "0.75 kW: 4008h, 1.5 kW: 4015h 2.2 kW: 4022h, 3.7 kW: 4037h 5.5 kW: 4055h, 7.5 kW: 4075h 11 kW: 40B0h, 15 kW: 40F0h 18.5 kW: 4125h, 22 kW: 4160h 30 kW: 41E0h, 37 kW: 4250h, 45 kW: 42D0h,55 kW: 4370h, 75 kW: 44B0h,90 kW: 45A0h, 110 kW: 46E0h, 132 kW: 4840h 160 kW: 4A00h, 185kW: 4B90h, 220 kW: 4DC0h, 250 kW: 4FA0h, 315 kW: 53B0h, 355 kW: 5630h, 400 kW: 5900h, 500 kW: 5F40h",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "voltage/power (Single phase, 3-",
+      "readWrite": "R",
+      "note": "200 V 3-phase forced cooling: 0231h 400 V 3-phase forced cooling: 0431h",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 770,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 367,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0302",
+       "Parameter": "voltage/power (Single phase, 3-",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "200 V 3-phase forced cooling: 0231h 400 V 3-phase forced cooling: 0431h",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Inverter S/W version",
+      "readWrite": "R",
+      "states": [
+       {
+        "code": "0064",
+        "label": "Version 1.00 0h"
+       },
+       {
+        "code": "0065",
+        "label": "Version 1.01"
+       }
+      ],
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 771,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 367,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0303",
+       "Parameter": "Inverter S/W version",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "(ex) 0h0064: Version 1.00 0h0065: Version 1.01",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 772,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 367,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0304",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Inverter operation state",
+      "readWrite": "R",
+      "note": "B15 B14 0: Normal state 4: Warning occurred B13 8: Fault occurred B12 B11– - B8 B7 1: Speed searching 2: Accelerating B6 3: Operating at constant rate 4: Decelerating B5 5: Decelerating to stop",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 773,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 367,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0305",
+       "Parameter": "Inverter operation state",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15 B14 0: Normal state 4: Warning occurred B13 8: Fault occurred B12 B11– - B8 B7 1: Speed searching 2: Accelerating B6 3: Operating at constant rate 4: Decelerating B5 5: Decelerating to stop",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Inverter operation frequency command source",
+      "readWrite": "R",
+      "note": "B15 B14 B13 Operation command source B12 0: Keypad 1: Communication option B11 3: Built-in RS 485 4: Terminal block B10 B9 B8 B7 Frequency command source 0: Keypad speed B6 1: Keypad torque B5 2-4: Up/Down operation speed 5: V1, 7: V2, 8: I2 B4 9: Pulse B3 10: Built-in RS 485 11: Communication option B2 13: Jog B1 14: PID 25-31: Multi-step speed B0 frequency",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 774,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 368,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0306",
+       "Parameter": "Inverter operation frequency command source",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15 B14 B13 Operation command source B12 0: Keypad 1: Communication option B11 3: Built-in RS 485 4: Terminal block B10 B9 B8 B7 Frequency command source 0: Keypad speed B6 1: Keypad torque B5 2-4: Up/Down operation speed 5: V1, 7: V2, 8: I2 B4 9: Pulse B3 10: Built-in RS 485 11: Communication option B2 13: Jog B1 14: PID 25-31: Multi-step speed B0 frequency",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Keypad S/W version",
+      "readWrite": "R",
+      "note": "(Ex.) 0h0064: Version 1.00",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 775,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 368,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0307",
+       "Parameter": "Keypad S/W version",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "(Ex.) 0h0064: Version 1.00",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Keypad title version",
+      "readWrite": "R",
+      "note": "(Ex.) 0h0065: Version 1.01",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 776,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 368,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0308",
+       "Parameter": "Keypad title version",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "(Ex.) 0h0065: Version 1.01",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "IO Board Version",
+      "readWrite": "R",
+      "states": [
+       {
+        "code": "0064",
+        "label": "Version 1.00 (Ex.) 0h"
+       },
+       {
+        "code": "0065",
+        "label": "Version 1.01"
+       }
+      ],
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 777,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 368,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0309",
+       "Parameter": "IO Board Version",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "(Ex.) 0h0064: Version 1.00 (Ex.) 0h0065: Version 1.01",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Output current",
+      "unitSI": "A",
+      "unitSIRaw": "A",
+      "readWrite": "R",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 784,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 368,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0310",
+       "Parameter": "Output current",
+       "Scale": "0.1",
+       "Unit": "A",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Output frequency",
+      "unitSI": "Hz",
+      "unitSIRaw": "Hz",
+      "readWrite": "R",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 785,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0311",
+       "Parameter": "Output frequency",
+       "Scale": "0.01",
+       "Unit": "Hz",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Output rpm",
+      "unitSI": "Rpm",
+      "unitSIRaw": "Rpm",
+      "readWrite": "R",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 786,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.0,
+       "scaleRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0312",
+       "Parameter": "Output rpm",
+       "Scale": "0",
+       "Unit": "Rpm",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 787,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0313",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Output voltage",
+      "unitSI": "V",
+      "unitSIRaw": "V",
+      "readWrite": "R",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 788,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0314",
+       "Parameter": "Output voltage",
+       "Scale": "1",
+       "Unit": "V",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "DC Link voltage",
+      "unitSI": "V",
+      "unitSIRaw": "V",
+      "readWrite": "R",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 789,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0315",
+       "Parameter": "DC Link voltage",
+       "Scale": "1",
+       "Unit": "V",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Output power",
+      "unitSI": "kW",
+      "unitSIRaw": "kW",
+      "readWrite": "R",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 790,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0316",
+       "Parameter": "Output power",
+       "Scale": "0.1",
+       "Unit": "kW",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 791,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0317",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "PID reference",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "PID reference value",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 792,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0318",
+       "Parameter": "PID reference",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "PID reference value",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "PID feedback",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "PID feedback value",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 793,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0319",
+       "Parameter": "PID feedback",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "PID feedback value",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Display the number of poles for the 1st motor",
+      "readWrite": "R",
+      "note": "Displays the number of poles for the first motor",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 794,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h031A",
+       "Parameter": "Display the number of poles for the 1st motor",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Displays the number of poles for the first motor",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Display the number of poles for the 2nd motor",
+      "readWrite": "R",
+      "note": "Displays the number of poles for the 2nd motor",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 795,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h031B",
+       "Parameter": "Display the number of poles for the 2nd motor",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Displays the number of poles for the 2nd motor",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Display the number of poles for the selected motor",
+      "readWrite": "R",
+      "note": "Displays the number of poles for the selected motor",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 796,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h031C",
+       "Parameter": "Display the number of poles for the selected motor",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Displays the number of poles for the selected motor",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Select Hz/rpm",
+      "readWrite": "R",
+      "states": [
+       {
+        "code": "0",
+        "label": "Hz"
+       },
+       {
+        "code": "1",
+        "label": "rpm"
+       }
+      ],
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 797,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h031D",
+       "Parameter": "Select Hz/rpm",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: Hz, 1: rpm",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 798,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h031E",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Digital input information",
+      "readWrite": "R",
+      "note": "B15– Reserved B7 B6 P7 (I/O board) B5 P6 (I/O board) B4 P5 (I/O board) B3 P4 (I/O board) B2 P3 (I/O board) B1 P2 (I/O board) B0 P1 (I/O board)",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 800,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0320",
+       "Parameter": "Digital input information",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15– Reserved B7 B6 P7 (I/O board) B5 P6 (I/O board) B4 P5 (I/O board) B3 P4 (I/O board) B2 P3 (I/O board) B1 P2 (I/O board) B0 P1 (I/O board)",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Digital output information",
+      "readWrite": "R",
+      "note": "B15– Reserved B11 B10 Q1 B9– Reserved B5",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 801,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 369,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0321",
+       "Parameter": "Digital output information",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15– Reserved B11 B10 Q1 B9– Reserved B5",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Virtual digital input information",
+      "readWrite": "R",
+      "note": "B15– Reserved B8 B7 Virtual DI 8 (COM-77) B6 Virtual DI 7 (COM-76) B5 Virtual DI 6 (COM-75) B4 Virtual DI 5 (COM-74) B3 Virtual DI 4 (COM-73) B2 Virtual DI 3 (COM-72) B1 Virtual DI 2 (COM-71) B0 Virtual DI 1 (COM-70)",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 802,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0322",
+       "Parameter": "Virtual digital input information",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15– Reserved B8 B7 Virtual DI 8 (COM-77) B6 Virtual DI 7 (COM-76) B5 Virtual DI 6 (COM-75) B4 Virtual DI 5 (COM-74) B3 Virtual DI 4 (COM-73) B2 Virtual DI 3 (COM-72) B1 Virtual DI 2 (COM-71) B0 Virtual DI 1 (COM-70)",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Display the selected motor",
+      "readWrite": "R",
+      "states": [
+       {
+        "code": "0",
+        "label": "1st motor/"
+       },
+       {
+        "code": "1",
+        "label": "2nd motor"
+       }
+      ],
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 803,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0323",
+       "Parameter": "Display the selected motor",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: 1st motor/1: 2nd motor",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "AI1",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "Analog input V1 or Thermal (I/O board)",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 804,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0324",
+       "Parameter": "AI1",
+       "Scale": "0.01",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "Analog input V1 or Thermal (I/O board)",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "AI2",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "Analog input V2 or I2 (I/O board)",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 805,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0325",
+       "Parameter": "AI2",
+       "Scale": "0.01",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "Analog input V2 or I2 (I/O board)",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 806,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0326",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 807,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0327",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "AO1",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "Analog output 1 (I/O board)",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 808,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0328",
+       "Parameter": "AO1",
+       "Scale": "0.01",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "Analog output 1 (I/O board)",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "AO2",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "Analog output 2 (I/O board)",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 809,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0329",
+       "Parameter": "AO2",
+       "Scale": "0.01",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "Analog output 2 (I/O board)",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 810,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h032A",
+       "Parameter": "Reserved",
+       "Scale": "0.01",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 811,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h032B",
+       "Parameter": "Reserved",
+       "Scale": "0.01",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 812,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h032C",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 813,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h032D",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Consumption energy (kWh)",
+      "unitSI": "kWh",
+      "unitSIRaw": "kWh",
+      "readWrite": "R",
+      "note": "Consumption energy (kWh)",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 814,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h032E",
+       "Parameter": "Consumption energy (kWh)",
+       "Scale": "0.1",
+       "Unit": "kWh",
+       "R/W": "-",
+       "Assigned Content by Bit": "Consumption energy (kWh)",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Consumption energy (MWh)",
+      "unitSI": "MW h",
+      "unitSIRaw": "MW h",
+      "readWrite": "R",
+      "note": "Consumption energy (MWh)",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 815,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 370,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h032F",
+       "Parameter": "Consumption energy (MWh)",
+       "Scale": "1",
+       "Unit": "MW h",
+       "R/W": "-",
+       "Assigned Content by Bit": "Consumption energy (MWh)",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Latch type trip information - 1",
+      "readWrite": "R",
+      "note": "B15 PC Repeat Err B14 Over Heat Trip B13 Reserved B12 External Trip B11 Damper Err B10 Pipe Break B9 NTC Open B8 Reserved B7 Reserved B6 In Phase Open B5 Out Phase Open B4 Low Voltage2 B3 E-Thermal B2 Inverter OLT B1 Under Load B0 Over Load",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 816,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 371,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0330",
+       "Parameter": "Latch type trip information - 1",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15 PC Repeat Err B14 Over Heat Trip B13 Reserved B12 External Trip B11 Damper Err B10 Pipe Break B9 NTC Open B8 Reserved B7 Reserved B6 In Phase Open B5 Out Phase Open B4 Low Voltage2 B3 E-Thermal B2 Inverter OLT B1 Under Load B0 Over Load",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Latch type trip information - 2",
+      "readWrite": "R",
+      "note": "B15 Reserved B14 MMC Interlock B13 Reserved B12 Reserved B11 Reserved B10 Option Trip-1 B9 No Motor Trip B8 Reserved B7 IO Board Trip B6 Broken Belt B5 ParaWrite Trip B4 TB Trip B3 Fan Trip B2 Thermal Trip",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 817,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 371,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0331",
+       "Parameter": "Latch type trip information - 2",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15 Reserved B14 MMC Interlock B13 Reserved B12 Reserved B11 Reserved B10 Option Trip-1 B9 No Motor Trip B8 Reserved B7 IO Board Trip B6 Broken Belt B5 ParaWrite Trip B4 TB Trip B3 Fan Trip B2 Thermal Trip",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Level type trip information",
+      "readWrite": "R",
+      "note": "B15– Reserved B4 B3 Lost Keypad B2 Lost Command B1 Low Voltage B0 BX",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 818,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 372,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0332",
+       "Parameter": "Level type trip information",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15– Reserved B4 B3 Lost Keypad B2 Lost Command B1 Low Voltage B0 BX",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "H/W Diagnosis Trip information",
+      "readWrite": "R",
+      "note": "B15– Reserved B3 B2 Watchdog-1 error B1 EEP Err B0 ADC Offset",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 819,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 372,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0333",
+       "Parameter": "H/W Diagnosis Trip information",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15– Reserved B3 B2 Watchdog-1 error B1 EEP Err B0 ADC Offset",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Warning information-1",
+      "readWrite": "R",
+      "note": "B15 Broken Belt B14 Low Battery B13 Load Tune B12 Fan Exchange B11 CAP. Warning B10 Level Detect B9 Reserved B8 Lost Keypad B7 Pipe Break B6 Fire Mode B5 DB Warn %ED B4 Fan Warning B3 Lost Command B2 Inv Over Load B1 Under Load B0 Over Load",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 820,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 372,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0334",
+       "Parameter": "Warning information-1",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15 Broken Belt B14 Low Battery B13 Load Tune B12 Fan Exchange B11 CAP. Warning B10 Level Detect B9 Reserved B8 Lost Keypad B7 Pipe Break B6 Fire Mode B5 DB Warn %ED B4 Fan Warning B3 Lost Command B2 Inv Over Load B1 Under Load B0 Over Load",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Latch type trip information -3",
+      "readWrite": "R",
+      "note": "B15 Reserved – Reserved B4 Reserved B3 Overcurrent2 Trip B2 Overvoltage Trip B1 Overcurrent1 Trip B0 Ground Fault Trip",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 821,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 373,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0335",
+       "Parameter": "Latch type trip information -3",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15 Reserved – Reserved B4 Reserved B3 Overcurrent2 Trip B2 Overvoltage Trip B1 Overcurrent1 Trip B0 Ground Fault Trip",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Warning information-2",
+      "readWrite": "R",
+      "note": "B15 Reserved ~ Reserved B3 KPD H.O.A Lock B2 Lsig Tune Err B1 Rs Tune Err B0 ParaWrite Fail",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 822,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 373,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0336",
+       "Parameter": "Warning information-2",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15 Reserved ~ Reserved B3 KPD H.O.A Lock B2 Lsig Tune Err B1 Rs Tune Err B0 ParaWrite Fail",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 825,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 373,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0339",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proc PID Output",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "Process PID Output (%)",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 826,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 373,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h033A",
+       "Parameter": "Proc PID Output",
+       "Scale": "0.01",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "Process PID Output (%)",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proc PID UnitScale Ref",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R",
+      "note": "Unit Scaled Process PID reference value",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 827,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 373,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h033B",
+       "Parameter": "Proc PID UnitScale Ref",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scaled Process PID reference value",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proc PID UnitScale",
+      "unitSI": "Proc",
+      "unitSIRaw": "Proc",
+      "readWrite": "R",
+      "note": "Unit Scaled Process PID feedback value",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 828,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 373,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h033C",
+       "Parameter": "Proc PID UnitScale",
+       "Scale": "Proc",
+       "Unit": "Proc",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scaled Process PID feedback value",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "On Time date",
+      "unitSI": "Day",
+      "unitSIRaw": "Day",
+      "readWrite": "R",
+      "note": "Total number of days the inverter has been powered on",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 832,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.0,
+       "scaleRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 373,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0340",
+       "Parameter": "On Time date",
+       "Scale": "0",
+       "Unit": "Day",
+       "R/W": "-",
+       "Assigned Content by Bit": "Total number of days the inverter has been powered on",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "On Time Minute",
+      "unitSI": "Min",
+      "unitSIRaw": "Min",
+      "readWrite": "R",
+      "note": "Total number of minutes excluding the total number of On Time days",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 833,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.0,
+       "scaleRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 373,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0341",
+       "Parameter": "On Time Minute",
+       "Scale": "0",
+       "Unit": "Min",
+       "R/W": "-",
+       "Assigned Content by Bit": "Total number of minutes excluding the total number of On Time days",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Run Time date",
+      "unitSI": "Day",
+      "unitSIRaw": "Day",
+      "readWrite": "R",
+      "note": "Total number of days the inverter has driven the motor",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 834,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.0,
+       "scaleRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 373,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0342",
+       "Parameter": "Run Time date",
+       "Scale": "0",
+       "Unit": "Day",
+       "R/W": "-",
+       "Assigned Content by Bit": "Total number of days the inverter has driven the motor",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Run Time minute",
+      "unitSI": "Min",
+      "unitSIRaw": "Min",
+      "readWrite": "R",
+      "note": "Total number of minutes excluding the total number of Run Time days",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 835,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.0,
+       "scaleRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 373,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0343",
+       "Parameter": "Run Time minute",
+       "Scale": "0",
+       "Unit": "Min",
+       "R/W": "-",
+       "Assigned Content by Bit": "Total number of minutes excluding the total number of Run Time days",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Fan Time date",
+      "unitSI": "Day",
+      "unitSIRaw": "Day",
+      "readWrite": "R",
+      "note": "Total number of days the heat sink fan has been running",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 836,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.0,
+       "scaleRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0344",
+       "Parameter": "Fan Time date",
+       "Scale": "0",
+       "Unit": "Day",
+       "R/W": "-",
+       "Assigned Content by Bit": "Total number of days the heat sink fan has been running",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Fan Time minute",
+      "unitSI": "Min",
+      "unitSIRaw": "Min",
+      "readWrite": "R",
+      "note": "Total number of minutes excluding the total number of Fan Time days",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 837,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.0,
+       "scaleRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0345",
+       "Parameter": "Fan Time minute",
+       "Scale": "0",
+       "Unit": "Min",
+       "R/W": "-",
+       "Assigned Content by Bit": "Total number of minutes excluding the total number of Fan Time days",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 838,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0346",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 841,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0349",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Option 1",
+      "readWrite": "R",
+      "states": [
+       {
+        "code": "0",
+        "label": "None"
+       },
+       {
+        "code": "5",
+        "label": "LonWorks"
+       }
+      ],
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 842,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h034A",
+       "Parameter": "Option 1",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: None, 5: LonWorks",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 843,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h034B",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 844,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h034C",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 847,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h034F",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 1 Output",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "External PID 1 output",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 848,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0350",
+       "Parameter": "E-PID 1 Output",
+       "Scale": "0.01",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "External PID 1 output",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 1 Ref",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "External PID 1 Reference",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 849,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0351",
+       "Parameter": "E-PID 1 Ref",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "External PID 1 Reference",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 1 Fdb",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "External PID 1 feedback",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 850,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0352",
+       "Parameter": "E-PID 1 Fdb",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "External PID 1 feedback",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 1 Unit Scale Ref",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R",
+      "note": "Unit Scale External PID 1 Reference",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 851,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0353",
+       "Parameter": "E-PID 1 Unit Scale Ref",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale External PID 1 Reference",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 1 Unit Scale Fdb",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R",
+      "note": "Unit Scale External PID 1 feedback",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 852,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0354",
+       "Parameter": "E-PID 1 Unit Scale Fdb",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale External PID 1 feedback",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 853,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0355",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R",
+      "note": "Reserved",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 854,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0356",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 2 Output",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "External PID 2 output",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 855,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0357",
+       "Parameter": "E-PID 2 Output",
+       "Scale": "0.01",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "External PID 2 output",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 2 Ref",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "External PID 2 Reference",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 856,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0358",
+       "Parameter": "E-PID 2 Ref",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "External PID 2 Reference",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 2 Fdb",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "External PID 2 feedback",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 857,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0359",
+       "Parameter": "E-PID 2 Fdb",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "External PID 2 feedback",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 2 Unit Scale Ref",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R",
+      "note": "Unit Scale External PID 2 Reference",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 858,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 374,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h035A",
+       "Parameter": "E-PID 2 Unit Scale Ref",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale External PID 2 Reference",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 2 Unit Scale Fdb",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R",
+      "note": "Unit Scale External PID 2 feedback",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 859,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 375,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h035B",
+       "Parameter": "E-PID 2 Unit Scale Fdb",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale External PID 2 feedback",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Application Status",
+      "readWrite": "R",
+      "note": "B15 Reserved –B2 B1 Fire Mode B0 Pump Clean",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 860,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 375,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h035C",
+       "Parameter": "Application Status",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15 Reserved –B2 B1 Fire Mode B0 Pump Clean",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Inv Temperature",
+      "unitSI": "℃",
+      "unitSIRaw": "℃",
+      "readWrite": "R",
+      "note": "Heatsink Temperature",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 861,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.0,
+       "scaleRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 375,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h035D",
+       "Parameter": "Inv Temperature",
+       "Scale": "0",
+       "Unit": "℃",
+       "R/W": "-",
+       "Assigned Content by Bit": "Heatsink Temperature",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Power Factor",
+      "readWrite": "R",
+      "note": "Output power factor",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 862,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 375,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h035E",
+       "Parameter": "Power Factor",
+       "Scale": "0.1",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Output power factor",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Inv Fan Time",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R",
+      "note": "INV Fan running time(%)",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 863,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 375,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h035F",
+       "Parameter": "Inv Fan Time",
+       "Scale": "-",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "INV Fan running time(%)",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Multi motor control terminal output",
+      "readWrite": "R",
+      "note": "B15 Reserved – Reserved B5 Reserved B4 5 th motor running th B3 4 motor running B2 3 rd motor running B1 2 nd motor running B0 1 st motor running",
+      "group": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 864,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 375,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0360",
+       "Parameter": "Multi motor control terminal output",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15 Reserved – Reserved B5 Reserved B4 5 th motor running th B3 4 motor running B2 3 rd motor running B1 2 nd motor running B0 1 st motor running",
+       "절": "7.3.9.1 Monitoring Area Parameter (Read Only)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Frequency command",
+      "unitSI": "Hz",
+      "unitSIRaw": "Hz",
+      "readWrite": "R/W",
+      "note": "Command frequency setting",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 896,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.01,
+       "scaleRaw": "0.01"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 376,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0380",
+       "Parameter": "Frequency command",
+       "Scale": "0.01",
+       "Unit": "Hz",
+       "R/W": "-",
+       "Assigned Content by Bit": "Command frequency setting",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "RPM command",
+      "unitSI": "Rpm",
+      "unitSIRaw": "Rpm",
+      "readWrite": "R/W",
+      "note": "Command rpm setting",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 897,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 376,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0381",
+       "Parameter": "RPM command",
+       "Scale": "1",
+       "Unit": "Rpm",
+       "R/W": "-",
+       "Assigned Content by Bit": "Command rpm setting",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Operation command",
+      "readWrite": "R/W",
+      "note": "B15–B4 Reserved B3 0  1: Free-run stop B2 0  1: Trip initialization 0: Reverse command, 1: B1 Forward command 0: Stop command, 1: Run B0 command Example: Forward operation command 0003h, Reverse operation command 0001h",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 898,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 376,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0382",
+       "Parameter": "Operation command",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15–B4 Reserved B3 0  1: Free-run stop B2 0  1: Trip initialization 0: Reverse command, 1: B1 Forward command 0: Stop command, 1: Run B0 command Example: Forward operation command 0003h, Reverse operation command 0001h",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Acceleration time",
+      "unitSI": "sec",
+      "unitSIRaw": "sec",
+      "readWrite": "R/W",
+      "note": "Acceleration time setting",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 899,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 376,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0383",
+       "Parameter": "Acceleration time",
+       "Scale": "0.1",
+       "Unit": "sec",
+       "R/W": "-",
+       "Assigned Content by Bit": "Acceleration time setting",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Deceleration time",
+      "unitSI": "sec",
+      "unitSIRaw": "sec",
+      "readWrite": "R/W",
+      "note": "Deceleration time setting",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 900,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 376,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0384",
+       "Parameter": "Deceleration time",
+       "Scale": "0.1",
+       "Unit": "sec",
+       "R/W": "-",
+       "Assigned Content by Bit": "Deceleration time setting",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Virtual digital input control (0: Off, 1: On)",
+      "readWrite": "R/W",
+      "note": "B15–B8 Reserved B7 Virtual DI 8 (COM-77) B6 Virtual DI 7 (COM-76) B5 Virtual DI 6 (COM-75) B4 Virtual DI 5 (COM-74) B3 Virtual DI 4 (COM-73) B2 Virtual DI 3 (COM-72) B1 Virtual DI 2 (COM-71) B0 Virtual DI 1 (COM-70)",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 901,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 376,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0385",
+       "Parameter": "Virtual digital input control (0: Off, 1: On)",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15–B8 Reserved B7 Virtual DI 8 (COM-77) B6 Virtual DI 7 (COM-76) B5 Virtual DI 6 (COM-75) B4 Virtual DI 5 (COM-74) B3 Virtual DI 4 (COM-73) B2 Virtual DI 3 (COM-72) B1 Virtual DI 2 (COM-71) B0 Virtual DI 1 (COM-70)",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "Digital output control (0: Off, 1: On)",
+      "readWrite": "R/W",
+      "note": "B15–B11 Reserved B10 Q1 B9– Reserved B5 B4 Relay 5 B3 Relay 4",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 902,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 376,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0386",
+       "Parameter": "Digital output control (0: Off, 1: On)",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "B15–B11 Reserved B10 Q1 B9– Reserved B5 B4 Relay 5 B3 Relay 4",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus",
+      "gaps": [
+       "common.states — 값이 코드 열거가 아니라 **비트필드**다(B15~B0 배정). 포인트 스키마에 비트 배정을 담을 자리가 없어 원문 그대로 note 에 두었다."
+      ]
+     }
+    },
+    {
+     "common": {
+      "name": "KPD H.O.A Lock",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "Locked"
+       },
+       {
+        "code": "1",
+        "label": "During Run"
+       },
+       {
+        "code": "2",
+        "label": "Unlocked"
+       }
+      ],
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 903,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0387",
+       "Parameter": "KPD H.O.A Lock",
+       "Scale": "1",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "0 : Locked, 1 : During Run, 2 : Unlocked",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "PID reference",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R/W",
+      "note": "Process PID reference",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 904,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0388",
+       "Parameter": "PID reference",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "Process PID reference",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "PID feedback value",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R/W",
+      "note": "Process PID feedback",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 905,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0389",
+       "Parameter": "PID feedback value",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "Process PID feedback",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor rated current",
+      "unitSI": "A",
+      "unitSIRaw": "A",
+      "readWrite": "R/W",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 906,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h038A",
+       "Parameter": "Motor rated current",
+       "Scale": "0.1",
+       "Unit": "A",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Motor rated voltage",
+      "unitSI": "V",
+      "unitSIRaw": "V",
+      "readWrite": "R/W",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 907,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h038B",
+       "Parameter": "Motor rated voltage",
+       "Scale": "1",
+       "Unit": "V",
+       "R/W": "-",
+       "Assigned Content by Bit": "-",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R/W",
+      "note": "Reserved",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 909,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h038D",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proc PID Unit Reference",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R/W",
+      "note": "Unit Scale Process PID reference",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 910,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h038E",
+       "Parameter": "Proc PID Unit Reference",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale Process PID reference",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proc PID Unit Feedback",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R/W",
+      "note": "Unit Scale Process PID feedback",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 911,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h038F",
+       "Parameter": "Proc PID Unit Feedback",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale Process PID feedback",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R/W",
+      "note": "Reserved",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 921,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h0399",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Anytime Para",
+      "readWrite": "R/W",
+      "note": "Set the CNF-20 value (refer to 5.49 Operation State Monitor on page 305 )",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 922,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h039A",
+       "Parameter": "Anytime Para",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Set the CNF-20 value (refer to 5.49 Operation State Monitor on page 305 )",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Monitor Line-1",
+      "readWrite": "R/W",
+      "note": "Set the CNF-21 value (refer to 5.49 Operation State Monitor on page 305 )",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 923,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h039B",
+       "Parameter": "Monitor Line-1",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Set the CNF-21 value (refer to 5.49 Operation State Monitor on page 305 )",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Monitor Line-2",
+      "readWrite": "R/W",
+      "note": "Set the CNF-22 value (refer to 5.49 Operation State Monitor on page 305 )",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 924,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h039C",
+       "Parameter": "Monitor Line-2",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Set the CNF-22 value (refer to 5.49 Operation State Monitor on page 305 )",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Monitor Line-3",
+      "readWrite": "R/W",
+      "note": "Set the CNF-23 value (refer to 5.49Operation State Monitor on page 305 )",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 925,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h039D",
+       "Parameter": "Monitor Line-3",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Set the CNF-23 value (refer to 5.49Operation State Monitor on page 305 )",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R/W",
+      "note": "Reserved",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 927,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h039F",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "PID Ref 1 Aux Value",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R/W",
+      "note": "PID Aux 1 reference",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 928,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03A0",
+       "Parameter": "PID Ref 1 Aux Value",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "PID Aux 1 reference",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "PID Ref 2 Aux Value",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R/W",
+      "note": "PID Aux 2 reference",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 929,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03A1",
+       "Parameter": "PID Ref 2 Aux Value",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "PID Aux 2 reference",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "PID Feedback Aux Value",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R/W",
+      "note": "PID Aux feedback",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 930,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03A2",
+       "Parameter": "PID Feedback Aux Value",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "PID Aux feedback",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proc PID Aux 1 Unit",
+      "unitSI": "Proc",
+      "unitSIRaw": "Proc",
+      "readWrite": "R/W",
+      "note": "Unit Scale PID Aux 1 reference",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 931,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 377,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03A3",
+       "Parameter": "Proc PID Aux 1 Unit",
+       "Scale": "Proc",
+       "Unit": "Proc",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale PID Aux 1 reference",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proc PID Aux 2 Unit Scale",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R/W",
+      "note": "Unit Scale PID Aux 2 reference",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 932,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03A4",
+       "Parameter": "Proc PID Aux 2 Unit Scale",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale PID Aux 2 reference",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Proc PID Fdb Aux Unit Scale",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R/W",
+      "note": "Unit Scale PID Aux feedback",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 933,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03A5",
+       "Parameter": "Proc PID Fdb Aux Unit Scale",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale PID Aux feedback",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R/W",
+      "note": "Reserved",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 943,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03AF",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 1 Ref",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R/W",
+      "note": "External PID 1 reference",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 944,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03B0",
+       "Parameter": "E-PID 1 Ref",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "External PID 1 reference",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 1 Fdb",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R/W",
+      "note": "External PID 1 reference",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 945,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03B1",
+       "Parameter": "E-PID 1 Fdb",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "External PID 1 reference",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 1 Unit Scale Ref",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R/W",
+      "note": "Unit Scale External PID 1 reference",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 946,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03B2",
+       "Parameter": "E-PID 1 Unit Scale Ref",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale External PID 1 reference",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 1 Unit Scale Fdb",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R/W",
+      "note": "Unit Scale External PID 1 feedback",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 947,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03B3",
+       "Parameter": "E-PID 1 Unit Scale Fdb",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale External PID 1 feedback",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Reserved",
+      "readWrite": "R/W",
+      "note": "Reserved",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 948,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03B4",
+       "Parameter": "Reserved",
+       "Scale": "-",
+       "Unit": "-",
+       "R/W": "-",
+       "Assigned Content by Bit": "Reserved",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 2 Ref",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R/W",
+      "note": "External PID 2 reference",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 949,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03B5",
+       "Parameter": "E-PID 2 Ref",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "External PID 2 reference",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 2 Fdb",
+      "unitSI": "%",
+      "unitSIRaw": "%",
+      "readWrite": "R/W",
+      "note": "External PID 2 feedback",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 950,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.1,
+       "scaleRaw": "0.1"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03B6",
+       "Parameter": "E-PID 2 Fdb",
+       "Scale": "0.1",
+       "Unit": "%",
+       "R/W": "-",
+       "Assigned Content by Bit": "External PID 2 feedback",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 2 Unit Scale Ref",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R/W",
+      "note": "Unit Scale External PID 2 reference",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 951,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03B7",
+       "Parameter": "E-PID 2 Unit Scale Ref",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale External PID 2 reference",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "E-PID 2 Unit Scale Fdb",
+      "unitSI": "Proc Unit",
+      "unitSIRaw": "Proc Unit",
+      "readWrite": "R/W",
+      "note": "Unit Scale External PID 2 feedback",
+      "group": "7.3.9.2 Control Area Parameter (Read/Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 952,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 378,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03B8",
+       "Parameter": "E-PID 2 Unit Scale Fdb",
+       "Scale": "Proc Unit",
+       "Unit": "Proc Unit",
+       "R/W": "-",
+       "Assigned Content by Bit": "Unit Scale External PID 2 feedback",
+       "절": "7.3.9.2 Control Area Parameter (Read/Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Save parameters",
+      "unitSI": "- X",
+      "unitSIRaw": "- X",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "1",
+        "label": "Yes"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 992,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03E0",
+       "Parameter": "Save parameters",
+       "Scale": "-",
+       "Unit": "- X",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: No, 1: Yes",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Monitor mode initialization",
+      "unitSI": "- O",
+      "unitSIRaw": "- O",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "1",
+        "label": "Yes"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 993,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03E1",
+       "Parameter": "Monitor mode initialization",
+       "Scale": "-",
+       "Unit": "- O",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: No, 1: Yes",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Parameter initialization",
+      "unitSI": "- X",
+      "unitSIRaw": "- X",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "10",
+        "label": "EPID Grp"
+       },
+       {
+        "code": "1",
+        "label": "All Grp"
+       },
+       {
+        "code": "11",
+        "label": "AP1 Grp"
+       },
+       {
+        "code": "2",
+        "label": "DRV Grp"
+       },
+       {
+        "code": "12",
+        "label": "AP2 Grp"
+       },
+       {
+        "code": "3",
+        "label": "BAS Grp"
+       },
+       {
+        "code": "13",
+        "label": "AP3 Grp"
+       },
+       {
+        "code": "4",
+        "label": "ADV Grp"
+       },
+       {
+        "code": "14",
+        "label": "PRT Grp"
+       },
+       {
+        "code": "5",
+        "label": "CON Grp"
+       },
+       {
+        "code": "15",
+        "label": "M2 Grp"
+       },
+       {
+        "code": "6",
+        "label": "IN Grp Setting is"
+       },
+       {
+        "code": "7",
+        "label": "OUT Grp prohibited"
+       },
+       {
+        "code": "8",
+        "label": "COM Grp during fault trip"
+       },
+       {
+        "code": "9",
+        "label": "PID Grp interruptions."
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 994,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03E2",
+       "Parameter": "Parameter initialization",
+       "Scale": "-",
+       "Unit": "- X",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: No, 10: EPID Grp 1: All Grp 11: AP1 Grp 2: DRV Grp 12: AP2 Grp 3: BAS Grp 13: AP3 Grp 4: ADV Grp 14: PRT Grp 5: CON Grp 15: M2 Grp 6: IN Grp Setting is 7: OUT Grp prohibited 8: COM Grp during fault trip 9: PID Grp interruptions.",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Display changed",
+      "unitSI": "- O",
+      "unitSIRaw": "- O",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "1",
+        "label": "Yes"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 995,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03E3",
+       "Parameter": "Display changed",
+       "Scale": "-",
+       "Unit": "- O",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: No, 1: Yes",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Macro Function Setting",
+      "unitSI": "- X",
+      "unitSIRaw": "- X",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "Basic"
+       },
+       {
+        "code": "1",
+        "label": "Compressor"
+       },
+       {
+        "code": "2",
+        "label": "Supply Fan"
+       },
+       {
+        "code": "3",
+        "label": "Exhaust Fan"
+       },
+       {
+        "code": "4",
+        "label": "Cooling Tower"
+       },
+       {
+        "code": "5",
+        "label": "Circul. Pump"
+       },
+       {
+        "code": "6",
+        "label": "Vacuum Pump"
+       },
+       {
+        "code": "7",
+        "label": "Constant Torq"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 996,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03E4",
+       "Parameter": "Macro Function Setting",
+       "Scale": "-",
+       "Unit": "- X",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: Basic 1: Compressor 2: Supply Fan 3: Exhaust Fan 4: Cooling Tower 5: Circul. Pump 6: Vacuum Pump 7: Constant Torq",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Delete all fault history",
+      "unitSI": "- O",
+      "unitSIRaw": "- O",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "1",
+        "label": "Yes"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 997,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03E5",
+       "Parameter": "Delete all fault history",
+       "Scale": "-",
+       "Unit": "- O",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: No, 1: Yes",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Delete user-registrated codes",
+      "unitSI": "- O",
+      "unitSIRaw": "- O",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "1",
+        "label": "Yes"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 998,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03E6",
+       "Parameter": "Delete user-registrated codes",
+       "Scale": "-",
+       "Unit": "- O",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: No, 1: Yes",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Hide parameter mode",
+      "unitSI": "Hex O",
+      "unitSIRaw": "Hex O",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "Unlock"
+       },
+       {
+        "code": "1",
+        "label": "Lock"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 999,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.0,
+       "scaleRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03E7",
+       "Parameter": "Hide parameter mode",
+       "Scale": "0",
+       "Unit": "Hex O",
+       "R/W": "-",
+       "Assigned Content by Bit": "Write: 0–9999 Read: 0: Unlock, 1: Lock",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Lock parameter mode",
+      "unitSI": "Hex O",
+      "unitSIRaw": "Hex O",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "Unlock"
+       },
+       {
+        "code": "1",
+        "label": "Lock"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1000,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister",
+       "scale": 0.0,
+       "scaleRaw": "0"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03E8",
+       "Parameter": "Lock parameter mode",
+       "Scale": "0",
+       "Unit": "Hex O",
+       "R/W": "-",
+       "Assigned Content by Bit": "Write: 0–9999 Read: 0: Unlock, 1: Lock",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Easy start on (easy parameter setup mode)",
+      "unitSI": "- O",
+      "unitSIRaw": "- O",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "1",
+        "label": "Yes"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1001,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03E9",
+       "Parameter": "Easy start on (easy parameter setup mode)",
+       "Scale": "-",
+       "Unit": "- O",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: No, 1: Yes",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Initializing power consumption",
+      "unitSI": "- O",
+      "unitSIRaw": "- O",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "1",
+        "label": "Yes"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1002,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03EA",
+       "Parameter": "Initializing power consumption",
+       "Scale": "-",
+       "Unit": "- O",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: No, 1: Yes",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Initialize inverter operation",
+      "unitSI": "- O",
+      "unitSIRaw": "- O",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "1",
+        "label": "Yes"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1003,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 379,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03EB",
+       "Parameter": "Initialize inverter operation",
+       "Scale": "-",
+       "Unit": "- O",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: No, 1: Yes",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    },
+    {
+     "common": {
+      "name": "Initialize cooling fan accumulated operation time",
+      "unitSI": "- O",
+      "unitSIRaw": "- O",
+      "readWrite": "R/W",
+      "states": [
+       {
+        "code": "0",
+        "label": "No"
+       },
+       {
+        "code": "1",
+        "label": "Yes"
+       }
+      ],
+      "group": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1004,
+       "addressBase": "1-base",
+       "refClass": "holdingRegister"
+      }
+     },
+     "provenance": {
+      "sourceFile": "LS_H100_UserManual_EN_190621.pdf",
+      "sourcePage": 380,
+      "family": "Drive/Modbus",
+      "sourceColumns": {
+       "Comm. Address": "0h03EC",
+       "Parameter": "Initialize cooling fan accumulated operation time",
+       "Scale": "-",
+       "Unit": "- O",
+       "R/W": "-",
+       "Assigned Content by Bit": "0: No, 1: Yes",
+       "절": "7.3.9.3 Inverter Memory Control Area Parameter (Read and Write)"
+      },
+      "status": "extracted",
+      "interfaceId": "rs485-modbus"
+     }
+    }
    ]
   }
  ],
  "crosscheck": {
-  "method": "쪽 글자 흐름에서 '인스턴스ID+오브젝트이름' 을 다시 읽어 맞췄다(표 인식 경로가 아니다)",
-  "total": 76,
-  "both": 76,
+  "method": "판마다 다른 경로로 다시 읽어 맞췄다 — 자세한 것은 interfaces[].crosscheck 에 있다",
+  "total": 233,
+  "both": 233,
   "rate": 1.0,
   "diff": []
  }

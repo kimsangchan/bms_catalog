@@ -1693,10 +1693,15 @@ class LsH100IngestTest(unittest.TestCase):
         self.model = datasets.load_json(os.path.join(
             datasets.DATA, "models", "ls-electric-h100-vfd.json"))
 
+    def _bac(self):
+        """판을 **이름으로** 집는다. 이 제품은 판이 둘이다 — BACnet 옵션 카드와
+        내장 RS-485. 순번([0])으로 집으면 판이 늘 때 조용히 다른 것을 본다."""
+        return [i for i in self.model["interfaces"] if i["id"] == "bacnet-ip"][0]
+
     def test_one_interface_76_points_by_object_class(self):
         """오브젝트 계열별 수까지 박는다 — 한 계열이 조용히 빠지면 총계로는 안 보인다."""
-        self.assertEqual([i["id"] for i in self.model["interfaces"]], ["bacnet-ip"])
-        pts = self.model["interfaces"][0]["points"]
+        self.assertIn("bacnet-ip", [i["id"] for i in self.model["interfaces"]])
+        pts = self._bac()["points"]
         self.assertEqual(len(pts), 76)
         got = collections.Counter(p["blocks"]["bacnet"]["objectType"] for p in pts)
         self.assertEqual(dict(got), {"AV": 6, "MSV": 1, "BV": 11,
@@ -1704,18 +1709,18 @@ class LsH100IngestTest(unittest.TestCase):
 
     def test_every_point_has_an_instance_number(self):
         """LG 와 다르다 — 여기는 표가 인스턴스를 직접 준다(AV1·BI30). 비면 취입 실패다."""
-        for p in self.model["interfaces"][0]["points"]:
+        for p in self._bac()["points"]:
             bac = p["blocks"]["bacnet"]
             self.assertIsInstance(bac.get("instance"), int)
             self.assertGreaterEqual(bac["instance"], 1)
         seen = {(p["blocks"]["bacnet"]["objectType"], p["blocks"]["bacnet"]["instance"])
-                for p in self.model["interfaces"][0]["points"]}
+                for p in self._bac()["points"]}
         self.assertEqual(len(seen), 76, "같은 오브젝트가 두 번 들어왔다")
 
     def test_columns_are_read_by_name_not_by_position(self):
         """4번째 열이 계열마다 다른 것을 담는다 — 위치로 읽으면 MSV 열거가 단위가 된다."""
         by = {p["blocks"]["bacnet"]["objectType"] + str(p["blocks"]["bacnet"]["instance"]): p
-              for p in self.model["interfaces"][0]["points"]}
+              for p in self._bac()["points"]}
         self.assertEqual([s["label"] for s in by["MSV1"]["common"]["states"]][:3],
                          ["None", "FreeRun", "Dec"])
         self.assertEqual([s["label"] for s in by["MSI1"]["common"]["states"]], ["Hz", "RPM"])
@@ -1730,7 +1735,7 @@ class LsH100IngestTest(unittest.TestCase):
     def test_page_broken_description_is_stitched(self):
         """쪽을 넘어 갈린 설명을 이어 붙인다 — 안 하면 AV4 가 'Command frequency' 에서 끊긴다."""
         by = {p["blocks"]["bacnet"]["objectType"] + str(p["blocks"]["bacnet"]["instance"]): p
-              for p in self.model["interfaces"][0]["points"]}
+              for p in self._bac()["points"]}
         self.assertEqual(by["AV4"]["common"]["note"], "Command frequency setting**")
 
     def test_range_column_is_promoted_but_not_when_it_names_a_parameter(self):
@@ -1740,7 +1745,7 @@ class LsH100IngestTest(unittest.TestCase):
         숫자만 떼어 담으면 시뮬레이터가 20Hz 를 상한으로 믿는다.
         """
         by = {p["blocks"]["bacnet"]["objectType"] + str(p["blocks"]["bacnet"]["instance"]): p
-              for p in self.model["interfaces"][0]["points"]}
+              for p in self._bac()["points"]}
         self.assertEqual(by["AV1"]["common"]["range"],
                          {"raw": "0.1 - 120.0", "min": 0.1, "max": 120})
         self.assertNotIn("range", by["AV4"]["common"])
@@ -1753,7 +1758,7 @@ class LsH100IngestTest(unittest.TestCase):
         """계통은 사전에 먼저 등재한다 — validate 의 iface-family 가 이것을 세운다."""
         sch = datasets.load_json(os.path.join(datasets.DATA, "point-schema.json"))
         self.assertIn("Drive/BACnet", json.dumps(sch, ensure_ascii=False))
-        self.assertEqual(self.model["interfaces"][0]["family"], "Drive/BACnet")
+        self.assertEqual(self._bac()["family"], "Drive/BACnet")
 
 
 
@@ -2025,6 +2030,92 @@ class LgAhuKitReingestTest(unittest.TestCase):
     def test_family_is_registered_in_the_schema(self):
         sch = datasets.load_json(os.path.join(datasets.DATA, "point-schema.json"))
         self.assertIn("LG/AHUKit-Modbus", json.dumps(sch, ensure_ascii=False))
+
+
+class LsH100Rs485IngestTest(unittest.TestCase):
+    """LS H100 내장 RS-485 공통영역 157점 — 같은 제품의 **두 번째 판**이다(D-016)."""
+
+    def setUp(self):
+        self.model = datasets.load_json(os.path.join(
+            datasets.DATA, "models", "ls-electric-h100-vfd.json"))
+        self.rs = [i for i in self.model["interfaces"] if i["id"] == "rs485-modbus"][0]
+        self.by = {(p["common"]["name"], p["blocks"]["modbus"]["address"]): p
+                   for p in self.rs["points"]}
+
+    def test_two_interfaces_one_product(self):
+        """BACnet 옵션 카드 판과 내장 RS-485 판은 **다른 통로**다 — 뭉치면 잃는다."""
+        got = {i["id"]: i["pointCount"] for i in self.model["interfaces"]}
+        self.assertEqual(got, {"bacnet-ip": 76, "rs485-modbus": 157})
+        self.assertEqual(self.rs["family"], "Drive/Modbus")
+        self.assertEqual(self.rs["protocols"], ["modbus"])
+
+    def test_sections_and_addresses(self):
+        """절 넷이 주소 대역을 나눠 갖는다 — 한 절이 조용히 비면 잡는다."""
+        per = collections.Counter(p["common"]["group"] for p in self.rs["points"])
+        self.assertEqual(sorted(per.values(), reverse=True), [81, 37, 26, 13])
+        # 원문은 16진('0h0009')이고 저장은 10진이다 — 원표기는 sourceColumns 에
+        cur = self.by[("Output current", 9)]
+        self.assertEqual(cur["provenance"]["sourceColumns"]["Comm. Address"], "0h0009")
+        self.assertEqual(cur["common"]["unitSI"], "A")
+        self.assertEqual(cur["blocks"]["modbus"]["scale"], 0.1)
+        self.assertEqual(cur["blocks"]["modbus"]["scaleRaw"], "0.1")
+
+    def test_multiline_names_are_not_truncated(self):
+        """이름이 두 줄로 갈리면 첫 줄이 잘리기 쉽다.
+
+        재현: 주소가 셀 안에서 가운데 정렬이라 이름의 첫 줄이 주소보다 **위**에 있다.
+        격자에서 안쪽 밴드를 골랐더니 0h0002 가 'Inverter input voltage' 대신
+        'voltage' 만 남았다.
+        """
+        self.assertIn(("Inverter input voltage", 2), self.by)
+        # 위첨자가 뒤집히면 'the number of st poles for the 1 motor' 가 된다
+        names = [n for n, _a in self.by]
+        self.assertTrue(any("1st motor" in n for n in names),
+                        "위첨자가 뒤집혔다")
+
+    def test_neighbour_rows_do_not_bleed(self):
+        """윗행 이름의 꼬리가 아랫행으로 딸려 오면 안 된다.
+
+        재현: 0h03E5 가 0h03E6 의 이름('Delete user-registrated codes')까지 먹었고
+        0h0340 이 윗행의 'Fdb' 를 먹었다. 왼쪽 칸에만 좁은 창을 씌워 막았다.
+        """
+        self.assertIn(("Delete all fault history", 0x03E5), self.by)
+        self.assertIn(("On Time date", 0x0340), self.by)
+        self.assertIn(("Hide parameter mode", 0x03E7), self.by)
+
+    def test_code_list_is_split_at_every_code(self):
+        """원문이 구분자를 들쭉날쭉 쓴다 — 쉼표로만 가르면 라벨이 뭉친다.
+
+        '0: 0.75kW, 1: 1.5kW, 2: 2.2kW 3: 3.7kW 4: 5.5kW, 5: 7.5kW …'
+        쉼표만 보면 '2: 2.2kW 3: 3.7kW 4: 5.5kW' 가 한 라벨이 된다.
+        """
+        cap = self.by[("Inverter capacity", 1)]["common"]["states"]
+        self.assertEqual(len(cap), 26)
+        self.assertEqual(cap[0], {"code": "0", "label": "0.75kW"})
+        self.assertEqual(cap[3], {"code": "3", "label": "3.7kW"})
+        self.assertEqual(cap[-1], {"code": "25", "label": "500kW"})
+
+    def test_bitfields_are_not_turned_into_states(self):
+        """'B15 … B0 …' 은 비트 배정이다 — states 로 만들면 코드값이 거짓이 된다."""
+        bits = [p for p in self.rs["points"]
+                if any("비트필드" in g for g in (p["provenance"].get("gaps") or []))]
+        self.assertGreaterEqual(len(bits), 15)
+        for p in bits:
+            self.assertNotIn("states", p["common"])
+            self.assertIn("B", p["common"].get("note", ""))
+
+    def test_crosscheck_is_recorded_per_interface(self):
+        """모델 하나에 판이 둘이면 대조도 **판마다** 있어야 한다.
+
+        재현: 모델 자리에만 76/76 이 적혀 있었다 — 233점 중 76점만 잰 것처럼 읽힌다.
+        RS-485 판 157점의 대조 결과는 아예 저장되지 않고 화면에만 찍히고 있었다.
+        """
+        for i in self.model["interfaces"]:
+            cc = i.get("crosscheck") or {}
+            self.assertEqual(cc.get("both"), cc.get("total"), "%s" % i["id"])
+            self.assertTrue(cc.get("total"), "%s: 대조 결과가 없다" % i["id"])
+        self.assertIn("좌표", self.rs["crosscheck"]["method"])
+        self.assertEqual(self.model["crosscheck"]["total"], 76 + 157)
 
 
 if __name__ == "__main__":
