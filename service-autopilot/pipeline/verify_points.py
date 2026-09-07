@@ -42,6 +42,10 @@ import verify_ui as UI  # noqa: E402
 # 이 대조대가 기본으로 담는 것 = 지금 손으로 몰아 가는 **국내 벤더 취입분**.
 # 157모델을 전부 담으면 쪽 그림이 수백 MB 가 된다 — 필요하면 --only · --all.
 DOMESTIC = ("ingest_lg", "ingest_lg_ahu", "ingest_ls", "ingest_samsung")
+# extractor 로만 고르면 **정격은 손으로, 오브젝트는 취입기로** 채운 모델이 빠진다.
+# Danfoss FC 101 이 그랬다 — extractor 는 'manual'(정격 이야기)인데 판은 취입기가 세웠다.
+# 그래서 모델 id 로도 지목한다. 여기 적힌 것은 지금 현장 때문에 들여다보는 것들이다.
+FOCUS_MODELS = ("danfoss-fc-101",)
 
 
 def equip_names():
@@ -109,7 +113,8 @@ def load_models(only, take_all):
         if only:
             if m["id"] not in only:
                 continue
-        elif not take_all and m.get("extractor") not in DOMESTIC:
+        elif not take_all and (m.get("extractor") not in DOMESTIC
+                               and m["id"] not in FOCUS_MODELS):
             continue
         out.append(m)
     return out
@@ -217,6 +222,86 @@ def columns(rows, addr, manypages):
     return cols
 
 
+def spec_sections(m, pages, no_pages):
+    """모델의 **정격**을 대조 구역으로 만든다 — 포인트와 같은 화면에서 본다.
+
+    오브젝트만 맞추고 정격은 딴 데서 보면 두 벌을 오가게 된다. 원문 쪽도 같은 방식으로
+    띄운다. 다만 쪽 찾는 법이 다르다 — 포인트는 **인쇄 쪽번호**를 받아 PDF 쪽을 찾아야
+    하지만(문서마다 오프셋이 다르다), 정격표는 `specTables[].page` 가 이미 **PDF 쪽**이다
+    (실측: AJ2756…pdf 19쪽에 'Table 6', 24쪽에 'Table 9' — 그대로 맞는다).
+    그래서 여기서는 찾지 않고 그대로 쓴다.
+
+    담는 것: spec(항목형) · specTables(표) · elec(전기데이터) · comm · io · variants.
+    문서가 준 열 이름을 그대로 세운다 — 우리 어휘로 바꾸지 않는다.
+    """
+    out = []
+    mid = m["id"]
+
+    def sec(kind, title, cols, rows, src="", pdf=None):
+        if not rows:
+            return
+        key = None
+        if pdf and src:
+            path = os.path.join(DATA, "raw", src)
+            if os.path.exists(path):
+                # 열쇠는 --no-pages 에서도 만든다 — 쪽 그림은 안 담아도
+                # '원문 PDF 전체' 링크는 이 열쇠에서 파일 이름을 얻는다.
+                key = "%s|%s#%s" % (mid, src, pdf)
+                if not no_pages:
+                    pages.setdefault(key, (mid, pdf, path))
+        for r in rows:
+            r["pk"] = key or ""
+            r["pg"] = pdf or ""
+            r["pdf"] = pdf or "?"
+        out.append({"cols": cols, "id": "%s/spec/%s" % (mid, title[:40]),
+                    "node": "%s|spec" % mid,
+                    "path": [m.get("model") or mid, "정격", title],
+                    "doc": src, "span": str(pdf) if pdf else "—", "points": rows})
+
+    FLAT = [("항목", 0), ("값", 1), ("단위", 2), ("조건", 3), ("출처", 4)]
+
+    def flat_rows(items):
+        rows = []
+        for it in items:
+            r = {"n": str(it[0])[:120]}
+            for h, i in FLAT:
+                r[h] = str(it[i]) if len(it) > i and it[i] is not None else ""
+            rows.append(r)
+        return rows
+
+    flat_cols = [{"k": h, "h": h} for h, _ in FLAT]
+    sec("spec", "항목", flat_cols, flat_rows(m.get("spec") or []))
+    for label, key in (("통신", "comm"), ("입출력", "io")):
+        items = m.get(key) or []
+        if items:
+            cols = [{"k": "c%d" % i, "h": h} for i, h in
+                    enumerate(["항목", "값", "비고", "출처"][:max(len(x) for x in items)])]
+            rows = [dict({"c%d" % i: str(v) for i, v in enumerate(it)},
+                         n=str(it[0])[:120]) for it in items]
+            sec(key, label, cols, rows)
+
+    el = m.get("elec") or {}
+    if el.get("rows"):
+        cols = [{"k": "c%d" % i, "h": h} for i, h in enumerate(el.get("header") or [])]
+        rows = [dict({"c%d" % i: str(v) for i, v in enumerate(r)}, n=str(r[0])[:120])
+                for r in el["rows"]]
+        sec("elec", "전기 데이터", cols, rows, el.get("source") or "", el.get("page"))
+
+    for t in (m.get("specTables") or []):
+        header = t.get("header") or []
+        cols = [{"k": "c%d" % i, "h": (h or "—")} for i, h in enumerate(header)]
+        rows = [dict({"c%d" % i: ("" if v is None else str(v))
+                      for i, v in enumerate(r)}, n=str(r[0] if r else "")[:120])
+                for r in (t.get("rows") or [])]
+        sec("table", t.get("title") or "표", cols, rows,
+            t.get("source") or "", t.get("page"))
+
+    for v in (m.get("variants") or []):
+        sec("variant", "형번 %s" % v.get("code", "?"), flat_cols,
+            flat_rows(v.get("spec") or []), v.get("source") or "")
+    return out
+
+
 def resolve_pages(doc, wanted, names_by_printed):
     """인쇄 쪽번호 → PDF 쪽. 머리글로 후보를 잡고 **글자로 확인한다.**
 
@@ -267,7 +352,7 @@ def main(argv):
         raise SystemExit("담을 모델이 없다 — --only 이름을 확인하거나 --all")
     scope = ("고른 모델만" if only else
              "카탈로그 전체" if take_all else
-             "국내 벤더 취입분만 (%s)" % " · ".join(DOMESTIC))
+             "국내 벤더 취입분 + %s" % " · ".join(FOCUS_MODELS))
 
     enames = equip_names()
     ptypes = addr_rules()
@@ -306,10 +391,17 @@ def main(argv):
                     want.add(pr)
                     names.setdefault(pr, []).append(
                         (p.get("common") or {}).get("name") or "")
-            dd = fitz.open(path)
-            pdfmap[src], w = resolve_pages(dd, want, names)
-            dd.close()
-            warns += ["%s / %s: %s" % (m["id"], src, x) for x in w]
+            # 판이 "이 쪽번호는 PDF 순번이다"(pageBase='pdf')라고 밝히면 찾지 않는다.
+            # 찾으면 오히려 틀린다 — 인쇄 쪽번호가 없는 문서에서 본문 숫자를 쪽번호로
+            # 착각해 엉뚱한 쪽을 띄웠다(Danfoss FC 101: 77쪽→34쪽, 108쪽→33쪽).
+            if any((i2.get("sourceFile") or m.get("sourceDoc")) == src
+                   and i2.get("pageBase") == "pdf" for i2 in m["interfaces"]):
+                pdfmap[src] = {x: x for x in want}
+            else:
+                dd = fitz.open(path)
+                pdfmap[src], w = resolve_pages(dd, want, names)
+                dd.close()
+                warns += ["%s / %s: %s" % (m["id"], src, x) for x in w]
 
         # 분류(cat)를 모델 줄에 늘 붙인다 — 계열(eN) 이름만으로는 어긋남이 안 보인다.
         # 실제로 LG 게이트웨이는 계열 e5(공조기)인데 분류가 HVAC.AIR.VRF 다.
@@ -365,6 +457,15 @@ def main(argv):
                                       "count": n, "children": []})
             mnode["count"] += n
             total += n
+
+        specs = spec_sections(m, pages, no_pages)
+        if specs:
+            sections.extend(specs)
+            nspec = sum(len(sc["points"]) for sc in specs)
+            mnode["children"].append({"id": "%s|spec" % m["id"], "label": "정격",
+                                      "count": nspec, "children": []})
+            mnode["count"] += nspec
+            total += nspec
 
         shorten(mnode["children"])
         e = tree.setdefault(eid, {"id": eid, "count": 0,

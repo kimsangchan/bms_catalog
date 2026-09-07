@@ -39,6 +39,7 @@ import unicodedata
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 sys.path.insert(0, HERE)
+import schema as SC  # noqa: E402  — 범위 칸 판정의 정본
 
 MODEL_ID = "danfoss-fc-101"
 IFACE_ID = "modbus-rtu"
@@ -232,7 +233,10 @@ def build(order, blocks, coils, busregs, plist, factors):
         if unit:
             common["unitSI"] = common["unitSIRaw"] = unit
         if rng:
-            common["range"] = rng
+            # ⚠ 사전이 정한 모양은 문자열이 아니라 {raw, min?, max?} 다.
+            #   처음에 문자열로 넣었다가 대조대(verify_points.row_of)가 터졌다 —
+            #   validate 는 이걸 안 잡는다. 판정은 schema.parse_range 가 정본이다.
+            common["range"] = SC.parse_range(rng) or {"raw": rng}
         if states:
             common["states"] = states
         if desc:
@@ -408,6 +412,9 @@ def main(argv):
         "sourceFile": PARAM_DOC,
         "sourcePages": sorted({p["provenance"]["sourcePage"] for p in pts}),
         "pointCount": len(pts), "appliesTo": ["FC 101"], "status": "extracted",
+        # 이 문서 본문에는 인쇄 쪽번호가 아예 없다(머리글이 '3.12.3 16-3* Drive Status').
+        # 밝히지 않으면 대조대가 인쇄번호로 알고 다시 찾아 엉뚱한 쪽을 띄운다.
+        "pageBase": "pdf",
         "note": ("파라미터는 Programming Guide %s 본문에서, 코일·고정 레지스터는 "
                  "Design Guide %s p91~92 표에서 왔다. **파라미터 주소는 표가 아니라 "
                  "식이다** — 주소 = 파라미터번호 x 10 (p94: '3-12 -> holding register "

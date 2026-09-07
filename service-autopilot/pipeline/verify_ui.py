@@ -94,6 +94,7 @@ def write(payload, out_path):
 
 
 TEMPLATE = r"""
+<meta charset="utf-8">
 <title>오브젝트 대조대</title>
 <style>
 /* 토큰은 기존 검사대(ingest_jci.py)와 같은 것을 쓴다 — 한 세트로 보여야 한다.
@@ -140,8 +141,10 @@ button{font:inherit}
 .seg button:last-child{border-right:0}
 .seg button:hover{background:var(--accent-soft);color:var(--ink)}
 .seg button[aria-pressed=true]{background:var(--accent);color:#fff;font-weight:600}
+/* a 로도 쓴다(원문 PDF 열기) — 밑줄과 링크 색을 지워 단추와 같은 모양으로 세운다 */
 .zbtn{padding:4px 9px;border:1px solid var(--line);border-radius:6px;background:var(--bg);
- color:var(--dim);font-size:11.5px;cursor:pointer;white-space:nowrap}
+ color:var(--dim);font-size:11.5px;cursor:pointer;white-space:nowrap;
+ text-decoration:none;display:inline-block;line-height:1.35;font-family:inherit}
 .zbtn:hover{background:var(--accent-soft);color:var(--ink)}
 /* 배율 무리 — 클로드 웹의 확대 조작과 같은 자리(− 배율 +), 배율을 누르면 맞춤 */
 .zoomer{display:inline-flex;align-items:center;border:1px solid var(--line);
@@ -265,10 +268,8 @@ tr.row.done td.ck{color:var(--ok)}
 
 /* ── 원문 쪽: 늘 보인다 ── */
 /* 접었다 펴는 단추 — 원문창 안(접기)과 접힌 띠(펴기) 양쪽에 둔다 */
-.fold{position:absolute;top:7px;right:9px;z-index:3;padding:2px 8px;border-radius:6px;
- border:1px solid var(--line);background:var(--panel);color:var(--dim);font-size:11.5px;
- cursor:pointer;opacity:.85}
-.fold:hover{opacity:1;background:var(--accent-soft);color:var(--ink)}
+/* 접기 단추는 최상단 띠에 있다(#foldb). 원문창 안에 두었더니 setPointerCapture 가
+   클릭을 가로채 눌러도 아무 일이 없었다 — 위치를 옮기고 잡아채기도 막았다. */
 .unfold{display:none;width:100%;height:100%;border:0;background:none;color:var(--dim);
  cursor:pointer;font-size:11.5px;writing-mode:vertical-rl;padding:10px 0;letter-spacing:.08em}
 .unfold:hover{background:var(--accent-soft);color:var(--ink)}
@@ -304,6 +305,10 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
   </span>
   <span class="sp"></span>
   <span>원문 <span class="pgno" id="rpg">—</span></span>
+  <a class="zbtn" id="openpdf" target="_blank" rel="noopener"
+     title="원문 PDF 를 새 탭에서 연다 (그 쪽으로 바로 간다)" hidden>PDF 전체</a>
+  <button class="zbtn" type="button" data-v="page" id="foldb"
+          title="원문창 접기">─ 원문 접기</button>
   <button class="zbtn" type="button" id="csv" title="지금 보이는 행만 CSV 로">CSV</button>
   <button class="zbtn" type="button" data-z="rot" id="rotb">세로로</button>
   <button class="zbtn" type="button" data-z="fitw">폭맞춤</button>
@@ -344,7 +349,6 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
   <section class="pane right">
     <button class="unfold" type="button" data-v="page" title="원문 펼치기">원문 펼치기 ▸</button>
     <div class="view" id="view">
-      <button class="fold" type="button" data-v="page" title="원문 접기">─ 접기</button>
       <img id="img" alt="원문 쪽">
       <div class="hint" id="hint"></div>
     </div>
@@ -544,6 +548,19 @@ function show(key, printed, pdf){
   curPage = key;
   document.getElementById("rpg").innerHTML = printed
     + '쪽 <span style="color:var(--faint);font-weight:400">(PDF ' + pdf + ')</span>';
+  /* 원문 PDF 를 통째로 여는 길. 쪽 그림은 한 장씩만 담기지만(용량) 앞뒤를 봐야
+     할 때가 있다. key 는 '모델|파일#PDF쪽' 이라 파일 이름이 그 안에 있다.
+     이 화면은 review/ 에 굽고 원문은 pipeline/data/raw/ 에 있다(저장소에 안 담긴다). */
+  var link = document.getElementById("openpdf");
+  var file = String(key || "").split("|").slice(1).join("|").split("#")[0];
+  if (file) {
+    link.href = "../pipeline/data/raw/" + encodeURIComponent(file)
+              + (pdf && pdf !== "?" ? "#page=" + pdf : "");
+    link.textContent = "PDF 전체" + (pdf && pdf !== "?" ? " (" + pdf + "쪽)" : "");
+    link.hidden = false;
+  } else {
+    link.hidden = true;
+  }
   var rec = D.pages[key];
   if (!rec) { img.removeAttribute("src"); return; }
   /* 눕혀 인쇄된 쪽만 돌려 담았다 — 담긴 그대로가 읽기 좋은 방향이다 */
@@ -569,6 +586,10 @@ view.addEventListener("dblclick", function(e){
 
 var drag = null;
 view.addEventListener("pointerdown", function(e){
+  /* ⚠ 단추 위에서 시작한 누름은 잡지 않는다. setPointerCapture 가 뒤이은 click 의
+     target 을 #view 로 돌려놓기 때문에, 원문창 안에 있던 '접기' 단추가 눌러도
+     아무 일이 없었다(사용자가 '작동은 안 한다' 고 짚은 것이 이것이다). */
+  if (e.target.closest && e.target.closest("button, a")) return;
   drag = { x: e.clientX - ox, y: e.clientY - oy };
   view.classList.add("drag"); view.setPointerCapture(e.pointerId);
 });
@@ -607,6 +628,10 @@ function toggleView(v, force){
   if (!on && vseg.querySelectorAll('button[aria-pressed=true]').length < 2) return;
   b.setAttribute("aria-pressed", String(on));
   appEl.classList.toggle(cls(v), !on);
+  if (v === "page") {
+    var fb = document.getElementById("foldb");
+    if (fb) { fb.textContent = on ? "─ 원문 접기" : "▸ 원문 펼치기"; }
+  }
   if (mode !== "free") setTimeout(function(){ fit(mode); }, 0);
 }
 /* 접기·펴기 단추가 뷰 전환 밖(원문창 안·접힌 띠)에도 있어 문서 전체에서 받는다 */

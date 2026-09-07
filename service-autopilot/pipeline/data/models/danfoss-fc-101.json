@@ -7876,6 +7876,7 @@
     "FC 101"
    ],
    "status": "extracted",
+   "pageBase": "pdf",
    "note": "파라미터는 Programming Guide MG18B502.pdf 본문에서, 코일·고정 레지스터는 Design Guide MG18C702.pdf p91~92 표에서 왔다. **파라미터 주소는 표가 아니라 식이다** — 주소 = 파라미터번호 x 10 (p94: '3-12 -> holding register 3120'). 레지스터 번호는 1부터 세고, 전선 위 주소는 그보다 1 작다(p97). 옵션 카드 없이 본체 RS-485 만으로 열린다.",
    "crosscheck": {
     "method": "낱말 좌표층으로 파라미터 번호+이름 첫 낱말을 다시 읽어 맞췄다",
@@ -8638,7 +8639,11 @@
       "group": "0-3* LCP Custom Readout and Display",
       "unitSI": "CustomRea- doutUnit",
       "unitSIRaw": "CustomRea- doutUnit",
-      "range": "0 - 999999.99",
+      "range": {
+       "raw": "0 - 999999.99",
+       "min": 0,
+       "max": 999999.99
+      },
       "note": "This parameter sets the minimum value of the custom- defined readout (occurs at 0 speed). It is only possible to select a value different from 0 when selecting a linear unit in parameter 0-30 Custom Readout Unit. For quadratic and cubic units, the minimum value is 0."
      },
      "blocks": {
@@ -8684,7 +8689,11 @@
       "group": "0-3* LCP Custom Readout and Display",
       "unitSI": "CustomRea- doutUnit",
       "unitSIRaw": "CustomRea- doutUnit",
-      "range": "0.0 - 999999.99",
+      "range": {
+       "raw": "0.0 - 999999.99",
+       "min": 0,
+       "max": 999999.99
+      },
       "note": "This parameter sets the maximum value to be shown when the speed of the motor has reached the set value for parameter 4-14 Motor Speed High Limit [Hz]. Parameters VLT® HVAC Basic Drive FC 101 28 Danfoss A/S © 04/2018 All rights reserved. MG18B502 3 3"
      },
      "blocks": {
@@ -8728,7 +8737,11 @@
       "name": "Display Text 1",
       "shortName": "0-37",
       "group": "0-3* LCP Custom Readout and Display",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "Use this parameter to write an individual text string to be read via serial communication. Device ID can be included. Only used when running BACnet."
      },
      "blocks": {
@@ -8768,7 +8781,11 @@
       "name": "Display Text 2",
       "shortName": "0-38",
       "group": "0-3* LCP Custom Readout and Display",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "Use this parameter to write an individual text string to be read via serial communication. Only used when running BACnet."
      },
      "blocks": {
@@ -8808,7 +8825,11 @@
       "name": "Display Text 3",
       "shortName": "0-39",
       "group": "0-3* LCP Custom Readout and Display",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "Use this parameter to write an individual text string to be read via serial communication. Only used when running BACnet. Enable, disable, and password protect individual keys on the LCP."
      },
      "blocks": {
@@ -9130,7 +9151,11 @@
       "name": "Main Menu Password",
       "shortName": "0-60",
       "group": "0-6* Password",
-      "range": "0 - 999",
+      "range": {
+       "raw": "0 - 999",
+       "min": 0,
+       "max": 999
+      },
       "note": "Define the password for access to the Main Menu via the [Main Menu] key. Setting the value to 0 disables the password function. This parameter hides after a password is defined."
      },
      "blocks": {
@@ -9594,7 +9619,11 @@
       "group": "1-0* General Settings",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 250",
+      "range": {
+       "raw": "0 - 250",
+       "min": 0,
+       "max": 250
+      },
       "note": "The parameter stabilizes the PM motor to ensure smooth and stable operation. The value of damping gain controls the dynamic performance of the PM motor. Low damping gain results in high dynamic performance and a high value results in a low dynamic performance. The dynamic performance is related to the motor data and load type. If the damping gain is too high or low, the control becomes unstable."
      },
      "blocks": {
@@ -9638,7 +9667,11 @@
       "group": "1-0* General Settings",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.01 - 20",
+      "range": {
+       "raw": "0.01 - 20",
+       "min": 0.01,
+       "max": 20
+      },
       "note": "High-pass filter damping time constant determines the response time to load steps. Obtain quick control through a short damping time constant. However, if this value is too short, the control becomes unstable. This time constant is used below 10% rated speed."
      },
      "blocks": {
@@ -9684,7 +9717,11 @@
       "group": "1-0* General Settings",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.01 - 20",
+      "range": {
+       "raw": "0.01 - 20",
+       "min": 0.01,
+       "max": 20
+      },
       "note": "High-pass filter damping time constant determines the response time to load steps. Obtain quick control through a short damping time constant. However, if this value is too short, the control becomes unstable. This time constant is used above 10% rated speed. Parameters VLT® HVAC Basic Drive FC 101 32 Danfoss A/S © 04/2018 All rights reserved. MG18B502 3 3"
      },
      "blocks": {
@@ -9730,7 +9767,11 @@
       "group": "1-0* General Settings",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.001 - 1",
+      "range": {
+       "raw": "0.001 - 1",
+       "min": 0.001,
+       "max": 1
+      },
       "note": "Machine supply voltage filter time constant is used for reducing the influence of high frequency ripples and system resonances in the calculation of machine supply voltage. Without this filter, the ripples in the currents can distort the calculated voltage and affect the stability of the system. This parameter group comprises input data from the nameplate on the connected motor. NOTICE These param"
      },
      "blocks": {
@@ -9774,7 +9815,9 @@
       "name": "Motor Power",
       "shortName": "1-20",
       "group": "1-2* Motor Data I",
-      "range": "2",
+      "range": {
+       "raw": "2"
+      },
       "note": "0.12 kW - 0.16 hp [3] 0.18 kW - 0.25 hp [4] 0.25 kW - 0.33 hp [5] 0.37 kW - 0.5 hp [6] 0.55 kW - 0.75 hp [7] 0.75 kW - 1 hp [8] 1.1 kW - 1.5 hp [9] 1.5 kW - 2 hp [10] 2.2 kW - 3 hp [11] 3 kW - 4 hp [12] 3.7 kW - 5 hp [13] 4 kW - 5.4 hp [14] 5.5 kW - 7.5 hp [15] 7.5 kW - 10 hp [16] 11 kW - 15 hp [17] 15 kW - 20 hp [18] 18.5 kW - 25 hp [19] 22 kW - 30 hp [20] 30 kW - 40 hp [21] 37 kW - 50 hp [22] 45"
      },
      "blocks": {
@@ -9818,7 +9861,11 @@
       "group": "1-2* Motor Data I",
       "unitSI": "V",
       "unitSIRaw": "V",
-      "range": "50 - 1000",
+      "range": {
+       "raw": "50 - 1000",
+       "min": 50,
+       "max": 1000
+      },
       "note": "Enter the nominal motor voltage according to the motor nameplate data. The default value corresponds to the nominal rated output of the unit."
      },
      "blocks": {
@@ -9862,7 +9909,11 @@
       "group": "1-2* Motor Data I",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "20 - 400",
+      "range": {
+       "raw": "20 - 400",
+       "min": 20,
+       "max": 400
+      },
       "note": "Select the motor frequency value from the motor nameplate data. For 87 Hz operation with 230/400 V motors, set the nameplate data for 230 V/50 Hz. Adapt parameter 4-14 Motor Speed High Limit [Hz] and parameter 3-03 Maximum Reference to the 87 Hz application."
      },
      "blocks": {
@@ -9906,7 +9957,11 @@
       "group": "1-2* Motor Data I",
       "unitSI": "A",
       "unitSIRaw": "A",
-      "range": "0.01 - 1000.00",
+      "range": {
+       "raw": "0.01 - 1000.00",
+       "min": 0.01,
+       "max": 1000
+      },
       "note": "Enter the nominal motor current value from the motor nameplate data. This data is used for calculating motor torque, motor thermal protection, and so on."
      },
      "blocks": {
@@ -9952,7 +10007,11 @@
       "group": "1-2* Motor Data I",
       "unitSI": "RPM",
       "unitSIRaw": "RPM",
-      "range": "50 - 60000",
+      "range": {
+       "raw": "50 - 60000",
+       "min": 50,
+       "max": 60000
+      },
       "note": "Enter the nominal motor speed value from the motor nameplate data. This data is used for calculating automatic motor compensations."
      },
      "blocks": {
@@ -9998,7 +10057,11 @@
       "group": "1-2* Motor Data I",
       "unitSI": "Nm",
       "unitSIRaw": "Nm",
-      "range": "0.1 - 10000.0",
+      "range": {
+       "raw": "0.1 - 10000.0",
+       "min": 0.1,
+       "max": 10000
+      },
       "note": "NOTICE Changing this parameter affects settings of other parameters. This parameter is available only when parameter 1-10 Motor Construction is set to options that enable permanent motor mode. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 33 3 3"
      },
      "blocks": {
@@ -10115,7 +10178,11 @@
       "group": "1-3* Motor Data II",
       "unitSI": "Ohm",
       "unitSIRaw": "Ohm",
-      "range": "0.0 - 9999.000",
+      "range": {
+       "raw": "0.0 - 9999.000",
+       "min": 0,
+       "max": 9999
+      },
       "note": "Set the stator resistance value. Enter the value from a motor datasheet or perform an AMA on a cold motor."
      },
      "blocks": {
@@ -10161,7 +10228,11 @@
       "group": "1-3* Motor Data II",
       "unitSI": "Ohm",
       "unitSIRaw": "Ohm",
-      "range": "0.0 - 9999.000",
+      "range": {
+       "raw": "0.0 - 9999.000",
+       "min": 0,
+       "max": 9999
+      },
       "note": "Set stator leakage reactance of motor."
      },
      "blocks": {
@@ -10207,7 +10278,11 @@
       "group": "1-3* Motor Data II",
       "unitSI": "Ohm",
       "unitSIRaw": "Ohm",
-      "range": "0.0 - 9999.00",
+      "range": {
+       "raw": "0.0 - 9999.00",
+       "min": 0,
+       "max": 9999
+      },
       "note": "Set the main reactance of the motor using 1 of these methods: • Run an AMA on a cold motor. The frequency converter Parameters VLT® HVAC Basic Drive FC 101 34 Danfoss A/S © 04/2018 All rights reserved. MG18B502 3 3 Range: Function: measures the value from the motor. • Enter the Xh value manually. Obtain the value from the motor supplier. • Use the Xh default setting. The frequency converter establ"
      },
      "blocks": {
@@ -10253,7 +10328,11 @@
       "group": "1-3* Motor Data II",
       "unitSI": "mH",
       "unitSIRaw": "mH",
-      "range": "0 - 65535",
+      "range": {
+       "raw": "0 - 65535",
+       "min": 0,
+       "max": 65535
+      },
       "note": "Obtain the value from the permanent magnet motor datasheet."
      },
      "blocks": {
@@ -10299,7 +10378,11 @@
       "group": "1-3* Motor Data II",
       "unitSI": "mH",
       "unitSIRaw": "mH",
-      "range": "0.000 - 65535",
+      "range": {
+       "raw": "0.000 - 65535",
+       "min": 0,
+       "max": 65535
+      },
       "note": "Set the value of the q-axis inductance. Obtain the value from the permanent magnet motor datasheet. The value cannot be changed when the motor is running."
      },
      "blocks": {
@@ -10343,7 +10426,11 @@
       "name": "Motor Poles",
       "shortName": "1-39",
       "group": "1-3* Motor Data II",
-      "range": "2 - 100",
+      "range": {
+       "raw": "2 - 100",
+       "min": 2,
+       "max": 100
+      },
       "note": "Enter the number of motor poles. The motor pole value is always an even number, because it refers to the total pole number, not pairs of poles. This parameter group comprises input data from the nameplate on the connected motor. NOTICE These parameters cannot be adjusted while the motor is running."
      },
      "blocks": {
@@ -10387,7 +10474,11 @@
       "group": "1-4* Motor Data III",
       "unitSI": "V",
       "unitSIRaw": "V",
-      "range": "1 - 9000",
+      "range": {
+       "raw": "1 - 9000",
+       "min": 1,
+       "max": 9000
+      },
       "note": "Line-line RMS back EMF voltage at 1000 RPM."
      },
      "blocks": {
@@ -10431,7 +10522,11 @@
       "group": "1-4* Motor Data III",
       "unitSI": "m",
       "unitSIRaw": "m",
-      "range": "0 - 100",
+      "range": {
+       "raw": "0 - 100",
+       "min": 0,
+       "max": 100
+      },
       "note": "Set the motor cable length during commis- sioning."
      },
      "blocks": {
@@ -10473,7 +10568,11 @@
       "group": "1-4* Motor Data III",
       "unitSI": "ft",
       "unitSIRaw": "ft",
-      "range": "0 - 328",
+      "range": {
+       "raw": "0 - 328",
+       "min": 0,
+       "max": 328
+      },
       "note": "Set the motor cable length during commis- sioning."
      },
      "blocks": {
@@ -10515,7 +10614,11 @@
       "group": "1-4* Motor Data III",
       "unitSI": "mH",
       "unitSIRaw": "mH",
-      "range": "0 - 65535",
+      "range": {
+       "raw": "0 - 65535",
+       "min": 0,
+       "max": 65535
+      },
       "note": "This parameter corresponds to the inductance saturation of Ld. Ideally, this parameter has the same value as parameter 1-37 d-axis Inductance (Ld). However, if the motor supplier provides an induction curve, enter the induction value here, which is 200% of the nominal current."
      },
      "blocks": {
@@ -10561,7 +10664,11 @@
       "group": "1-4* Motor Data III",
       "unitSI": "mH",
       "unitSIRaw": "mH",
-      "range": "0 - 65535",
+      "range": {
+       "raw": "0 - 65535",
+       "min": 0,
+       "max": 65535
+      },
       "note": "This parameter corresponds to the inductance saturation of Lq. Ideally, this parameter has the same value as parameter 1-38 q-axis Inductance (Lq). However, if the motor supplier provides an induction curve, enter the induction value here, which is 200% of the nominal current."
      },
      "blocks": {
@@ -10607,7 +10714,11 @@
       "group": "1-4* Motor Data III",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "20 - 200",
+      "range": {
+       "raw": "20 - 200",
+       "min": 20,
+       "max": 200
+      },
       "note": "Use this parameter to adjust the height of the test pulse during position detection at start. This parameter is valid from software version 2.80."
      },
      "blocks": {
@@ -10651,7 +10762,11 @@
       "group": "1-4* Motor Data III",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "20 - 200",
+      "range": {
+       "raw": "20 - 200",
+       "min": 20,
+       "max": 200
+      },
       "note": "Use this parameter to set the inductance saturation point."
      },
      "blocks": {
@@ -10695,7 +10810,11 @@
       "group": "1-4* Motor Data III",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "20 - 200",
+      "range": {
+       "raw": "20 - 200",
+       "min": 20,
+       "max": 200
+      },
       "note": "This parameter specifies the saturation curve of the q-inductance values. From 20–100% of this parameter, the inductances are linearly approximated due to parameter 1-37 d-axis Inductance (Ld), parameter 1-38 q-axis Inductance (Lq), parameter 1-44 d-axis Inductance Sat. (LdSat), and parameter 1-45 q-axis Inductance Sat. (LqSat). Below and above they are specified by the corresponding parameters. P"
      },
      "blocks": {
@@ -10739,7 +10858,11 @@
       "group": "1-5* Load Indep. Setting",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 300",
+      "range": {
+       "raw": "0 - 300",
+       "min": 0,
+       "max": 300
+      },
       "note": "Use this parameter along with parameter 1-52 Min Speed Normal Magnetising [Hz] to obtain a different thermal load on the motor when running at low speed. Enter a value that is a percentage of the rated magnetizing current. If the setting is too low, the torque on the motor shaft may be reduced. Magn. current 130BB780.10 Hz Par.1-50 90% Par.1-52 Illustration 3.2 Motor Magnetization"
      },
      "blocks": {
@@ -10783,7 +10906,11 @@
       "group": "1-5* Load Indep. Setting",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0.1 - 10.0",
+      "range": {
+       "raw": "0.1 - 10.0",
+       "min": 0.1,
+       "max": 10
+      },
       "note": "Set the required frequency for normal magnetizing current. Use this parameter along with parameter 1-50 Motor Magnetisation at Zero Speed. See Illustration 3.2."
      },
      "blocks": {
@@ -10827,7 +10954,9 @@
       "name": "U/f Characteristic - U",
       "shortName": "1-55",
       "group": "1-5* Load Indep. Setting",
-      "range": "6",
+      "range": {
+       "raw": "6"
+      },
       "note": "Range: Function: Size related* [0 - 999 V] Enter voltage at each frequency point to form a U/f characteristic matching the motor. Frequency points are defined in parameter 1-56 U/f Charac- teristic - F."
      },
      "blocks": {
@@ -10871,7 +11000,9 @@
       "name": "U/f Characteristic - F",
       "shortName": "1-56",
       "group": "1-5* Load Indep. Setting",
-      "range": "6",
+      "range": {
+       "raw": "6"
+      },
       "note": "Range: Function: Size related* [ 0 - 400.0 Hz] Enter frequency points to form a U/f charac- teristic matching the motor. Voltage at each point is defined in parameter 1-55 U/f Charac- teristic - U. Make a U/f characteristic based on 6 definable voltages and frequencies, see Illustration 3.3. Simplify U/f characteristics by merging 2 or more points (voltages and frequencies). Set the points at equa"
      },
      "blocks": {
@@ -10917,7 +11048,11 @@
       "group": "1-6* Load Depen. Setting",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "-400 - 400",
+      "range": {
+       "raw": "-400 - 400",
+       "min": -400,
+       "max": 400
+      },
       "note": "Enter the % value for slip compensation to compensate for tolerances in the value of nM,N. Slip compensation is calculated automatically, which is based on the nominal motor speed nM,N."
      },
      "blocks": {
@@ -10961,7 +11096,11 @@
       "group": "1-6* Load Depen. Setting",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.05 - 5",
+      "range": {
+       "raw": "0.05 - 5",
+       "min": 0.05,
+       "max": 5
+      },
       "note": "Enter the slip compensation reaction speed. A high value results in slow reaction, and a low value results in quick reaction. If low- frequency resonance problems occur, use a longer time setting."
      },
      "blocks": {
@@ -11007,7 +11146,11 @@
       "group": "1-6* Load Depen. Setting",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 500",
+      "range": {
+       "raw": "0 - 500",
+       "min": 0,
+       "max": 500
+      },
       "note": "Enter the resonance damping value. Set parameter 1-64 Resonance Dampening and parameter 1-65 Resonance Dampening Time Constant to help eliminate high-frequency resonance problems. To reduce resonance oscillation, increase the value of parameter 1-64 Resonance Dampening."
      },
      "blocks": {
@@ -11051,7 +11194,11 @@
       "group": "1-6* Load Depen. Setting",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.001 - 0.050",
+      "range": {
+       "raw": "0.001 - 0.050",
+       "min": 0.001,
+       "max": 0.05
+      },
       "note": "Set parameter 1-64 Resonance Dampening and parameter 1-65 Resonance Dampening Time Constant to help eliminate high- frequency resonance problems. Enter the time constant that provides the best dampening. Parameters VLT® HVAC Basic Drive FC 101 36 Danfoss A/S © 04/2018 All rights reserved. MG18B502 3 3"
      },
      "blocks": {
@@ -11097,7 +11244,11 @@
       "group": "1-6* Load Depen. Setting",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 120",
+      "range": {
+       "raw": "0 - 120",
+       "min": 0,
+       "max": 120
+      },
       "note": "Applies to PM motors only. Increasing the minimum current improves motor torque at low speed, but also reduces efficiency. Parameters for configuring special motor start features."
      },
      "blocks": {
@@ -11139,7 +11290,9 @@
       "name": "Start Mode",
       "shortName": "1-70",
       "group": "1-7* Start Adjustments",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "Rotor Detection The rotor detection function estimates the electrical angle of the rotor and uses the angle as a starting point. This option is the standard selection for automation frequency converter applications. If the flying start function detects that motor is running at low speed or is stopped, the frequency converter can detect the rotor position (the angle). The frequency converter then s"
      },
      "blocks": {
@@ -11183,7 +11336,11 @@
       "group": "1-7* Start Adjustments",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 10",
+      "range": {
+       "raw": "0 - 10",
+       "min": 0,
+       "max": 10
+      },
       "note": "This parameter enables a delay of the starting time. The frequency converter begins with the start function selected in parameter 1-72 Start Function. Set the start delay time until acceleration is to begin."
      },
      "blocks": {
@@ -11277,7 +11434,9 @@
       "name": "Flying Start",
       "shortName": "1-73",
       "group": "1-7* Start Adjustments",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "Disabled [1] Enabled Parameters for configuring special motor stop features."
      },
      "blocks": {
@@ -11372,7 +11531,11 @@
       "group": "1-8* Stop Adjustments",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "Set the output frequency at which to activate parameter 1-80 Function at Stop."
      },
      "blocks": {
@@ -11416,7 +11579,11 @@
       "name": "AC Brake Gain",
       "shortName": "1-88",
       "group": "1-8* Stop Adjustments",
-      "range": "1.0 - 2.0",
+      "range": {
+       "raw": "1.0 - 2.0",
+       "min": 1,
+       "max": 2
+      },
       "note": "This parameter is used to set AC brake power capability (set ramp-down time when inertia is constant). In the condition that the DC-link voltage is not higher than DC-link voltage warning value, the generator torque can be adjusted with this parameter. Parameters for configuring the temperature protection features for the motor."
      },
      "blocks": {
@@ -11588,7 +11755,11 @@
       "group": "2-0* DC Brakes",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 160",
+      "range": {
+       "raw": "0 - 160",
+       "min": 0,
+       "max": 160
+      },
       "note": "NOTICE MOTOR OVERHEATING The maximum value depends on the rated motor current. To avoid motor damage caused by overheating, do not run at 100% for too long. Set holding current as a percentage of the rated motor current IM,N in parameter 1-24 Motor Current. Parameter 2-00 DC Hold/Motor Preheat Current holds the motor function (holding torque) or pre-heats the motor. This parameter is active if DC "
      },
      "blocks": {
@@ -11632,7 +11803,11 @@
       "group": "2-0* DC Brakes",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 150",
+      "range": {
+       "raw": "0 - 150",
+       "min": 0,
+       "max": 150
+      },
       "note": "NOTICE MOTOR OVERHEATING The maximum value depends on the rated motor current. To avoid motor damage caused by overheating, do not run at 100% for too long. Set current as % of rated motor current, parameter 1-24 Motor Current. When speed is below the limit set in parameter 2-04 DC Brake Cut In Speed, or when the DC-brake inverse function is active (in parameter group 5-1* Digital Inputs set to [5"
      },
      "blocks": {
@@ -11676,7 +11851,11 @@
       "group": "2-0* DC Brakes",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 60",
+      "range": {
+       "raw": "0 - 60",
+       "min": 0,
+       "max": 60
+      },
       "note": "Set the duration of the DC-brake current set in parameter 2-01 DC Brake Current, once activated."
      },
      "blocks": {
@@ -11722,7 +11901,11 @@
       "group": "2-0* DC Brakes",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 500",
+      "range": {
+       "raw": "0 - 500",
+       "min": 0,
+       "max": 500
+      },
       "note": "This parameter is for setting the DC-brake cut-in speed at which parameter 2-01 DC Brake Current is to be active with a stop command."
      },
      "blocks": {
@@ -11768,7 +11951,11 @@
       "group": "2-0* DC Brakes",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 150",
+      "range": {
+       "raw": "0 - 150",
+       "min": 0,
+       "max": 150
+      },
       "note": "Set current as percentage of rated motor current, parameter 1-24 Motor Current. Active with parameter 1-73 Flying Start. The parking current is active during the time period set in parameter 2-07 Parking Time. NOTICE Parameter 2-06 Parking Current is only active when 1 of the PM motor construction options is selected in parameter 1-10 Motor Construction."
      },
      "blocks": {
@@ -11812,7 +11999,11 @@
       "group": "2-0* DC Brakes",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.1 - 60",
+      "range": {
+       "raw": "0.1 - 60",
+       "min": 0.1,
+       "max": 60
+      },
       "note": "Set the duration of the parking current time set in parameter 2-06 Parking Current. Active with parameter 1-73 Flying Start. NOTICE Parameter 2-07 Parking Time is only active when options of parameter 1-10 Motor Construction are set to enable PM motors. Parameter group for selecting dynamic brake parameters."
      },
      "blocks": {
@@ -11908,7 +12099,11 @@
       "group": "2-1* Brake Energy Function",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 160",
+      "range": {
+       "raw": "0 - 160",
+       "min": 0,
+       "max": 160
+      },
       "note": "Enter the maximum permissible current when using the AC brake to avoid overheating motor windings. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 39 3 3"
      },
      "blocks": {
@@ -12007,7 +12202,11 @@
       "name": "Minimum Reference",
       "shortName": "3-02",
       "group": "3-0* Reference Limits",
-      "range": "-4999–4999",
+      "range": {
+       "raw": "-4999–4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "The minimum reference is the lowest value obtainable by summing all references."
      },
      "blocks": {
@@ -12053,7 +12252,11 @@
       "group": "3-0* Reference Limits",
       "unitSI": "ReferenceFeed- backUnit",
       "unitSIRaw": "ReferenceFeed- backUnit",
-      "range": "-4999.0 - 4999",
+      "range": {
+       "raw": "-4999.0 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "The maximum reference is the highest value obtainable by summing all references. The maximum reference unit matches the selection of configuration in parameter 1-00 Configuration Mode. P3-03 P3-02 0 50 100% P3-10 130BB036.10 Illustration 3.4 References"
      },
      "blocks": {
@@ -12099,7 +12302,11 @@
       "group": "3-1* References",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "-100 - 100",
+      "range": {
+       "raw": "-100 - 100",
+       "min": -100,
+       "max": 100
+      },
       "note": "Enter up to 8 different preset references (0–7) in this parameter, using array programming. For selecting dedicated references, select preset reference bit 0/1/2 [16], [17], or [18] for the Range: Function: corresponding digital inputs in parameter group 5-1* Digital Inputs."
      },
      "blocks": {
@@ -12145,7 +12352,11 @@
       "group": "3-1* References",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 500.0",
+      "range": {
+       "raw": "0 - 500.0",
+       "min": 0,
+       "max": 500
+      },
       "note": "The jog speed is a fixed output speed at which the frequency converter runs when the jog function is activated. See also parameter 3-80 Jog Ramp Time."
      },
      "blocks": {
@@ -12191,7 +12402,11 @@
       "group": "3-1* References",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "-100 - 100",
+      "range": {
+       "raw": "-100 - 100",
+       "min": -100,
+       "max": 100
+      },
       "note": "Define the fixed value in % to be added to the variable value defined in parameter 3-18 Relative Scaling Reference Resource. The sum of fixed and variable values (labeled Y in Illustration 3.5) is multiplied by actual reference (labeled X in Illustration 3.5). This product is added to actual reference X + X × Y 100 Relative Z=X+X*Y/100 Resulting actual reference Y X 130BA059.12 Z Illustration 3.5 "
      },
      "blocks": {
@@ -12426,7 +12641,11 @@
       "group": "3-4* Ramp 1",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.05 - 3600",
+      "range": {
+       "raw": "0.05 - 3600",
+       "min": 0.05,
+       "max": 3600
+      },
       "note": "Enter acceleration time from 0 Hz to parameter 1-23 Motor Frequency if asynchronous motor is selected. Enter acceleration time from 0 RPM, to parameter 1-25 Motor Nominal Speed if PM motor is selected. Select a ramp-up time such that the output current does not exceed the current limit in parameter 4-18 Current Limit during ramping. See ramp-down time in parameter 3-42 Ramp 1 Ramp Down Time."
      },
      "blocks": {
@@ -12472,7 +12691,11 @@
       "group": "3-4* Ramp 1",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.05 - 3600",
+      "range": {
+       "raw": "0.05 - 3600",
+       "min": 0.05,
+       "max": 3600
+      },
       "note": "If asynchronous motor is selected, enter deceleration time from parameter 1-23 Motor Frequency to 0 Hz. If PM motor is selected, enter deceleration time from parameter 1-25 Motor Nominal Speed to 0 RPM. Select a ramp-down time to avoid tripping on overvoltage in the DC-link. This parameter group configures ramp 2 parameters. Parameters VLT® HVAC Basic Drive FC 101 42 Danfoss A/S © 04/2018 All righ"
      },
      "blocks": {
@@ -12518,7 +12741,11 @@
       "group": "3-5* Ramp 2",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.05 - 3600",
+      "range": {
+       "raw": "0.05 - 3600",
+       "min": 0.05,
+       "max": 3600
+      },
       "note": "If asynchronous motor is selected, enter acceleration time from 0 Hz to parameter 1-23 Motor Frequency. If PM motor is selected, enter acceleration time from 0 RPM to parameter 1-25 Motor Nominal Speed. Select a ramp-up time such that the output current does not exceed the current limit in parameter 4-18 Current Limit during ramping up."
      },
      "blocks": {
@@ -12564,7 +12791,11 @@
       "group": "3-5* Ramp 2",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.05 - 3600",
+      "range": {
+       "raw": "0.05 - 3600",
+       "min": 0.05,
+       "max": 3600
+      },
       "note": "Enter deceleration time from parameter 1-25 Motor Nominal Speed to 0 RPM. Select a ramp-down time such that the output current does not exceed the current limit in parameter 4-18 Current Limit during ramping down."
      },
      "blocks": {
@@ -12610,7 +12841,11 @@
       "group": "3-8* Other Ramps",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.05 - 3600",
+      "range": {
+       "raw": "0.05 - 3600",
+       "min": 0.05,
+       "max": 3600
+      },
       "note": "Enter the jog ramp time, which is the acceleration/deceleration time between 0 Hz to parameter 1-23 Motor Frequency. Ensure that the resulting output current required for the given jog ramp time does not exceed the current limit in parameter 4-18 Current Limit. The jog ramp time starts after activation of a jog signal via the control panel, a selected digital input, or the serial communication por"
      },
      "blocks": {
@@ -12656,7 +12891,11 @@
       "group": "3-8* Other Ramps",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.05 - 3600",
+      "range": {
+       "raw": "0.05 - 3600",
+       "min": 0.05,
+       "max": 3600
+      },
       "note": "Enter the quick stop ramp time from the parameter 1-23 Motor Frequency to 0 Hz. During ramping, no overvoltage may occur in the inverter, nor may the generated current exceed the limit in parameter 4-18 Current Limit. Quick stop is activated with a signal on a selected digital input or via the serial communication port. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserve"
      },
      "blocks": {
@@ -12752,7 +12991,11 @@
       "group": "4-1* Motor Limits",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 400.0",
+      "range": {
+       "raw": "0 - 400.0",
+       "min": 0,
+       "max": 400
+      },
       "note": "Enter the minimum limit for motor speed. The motor speed low limit can be set to correspond to the minimum output frequency of the motor shaft. The speed low limit must not exceed the setting in parameter 4-14 Motor Speed High Limit [Hz]."
      },
      "blocks": {
@@ -12798,7 +13041,11 @@
       "group": "4-1* Motor Limits",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0.1 - 400.0",
+      "range": {
+       "raw": "0.1 - 400.0",
+       "min": 0.1,
+       "max": 400
+      },
       "note": "Enter the maximum limit for motor speed. It can be set to match the recommended maximum motor speed. The motor speed high limit must exceed the value in parameter 4-12 Motor Speed Low Limit [Hz]. Motor speed high limit cannot be set higher than parameter 4-19 Max Output Frequency."
      },
      "blocks": {
@@ -12844,7 +13091,11 @@
       "group": "4-1* Motor Limits",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 1000",
+      "range": {
+       "raw": "0 - 1000",
+       "min": 0,
+       "max": 1000
+      },
       "note": "Enter the current limit for motor and generator operation (in % of rated motor current). If the value is higher than maximum rated output from frequency converter, current is still limited to the maximum output current of the frequency converter. If a setting in parameter 1-00 Configu- ration Mode to parameter 1-25 Motor Nominal Speed is changed, parameter 4-18 Current Limit is not automatically r"
      },
      "blocks": {
@@ -12888,7 +13139,11 @@
       "group": "4-1* Motor Limits",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 400",
+      "range": {
+       "raw": "0 - 400",
+       "min": 0,
+       "max": 400
+      },
       "note": "Enter the maximum output frequency, which defines the absolute limit on the frequency converter output frequency for improved safety in applications where unintended overspeeding must be avoided. This absolute limit applies to all configurations and is independent of the setting in parameter 1-00 Configuration Mode. When parameter 1-10 Motor Construction is set to one of the options enabling PM mo"
      },
      "blocks": {
@@ -12934,7 +13189,11 @@
       "group": "4-4* Adjustable Warnings 2",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 500",
+      "range": {
+       "raw": "0 - 500",
+       "min": 0,
+       "max": 500
+      },
       "note": "Use this parameter to set a lower limit for the frequency range. When the motor speed drops below this limit, the display reads SPEED LOW. Warning bit 10 is set in parameter 16-94 Ext. Status Word. The output relay or the digital output can be configured to indicate this warning. The LCP warning indicator light is not turned on when this parameter set limit is reached."
      },
      "blocks": {
@@ -12980,7 +13239,11 @@
       "group": "4-4* Adjustable Warnings 2",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 500",
+      "range": {
+       "raw": "0 - 500",
+       "min": 0,
+       "max": 500
+      },
       "note": "Use this parameter to set a higher limit for the frequency range. When the motor speed exceeds this limit, the display reads SPEED HIGH. Warning bit 9 is set in parameter 16-94 Ext. Status Word. The output relay or the digital output can be configured to indicate this warning. The LCP warning indicator light is not turned on when this parameter set limit is reached. Parameters VLT® HVAC Basic Driv"
      },
      "blocks": {
@@ -13026,7 +13289,11 @@
       "group": "4-5* Adj. Warnings",
       "unitSI": "A",
       "unitSIRaw": "A",
-      "range": "0 - 500",
+      "range": {
+       "raw": "0 - 500",
+       "min": 0,
+       "max": 500
+      },
       "note": "Enter the ILOW value. When the motor current drops below this limit, a bit in the status word is set. This value can also be programmed to produce a signal on the digital output or the relay output."
      },
      "blocks": {
@@ -13072,7 +13339,11 @@
       "group": "4-5* Adj. Warnings",
       "unitSI": "A",
       "unitSIRaw": "A",
-      "range": "0.0 - 500.00",
+      "range": {
+       "raw": "0.0 - 500.00",
+       "min": 0,
+       "max": 500
+      },
       "note": "Enter the IHIGH value. When the motor current exceeds this limit, a bit in the status word is set. This value can also be programmed to produce a signal on the digital output or the relay output."
      },
      "blocks": {
@@ -13116,7 +13387,11 @@
       "name": "Warning Reference Low",
       "shortName": "4-54",
       "group": "4-5* Adj. Warnings",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "Enter the lower reference limit. When the actual reference drops below this limit, the display indicates RefLow. Warning bit 20 is set in parameter 16-94 Ext. Status Word. The output relay or the digital output can be configured to indicate this warning. The LCP warning indicator light is not turned on when this parameter set limit is reached."
      },
      "blocks": {
@@ -13160,7 +13435,11 @@
       "name": "Warning Reference High",
       "shortName": "4-55",
       "group": "4-5* Adj. Warnings",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "Use this parameter to set a higher limit for the reference range. When the actual reference exceeds this limit, the display reads Reference High. Warning bit 19 is set in parameter 16-94 Ext. Status Word. The output relay or the digital output can be configured to indicate this warning. The LCP warning indicator light is not turned on when this parameter set limit is reached."
      },
      "blocks": {
@@ -13206,7 +13485,11 @@
       "group": "4-5* Adj. Warnings",
       "unitSI": "ProcessCtrlUnit",
       "unitSIRaw": "ProcessCtrlUnit",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "Use this parameter to set a lower limit for the feedback range. When the feedback drops below this limit, the display reads Feedback Low. Warning bit 6 is set in parameter 16-94 Ext. Status Word. The output relay or digital output can be configured to indicate this warning. The LCP warning indicator light is not turned on when this parameter set limit is reached."
      },
      "blocks": {
@@ -13252,7 +13535,11 @@
       "group": "4-5* Adj. Warnings",
       "unitSI": "ProcessCtrlUnit",
       "unitSIRaw": "ProcessCtrlUnit",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "Use this parameter to set a higher limit for the feedback range. When the feedback exceeds this limit, the display reads Feedback High. Warning bit 5 is set in parameter 16-94 Ext. Status Word. The output relay or digital output can be configured to indicate this warning. The LCP warning indicator light is not turned on when this parameter set limit is reached."
      },
      "blocks": {
@@ -13346,7 +13633,9 @@
       "name": "Bypass Speed From [Hz]",
       "shortName": "4-61",
       "group": "4-6* Speed Bypass",
-      "range": "3",
+      "range": {
+       "raw": "3"
+      },
       "note": "Range: Function: 0 Hz [ 0 - 500 Hz] Enter the lower limits of the speeds to be avoided. Some systems call for avoiding certain output speeds due to resonance problems in the system."
      },
      "blocks": {
@@ -13390,7 +13679,9 @@
       "name": "Bypass Speed To [Hz]",
       "shortName": "4-63",
       "group": "4-6* Speed Bypass",
-      "range": "3",
+      "range": {
+       "raw": "3"
+      },
       "note": "Range: Function: 0 Hz* [ 0 - 500 Hz] Some systems call for avoiding certain output speeds due to resonance problems in the system. Enter the upper limits of the speeds to be avoided. 3.5.5 Semi-Automatic Bypass Speed Set-up Use the semi-automatic bypass speed set-up to facilitate the programming of the frequencies to be skipped due to resonances in the system. Procedure: 1. Stop the motor. NOTICE "
      },
      "blocks": {
@@ -13765,7 +14056,9 @@
       "name": "Terminal 18 Digital Input",
       "shortName": "5-10",
       "group": "5-1* Digital Inputs",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "No operation [1] Reset [2] Coast inverse [3] Coast and reset inverse [4] Quick stop inverse [5] DC-brake inverse [6] Stop inverse [7] External Interlock [8] * Start [9] Latched start [10] Reversing [11] Start reversing [14] Jog [16] Preset ref bit 0 [17] Preset ref bit 1 [18] Preset ref bit 2 [19] Freeze reference [20] Freeze output Parameter for configuring the input function on input terminal 18"
      },
      "blocks": {
@@ -13807,7 +14100,9 @@
       "name": "Terminal 19 Digital Input",
       "shortName": "5-11",
       "group": "5-1* Digital Inputs",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "* No operation [1] Reset [2] Coast inverse [3] Coast and reset inverse [4] Quick stop inverse [5] DC-brake inverse [6] Stop inverse [7] External Interlock [8] Start [9] Latched start [10] Reversing [11] Start reversing [14] Jog [16] Preset ref bit 0 [17] Preset ref bit 1 [18] Preset ref bit 2 [19] Freeze reference [20] Freeze output [21] Speed up [22] Speed down [23] Set-up select bit 0 [34] Ramp "
      },
      "blocks": {
@@ -13849,7 +14144,9 @@
       "name": "Terminal 27 Digital Input",
       "shortName": "5-12",
       "group": "5-1* Digital Inputs",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "Interna- tional, the default value is [2] Coast inverse. When parameter 0-03 Regional Settings is set to [1] North America, the default value is [7] External Interlock. Option: Function: [0] No operation [1] Reset [2] Coast inverse [3] Coast and reset inverse [4] Quick stop inverse [5] DC-brake inverse [6] Stop inverse [7] External Interlock [8] Start [9] Latched start [10] Reversing [11] Start re"
      },
      "blocks": {
@@ -13891,7 +14188,9 @@
       "name": "Terminal 29 Digital Input",
       "shortName": "5-13",
       "group": "5-1* Digital Inputs",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "No operation [1] Reset [2] Coast inverse [3] Coast and reset inverse [4] Quick stop inverse [5] DC-brake inverse [6] Stop inverse [7] External Interlock [8] Start [9] Latched start [10] Reversing [11] Start reversing [14] * Jog [16] Preset ref bit 0 [17] Preset ref bit 1 [18] Preset ref bit 2 [19] Freeze reference [20] Freeze output [21] Speed up [22] Speed down [23] Set-up select bit 0 [32] Pulse"
      },
      "blocks": {
@@ -13935,7 +14234,11 @@
       "group": "5-3* Digital Outputs",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 600",
+      "range": {
+       "raw": "0 - 600",
+       "min": 0,
+       "max": 600
+      },
       "note": "Enter the delay time before the digital output is switched on. The digital output (terminal 42/45) condition must not be interrupted during the delay time."
      },
      "blocks": {
@@ -13981,7 +14284,11 @@
       "group": "5-3* Digital Outputs",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 600",
+      "range": {
+       "raw": "0 - 600",
+       "min": 0,
+       "max": 600
+      },
       "note": "Enter the delay time before the digital output is switched off. The digital output (terminal 42/45) condition must not be interrupted during the delay time. Parameters for configuring the timing and the output functions for the relays."
      },
      "blocks": {
@@ -14025,7 +14332,9 @@
       "name": "Function Relay",
       "shortName": "5-40",
       "group": "5-4* Relays",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": ", Relay 2 [1]) Select options to define the function of the relays. The selection of each mechanical relay is realized in an array parameter. When parameter 0-03 Regional Settings is set to [0] International, the default value is [9] Alarm. When parameter 0-03 Regional Settings is set to [1] North America, the default value is [160] No alarm. Option: Function: [0] No operation Array (Relay 1 [0], "
      },
      "blocks": {
@@ -14067,7 +14376,9 @@
       "name": "On Delay, Relay",
       "shortName": "5-41",
       "group": "5-4* Relays",
-      "range": "2",
+      "range": {
+       "raw": "2"
+      },
       "note": "Range: Function: 0.01 s* [0.01 - 600 s] Enter the delay of the relay cut-in time. Select 1 of 2 internal mechanical relays in an array function. See parameter 5-40 Function Relay for details. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 53 3 3 Selected Event Relay output Selected Event Relay output On Delay P 5-41 On Delay P 5-41 Off Delay P 5-42 130BA171.10 Ill"
      },
      "blocks": {
@@ -14111,7 +14422,9 @@
       "name": "Off Delay, Relay",
       "shortName": "5-42",
       "group": "5-4* Relays",
-      "range": "2",
+      "range": {
+       "raw": "2"
+      },
       "note": "Range: Function: 0.01 s* [0.01 - 600 s] Enter the delay of the relay cutout time. Select 1 of 2 internal mechanical relays in an array function. See parameter 5-40 Function Relay for details. If the selected event condition changes before a delay timer expires, the relay output is unaffected. Selected Event Relay output On Delay P 5-41 Off Delay P 5-42 130BA172.10 Illustration 3.8 Off Delay, Relay"
      },
      "blocks": {
@@ -14157,7 +14470,11 @@
       "group": "5-5* Pulse Input",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "20 - 31999",
+      "range": {
+       "raw": "20 - 31999",
+       "min": 20,
+       "max": 31999
+      },
       "note": "Enter the low frequency limit corresponding to the low motor shaft speed (that is low reference value) in parameter 5-52 Term. 29 Low Ref./Feedb. Value. See Illustration 3.9."
      },
      "blocks": {
@@ -14201,7 +14518,11 @@
       "group": "5-5* Pulse Input",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "21 - 32000",
+      "range": {
+       "raw": "21 - 32000",
+       "min": 21,
+       "max": 32000
+      },
       "note": "Enter the high frequency limit corresponding to the high motor shaft speed (that is high reference value) in parameter 5-53 Term. 29 High Ref./Feedb. Value."
      },
      "blocks": {
@@ -14243,7 +14564,11 @@
       "name": "Term. 29 Low Ref./Feedb. Value",
       "shortName": "5-52",
       "group": "5-5* Pulse Input",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "Enter the low reference value limit for the motor shaft speed [RPM]. This is also the lowest feedback value. Set terminal 29 to digital input (parameter 5-13 Terminal 29 Digital Input = applicable value). Parameters VLT® HVAC Basic Drive FC 101 54 Danfoss A/S © 04/2018 All rights reserved. MG18B502 3 3"
      },
      "blocks": {
@@ -14287,7 +14612,11 @@
       "name": "Term. 29 High Ref./Feedb. Value",
       "shortName": "5-53",
       "group": "5-5* Pulse Input",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "Enter the high reference value [RPM] for the motor shaft speed and the high feedback value. Select terminal 29 as a digital input (parameter 5-13 Terminal 29 Digital Input = applicable value). This parameter group selects digital and relay outputs via a fieldbus setting."
      },
      "blocks": {
@@ -14333,7 +14662,11 @@
       "group": "5-9* Bus Controlled",
       "unitSI": "xFFFFFFFF",
       "unitSIRaw": "xFFFFFFFF",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "This parameter holds the state of the bus- controlled digital outputs and relays. A logical 1 indicates that the output is high or active. A logical 0 indicates that the output is low or inactive. Bit 0–3 Reserved Bit 4 Relay 1 output terminal Bit 6–23 Reserved Bit 24 Terminal 42 digital output Bit 26–31 Reserved Table 3.5 Bit Functions Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 A"
      },
      "blocks": {
@@ -14377,7 +14710,11 @@
       "group": "6-0* Analog I/O Mode",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "1 - 99",
+      "range": {
+       "raw": "1 - 99",
+       "min": 1,
+       "max": 99
+      },
       "note": "Enter the timeout time."
      },
      "blocks": {
@@ -14551,7 +14888,11 @@
       "group": "6-1* Analog Input 53",
       "unitSI": "V",
       "unitSIRaw": "V",
-      "range": "0 - 10",
+      "range": {
+       "raw": "0 - 10",
+       "min": 0,
+       "max": 10
+      },
       "note": "Enter the voltage (V) that corresponds to parameter 6-14 Terminal 53 Low Ref./Feedb. Value. To activate parameter 6-01 Live Zero Timeout Function, set the value to >1 V."
      },
      "blocks": {
@@ -14597,7 +14938,11 @@
       "group": "6-1* Analog Input 53",
       "unitSI": "V",
       "unitSIRaw": "V",
-      "range": "0 - 10",
+      "range": {
+       "raw": "0 - 10",
+       "min": 0,
+       "max": 10
+      },
       "note": "Enter the voltage (V) that corresponds to the high reference value (set in parameter 6-15 Terminal 53 High Ref./Feedb. Value)."
      },
      "blocks": {
@@ -14643,7 +14988,11 @@
       "group": "6-1* Analog Input 53",
       "unitSI": "mA",
       "unitSIRaw": "mA",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "Enter the low current value. This reference signal corresponds to the low reference/ feedback value that is set in parameter 6-14 Terminal 53 Low Ref./Feedb. Value. To activate parameter 6-01 Live Zero Timeout Function, set the value to >2 mA."
      },
      "blocks": {
@@ -14689,7 +15038,11 @@
       "group": "6-1* Analog Input 53",
       "unitSI": "mA",
       "unitSIRaw": "mA",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "Enter the high current value corresponding to the high reference/feedback set in parameter 6-15 Terminal 53 High Ref./Feedb. Value."
      },
      "blocks": {
@@ -14733,7 +15086,11 @@
       "name": "Terminal 53 Low Ref./Feedb. Value",
       "shortName": "6-14",
       "group": "6-1* Analog Input 53",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "Enter the reference or feedback value that corresponds to the voltage or current set in parameter 6-10 Terminal 53 Low Voltage to parameter 6-12 Terminal 53 Low Current."
      },
      "blocks": {
@@ -14777,7 +15134,11 @@
       "name": "Terminal 53 High Ref./Feedb. Value",
       "shortName": "6-15",
       "group": "6-1* Analog Input 53",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "Enter the reference or feedback value that corresponds to the voltage or current set in parameter 6-11 Terminal 53 High Voltage to parameter 6-13 Terminal 53 High Current."
      },
      "blocks": {
@@ -14823,7 +15184,11 @@
       "group": "6-1* Analog Input 53",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.01 - 10",
+      "range": {
+       "raw": "0.01 - 10",
+       "min": 0.01,
+       "max": 10
+      },
       "note": "Enter the time constant. This constant is a first-order digital low-pass filter time Range: Function: constant for suppressing electrical noise in terminal 53. A high time constant value improves dampening, but also increases the time delay through the filter."
      },
      "blocks": {
@@ -14920,7 +15285,11 @@
       "group": "6-2* Analog Input 54",
       "unitSI": "V",
       "unitSIRaw": "V",
-      "range": "0 - 10",
+      "range": {
+       "raw": "0 - 10",
+       "min": 0,
+       "max": 10
+      },
       "note": "Enter the voltage (V) that corresponds to the low reference value (set in parameter 6-24 Terminal 54 Low Ref./Feedb. Value). To activate parameter 6-01 Live Zero Timeout Function, set the value to >1 V."
      },
      "blocks": {
@@ -14966,7 +15335,11 @@
       "group": "6-2* Analog Input 54",
       "unitSI": "V",
       "unitSIRaw": "V",
-      "range": "0 - 10",
+      "range": {
+       "raw": "0 - 10",
+       "min": 0,
+       "max": 10
+      },
       "note": "Enter the voltage (V) that corresponds to the high reference value (set in parameter 6-25 Terminal 54 High Ref./Feedb. Value)."
      },
      "blocks": {
@@ -15012,7 +15385,11 @@
       "group": "6-2* Analog Input 54",
       "unitSI": "mA",
       "unitSIRaw": "mA",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "Enter the low current value. This reference signal corresponds to the low reference/ feedback value set in parameter 6-24 Terminal 54 Low Ref./Feedb. Value. To activate the live zero timeout function in parameter 6-01 Live Zero Timeout Function, set the value to >2 mA."
      },
      "blocks": {
@@ -15058,7 +15435,11 @@
       "group": "6-2* Analog Input 54",
       "unitSI": "mA",
       "unitSIRaw": "mA",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "Enter the high current value corresponding to the high reference/feedback value set in parameter 6-25 Terminal 54 High Ref./Feedb. Value."
      },
      "blocks": {
@@ -15102,7 +15483,11 @@
       "name": "Terminal 54 Low Ref./Feedb. Value",
       "shortName": "6-24",
       "group": "6-2* Analog Input 54",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "Enter the reference or feedback value that corresponds to the voltage or current set in Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 57 3 3 Range: Function: parameter 6-21 Terminal 54 High Voltage/ parameter 6-22 Terminal 54 Low Current."
      },
      "blocks": {
@@ -15146,7 +15531,11 @@
       "name": "Terminal 54 High Ref./Feedb. Value",
       "shortName": "6-25",
       "group": "6-2* Analog Input 54",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "Enter the reference or feedback value that corresponds to the voltage or current set in parameter 6-21 Terminal 54 High Voltage/ parameter 6-23 Terminal 54 High Current."
      },
      "blocks": {
@@ -15192,7 +15581,11 @@
       "group": "6-2* Analog Input 54",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.01 - 10",
+      "range": {
+       "raw": "0.01 - 10",
+       "min": 0.01,
+       "max": 10
+      },
       "note": "Enter the time constant, which is a first- order digital low-pass filter time constant for suppressing electrical noise in terminal 54. A high time constant value improves dampening, but also increases the time delay through the filter."
      },
      "blocks": {
@@ -15698,7 +16091,11 @@
       "group": "6-7* Analog/Digital Output 45",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 200",
+      "range": {
+       "raw": "0 - 200",
+       "min": 0,
+       "max": 200
+      },
       "note": "Scale for the minimum output (0 mA or 4 mA) of the analog signal at terminal 45. Set the value to be the percentage of the full range of the variable selected in parameter 6-71 Terminal 45 Analog Output."
      },
      "blocks": {
@@ -15744,7 +16141,11 @@
       "group": "6-7* Analog/Digital Output 45",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 200",
+      "range": {
+       "raw": "0 - 200",
+       "min": 0,
+       "max": 200
+      },
       "note": "Scale for the maximum output (20 mA) of the analog signal at terminal 45. Set the value to be the percentage of the full range of the variable selected in parameter 6-71 Terminal 45 Analog Output. Range: Function: (mA) 0% 20 0/4 100% Current Analogue output Min Scale par. 6-73 Variable for output example: Power Analogue Output Max Scale par. 6-74 Illustration 3.11 Output Maximum Scale"
      },
      "blocks": {
@@ -15788,7 +16189,11 @@
       "name": "Terminal 45 Output Bus Control",
       "shortName": "6-76",
       "group": "6-7* Analog/Digital Output 45",
-      "range": "0 - 16384",
+      "range": {
+       "raw": "0 - 16384",
+       "min": 0,
+       "max": 16384
+      },
       "note": "Holds the level of analog output if controlled by bus. Parameters for configuring the limits for analog/digital output terminal 42. Analog outputs are current outputs: 0/4–20 mA. Resolution on analog outputs is 12 bit. Analog output terminals can also be set up as digital output."
      },
      "blocks": {
@@ -16249,7 +16654,11 @@
       "group": "6-9* Analog/Digital Output 42",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 200",
+      "range": {
+       "raw": "0 - 200",
+       "min": 0,
+       "max": 200
+      },
       "note": "Scale for the minimum output (0 mA or 4 mA) of the analog signal at terminal 42. Set the value to be the percentage of the full range of the variable selected in parameter 6-91 Terminal 42 Analog Output."
      },
      "blocks": {
@@ -16295,7 +16704,11 @@
       "group": "6-9* Analog/Digital Output 42",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 200",
+      "range": {
+       "raw": "0 - 200",
+       "min": 0,
+       "max": 200
+      },
       "note": "Scale for the maximum output (20 mA) of the scaling at terminal 42. Set the value to be the percentage of the full range of the variable selected in parameter 6-91 Terminal 42 Analog Output. (mA) 0% 20 0/4 100% Current Analog output Min Scale par. 6-93 Variable for output example: Power Analog Output Max Scale par. 6-94 130BB772.10 Illustration 3.12 Output Maximum Scale Parameters VLT® HVAC Basic "
      },
      "blocks": {
@@ -16339,7 +16752,11 @@
       "name": "Terminal 42 Output Bus Control",
       "shortName": "6-96",
       "group": "6-9* Analog/Digital Output 42",
-      "range": "0 - 16384",
+      "range": {
+       "raw": "0 - 16384",
+       "min": 0,
+       "max": 16384
+      },
       "note": "Hold the analog output at terminal 42 if controlled by bus. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 61 3 3 3.8 Main Menu - Communications and Options - Group 8"
      },
      "blocks": {
@@ -16489,7 +16906,11 @@
       "group": "8-0* General Settings",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.1 - 6500",
+      "range": {
+       "raw": "0.1 - 6500",
+       "min": 0.1,
+       "max": 6500
+      },
       "note": "Enter the maximum time expected to pass between the reception of 2 consecutive telegrams. If this time is exceeded, it indicates that the serial communication has stopped. The function selected in parameter 8-04 Control Timeout Function is carried out."
      },
      "blocks": {
@@ -16667,7 +17088,11 @@
       "name": "Address",
       "shortName": "8-31",
       "group": "8-3* FC Port Settings",
-      "range": "0.0 - 247",
+      "range": {
+       "raw": "0.0 - 247",
+       "min": 0,
+       "max": 247
+      },
       "note": "Enter the address for the RS485 port. Valid range: 1–126 for FC-bus OR 1– 247 for Modbus."
      },
      "blocks": {
@@ -16845,7 +17270,11 @@
       "group": "8-3* FC Port Settings",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.0010 - 0.5",
+      "range": {
+       "raw": "0.0010 - 0.5",
+       "min": 0.001,
+       "max": 0.5
+      },
       "note": "Specify the minimum delay time between receiving a request and transmitting a response. This is used for overcoming modem turnaround delays."
      },
      "blocks": {
@@ -16891,7 +17320,11 @@
       "group": "8-3* FC Port Settings",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.1 - 10.0",
+      "range": {
+       "raw": "0.1 - 10.0",
+       "min": 0.1,
+       "max": 10
+      },
       "note": "Specify the maximum permissible delay time between receiving a request and transmitting the response. If this time is exceeded, no response is returned."
      },
      "blocks": {
@@ -16937,7 +17370,11 @@
       "group": "8-3* FC Port Settings",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.005 - 0.025",
+      "range": {
+       "raw": "0.005 - 0.025",
+       "min": 0.005,
+       "max": 0.025
+      },
       "note": "Specify the maximum delay time between 2 characters in a message. Exceeding this delay time causes the message to be discarded. This parameter group is for PCD write and read configu- rations."
      },
      "blocks": {
@@ -16981,7 +17418,9 @@
       "name": "PCD Write Configuration",
       "shortName": "8-42",
       "group": "8-4* FC MC Protocol Set",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "None [1] [302] Minimum Reference [2] [303] Maximum Reference [3] [341] Ramp 1 Ramp up time [4] [342] Ramp 1 Ramp down time [5] [351] Ramp 2 Ramp up time [6] [352] Ramp 2 Ramp down time [7] [380] Jog Ramp Time [8] [381] Quick Stop Time [9] [412] Motor Speed Low Limit [Hz] [10] [414] Motor Speed High Limit [Hz] Different parameters can be assigned to PCD 3–10 of the PPOs (the number of PCDs depends "
      },
      "blocks": {
@@ -17023,7 +17462,9 @@
       "name": "PCD Read Configuration",
       "shortName": "8-43",
       "group": "8-4* FC MC Protocol Set",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "None [1] [1500] Operation Hours [2] [1501] Running Hours [3] [1502] kWh Counter [4] [1600] Control Word [5] [1601] Reference [Unit] [6] [1602] Reference % [7] [1603] Status Word [8] [1605] Main Actual Value [%] [9] [1609] Custom Readout [10] [1610] Power [kW] [11] [1611] Power [hp] [12] [1612] Motor Voltage [13] [1613] Frequency [14] [1614] Motor Current [15] [1615] Frequency [%] [16] [1618] Motor"
      },
      "blocks": {
@@ -17502,7 +17943,11 @@
       "name": "BACnet Device Instance",
       "shortName": "8-70",
       "group": "8-7* BACnet",
-      "range": "0 - 4194303",
+      "range": {
+       "raw": "0 - 4194303",
+       "min": 0,
+       "max": 4194303
+      },
       "note": "Enter a unique ID number for the BACnet device."
      },
      "blocks": {
@@ -17544,7 +17989,11 @@
       "name": "MS/TP Max Masters",
       "shortName": "8-72",
       "group": "8-7* BACnet",
-      "range": "0 - 127",
+      "range": {
+       "raw": "0 - 127",
+       "min": 0,
+       "max": 127
+      },
       "note": "Define the address of the master, which holds the highest address in this network. Decreasing this value optimizes polling for the token."
      },
      "blocks": {
@@ -17586,7 +18035,11 @@
       "name": "MS/TP Max Info Frames",
       "shortName": "8-73",
       "group": "8-7* BACnet",
-      "range": "1 - 65534",
+      "range": {
+       "raw": "1 - 65534",
+       "min": 1,
+       "max": 65534
+      },
       "note": "Define how many info/data frames the device is allowed to send while holding the token."
      },
      "blocks": {
@@ -17678,7 +18131,11 @@
       "name": "Intialisation Password",
       "shortName": "8-75",
       "group": "8-7* BACnet",
-      "range": "1 - 1",
+      "range": {
+       "raw": "1 - 1",
+       "min": 1,
+       "max": 1
+      },
       "note": "Enter the password needed for execution of Drive Re-initialization from BACnet."
      },
      "blocks": {
@@ -17718,7 +18175,9 @@
       "name": "Protocol Firmware version",
       "shortName": "8-79",
       "group": "8-7* BACnet",
-      "range": "5",
+      "range": {
+       "raw": "5"
+      },
       "note": "Range: Function: Size related* [0 - 655 ] Firmware revision of frequency converter is in index 0, Modbus is in index 1, Metasys N2 is in index 2, FLN is in index 3, BACnet is in index 4. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 65 3 3 These parameters are used for monitoring the bus communication via the FC port."
      },
      "blocks": {
@@ -17758,7 +18217,11 @@
       "name": "Bus Message Count",
       "shortName": "8-80",
       "group": "8-8* FC Port Diagnostics",
-      "range": "0 - 4294967295",
+      "range": {
+       "raw": "0 - 4294967295",
+       "min": 0,
+       "max": 4294967295
+      },
       "note": "This parameter shows the number of valid telegrams detected on the bus."
      },
      "blocks": {
@@ -17800,7 +18263,11 @@
       "name": "Bus Error Count",
       "shortName": "8-81",
       "group": "8-8* FC Port Diagnostics",
-      "range": "0 - 4294967295",
+      "range": {
+       "raw": "0 - 4294967295",
+       "min": 0,
+       "max": 4294967295
+      },
       "note": "This parameter shows the number of telegrams with faults (for example, CRC fault), detected on the bus."
      },
      "blocks": {
@@ -17842,7 +18309,11 @@
       "name": "Slave Messages Rcvd",
       "shortName": "8-82",
       "group": "8-8* FC Port Diagnostics",
-      "range": "0 - 4294967295",
+      "range": {
+       "raw": "0 - 4294967295",
+       "min": 0,
+       "max": 4294967295
+      },
       "note": "This parameter shows the number of valid telegrams addressed to the slave, sent by the frequency converter."
      },
      "blocks": {
@@ -17884,7 +18355,11 @@
       "name": "Slave Error Count",
       "shortName": "8-83",
       "group": "8-8* FC Port Diagnostics",
-      "range": "0 - 4294967295",
+      "range": {
+       "raw": "0 - 4294967295",
+       "min": 0,
+       "max": 4294967295
+      },
       "note": "This parameter shows the number of error telegrams, which the frequency converter could not execute."
      },
      "blocks": {
@@ -17926,7 +18401,11 @@
       "name": "Slave Messages Sent",
       "shortName": "8-84",
       "group": "8-8* FC Port Diagnostics",
-      "range": "0 - 4294967295",
+      "range": {
+       "raw": "0 - 4294967295",
+       "min": 0,
+       "max": 4294967295
+      },
       "note": "This parameter shows the number of messages sent from the slave."
      },
      "blocks": {
@@ -17968,7 +18447,11 @@
       "name": "Slave Timeout Errors",
       "shortName": "8-85",
       "group": "8-8* FC Port Diagnostics",
-      "range": "0 - 4294967295",
+      "range": {
+       "raw": "0 - 4294967295",
+       "min": 0,
+       "max": 4294967295
+      },
       "note": "This parameter shows the number of slave timeout errors."
      },
      "blocks": {
@@ -18060,7 +18543,11 @@
       "name": "Bus Feedback 1",
       "shortName": "8-94",
       "group": "8-9* Bus Feedback",
-      "range": "-32768 - 32767",
+      "range": {
+       "raw": "-32768 - 32767",
+       "min": -32768,
+       "max": 32767
+      },
       "note": "Write feedback to this parameter via the serial communication port. Select this parameter in parameter 20-00 Feedback 1 Source or parameter 20-03 Feedback 2 Source as a feedback source. Hex value 4000 h corresponds to 100% feedback/range is ±200%."
      },
      "blocks": {
@@ -18102,7 +18589,11 @@
       "name": "Bus Feedback 2",
       "shortName": "8-95",
       "group": "8-9* Bus Feedback",
-      "range": "-32768 - 32767",
+      "range": {
+       "raw": "-32768 - 32767",
+       "min": -32768,
+       "max": 32767
+      },
       "note": "Write a feedback to this parameter via the serial communication port. This parameter must be selected in parameter 20-00 Feedback 1 Source or parameter 20-03 Feedback 2 Source as a feedback source. The hexadecimal value 4000 h corresponds to ±200% in 100% feedback/range. Parameters VLT® HVAC Basic Drive FC 101 66 Danfoss A/S © 04/2018 All rights reserved. MG18B502 3 3 3.9 Main Menu - Smart Logic -"
      },
      "blocks": {
@@ -18647,7 +19138,9 @@
       "name": "Comparator Operand",
       "shortName": "13-10",
       "group": "13-1* Comparators",
-      "range": "6",
+      "range": {
+       "raw": "6"
+      },
       "note": "Option: Function: Select the variable to be monitored by the comparator. [0] * Disabled [1] Reference [2] Feedback [3] Motor speed [4] Motor Current [6] Motor power [7] Motor voltage [12] Analog input AI53 [13] Analog input AI54 [20] Alarm number [30] Counter A [31] Counter B"
      },
      "blocks": {
@@ -18689,7 +19182,9 @@
       "name": "Comparator Operator",
       "shortName": "13-11",
       "group": "13-1* Comparators",
-      "range": "6",
+      "range": {
+       "raw": "6"
+      },
       "note": "Option: Function: [0] Less Than (<) Select [0] < for the result of the evaluation to be true, when the variable selected in parameter 13-10 Comparator Operand is smaller than the fixed value in parameter 13-12 Comparator Value. The result is false, if the variable selected in parameter 13-10 Comparator Operand is greater than the fixed value in parameter 13-12 Comparator Value. [1] * Approx.Equal "
      },
      "blocks": {
@@ -18731,7 +19226,9 @@
       "name": "Comparator Value",
       "shortName": "13-12",
       "group": "13-1* Comparators",
-      "range": "6",
+      "range": {
+       "raw": "6"
+      },
       "note": "Range: Function: 0* [-9999 - 9999 ] Enter the trigger level for the variable that is monitored by this comparator. This parameter is an array parameter containing comparator values 0–5. Use the result (true or false) from timers directly to define an event (see parameter 13-51 SL Controller Event), or as boolean input in a logic rule (see parameter 13-40 Logic Rule Boolean 1, parameter 13-42 Logic"
      },
      "blocks": {
@@ -18775,7 +19272,9 @@
       "name": "SL Controller Timer",
       "shortName": "13-20",
       "group": "13-2* Timers",
-      "range": "8",
+      "range": {
+       "raw": "8"
+      },
       "note": "Range: Function: 0 s* [0 - 3600 s] Enter the value to define the duration of the false output from the programmed timer. A timer is only false if it is started by an action (see parameter 13-52 SL Controller Action [29–31] and parameter 13-52 SL Controller Action [70–74] Start timer X) and until the timer value has elapsed. Array parameters contain timers 0–7. Combine up to 3 boolean inputs (true/"
      },
      "blocks": {
@@ -18819,7 +19318,9 @@
       "name": "Logic Rule Boolean 1",
       "shortName": "13-40",
       "group": "13-4* Logic Rules",
-      "range": "6",
+      "range": {
+       "raw": "6"
+      },
       "note": "Option: Function: [0] * False Enters the fixed value of false in the logic rule. [1] True Enters the fixed value true in the logic rule. [2] Running See parameter 13-01 Start Event for further description. [3] In range See parameter 13-01 Start Event for further description. [4] On reference See parameter 13-01 Start Event for further description. [7] Out of current range See parameter 13-01 Start"
      },
      "blocks": {
@@ -18939,7 +19440,9 @@
       "name": "Logic Rule Boolean 2",
       "shortName": "13-42",
       "group": "13-4* Logic Rules",
-      "range": "6",
+      "range": {
+       "raw": "6"
+      },
       "note": "Option: Function: Select the 2nd boolean (true or false) input for the selected logic rule. See parameter 13-40 Logic Rule Boolean 1 for further descriptions of options and their functions. [0] * False [1] True [2] Running [3] In range [4] On reference [7] Out of current range [8] Below I low [9] Above I high [16] Thermal warning [17] Mains out of range [18] Reversing [19] Warning [20] Alarm (trip"
      },
      "blocks": {
@@ -18981,7 +19484,9 @@
       "name": "Logic Rule Operator 2",
       "shortName": "13-43",
       "group": "13-4* Logic Rules",
-      "range": "6",
+      "range": {
+       "raw": "6"
+      },
       "note": "Option: Function: Select the 2nd logical operator to be used on the boolean input calculated in parameter 13-40 Logic Rule Boolean 1, parameter 13-41 Logic Rule Operator 1, parameter 13-42 Logic Rule Boolean 2, and the boolean input coming from parameter 13-42 Logic Rule Boolean 2. [13–44] signifies the boolean input of parameter 13-44 Logic Rule Boolean 3. [13-40/13-42] signifies the boolean inpu"
      },
      "blocks": {
@@ -19023,7 +19528,9 @@
       "name": "Logic Rule Boolean 3",
       "shortName": "13-44",
       "group": "13-4* Logic Rules",
-      "range": "6",
+      "range": {
+       "raw": "6"
+      },
       "note": "Option: Function: Select the 3rd boolean (true or false) input for the selected logic rule. See parameter 13-40 Logic Rule Boolean 1 for further descriptions of options and their functions. [0] * False [1] True [2] Running [3] In range [4] On reference [7] Out of current range [8] Below I low [9] Above I high [16] Thermal warning [17] Mains out of range [18] Reversing [19] Warning [20] Alarm (trip"
      },
      "blocks": {
@@ -19065,7 +19572,9 @@
       "name": "SL Controller Event",
       "shortName": "13-51",
       "group": "13-5* States",
-      "range": "20",
+      "range": {
+       "raw": "20"
+      },
       "note": "Option: Function: Select the boolean input (true or false) to define the smart logic controller event. See parameter 13-02 Stop Event for further descriptions of options and their functions. [0] * False [1] True [2] Running [3] In range [4] On reference [7] Out of current range [8] Below I low [9] Above I high [16] Thermal warning [17] Mains out of range [18] Reversing [19] Warning [20] Alarm (tri"
      },
      "blocks": {
@@ -19107,7 +19616,9 @@
       "name": "SL Controller Action",
       "shortName": "13-52",
       "group": "13-5* States",
-      "range": "20",
+      "range": {
+       "raw": "20"
+      },
       "note": "Option: Function: Select the action corresponding to the SLC event. Actions are executed when the corresponding event (defined in parameter 13-51 SL Controller Event) is evaluated as true. The following actions are available for selection: [100] ResetAlarm [0] * Disabled [1] No action [2] Select set-up 1 Changes the active set-up (parameter 0-10 Active Set-up) to set-up 1. [3] Select set-up 2 Chan"
      },
      "blocks": {
@@ -19286,7 +19797,11 @@
       "name": "Dead Time Compensation Level",
       "shortName": "14-07",
       "group": "14-0* Inverter Switching",
-      "range": "0 - 100",
+      "range": {
+       "raw": "0 - 100",
+       "min": 0,
+       "max": 100
+      },
       "note": "Level of applied dead time compensation in percentage. A high level (>90%) optimizes the dynamic motor response. A level 50–90% is suitable for both motor- torque-ripple minimization and motor dynamics. A 0 level turns off the dead time compensation."
      },
      "blocks": {
@@ -19330,7 +19845,11 @@
       "group": "14-0* Inverter Switching",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 100",
+      "range": {
+       "raw": "0 - 100",
+       "min": 0,
+       "max": 100
+      },
       "note": "Set the damping factor for DC-link voltage compensation. See parameter 14-51 DC-Link Voltage Compensation."
      },
      "blocks": {
@@ -19374,7 +19893,11 @@
       "group": "14-0* Inverter Switching",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 100",
+      "range": {
+       "raw": "0 - 100",
+       "min": 0,
+       "max": 100
+      },
       "note": "To add to the current-sense signal for dead time compensation for some motors, set a bias signal (in percentage). Parameters for configuring mains failure monitoring and handling."
      },
      "blocks": {
@@ -19416,7 +19939,9 @@
       "name": "Mains Failure",
       "shortName": "14-10",
       "group": "14-1* Mains On/Off",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "* No function [1] Ctrl. ramp-down [3] Coasting [4] Kinetic back-up [5] Kinetic back-up, trip [6] Alarm [7] Kin. back-up, trip w recovery"
      },
      "blocks": {
@@ -19460,7 +19985,11 @@
       "group": "14-1* Mains On/Off",
       "unitSI": "V",
       "unitSIRaw": "V",
-      "range": "100 - 800",
+      "range": {
+       "raw": "100 - 800",
+       "min": 100,
+       "max": 800
+      },
       "note": "Use this parameter to define at which AC voltage the function selected in parameter 14-10 Mains Failure should be activated. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 75 3 3"
      },
      "blocks": {
@@ -19561,7 +20090,9 @@
       "name": "Reset Mode",
       "shortName": "14-20",
       "group": "14-2* Trip Reset",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "* Manual reset Select [0] Manual reset to reset the frequency converter via [Reset] or via the digital inputs. [1] Automatic reset x 1 Select [1]-[12] Automatic reset x 1... x20 to perform between 1 and 20 automatic resets after tripping. [2] Automatic reset x 2 [3] Automatic reset x 3 [4] Automatic reset x 4 [5] Automatic reset x 5 [6] Automatic reset x 6 [7] Automatic reset x 7 [8] Automatic res"
      },
      "blocks": {
@@ -19605,7 +20136,11 @@
       "group": "14-2* Trip Reset",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 600",
+      "range": {
+       "raw": "0 - 600",
+       "min": 0,
+       "max": 600
+      },
       "note": "To start the automatic reset function, enter the time interval from trip. This parameter is active when parameter 14-20 Reset Mode is set to [1] - [13] Automatic reset."
      },
      "blocks": {
@@ -19714,7 +20249,9 @@
       "name": "Action At Inverter Fault",
       "shortName": "14-27",
       "group": "14-2* Trip Reset",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "Trip [1] * Warning"
      },
      "blocks": {
@@ -19758,7 +20295,11 @@
       "group": "14-2* Trip Reset",
       "unitSI": "x7FFFFFFF",
       "unitSIRaw": "x7FFFFFFF",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "Service use only. Parameters for configuring the current limit controller, which is activated when the motor current exceeds the preset current limits (see parameter 4-18 Current Limit). These parameters are used to reduce torque as quickly as possible without losing control of the motor."
      },
      "blocks": {
@@ -19802,7 +20343,11 @@
       "group": "14-3* Current Limit Control",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 500",
+      "range": {
+       "raw": "0 - 500",
+       "min": 0,
+       "max": 500
+      },
       "note": "Enter the proportional gain value for the current limit controller. A higher value makes the controller react faster. Excessive value setting leads to controller instability."
      },
      "blocks": {
@@ -19846,7 +20391,11 @@
       "group": "14-3* Current Limit Control",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.002 - 2",
+      "range": {
+       "raw": "0.002 - 2",
+       "min": 0.002,
+       "max": 2
+      },
       "note": "Control the current limit control integration time. Setting it to a lower value makes it react faster. A setting too low leads to control instability."
      },
      "blocks": {
@@ -19892,7 +20441,11 @@
       "group": "14-3* Current Limit Control",
       "unitSI": "ms",
       "unitSIRaw": "ms",
-      "range": "1 - 100",
+      "range": {
+       "raw": "1 - 100",
+       "min": 1,
+       "max": 100
+      },
       "note": "Set a time constant for the current limit controller low-pass filter. Parameters VLT® HVAC Basic Drive FC 101 76 Danfoss A/S © 04/2018 All rights reserved. MG18B502 3 3 Parameters for adjusting the energy optimization level in both variable torque (VT) and automatic energy optimi- zation (AEO) mode. Automatic energy optimization is only active if parameter 1-03 Torque Characteristics is set to [3]"
      },
      "blocks": {
@@ -19938,7 +20491,11 @@
       "group": "14-4* Energy Optimization",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "40 - 90",
+      "range": {
+       "raw": "40 - 90",
+       "min": 40,
+       "max": 90
+      },
       "note": "NOTICE This parameter cannot be adjusted while the motor is running. Enter the level of motor magnetization at low speed. Low values reduce energy loss in the motor, but also reduce load capability."
      },
      "blocks": {
@@ -19982,7 +20539,11 @@
       "group": "14-4* Energy Optimization",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "40 - 75",
+      "range": {
+       "raw": "40 - 75",
+       "min": 40,
+       "max": 75
+      },
       "note": "Enter the minimum allowable magnetization for AEO. Low values reduce energy loss in the motor, but also reduce resistance to sudden load changes."
      },
      "blocks": {
@@ -20026,7 +20587,11 @@
       "group": "14-4* Energy Optimization",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 200",
+      "range": {
+       "raw": "0 - 200",
+       "min": 0,
+       "max": 200
+      },
       "note": "These parameters help the frequency converter to operate under special environmental conditions."
      },
      "blocks": {
@@ -20068,7 +20633,9 @@
       "name": "RFI Filter",
       "shortName": "14-50",
       "group": "14-5* Environment",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "Off Select [0] Off only if the frequency converter is fed by an isolated mains source (IT mains). In this mode, the internal RFI filter capacitors between chassis and the mains RFI filter circuit are cut out to reduce the ground capacity currents. [1] * On Select [1] On to ensure that the frequency converter complies with EMC standards."
      },
      "blocks": {
@@ -20158,7 +20725,9 @@
       "name": "Fan Control",
       "shortName": "14-52",
       "group": "14-5* Environment",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "Auto The fan runs with full speed for a short time and then automatically adjusts the speed according to the load and ambient temperature. The fan also runs at minimum speed even if the reference is 0 Hz due to the heat generated from the IGBT. The fan stops if sleep mode function is activated. This is the default setting for all frequency converters except H1 enclosure sizes. [4] Auto Low Temp En"
      },
      "blocks": {
@@ -20200,7 +20769,9 @@
       "name": "Fan Monitor",
       "shortName": "14-53",
       "group": "14-5* Environment",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "Disabled [1] * Warning [2] Trip Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 77 3 3"
      },
      "blocks": {
@@ -20242,7 +20813,9 @@
       "name": "Output Filter",
       "shortName": "14-55",
       "group": "14-5* Environment",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "* No Filter [1] Sine-Wave Filter [3] Sine-Wave Filter with Feedback [4] dv/dt This option in only valid for the frequency converter of the following enclosure sizes: • IP20, 3x200-240 V, enclosure sizes H6-H8 • IP20, 3x380-480 V, enclosure sizes H6-H8 • IP54, 3x380-480 V, enclosure sizes I6-I8 • IP20, 3x525-600 V, enclosure sizes H6-H10 Parameter group for configuring automatic derating based on t"
      },
      "blocks": {
@@ -20284,7 +20857,9 @@
       "name": "Min Switch Frequency",
       "shortName": "14-63",
       "group": "14-6* Auto Derate",
-      "range": "2",
+      "range": {
+       "raw": "2"
+      },
       "note": "* 2.0 kHz [3] 3.0 kHz [4] 4.0 kHz [5] 5.0 kHz [6] 6.0 kHz [7] 8.0 kHz [8] 10.0 kHz [9] 12.0 kHz [10] 16.0 kHz"
      },
      "blocks": {
@@ -20326,7 +20901,9 @@
       "name": "Dead Time Compensation Zero Current Level",
       "shortName": "14-64",
       "group": "14-6* Auto Derate",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "Disabled to minimize the motor-torque ripple. Option: Function: [0] * Disabled [1] Enabled"
      },
      "blocks": {
@@ -20370,7 +20947,11 @@
       "group": "14-6* Auto Derate",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "20 - 1000",
+      "range": {
+       "raw": "20 - 1000",
+       "min": 20,
+       "max": 1000
+      },
       "note": "Dead time compensation level is reduced linearly from the maximum level of the output frequency set in parameter 14-07 Dead Time Compensation Level to the minimum level of the output frequency set in this parameter. The parameter group for fault customization settings."
      },
      "blocks": {
@@ -20412,7 +20993,9 @@
       "name": "Fault Level",
       "shortName": "14-90",
       "group": "14-9* Fault Settings",
-      "range": "3",
+      "range": {
+       "raw": "3"
+      },
       "note": "* Trip lock Alarm is set to trip lock level. [4] Trip w. delayed reset Alarm is configured into trip alarm, which can be reset after a delay time. For example, if overcurrent alarm is configured to this option, it can be reset 3 minutes after the alarm is reported. [5] Flystart The frequency converter tries to catch a motor spinning when starting. If this option is selected, parameter 1-73 Flying "
      },
      "blocks": {
@@ -20456,7 +21039,11 @@
       "group": "15-0* Operating Data",
       "unitSI": "x7fffffff. h",
       "unitSIRaw": "x7fffffff. h",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "View how many hours the frequency converter has run. The value is saved when the frequency converter is turned off."
      },
      "blocks": {
@@ -20502,7 +21089,11 @@
       "group": "15-0* Operating Data",
       "unitSI": "x7fffffff. h",
       "unitSIRaw": "x7fffffff. h",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "View how many hours the motor has run. Reset the counter in parameter 15-07 Reset Running Hours Counter. The value is saved when the frequency converter is turned off."
      },
      "blocks": {
@@ -20548,7 +21139,11 @@
       "group": "15-0* Operating Data",
       "unitSI": "kWh",
       "unitSIRaw": "kWh",
-      "range": "0 - 65535",
+      "range": {
+       "raw": "0 - 65535",
+       "min": 0,
+       "max": 65535
+      },
       "note": "View the output power of the frequency converter in kWh as a mean value over 1 hour. Reset the counter in parameter 15-06 Reset kWh Counter."
      },
      "blocks": {
@@ -20592,7 +21187,11 @@
       "name": "Power Up's",
       "shortName": "15-03",
       "group": "15-0* Operating Data",
-      "range": "0 - 2147483647",
+      "range": {
+       "raw": "0 - 2147483647",
+       "min": 0,
+       "max": 2147483647
+      },
       "note": "View the number of times the frequency converter has been powered up."
      },
      "blocks": {
@@ -20634,7 +21233,11 @@
       "name": "Over Temp's",
       "shortName": "15-04",
       "group": "15-0* Operating Data",
-      "range": "0 - 65535",
+      "range": {
+       "raw": "0 - 65535",
+       "min": 0,
+       "max": 65535
+      },
       "note": "View the number of frequency converter temperature faults that have occurred."
      },
      "blocks": {
@@ -20676,7 +21279,11 @@
       "name": "Over Volt's",
       "shortName": "15-05",
       "group": "15-0* Operating Data",
-      "range": "0 - 65535",
+      "range": {
+       "raw": "0 - 65535",
+       "min": 0,
+       "max": 65535
+      },
       "note": "View the number of frequency converter overvoltages that have occurred."
      },
      "blocks": {
@@ -20835,7 +21442,11 @@
       "name": "Alarm Log: Error Code",
       "shortName": "15-30",
       "group": "15-3* Alarm Log",
-      "range": "0 - 255",
+      "range": {
+       "raw": "0 - 255",
+       "min": 0,
+       "max": 255
+      },
       "note": "View the fault code and lookup its meaning in chapter 4 Troubleshooting."
      },
      "blocks": {
@@ -20877,7 +21488,11 @@
       "name": "InternalFaultReason",
       "shortName": "15-31",
       "group": "15-3* Alarm Log",
-      "range": "-32767 - 32767",
+      "range": {
+       "raw": "-32767 - 32767",
+       "min": -32767,
+       "max": 32767
+      },
       "note": "View a description of the error. This parameter is used with alarm 38, Internal Fault. Parameters containing read-only information about the hardware and software configuration of the frequency converter."
      },
      "blocks": {
@@ -20919,7 +21534,11 @@
       "name": "FC Type",
       "shortName": "15-40",
       "group": "15-4* Drive Identification",
-      "range": "0 - 6",
+      "range": {
+       "raw": "0 - 6",
+       "min": 0,
+       "max": 6
+      },
       "note": "View the FC type code. The readout is identical to the frequency converter series power field of the type code definition, characters 1–6."
      },
      "blocks": {
@@ -20959,7 +21578,11 @@
       "name": "Power Section",
       "shortName": "15-41",
       "group": "15-4* Drive Identification",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "View the FC type code. The readout is identical to the frequency converter series power field of the type code definition, characters 7–10. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 79 3 3"
      },
      "blocks": {
@@ -20999,7 +21622,11 @@
       "name": "Voltage",
       "shortName": "15-42",
       "group": "15-4* Drive Identification",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "View the FC type code. The readout is identical to the frequency converter series power field of the type code definition, characters 11–12."
      },
      "blocks": {
@@ -21039,7 +21666,11 @@
       "name": "Software Version",
       "shortName": "15-43",
       "group": "15-4* Drive Identification",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "View the software version of the frequency converter."
      },
      "blocks": {
@@ -21079,7 +21710,11 @@
       "name": "Ordered TypeCode",
       "shortName": "15-44",
       "group": "15-4* Drive Identification",
-      "range": "0 - 40",
+      "range": {
+       "raw": "0 - 40",
+       "min": 0,
+       "max": 40
+      },
       "note": "View the type code string used for reordering the frequency converter in its original configuration."
      },
      "blocks": {
@@ -21119,7 +21754,11 @@
       "name": "Actual Typecode String",
       "shortName": "15-45",
       "group": "15-4* Drive Identification",
-      "range": "0 - 40",
+      "range": {
+       "raw": "0 - 40",
+       "min": 0,
+       "max": 40
+      },
       "note": "View the actual type code string."
      },
      "blocks": {
@@ -21159,7 +21798,11 @@
       "name": "Drive Ordering No",
       "shortName": "15-46",
       "group": "15-4* Drive Identification",
-      "range": "0 - 8",
+      "range": {
+       "raw": "0 - 8",
+       "min": 0,
+       "max": 8
+      },
       "note": "View the 8-digit ordering number for reordering the frequency converter in its original configu- ration."
      },
      "blocks": {
@@ -21199,7 +21842,11 @@
       "name": "LCP Id No",
       "shortName": "15-48",
       "group": "15-4* Drive Identification",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "View the LCP ID number."
      },
      "blocks": {
@@ -21239,7 +21886,11 @@
       "name": "SW ID Control Card",
       "shortName": "15-49",
       "group": "15-4* Drive Identification",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "View the control card software version number."
      },
      "blocks": {
@@ -21279,7 +21930,11 @@
       "name": "SW ID Power Card",
       "shortName": "15-50",
       "group": "15-4* Drive Identification",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "View the power card software version number."
      },
      "blocks": {
@@ -21319,7 +21974,11 @@
       "name": "Drive Serial Number",
       "shortName": "15-51",
       "group": "15-4* Drive Identification",
-      "range": "0 - 10",
+      "range": {
+       "raw": "0 - 10",
+       "min": 0,
+       "max": 10
+      },
       "note": "View the frequency converter serial number."
      },
      "blocks": {
@@ -21359,7 +22018,11 @@
       "name": "Power Card Serial Number",
       "shortName": "15-53",
       "group": "15-4* Drive Identification",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "View the power card serial number."
      },
      "blocks": {
@@ -21399,7 +22062,11 @@
       "name": "Filename",
       "shortName": "15-59",
       "group": "15-4* Drive Identification",
-      "range": "0 - 16",
+      "range": {
+       "raw": "0 - 16",
+       "min": 0,
+       "max": 16
+      },
       "note": "View the current CSIV file name. 3.12 Main Menu - Data Readouts - Group 16"
      },
      "blocks": {
@@ -21439,7 +22106,11 @@
       "name": "Control Word",
       "shortName": "16-00",
       "group": "16-0* General Status",
-      "range": "0 - 65535",
+      "range": {
+       "raw": "0 - 65535",
+       "min": 0,
+       "max": 65535
+      },
       "note": "View the control word sent from the frequency converter via the serial communication port in hex code. Bit Bit = 0 Bit = 1 00 Preset reference option lsb – 01 Preset reference option 2nd bit of preset references – 02 DC brake Ramp 03 Coasting Enable 04 Quick stop Ramp 05 Freeze output Ramp 06 Ramp stop Start 07 No function Reset 08 No function Jog 09 Ramp 1 Ramp 2 10 Data not valid Valid 11 Relay_"
      },
      "blocks": {
@@ -21483,7 +22154,11 @@
       "group": "16-0* General Status",
       "unitSI": "ReferenceFeed- backUnit",
       "unitSIRaw": "ReferenceFeed- backUnit",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "View the present reference value applied on impulse or analog basis in the unit resulting from the configu- ration selected in parameter 1-00 Configu- ration Mode (Hz)."
      },
      "blocks": {
@@ -21529,7 +22204,11 @@
       "group": "16-0* General Status",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "-200 - 200",
+      "range": {
+       "raw": "-200 - 200",
+       "min": -200,
+       "max": 200
+      },
       "note": "View the total reference. The total reference is the sum of digital, analog, preset, bus, and freeze references."
      },
      "blocks": {
@@ -21573,7 +22252,11 @@
       "name": "Status Word",
       "shortName": "16-03",
       "group": "16-0* General Status",
-      "range": "0 - 65535",
+      "range": {
+       "raw": "0 - 65535",
+       "min": 0,
+       "max": 65535
+      },
       "note": "View the status word sent from the frequency converter via the serial communication port in hex code. Parameters VLT® HVAC Basic Drive FC 101 80 Danfoss A/S © 04/2018 All rights reserved. MG18B502 3 3 Bit Bit = 0 Bit = 1 00 Control not ready Ready 01 VLT not ready Ready 02 Coasting Enable 03 No fault Trip 04 No warning Warning 05 Reserved – 06 No trip lock Trip lock 07 No warning Warning 08 Speed "
      },
      "blocks": {
@@ -21617,7 +22300,11 @@
       "group": "16-0* General Status",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "-200 - 200",
+      "range": {
+       "raw": "-200 - 200",
+       "min": -200,
+       "max": 200
+      },
       "note": "View the 2 byte word sent with the status word to the bus master reporting the main actual value."
      },
      "blocks": {
@@ -21663,7 +22350,11 @@
       "group": "16-0* General Status",
       "unitSI": "CustomRea- doutUnit",
       "unitSIRaw": "CustomRea- doutUnit",
-      "range": "0 - 9999",
+      "range": {
+       "raw": "0 - 9999",
+       "min": 0,
+       "max": 9999
+      },
       "note": "View the user-defined readouts as defined in parameter 0-30 Custom Readout Unit, parameter 0-31 Custom Readout Min Value, and parameter 0-32 Custom Readout Max Value."
      },
      "blocks": {
@@ -21709,7 +22400,11 @@
       "group": "16-1* Motor Status",
       "unitSI": "kW",
       "unitSIRaw": "kW",
-      "range": "0 - 1000",
+      "range": {
+       "raw": "0 - 1000",
+       "min": 0,
+       "max": 1000
+      },
       "note": "Displays the actual motor power in kW. The value shown is calculated on the basis of the actual motor voltage and motor current."
      },
      "blocks": {
@@ -21755,7 +22450,11 @@
       "group": "16-1* Motor Status",
       "unitSI": "hp",
       "unitSIRaw": "hp",
-      "range": "0 - 1000",
+      "range": {
+       "raw": "0 - 1000",
+       "min": 0,
+       "max": 1000
+      },
       "note": "View the actual motor power in hp. The value shown is calculated based on the actual motor voltage and motor current."
      },
      "blocks": {
@@ -21801,7 +22500,11 @@
       "group": "16-1* Motor Status",
       "unitSI": "V",
       "unitSIRaw": "V",
-      "range": "0 - 65535",
+      "range": {
+       "raw": "0 - 65535",
+       "min": 0,
+       "max": 65535
+      },
       "note": "View the motor voltage, a calculated value used for controlling the motor."
      },
      "blocks": {
@@ -21847,7 +22550,11 @@
       "group": "16-1* Motor Status",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 6553.5",
+      "range": {
+       "raw": "0 - 6553.5",
+       "min": 0,
+       "max": 6553.5
+      },
       "note": "View the motor frequency, without resonance damping."
      },
      "blocks": {
@@ -21893,7 +22600,11 @@
       "group": "16-1* Motor Status",
       "unitSI": "A",
       "unitSIRaw": "A",
-      "range": "0 - 655.35",
+      "range": {
+       "raw": "0 - 655.35",
+       "min": 0,
+       "max": 655.35
+      },
       "note": "View the motor current measured as an average value, IRMS."
      },
      "blocks": {
@@ -21939,7 +22650,11 @@
       "group": "16-1* Motor Status",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 6553.5",
+      "range": {
+       "raw": "0 - 6553.5",
+       "min": 0,
+       "max": 6553.5
+      },
       "note": "View a 2-byte word reporting the actual motor frequency (without resonance damping) as a percentage (scale 0000–4000 hex) of parameter 4-19 Max Output Frequency."
      },
      "blocks": {
@@ -21985,7 +22700,11 @@
       "group": "16-1* Motor Status",
       "unitSI": "Nm",
       "unitSIRaw": "Nm",
-      "range": "-30000 - 30000",
+      "range": {
+       "raw": "-30000 - 30000",
+       "min": -30000,
+       "max": 30000
+      },
       "note": "View the torque value that is applied on the motor shaft. Some motors supply more than 160% torque. Consequently, the minimum value and the maximum value depend on the minimum/maximum motor current as well as the motor used."
      },
      "blocks": {
@@ -22029,7 +22748,11 @@
       "group": "16-1* Motor Status",
       "unitSI": "RPM",
       "unitSIRaw": "RPM",
-      "range": "-30000 - 30000",
+      "range": {
+       "raw": "-30000 - 30000",
+       "min": -30000,
+       "max": 30000
+      },
       "note": "View the actual motor RPM. The motor RPM is estimated in open-loop process or closed-loop process control modes and the motor RPM is measured in speed closed-loop mode."
      },
      "blocks": {
@@ -22073,7 +22796,11 @@
       "group": "16-1* Motor Status",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 100",
+      "range": {
+       "raw": "0 - 100",
+       "min": 0,
+       "max": 100
+      },
       "note": "View the calculated motor temperature in percentage of allowed maximum. At 100%, a trip occurs if selected in parameter 1-90 Motor Thermal Protection. The basis for the calculation is the ETR function selected in parameter 1-90 Motor Thermal Protection."
      },
      "blocks": {
@@ -22117,7 +22844,11 @@
       "group": "16-1* Motor Status",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "-200 - 200",
+      "range": {
+       "raw": "-200 - 200",
+       "min": -200,
+       "max": 200
+      },
       "note": "View the torque in percentage (in relation to the nominal torque) that is applied to the motor shaft. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 81 3 3"
      },
      "blocks": {
@@ -22161,7 +22892,11 @@
       "group": "16-3* Drive Status",
       "unitSI": "V",
       "unitSIRaw": "V",
-      "range": "0 - 65535",
+      "range": {
+       "raw": "0 - 65535",
+       "min": 0,
+       "max": 65535
+      },
       "note": "Shows the actual DC-link voltage."
      },
      "blocks": {
@@ -22205,7 +22940,11 @@
       "group": "16-3* Drive Status",
       "unitSI": "°C",
       "unitSIRaw": "°C",
-      "range": "-128 - 127",
+      "range": {
+       "raw": "-128 - 127",
+       "min": -128,
+       "max": 127
+      },
       "note": "View the heat sink temperature of the frequency converter."
      },
      "blocks": {
@@ -22249,7 +22988,11 @@
       "group": "16-3* Drive Status",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 255",
+      "range": {
+       "raw": "0 - 255",
+       "min": 0,
+       "max": 255
+      },
       "note": "View the percentage of thermal load on the frequency converter. At 100%, a trip occurs."
      },
      "blocks": {
@@ -22293,7 +23036,11 @@
       "group": "16-3* Drive Status",
       "unitSI": "A",
       "unitSIRaw": "A",
-      "range": "0 - 655.35",
+      "range": {
+       "raw": "0 - 655.35",
+       "min": 0,
+       "max": 655.35
+      },
       "note": "View the inverter nominal current. The data is used for motor overload protection and so on."
      },
      "blocks": {
@@ -22339,7 +23086,11 @@
       "group": "16-3* Drive Status",
       "unitSI": "A",
       "unitSIRaw": "A",
-      "range": "0 - 655.35",
+      "range": {
+       "raw": "0 - 655.35",
+       "min": 0,
+       "max": 655.35
+      },
       "note": "View the inverter maximum current. The data is used for calculation of frequency converter protection and so on."
      },
      "blocks": {
@@ -22383,7 +23134,11 @@
       "name": "SL Controller State",
       "shortName": "16-38",
       "group": "16-3* Drive Status",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "View the actual state of the smart logic controller (SLC)."
      },
      "blocks": {
@@ -22427,7 +23182,11 @@
       "group": "16-5* Ref. & Feedb.",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "-200 - 200",
+      "range": {
+       "raw": "-200 - 200",
+       "min": -200,
+       "max": 200
+      },
       "note": "View the total reference, the sum of digital, analog, preset, bus, and freeze references."
      },
      "blocks": {
@@ -22473,7 +23232,11 @@
       "group": "16-5* Ref. & Feedb.",
       "unitSI": "ProcessCtrlUnit",
       "unitSIRaw": "ProcessCtrlUnit",
-      "range": "-4999 - 4999",
+      "range": {
+       "raw": "-4999 - 4999",
+       "min": -4999,
+       "max": 4999
+      },
       "note": "View the feedback resulting from the selection of scaling in parameter 3-02 Minimum Reference and parameter 3-03 Maximum Reference."
      },
      "blocks": {
@@ -22519,7 +23282,11 @@
       "group": "16-5* Ref. & Feedb.",
       "unitSI": "ProcessCtrlUnit",
       "unitSIRaw": "ProcessCtrlUnit",
-      "range": "-999999.999 - 999999.999",
+      "range": {
+       "raw": "-999999.999 - 999999.999",
+       "min": -999999.999,
+       "max": 999999.999
+      },
       "note": "View the feedback 1 value resulting from the selection of scaling in parameter 3-02 Minimum Reference and parameter 3-03 Maximum Reference."
      },
      "blocks": {
@@ -22565,7 +23332,11 @@
       "group": "16-5* Ref. & Feedb.",
       "unitSI": "ProcessCtrlUnit",
       "unitSIRaw": "ProcessCtrlUnit",
-      "range": "-999999.999 - 999999.999",
+      "range": {
+       "raw": "-999999.999 - 999999.999",
+       "min": -999999.999,
+       "max": 999999.999
+      },
       "note": "View the feedback 2 value resulting from the selection of scaling in parameter 3-02 Minimum Reference and parameter 3-03 Maximum Reference."
      },
      "blocks": {
@@ -22609,7 +23380,11 @@
       "name": "Digital Input",
       "shortName": "16-60",
       "group": "16-6* Inputs and Outputs",
-      "range": "0 - 4095",
+      "range": {
+       "raw": "0 - 4095",
+       "min": 0,
+       "max": 4095
+      },
       "note": "View actual state of the digital inputs 18, 19, 27, and 29. Bit 0 Unused Bit 1 Unused Bit 2 Digital input terminal 29 Bit 3 Digital input terminal 27 Bit 4 Digital input terminal 19 Bit 5 Digital input terminal 18 Bit 6–15 Unused Table 3.8 Bits Definition"
      },
      "blocks": {
@@ -22702,7 +23477,11 @@
       "name": "Analog input 53",
       "shortName": "16-62",
       "group": "16-6* Inputs and Outputs",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "View the actual value at input 53. Parameters VLT® HVAC Basic Drive FC 101 82 Danfoss A/S © 04/2018 All rights reserved. MG18B502 3 3"
      },
      "blocks": {
@@ -22746,7 +23525,9 @@
       "name": "Terminal 54 Setting",
       "shortName": "16-63",
       "group": "16-6* Inputs and Outputs",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "* Current mode [1] Voltage mode"
      },
      "blocks": {
@@ -22788,7 +23569,11 @@
       "name": "Analog input 54",
       "shortName": "16-64",
       "group": "16-6* Inputs and Outputs",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "View the actual value at input 54."
      },
      "blocks": {
@@ -22834,7 +23619,11 @@
       "group": "16-6* Inputs and Outputs",
       "unitSI": "mA",
       "unitSIRaw": "mA",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "View the actual value at output 42 in mA. The value shown reflects the selection in parameter 6–90 Terminal 42 Mode and parameter 6-91 Terminal 42 Analog Output."
      },
      "blocks": {
@@ -22878,7 +23667,11 @@
       "name": "Digital Output",
       "shortName": "16-66",
       "group": "16-6* Inputs and Outputs",
-      "range": "0 - 15",
+      "range": {
+       "raw": "0 - 15",
+       "min": 0,
+       "max": 15
+      },
       "note": "View the binary value of all digital outputs. Definition: X: Not used 0: Low 1: High XX None used X0 Terminal 42 not used, terminal 45 low. X1 Terminal 42 not used, terminal 45 high. 0X Terminal 42 low, terminal 45 not used. 0 Terminal 42 low, terminal 45 low. 1 Terminal 42 low, terminal 45 high. 1X Terminal 42 high, terminal 45 not used. 10 Terminal 42 high, terminal 45 low. 11 Terminal 42 high, "
      },
      "blocks": {
@@ -22918,7 +23711,11 @@
       "name": "Pulse Input #29 [Hz]",
       "shortName": "16-67",
       "group": "16-6* Inputs and Outputs",
-      "range": "0 - 130000",
+      "range": {
+       "raw": "0 - 130000",
+       "min": 0,
+       "max": 130000
+      },
       "note": "View the actual frequency rate on terminal 29."
      },
      "blocks": {
@@ -22960,7 +23757,11 @@
       "name": "Relay output",
       "shortName": "16-71",
       "group": "16-6* Inputs and Outputs",
-      "range": "0 - 31",
+      "range": {
+       "raw": "0 - 31",
+       "min": 0,
+       "max": 31
+      },
       "note": "View the setting of the relay. Range: Function: Bit 0~2 Unused Bit 3 Relay 02 Bit 4 Relay 01 Bit 5~15 Unused Table 3.10 Bits Definition"
      },
      "blocks": {
@@ -23002,7 +23803,11 @@
       "name": "Counter A",
       "shortName": "16-72",
       "group": "16-6* Inputs and Outputs",
-      "range": "-32768 - 32767",
+      "range": {
+       "raw": "-32768 - 32767",
+       "min": -32768,
+       "max": 32767
+      },
       "note": "View the present value of counter A. Counters are useful as comparator operands, see parameter 13-10 Comparator Operand. The value can be reset or changed either via digital inputs (parameter group 5-1* Digital Inputs) or by using an SLC action (parameter 13-52 SL Controller Action)."
      },
      "blocks": {
@@ -23044,7 +23849,11 @@
       "name": "Counter B",
       "shortName": "16-73",
       "group": "16-6* Inputs and Outputs",
-      "range": "-32768 - 32767",
+      "range": {
+       "raw": "-32768 - 32767",
+       "min": -32768,
+       "max": 32767
+      },
       "note": "View the present value of counter B. Counters are useful as comparator operands (parameter 13-10 Comparator Operand). The value can be reset or changed either via digital inputs (parameter group 5-1* Digital Inputs) or by using an SLC action (parameter 13-52 SL Controller Action)."
      },
      "blocks": {
@@ -23088,7 +23897,11 @@
       "group": "16-6* Inputs and Outputs",
       "unitSI": "mA",
       "unitSIRaw": "mA",
-      "range": "0 - 20",
+      "range": {
+       "raw": "0 - 20",
+       "min": 0,
+       "max": 20
+      },
       "note": "View the actual value at output 45 in mA. The value shown reflects the selection in parameter 6-70 Terminal 45 Mode and parameter 6-71 Terminal 45 Analog Output. Parameters for reporting the bus references and control words."
      },
      "blocks": {
@@ -23132,7 +23945,11 @@
       "name": "FC Port REF 1",
       "shortName": "16-86",
       "group": "16-8* Fieldbus & FC Port",
-      "range": "-32768 - 32767",
+      "range": {
+       "raw": "-32768 - 32767",
+       "min": -32768,
+       "max": 32767
+      },
       "note": "View the last received reference from the FC port. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 83 3 3"
      },
      "blocks": {
@@ -23176,7 +23993,11 @@
       "group": "16-9* Diagnosis Read-Outs",
       "unitSI": "xFFFFFFFFUL",
       "unitSIRaw": "xFFFFFFFFUL",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "View the alarm word sent via the serial communication port in hex code."
      },
      "blocks": {
@@ -23220,7 +24041,11 @@
       "group": "16-9* Diagnosis Read-Outs",
       "unitSI": "xFFFFFFFFUL",
       "unitSIRaw": "xFFFFFFFFUL",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "View the alarm word 2 sent via the serial communication port in hex code."
      },
      "blocks": {
@@ -23264,7 +24089,11 @@
       "group": "16-9* Diagnosis Read-Outs",
       "unitSI": "xFFFFFFFFUL",
       "unitSIRaw": "xFFFFFFFFUL",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "View the warning word sent via the serial communication port in hex code."
      },
      "blocks": {
@@ -23306,7 +24135,11 @@
       "group": "16-9* Diagnosis Read-Outs",
       "unitSI": "xFFFFFFFFUL",
       "unitSIRaw": "xFFFFFFFFUL",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "View the warning word 2 sent via the serial communication port in hex code."
      },
      "blocks": {
@@ -23348,7 +24181,11 @@
       "group": "16-9* Diagnosis Read-Outs",
       "unitSI": "xFFFFFFFFUL",
       "unitSIRaw": "xFFFFFFFFUL",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "Shows the extended status word sent via the serial communication port in hex code."
      },
      "blocks": {
@@ -23390,7 +24227,11 @@
       "group": "16-9* Diagnosis Read-Outs",
       "unitSI": "xFFFFFFFFUL",
       "unitSIRaw": "xFFFFFFFFUL",
-      "range": "0 - 0",
+      "range": {
+       "raw": "0 - 0",
+       "min": 0,
+       "max": 0
+      },
       "note": "Shows the extended status word 2 sent via the serial communication port in hex code."
      },
      "blocks": {
@@ -23430,7 +24271,11 @@
       "name": "Alarm Word 3",
       "shortName": "16-97",
       "group": "16-9* Diagnosis Read-Outs",
-      "range": "0 - 4294967295",
+      "range": {
+       "raw": "0 - 4294967295",
+       "min": 0,
+       "max": 4294967295
+      },
       "note": "View the alarm word 3 sent via the serial communication port in hex code."
      },
      "blocks": {
@@ -23470,7 +24315,11 @@
       "name": "Warning Word 3",
       "shortName": "16-98",
       "group": "16-9* Diagnosis Read-Outs",
-      "range": "0 - 4294967295",
+      "range": {
+       "raw": "0 - 4294967295",
+       "min": 0,
+       "max": 4294967295
+      },
       "note": "View the warning word 3 sent via the serial communication port in hex code. 3.13 Main Menu - Data Readouts 2 - Group 18 Parameters in this group are array parameters, where up to 10 fault logs can be viewed. [0] is the most recent logged data, and [9] is the oldest. Fault codes, values, and time stamp can be viewed for all logged data."
      },
      "blocks": {
@@ -23510,7 +24359,11 @@
       "name": "FireMode Log:Event",
       "shortName": "18-10",
       "group": "18-1* Fire Mode Log",
-      "range": "0 - 255",
+      "range": {
+       "raw": "0 - 255",
+       "min": 0,
+       "max": 255
+      },
       "note": "View fire mode event."
      },
      "blocks": {
@@ -23554,7 +24407,11 @@
       "group": "18-5* Ref. & Feedb.",
       "unitSI": "SensorlessUnit",
       "unitSIRaw": "SensorlessUnit",
-      "range": "-999999.999 - 999999.999",
+      "range": {
+       "raw": "-999999.999 - 999999.999",
+       "min": -999999.999,
+       "max": 999999.999
+      },
       "note": "View the pressure or flow resulting from the sensorless calculations. This value is not the value used for control. The value is only updated if sensorless data supports both flow and pressure. Parameters VLT® HVAC Basic Drive FC 101 84 Danfoss A/S © 04/2018 All rights reserved. MG18B502 3 3 3.14 Main Menu - FC Closed Loop - Group 20 This parameter group is used for configuring the closed- loop PI"
      },
      "blocks": {
@@ -23973,7 +24830,9 @@
       "name": "Feedback Function",
       "shortName": "20-20",
       "group": "20-2* Feedback/Setpoint",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "Sum [1] Difference [2] Average [3] * Minimum [4] Maximum Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 85 3 3 Parameters for sensorless. See also parameter 16-26 Power Filtered [kW], parameter 16-27 Power Filtered [hp], parameter 18-50 Sensorless Readout [unit], and parameter 20-00 Feedback 1 Source."
      },
      "blocks": {
@@ -24140,7 +24999,9 @@
       "name": "Sensorless Information",
       "shortName": "20-69",
       "group": "20-6* Sensorless",
-      "range": "8",
+      "range": {
+       "raw": "8"
+      },
       "note": "Range: Function: 0* [0 - 25 ] View information about the sensorless data. Parameters for enabling PI auto-tuning."
      },
      "blocks": {
@@ -24290,7 +25151,11 @@
       "name": "PI Output Change",
       "shortName": "20-72",
       "group": "20-7* PI Auto-tuning",
-      "range": "0.01 - 0.50",
+      "range": {
+       "raw": "0.01 - 0.50",
+       "min": 0.01,
+       "max": 0.5
+      },
       "note": "Set the magnitude of step change during the auto-tuning sequence."
      },
      "blocks": {
@@ -24330,7 +25195,9 @@
       "name": "Minimum Feedback Level",
       "shortName": "20-73",
       "group": "20-7* PI Auto-tuning",
-      "range": "-4999.000 - Expres- sionlimit (4999.000)",
+      "range": {
+       "raw": "-4999.000 - Expres- sionlimit (4999.000)"
+      },
       "note": "Set the minimum allowable feedback value during the auto-tuning sequence."
      },
      "blocks": {
@@ -24370,7 +25237,9 @@
       "name": "Maximum Feedback Level",
       "shortName": "20-74",
       "group": "20-7* PI Auto-tuning",
-      "range": "Expressionlimit (-4999.000) - 4999.000",
+      "range": {
+       "raw": "Expressionlimit (-4999.000) - 4999.000"
+      },
       "note": "Set the maximum allowable feedback value during the auto-tuning sequence."
      },
      "blocks": {
@@ -24510,7 +25379,11 @@
       "group": "20-8* PI Basic Settings",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 200.0",
+      "range": {
+       "raw": "0 - 200.0",
+       "min": 0,
+       "max": 200
+      },
       "note": "Enter the motor speed to be attained as a start signal for commencement of PI control. After power-up, the frequency converter operates using speed open-loop control. When the process PI start speed is reached, the frequency converter changes to PI control."
      },
      "blocks": {
@@ -24556,7 +25429,11 @@
       "group": "20-8* PI Basic Settings",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 200",
+      "range": {
+       "raw": "0 - 200",
+       "min": 0,
+       "max": 200
+      },
       "note": "When the difference between the feedback and the setpoint reference is less than the value of this parameter, the frequency converter display shows Run on Reference. This status can be communicated externally by programming the function of a digital output for [8] Run on Reference/No Warning. In addition, for serial communications, the on-reference status bit of the frequency converter status word"
      },
      "blocks": {
@@ -24648,7 +25525,11 @@
       "name": "PI Proportional Gain",
       "shortName": "20-93",
       "group": "20-9* PI Controller",
-      "range": "0 - 10",
+      "range": {
+       "raw": "0 - 10",
+       "min": 0,
+       "max": 10
+      },
       "note": "Enter the process controller proportional gain. Quick control is obtained at high amplification. However, if amplification is too high, the process may become unstable."
      },
      "blocks": {
@@ -24694,7 +25575,11 @@
       "group": "20-9* PI Controller",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.10 - 9999",
+      "range": {
+       "raw": "0.10 - 9999",
+       "min": 0.1,
+       "max": 9999
+      },
       "note": "Enter the process controller integral time. Obtain quick control through a short integral time, though if the integral time is too short, the process becomes unstable. An excessively long integral time disables the integral action."
      },
      "blocks": {
@@ -24740,7 +25625,11 @@
       "group": "20-9* PI Controller",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 400",
+      "range": {
+       "raw": "0 - 400",
+       "min": 0,
+       "max": 400
+      },
       "note": "Enter the PI feed forward factor. The FF factor sends a constant fraction of the reference signal to bypass PI control. Therefore, the PI can affect only the remaining fraction of the control signal. The FF factor can increase dynamic performance. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 87 3 3 3.15 Main Menu - Application Functions - Group 22 Parameter grou"
      },
      "blocks": {
@@ -24784,7 +25673,11 @@
       "group": "22-0* Miscellaneous",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.02 - 10",
+      "range": {
+       "raw": "0.02 - 10",
+       "min": 0.02,
+       "max": 10
+      },
       "note": "Set the time constant for the filtered power readout. A higher value gives a Range: Function: more steady readout but a slower system response to changes."
      },
      "blocks": {
@@ -24938,7 +25831,11 @@
       "group": "22-2* No-Flow Detection",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "1 - 600",
+      "range": {
+       "raw": "1 - 600",
+       "min": 1,
+       "max": 600
+      },
       "note": "Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 89 3 3 Tuning sequence: 1. To stop flow, close the main valve. 2. Run with motor until the system has reached normal operating temperature. 3. Press the [Hand On] key on the LCP and adjust speed for approximately 85% of the rated speed. Note the exact speed. 4. Read power consumption either by looking for actual power"
      },
      "blocks": {
@@ -24982,7 +25879,11 @@
       "group": "22-3* No-flow Power Tuning",
       "unitSI": "kW",
       "unitSIRaw": "kW",
-      "range": "0 - 1000",
+      "range": {
+       "raw": "0 - 1000",
+       "min": 0,
+       "max": 1000
+      },
       "note": "Readout of calculated no-flow power at actual speed."
      },
      "blocks": {
@@ -25026,7 +25927,11 @@
       "group": "22-3* No-flow Power Tuning",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "1 - 400",
+      "range": {
+       "raw": "1 - 400",
+       "min": 1,
+       "max": 400
+      },
       "note": "Set a correction if no-flow detection reacts on a too low or too high power value."
      },
      "blocks": {
@@ -25070,7 +25975,11 @@
       "group": "22-3* No-flow Power Tuning",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 400",
+      "range": {
+       "raw": "0 - 400",
+       "min": 0,
+       "max": 400
+      },
       "note": "Set output speed used for registration of no-flow power at low speed."
      },
      "blocks": {
@@ -25114,7 +26023,11 @@
       "group": "22-3* No-flow Power Tuning",
       "unitSI": "kW",
       "unitSIRaw": "kW",
-      "range": "0 - 5.50",
+      "range": {
+       "raw": "0 - 5.50",
+       "min": 0,
+       "max": 5.5
+      },
       "note": "Set no-flow power at low speed."
      },
      "blocks": {
@@ -25158,7 +26071,11 @@
       "group": "22-3* No-flow Power Tuning",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 400",
+      "range": {
+       "raw": "0 - 400",
+       "min": 0,
+       "max": 400
+      },
       "note": "Set output speed used for registration of no-flow power at high speed."
      },
      "blocks": {
@@ -25202,7 +26119,11 @@
       "group": "22-3* No-flow Power Tuning",
       "unitSI": "kW",
       "unitSIRaw": "kW",
-      "range": "0 - 5.50",
+      "range": {
+       "raw": "0 - 5.50",
+       "min": 0,
+       "max": 5.5
+      },
       "note": "Set no-flow power at high speed. Sleep mode allows the frequency converter to stop itself in situations where the system is in balance. This function saves energy and prevents excessive pressure, water excessively cooled in cooling towers, and building pressuri- zation problems in the system. This is also important as some applications prevent the frequency converter from adjusting the motor down "
      },
      "blocks": {
@@ -25246,7 +26167,11 @@
       "group": "22-4* Sleep Mode",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 600",
+      "range": {
+       "raw": "0 - 600",
+       "min": 0,
+       "max": 600
+      },
       "note": "Set the wanted minimum running time for the motor after a start command (digital input or bus) before entering sleep mode."
      },
      "blocks": {
@@ -25290,7 +26215,11 @@
       "group": "22-4* Sleep Mode",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 600",
+      "range": {
+       "raw": "0 - 600",
+       "min": 0,
+       "max": 600
+      },
       "note": "Set the minimum time for staying in sleep mode. This time overrides any wake-up conditions."
      },
      "blocks": {
@@ -25332,7 +26261,11 @@
       "name": "Wake-Up Speed [Hz]",
       "shortName": "22-43",
       "group": "22-4* Sleep Mode",
-      "range": "0 - 400.0",
+      "range": {
+       "raw": "0 - 400.0",
+       "min": 0,
+       "max": 400
+      },
       "note": "Only to be used if parameter 1-00 Configuration Mode is set to [0] Open loop, and an external controller applies speed reference. Set the reference speed at which the sleep mode should be deactivated. The wake-up speed must not exceed the setting in parameter 4-14 Motor Speed High Limit [Hz]."
      },
      "blocks": {
@@ -25378,7 +26311,11 @@
       "group": "22-4* Sleep Mode",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 100",
+      "range": {
+       "raw": "0 - 100",
+       "min": 0,
+       "max": 100
+      },
       "note": "Only to be used if parameter 1-00 Configuration Mode is set for closed loop and the integrated PI controller is used for controlling the pressure. Set the pressure drop allowed in percentage of setpoint for the pressure (Pset) before canceling the sleep mode. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 91 3 3"
      },
      "blocks": {
@@ -25422,7 +26359,11 @@
       "group": "22-4* Sleep Mode",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "-100 - 100",
+      "range": {
+       "raw": "-100 - 100",
+       "min": -100,
+       "max": 100
+      },
       "note": "Only to be used if parameter 1-00 Configuration Mode is set for closed loop and the integrated PI controller is used. In systems with for example constant pressure control, it is advantageous to increase the system pressure before the motor is stopped. This increase extends the time the motor is stopped and helps to avoid frequent start/stop. Set the required overpressure/overtemperature in percen"
      },
      "blocks": {
@@ -25466,7 +26407,11 @@
       "group": "22-4* Sleep Mode",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 600",
+      "range": {
+       "raw": "0 - 600",
+       "min": 0,
+       "max": 600
+      },
       "note": "Only to be used if parameter 1-00 Configuration Mode is set for [3] Closed loop and the integrated PI controller is used for controlling the pressure. Set the maximum time for which boost mode is allowed. If the set time is exceeded, the frequency converter enters the sleep mode without waiting for the set boost pressure to be reached."
      },
      "blocks": {
@@ -25508,7 +26453,11 @@
       "name": "Sleep Speed [Hz]",
       "shortName": "22-47",
       "group": "22-4* Sleep Mode",
-      "range": "0 - 400.0",
+      "range": {
+       "raw": "0 - 400.0",
+       "min": 0,
+       "max": 400
+      },
       "note": "Set the speed below which the frequency converter goes into sleep mode."
      },
      "blocks": {
@@ -25554,7 +26503,11 @@
       "group": "22-4* Sleep Mode",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 3600",
+      "range": {
+       "raw": "0 - 3600",
+       "min": 0,
+       "max": 3600
+      },
       "note": "Set the delay time that the motor waits before entering sleep mode when the condition to enter sleep mode is met."
      },
      "blocks": {
@@ -25598,7 +26551,11 @@
       "group": "22-4* Sleep Mode",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 3600",
+      "range": {
+       "raw": "0 - 3600",
+       "min": 0,
+       "max": 3600
+      },
       "note": "Set the delay time that the motor waits before waking up from sleep mode when the condition for wake-up is met. Use broken-belt detection in both closed-loop systems and open-loop systems for pumps and fans. If the estimated motor torque (current) is below the broken-belt torque (current) value (parameter 22-61 Broken Belt Torque), and the frequency converter output frequency is above or equal to "
      },
      "blocks": {
@@ -25640,7 +26597,9 @@
       "name": "Broken Belt Function",
       "shortName": "22-60",
       "group": "22-6* Broken-belt Detection",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "* Off [1] Warning The frequency converter continues to run, but activates a broken-belt warning, warning 95, Broken Belt. A frequency converter digital output or a serial communication bus can communicate a warning to other equipment. [2] Trip The frequency converter stops running and activates a broken-belt alarm, alarm 95, Broken Belt. A frequency converter digital output or a serial communicati"
      },
      "blocks": {
@@ -25684,7 +26643,11 @@
       "group": "22-6* Broken-belt Detection",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "5 - 100",
+      "range": {
+       "raw": "5 - 100",
+       "min": 5,
+       "max": 100
+      },
       "note": "Set the broken-belt torque as a percentage of the rated motor torque."
      },
      "blocks": {
@@ -25728,7 +26691,11 @@
       "group": "22-6* Broken-belt Detection",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 600",
+      "range": {
+       "raw": "0 - 600",
+       "min": 0,
+       "max": 600
+      },
       "note": "Sets the time for which the broken-belt conditions must be active before carrying out the action selected in parameter 22-60 Broken Belt Function. Parameters VLT® HVAC Basic Drive FC 101 92 Danfoss A/S © 04/2018 All rights reserved. MG18B502 3 3 In certain applications, it is not possible for a pressure transducer to be placed at a remote point in the system, and it can only be placed close to the"
      },
      "blocks": {
@@ -25822,7 +26789,11 @@
       "group": "22-8* Flow Compensation",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "0 - 100",
+      "range": {
+       "raw": "0 - 100",
+       "min": 0,
+       "max": 100
+      },
       "note": "Adjusts shape of control curve. 0% = straight line, 100% = maximum parabola."
      },
      "blocks": {
@@ -25916,7 +26887,11 @@
       "group": "22-8* Flow Compensation",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0 - 400.0",
+      "range": {
+       "raw": "0 - 400.0",
+       "min": 0,
+       "max": 400
+      },
       "note": "Set the motor speed in Hz at which flow is 0 and minimum pressure is achieved."
      },
      "blocks": {
@@ -25962,7 +26937,11 @@
       "group": "22-8* Flow Compensation",
       "unitSI": "Hz",
       "unitSIRaw": "Hz",
-      "range": "0.0 - 400.0",
+      "range": {
+       "raw": "0.0 - 400.0",
+       "min": 0,
+       "max": 400
+      },
       "note": "Set the motor speed in Hz at which system design working point is achieved."
      },
      "blocks": {
@@ -26006,7 +26985,11 @@
       "name": "Pressure at No-Flow Speed",
       "shortName": "22-87",
       "group": "22-8* Flow Compensation",
-      "range": "0 - 4999.000",
+      "range": {
+       "raw": "0 - 4999.000",
+       "min": 0,
+       "max": 4999
+      },
       "note": "Set the pressure value corresponding to speed at no flow."
      },
      "blocks": {
@@ -26048,7 +27031,11 @@
       "name": "Pressure at Rated Speed",
       "shortName": "22-88",
       "group": "22-8* Flow Compensation",
-      "range": "0 - 4999.000",
+      "range": {
+       "raw": "0 - 4999.000",
+       "min": 0,
+       "max": 4999
+      },
       "note": "Set the pressure value corresponding to pressure at rated speed."
      },
      "blocks": {
@@ -26092,7 +27079,11 @@
       "name": "Flow at Design Point",
       "shortName": "22-89",
       "group": "22-8* Flow Compensation",
-      "range": "0 - 4999.000",
+      "range": {
+       "raw": "0 - 4999.000",
+       "min": 0,
+       "max": 4999
+      },
       "note": "Set the flow value corresponding to flow at design point. 3.16 Main Menu - Application Functions 2 - Group 24 CAUTION EQUIPMENT DAMAGE AND PERSONAL INJURY Non-interruption of the frequency converter due to fire mode operation could cause overpressure and damage the system and its components, including dampers, and air ducts. The frequency converter itself could be damaged and it may cause damage o"
      },
      "blocks": {
@@ -26205,7 +27196,9 @@
       "name": "Fire Mode Configuration",
       "shortName": "24-01",
       "group": "24-0* Fire Mode",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "* Open Loop [3] Process Closed Loop NOTICE When set to [3] Closed Loop, the commands Reversing and Start Reversing do not reverse the direction of the motor. Motor speed is determined by a reference from the built-in PI controller varying the motor speed as of a closed-loop control process (for example constant pressure or flow). Configure the PI controller in parameter group 20-8* PI Basic Settin"
      },
      "blocks": {
@@ -26249,7 +27242,11 @@
       "group": "24-0* Fire Mode",
       "unitSI": "%",
       "unitSIRaw": "%",
-      "range": "-100 - 100",
+      "range": {
+       "raw": "-100 - 100",
+       "min": -100,
+       "max": 100
+      },
       "note": "Enter the required preset reference/ setpoint as a percentage of the fire mode maximum reference set in Hz."
      },
      "blocks": {
@@ -26349,7 +27346,9 @@
       "name": "Fire Mode Feedback Source",
       "shortName": "24-07",
       "group": "24-0* Fire Mode",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "* No function [1] Analog Input 53 [2] Analog Input 54 [3] Pulse input 29 [100] Bus Feedback 1 Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 95 3 3"
      },
      "blocks": {
@@ -26498,7 +27497,11 @@
       "group": "24-1* Drive Bypass",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0 - 600",
+      "range": {
+       "raw": "0 - 600",
+       "min": 0,
+       "max": 600
+      },
       "note": "Programmable in 1 s increments. Once the bypass function is activated in accordance with the setting in parameter 24-10 Drive Bypass Function, the bypass delay timer begins to operate. If the frequency converter has been set for several restart attempts, the timer continues to run while the frequency converter tries to restart. If the motor has restarted within the time period of the bypass delay "
      },
      "blocks": {
@@ -26540,7 +27543,9 @@
       "name": "Locked Rotor Protection",
       "shortName": "30-22",
       "group": "30-2* Adv. Start Adjust",
-      "range": "0",
+      "range": {
+       "raw": "0"
+      },
       "note": "* Off [1] On"
      },
      "blocks": {
@@ -26584,7 +27589,11 @@
       "group": "30-2* Adv. Start Adjust",
       "unitSI": "s",
       "unitSIRaw": "s",
-      "range": "0.05 - 1",
+      "range": {
+       "raw": "0.05 - 1",
+       "min": 0.05,
+       "max": 1
+      },
       "note": "Set the locked rotor detection time in seconds for PM motors. Parameters Programming Guide MG18B502 Danfoss A/S © 04/2018 All rights reserved. 97 3 3 4 Troubleshooting 4.1 Introduction to Alarms and Warnings A warning or alarm is signaled by the relevant indicator light on the front of the frequency converter and indicated by a code on the display. A warning remains active until its cause is no lo"
      },
      "blocks": {
