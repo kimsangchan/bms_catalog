@@ -237,6 +237,45 @@ def spec_sections(m, pages, no_pages):
     out = []
     mid = m["id"]
 
+    # ── 쪽이 안 적힌 정격 줄에 원문 쪽을 붙인다 — **글자로 찾는다** ──────────────
+    # 손으로 넣은 정격은 출처가 'Fact Sheet' 처럼 이름뿐이라 쪽이 없다. FC 101 은
+    # 그런 줄이 맨 위 44행(항목·통신·입출력·전기데이터)이라 화면을 열면 **첫 장면이
+    # 통째로 링크 없음**이 된다(사용자가 네 번 짚었다). 값이 원문에 그대로 있으니
+    # 셈하지 말고 찾는다 — 저장소가 이미 쓰는 방식이다.
+    doc_cache = {}
+
+    def docs_of_model():
+        got = []
+        for t in (m.get("specTables") or []):
+            f2 = (t.get("source") or "").split("#")[0]
+            if f2 and f2 not in got and os.path.exists(os.path.join(DATA, "raw", f2)):
+                got.append(f2)
+        sd = (m.get("sourceDoc") or "").split("#")[0]
+        if sd and sd not in got and os.path.exists(os.path.join(DATA, "raw", sd)):
+            got.append(sd)
+        return got
+
+    def doc_text(f2):
+        if f2 not in doc_cache:
+            import fitz
+            d2 = fitz.open(os.path.join(DATA, "raw", f2))
+            doc_cache[f2] = [re.sub(r"\s+", " ", pg.get_text()).lower() for pg in d2]
+            d2.close()
+        return doc_cache[f2]
+
+    def find_page(tokens):
+        """(파일, 쪽, 쓴 낱말) 또는 None. 먼저 걸리는 낱말·첫 쪽을 쓴다."""
+        for t in tokens:
+            t2 = re.sub(r"\s+", " ", str(t or "")).strip()
+            if len(t2) < 4 or not re.search(r"[A-Za-z0-9]", t2):
+                continue
+            low = t2.lower()
+            for f2 in docs_of_model():
+                for i, txt in enumerate(doc_text(f2), 1):
+                    if low in txt:
+                        return f2, i, t2
+        return None
+
     def sec(kind, title, cols, rows, src="", pdf=None):
         if not rows:
             return
@@ -255,7 +294,9 @@ def spec_sections(m, pages, no_pages):
                     pages.setdefault(key, (mid, pdf, path))
         for r in rows:
             # 줄이 제 출처를 갖고 있으면 그것을 쓴다(항목형). 없으면 구역 것을 따른다.
-            rs, rp = r.pop("_src", None), r.pop("_pdf", None)
+            rs, rp, by = r.pop("_src", None), r.pop("_pdf", None), r.pop("_by", None)
+            if by:
+                r["출처찾기"] = "'%s' 로 찾은 쪽" % by[:40]
             if rs and rp:
                 rkey = "%s|%s#%s" % (mid, rs, rp)
                 if not no_pages:
@@ -286,6 +327,10 @@ def spec_sections(m, pages, no_pages):
                 f2, pg2 = g.group(1), int(g.group(2))
                 if os.path.exists(os.path.join(DATA, "raw", f2)):
                     r["_src"], r["_pdf"] = f2, pg2
+            else:
+                got = find_page([r.get("출처"), r.get("값"), r.get("항목")])
+                if got:
+                    r["_src"], r["_pdf"], r["_by"] = got
             rows.append(r)
         return rows
 
@@ -296,15 +341,28 @@ def spec_sections(m, pages, no_pages):
         if items:
             cols = [{"k": "c%d" % i, "h": h} for i, h in
                     enumerate(["항목", "값", "비고", "출처"][:max(len(x) for x in items)])]
-            rows = [dict({"c%d" % i: str(v) for i, v in enumerate(it)},
-                         n=str(it[0])[:120]) for it in items]
+            rows = []
+            for it in items:
+                r = dict({"c%d" % i: str(v) for i, v in enumerate(it)},
+                         n=str(it[0])[:120])
+                got = find_page([it[-1] if len(it) > 1 else None, it[0],
+                                 it[1] if len(it) > 1 else None])
+                if got:
+                    r["_src"], r["_pdf"], r["_by"] = got
+                rows.append(r)
             sec(key, label, cols, rows)
 
     el = m.get("elec") or {}
     if el.get("rows"):
         cols = [{"k": "c%d" % i, "h": h} for i, h in enumerate(el.get("header") or [])]
-        rows = [dict({"c%d" % i: str(v) for i, v in enumerate(r)}, n=str(r[0])[:120])
-                for r in el["rows"]]
+        rows = []
+        for r in el["rows"]:
+            rr = dict({"c%d" % i: str(v) for i, v in enumerate(r)}, n=str(r[0])[:120])
+            if not el.get("page"):
+                got = find_page([r[0]])       # 형식 코드('PK37')가 원문에 그대로 있다
+                if got:
+                    rr["_src"], rr["_pdf"], rr["_by"] = got
+            rows.append(rr)
         sec("elec", "전기 데이터", cols, rows, el.get("source") or "", el.get("page"))
 
     for t in (m.get("specTables") or []):
