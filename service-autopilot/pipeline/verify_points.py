@@ -409,7 +409,7 @@ def spec_sections(m, pages, no_pages):
             prev["contPages"].append(t.get("page"))
             prev["page"] = t.get("page")   # 세 쪽 넘는 표도 이어진다
             continue
-        cur = {"title": t.get("title") or "표", "header": header,
+        cur = {"title": t.get("title") or "표", "kind": t.get("kind"), "header": header,
                "rows": list(t.get("rows") or []), "page": t.get("page"),
                "rowPages": [t.get("page")] * len(t.get("rows") or []),
                "source": t.get("source") or "", "contPages": []}
@@ -428,7 +428,10 @@ def spec_sections(m, pages, no_pages):
             if pg2 and pg2 != t["page"] and srcfile:
                 rr["_src"], rr["_pdf"] = srcfile, pg2
             rows.append(rr)
-        title = base_title(t["title"])
+        # 표 성격을 제목에 단다 — 정격과 치수·성능표를 눈으로 갈라야 한다
+        # (specs.py 의 판정. 전수 2,164표 중 정격은 929표뿐이다).
+        KIND = {"rating": "[정격]", "perf": "[성능]", "dim": "[치수]", "etc": "[기타]"}
+        title = ("%s %s" % (KIND.get(t.get("kind"), ""), base_title(t["title"]))).strip()
         if t["contPages"]:
             title += " (원문 %s쪽에서 이어짐)" % "·".join(
                 str(x) for x in sorted(set(t["contPages"])))

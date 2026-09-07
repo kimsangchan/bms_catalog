@@ -14,7 +14,7 @@
  "classifiedBy": "규칙표(classify.py)가 VRF 를 e8 / HVAC.AIR.TERMINAL.VRF 로 둔다. 게이트웨이는 그것이 덮는 기기군으로 분류하므로(JCI YKN2Open 을 옥상형으로 둔 것과 같은 방식) VRF 게이트웨이는 e8 이다. 같은 성격의 Daikin DMS502B71 · JCI SI-VRFCBN02 세 건이 이미 e8/TERMINAL.VRF 라 표기가 갈려 있던 것을 맞췄다(옛 값 e5 / HVAC.AIR.VRF).",
  "summary": "BACnet 게이트웨이 매뉴얼 1건 · 판 6개에서 취입 — 오브젝트 165점",
  "has": {
-  "spec": false,
+  "spec": true,
   "points": true
  },
  "ede": false,
@@ -5964,5 +5964,129 @@
   "both": 165,
   "rate": 1.0,
   "diff": []
- }
+ },
+ "specTables": [
+  {
+   "title": "Error PDU",
+   "page": 77,
+   "orientation": "row",
+   "header": [
+    "Error PDU",
+    "Error Class",
+    "Error Code"
+   ],
+   "quantities": [
+    null,
+    null,
+    "current",
+    "current",
+    "current",
+    "current",
+    "current",
+    "current",
+    null,
+    null,
+    "current"
+   ],
+   "rows": [
+    [
+     "Reading of the object list during the initialization of the LG-NET",
+     "Device(0)",
+     "Configuration In Progress(2) _ _"
+    ],
+    [
+     "Request to access to an object not installed.",
+     "Object(1)",
+     "Unknown Object(31) _"
+    ],
+    [
+     "Request to access to a property not installed.",
+     "Property(2)",
+     "Unknown Property(32) _"
+    ],
+    [
+     "Request to write to a prohibited area.",
+     "Property(2)",
+     "Write Access Denied(40) _ _"
+    ],
+    [
+     "Request to write in a format different from the property.",
+     "Property(2)",
+     "Invalid Datatype(9) _"
+    ],
+    [
+     "Request to access to a specified index outside the array index range.",
+     "Property(2)",
+     "Invalid Array Index(42) _ _"
+    ],
+    [
+     "Request to write a value outside the permissible range.",
+     "Property(2)",
+     "Value Out Of Range(37) _ _ _"
+    ],
+    [
+     "A COV registration request of more than 10 registration items.",
+     "Resource(3)",
+     "Other(0)"
+    ],
+    [
+     "An Event registration request of more than 10 registration items.",
+     "Resource(3)",
+     "No Space To Add List _ _ _ _ _ Element(19)"
+    ],
+    [
+     "Request for the deletion of an element not existing in the list.",
+     "Service(5)",
+     "Other(0)"
+    ],
+    [
+     "Request for the execution of the AddListElement/ RemoveListElement for a property that is not of List type.",
+     "Service(5)",
+     "Property Is Not List(22) _ _ _"
+    ]
+   ],
+   "source": "LG_ACSmart_BACnet_MFL69023101.pdf",
+   "kind": "rating"
+  },
+  {
+   "title": "기타 — LG_ACSmart_BACnet_MFL69023101.pdf p87",
+   "page": 87,
+   "orientation": "column",
+   "header": [
+    "Symptom The alarm sound does not stop.",
+    "Check yy Is the demand controller working normally? yy Is the LAN cable connected to the product?",
+    "Actions yy Check if the demand controller is normal. yy Check if the LAN cable is connected correctly to the device."
+   ],
+   "quantities": [
+    "noise",
+    null,
+    null
+   ],
+   "rows": [
+    [
+     "All products continue to turn off.",
+     "Is DI1 CH short-circuited?",
+     "Check if DI1 CH is open or short circuited. (DI1 CH should be always open except when an emergency occurs.)"
+    ],
+    [
+     "The product was reset at midnight.",
+     "The product is automatically reset every morning at 02:05 am.",
+     ""
+    ],
+    [
+     "The device is not controlled.",
+     "Is the device you want to control not locked?",
+     "Check if the lock is on and if so, disable the lock."
+    ],
+    [
+     "The device icon has an error mark.",
+     "Is the device with errors connected correctly?",
+     "If devices are not correctly connected, the error sign is displayed. Check the connection status of the devices."
+    ]
+   ],
+   "source": "LG_ACSmart_BACnet_MFL69023101.pdf",
+   "kind": "etc",
+   "titleRaw": "If the product malfunctions, please check the following before calling the service center."
+  }
+ ]
 }
