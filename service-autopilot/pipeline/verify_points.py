@@ -365,14 +365,74 @@ def spec_sections(m, pages, no_pages):
             rows.append(rr)
         sec("elec", "전기 데이터", cols, rows, el.get("source") or "", el.get("page"))
 
+    # ── 쪽을 넘겨 이어지는 사양표는 **한 구역으로 붙인다** ────────────────────
+    # 원문 한 표가 두 쪽에 걸치면 추출은 두 조각으로 남는다. 화면에서 그대로 두면
+    # 아래쪽이 통째로 안 보여 "잘렸다" 로 읽힌다(사용자 지적. 실측 39모델 182건).
+    # 붙이는 조건을 좁게 둔다 — 같은 문서 · 같은 제목 · **열이 같고**(머리글 첫 칸은
+    # 이어지는 쪽에서 자료 행을 빨아들여 더러워지므로 둘째 칸부터 본다) · 쪽이 달라야
+    # 한다(같은 쪽의 여러 블록은 서로 다른 표다 — AAON 치수표가 그렇다).
+    # 이어지는 쪽의 캡션은 '… - (continued)' 로 끝난다. 캡션이 잘려 '- (' · '- (co'
+    # 로만 남기도 한다. 그 꼬리를 떼지 않으면 제목이 달라 안 붙는다 —
+    # Trane Precedent 정격이 같은 이유로 두 레코드가 됐다(NEXT [C]).
+    CONT = re.compile(r"\s*[-–—]?\s*\(\s*(?:continued|contin\w*|cont|co|c)?\s*\)?\s*$",
+                      re.I)
+
+    def base_title(x):
+        x = re.sub(r"\s+", " ", (x or "")).strip()
+        y = CONT.sub("", x).strip()
+        return y or x
+
+    # ⚠ 열쇠로 덮어쓰면 안 된다. 같은 제목·같은 열이 **떨어진 쪽**에 또 나오면
+    #   (이어진 것이 아니라 다른 표다) 앞 표를 잃는다 — 실제로 그렇게 짜서
+    #   정격 행이 1,118 → 1,040 으로 78행이 조용히 사라졌다. 구역은 목록으로 쌓고,
+    #   붙일 대상은 '그 열쇠로 **마지막에** 만든 구역' 하나만 본다.
+    last, order = {}, []
     for t in (m.get("specTables") or []):
-        header = t.get("header") or []
+        header = list(t.get("header") or [])
+        key = ((t.get("source") or "").split("#")[0],
+               base_title(t.get("title")),
+               tuple(header[1:]))
+        prev = last.get(key)
+        if prev is not None and (t.get("page") or 0) > (prev["page"] or 0)                 and (t.get("page") or 0) - (prev["page"] or 0) <= 2:
+            # 첫 칸이 더러워졌으면 그 여분은 원문에 있던 **구역 제목 행**이다
+            extra = (header[0] or "").strip()
+            base = (prev["header"][0] or "").strip()
+            if extra and base and extra.startswith(base) and len(extra) > len(base):
+                prev["rows"].append([extra[len(base):].strip()] +
+                                    [""] * (len(header) - 1))
+                prev["rowPages"].append(t.get("page"))
+                prev["contPages"].append(t.get("page"))
+            add = list(t.get("rows") or [])
+            prev["rows"].extend(add)
+            # 이어 붙인 줄은 **제 쪽**을 단다 — 안 그러면 원문 그림이 첫 쪽만 뜬다
+            prev["rowPages"].extend([t.get("page")] * len(add))
+            prev["contPages"].append(t.get("page"))
+            prev["page"] = t.get("page")   # 세 쪽 넘는 표도 이어진다
+            continue
+        cur = {"title": t.get("title") or "표", "header": header,
+               "rows": list(t.get("rows") or []), "page": t.get("page"),
+               "rowPages": [t.get("page")] * len(t.get("rows") or []),
+               "source": t.get("source") or "", "contPages": []}
+        last[key] = cur
+        order.append(cur)
+
+    for t in order:
+        header = t["header"]
         cols = [{"k": "c%d" % i, "h": (h or "—")} for i, h in enumerate(header)]
-        rows = [dict({"c%d" % i: ("" if v is None else str(v))
-                      for i, v in enumerate(r)}, n=str(r[0] if r else "")[:120])
-                for r in (t.get("rows") or [])]
-        sec("table", t.get("title") or "표", cols, rows,
-            t.get("source") or "", t.get("page"))
+        rows = []
+        srcfile = (t["source"] or "").split("#")[0]
+        for ri, r in enumerate(t["rows"]):
+            rr = dict({"c%d" % i: ("" if v is None else str(v))
+                       for i, v in enumerate(r)}, n=str(r[0] if r else "")[:120])
+            pg2 = t["rowPages"][ri] if ri < len(t["rowPages"]) else t["page"]
+            if pg2 and pg2 != t["page"] and srcfile:
+                rr["_src"], rr["_pdf"] = srcfile, pg2
+            rows.append(rr)
+        title = base_title(t["title"])
+        if t["contPages"]:
+            title += " (원문 %s쪽에서 이어짐)" % "·".join(
+                str(x) for x in sorted(set(t["contPages"])))
+        sec("table", title, cols, rows, t["source"], t["page"])
 
     for v in (m.get("variants") or []):
         sec("variant", "형번 %s" % v.get("code", "?"), flat_cols,
