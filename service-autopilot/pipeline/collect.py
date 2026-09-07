@@ -102,7 +102,14 @@ def _head_by_range(url, timeout, src):
             # 길이 헤더가 아예 없는 동적 생성 서버(Mitsubishi library — PDF 를 즉석
             # 조립해 attachment 로 내려준다). content-type 이 PDF 면 살아 있는 것으로
             # 보고 크기 필터를 통과할 답례 크기를 준다 — 실제 크기는 받을 때 잰다.
-            if size == 0 and "pdf" in (r.headers.get("Content-Type") or "").lower():
+            ctype = (r.headers.get("Content-Type") or "").lower()
+            if size == 0 and "pdf" in ctype:
+                return 200, 10 ** 6
+            # 사양표를 페이지 <table> 로만 싣는 벤더(부스타)는 문서가 HTML 이다.
+            # 동적 생성이라 길이 헤더가 없어 최소 크기 필터에 걸려 통째로 버려졌다.
+            # HTML 을 통과시키는 것은 그 소스에 한정한다 — 아니면 죽은 PDF 조합의
+            # 오류 안내 페이지까지 살아 있는 문서로 세게 된다.
+            if size == 0 and "html" in ctype and (src or {}).get("extractor") == "html-table":
                 return 200, 10 ** 6
             return 200, size
     except Exception:

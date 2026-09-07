@@ -270,6 +270,75 @@ JCI_VEC100_POINTS = [
 
 SOURCES = [
     {
+        "id": "booster-boiler",
+        "vendor": "부스타(BOOSTER)",
+        "kind": "정격 사양표(웹페이지)",
+        "note": "현장 보일러 30대의 제조사. **PDF 가 없다** — 공식 사이트(imweb)가 사양표를 "
+                "페이지 안 <table> 로 싣는다. 처음엔 '이미지뿐'으로 잘못 판단했는데, 이미지는 "
+                "제품 사진이고 표는 HTML 텍스트다(정격증발량 kg/h · 총발생열량 kcal/h · "
+                "총소비전력 kW · 송풍기/급수펌프 모터출력 kW — 시뮬레이터가 쓰는 값 그대로). "
+                "그래서 받는 것은 PDF 가 아니라 **페이지 HTML** 이다. 취입기는 표 인식이 아니라 "
+                "HTML 표를 읽어야 한다.",
+        "enumerate": "list",
+        "urls": [
+            "https://www.booster.co.kr/163",
+            "https://www.booster.co.kr/127",
+            "https://www.booster.co.kr/72",
+            "https://www.booster.co.kr/148",
+            "https://www.booster.co.kr/73",
+            "https://www.booster.co.kr/74",
+            "https://www.booster.co.kr/75",
+            "https://www.booster.co.kr/76",
+            "https://www.booster.co.kr/77",
+            "https://www.booster.co.kr/78",
+            "https://www.booster.co.kr/79",
+            "https://www.booster.co.kr/80",
+            "https://www.booster.co.kr/81",
+            "https://www.booster.co.kr/156",
+            "https://www.booster.co.kr/64",
+            "https://www.booster.co.kr/136",
+            "https://www.booster.co.kr/137",
+            "https://www.booster.co.kr/154",
+            "https://www.booster.co.kr/155",
+            "https://www.booster.co.kr/84",
+            "https://www.booster.co.kr/85",
+            "https://www.booster.co.kr/66",
+            "https://www.booster.co.kr/86",
+            "https://www.booster.co.kr/133",
+            "https://www.booster.co.kr/138",
+        ],
+        # 주소가 '/72' 처럼 숫자라 이름이 안 남는다 — 계열명으로 바꿔 저장한다
+        "rename": {
+            "https://www.booster.co.kr/163": "Booster_BSS-RXM.html",
+            "https://www.booster.co.kr/127": "Booster_BSS-RFN.html",
+            "https://www.booster.co.kr/72": "Booster_BSS-RX_gas.html",
+            "https://www.booster.co.kr/148": "Booster_BSS-GX.html",
+            "https://www.booster.co.kr/73": "Booster_BSS-HD_oil.html",
+            "https://www.booster.co.kr/74": "Booster_BSS-SG_gas.html",
+            "https://www.booster.co.kr/75": "Booster_BSS-SD_oil.html",
+            "https://www.booster.co.kr/76": "Booster_BCS-BHS_gas.html",
+            "https://www.booster.co.kr/77": "Booster_NBO_gas.html",
+            "https://www.booster.co.kr/78": "Booster_NBO_oil.html",
+            "https://www.booster.co.kr/79": "Booster_BOP_gas.html",
+            "https://www.booster.co.kr/80": "Booster_BO_gas.html",
+            "https://www.booster.co.kr/81": "Booster_BO_oil.html",
+            "https://www.booster.co.kr/156": "Booster_BOV-BX.html",
+            "https://www.booster.co.kr/64": "Booster_BOV-FX.html",
+            "https://www.booster.co.kr/136": "Booster_BOV-EX_100-450.html",
+            "https://www.booster.co.kr/137": "Booster_BOV-EX_500-2000.html",
+            "https://www.booster.co.kr/154": "Booster_BOV-XP_200-600.html",
+            "https://www.booster.co.kr/155": "Booster_BOV-XP_800-3000.html",
+            "https://www.booster.co.kr/84": "Booster_BOV_100-500.html",
+            "https://www.booster.co.kr/85": "Booster_BOV_600-3600.html",
+            "https://www.booster.co.kr/66": "Booster_BON_100-200.html",
+            "https://www.booster.co.kr/86": "Booster_BON_250-500.html",
+            "https://www.booster.co.kr/133": "Booster_HeatExchanger_perf_1.html",
+            "https://www.booster.co.kr/138": "Booster_HeatExchanger_perf_2.html",
+        },
+        "extractor": "html-table",
+        "access": "무로그인",
+    },
+    {
         "id": "gastron-gas-detector",
         "vendor": "가스트론(GASTRON)",
         "kind": "매뉴얼(Modbus 레지스터)",
@@ -392,6 +461,15 @@ SOURCES = [
             # 소프트스타터 MCD 500 — 형번별 정격전류·기동 특성
             "https://files.danfoss.com/download/Drives/DKDDPFP550A228_MCD500_Lores.pdf",
             "https://files.danfoss.com/download/Drives/MG17K802.pdf",
+            # ── VLT HVAC Basic Drive FC 101 (2026-09-07) ─────────────────
+            # 현장 인버터 222대의 유력 후보. 근거는 포인트 이름 `INV_SPEED_FC101`
+            # (다른 INV_* 6점과 같은 762회 — 설비 태그가 아니라 템플릿에 박힌 모델명)
+            # 이고, 그 7점이 FC 101 판독 파라미터와 1:1 로 맞는다:
+            #   DCLINK_VOLTAGE=16-30 · HEATsink TEMP=16-34 · OUT_CURRENT=16-14 ·
+            #   OUT_VOLTAGE=16-12 · OUT_PWR=16-10 · RUN_TIME=15-01 · ACCUM_PWR=15-02.
+            # 통신은 내장 RS-485 Modbus RTU 다(옵션 카드 없이).
+            "https://files.danfoss.com/download/Drives/MG18B502.pdf",
+            "https://files.danfoss.com/download/Drives/MG18C702.pdf",
         ],
         "extractor": "layout",
         "access": "무로그인",
