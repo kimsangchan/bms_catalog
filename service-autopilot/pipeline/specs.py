@@ -425,16 +425,37 @@ REFERENCE_WORD = re.compile(
 RATING_Q = {"power", "current", "voltage", "capacity", "efficiency", "airflow"}
 
 
+# 제목에 이 말이 있으면 정격이 아니다 — 오류 코드표·고장 증상표·목차가 정격으로
+# 들어와 있었다(전수 882표 중 149표. LG AC Smart 는 'Error PDU' 와 고장 증상표가
+# 정격의 전부였다). 사용자가 "말도 안 되는 데이터뿐" 이라고 짚은 자리다.
+NOT_RATING = re.compile(
+    r"error|exception|troubleshoot|symptom|fault code|diagnos|알람 목록|"
+    r"증상|목차|contents|point list|emc |emission", re.I)
+
+
+def value_numeric_ratio(t):
+    """값 칸 중 숫자가 든 비율. 정격이면 값이 숫자다 — 문장뿐이면 정격이 아니다."""
+    cells = [str(c) for r in (t.get("rows") or []) for c in (r[1:] if len(r) > 1 else [])]
+    cells = [c for c in cells if c.strip()]
+    if not cells:
+        return 0.0
+    return sum(1 for c in cells if re.search(r"\d", c)) / float(len(cells))
+
+
 def table_kind(t):
     """사양 표 하나의 성격. 제목 낱말만 보지 않고 표 구조도 본다."""
     qs = [x for x in (t.get("quantities") or []) if x]
     txt = "%s %s" % (t.get("title") or "", " ".join(str(h) for h in t["header"]))
+    # ⚠ 제목이 '정격 사양 — <파일> p51' 처럼 우리가 붙인 대체 제목이면 그 '정격' 이
+    #   다시 정격 판정의 근거가 된다(자기충족). 그래서 값을 먼저 본다.
+    if NOT_RATING.search(txt):
+        return "etc"
     if PERF_WORD.search(txt):
         return "perf"
     # 문서가 제목으로 정격이라 밝힌 표는 머리글 낱말로 참고 처리하지 않는다 —
     # Rebel 'Physical Data' 표가 머리글의 'Small cabinet' 때문에 참고로 빠진 적이 있다.
     if RATING_WORD.search(t.get("title") or ""):
-        return "rating"
+        return "rating" if value_numeric_ratio(t) >= 0.25 else "etc"
     # 풍량·냉방능력 열을 가진 표는 정격이다 — Envistar 표가 퓨즈 열 하나 때문에
     # 참고로 빠진 적이 있다 (조건별 성능표는 위 PERF 가 먼저 거른다).
     # 'f\s?l\s?o\s?w' 는 PDF 합자가 갈라진 'Air fl ow'·'Air f low'(Swegon) 표기까지 받는다.
@@ -452,7 +473,8 @@ def table_kind(t):
     if DIM_WORD.search(txt) or (qs and set(qs) <= {"dimension", "weight"}):
         return "dim"
     if RATING_WORD.search(txt) or (set(qs) & RATING_Q):
-        return "rating"
+        # 값이 숫자가 아니면 정격이 아니다 — 마지막 관문
+        return "rating" if value_numeric_ratio(t) >= 0.25 else "etc"
     return "etc"
 
 

@@ -306,9 +306,14 @@ def spec_sections(m, pages, no_pages):
                 r["pk"] = key or ""
                 r["pg"] = pdf or ""
                 r["pdf"] = pdf or "?"
+        # ⚠ '기타'로 판정된 표를 정격 칸에 같이 두면 정격을 못 믿는다 —
+        #   LG AC Smart 는 정격 15행이 전부 오류 코드표·고장 증상표였다.
+        #   지우지는 않고 **딴 칸으로 내린다**(원문에 있는 표이므로).
+        misc = kind == "table" and (title or "").startswith("[기타]")
         out.append({"cols": cols, "id": "%s/spec/%s" % (mid, title[:40]),
-                    "node": "%s|spec" % mid,
-                    "path": [m.get("model") or mid, "정격", title],
+                    "node": "%s|%s" % (mid, "misc" if misc else "spec"),
+                    "path": [m.get("model") or mid,
+                             "기타 표" if misc else "정격", title],
                     "doc": src, "span": str(pdf) if pdf else "—", "points": rows})
 
     FLAT = [("항목", 0), ("값", 1), ("단위", 2), ("조건", 3), ("출처", 4)]
@@ -602,11 +607,15 @@ def main(argv):
         specs = spec_sections(m, pages, no_pages)
         if specs:
             sections.extend(specs)
-            nspec = sum(len(sc["points"]) for sc in specs)
-            mnode["children"].append({"id": "%s|spec" % m["id"], "label": "정격",
-                                      "count": nspec, "children": []})
-            mnode["count"] += nspec
-            total += nspec
+            for node, label in (("spec", "정격"), ("misc", "기타 표")):
+                nid = "%s|%s" % (m["id"], node)
+                n2 = sum(len(sc["points"]) for sc in specs if sc["node"] == nid)
+                if not n2:
+                    continue
+                mnode["children"].append({"id": nid, "label": label,
+                                          "count": n2, "children": []})
+                mnode["count"] += n2
+                total += n2
 
         shorten(mnode["children"])
         e = tree.setdefault(eid, {"id": eid, "count": 0,

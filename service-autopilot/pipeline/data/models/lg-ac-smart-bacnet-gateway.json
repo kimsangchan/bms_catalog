@@ -18,11 +18,19 @@
   "points": true
  },
  "ede": false,
- "spec": [],
+ "spec": [
+  [
+   "본체 모듈 전류 · Main module current",
+   "24 V~, 850",
+   "mA",
+   "AC 24 V 입력. DC 12 V 는 동봉 어댑터",
+   "LG_ACSmart_BACnet_MFL69023101.pdf p13"
+  ]
+ ],
  "io": [],
  "elec": null,
  "points": [],
- "gap": "정격·형번이 없다 — 게이트웨이 매뉴얼이라 제품 카탈로그가 따로 필요하다. 그리고 오브젝트의 BACnet 인스턴스 번호가 비어 있다: 원문이 규칙은 주지만(50쪽) 실제 번호는 **유닛 주소가 정해져야** 나온다. instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point 이고 유닛 주소 XXX = Device×16 + Product 다. 제품유형은 Indoor:0 Vent:1 AHU:2 ODU:3 AWHP:4 GENERAL:5 (원문 50쪽). 원문 예시 42행에 42/42 일치를 확인했다.",
+ "gap": "게이트웨이 **제품 사양표가 이 문서(88쪽)에 없다.** 정격이라 부를 수 있는 것은 안전주의 절의 한 줄('Main module current: 24 V~, 850 mA')뿐이라 그것만 담았다. ⚠ 전에는 'Error PDU'(BACnet 오류 코드표)와 고장 증상표가 정격으로 분류돼 있었다 — 정격이 아니다(분류기에 값 관문을 넣어 걷어냈다). 전원·소비전력·통신·환경 정격이 필요하면 LG 제품 카탈로그를 따로 받아야 한다. 실내기·실외기의 냉난방능력은 애초에 게이트웨이 문서에 없다.",
  "extractor": "ingest_lg",
  "sourceDoc": "LG_ACSmart_BACnet_MFL69023101.pdf",
  "interfaces": [
@@ -6046,7 +6054,7 @@
     ]
    ],
    "source": "LG_ACSmart_BACnet_MFL69023101.pdf",
-   "kind": "rating"
+   "kind": "etc"
   },
   {
    "title": "기타 — LG_ACSmart_BACnet_MFL69023101.pdf p87",
