@@ -700,17 +700,13 @@ class DatasetBuildTest(unittest.TestCase):
             # 없는 메뉴 항목 목록이다(validate 의 points-unaddressed 가 그 수를 드러낸다).
             # 사다리를 넓혀서 될 일이 아니라 제품 카탈로그가 따로 있어야 한다.
             "johnson-controls-verasys-vec100-generic-rtu-controller",
-            # ── LG AC Smart BACnet 게이트웨이 (2026-09-04) ─────────
-            # 게이트웨이 매뉴얼이라 정격도 형번도 없다. 오브젝트 165점만 있다.
-            # 사다리를 넓혀서 될 일이 아니라 제품 카탈로그가 따로 있어야 한다.
-            "lg-ac-smart-bacnet-gateway",
-            # ── 삼성 MIM-B17BN BACnet 게이트웨이 (2026-09-04) ──────
-            # 같은 이유다 — 설치설명서라 정격도 형번도 없고 오브젝트 264점만 있다.
-            # 같은 소스로 받아 둔 사용설명서(192쪽)에도 정격이 없다(웹화면 조작서다).
-            # ⚠ 정격은 이미 받아 둔 Samsung_SEC_SpecGuide_KR_2017-03.pdf 에 있다 —
-            #   국내 60Hz DVM S 라인업·용량·COP. 아직 취입하지 않았을 뿐이라
-            #   그걸 넣으면 이 면제는 없어져야 한다.
-            "samsung-mim-b17bn-bacnet-gateway",
+            # ⚠ LG AC Smart · 삼성 MIM-B17BN 게이트웨이 두 건은 **여기 없다** —
+            #   2026-09-07 에 규칙표대로 e8(HVAC.AIR.TERMINAL.VRF)로 옮겼기 때문이다
+            #   (같은 성격의 Daikin DMS502B71 · JCI SI-VRFCBN02 가 이미 거기 있다).
+            #   둘 다 정격이 없다는 사실은 그대로다. e8 에는 이 게이트가 없으니
+            #   **지금 그 둘은 어떤 정격 게이트도 받지 않는다.** 삼성 정격을
+            #   Samsung_SEC_SpecGuide_KR_2017-03.pdf 에서 취입할 때 e8 쪽 게이트를
+            #   함께 세운다 (NEXT.md [B]-1).
         })
 
     def test_aaon_cabinet_text_yields_units_with_iom_tonnage(self):

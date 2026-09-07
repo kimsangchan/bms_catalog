@@ -59,10 +59,22 @@ def _hdr(src, extra=None):
     return h
 
 
+def _ctx(src):
+    """SSL 문맥. 중간 인증서를 안 보내는 공식 호스트가 있다(가스트론).
+
+    검증을 끄는 대신 받은 바이트의 SHA-256 을 대장에 남긴다 — 다음에 같은 파일인지
+    그것으로 확인한다. 이 스위치는 **공식 호스트에만** 쓴다.
+    """
+    if not (src or {}).get("insecure"):
+        return None
+    import ssl
+    return ssl._create_unverified_context()
+
+
 def head(url, timeout=12, src=None):
     req = urllib.request.Request(url, method="HEAD", headers=_hdr(src))
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
+        with urllib.request.urlopen(req, timeout=timeout, context=_ctx(src)) as r:
             size = int(r.headers.get("Content-Length") or 0)
             # shareddocs(Carrier)는 HEAD 200 인데 Content-Length 를 안 준다 —
             # 크기 0 으로 두면 probe 의 최소 크기 필터에 걸려 살아있는 문서를 버린다
@@ -81,7 +93,7 @@ def head(url, timeout=12, src=None):
 def _head_by_range(url, timeout, src):
     req = urllib.request.Request(url, headers=_hdr(src, {"Range": "bytes=0-0"}))
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
+        with urllib.request.urlopen(req, timeout=timeout, context=_ctx(src)) as r:
             rng = r.headers.get("Content-Range") or ""   # 예: bytes 0-0/2231509
             if "/" in rng:
                 return 200, int(rng.split("/")[-1])
@@ -99,7 +111,7 @@ def _head_by_range(url, timeout, src):
 
 def fetch(url, dest, timeout=90, src=None):
     req = urllib.request.Request(url, headers=_hdr(src, {"Accept": "*/*"}))
-    with urllib.request.urlopen(req, timeout=timeout) as r:
+    with urllib.request.urlopen(req, timeout=timeout, context=_ctx(src)) as r:
         body = r.read()
     open(dest, "wb").write(body)
     return hashlib.sha256(body).hexdigest(), len(body)

@@ -270,6 +270,29 @@ JCI_VEC100_POINTS = [
 
 SOURCES = [
     {
+        "id": "gastron-gas-detector",
+        "vendor": "가스트론(GASTRON)",
+        "kind": "매뉴얼(Modbus 레지스터)",
+        "note": "현장 가스감지기 32대가 쓰는 다채널 수신반 GTC-200A. 공식 자료실 게시판"
+                "(board_data/manual)에 국문 매뉴얼이 직접 걸려 있다. 8.1 RS485 MODBUS 절에 "
+                "농도값(3xxxx)·상태비트(1xxxx) 레지스터가 있는데 **행이 아니라 식**이다 — "
+                "'Channel-n 농도값 = 30000+n', 상태 = 10001+((n-1)*8). 채널 수만큼 펼쳐 "
+                "저장할 일이 아니라 식으로 저장한다(Daikin DMS502B71 과 같은 부류).",
+        "enumerate": "list",
+        "urls": [
+            "https://gastron.com/home/download.php?ps_db=manual&ps_boid=73&ps_file=1&fname_text=board_data/manual/GTC_200A_%B1%B9%B9%AE%B8%C5%B4%BA%BE%F3_R1.0.pdf",
+        ],
+        # 원 이름이 EUC-KR 한글이라 그대로 두면 파일명이 깨진다. 열쇠는 URL 전체다
+        # (이 URL 은 질의문자열 안에 '/' 가 있어 마지막 조각이 파일명이 된다).
+        "rename": {
+            "https://gastron.com/home/download.php?ps_db=manual&ps_boid=73&ps_file=1&fname_text=board_data/manual/GTC_200A_%B1%B9%B9%AE%B8%C5%B4%BA%BE%F3_R1.0.pdf":
+                "Gastron_GTC-200A_Manual_KR_R1.0.pdf",
+        },
+        "insecure": True,
+        "extractor": "auto",
+        "access": "무로그인",
+    },
+    {
         "id": "trane-points-list",
         "vendor": "Trane",
         "kind": "포인트리스트",
