@@ -14,7 +14,8 @@
   "v2.5 (2026-09-04) — 계통 'Drive/BACnet' 등재. LS ELECTRIC H100 인버터의 BACnet/IP 이더넷 옵션 카드가 내보내는 오브젝트 목록이다. 이미 있던 'Drive/Modbus'(같은 드라이브류가 내보내는 Modbus 레지스터 창)와 짝을 이룬다 — 벤더 축이 아니라 **문서 계통 축**이라 드라이브+BACnet 이 한 값이 된다. 새 필드는 없다. ⚠ 이 문서의 'Range' 열(AV 계열)은 어느 필드로도 승격하지 않았다 — rangeIP·rangeSI 는 야드파운드/SI 쌍을 주는 계통(YMAE-15) 전용이고 단위중립 범위 자리가 사전에 없다. sourceColumns 에 원문 보존 + provenance.gaps 에 사유를 남긴다(dictionaryFirst 규칙 ①). ⚠ 단위 열이 하나뿐이라 값을 보고 가른다 — 'HP' 만 unitIP, 나머지는 unitSI. 코드형(MSV·MSI)의 단위 칸 'MSG' 는 물리량이 아니라 자료형 표시라 승격하지 않는다.",
   "v2.4 (2026-09-04) — 계통 'LG/ACSmart-BACnet' 등재. LG AC Smart BACnet 게이트웨이가 연결 기기군(실내기·환기·AHU·실외기·AWHP·게이트웨이 공통)에 대해 내보내는 오브젝트 목록이다. 기존 12계통과 두 가지가 다르다. ⑴ **표가 전치돼 있다** — 행이 속성(Object Type·Object Name·Point No.)이고 열이 포인트라, 세로로 세면 15점짜리 표가 10행으로 읽힌다. ⑵ **인스턴스 번호가 표에 없다** — 원문 50쪽이 규칙만 준다(instance = 제품유형×0x10000 + Device×0x1000 + Product×0x100 + Point, 유닛 주소 = Device×16 + Product). 즉 번호는 **현장 유닛 주소가 정해져야** 나온다. 문서의 결손이 아니라 설정값이므로 blocks.bacnet.instance 를 비우고 규칙을 note·gaps 에 적는다 — 주소 0 일 때의 값을 넣으면 다른 주소에서 전부 틀린다. Verasys/Menu(주소를 만들 규칙 자체가 없는 목록)와는 다른 자리다.",
   "v2.3 (2026-08-31) — 계통 'Drive/Modbus' 등재. 인버터가 내보내는 4xxxx 고정 레지스터 창(Modbus Register | 표준 프로파일 이름 | Access | Remarks). AirHandling/Modbus(유닛 제어반)와 열이 다르고, 같은 문서의 FLN 표와도 항목이 겹치지 않는다(이름 일치 0/16) — 같은 장비의 다른 프로토콜 창구다.",
-  "v2.4 (2026-09-01) — 계통 'Verasys/Menu' 등재. Verasys VEC100 컨트롤러가 SBH (Smart Building Hub) 화면에 내보이는 메뉴 항목 표다. ⚠ **주소 열이 없다** — 오브젝트별 BACnet 타입·인스턴스도 Modbus 레지스터도 원문 어디에도 없어 blocks 를 만들 수 없다. 문서가 밝히는 주소는 장치 수준뿐(컨트롤러 주소 4~127 · 'Sets the BACnet ID of the device'). 그래서 이 계통의 점은 **매핑에 바로 못 쓴다** — 이름·읽기쓰기·기본값·범위를 아는 목록이다. 주소 있는 목록과 섞어 세지 않도록 validate 의 points-unaddressed 가 매번 수를 드러낸다."
+  "v2.4 (2026-09-01) — 계통 'Verasys/Menu' 등재. Verasys VEC100 컨트롤러가 SBH (Smart Building Hub) 화면에 내보이는 메뉴 항목 표다. ⚠ **주소 열이 없다** — 오브젝트별 BACnet 타입·인스턴스도 Modbus 레지스터도 원문 어디에도 없어 blocks 를 만들 수 없다. 문서가 밝히는 주소는 장치 수준뿐(컨트롤러 주소 4~127 · 'Sets the BACnet ID of the device'). 그래서 이 계통의 점은 **매핑에 바로 못 쓴다** — 이름·읽기쓰기·기본값·범위를 아는 목록이다. 주소 있는 목록과 섞어 세지 않도록 validate 의 points-unaddressed 가 매번 수를 드러낸다.",
+  "v2.5 (2026-09-07) — modbus.bits 등재. Danfoss FC 101 은 주소를 표가 아니라 **식**으로 준다(주소 = 파라미터번호 × 10). 그래서 32비트 파라미터가 레지스터를 둘 쓰는지 아닌지를 포인트 자체가 들고 있어야 다음 주소와 겹치는지 알 수 있다. 값은 파라미터 목록 부록의 'Type' 열에서 온다. ⚠ 처음엔 '어느 것이 32비트인지 문서에 없다'고 gap 에 적었는데 **틀렸다** — 본문(3장)에만 있는 줄 알았지 부록(p108~124)에 데이터형·변환지수·기본값이 표로 다 있었다. 본문만 보고 '없다'고 적지 말 것."
  ],
  "description": "오브젝트(포인트) 속성 사전 — unit-schema.json(정격)과 같은 방식의 '사전 우선' 게이트를 포인트 쪽에 세운다. 구조는 두 층이다. ① 공통 의미(common·provenance): 어느 프로토콜이든 뜻이 같은 것 — 이름·단위·범위·상태·읽기쓰기·적용·비고·출처. ② 프로토콜 블록(blocks): bacnet·modbus·n2·lon·yorktalk·logix·elink — 주소·타입처럼 프로토콜마다 어휘가 다른 것. 블록으로 나누는 이유: (1) 문서마다 지원 프로토콜이 다르다 — YorkTalk 구형 13건은 N2+YorkTalk뿐이고 BACnet·LON·Modbus 열이 아예 없다. Native는 BACnet+Modbus+N2, YPAL은 LON+N2, ECO2는 BACnet+Modbus, YZD는 Modbus+Logix다. (2) 한 포인트가 여러 프로토콜 주소를 동시에 갖는다 — E-Link/GPIC형은 한 행에 BACnet·LON·N2·Modbus 4종 주소가 나란히 온다. 평면 이름으로는 이 동시성이 modbus* 6종 같은 접두 필드 증식으로 나타났고 18종까지 불어났다. (3) 같은 열 이름이 계통마다 다른 뜻을 담는다('BACnet Object Name'이 Typ-Ins형에선 York Talk 좌표) — 블록을 나눠야 '어느 프로토콜의 무엇'인지 경로가 말해 준다. 포인트 레코드 모양: 최상위 키는 common·provenance의 필드, 프로토콜 주소는 블록명 하위 객체(예: {\"name\":…, \"bacnet\":{\"objectType\":\"AV\",\"instance\":29}, \"modbus\":{\"address\":1,…}}). 경로 표기는 'bacnet.instance' 식이다.",
  "statuses": {
@@ -509,6 +510,16 @@
      "ko": "쓰기 가능 플래그",
      "shape": "int",
      "note": "JCI SE 매핑표의 Writable 열(0/1). 공통 readWrite 와 별개로 문서가 준 그대로 보존 — 둘이 어긋나면 그게 신호다"
+    },
+    "bits": {
+     "ko": "레지스터 폭(비트)",
+     "shape": "int",
+     "values": [
+      8,
+      16,
+      32
+     ],
+     "note": "한 포인트가 레지스터를 몇 칸 쓰는지 가르는 값. 출처: Danfoss FC 101 파라미터 목록 부록의 'Type' 열(Uint8/Uint16/Int16/Uint32/Int32). 32비트는 레지스터를 **둘** 쓴다(원문 예: 3-14 → 3410·3411). 이 자리가 없으면 주소가 식으로만 주어지는 문서에서 다음 포인트의 주소가 겹치는지 알 수 없다. 문서가 안 밝히면 비운다 — 폭을 짐작하면 값이 통째로 어긋난다."
     }
    }
   },
