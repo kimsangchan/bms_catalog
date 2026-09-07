@@ -173,7 +173,10 @@ def read_page_words(page):
         if len(filled) >= 2 and any(re.search(r"[A-Za-z]", v) for v in filled):
             vals = [" ".join(w[4] for w in sorted(right, key=lambda w: w[0]))]                    + [""] * (len(cols) - 1)
         got.append((label, vals))
-    return [c[0] for c in cols], got
+    pat = re.search(r"Model\s+(H100)\s*X+\s*[–-]\s*(\d)",
+                    " ".join(w[4] for w in head), re.I)
+    codes = ["%s%s-%s" % (c[0], pat.group(1).upper(), pat.group(2)) for c in cols]         if pat else [c[0] for c in cols]
+    return codes, got
 
 
 # 원문 라벨(잎)은 또렷한데 바깥 라벨('Rated output' · 'Rated input')은 세로 병합이라
@@ -206,7 +209,14 @@ def read_page_table(page):
     idx = [j for j, c in enumerate(head) if CODE.match(c)]
     if len(idx) < 2:
         return None, []
-    codes = [head[j] for j in idx]
+    # 원문 머리글이 형번 규칙을 준다 — 'Model H100 XXXX–2' 의 XXXX 자리가 열 코드다.
+    # 치수 표(p587)가 '0008H100-4' 로 적으므로 그 표기로 맞춘다. 코드만 담으면
+    # 형번 사다리가 '0008' 을 형번으로 못 알아본다(숫자뿐이라).
+    pat = re.search(r"Model\s+(H100)\s*X+\s*[–-]\s*(\d)", " ".join(head), re.I)
+    if pat:
+        codes = ["%s%s-%s" % (head[j], pat.group(1).upper(), pat.group(2)) for j in idx]
+    else:
+        codes = [head[j] for j in idx]
     lab_cols = [j for j in range(len(head)) if j < min(idx)]
 
     out = []
@@ -235,6 +245,11 @@ def read_page_table(page):
 NUM = re.compile(r"^-?[\d.,]+$")
 
 # 원문 순서 그대로. (한글, 원문, 구간, 상/하 구분)
+# 물리량(quantity)은 사전(units)이 아는 이름으로 적는다 — 빈칸으로 두면
+# units.py --sync 가 무엇을 담는 값인지 몰라 확정본을 못 만든다.
+QTY = ["power", "power", "capacity", "current", "current", "frequency", "voltage",
+       "voltage", "voltage", "frequency", "frequency", "current", "weight"]
+
 ITEMS = [
     ("적용 전동기", "Applied Motor", "HP"),
     ("적용 전동기", "Applied Motor", "kW"),
@@ -253,8 +268,20 @@ ITEMS = [
 
 
 def name_of(i):
+    """항목 이름 형식 — **`한글 [구분] · 원문영문 (단위)`** 하나로 통일한다.
+
+    ⚠ 괄호 안에는 **단위만** 둔다. 처음에 '(Applied Motor, kW)' 로 적었더니
+      확정본 동기화가 괄호를 통째로 단위로 읽어 'Applied Motor, kW' 가 단위가 됐다
+      (datasets.label_unit 은 괄호 안을 단위로 본다).
+    """
     ko, en, unit = ITEMS[i]
-    return "%s (%s%s)" % (ko, en, (", " + unit) if unit else "")
+    kind = ""
+    if unit and ("상" in unit):
+        parts = [x.strip() for x in unit.split(",")]
+        kind = " " + parts[-1]
+        unit = parts[0] if parts[0] not in ("3상", "단상") else ""
+    head = "%s%s · %s" % (ko, kind, en)
+    return "%s (%s)" % (head, unit) if unit else head
 
 
 def classify(label, vals, phase):
@@ -353,9 +380,10 @@ def build(doc):
         keep = [[name_of(i)] + got[i] for i in sorted(got)]
         if keep:
             out.append({"title": "형번별 정격 — %s" % (title or "H100"),
-                        "page": pg, "orientation": "column",
+                        # 세로가 항목, 가로가 형번이다 — 물리량은 **줄**에 붙는다
+                        "page": pg, "orientation": "row",
                         "header": ["항목"] + codes,
-                        "quantities": [None] * (len(codes) + 1),
+                        "quantities": [QTY[i] for i in sorted(got)],
                         "rows": keep, "kind": "rating",
                         "note": "원문이 전 형번을 덮는 병합 칸으로 적은 값(출력 주파수·"
                                 "전압·입력 전압·주파수)은 모든 형번 열에 같은 값으로 폈다."})

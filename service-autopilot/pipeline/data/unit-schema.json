@@ -1,331 +1,403 @@
 {
-  "version": 2,
-  "description": "형번(Unit Model Number) 사양 속성 사전 — ETIM 방식: 공유 속성 사전(features) + 설비 클래스별 속성 세트(classes). 설비마다 쓰는 속성·라벨이 다르고(예: 냉동기의 코일·팬 값은 응축기 쪽 값), 같은 설비 안에서도 유닛 구분(role)에 따라 상세 구성이 달라진다. 화면 열·확정 데이터셋(data/units)·검증(validate)이 전부 이 사전 기준으로 움직인다. 새 설비 계열에 형번이 생기면 classes 에 항목을 더한다.",
-  "statuses": {
-    "extracted": "자동 추출 — 검수 전 제안값. units.py --sync 가 자유롭게 갱신한다",
-    "verified": "사람 확인 — 동기화가 절대 덮어쓰지 않는다 (추출이 달라지면 드리프트 경고만)",
-    "manual": "수기 입력 — 문서 한계로 추출이 못 만드는 값을 사람이 직접 채웠다. 동기화가 건드리지 않는다"
-  },
-  "rules": {
-    "valueMaxLen": 60,
-    "valueMaxNumbers": 8,
-    "note": "정격 '한 개 값'의 모양 한계 — datasets.plausible_rating_value 와 같은 기준. 넘으면 눌린 다열 덩어리로 보고 검증 오류"
-  },
-  "normalize": {
-    "unitSpelling": {
-      "cfm": "CFM",
-      "cfm-high/low": "CFM high/low",
-      "m3/s": "m³/s",
-      "m3/h": "m³/h",
-      "sq. ft.": "sq ft",
-      "Sq. Ft.": "sq ft",
-      "Mbh": "MBh",
-      "K Btu": "MBh",
-      "Btuh": "Btu/h",
-      "Btu": "Btu/h",
-      "KW": "kW"
-    },
-    "notes": {
-      "unitSpelling": "같은 단위의 철자 흔들림만 통일한다 — 척도가 다른 단위는 절대 섞지 않는다. 'K Btu'와 'MBh'는 둘 다 천 Btu/h 로 같은 척도, 냉방능력의 'Btu' 단독 표기는 시간당(Btu/h) 관례 축약",
-      "capacityClass": "'N Ton' → 'N Tons' 표기 통일. 톤수가 아닌 크기급('크기 04')은 그대로 둔다",
-      "eerIeer": "EER·IEER 는 정의 단위(Btu/h per W)라 단위 표기를 생략해 통일한다. 값 앞의 'EER ='/'IEER =' 라벨 중복은 걷어내고, '-' 자리표시는 값 없음으로 본다. 'Up to N'(캐비닛 상한)·'A/B'(전원·조건 병기)·각주 (d)(e) 는 문서 의미라 유지"
-    }
-  },
-  "features": {
-    "capacityClass": {
-      "ko": "용량대",
-      "convUnit": ""
-    },
-    "compatibleCapacityRange": {
-      "ko": "호환 용량 범위",
-      "convUnit": "kW"
-    },
-    "matchedAirHandler": {
-      "ko": "조합 공조기",
-      "convUnit": ""
-    },
-    "ratedAirflow": {
-      "ko": "정격 풍량",
-      "convUnit": "CFM"
-    },
-    "ecodesignAirflow": {
-      "ko": "Ecodesign 풍량",
-      "convUnit": "m³/h"
-    },
-    "sfp15Airflow": {
-      "ko": "SFP 1.5 / 150 Pa 풍량",
-      "convUnit": "m³/h"
-    },
-    "sfp20Airflow": {
-      "ko": "SFP 2.0 / 200 Pa 풍량",
-      "convUnit": "m³/h"
-    },
-    "grossCoolingCapacity": {
-      "ko": "냉방능력",
-      "convUnit": "Btu/h"
-    },
-    "ahriNetCoolingCapacity": {
-      "ko": "AHRI 냉방능력",
-      "convUnit": "Btu/h"
-    },
-    "eer": {
-      "ko": "EER",
-      "convUnit": ""
-    },
-    "ieer": {
-      "ko": "IEER",
-      "convUnit": ""
-    },
-    "capacitySteps": {
-      "ko": "용량 단계",
-      "convUnit": "%"
-    },
-    "fanMotorHp": {
-      "ko": "팬 모터",
-      "convUnit": "HP"
-    },
-    "fanMotorRpm": {
-      "ko": "팬 회전수",
-      "convUnit": "RPM"
-    },
-    "coilFaceArea": {
-      "ko": "코일 면적",
-      "convUnit": ""
-    },
-    "coilRowsFpi": {
-      "ko": "코일 열수/FPI",
-      "convUnit": ""
-    },
-    "compressorConfig": {
-      "ko": "압축기 구성",
-      "convUnit": ""
-    },
-    "refrigerantCircuits": {
-      "ko": "냉매 회로",
-      "convUnit": ""
-    },
-    "condenserFans": {
-      "ko": "응축 팬",
-      "convUnit": ""
-    },
-    "condenserAirflow": {
-      "ko": "응축 풍량",
-      "convUnit": ""
-    },
-    "unitWidth": {
-      "ko": "유닛 폭",
-      "convUnit": "mm"
-    },
-    "unitHeight": {
-      "ko": "유닛 높이",
-      "convUnit": "mm"
-    },
-    "unitLength": {
-      "ko": "유닛 길이",
-      "convUnit": "mm"
-    },
-    "seer": {
-      "ko": "SEER",
-      "convUnit": ""
-    },
-    "seer2": {
-      "ko": "SEER2",
-      "convUnit": ""
-    },
-    "heatingCapacity": {
-      "ko": "난방능력",
-      "convUnit": "Btu/h"
-    },
-    "cop": {
-      "ko": "COP",
-      "convUnit": ""
-    },
-    "systemPower": {
-      "ko": "시스템 소비전력",
-      "convUnit": "kW"
-    },
-    "soundRating": {
-      "ko": "소음 정격",
-      "convUnit": "dB"
-    },
-    "refrigerantCharge": {
-      "ko": "냉매 충전량",
-      "convUnit": ""
-    },
-    "refrigerantControl": {
-      "ko": "팽창 장치",
-      "convUnit": ""
-    },
-    "cabinetSize": {
-      "ko": "캐비닛",
-      "convUnit": ""
-    },
-    "airflowConfiguration": {
-      "ko": "기류 구성",
-      "convUnit": ""
-    },
-    "fanDriveType": {
-      "ko": "팬 구동 방식",
-      "convUnit": ""
-    },
-    "minOutdoorAir": {
-      "ko": "최소 외기량",
-      "convUnit": "CFM"
-    },
-    "economizer": {
-      "ko": "이코노마이저",
-      "convUnit": ""
-    },
-    "heatingInput": {
-      "ko": "난방 입열량",
-      "convUnit": "Btu/h"
-    },
-    "supplyVoltage": {
-      "ko": "전원",
-      "convUnit": ""
-    },
-    "mca": {
-      "ko": "최소 회로 전류 (MCA)",
-      "convUnit": "A"
-    },
-    "mop": {
-      "ko": "최대 과전류 보호 (MOP)",
-      "convUnit": "A"
-    }
-  },
-  "classes": {
-    "e5": {
-      "ko": "공조기 (AHU·RTU)",
-      "table": [
-        "capacityClass",
-        "compatibleCapacityRange",
-        "matchedAirHandler",
-        "ratedAirflow",
-        "ecodesignAirflow",
-        "sfp15Airflow",
-        "sfp20Airflow",
-        "grossCoolingCapacity",
-        "ahriNetCoolingCapacity",
-        "eer",
-        "ieer",
-        "systemPower",
-        "soundRating",
-        "cabinetSize",
-        "airflowConfiguration",
-        "capacitySteps",
-        "fanMotorHp",
-        "fanMotorRpm",
-        "coilFaceArea",
-        "coilRowsFpi"
-      ],
-      "detailExtra": [
-        "ieer",
-        "seer",
-        "seer2",
-        "heatingCapacity",
-        "heatingInput",
-        "cop",
-        "fanDriveType",
-        "minOutdoorAir",
-        "economizer",
-        "supplyVoltage",
-        "mca",
-        "mop",
-        "cabinetSize",
-        "airflowConfiguration",
-        "compressorConfig",
-        "capacitySteps",
-        "refrigerantCircuits",
-        "condenserFans",
-        "condenserAirflow",
-        "refrigerantCharge",
-        "refrigerantControl",
-        "unitWidth",
-        "unitHeight",
-        "unitLength"
-      ],
-      "roles": {
-        "airHandler": {
-          "ko": "공기측 유닛",
-          "detail": [
-            "fanMotorHp",
-            "fanMotorRpm",
-            "coilFaceArea",
-            "coilRowsFpi"
-          ]
-        },
-        "condensingUnit": {
-          "ko": "실외/응축 유닛",
-          "detail": [
-            "matchedAirHandler",
-            "grossCoolingCapacity",
-            "ahriNetCoolingCapacity",
-            "eer"
-          ]
-        },
-        "packagedUnit": {
-          "ko": "일체형(패키지) 유닛",
-          "detail": [
-            "grossCoolingCapacity",
-            "ahriNetCoolingCapacity",
-            "eer",
-            "fanMotorHp"
-          ]
-        },
-        "eevKit": {
-          "ko": "팽창밸브 킷(EEV)",
-          "detail": [
-            "compatibleCapacityRange"
-          ]
-        }
-      }
-    },
-    "e9": {
-      "ko": "냉동기 (칠러)",
-      "labels": {
-        "coilFaceArea": "응축 코일 면적",
-        "coilRowsFpi": "응축 코일 열수/FPI",
-        "fanMotorRpm": "응축 팬 회전수",
-        "fanMotorHp": "응축 팬 모터"
-      },
-      "table": [
-        "capacityClass",
-        "grossCoolingCapacity",
-        "eer",
-        "ieer",
-        "capacitySteps",
-        "compressorConfig",
-        "refrigerantCircuits",
-        "fanMotorRpm",
-        "coilFaceArea",
-        "coilRowsFpi"
-      ],
-      "detailExtra": [
-        "condenserFans",
-        "condenserAirflow",
-        "ratedAirflow"
-      ],
-      "roles": {
-        "chillerUnit": {
-          "ko": "냉동기 유닛",
-          "detail": [
-            "capacitySteps",
-            "compressorConfig",
-            "refrigerantCircuits",
-            "fanMotorRpm",
-            "coilFaceArea",
-            "coilRowsFpi",
-            "eer"
-          ]
-        }
-      }
-    }
+ "version": 2,
+ "description": "형번(Unit Model Number) 사양 속성 사전 — ETIM 방식: 공유 속성 사전(features) + 설비 클래스별 속성 세트(classes). 설비마다 쓰는 속성·라벨이 다르고(예: 냉동기의 코일·팬 값은 응축기 쪽 값), 같은 설비 안에서도 유닛 구분(role)에 따라 상세 구성이 달라진다. 화면 열·확정 데이터셋(data/units)·검증(validate)이 전부 이 사전 기준으로 움직인다. 새 설비 계열에 형번이 생기면 classes 에 항목을 더한다.",
+ "statuses": {
+  "extracted": "자동 추출 — 검수 전 제안값. units.py --sync 가 자유롭게 갱신한다",
+  "verified": "사람 확인 — 동기화가 절대 덮어쓰지 않는다 (추출이 달라지면 드리프트 경고만)",
+  "manual": "수기 입력 — 문서 한계로 추출이 못 만드는 값을 사람이 직접 채웠다. 동기화가 건드리지 않는다"
+ },
+ "rules": {
+  "valueMaxLen": 60,
+  "valueMaxNumbers": 8,
+  "note": "정격 '한 개 값'의 모양 한계 — datasets.plausible_rating_value 와 같은 기준. 넘으면 눌린 다열 덩어리로 보고 검증 오류"
+ },
+ "normalize": {
+  "unitSpelling": {
+   "cfm": "CFM",
+   "cfm-high/low": "CFM high/low",
+   "m3/s": "m³/s",
+   "m3/h": "m³/h",
+   "sq. ft.": "sq ft",
+   "Sq. Ft.": "sq ft",
+   "Mbh": "MBh",
+   "K Btu": "MBh",
+   "Btuh": "Btu/h",
+   "Btu": "Btu/h",
+   "KW": "kW"
   },
   "notes": {
-    "features": "공유 속성 사전 — id 는 전 설비 공통, 한글 라벨과 관례 단위(convUnit)의 기본값. convUnit 은 라벨·단위 열에 단위가 없을 때 붙이는 I-P 관례(화면 안내문에 관례임을 명시)이고 문서 단위(units)가 있으면 그쪽이 이긴다",
-    "classes.labels": "설비별 라벨 오버라이드 — 같은 속성이라도 설비에 따라 뜻이 다를 때(냉동기의 코일·팬 = 응축기 쪽) 여기서 바꾼다",
-    "classes.table": "전체 형번 표의 열 구성·순서. 값이 하나도 없는 열은 화면이 자동으로 뺀다 (capacityClass 는 첫 열 특별 취급)",
-    "classes.roles.detail": "선택 형번 상세에서 역할별로 앞세우는 속성 순서. detailExtra 는 그 뒤에 값이 있을 때만 붙는다",
-    "validation": "확정 데이터셋의 필드는 features 에 정의된 id 만 허용(validate 오류). 클래스 table 에 없는 필드는 화면에 안 나올 뿐 저장은 허용"
+   "unitSpelling": "같은 단위의 철자 흔들림만 통일한다 — 척도가 다른 단위는 절대 섞지 않는다. 'K Btu'와 'MBh'는 둘 다 천 Btu/h 로 같은 척도, 냉방능력의 'Btu' 단독 표기는 시간당(Btu/h) 관례 축약",
+   "capacityClass": "'N Ton' → 'N Tons' 표기 통일. 톤수가 아닌 크기급('크기 04')은 그대로 둔다",
+   "eerIeer": "EER·IEER 는 정의 단위(Btu/h per W)라 단위 표기를 생략해 통일한다. 값 앞의 'EER ='/'IEER =' 라벨 중복은 걷어내고, '-' 자리표시는 값 없음으로 본다. 'Up to N'(캐비닛 상한)·'A/B'(전원·조건 병기)·각주 (d)(e) 는 문서 의미라 유지"
   }
+ },
+ "features": {
+  "capacityClass": {
+   "ko": "용량대",
+   "convUnit": ""
+  },
+  "compatibleCapacityRange": {
+   "ko": "호환 용량 범위",
+   "convUnit": "kW"
+  },
+  "matchedAirHandler": {
+   "ko": "조합 공조기",
+   "convUnit": ""
+  },
+  "ratedAirflow": {
+   "ko": "정격 풍량",
+   "convUnit": "CFM"
+  },
+  "ecodesignAirflow": {
+   "ko": "Ecodesign 풍량",
+   "convUnit": "m³/h"
+  },
+  "sfp15Airflow": {
+   "ko": "SFP 1.5 / 150 Pa 풍량",
+   "convUnit": "m³/h"
+  },
+  "sfp20Airflow": {
+   "ko": "SFP 2.0 / 200 Pa 풍량",
+   "convUnit": "m³/h"
+  },
+  "grossCoolingCapacity": {
+   "ko": "냉방능력",
+   "convUnit": "Btu/h"
+  },
+  "ahriNetCoolingCapacity": {
+   "ko": "AHRI 냉방능력",
+   "convUnit": "Btu/h"
+  },
+  "eer": {
+   "ko": "EER",
+   "convUnit": ""
+  },
+  "ieer": {
+   "ko": "IEER",
+   "convUnit": ""
+  },
+  "capacitySteps": {
+   "ko": "용량 단계",
+   "convUnit": "%"
+  },
+  "fanMotorHp": {
+   "ko": "팬 모터",
+   "convUnit": "HP"
+  },
+  "fanMotorRpm": {
+   "ko": "팬 회전수",
+   "convUnit": "RPM"
+  },
+  "coilFaceArea": {
+   "ko": "코일 면적",
+   "convUnit": ""
+  },
+  "coilRowsFpi": {
+   "ko": "코일 열수/FPI",
+   "convUnit": ""
+  },
+  "compressorConfig": {
+   "ko": "압축기 구성",
+   "convUnit": ""
+  },
+  "refrigerantCircuits": {
+   "ko": "냉매 회로",
+   "convUnit": ""
+  },
+  "condenserFans": {
+   "ko": "응축 팬",
+   "convUnit": ""
+  },
+  "condenserAirflow": {
+   "ko": "응축 풍량",
+   "convUnit": ""
+  },
+  "unitWidth": {
+   "ko": "유닛 폭",
+   "convUnit": "mm"
+  },
+  "unitHeight": {
+   "ko": "유닛 높이",
+   "convUnit": "mm"
+  },
+  "unitLength": {
+   "ko": "유닛 길이",
+   "convUnit": "mm"
+  },
+  "seer": {
+   "ko": "SEER",
+   "convUnit": ""
+  },
+  "seer2": {
+   "ko": "SEER2",
+   "convUnit": ""
+  },
+  "heatingCapacity": {
+   "ko": "난방능력",
+   "convUnit": "Btu/h"
+  },
+  "cop": {
+   "ko": "COP",
+   "convUnit": ""
+  },
+  "systemPower": {
+   "ko": "시스템 소비전력",
+   "convUnit": "kW"
+  },
+  "soundRating": {
+   "ko": "소음 정격",
+   "convUnit": "dB"
+  },
+  "refrigerantCharge": {
+   "ko": "냉매 충전량",
+   "convUnit": ""
+  },
+  "refrigerantControl": {
+   "ko": "팽창 장치",
+   "convUnit": ""
+  },
+  "cabinetSize": {
+   "ko": "캐비닛",
+   "convUnit": ""
+  },
+  "airflowConfiguration": {
+   "ko": "기류 구성",
+   "convUnit": ""
+  },
+  "fanDriveType": {
+   "ko": "팬 구동 방식",
+   "convUnit": ""
+  },
+  "minOutdoorAir": {
+   "ko": "최소 외기량",
+   "convUnit": "CFM"
+  },
+  "economizer": {
+   "ko": "이코노마이저",
+   "convUnit": ""
+  },
+  "heatingInput": {
+   "ko": "난방 입열량",
+   "convUnit": "Btu/h"
+  },
+  "supplyVoltage": {
+   "ko": "전원",
+   "convUnit": ""
+  },
+  "mca": {
+   "ko": "최소 회로 전류 (MCA)",
+   "convUnit": "A"
+  },
+  "mop": {
+   "ko": "최대 과전류 보호 (MOP)",
+   "convUnit": "A"
+  },
+  "appliedMotorPower": {
+   "ko": "적용 전동기 출력",
+   "convUnit": "kW"
+  },
+  "ratedCapacityKva": {
+   "ko": "정격 용량",
+   "convUnit": "kVA"
+  },
+  "ratedOutputCurrent": {
+   "ko": "정격 출력전류",
+   "convUnit": "A"
+  },
+  "ratedInputCurrent": {
+   "ko": "정격 입력전류",
+   "convUnit": "A"
+  },
+  "unitWeight": {
+   "ko": "중량",
+   "convUnit": "kg"
+  },
+  "outputFrequency": {
+   "ko": "출력 주파수",
+   "convUnit": "Hz"
+  },
+  "outputVoltage": {
+   "ko": "출력 전압",
+   "convUnit": "V"
+  },
+  "inputVoltage": {
+   "ko": "입력 전압",
+   "convUnit": "V"
+  },
+  "inputFrequency": {
+   "ko": "입력 주파수",
+   "convUnit": "Hz"
+  }
+ },
+ "classes": {
+  "e5": {
+   "ko": "공조기 (AHU·RTU)",
+   "table": [
+    "capacityClass",
+    "compatibleCapacityRange",
+    "matchedAirHandler",
+    "ratedAirflow",
+    "ecodesignAirflow",
+    "sfp15Airflow",
+    "sfp20Airflow",
+    "grossCoolingCapacity",
+    "ahriNetCoolingCapacity",
+    "eer",
+    "ieer",
+    "systemPower",
+    "soundRating",
+    "cabinetSize",
+    "airflowConfiguration",
+    "capacitySteps",
+    "fanMotorHp",
+    "fanMotorRpm",
+    "coilFaceArea",
+    "coilRowsFpi"
+   ],
+   "detailExtra": [
+    "ieer",
+    "seer",
+    "seer2",
+    "heatingCapacity",
+    "heatingInput",
+    "cop",
+    "fanDriveType",
+    "minOutdoorAir",
+    "economizer",
+    "supplyVoltage",
+    "mca",
+    "mop",
+    "cabinetSize",
+    "airflowConfiguration",
+    "compressorConfig",
+    "capacitySteps",
+    "refrigerantCircuits",
+    "condenserFans",
+    "condenserAirflow",
+    "refrigerantCharge",
+    "refrigerantControl",
+    "unitWidth",
+    "unitHeight",
+    "unitLength"
+   ],
+   "roles": {
+    "airHandler": {
+     "ko": "공기측 유닛",
+     "detail": [
+      "fanMotorHp",
+      "fanMotorRpm",
+      "coilFaceArea",
+      "coilRowsFpi"
+     ]
+    },
+    "condensingUnit": {
+     "ko": "실외/응축 유닛",
+     "detail": [
+      "matchedAirHandler",
+      "grossCoolingCapacity",
+      "ahriNetCoolingCapacity",
+      "eer"
+     ]
+    },
+    "packagedUnit": {
+     "ko": "일체형(패키지) 유닛",
+     "detail": [
+      "grossCoolingCapacity",
+      "ahriNetCoolingCapacity",
+      "eer",
+      "fanMotorHp"
+     ]
+    },
+    "eevKit": {
+     "ko": "팽창밸브 킷(EEV)",
+     "detail": [
+      "compatibleCapacityRange"
+     ]
+    }
+   }
+  },
+  "e9": {
+   "ko": "냉동기 (칠러)",
+   "labels": {
+    "coilFaceArea": "응축 코일 면적",
+    "coilRowsFpi": "응축 코일 열수/FPI",
+    "fanMotorRpm": "응축 팬 회전수",
+    "fanMotorHp": "응축 팬 모터"
+   },
+   "table": [
+    "capacityClass",
+    "grossCoolingCapacity",
+    "eer",
+    "ieer",
+    "capacitySteps",
+    "compressorConfig",
+    "refrigerantCircuits",
+    "fanMotorRpm",
+    "coilFaceArea",
+    "coilRowsFpi"
+   ],
+   "detailExtra": [
+    "condenserFans",
+    "condenserAirflow",
+    "ratedAirflow"
+   ],
+   "roles": {
+    "chillerUnit": {
+     "ko": "냉동기 유닛",
+     "detail": [
+      "capacitySteps",
+      "compressorConfig",
+      "refrigerantCircuits",
+      "fanMotorRpm",
+      "coilFaceArea",
+      "coilRowsFpi",
+      "eer"
+     ]
+    }
+   }
+  },
+  "e15": {
+   "ko": "인버터 (VFD)",
+   "labels": {
+    "appliedMotorPower": "적용 전동기",
+    "ratedCapacityKva": "정격 용량",
+    "ratedOutputCurrent": "정격 출력전류",
+    "ratedInputCurrent": "정격 입력전류"
+   },
+   "table": [
+    "appliedMotorPower",
+    "ratedCapacityKva",
+    "ratedOutputCurrent",
+    "ratedInputCurrent",
+    "unitWeight"
+   ],
+   "detailExtra": [
+    "outputFrequency",
+    "outputVoltage",
+    "inputVoltage",
+    "inputFrequency"
+   ],
+   "roles": {
+    "driveUnit": {
+     "ko": "인버터 본체",
+     "detail": [
+      "appliedMotorPower",
+      "ratedCapacityKva",
+      "ratedOutputCurrent",
+      "ratedInputCurrent",
+      "outputFrequency",
+      "inputVoltage",
+      "unitWeight"
+     ]
+    }
+   }
+  }
+ },
+ "notes": {
+  "features": "공유 속성 사전 — id 는 전 설비 공통, 한글 라벨과 관례 단위(convUnit)의 기본값. convUnit 은 라벨·단위 열에 단위가 없을 때 붙이는 I-P 관례(화면 안내문에 관례임을 명시)이고 문서 단위(units)가 있으면 그쪽이 이긴다",
+  "classes.labels": "설비별 라벨 오버라이드 — 같은 속성이라도 설비에 따라 뜻이 다를 때(냉동기의 코일·팬 = 응축기 쪽) 여기서 바꾼다",
+  "classes.table": "전체 형번 표의 열 구성·순서. 값이 하나도 없는 열은 화면이 자동으로 뺀다 (capacityClass 는 첫 열 특별 취급)",
+  "classes.roles.detail": "선택 형번 상세에서 역할별로 앞세우는 속성 순서. detailExtra 는 그 뒤에 값이 있을 때만 붙는다",
+  "validation": "확정 데이터셋의 필드는 features 에 정의된 id 만 허용(validate 오류). 클래스 table 에 없는 필드는 화면에 안 나올 뿐 저장은 허용"
+ }
 }

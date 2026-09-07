@@ -785,6 +785,18 @@ CAPACITY_FILL_LABELS = {
 # units.py --propose-features(미채택 속성 발굴)가 같은 목록으로 대조한다.
 # 새 패턴을 더할 때는 속성 사전(unit-schema.json features)에 필드를 먼저 정의한다.
 UNIT_FIELD_PICKS = {
+    # 인버터(e15) — 우리가 이름을 붙인 표(ingest_ls_ratings)라 라벨이 정해져 있다.
+    # 형식은 '한글 (원문 영문, 단위)' 로 고정이다.
+    "appliedMotorPower": [r"^적용 전동기 · Applied Motor \(kW\)"],
+    "ratedCapacityKva": [r"^정격 용량 · Rated Capacity"],
+    # 3상이 먼저다 — 국내 현장은 3상이 기본이고 단상은 소용량에만 있다
+    "ratedOutputCurrent": [r"^정격 출력전류 3상 · ", r"^정격 출력전류 단상 · "],
+    "ratedInputCurrent": [r"^정격 입력전류 · Rated Current"],
+    "unitWeight": [r"^중량 · Weight"],
+    "outputFrequency": [r"^출력 주파수 · "],
+    "outputVoltage": [r"^출력 전압 · "],
+    "inputVoltage": [r"^입력 전압 3상 · ", r"^입력 전압 단상 · "],
+    "inputFrequency": [r"^입력 주파수 3상 · ", r"^입력 주파수 단상 · "],
     "matchedAirHandler": [r"matched air handler$"],
     # 풍량 우선순위: AHRI 정격 → 급기 공칭('Nominal cfm') → 팬 공칭.
     # 맨 뒤 '^CFM$'는 Precedent 패키지 유닛에서 응축 팬 풍량이라 급기 라벨보다 뒤.
@@ -1343,7 +1355,8 @@ def unit_models(model):
         title = table.get("title") or ""
         # York·Daikin 은 'Physical Data', Carrier 는 'SIZES N-T (… TONS NOMINAL
         # CAPACITY)' 라고 부른다 — 같은 구조의 표다
-        if not re.search(r"general data|physical data|tons? nominal capacity", title, re.I):
+        if not re.search(r"general data|physical data|tons? nominal capacity"
+                         r"|형번별 정격", title, re.I):
             # Envistar 는 표 제목이 각주 조각이라 제목으로 못 거른다 — 대신
             # '1행=크기(04~28), 열=풍량·냉방능력' 구조를 모양으로 알아본다
             header0 = row_cells(table.get("header") or [])
