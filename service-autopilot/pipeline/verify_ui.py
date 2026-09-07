@@ -557,7 +557,8 @@ function show(key, printed, pdf){
      단추가 사라져 "링크가 안 된다" 로 읽혔다. 왜 없는지를 그 자리에 적어 둔다. */
   link.hidden = false;
   if (file) {
-    link.href = "../pipeline/data/raw/" + encodeURIComponent(file)
+    var base = D.rawBase || "../pipeline/data/raw/";
+    link.href = base + encodeURIComponent(file)
               + (pdf && pdf !== "?" ? "#page=" + pdf : "");
     link.textContent = "PDF 전체" + (pdf && pdf !== "?" ? " (" + pdf + "쪽)" : "");
     link.title = file + " 를 새 탭에서 연다";

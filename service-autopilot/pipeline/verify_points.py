@@ -510,8 +510,13 @@ def main(argv):
                 imgs[key] = got[pdf]
             doc.close()
 
+    import pathlib
     payload = {
         "title": "취입 대조대",
+        # 원문 PDF 를 여는 절대 주소. 이 산출물은 로컬에서 file:// 로 여는 물건이라
+        # (쪽 그림을 담아 gitignore 된다) 상대경로보다 절대경로가 확실하다 —
+        # 사용자가 "링크가 안 열린다" 고 두 번 짚었다. 상대경로는 JS 가 대비로 갖는다.
+        "rawBase": pathlib.Path(os.path.join(DATA, "raw")).resolve().as_uri() + "/",
         # ⚠ 범위를 제목 옆에 박는다. 범위 없는 숫자는 전체로 읽힌다 —
         #    이 화면은 카탈로그 157모델이 아니라 **여기 적힌 것만** 담는다.
         "scope": scope,
