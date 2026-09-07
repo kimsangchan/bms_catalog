@@ -69,7 +69,26 @@ def rows_of(page):
     return merged
 
 
-def read_page(page):
+def rows_of(page):
+    """낱말을 줄로 묶는다 — y 가 가까우면 같은 줄."""
+    ws = page.get_text("words")          # (x0,y0,x1,y1,word,block,line,no)
+    band = collections.defaultdict(list)
+    for w in ws:
+        band[round(w[1] / 4)].append(w)
+    out = []
+    for k in sorted(band):
+        out.append(sorted(band[k], key=lambda w: w[0]))
+    # 같은 줄이 두 밴드로 갈리면 붙인다
+    merged = []
+    for r in out:
+        if merged and abs(r[0][1] - merged[-1][0][1]) < 5:
+            merged[-1] = sorted(merged[-1] + r, key=lambda w: w[0])
+        else:
+            merged.append(r)
+    return merged
+
+
+def read_page_words(page):
     """한 쪽 → (형번 목록, [(항목, [값…])])
 
     라벨이 **3단 계층**이다 — 'Rated output › Rated Current (A) › Single-Phase'.
@@ -161,76 +180,185 @@ def read_page(page):
 # 좌표로 안 잡힌다. 표 구조가 6쪽 모두 같으므로 **줄 순서로 구간을 가른다** —
 # 'Output Voltage' 줄까지가 출력부, 그 뒤가 입력부다. 그래야 같은 이름의
 # 'Rated Current (A)' 두 줄이 출력전류와 입력전류로 갈린다(원문 그림으로 확인했다).
-# 담을 줄 = **형번마다 값이 다른 것**. 원문에는 전 형번 공통값(출력 주파수 0–400 Hz ·
-# 입력 전압 3-Phase 200–240 VAC …)도 있는데, 그건 한 칸으로 병합돼 있어 형번별 값이
-# 아니고 전압대(표 제목)로 이미 정해진다. 시뮬레이터가 형번을 골라 쓰는 값만 담는다.
-# 그렇게 좁히면 라벨 조각('Three-' · 'Phase')이 전류로 오인되는 문제도 함께 사라진다.
+def _c(x):
+    """셀 글자 다듬기. ± 는 심볼 글꼴이라  로 나온다 — 되돌린다."""
+    t = (x or "").replace("", "±").replace("", "°")
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def read_page_table(page):
+    """한 쪽 → (형번 목록, [(라벨, [값…])])
+
+    ★ 값은 **표 인식**에서 가져온다. 낱말 좌표로 읽었더니 원문이 한 칸으로 병합해 둔
+      값이 조각났다('60' 과 'Hz(±5%)' 가 따로). 표 인식은 병합 칸을 통째로 준다.
+      라벨은 반대로 표 인식에서도 흩어지지만(3단 세로 병합), 구간·항목 판정은
+      **값 자체**를 근거로 하므로(‘VAC’ → 입력 전압, ‘3-Phase’ → 3상) 문제가 없다.
+    """
+    tabs = page.find_tables().tables
+    if not tabs:
+        return None, []
+    data = [[_c(c) for c in r] for r in max(tabs, key=lambda t: len(t.extract())).extract()]
+    hi = next((i for i, r in enumerate(data)
+               if any(MODEL_ROW.search(c) for c in r)), None)
+    if hi is None:
+        return None, []
+    head = data[hi]
+    idx = [j for j, c in enumerate(head) if CODE.match(c)]
+    if len(idx) < 2:
+        return None, []
+    codes = [head[j] for j in idx]
+    lab_cols = [j for j in range(len(head)) if j < min(idx)]
+
+    out = []
+    for r in data[hi + 1:]:
+        label = " ".join(r[j] for j in lab_cols if j < len(r) and r[j]).strip()
+        vals = [r[j] if j < len(r) else "" for j in idx]
+        if not any(vals):
+            # 병합 칸이 형번 열 **밖**에 놓이는 쪽이 있다(400 V 5.5–22 kW).
+            # 코드 열이 다 비었으면 라벨 오른쪽 전체에서 글자 든 칸 하나를 찾는다.
+            tail = [c for c in r[min(idx):] if c and re.search(r"[A-Za-z]", c)]
+            if len(tail) == 1:
+                vals = [tail[0]] + [""] * (len(idx) - 1)
+        if not label and not any(vals):
+            continue
+        out.append((label, vals))
+    return codes, out
+
+
+# 항목 이름은 **`한글 (원문 영문)`** 한 가지로 통일한다. 우리가 이름을 붙이는 자리는
+# 여기뿐이다 — 다른 모델의 정격은 원문 표를 그대로 담으므로 원문 이름이 남는다(규칙 1).
+#
+# ⚠ 한 번 잘못 좁혔다. '형번마다 값이 다른 줄만' 담았더니 출력 주파수·출력 전압과
+#   입력부(Working Voltage · Input Frequency)가 통째로 빠졌다. 그것들은 원문에서
+#   **모든 형번을 덮는 병합 칸**이라 값이 한 칸에만 들어 있었을 뿐, 없는 값이 아니다.
+#   병합 칸은 전 형번에 해당하므로 모든 열에 같은 값을 채운다(원문의 뜻 그대로다).
 NUM = re.compile(r"^-?[\d.,]+$")
 
+# 원문 순서 그대로. (한글, 원문, 구간, 상/하 구분)
+ITEMS = [
+    ("적용 전동기", "Applied Motor", "HP"),
+    ("적용 전동기", "Applied Motor", "kW"),
+    ("정격 용량", "Rated Capacity", "kVA"),
+    ("정격 출력전류", "Rated Current", "A, 3상"),
+    ("정격 출력전류", "Rated Current", "A, 단상"),
+    ("출력 주파수", "Output Frequency", ""),
+    ("출력 전압", "Output Voltage", "V"),
+    ("입력 전압", "Working Voltage", "V, 3상"),
+    ("입력 전압", "Working Voltage", "V, 단상"),
+    ("입력 주파수", "Input Frequency", "3상"),
+    ("입력 주파수", "Input Frequency", "단상"),
+    ("정격 입력전류", "Rated Current", "A"),
+    ("중량", "Weight", "kg"),
+]
 
-def classify(label, phase):
-    """줄 이름 → 우리 항목. 구간(출력부/입력부)은 줄 순서로 가른다.
 
-    바깥 라벨('Rated output' · 'Rated input')은 세로 병합이라 좌표로 안 잡힌다.
-    원문 그림으로 확인한 순서가 늘 같다 — 'Output Voltage' 줄 뒤가 입력부다.
+def name_of(i):
+    ko, en, unit = ITEMS[i]
+    return "%s (%s%s)" % (ko, en, (", " + unit) if unit else "")
+
+
+def classify(label, vals, phase):
+    """줄 → (항목 번호, 구간). 원문 라벨 조각과 **값 자체**를 함께 본다.
+
+    바깥 라벨('Rated output' · 'Rated input')은 세로 병합이라 좌표로 안 잡히고,
+    잎 라벨도 'Rated Three-Phase' 처럼 붙어 나온다. 그래서 값도 근거로 쓴다 —
+    입력 전압 줄의 값이 '3-Phase 200–240 VAC …' · '1-Phase 240 VAC …' 라 상 구분이
+    값 안에 적혀 있다(원문 그림으로 확인).
     """
     l = re.sub(r"\s+", " ", (label or "")).strip().lower()
-    if not l:
+    v = " ".join(x for x in vals if x).strip()
+    vl = v.lower()
+    if not l and not v:
         return None, phase
-    if "output voltage" in l:
-        return None, "input"                 # 여기서부터 입력부
+    if l.startswith("•") or "technical specification" in l or l.startswith("model"):
+        return None, phase
     if "applied" in l or l in ("hp", "kw"):
-        return ("적용 전동기 (HP)" if "hp" in l else "적용 전동기 (kW)"), phase
+        return (0 if "hp" in l else 1), phase
     if "rated capacity" in l:
-        return "정격 용량 (kVA)", phase
-    if "weight" in l:
-        return "중량 (kg)", phase
-    # 라벨이 'Rated Three-Phase' 로 붙어 나오기도 한다(병합 칸이 좌우로 섞인다).
-    # 'rated current' 만 보다가 400 V 30–90 kW 의 3상 출력전류 한 줄을 놓쳤다.
+        return 2, phase
+    if "output frequency" in l:
+        return 5, phase
+    if "output voltage" in l:
+        return 6, "input"                       # 이 줄까지가 출력부다
+    if "working voltage" in l or (phase == "input" and "vac" in vl):
+        return (7 if "3-phase" in vl or "three" in l else 8), "input"
+    if phase == "input" and "hz" in vl:
+        return (9 if "50" in vl or "three" in l else 10), phase
     if ("rated current" in l or "three-phase" in l or "single-phase" in l
             or l.startswith(("three-", "single-")) or l == "phase"):
-        if phase != "output":
-            return "정격 입력전류 (A)", phase
-        kind = "3상" if "three" in l else ("단상" if "single" in l else "")
-        return ("정격 출력전류 (A) %s" % kind).strip(), phase
+        if phase == "input":
+            return 11, phase
+        return (3 if "three" in l else 4), phase
+    if "weight" in l:
+        return 12, phase
     return None, phase
 
 
+def collect(rows, codes, got, prefer_merged):
+    """분류해 담는다. prefer_merged 면 병합 칸(문장) 값만, 아니면 숫자 값만 담는다."""
+    phase = "output"
+    for label, vals in rows:
+        i, phase = classify(label, vals, phase)
+        if i is None:
+            continue
+        filled = [v for v in vals if (v or "").strip()]
+        if not filled:
+            continue
+        nums = sum(1 for v in vals if NUM.match((v or "").strip()))
+        if prefer_merged:
+            # 원문이 전 형번을 덮는 병합 칸 — 모든 열이 같은 값이다
+            if len(filled) == 1 and re.search(r"[A-Za-z]", filled[0]) and nums == 0:
+                got.setdefault(i, [filled[0]] * len(codes))
+        elif nums >= 2:
+            got.setdefault(i, list(vals))
+    return got
+
+
 def build(doc):
+    """두 경로를 합친다.
+
+    ⚠ 한 경로로는 안 된다 — 실측으로 확인했다.
+      · 낱말 좌표: 숫자 열은 정확한데 병합 칸이 조각난다('60' 과 'Hz(±5%)' 가 따로).
+      · 표 인식  : 병합 칸은 통째로 주는데 쪽에 따라 행을 잃는다(400 V 30–90 kW 는
+                   13항목 중 7개만 나왔다).
+      그래서 숫자는 낱말에서, 병합 칸은 표 인식에서 가져와 항목 번호로 합친다.
+    """
     out = []
     for pg in PAGES:
         if pg > doc.page_count:
             continue
         page = doc[pg - 1]
-        codes, rows = read_page(page)
+        codes_w, rows_w = read_page_words(page)
+        codes_t, rows_t = read_page_table(page)
+        codes = codes_w or codes_t
         if not codes:
             continue
+        got = {}
+        if codes_w and len(codes_w) == len(codes):
+            collect(rows_w, codes, got, prefer_merged=False)
+        if codes_t and len(codes_t) == len(codes):
+            collect(rows_t, codes, got, prefer_merged=True)
+            collect(rows_t, codes, got, prefer_merged=False)
+        # 표 인식이 병합 칸을 통째로 잃는 쪽이 있다(400 V 5.5–22 kW 는 여섯 줄이 빈다).
+        # 그럴 때만 낱말 경로의 병합 값을 쓴다 — 그쪽은 ± 가 빠지고 조각날 수 있어
+        # 우선순위를 뒤에 둔다.
+        if codes_w and len(codes_w) == len(codes):
+            collect(rows_w, codes, got, prefer_merged=True)
         title = ""
         for r in rows_of(page)[:6]:
             t = " ".join(w[4] for w in r)
             if re.search(r"Three\s*Phase|Single\s*Phase", t):
                 title = re.sub(r"^Technical Specification\s*\d*\s*", "", t).strip()
                 break
-        keep, phase, seen = [], "output", set()
-        for label, vals in rows:
-            ko, phase = classify(label, phase)
-            if not ko:
-                continue
-            # **형번마다 값이 다른 줄만** 담는다 — 숫자 값이 두 칸 이상이어야 한다.
-            # 공통값(병합 칸)은 첫 칸에만 들어오므로 여기서 자연히 걸러진다.
-            if sum(1 for v in vals if NUM.match((v or "").strip())) < 2:
-                continue
-            name, i = ko, 2
-            while name in seen:
-                name, i = "%s #%d" % (ko, i), i + 1
-            seen.add(name)
-            keep.append([name] + vals)
+        keep = [[name_of(i)] + got[i] for i in sorted(got)]
         if keep:
             out.append({"title": "형번별 정격 — %s" % (title or "H100"),
                         "page": pg, "orientation": "column",
                         "header": ["항목"] + codes,
                         "quantities": [None] * (len(codes) + 1),
-                        "rows": keep, "kind": "rating"})
+                        "rows": keep, "kind": "rating",
+                        "note": "원문이 전 형번을 덮는 병합 칸으로 적은 값(출력 주파수·"
+                                "전압·입력 전압·주파수)은 모든 형번 열에 같은 값으로 폈다."})
     return out
 
 
