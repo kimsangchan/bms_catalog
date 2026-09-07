@@ -240,6 +240,10 @@ def spec_sections(m, pages, no_pages):
     def sec(kind, title, cols, rows, src="", pdf=None):
         if not rows:
             return
+        # ⚠ 정격표의 source 는 **'파일.pdf#앵커'** 인 것이 있다
+        #   ('LG_AHU_CommKit_…_PDB.pdf#eevkits' — 한 문서에서 표를 가르려고 붙인 표식).
+        #   통째로 파일 이름으로 보면 없는 파일이 되어 원문 링크가 통째로 죽는다.
+        src = (src or "").split("#")[0]
         key = None
         if pdf and src:
             path = os.path.join(DATA, "raw", src)

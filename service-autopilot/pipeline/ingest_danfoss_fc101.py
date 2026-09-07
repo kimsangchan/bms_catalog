@@ -42,7 +42,15 @@ sys.path.insert(0, HERE)
 import schema as SC  # noqa: E402  — 범위 칸 판정의 정본
 
 MODEL_ID = "danfoss-fc-101"
-IFACE_ID = "modbus-rtu"
+# ★ 판을 둘로 가른다. 한 판에 담았더니 "인버터 오브젝트 410점" 이라는 숫자가 나왔는데,
+#   그 안에는 BMS 가 읽는 판독창(110)과 **커미셔닝 때 넣는 설정 파라미터**(300)가
+#   섞여 있었다. 성격이 다르면 판이 다르다(D-016). 숫자를 하나로 부르면 다른 모델과
+#   견줄 수 없다 — LS H100 233점은 통신맵 전수이지 설정 파라미터가 아니다.
+IFACE_READ = "modbus-rtu-readout"
+IFACE_CONF = "modbus-rtu-config"
+# 판독·제어창에 드는 파라미터 그룹. 15=운전데이터(운전시간·kWh), 16=판독값.
+# 나머지 그룹(0·1·2·3·4·5·6·8·13·14·18·20·22·24·30)은 설정이다.
+READ_GROUPS = ("15", "16")
 FAMILY = "Drive/Modbus"
 PARAM_DOC = "MG18B502.pdf"
 BUS_DOC = "MG18C702.pdf"
@@ -214,9 +222,9 @@ def conv_scale(idx, factors):
 def build(order, blocks, coils, busregs, plist, factors):
     pts = []
 
-    def add(common, block, prov):
+    def add(common, block, prov, iface=IFACE_READ):
         pts.append({"common": common, "blocks": block, "provenance": dict(
-            {"family": FAMILY, "status": "extracted", "interfaceId": IFACE_ID}, **prov)})
+            {"family": FAMILY, "status": "extracted", "interfaceId": iface}, **prov)})
 
     # 본문에 없고 부록에만 있는 파라미터도 세운다(1-11·14-61 이 그렇다).
     order = list(order) + [p for p in plist if p not in blocks]
@@ -272,7 +280,8 @@ def build(order, blocks, coils, busregs, plist, factors):
                                "Change during operation(부록)":
                                    app.get("changeDuringOp") or "-"},
              "srcRef": "주소 = 파라미터번호 x 10 (Design Guide %s p94)" % BUS_DOC,
-             **({"gaps": gaps} if gaps else {})})
+             **({"gaps": gaps} if gaps else {})},
+            IFACE_READ if pnu.split("-")[0] in READ_GROUPS else IFACE_CONF)
 
     def coil_name(zero, one):
         """비트 이름은 **부정이 아닌 쪽**을 쓴다.
@@ -406,40 +415,72 @@ def main(argv):
 
     mp = os.path.join(DATA, "models", MODEL_ID + ".json")
     model = json.load(io.open(mp, encoding="utf-8"))
-    iface = {
-        "id": IFACE_ID, "label": "내장 RS-485 (Modbus RTU)",
-        "family": FAMILY, "protocols": ["modbus"],
-        "sourceFile": PARAM_DOC,
-        "sourcePages": sorted({p["provenance"]["sourcePage"] for p in pts}),
-        "pointCount": len(pts), "appliesTo": ["FC 101"], "status": "extracted",
-        # 이 문서 본문에는 인쇄 쪽번호가 아예 없다(머리글이 '3.12.3 16-3* Drive Status').
-        # 밝히지 않으면 대조대가 인쇄번호로 알고 다시 찾아 엉뚱한 쪽을 띄운다.
-        "pageBase": "pdf",
-        "note": ("파라미터는 Programming Guide %s 본문에서, 코일·고정 레지스터는 "
-                 "Design Guide %s p91~92 표에서 왔다. **파라미터 주소는 표가 아니라 "
-                 "식이다** — 주소 = 파라미터번호 x 10 (p94: '3-12 -> holding register "
-                 "3120'). 레지스터 번호는 1부터 세고, 전선 위 주소는 그보다 1 작다"
-                 "(p97). 옵션 카드 없이 본체 RS-485 만으로 열린다."
-                 % (PARAM_DOC, BUS_DOC)),
-        "crosscheck": cc,
-        "gaps": ["⚠ **원문 두 곳이 어긋난다.** 부록 파라미터 목록은 3-14 를 Int16(16비트)로 "
-                 "적는데, Design Guide p94 의 예는 같은 3-14 를 '(32 bit)' 라며 레지스터 "
-                 "둘(3410·3411)을 쓴다고 한다. 폭은 **부록 Type 열**을 따랐다(체계적 출처라서). "
-                 "현장에서 32비트로 읽히면 부록이 아니라 예가 맞는 것이다.",
-                 "기본값은 sourceColumns 에만 있다 — 스키마에 기본값 자리가 없다. "
-                 "'ExpressionLimit'(용량따라 다름)처럼 수치가 아닌 것도 섞여 있다.",
-                 "읽기/쓰기 구분은 코일·고정 레지스터에만 있다. 파라미터 쪽은 원문에 "
-                 "R/W 열이 없어 비웠다 — '판독(16-**)은 읽기 전용'은 규약이지 문서 기재가 아니다.",
-                 "코일 17-32·49-64 는 16비트 값이 코일 대역에 걸친 것이라 시작 코일 "
-                 "하나로 뒀다(스키마에 담을 자리가 없다)."],
-        "points": pts,
-    }
-    others = [i for i in (model.get("interfaces") or []) if i["id"] != IFACE_ID]
-    model["interfaces"] = others + [iface]
+    byif = collections.defaultdict(list)
+    for p in pts:
+        byif[p["provenance"]["interfaceId"]].append(p)
+
+    NOTE_COMMON = (
+        "파라미터는 Programming Guide %s 본문 + **부록 파라미터 목록 p108~124** 에서, "
+        "코일·고정 레지스터는 Design Guide %s p91~92 표에서 왔다. **파라미터 주소는 "
+        "표가 아니라 식이다** — 주소 = 파라미터번호 x 10 (p94: '3-12 -> holding "
+        "register 3120'). 레지스터 번호는 1부터 세고, 전선 위 주소는 그보다 1 작다"
+        "(p97). 옵션 카드 없이 본체 RS-485 만으로 열린다." % (PARAM_DOC, BUS_DOC))
+    GAPS_COMMON = [
+        "**원문 두 곳이 어긋난다.** 부록 파라미터 목록은 3-14 를 Int16(16비트)로 적는데, "
+        "Design Guide p94 의 예는 같은 3-14 를 '(32 bit)' 라며 레지스터 둘(3410·3411)을 "
+        "쓴다고 한다. 폭은 **부록 Type 열**을 따랐다(체계적 출처라서). 현장에서 32비트로 "
+        "읽히면 부록이 아니라 예가 맞는 것이다.",
+        "기본값은 sourceColumns 에만 있다 — 스키마에 기본값 자리가 없다. "
+        "'ExpressionLimit'(용량따라 다름)처럼 수치가 아닌 것도 섞여 있다.",
+        "파라미터 쪽 R/W 는 원문에 열이 없어 비웠다 — '판독(16-**)은 읽기 전용'은 "
+        "규약이지 문서 기재가 아니다.",
+    ]
+    metas = [
+        (IFACE_READ, "BMS 창 — 판독·제어 (내장 RS-485 Modbus RTU)",
+         "BMS 가 실제로 읽고 쓰는 창. 판독 파라미터(16-**)·운전데이터(15-**)와 "
+         "제어어/상태어 코일, 고정 레지스터다. 현장 인버터 템플릿 7점이 전부 여기 "
+         "들어 있다(DCLINK_VOLTAGE=16-30 · HEATsink TEMP=16-34 · OUT_CURRENT=16-14 · "
+         "OUT_VOLTAGE=16-12 · OUT_PWR=16-10 · RUN_TIME=15-01 · ACCUM_PWR=15-02).",
+         ["코일 17-32·49-64 는 16비트 값이 코일 대역에 걸친 것이라 시작 코일 하나로 "
+          "뒀다(스키마에 담을 자리가 없다)."]),
+        (IFACE_CONF, "설정 파라미터 (내장 RS-485 Modbus RTU)",
+         "커미셔닝 때 넣는 값이다 — 모터 명판값·I/O 스케일링·통신 설정·보호 한계·"
+         "화재모드 따위. 같은 통로(주소 = 파라미터번호 x 10)로 읽고 쓸 수 있지만 "
+         "**BMS 가 상시 폴링하는 물건이 아니다.** 판독창과 한 판에 담으면 "
+         "'이 인버터 포인트 410점' 처럼 읽혀 다른 모델과 견줄 수 없어진다.",
+         ["설정값이라 시뮬레이터·자동매핑에 바로 쓰지 않는다 — 장비 설정을 되짚을 때 쓴다."]),
+    ]
+    ifaces = []
+    for iid, label, note, gaps in metas:
+        p_ = byif.get(iid) or []
+        if not p_:
+            continue
+        ifaces.append({
+            "id": iid, "label": label, "family": FAMILY, "protocols": ["modbus"],
+            "sourceFile": PARAM_DOC,
+            "sourcePages": sorted({x["provenance"]["sourcePage"] for x in p_}),
+            # 이 문서 본문에는 인쇄 쪽번호가 아예 없다(머리글이 '3.12.3 16-3* Drive Status').
+            # 밝히지 않으면 대조대가 인쇄번호로 알고 다시 찾아 엉뚱한 쪽을 띄운다.
+            "pageBase": "pdf",
+            "pointCount": len(p_), "appliesTo": ["FC 101"], "status": "extracted",
+            "note": note + " " + NOTE_COMMON,
+            "crosscheck": cc if iid == IFACE_READ else None,
+            "gaps": gaps + GAPS_COMMON,
+            "points": p_,
+        })
+    for f in ifaces:
+        if f["crosscheck"] is None:
+            del f["crosscheck"]
+    keep = [i for i in (model.get("interfaces") or [])
+            if i["id"] not in (IFACE_READ, IFACE_CONF, "modbus-rtu")]
+    model["interfaces"] = keep + ifaces
     model["has"] = dict(model.get("has") or {}, points=True)
     model["crosscheck"] = cc
     model["summary"] = ("팬·펌프용 HVAC 전용 인버터. 정격은 Fact Sheet·전기데이터, "
-                        "오브젝트는 내장 RS-485 Modbus %d점." % len(pts))
+                        "오브젝트는 내장 RS-485 Modbus — **판독·제어 %d점 + 설정 파라미터 %d점**"
+                        % (len(byif.get(IFACE_READ) or []), len(byif.get(IFACE_CONF) or [])))
+    print("  판: 판독·제어 %d점 · 설정 파라미터 %d점"
+          % (len(byif.get(IFACE_READ) or []), len(byif.get(IFACE_CONF) or [])))
     if not run:
         print("\n(미리보기다. 기록하려면 --run)")
         return 0
