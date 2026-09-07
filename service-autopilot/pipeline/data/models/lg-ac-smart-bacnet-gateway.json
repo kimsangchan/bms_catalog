@@ -12,7 +12,7 @@
  "status": "active",
  "coversDevices": "원문 5쪽이 붙는 장치를 직접 열거한다 — Indoor units · ERV · DI/DOs · DOKITs · AWHPs · AHUs · I/O Module. 전부 LG 485 망의 LG 장치다(2CH: CH1 이 AHU, CH2 가 그 밖). 타사 벤더 것을 섞지 않았다 — 165점 전부 이 문서 하나에서 나왔다. ⚠ DI/DO · DOKIT · I/O Module 은 이 문서에 포인트 표가 없어 취입하지 않았다.",
  "classifiedBy": "규칙표(classify.py)가 VRF 를 e8 / HVAC.AIR.TERMINAL.VRF 로 둔다. 게이트웨이는 그것이 덮는 기기군으로 분류하므로(JCI YKN2Open 을 옥상형으로 둔 것과 같은 방식) VRF 게이트웨이는 e8 이다. 같은 성격의 Daikin DMS502B71 · JCI SI-VRFCBN02 세 건이 이미 e8/TERMINAL.VRF 라 표기가 갈려 있던 것을 맞췄다(옛 값 e5 / HVAC.AIR.VRF).",
- "summary": "BACnet 게이트웨이 매뉴얼 1건 · 판 6개에서 취입 — 오브젝트 165점",
+ "summary": "AC Smart BACnet 게이트웨이 — 판 9개 · 오브젝트 264점 (BACnet 165 · Modbus-TCP 99)",
  "has": {
   "spec": true,
   "points": true
@@ -5961,6 +5961,4006 @@
       ],
       "status": "extracted",
       "interfaceId": "gateway-general"
+     }
+    }
+   ]
+  },
+  {
+   "id": "modbus-tcp-indoor",
+   "label": "Modbus-TCP Point List : 실내기",
+   "family": "LG/ACSmart-BACnet",
+   "protocols": [
+    "modbus"
+   ],
+   "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+   "sourcePages": [
+    54,
+    55
+   ],
+   "pageBase": "pdf",
+   "pointCount": 25,
+   "appliesTo": [
+    "Indoor unit"
+   ],
+   "status": "extracted",
+   "note": "같은 게이트웨이의 **Modbus-TCP 통로**다(원문 p53 'Objects (Modbus-TCP)'). BACnet 판과 같은 값을 다른 주소 체계로 낸다 — 코일은 함수코드 01h(읽기)/05h(쓰기), 홀딩 레지스터는 03h(읽기)/06h(쓰기). 레지스터 번호는 기기 한 대 기준이고 오브젝트 이름의 _XXX 가 유닛 주소다(BACnet 판과 같은 규칙).",
+   "gaps": [
+    "레지스터 번호는 **기기 한 대 기준**이다. 여러 대를 붙일 때의 주소 오프셋 규칙은 원문 이 절에 없다 — BACnet 쪽은 인스턴스 식이 있지만 Modbus 쪽은 없다."
+   ],
+   "points": [
+    {
+     "common": {
+      "name": "ON/OFF",
+      "shortName": "StartStopStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Read Single Coil",
+       "Name": "ON/OFF",
+       "Object Name": "StartStopStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SWING",
+      "shortName": "SwingStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Read Single Coil",
+       "Name": "SWING",
+       "Object Name": "SwingStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "LOCK",
+      "shortName": "LockStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "3",
+       "Function": "Read Single Coil",
+       "Name": "LOCK",
+       "Object Name": "LockStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "MODE LOCK",
+      "shortName": "ModeLockStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "4",
+       "Function": "Read Single Coil",
+       "Name": "MODE LOCK",
+       "Object Name": "ModeLockStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN LOCK",
+      "shortName": "WindFlowLockStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "5",
+       "Function": "Read Single Coil",
+       "Name": "FAN LOCK",
+       "Object Name": "WindFlowLockStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "TEMP LOCK",
+      "shortName": "SetTempStatus-XXX",
+      "readWrite": "R",
+      "group": "Read Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "6",
+       "Function": "Read Single Coil",
+       "Name": "TEMP LOCK",
+       "Object Name": "SetTempStatus-XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "ALARM",
+      "shortName": "Alarm_XXX",
+      "readWrite": "R",
+      "group": "Read Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Normal"
+       },
+       {
+        "code": "1",
+        "label": "Abnormal"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 7,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "7",
+       "Function": "Read Single Coil",
+       "Name": "ALARM",
+       "Object Name": "Alarm_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "ON/OFF",
+      "shortName": "StartStopCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Write Single Coil",
+       "Name": "ON/OFF",
+       "Object Name": "StartStopCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SWING",
+      "shortName": "SwingCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Write Single Coil",
+       "Name": "SWING",
+       "Object Name": "SwingCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "LOCK",
+      "shortName": "LockCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "3",
+       "Function": "Write Single Coil",
+       "Name": "LOCK",
+       "Object Name": "LockCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "MODE LOCK",
+      "shortName": "ModeLockCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "4",
+       "Function": "Write Single Coil",
+       "Name": "MODE LOCK",
+       "Object Name": "ModeLockCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN LOCK",
+      "shortName": "WindFlowLockCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "5",
+       "Function": "Write Single Coil",
+       "Name": "FAN LOCK",
+       "Object Name": "WindFlowLockCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "TEMP LOCK",
+      "shortName": "SetTempCommand-XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 54,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "6",
+       "Function": "Write Single Coil",
+       "Name": "TEMP LOCK",
+       "Object Name": "SetTempCommand-XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "OPERATION MODE",
+      "shortName": "ModeStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Dry"
+       },
+       {
+        "code": "3",
+        "label": "Fan"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       },
+       {
+        "code": "5",
+        "label": "Heat"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Read Holding Registers",
+       "Name": "OPERATION MODE",
+       "Object Name": "ModeStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN SPEED",
+      "shortName": "FanSpeedStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Low"
+       },
+       {
+        "code": "2",
+        "label": "Middle"
+       },
+       {
+        "code": "3",
+        "label": "High"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Read Holding Registers",
+       "Name": "FAN SPEED",
+       "Object Name": "FanSpeedStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SET ROOM TEMPERATURE",
+      "shortName": "SetTempStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "unitSI": "degC",
+      "unitSIRaw": "°C"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "3",
+       "Function": "Read Holding Registers",
+       "Name": "SET ROOM TEMPERATURE",
+       "Object Name": "SetTempStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "UP_SETTEMP",
+      "shortName": "SetUpperTemp Status_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "unitSI": "degC",
+      "unitSIRaw": "°C"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "4",
+       "Function": "Read Holding Registers",
+       "Name": "UP_SETTEMP",
+       "Object Name": "SetUpperTemp Status_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "LO_SETTEMP",
+      "shortName": "SetLowerTemp Status_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "unitSI": "degC",
+      "unitSIRaw": "°C"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "5",
+       "Function": "Read Holding Registers",
+       "Name": "LO_SETTEMP",
+       "Object Name": "SetLowerTemp Status_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "ROOM TEMPERATURE",
+      "shortName": "RoomTemp_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "unitSI": "degC",
+      "unitSIRaw": "°C"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "6",
+       "Function": "Read Holding Registers",
+       "Name": "ROOM TEMPERATURE",
+       "Object Name": "RoomTemp_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "ERROR CODE",
+      "shortName": "MalfunctionCode_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "statesRef": "Reference LG original Error Code"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 7,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "7",
+       "Function": "Read Holding Registers",
+       "Name": "ERROR CODE",
+       "Object Name": "MalfunctionCode_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "OPERATION MODE",
+      "shortName": "ModeCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Dry"
+       },
+       {
+        "code": "3",
+        "label": "Fan"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       },
+       {
+        "code": "5",
+        "label": "Heat"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Write Single Registers",
+       "Name": "OPERATION MODE",
+       "Object Name": "ModeCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN SPEED",
+      "shortName": "FanSpeed Command_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Low"
+       },
+       {
+        "code": "2",
+        "label": "Middle"
+       },
+       {
+        "code": "3",
+        "label": "High"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Write Single Registers",
+       "Name": "FAN SPEED",
+       "Object Name": "FanSpeed Command_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SET ROOM TEMPERATURE",
+      "shortName": "SetTemp Command_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "unitSI": "degC",
+      "unitSIRaw": "°C"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "3",
+       "Function": "Write Single Registers",
+       "Name": "SET ROOM TEMPERATURE",
+       "Object Name": "SetTemp Command_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "UP_SETTEMP",
+      "shortName": "SetUpperTemp Command_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "unitSI": "degC",
+      "unitSIRaw": "°C"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "4",
+       "Function": "Write Single Registers",
+       "Name": "UP_SETTEMP",
+       "Object Name": "SetUpperTemp Command_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "LO_SETTEMP",
+      "shortName": "SetLowerTemp Command_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "unitSI": "degC",
+      "unitSIRaw": "°C"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 55,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-indoor",
+      "sourceColumns": {
+       "Register": "5",
+       "Function": "Write Single Registers",
+       "Name": "LO_SETTEMP",
+       "Object Name": "SetLowerTemp Command_XXX"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "modbus-tcp-ventilation",
+   "label": "Modbus-TCP Point List : 환기(ERV)",
+   "family": "LG/ACSmart-BACnet",
+   "protocols": [
+    "modbus"
+   ],
+   "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+   "sourcePages": [
+    57,
+    58
+   ],
+   "pageBase": "pdf",
+   "pointCount": 22,
+   "appliesTo": [
+    "ERV"
+   ],
+   "status": "extracted",
+   "note": "같은 게이트웨이의 **Modbus-TCP 통로**다(원문 p53 'Objects (Modbus-TCP)'). BACnet 판과 같은 값을 다른 주소 체계로 낸다 — 코일은 함수코드 01h(읽기)/05h(쓰기), 홀딩 레지스터는 03h(읽기)/06h(쓰기). 레지스터 번호는 기기 한 대 기준이고 오브젝트 이름의 _XXX 가 유닛 주소다(BACnet 판과 같은 규칙).",
+   "gaps": [
+    "레지스터 번호는 **기기 한 대 기준**이다. 여러 대를 붙일 때의 주소 오프셋 규칙은 원문 이 절에 없다 — BACnet 쪽은 인스턴스 식이 있지만 Modbus 쪽은 없다."
+   ],
+   "points": [
+    {
+     "common": {
+      "name": "ON/OFF",
+      "shortName": "StartStopStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 57,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Coil Read",
+       "Name": "ON/OFF",
+       "Object Name": "StartStopStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "LOCK",
+      "shortName": "LockStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 57,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Coil Read",
+       "Name": "LOCK",
+       "Object Name": "LockStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FILTER SIGN",
+      "shortName": "FilterSign_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 57,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "3",
+       "Function": "Coil Read",
+       "Name": "FILTER SIGN",
+       "Object Name": "FilterSign_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "ALARM",
+      "shortName": "Alarm_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 57,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "4",
+       "Function": "Coil Read",
+       "Name": "ALARM",
+       "Object Name": "Alarm_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HRV_AC_OPER",
+      "shortName": "HrvStartStopStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 57,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "5",
+       "Function": "Coil Read",
+       "Name": "HRV_AC_OPER",
+       "Object Name": "HrvStartStopStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HRV_HUMIDIFY",
+      "shortName": "HrvHumidifyStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 57,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "6",
+       "Function": "Coil Read",
+       "Name": "HRV_HUMIDIFY",
+       "Object Name": "HrvHumidifyStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "ON/OFF",
+      "shortName": "StartStopCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 57,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Write Single Coil",
+       "Name": "ON/OFF",
+       "Object Name": "StartStopCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "LOCK",
+      "shortName": "LockCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 57,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Write Single Coil",
+       "Name": "LOCK",
+       "Object Name": "LockCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FILTER SIGN RESET",
+      "shortName": "FilterSignReset_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Reset(Off)"
+       },
+       {
+        "code": "1",
+        "label": "Void(On)"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 57,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "3",
+       "Function": "Write Single Coil",
+       "Name": "FILTER SIGN RESET",
+       "Object Name": "FilterSignReset_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HRV_AC_OPER",
+      "shortName": "HrvStartStopCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 57,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "5",
+       "Function": "Write Single Coil",
+       "Name": "HRV_AC_OPER",
+       "Object Name": "HrvStartStopCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HRV_HUMIDIFY",
+      "shortName": "HrvHumidifyCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 57,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "6",
+       "Function": "Write Single Coil",
+       "Name": "HRV_HUMIDIFY",
+       "Object Name": "HrvHumidifyCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "OPERATION MODE",
+      "shortName": "ModeStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Heat Exchange"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Normal"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 58,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Read Holding Registers",
+       "Name": "OPERATION MODE",
+       "Object Name": "ModeStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN SPEED",
+      "shortName": "FanSpeedStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Low"
+       },
+       {
+        "code": "2",
+        "label": "High"
+       },
+       {
+        "code": "3",
+        "label": "Super High"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 58,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Read Holding Registers",
+       "Name": "FAN SPEED",
+       "Object Name": "FanSpeedStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "USER MODE",
+      "shortName": "UserModeStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Quick Operation"
+       },
+       {
+        "code": "2",
+        "label": "Energy Saving"
+       },
+       {
+        "code": "3",
+        "label": "Heat"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 58,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "3",
+       "Function": "Read Holding Registers",
+       "Name": "USER MODE",
+       "Object Name": "UserModeStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "ERROR CODE",
+      "shortName": "MalfunctionCode_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "statesRef": "Reference LG original Error Code"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 58,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "4",
+       "Function": "Read Holding Registers",
+       "Name": "ERROR CODE",
+       "Object Name": "MalfunctionCode_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HRV_AC_MODE",
+      "shortName": "HrvModeStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Heat"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 58,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "5",
+       "Function": "Read Holding Registers",
+       "Name": "HRV_AC_MODE",
+       "Object Name": "HrvModeStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HRV_SETTEMP",
+      "shortName": "HrvSetTempstatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "unitSI": "degC",
+      "unitSIRaw": "°C"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 58,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "6",
+       "Function": "Read Holding Registers",
+       "Name": "HRV_SETTEMP",
+       "Object Name": "HrvSetTempstatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "OPERATION MODE",
+      "shortName": "ModeCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Heat Exchange"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Normal"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 58,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Write Single Registers",
+       "Name": "OPERATION MODE",
+       "Object Name": "ModeCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN SPEED",
+      "shortName": "FanSpeed Command_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Low"
+       },
+       {
+        "code": "2",
+        "label": "High"
+       },
+       {
+        "code": "3",
+        "label": "Super High"
+       },
+       {
+        "code": "4",
+        "label": "Auto"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 58,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Write Single Registers",
+       "Name": "FAN SPEED",
+       "Object Name": "FanSpeed Command_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "USER MODE",
+      "shortName": "UserModeStatus_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Quick Operation"
+       },
+       {
+        "code": "2",
+        "label": "Energy Saving"
+       },
+       {
+        "code": "3",
+        "label": "Heat"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 58,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "3",
+       "Function": "Write Single Registers",
+       "Name": "USER MODE",
+       "Object Name": "UserModeStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HRV_AC_MODE",
+      "shortName": "HrvModeStatus_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Auto"
+       },
+       {
+        "code": "3",
+        "label": "Heat"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 58,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "5",
+       "Function": "Write Single Registers",
+       "Name": "HRV_AC_MODE",
+       "Object Name": "HrvModeStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HRV_SETTEMP",
+      "shortName": "HrvSetTempstatus_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "unitSI": "degC",
+      "unitSIRaw": "°C"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 58,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ventilation",
+      "sourceColumns": {
+       "Register": "6",
+       "Function": "Write Single Registers",
+       "Name": "HRV_SETTEMP",
+       "Object Name": "HrvSetTempstatus_XXX"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "modbus-tcp-ahu",
+   "label": "Modbus-TCP Point List : 공조기(AHU)",
+   "family": "LG/ACSmart-BACnet",
+   "protocols": [
+    "modbus"
+   ],
+   "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+   "sourcePages": [
+    60,
+    61,
+    62
+   ],
+   "pageBase": "pdf",
+   "pointCount": 52,
+   "appliesTo": [
+    "AHU"
+   ],
+   "status": "extracted",
+   "note": "같은 게이트웨이의 **Modbus-TCP 통로**다(원문 p53 'Objects (Modbus-TCP)'). BACnet 판과 같은 값을 다른 주소 체계로 낸다 — 코일은 함수코드 01h(읽기)/05h(쓰기), 홀딩 레지스터는 03h(읽기)/06h(쓰기). 레지스터 번호는 기기 한 대 기준이고 오브젝트 이름의 _XXX 가 유닛 주소다(BACnet 판과 같은 규칙).",
+   "gaps": [
+    "레지스터 번호는 **기기 한 대 기준**이다. 여러 대를 붙일 때의 주소 오프셋 규칙은 원문 이 절에 없다 — BACnet 쪽은 인스턴스 식이 있지만 Modbus 쪽은 없다."
+   ],
+   "points": [
+    {
+     "common": {
+      "name": "ON/OFF",
+      "shortName": "StartStopStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Coil Read",
+       "Name": "ON/OFF",
+       "Object Name": "StartStopStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "LOCK",
+      "shortName": "LockStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Coil Read",
+       "Name": "LOCK",
+       "Object Name": "LockStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FILTER SIGN",
+      "shortName": "FilterSign_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Off"
+       },
+       {
+        "code": "1",
+        "label": "On"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "3",
+       "Function": "Coil Read",
+       "Name": "FILTER SIGN",
+       "Object Name": "FilterSign_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SMOKE",
+      "shortName": "EmergencySensorStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "4",
+       "Function": "Coil Read",
+       "Name": "SMOKE",
+       "Object Name": "EmergencySensorStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HUMIDITY",
+      "shortName": "HumidifyStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "5",
+       "Function": "Coil Read",
+       "Name": "HUMIDITY",
+       "Object Name": "HumidifyStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "AUTO VENT",
+      "shortName": "AutoVentStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "6",
+       "Function": "Coil Read",
+       "Name": "AUTO VENT",
+       "Object Name": "AutoVentStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HUMIDIFIER",
+      "shortName": "HumidifiyUnitStatus-XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 7,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "7",
+       "Function": "Coil Read",
+       "Name": "HUMIDIFIER",
+       "Object Name": "HumidifiyUnitStatus-XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HEATER",
+      "shortName": "HeaterUnitStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 8,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "8",
+       "Function": "Coil Read",
+       "Name": "HEATER",
+       "Object Name": "HeaterUnitStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "VENT FAN",
+      "shortName": "VentFANStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 9,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "9",
+       "Function": "Coil Read",
+       "Name": "VENT FAN",
+       "Object Name": "VentFANStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SUPPLY FAN",
+      "shortName": "SupplyFANStatus_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 10,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "10",
+       "Function": "Coil Read",
+       "Name": "SUPPLY FAN",
+       "Object Name": "SupplyFANStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "ALARM",
+      "shortName": "Alarm_XXX",
+      "readWrite": "R",
+      "group": "Coil Read",
+      "states": [
+       {
+        "code": "0",
+        "label": "Normal"
+       },
+       {
+        "code": "1",
+        "label": "Abnormal"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 11,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        1
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "11",
+       "Function": "Coil Read",
+       "Name": "ALARM",
+       "Object Name": "Alarm_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "ON/OFF",
+      "shortName": "StartStopCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Write Single Coil",
+       "Name": "ON/OFF",
+       "Object Name": "StartStopCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "LOCK",
+      "shortName": "LockCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Permit"
+       },
+       {
+        "code": "1",
+        "label": "Prohibit"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Write Single Coil",
+       "Name": "LOCK",
+       "Object Name": "LockCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SMOKE",
+      "shortName": "EmergencySensorCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "4",
+       "Function": "Write Single Coil",
+       "Name": "SMOKE",
+       "Object Name": "EmergencySensorCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HUMIDITY",
+      "shortName": "HumidifyCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "5",
+       "Function": "Write Single Coil",
+       "Name": "HUMIDITY",
+       "Object Name": "HumidifyCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "AUTO VENT",
+      "shortName": "AutoVentCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Coil",
+      "states": [
+       {
+        "code": "0",
+        "label": "Stop"
+       },
+       {
+        "code": "1",
+        "label": "Run"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "1",
+       "refClass": "coil",
+       "functionCodes": [
+        5
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 60,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "6",
+       "Function": "Write Single Coil",
+       "Name": "AUTO VENT",
+       "Object Name": "AutoVentCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "MODE",
+      "shortName": "ModeStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Dry"
+       },
+       {
+        "code": "3",
+        "label": "Fan"
+       },
+       {
+        "code": "4",
+        "label": "POWSAV"
+       },
+       {
+        "code": "5",
+        "label": "Heat"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Read Holding Registers",
+       "Name": "MODE",
+       "Object Name": "ModeStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SET TEMP",
+      "shortName": "SetTempStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "unitSI": "degC",
+      "unitSIRaw": "°C"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Read Holding Registers",
+       "Name": "SET TEMP",
+       "Object Name": "SetTempStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SUPPLY TEMP",
+      "shortName": "SupplyTempStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "-127~127"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 3,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "3",
+       "Function": "Read Holding Registers",
+       "Name": "SUPPLY TEMP",
+       "Object Name": "SupplyTempStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "OUTDOOR TEMP",
+      "shortName": "OutdoorTempStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "-127~127"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 4,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "4",
+       "Function": "Read Holding Registers",
+       "Name": "OUTDOOR TEMP",
+       "Object Name": "OutdoorTempStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "VENT TEMP",
+      "shortName": "VentTempStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "-127~127"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 5,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "5",
+       "Function": "Read Holding Registers",
+       "Name": "VENT TEMP",
+       "Object Name": "VentTempStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "MIXING TEMP",
+      "shortName": "MixingTempStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "-127~127"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 6,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "6",
+       "Function": "Read Holding Registers",
+       "Name": "MIXING TEMP",
+       "Object Name": "MixingTempStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SET HUMIDITY",
+      "shortName": "SetHumidityStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "40~60"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 7,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "7",
+       "Function": "Read Holding Registers",
+       "Name": "SET HUMIDITY",
+       "Object Name": "SetHumidityStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SUPPLY HUMIDITY",
+      "shortName": "SupplyHumidityStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "30~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 8,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "8",
+       "Function": "Read Holding Registers",
+       "Name": "SUPPLY HUMIDITY",
+       "Object Name": "SupplyHumidityStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "OUTDOOR HUMIDITY",
+      "shortName": "OutdoorHumidityStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "30~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 9,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "9",
+       "Function": "Read Holding Registers",
+       "Name": "OUTDOOR HUMIDITY",
+       "Object Name": "OutdoorHumidityStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "VENT HUMIDITY",
+      "shortName": "VentHumidityStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "30~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 10,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "10",
+       "Function": "Read Holding Registers",
+       "Name": "VENT HUMIDITY",
+       "Object Name": "VentHumidityStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "CO2 VALUE",
+      "shortName": "2 COValueStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~255"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 11,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "11",
+       "Function": "Read Holding Registers",
+       "Name": "CO2 VALUE",
+       "Object Name": "2 COValueStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "ERROR CODE",
+      "shortName": "MalfunctionCode_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "statesRef": "Reference LG original Error Code"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 12,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "12",
+       "Function": "Read Holding Registers",
+       "Name": "ERROR CODE",
+       "Object Name": "MalfunctionCode_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "CURR_OA_DAMPER",
+      "shortName": "CurOADamperStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 17,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "17",
+       "Function": "Read Holding Registers",
+       "Name": "CURR_OA_DAMPER",
+       "Object Name": "CurOADamperStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "CURR_EA_DAMPER",
+      "shortName": "CurEADamperStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 18,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "18",
+       "Function": "Read Holding Registers",
+       "Name": "CURR_EA_DAMPER",
+       "Object Name": "CurEADamperStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "CURR_MIX_DAMPER",
+      "shortName": "CurMixDamperStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 19,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "19",
+       "Function": "Read Holding Registers",
+       "Name": "CURR_MIX_DAMPER",
+       "Object Name": "CurMixDamperStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "COOL_OA_DAMPER",
+      "shortName": "OADamperCoolStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 20,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "20",
+       "Function": "Read Holding Registers",
+       "Name": "COOL_OA_DAMPER",
+       "Object Name": "OADamperCoolStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "COOL_EA_DAMPER",
+      "shortName": "EADamperCoolStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 21,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "21",
+       "Function": "Read Holding Registers",
+       "Name": "COOL_EA_DAMPER",
+       "Object Name": "EADamperCoolStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "COOL_MIX_DAMPER",
+      "shortName": "MixDamperCoolStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 22,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "22",
+       "Function": "Read Holding Registers",
+       "Name": "COOL_MIX_DAMPER",
+       "Object Name": "MixDamperCoolStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HEAT_OA_DAMPER",
+      "shortName": "OADamperHeatStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 23,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "23",
+       "Function": "Read Holding Registers",
+       "Name": "HEAT_OA_DAMPER",
+       "Object Name": "OADamperHeatStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HEAT_EA_DAMPER",
+      "shortName": "EADamperHeatStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 24,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "24",
+       "Function": "Read Holding Registers",
+       "Name": "HEAT_EA_DAMPER",
+       "Object Name": "EADamperHeatStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HEAT_MIX_DAMPER",
+      "shortName": "MixDamperHeatStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 25,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 61,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "25",
+       "Function": "Read Holding Registers",
+       "Name": "HEAT_MIX_DAMPER",
+       "Object Name": "MixDamperHeatStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN_OA_DAMPER",
+      "shortName": "OADamperFANStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 26,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "26",
+       "Function": "Read Holding Registers",
+       "Name": "FAN_OA_DAMPER",
+       "Object Name": "OADamperFANStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN_EA_DAMPER",
+      "shortName": "EADamperFANStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 27,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "27",
+       "Function": "Read Holding Registers",
+       "Name": "FAN_EA_DAMPER",
+       "Object Name": "EADamperFANStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN_MIX_DAMPER",
+      "shortName": "MixDamperFANStatus_XXX",
+      "readWrite": "R",
+      "group": "Read Holding Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 28,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        3
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "28",
+       "Function": "Read Holding Registers",
+       "Name": "FAN_MIX_DAMPER",
+       "Object Name": "MixDamperFANStatus_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "MODE",
+      "shortName": "ModeCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "1",
+        "label": "Cool"
+       },
+       {
+        "code": "2",
+        "label": "Dry"
+       },
+       {
+        "code": "3",
+        "label": "Fan"
+       },
+       {
+        "code": "4",
+        "label": "POWSAV"
+       },
+       {
+        "code": "5",
+        "label": "Heat"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 1,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "1",
+       "Function": "Write Single Registers",
+       "Name": "MODE",
+       "Object Name": "ModeCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SET TEMP",
+      "shortName": "SetTempCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "unitSI": "degC",
+      "unitSIRaw": "°C"
+     },
+     "blocks": {
+      "modbus": {
+       "address": 2,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "2",
+       "Function": "Write Single Registers",
+       "Name": "SET TEMP",
+       "Object Name": "SetTempCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "SET HUMIDITY",
+      "shortName": "SetHumidityCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "40~60"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 7,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "7",
+       "Function": "Write Single Registers",
+       "Name": "SET HUMIDITY",
+       "Object Name": "SetHumidityCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "COOL_OA_DAMPER",
+      "shortName": "CoolOADamperCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 20,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "20",
+       "Function": "Write Single Registers",
+       "Name": "COOL_OA_DAMPER",
+       "Object Name": "CoolOADamperCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "COOL_EA_DAMPER",
+      "shortName": "CoolEADamperCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 21,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "21",
+       "Function": "Write Single Registers",
+       "Name": "COOL_EA_DAMPER",
+       "Object Name": "CoolEADamperCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "COOL_MIX_DAMPER",
+      "shortName": "CoolMixDamperCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 22,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "22",
+       "Function": "Write Single Registers",
+       "Name": "COOL_MIX_DAMPER",
+       "Object Name": "CoolMixDamperCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HEAT_OA_DAMPER",
+      "shortName": "HeatOADamperCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 23,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "23",
+       "Function": "Write Single Registers",
+       "Name": "HEAT_OA_DAMPER",
+       "Object Name": "HeatOADamperCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HEAT_EA_DAMPER",
+      "shortName": "HeatEADamperCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 24,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "24",
+       "Function": "Write Single Registers",
+       "Name": "HEAT_EA_DAMPER",
+       "Object Name": "HeatEADamperCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "HEAT_MIX_DAMPER",
+      "shortName": "HeatMixDamperCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 25,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "25",
+       "Function": "Write Single Registers",
+       "Name": "HEAT_MIX_DAMPER",
+       "Object Name": "HeatMixDamperCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN_OA_DAMPER",
+      "shortName": "FANOADamperCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 26,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "26",
+       "Function": "Write Single Registers",
+       "Name": "FAN_OA_DAMPER",
+       "Object Name": "FANOADamperCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN_EA_DAMPER",
+      "shortName": "FANEADamperCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 27,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "27",
+       "Function": "Write Single Registers",
+       "Name": "FAN_EA_DAMPER",
+       "Object Name": "FANEADamperCommand_XXX"
+      }
+     }
+    },
+    {
+     "common": {
+      "name": "FAN_MIX_DAMPER",
+      "shortName": "FANMixDamperCommand_XXX",
+      "readWrite": "W",
+      "group": "Write Single Registers",
+      "states": [
+       {
+        "code": "0",
+        "label": "0~90"
+       }
+      ]
+     },
+     "blocks": {
+      "modbus": {
+       "address": 28,
+       "addressBase": "1",
+       "refClass": "holding-register",
+       "functionCodes": [
+        6
+       ]
+      }
+     },
+     "provenance": {
+      "sourceFile": "LG_ACSmart_BACnet_MFL69023101.pdf",
+      "sourcePage": 62,
+      "family": "LG/ACSmart-BACnet",
+      "status": "extracted",
+      "interfaceId": "modbus-tcp-ahu",
+      "sourceColumns": {
+       "Register": "28",
+       "Function": "Write Single Registers",
+       "Name": "FAN_MIX_DAMPER",
+       "Object Name": "FANMixDamperCommand_XXX"
+      }
      }
     }
    ]
