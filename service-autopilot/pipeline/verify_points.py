@@ -497,17 +497,22 @@ def main(argv):
         v["count"] += mnode["count"]
         e["count"] += mnode["count"]
 
-    # 쪽 그림은 문서별로 한 번만 연다
+    # 쪽 그림은 문서별로 한 번만 연다.
+    # ⚠ 열쇠를 **한 쪽에 하나만** 매달면 안 된다. 같은 문서 같은 쪽을 두 모델이
+    #   쓰는 일이 흔하다 — LG AHU 킷 PAHCMR000·PAHCMS000 이 같은 PDB 5쪽을 본다.
+    #   dict 로 덮어쓰다가 **정격 206행이 그림 없이 떴다**(사용자가 "정격 원문
+    #   페이지가 안 열린다" 고 세 번 짚은 것이 이것이다). 쪽 하나에 열쇠 여럿을 단다.
     imgs = {}
     if not no_pages:
-        bydoc = collections.defaultdict(dict)
+        bydoc = collections.defaultdict(lambda: collections.defaultdict(list))
         for key, (mid_, pdf, path) in pages.items():
-            bydoc[path][pdf] = key
+            bydoc[path][pdf].append(key)
         for path, want in bydoc.items():
             doc = fitz.open(path)
             got = UI.page_images(doc, want.keys())
-            for pdf, key in want.items():
-                imgs[key] = got[pdf]
+            for pdf, keys in want.items():
+                for key in keys:
+                    imgs[key] = got[pdf]
             doc.close()
 
     import pathlib
