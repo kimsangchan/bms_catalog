@@ -306,7 +306,7 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
   <span class="sp"></span>
   <span>원문 <span class="pgno" id="rpg">—</span></span>
   <a class="zbtn" id="openpdf" target="_blank" rel="noopener"
-     title="원문 PDF 를 새 탭에서 연다 (그 쪽으로 바로 간다)" hidden>PDF 전체</a>
+     title="원문 PDF 를 새 탭에서 연다 (그 쪽으로 바로 간다)">원문 쪽 없음</a>
   <button class="zbtn" type="button" data-v="page" id="foldb"
           title="원문창 접기">─ 원문 접기</button>
   <button class="zbtn" type="button" id="csv" title="지금 보이는 행만 CSV 로">CSV</button>
@@ -553,13 +553,23 @@ function show(key, printed, pdf){
      이 화면은 review/ 에 굽고 원문은 pipeline/data/raw/ 에 있다(저장소에 안 담긴다). */
   var link = document.getElementById("openpdf");
   var file = String(key || "").split("|").slice(1).join("|").split("#")[0];
+  /* ⚠ 원문이 없을 때 단추를 **숨기지 않는다.** 숨겼더니 정격의 항목·통신 구역에서
+     단추가 사라져 "링크가 안 된다" 로 읽혔다. 왜 없는지를 그 자리에 적어 둔다. */
+  link.hidden = false;
   if (file) {
     link.href = "../pipeline/data/raw/" + encodeURIComponent(file)
               + (pdf && pdf !== "?" ? "#page=" + pdf : "");
     link.textContent = "PDF 전체" + (pdf && pdf !== "?" ? " (" + pdf + "쪽)" : "");
-    link.hidden = false;
+    link.title = file + " 를 새 탭에서 연다";
+    link.removeAttribute("aria-disabled");
+    link.style.opacity = "";
   } else {
-    link.hidden = true;
+    link.removeAttribute("href");
+    link.textContent = "원문 쪽 없음";
+    link.title = "이 줄은 원문 쪽을 안 갖고 있다 — 출처 칸에 문서 이름만 있거나"
+               + "(예: 'Fact Sheet') 손으로 넣은 값이다";
+    link.setAttribute("aria-disabled", "true");
+    link.style.opacity = ".45";
   }
   var rec = D.pages[key];
   if (!rec) { img.removeAttribute("src"); return; }

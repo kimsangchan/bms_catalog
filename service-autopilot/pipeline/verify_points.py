@@ -254,15 +254,26 @@ def spec_sections(m, pages, no_pages):
                 if not no_pages:
                     pages.setdefault(key, (mid, pdf, path))
         for r in rows:
-            r["pk"] = key or ""
-            r["pg"] = pdf or ""
-            r["pdf"] = pdf or "?"
+            # 줄이 제 출처를 갖고 있으면 그것을 쓴다(항목형). 없으면 구역 것을 따른다.
+            rs, rp = r.pop("_src", None), r.pop("_pdf", None)
+            if rs and rp:
+                rkey = "%s|%s#%s" % (mid, rs, rp)
+                if not no_pages:
+                    pages.setdefault(rkey, (mid, rp, os.path.join(DATA, "raw", rs)))
+                r["pk"], r["pg"], r["pdf"] = rkey, rp, rp
+            else:
+                r["pk"] = key or ""
+                r["pg"] = pdf or ""
+                r["pdf"] = pdf or "?"
         out.append({"cols": cols, "id": "%s/spec/%s" % (mid, title[:40]),
                     "node": "%s|spec" % mid,
                     "path": [m.get("model") or mid, "정격", title],
                     "doc": src, "span": str(pdf) if pdf else "—", "points": rows})
 
     FLAT = [("항목", 0), ("값", 1), ("단위", 2), ("조건", 3), ("출처", 4)]
+    # 항목형 정격은 표가 아니라 줄마다 출처가 다르다 — '파일.pdf p12' 로 적혀 있다
+    # (실측 1,568행 중 1,530행). 줄마다 제 원문 쪽을 갖게 해야 링크가 산다.
+    SRC = re.compile(r"([A-Za-z0-9_\-.%]+\.pdf)(?:\s*[pP]\.?\s*(\d+))?")
 
     def flat_rows(items):
         rows = []
@@ -270,6 +281,11 @@ def spec_sections(m, pages, no_pages):
             r = {"n": str(it[0])[:120]}
             for h, i in FLAT:
                 r[h] = str(it[i]) if len(it) > i and it[i] is not None else ""
+            g = SRC.search(r.get("출처") or "")
+            if g and g.group(2):
+                f2, pg2 = g.group(1), int(g.group(2))
+                if os.path.exists(os.path.join(DATA, "raw", f2)):
+                    r["_src"], r["_pdf"] = f2, pg2
             rows.append(r)
         return rows
 
