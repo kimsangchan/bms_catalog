@@ -1,0 +1,179 @@
+<meta charset="utf-8"><title>데이터 지도</title><style>
+:root{--bg:#F5F8F9;--panel:#fff;--ink:#0F1A1F;--dim:#4A6068;--faint:#7C949C;
+ --line:#DAE3E7;--accent:#0E7A88;--soft:#DCEEF0;--warn:#9A6608;
+ --mono:ui-monospace,"Cascadia Mono",Consolas,monospace;
+ --ui:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+ --bg:#0C1417;--panel:#111C20;--ink:#DCE7EA;--dim:#93A8AF;--faint:#6B838B;
+ --line:#1E2C32;--accent:#3FB4C2;--soft:#10333A;--warn:#D9A441}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.65 var(--ui)}
+.wrap{max-width:1180px;margin:0 auto;padding:30px 22px 70px}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--faint);font-size:12.5px;margin-bottom:26px}
+h2{font-size:15px;margin:34px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+p.note{color:var(--dim);font-size:13px;margin:0 0 14px}
+.flow{display:grid;gap:10px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+ padding:12px 14px;display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start}
+.step b{color:var(--accent);font-size:13px}
+.step .path{font-family:var(--mono);font-size:11.5px;color:var(--dim);word-break:break-all}
+.step .who{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:4px}
+.n{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+.n span{background:var(--panel);border:1px solid var(--line);border-radius:999px;
+ padding:3px 11px;font-size:12px}
+.n b{color:var(--accent);font-variant-numeric:tabular-nums}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--panel);
+ border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--soft);color:var(--ink);font-weight:600;font-size:11.5px}
+tr:last-child td{border-bottom:0}
+td.k{font-family:var(--mono);color:var(--accent);white-space:nowrap}
+td.d{color:var(--dim)}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+ padding:12px 14px;overflow:auto;font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:860px){.two{grid-template-columns:1fr}.step{grid-template-columns:1fr}}
+</style>
+<div class="wrap"><h1>데이터 지도</h1>
+<div class="sub">벤더 원문이 어떤 층을 거쳐 시뮬레이터·BMS 가 읽는 모양이 되는지. 숫자는 <b>지금 저장소를 세어</b> 그린 것이다 — 그림이 데이터와 어긋나지 않게. 다시 만들기: <code>python schema_map.py</code></div>
+<div class="n"><span>원문 PDF <b>594</b></span><span>모델 <b>158</b></span><span>판(인터페이스) <b>137</b></span><span>오브젝트(판) <b>12,910</b></span><span>오브젝트(옛 평면) <b>24,376</b></span><span>정격 표 행 <b>31,386</b></span><span>확정본 모델 <b>30</b></span><span>확정본 형번 <b>520</b></span></div>
+<h2>층 — 원문에서 소비자까지</h2>
+<p class="note">핵심은 <b>② 취입</b>이다. 벤더마다 원문 모양이 달라도 다른 것은 거기까지고, ③부터는 모든 벤더가 <b>같은 모양</b>이다. 그래서 소비자(시뮬레이터·BMS)는 벤더를 몰라도 된다.</p>
+<div class="flow">
+<div class="step"><div><b>① 원문</b><div class="path">data/raw/*.pdf</div></div><div>벤더가 낸 PDF 그대로. 저장소엔 안 담고 경로·SHA-256 만 대장에<div class="who">collect.py · sources.py</div></div></div>
+<div class="step"><div><b>② 취입</b><div class="path">ingest_*.py · specs.py</div></div><div>**벤더 차이를 여기서만 흡수한다.** 전치표·좌표·격자·식 — 원문 모양이 제각각이라 읽는 법이 다르다<div class="who">ingest_lg · ingest_samsung · ingest_ls_rs485 · ingest_danfoss_fc101 · ingest_ls_ratings</div></div></div>
+<div class="step"><div><b>③ 모델 레코드</b><div class="path">data/models/&lt;id&gt;.json</div></div><div>여기서부터 **모양이 하나다**. 오브젝트는 point-schema, 정격은 specTables(원문 그대로 = 제안)<div class="who">validate.py 가 사전 밖 필드를 오류로 잡는다</div></div></div>
+<div class="step"><div><b>④ 확정본</b><div class="path">data/units/&lt;id&gt;.json</div></div><div>형번별 **골든 레코드**. 값과 단위가 갈려 있다. 사람이 확인하면 verified 로 굳어 재추출이 못 덮는다<div class="who">units.py --sync / --verify</div></div></div>
+<div class="step"><div><b>⑤ 데이터셋</b><div class="path">data/datasets/catalog-dataset.json</div></div><div>설비 표준 포인트 + 모델별 매핑 + 시뮬레이터 입력을 한 파일로<div class="who">datasets.py</div></div></div>
+<div class="step"><div><b>⑥ 소비자</b><div class="path">review/*.html · review/export/*.csv</div></div><div>BMS 는 46열 CSV(행=판, 프로토콜=열), 시뮬레이터는 확정본·시뮬레이터 입력<div class="who">export_points.py · build.py · verify_points.py</div></div></div>
+</div>
+<h2>지금 이어진 정도</h2>
+<div class="n"><span>모델 <b>158</b></span><span>템플릿 매핑된 모델 <b>135</b></span><span>매핑된 포인트 <b>2,193</b></span><span>설비 계열 <b>19</b></span><span>계열 표준 포인트 <b>200</b></span></div>
+<h2>층끼리 잇는 열쇠 (DB 로 치면 외래키)</h2>
+<table><thead><tr><th>열쇠</th><th>어디에 있나</th><th>무엇과 이어지나</th><th>뜻</th></tr></thead><tbody><tr><td class="k">modelId</td><td class="">data/models/&amp;lt;id&amp;gt;.json</td><td class="d">data/units/&amp;lt;id&amp;gt;.json · 데이터셋 modelMappings</td><td class="d">모델 하나가 정격 확정본·매핑과 같은 이름으로 이어진다</td></tr><tr><td class="k">equipId</td><td class="">모델.equipId (e5·e8·e15 …)</td><td class="d">unit-schema.classes · equipmentTemplates</td><td class="d">설비 계열이 **무엇을 뽑을지**와 **어떤 표준 포인트를 갖는지**를 정한다</td></tr><tr><td class="k">interfaceId</td><td class="">모델.interfaces[].id</td><td class="d">포인트.provenance.interfaceId</td><td class="d">포인트가 어느 판(문서 리비전)에서 왔는지. 판이 다르면 주소가 다르다</td></tr><tr><td class="k">unitModelNumber</td><td class="">확정본.units[].unitModelNumber</td><td class="d">정격 표의 머리글 형번</td><td class="d">형번 하나 = 확정본 한 줄. 시뮬레이터가 고르는 단위</td></tr><tr><td class="k">feature id</td><td class="">unit-schema.features (ratedOutputCurrent …)</td><td class="d">확정본.units[].fields.&amp;lt;feature&amp;gt;</td><td class="d">속성 이름이 곧 열 이름이다. 단위는 features.convUnit 이 정본</td></tr><tr><td class="k">templateName</td><td class="">equipmentTemplates[].templatePoints[].name</td><td class="d">modelMappings[].templatePointMappings[].matchedPoint</td><td class="d">설비 표준 포인트 ↔ 벤더 포인트를 잇는다. '모델만 고르면 매핑' 이 여기서 난다</td></tr></tbody></table>
+<h2>오브젝트 스키마 — point-schema.json</h2>
+<p class="note">한 포인트는 <b>common</b>(사람이 읽는 것) + <b>blocks</b>(프로토콜별 주소) + <b>provenance</b>(어느 원문 어느 쪽) 세 덩어리다. 사전 밖 필드는 <code>validate.py</code> 가 오류로 잡는다.</p>
+<table><thead><tr><th>common</th><th>뜻</th><th>모양</th><th>메모</th></tr></thead><tbody><tr><td class="k">name</td><td class="">포인트 이름</td><td class="d">string</td><td class="d">사람이 읽는 긴 이름. 출처 열: 'Long Name (BACnet Object Description)'(SC-EQ·YMAE) / 'POINT LIST DESCRIPTION'(E-Link 3계통) / 'Description'(YZD). 괄호로 딸려 오는 상태 의미('(</td></tr><tr><td class="k">altNames</td><td class="">같은 오브젝트의 다른 이름</td><td class="d">array [string]</td><td class="d">같은 주소가 **설치 구성에 따라 다른 이름으로 불리는** 경우. IPU/Series-100 표에서 BI26 한 점이 전기히터 구성이면 'ELECT HEAT STAGE 1 STATUS', 가스로면 'STAGED GAS FURN 1 LO STATUS'·'MOD GAS F</td></tr><tr><td class="k">shortName</td><td class="">짧은 이름(패널 니모닉)</td><td class="d">string</td><td class="d">출처 열: 'ISN LINC Descriptive Text'(YorkTalk — 문서에 따라 전 행 공란) / 'YPAL·ECO2 PANEL DISPLAYED NAME'. 문서가 안 주면 만들지 않는다 — name 에서 축약 생성 금지</td></tr><tr><td class="k">pointKind</td><td class="">포인트 종별(파생)</td><td class="d">enum</td><td class="d">문서 원문이 아니라 정규화 파생 — yorktalk.pointType('A. Control'·'A. Monitor'→analog, 'D. Control'·'D. Monitor'→binary, 'Code Monitor'→code)·bacnet.objectType 에서 만</td></tr><tr><td class="k">unitIP</td><td class="">단위(야드파운드)</td><td class="d">string</td><td class="d">정규화 값. 원표기는 unitIPRaw. 출처 열: 'IP Units'/'ENG UNITS Imperial'(표기 변형 다수)</td></tr><tr><td class="k">unitIPRaw</td><td class="">단위 원표기(야드파운드)</td><td class="d">string</td><td class="d"></td></tr><tr><td class="k">unitSI</td><td class="">단위(SI)</td><td class="d">string</td><td class="d">정규화 값. 원표기는 unitSIRaw. E-Link 문서 다수는 SI 열이 아예 없다 — 그때는 만들지 않는다(gap)</td></tr><tr><td class="k">unitSIRaw</td><td class="">단위 원표기(SI)</td><td class="d">string</td><td class="d"></td></tr><tr><td class="k">rangeIP</td><td class="">값 범위(야드파운드)</td><td class="d">object {min, max}</td><td class="d">YMAE-15 계통만 준다('IP Min/Max Value') — 시뮬레이터 값 클램핑에 쓸 수 있는 유일한 출처. 다른 계통에서 지어 넣지 않는다</td></tr><tr><td class="k">scale</td><td class="">배율 (수치)</td><td class="d">number</td><td class="d">정의 고정: **공학값 = 원시값 × scale**. modbus.scale 과 뜻·방향을 일부러 똑같이 맞췄다 — 두 정의가 갈리면 어느 쪽인지 헷갈려 방향을 뒤집는다. 여기(common)에 두는 이유: 배율이 Modbus 열이 아니라 **포인트 자체의 문장**으로 </td></tr><tr><td class="k">scaleRaw</td><td class="">배율 원표기</td><td class="d">string</td><td class="d">문서가 적은 말 그대로 — 'Real Value = Value*10' · 'Unit : 100Watt'. ⚠ 이런 문장은 **정규식으로 일반화하지 않는다.** 문장은 문서마다 다르고 잘못 읽으면 시뮬레이터가 배율을 그대로 믿는다. 취입기는 실제로 읽은 문장만 표에 적고</td></tr><tr><td class="k">range</td><td class="">값 범위 (단위계 중립)</td><td class="d">object {raw, min?, max?}</td><td class="d">문서가 단위계를 갈라 주지 않고 범위 하나만 줄 때. rangeIP·rangeSI 는 YMAE-15 처럼 야드파운드/SI **쌍**을 주는 계통 전용이라 여기에 못 넣는다 — 억지로 넣으면 '이 값은 야드파운드다' 라고 거짓을 적게 된다. ⚠ 벤더는 **단위 칸 하나에</td></tr><tr><td class="k">rangeSI</td><td class="">값 범위(SI)</td><td class="d">object {min, max}</td><td class="d">출처 열 'SI Min Value'/'SI Max Values'(원문 오타 그대로의 열 이름)</td></tr><tr><td class="k">states</td><td class="">상태 열거</td><td class="d">array [{code, label}]</td><td class="d">code 는 문서 코드표·인라인 열거의 원문 숫자 그대로(문자열). BACnet MSV 보정은 bacnet.msvOffset 에 분리 — 여기서 미리 더해 두면 안 된다. 출처: 'Enum Set' 인라인('0=Off, 1=On')·코드표 해석·이름 괄호</td></tr><tr><td class="k">statesRef</td><td class="">상태 코드표 참조</td><td class="d">string</td><td class="d">미해결 참조('See SC.1 on Status Codes') 보존. 코드표를 풀어 states 를 채운 뒤에도 남긴다 — 어느 표에서 왔는지 추적용</td></tr><tr><td class="k">readWrite</td><td class="">읽기/쓰기</td><td class="d">enum</td><td class="d">출처: 'READ WRITE' 열(Native/Panel — 명시 열을 주는 유일한 계통) / YZD 밴드 행('Setpoint write data' 등) / 보조 문서. 문서가 명시하지 않으면 비워 둔다 — BACnet 타입에서 추측 금지</td></tr><tr><td class="k">availability</td><td class="">형번 적용(표준/옵션)</td><td class="d">object {code, raw, column}</td><td class="d">code 는 S(표준)/O(옵션)/N(미제공). 출처: 'Availability' 열(Native/Panel) 또는 1~10 형번 행렬(그때 column 에 행렬 열 번호). 번호↔형번 대응표는 대부분 문서에 없다('Product Code Listing Summary'</td></tr><tr><td class="k">group</td><td class="">그룹(밴드)</td><td class="d">string</td><td class="d">열이 아니라 밴드 행에서 물려받는다 — YZD 'System 1 OptiView read data', Typ-Ins 'SECTION 2' 등. 밴드를 상태로 물고 내려가지 않으면 이 정보가 사라진다</td></tr><tr><td class="k">note</td><td class="">비고</td><td class="d">string</td><td class="d">출처: 'Notes'(SC-EQ)·'COMMENTS'(Native/Panel). 자유 텍스트만 — 구조 정보(주소·SNVT·범위)를 여기 눌러 담지 않는다(기존 추출본의 나쁜 습관)</td></tr></tbody></table>
+<h2>프로토콜 블록 — 벤더가 주는 주소가 여기 들어간다</h2>
+<table><thead><tr><th>block</th><th>뜻</th><th>필드</th><th>메모</th></tr></thead><tbody><tr><td class="k">bacnet</td><td class="">BACnet</td><td class="d">objectType, instance, objectName, oid, alternates, msvOffset, objectTypeSource</td><td class="d">BACnet 오브젝트 주소·이름. SC-EQ·YMAE·E-Link/BACnet·Native·ECO2 계통이 준다. YZD-Logix 의 'BACnet' 열은 이 블록에 넣지 않는다(columnGua</td></tr><tr><td class="k">modbus</td><td class="">Modbus</td><td class="d">address, addressBase, refClass, scale, scaleRaw, scaleUserConfigurable, dataType, functionCodes, booleanFlag, offset, wr</td><td class="d">Modbus 레지스터 주소·배율·데이터형. SC-EQ·YMAE·Native·ECO2·E-Link/BACnet·YZD 계통이 준다</td></tr><tr><td class="k">n2</td><td class="">Metasys N2</td><td class="d">pointType, address</td><td class="d">Metasys N2 주소. 거의 전 계통이 준다 — YorkTalk 구형 13건에서는 유일한 네트워크 주소원이다</td></tr><tr><td class="k">lon</td><td class="">LonWorks</td><td class="d">nvName, direction, nvIndex, snvtType, snvtIndex</td><td class="d">LON 네트워크 변수. SC-EQ·E-Link/BACnet·YPAL 계통 + Trane LonTalk 기존 취입분이 준다</td></tr><tr><td class="k">yorktalk</td><td class="">York Talk</td><td class="d">pageRef, asciiPageRef, pointType, coord, charPos</td><td class="d">York Talk 프로토콜 좌표계. E-Link/YorkTalk 구형 13건의 본체이고, Typ-Ins형에서는 'BACnet Object Name' 열에 좌표가 숨어 들어온다</td></tr><tr><td class="k">logix</td><td class="">Allen-Bradley Logix</td><td class="d">tag</td><td class="d">ControlLogix PLC 태그 — YZD-Logix 1건만 갖는 5번째 프로토콜 축</td></tr><tr><td class="k">elink</td><td class="">E-Link 게이트웨이</td><td class="d">gpicType</td><td class="d">E-Link 게이트웨이 내부 오브젝트 모델. 과제 지시의 6블록에 더한 7번째 블록 — GPIC 타입('AV.1'·'SC.1')은 게이트웨이 내부 식별자지 현장 프로토콜이 아니라서 bacnet 에 </td></tr><tr><td class="k">fln</td><td class="">APOGEE P1/FLN</td><td class="d">address, unbundlable, pointType, slope, slopeRaw, intercept, interceptRaw, factoryDefault, onText, offText</td><td class="d">Siemens APOGEE 의 FLN(Floor Level Network) 포인트 데이터베이스. 드라이브·단말이 필드 패널에 내보내는 논리 포인트 목록이고, 열이 Point # | Type | Su</td></tr></tbody></table>
+<h2>출처(provenance) — 되짚을 수 있어야 한다</h2>
+<table><thead><tr><th>provenance</th><th>뜻</th><th></th><th>메모</th></tr></thead><tbody><tr><td class="k">sourceFile</td><td class="">출처 파일</td><td class="d"></td><td class="d"></td></tr><tr><td class="k">sourcePage</td><td class="">출처 쪽</td><td class="d"></td><td class="d"></td></tr><tr><td class="k">sourcePages</td><td class="">출처 쪽 여럿</td><td class="d"></td><td class="d">한 포인트가 표 **여러 개**에 나뉘어 실린 계통에서만 쓴다(YKN2Open — 같은 포인트를 9쪽 Modbus 표와 11·12쪽 BACnet 표가 따로 적는다). sourcePage 는 그중 첫 쪽으로 두어 기존 화면·근거 링크가 그대로 돈다. 합칠 근거가 없는 계</td></tr><tr><td class="k">sourceColumns</td><td class="">원문 열 보존</td><td class="d"></td><td class="d">매핑이 틀렸다고 밝혀졌을 때 되돌아가는 유일한 길 — 이 저장소는 매핑 오류를 여러 번 겪었다(이름 자리 벤더 코드 59.5%→99.8%). 열 머리글은 쪽마다 흔들려도('ENG BPAGE REF' 오타 포함) 정규화하지 말고 표기 그대로 둔다. YZD 'BACnet'</td></tr><tr><td class="k">srcRef</td><td class="">문서 내 행 참조</td><td class="d"></td><td class="d">출처: 'Item Ref Num'(Native)·'ITEM REF NUM'(Panel)·'Count'(YZD — BACnet 열 인스턴스−1과 일치하는 중복 정보라 검증용으로만)</td></tr><tr><td class="k">status</td><td class="">상태</td><td class="d"></td><td class="d">포인트 레코드 단위. 의미는 statuses 참조 — unit-schema 와 동일</td></tr><tr><td class="k">gaps</td><td class="">문서가 안 주는 것</td><td class="d"></td><td class="d">모르면 모른다고 적는 자리 — 예: Native 계통은 'BACnet Object Instance'만 주고 타입 열이 없다 → gaps: ['bacnet.objectType']. 추측으로 채우면 시뮬레이터가 그대로 믿는다</td></tr><tr><td class="k">family</td><td class="">문서 계통</td><td class="d"></td><td class="d">IPU/Series-100 은 냉동기가 아니라 **옥상형·자립형 IOM 본문**에 묻힌 표다(2026-08-18 본문 전수 스캔에서 찾았다 — 제목에는 낌새가 없어 그때까지 통째로 빠져 있었다). **columnGuards 의 절반이 계통 조건부다** — 'YZD 문서</td></tr><tr><td class="k">interfaceId</td><td class="">소속 인터페이스</td><td class="d"></td><td class="d">같은 모델의 어느 판에서 나온 포인트인지 가리킨다 → interfaces[].id. 인터페이스 아래 중첩해 담으므로 취입 코드가 채우는 값이지 사람이 적는 값이 아니다. 중첩과 중복이지만 남긴다 — 포인트만 뽑아 CSV·시뮬레이터로 넘길 때 소속을 잃지 않는 유일한 길</td></tr><tr><td class="k">block</td><td class="">원문 블록</td><td class="d"></td><td class="d">머리글이 표의 0행이 아닌 문서에서 어댑터가 끊은 블록 — 제목은 그 위 제목행에서 가져온다('YR OptiView Standard Starter'). **인터페이스를 가를 근거이지 인터페이스 자체가 아니다** — 블록 경계는 표 인식의 산물이라 사람이 보고 승격해야 </td></tr></tbody></table>
+<h2>정격 스키마 — unit-schema.json</h2>
+<p class="note">설비 계열(<b>classes</b>)이 <b>무엇을 뽑을지</b>를 정하고, 속성(<b>features</b>)이 <b>이름과 단위</b>를 정한다. 사전에 없는 설비는 확정본을 만들지 않는다 — 그래서 인버터는 e15 를 등재하고서야 열렸다.</p>
+<table><thead><tr><th>class</th><th>설비</th><th>표에 세우는 속성</th><th>상세에만</th></tr></thead><tbody><tr><td class="k">e5</td><td class="">공조기 (AHU·RTU)</td><td class="d">capacityClass, compatibleCapacityRange, matchedAirHandler, ratedAirflow, ecodesignAirflow, sfp15Airflow, sfp20Airflow, g</td><td class="d">ieer, seer, seer2, heatingCapacity, heatingInput, cop, fanDriveType, minOutdoorAir, econom</td></tr><tr><td class="k">e9</td><td class="">냉동기 (칠러)</td><td class="d">capacityClass, grossCoolingCapacity, eer, ieer, capacitySteps, compressorConfig, refrigerantCircuits, fanMotorRpm, coilF</td><td class="d">condenserFans, condenserAirflow, ratedAirflow</td></tr><tr><td class="k">e15</td><td class="">인버터 (VFD)</td><td class="d">appliedMotorPower, ratedCapacityKva, ratedOutputCurrent, ratedInputCurrent, unitWeight</td><td class="d">outputFrequency, outputVoltage, inputVoltage, inputFrequency</td></tr></tbody></table>
+<table><thead><tr><th>feature</th><th>뜻</th><th>단위(convUnit)</th><th></th></tr></thead><tbody><tr><td class="k">capacityClass</td><td class="">용량대</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">compatibleCapacityRange</td><td class="">호환 용량 범위</td><td class="d">kW</td><td class="d"></td></tr><tr><td class="k">matchedAirHandler</td><td class="">조합 공조기</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">ratedAirflow</td><td class="">정격 풍량</td><td class="d">CFM</td><td class="d"></td></tr><tr><td class="k">ecodesignAirflow</td><td class="">Ecodesign 풍량</td><td class="d">m³/h</td><td class="d"></td></tr><tr><td class="k">sfp15Airflow</td><td class="">SFP 1.5 / 150 Pa 풍량</td><td class="d">m³/h</td><td class="d"></td></tr><tr><td class="k">sfp20Airflow</td><td class="">SFP 2.0 / 200 Pa 풍량</td><td class="d">m³/h</td><td class="d"></td></tr><tr><td class="k">grossCoolingCapacity</td><td class="">냉방능력</td><td class="d">Btu/h</td><td class="d"></td></tr><tr><td class="k">ahriNetCoolingCapacity</td><td class="">AHRI 냉방능력</td><td class="d">Btu/h</td><td class="d"></td></tr><tr><td class="k">eer</td><td class="">EER</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">ieer</td><td class="">IEER</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">capacitySteps</td><td class="">용량 단계</td><td class="d">%</td><td class="d"></td></tr><tr><td class="k">fanMotorHp</td><td class="">팬 모터</td><td class="d">HP</td><td class="d"></td></tr><tr><td class="k">fanMotorRpm</td><td class="">팬 회전수</td><td class="d">RPM</td><td class="d"></td></tr><tr><td class="k">coilFaceArea</td><td class="">코일 면적</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">coilRowsFpi</td><td class="">코일 열수/FPI</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">compressorConfig</td><td class="">압축기 구성</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">refrigerantCircuits</td><td class="">냉매 회로</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">condenserFans</td><td class="">응축 팬</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">condenserAirflow</td><td class="">응축 풍량</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">unitWidth</td><td class="">유닛 폭</td><td class="d">mm</td><td class="d"></td></tr><tr><td class="k">unitHeight</td><td class="">유닛 높이</td><td class="d">mm</td><td class="d"></td></tr><tr><td class="k">unitLength</td><td class="">유닛 길이</td><td class="d">mm</td><td class="d"></td></tr><tr><td class="k">seer</td><td class="">SEER</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">seer2</td><td class="">SEER2</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">heatingCapacity</td><td class="">난방능력</td><td class="d">Btu/h</td><td class="d"></td></tr><tr><td class="k">cop</td><td class="">COP</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">systemPower</td><td class="">시스템 소비전력</td><td class="d">kW</td><td class="d"></td></tr><tr><td class="k">soundRating</td><td class="">소음 정격</td><td class="d">dB</td><td class="d"></td></tr><tr><td class="k">refrigerantCharge</td><td class="">냉매 충전량</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">refrigerantControl</td><td class="">팽창 장치</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">cabinetSize</td><td class="">캐비닛</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">airflowConfiguration</td><td class="">기류 구성</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">fanDriveType</td><td class="">팬 구동 방식</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">minOutdoorAir</td><td class="">최소 외기량</td><td class="d">CFM</td><td class="d"></td></tr><tr><td class="k">economizer</td><td class="">이코노마이저</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">heatingInput</td><td class="">난방 입열량</td><td class="d">Btu/h</td><td class="d"></td></tr><tr><td class="k">supplyVoltage</td><td class="">전원</td><td class="d">—</td><td class="d"></td></tr><tr><td class="k">mca</td><td class="">최소 회로 전류 (MCA)</td><td class="d">A</td><td class="d"></td></tr><tr><td class="k">mop</td><td class="">최대 과전류 보호 (MOP)</td><td class="d">A</td><td class="d"></td></tr><tr><td class="k">appliedMotorPower</td><td class="">적용 전동기 출력</td><td class="d">kW</td><td class="d"></td></tr><tr><td class="k">ratedCapacityKva</td><td class="">정격 용량</td><td class="d">kVA</td><td class="d"></td></tr><tr><td class="k">ratedOutputCurrent</td><td class="">정격 출력전류</td><td class="d">A</td><td class="d"></td></tr><tr><td class="k">ratedInputCurrent</td><td class="">정격 입력전류</td><td class="d">A</td><td class="d"></td></tr><tr><td class="k">unitWeight</td><td class="">중량</td><td class="d">kg</td><td class="d"></td></tr><tr><td class="k">outputFrequency</td><td class="">출력 주파수</td><td class="d">Hz</td><td class="d"></td></tr><tr><td class="k">outputVoltage</td><td class="">출력 전압</td><td class="d">V</td><td class="d"></td></tr><tr><td class="k">inputVoltage</td><td class="">입력 전압</td><td class="d">V</td><td class="d"></td></tr><tr><td class="k">inputFrequency</td><td class="">입력 주파수</td><td class="d">Hz</td><td class="d"></td></tr></tbody></table>
+<h2>한 건이 층을 따라 어떻게 바뀌나 (LS H100)</h2>
+<div class="two">
+<div><b>오브젝트 한 점 — ③ 모델 레코드</b><pre>{
+ "common": {
+  "name": "CommTimeoutSet",
+  "note": "Command timeout setting",
+  "range": {
+   "raw": "0.1 - 120.0",
+   "min": 0.1,
+   "max": 120
+  },
+  "unitSI": "Secs",
+  "unitSIRaw": "Secs",
+  "readWrite": "R/W",
+  "pointKind": "analog",
+  "group": "11.2.5.1 Analog Value Object Instance"
+ },
+ "blocks": {
+  "bacnet": {
+   "objectType": "AV",
+   "instance": 1
+  }
+ },
+ "provenance": {
+  "sourceFile": "LS_H100_BACnetIP_EN_V1.0_210526.pdf",
+  "sourcePage": 29,
+  "family": "Drive/BACnet",
+  "sourceColumns": {
+   "Instance ID": "AV1",
+   "Object Name": "CommTimeoutSet",
+   "Description": "Command timeout setting",
+   "Range (REAL)": "0.1 - 120.0",
+   "Units": "Secs",
+   "R/W": "R/W"
+  },
+  "status": "extracted",
+  "interfaceId": "bacnet-ip"
+ }
+}</pre></div>
+<div><b>정격 한 줄 — ③ 원문 그대로(제안)</b><pre>{
+ "title": "형번별 정격 — Three Phase 200 V (0.75–3.7 kW)",
+ "header": [
+  "항목",
+  "0008H100-2",
+  "0015H100-2",
+  "0022H100-2",
+  "0037H100-2"
+ ],
+ "row": [
+  "적용 전동기 · Applied Motor (HP)",
+  "1.0",
+  "2.0",
+  "3.0",
+  "5.0"
+ ],
+ "quantities": [
+  "power",
+  "power",
+  "capacity",
+  "current",
+  "current",
+  "frequency",
+  "voltage",
+  "voltage",
+  "voltage",
+  "frequency",
+  "frequency",
+  "current",
+  "weight"
+ ]
+}</pre></div>
+</div>
+<div><b>같은 형번 — ④ 확정본(값·단위가 갈린 뒤)</b><pre>{
+ "unitModelNumber": "0008H100-2",
+ "unitNumberKind": "modelNumber",
+ "unitRole": "packagedUnit",
+ "status": "extracted",
+ "fields": {
+  "appliedMotorPower": {
+   "value": "0.75",
+   "unit": "kW"
+  },
+  "ratedCapacityKva": {
+   "value": "1.9"
+  },
+  "ratedOutputCurrent": {
+   "value": "5"
+  },
+  "ratedInputCurrent": {
+   "value": "4.9"
+  },
+  "unitWeight": {
+   "value": "3.3"
+  },
+  "outputFrequency": {
+   "value": "0–400 Hz"
+  },
+  "outputVoltage": {
+   "value": "3-Phase 200–240 V"
+  },
+  "inputVoltage": {
+   "value": "3-Phase 200–240 VAC (-15%–+10%)"
+  },
+  "inputFrequency": {
+   "value": "50–60 Hz (±5%)"
+  }
+ },
+ "source": {
+  "file": "LS_H100_UserManual_EN_190621.pdf",
+  "page": 574,
+  "table": "형번별 정격 — Three Phase 200 V (0.75–3.7 kW)"
+ }
+}</pre></div>
+</div>
