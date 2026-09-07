@@ -27,12 +27,13 @@ class DatasetBuildTest(unittest.TestCase):
         data = datasets.build_dataset(equip_ids={"e5"})
         ahu = data["equipmentTemplates"]["e5"]
 
-        # 2026-09-03 e5.pac(VRF/PAC) 신설 — template_profile_ids 가 sorted 라 가운데 온다.
-        self.assertEqual(ahu["templateProfileIds"], ["e5.ahu", "e5.pac", "e5.rtu"])
+        # 2026-09-07 e5.pac 은 e8.vrf 로 옮겼다 — VRF 모델의 cat 이
+        # 'HVAC.AIR.TERMINAL.VRF' 라 e5 밑에서는 매칭이 0건이었다. 이제 e5 에는 둘뿐이다.
+        self.assertEqual(ahu["templateProfileIds"], ["e5.ahu", "e5.rtu"])
         self.assertNotIn("templatePoints", ahu)   # 계열 한 벌은 더 이상 없다
         self.assertGreaterEqual(len(ahu["simulatorSpecRequirements"]), 10)
-        # e5.pac 은 아직 행이 없다(빈 배열 = 신설 과제). 행 수 하한은 채워진 둘에만 건다 —
-        # 비어 있어도 되는 이유는 아래 test_empty_template_profile_must_say_why 가 지킨다.
+        # e8.vrf 는 아직 행이 없다(빈 배열 = 신설 과제). 비어 있어도 되는 이유는
+        # test_empty_template_profile_must_say_why 가 지킨다.
         for pid in ("e5.rtu", "e5.ahu"):
             self.assertGreaterEqual(len(data["templateProfiles"][pid]["templatePoints"]), 20)
         self.assertIn("modelMappings", data)
@@ -49,7 +50,7 @@ class DatasetBuildTest(unittest.TestCase):
         req = set(RQ.profiles())
 
         self.assertEqual(tpl, req)
-        self.assertEqual(tpl, {"e5.rtu", "e5.ahu", "e5.pac"})
+        self.assertEqual(tpl, {"e5.rtu", "e5.ahu", "e8.vrf"})
         for pid, prof in datasets.load_template_profiles().items():
             self.assertNotIn("match", prof, "%s: 매치 규칙을 여기 복제하면 규칙이 두 벌이 된다" % pid)
 
@@ -148,7 +149,7 @@ class DatasetBuildTest(unittest.TestCase):
     def test_empty_template_profile_must_say_why(self):
         """게이트 — 행이 빈 프로파일은 '왜 비었나'를 적어야 한다.
 
-        e5.pac 은 `stub_template.py` 가 키를 `points` 로 잘못 써서 들어왔다. 그 바람에
+        (옛 e5.pac →) e8.vrf 는 `stub_template.py` 가 키를 `points` 로 잘못 써서 들어왔다. 그 바람에
         `prof["templatePoints"]` 가 KeyError 로 터졌고, profiles 밖 최상위에도 같은 키가
         **한 벌 더** 들어가 있었다. 빈 채로 두는 것 자체는 규칙 ④ 가 허용한다
         (빈 배열 = 신설 과제) — 다만 **사유 없이 비면 그대로 잊힌다.**
@@ -1112,8 +1113,8 @@ class InterfacePointTemplateGateTest(unittest.TestCase):
                 continue
             pid = datasets.template_profile_for(model)
             # ⚠ '매처가 못 본다' 와 '맞출 행이 아직 없다' 는 다른 실패다.
-            #    화면 행이 0 인 프로파일(e5.pac 처럼 신설 과제)은 여기서 가른다 —
-            #    LG 게이트웨이 165점은 매처가 다 보는데 e5.pac 에 행이 없어 0 이 나왔다.
+            #    화면 행이 0 인 프로파일(e8.vrf 처럼 신설 과제)은 여기서 가른다 —
+            #    LG 게이트웨이 165점은 매처가 다 보는데 e8.vrf 에 행이 없어 0 이 나왔다.
             #    사유(pending)가 적혀 있어야 한다는 강제는
             #    test_empty_template_profile_must_say_why 가 한다.
             if not (profiles.get(pid) or {}).get("templatePoints"):
@@ -1469,15 +1470,40 @@ class LgBacnetIngestTest(unittest.TestCase):
     def setUp(self):
         self.model = datasets.load_json(os.path.join(
             datasets.DATA, "models", "lg-ac-smart-bacnet-gateway.json"))
+        # ⚠ 2026-09-07 같은 게이트웨이에 **Modbus-TCP 판 3개**가 더 붙었다(원문 p53~62).
+        #    아래 단언들은 BACnet 판을 두고 쓴 것이라 판을 갈라 봐야 한다 — 안 가르면
+        #    Modbus 취입이 BACnet 시험을 깨고, 반대로 통째로 빼면 Modbus 쪽이 무방비다.
+        self.bac = [i for i in self.model["interfaces"] if "modbus" not in i["id"]]
+        self.mod = [i for i in self.model["interfaces"] if "modbus" in i["id"]]
 
     def test_six_device_families_and_165_points(self):
-        """기기군 여섯 · 165점. 판마다 몇 점인지도 박는다 — 한 판이 조용히 비면 잡는다."""
-        got = {i["id"]: i["pointCount"] for i in self.model["interfaces"]}
+        """BACnet 기기군 여섯 · 165점. 판마다 몇 점인지도 박는다 — 한 판이 조용히 비면 잡는다."""
+        got = {i["id"]: i["pointCount"] for i in self.bac}
         self.assertEqual(got, {"indoor-unit": 41, "ventilation": 20, "ahu": 53,
                                "odu": 14, "awhp": 23, "gateway-general": 14})
-        n = sum(len(i["points"]) for i in self.model["interfaces"])
+        n = sum(len(i["points"]) for i in self.bac)
         self.assertEqual(n, 165)
         self.assertEqual(sum(got.values()), n)
+
+    def test_modbus_tcp_side_is_a_separate_set_of_interfaces(self):
+        """같은 기기의 **다른 통로**다(D-016) — BACnet 판과 섞이면 주소 체계가 뒤엉킨다.
+
+        원문 p53 이 'Objects (Modbus-TCP)' 로 절을 열고 p54~62 에 목록이 있다.
+        한동안 이 절을 통째로 빠뜨리고 있었다 — 사용자가 '57페이지부터 모드버스
+        같은데?' 라고 짚어 드러났다. 다시 사라지지 않게 여기서 센다.
+        """
+        got = {i["id"]: i["pointCount"] for i in self.mod}
+        self.assertEqual(got, {"modbus-tcp-indoor": 25, "modbus-tcp-ventilation": 22,
+                               "modbus-tcp-ahu": 52})
+        for i in self.mod:
+            self.assertEqual(i["protocols"], ["modbus"])
+            for p in i["points"]:
+                mb = (p.get("blocks") or {}).get("modbus") or {}
+                self.assertIn(mb.get("refClass"), ("coil", "holding-register"))
+                self.assertTrue(mb.get("functionCodes"), "함수코드가 비었다")
+                # BACnet 블록이 섞여 들어오면 판을 가른 뜻이 없다
+                self.assertNotIn("bacnet", p.get("blocks") or {})
+        self.assertEqual(sum(len(i["points"]) for i in self.model["interfaces"]), 264)
 
     def test_crosscheck_read_the_document_a_second_way(self):
         """교차 대조는 **표 인식이 아닌 경로**로 해야 뜻이 있다."""
@@ -1494,7 +1520,7 @@ class LgBacnetIngestTest(unittest.TestCase):
         없으므로 포인트 번호는 provenance.sourceColumns 에 원문 그대로 둔다.
         """
         filled = 0
-        for i in self.model["interfaces"]:
+        for i in self.bac:                    # 인스턴스 식은 BACnet 판에만 있다
             self.assertIn("instance", " ".join(i["gaps"]))
             self.assertIn("Device×16", i["note"])
             for p in i["points"]:
@@ -1535,7 +1561,8 @@ class LgBacnetIngestTest(unittest.TestCase):
         빈칸 낀 꼴 0회 · 줄바꿈 34회.
         ⚠ 반대로 빈칸을 전부 지워도 안 된다 — 원문이 정말 띄어 쓰는 이름이 넷 있다.
         """
-        names = [p["common"]["name"] for i in self.model["interfaces"] for p in i["points"]]
+        # BACnet 판만 본다 — Modbus 판은 원문의 Name 열에서 오는 다른 이름 집합이다
+        names = [p["common"]["name"] for i in self.bac for p in i["points"]]
         bad = [n for n in names if re.search(r"_\s+XXX", n)]
         self.assertEqual(bad, [], "원문에 없는 빈칸이 이름에 들어갔다")
         # 원문이 띄어 쓰는 것은 지키다 — 다 붙여 버리는 반대쪽 실수를 함께 막는다

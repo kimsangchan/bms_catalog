@@ -103,7 +103,6 @@
   ],
   "templateProfileIds": [
    "e5.ahu",
-   "e5.pac",
    "e5.rtu"
   ]
  },
@@ -527,106 +526,8 @@
     "requiredFor": "simulator"
    }
   ],
-  "templatePoints": [
-   {
-    "name": "실내온도",
-    "objectType": "AI",
-    "unit": "℃",
-    "role": "sensor",
-    "tags": "`zone`✓ `air`✓ `temp`✓",
-    "grade": "필수",
-    "datasetTier": "template"
-   },
-   {
-    "name": "설정온도",
-    "objectType": "AV",
-    "unit": "℃",
-    "role": "sp",
-    "tags": "`zone`✓ `air`✓ `temp`✓",
-    "grade": "필수",
-    "datasetTier": "template"
-   },
-   {
-    "name": "토출온도",
-    "objectType": "AI",
-    "unit": "℃",
-    "role": "sensor",
-    "tags": "`discharge`✓ `air`✓ `temp`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "운전 모드",
-    "objectType": "MSO",
-    "unit": "—",
-    "role": "cmd",
-    "tags": "(냉방/난방/송풍/제습/자동)",
-    "grade": "필수",
-    "datasetTier": "template"
-   },
-   {
-    "name": "풍량 단계",
-    "objectType": "MSO",
-    "unit": "—",
-    "role": "cmd",
-    "tags": "`fan`✓ `speed`✓",
-    "grade": "필수",
-    "datasetTier": "template"
-   },
-   {
-    "name": "에러 코드",
-    "objectType": "AI/MSO",
-    "unit": "—",
-    "role": "sensor",
-    "tags": "`fault`✓ `alarm-text`✓",
-    "grade": "필수",
-    "datasetTier": "template"
-   },
-   {
-    "name": "필터 청소 신호",
-    "objectType": "BI",
-    "unit": "—",
-    "role": "sensor",
-    "tags": "`airfilter`✓ `alarm`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "재실 감지",
-    "objectType": "BI",
-    "unit": "—",
-    "role": "sensor",
-    "tags": "`occupancy`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "리모컨 잠금",
-    "objectType": "BO",
-    "unit": "—",
-    "role": "cmd",
-    "tags": "`enable`✓",
-    "grade": "선택",
-    "datasetTier": "template"
-   },
-   {
-    "name": "(실외기) 압축기 운전율",
-    "objectType": "AI",
-    "unit": "%",
-    "role": "sensor",
-    "tags": "`compressor`✓ `load`★",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "(실외기) 소비전력",
-    "objectType": "AI",
-    "unit": "kW",
-    "role": "sensor",
-    "tags": "`elec-power`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   }
+  "templateProfileIds": [
+   "e8.vrf"
   ]
  },
  "e9": {

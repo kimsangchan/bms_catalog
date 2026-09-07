@@ -268,6 +268,210 @@ JCI_VEC100_POINTS = [
 ]
 
 
+
+# JCI/YORK 냉동기 Engineering Guide 86건 — **정격**이 실린 계통이다.
+# 지금까지 받아 둔 JCI 냉동기 문서는 전부 BAS 포인트 리스트라 용량·소비전력이
+# 없었다(그래서 냉동기 38모델이 정격 0). EG(Engineering Guide)는 형번별 냉동능력·
+# 전기 정격(MCA·RLA·LRA·전압)·치수·중량·냉매 충전량을 싣는 문서다.
+#
+# ⚠ 이 목록은 웹에서 찾은 것이 아니라 **저장소 안 스냅샷에서 라우팅**한 것이다.
+#   data/haystack/_jci_docs.json(포털 6섹션 10,945건 전수 열거)의 chillers 2,525건
+#   가운데 파일이름이 '-EG*.pdf' 인 119건을 뽑고, 그중 **문서 제목·prodname 이
+#   우리 모델의 형번 계열을 실제로 적고 있는** 것만 남겼다(84건). 제목 힌트로 고르지
+#   않았다 — 87건 중 진짜가 59건이었던 D-017 의 반대편이다. 라우팅 근거는 각 줄 주석.
+#   여기에 EG 가 아니지만 같은 자리를 메우는 2계열을 더했다:
+#     · 150.24-EG1/EG2 — YCW/YCR RecipPak. 제목이 'YCWJ' 가 아니라 'YCW, YCR' 이라
+#       형번 대조에 안 걸렸다. YCWJ·YCWK·YCWZ·YCRJ·YCRR 다섯 모델의 유일한 후보다.
+#     · 150.89-ICOM1 — YMAE 는 EG 가 없다. ICOM(설치·운전) 150쪽이 유일한 정격 원문.
+#
+# ⚠ **EG 가 없어 못 메우는 모델**(지어내지 않는다 — gap 으로 남는다):
+#     YAGK(458점·스크류 최대) · YN(223) · YIA 흡수식(34) · YB/YG 가스엔진(44) ·
+#     Frick LS/RWB(97) · AWHP(186) · Basildon(123) · Verasys VEC100(1,141).
+#   YAGK 는 포털에 SI·포인트맵만 있다. 201.47-EG1(YVAA Style B)이 후보로 거론됐으나
+#   **YAGK=YVAA 동일 기체라는 근거가 없다** — 열어서 모델표를 확인하기 전에는 짝짓지
+#   않는다. VEC100 은 단종(verasyscontrols.com → discontinuation 페이지)이고 애초에
+#   컨트롤러라 1,141점은 제어당하는 **타사 RTU** 의 점이다. 원리상 이 문서군에 없다.
+#
+# ⚠ 한 계열이 판(Style/Mod)마다 문서가 따로다 — YK 는 D·E·F·G·H·J 여섯이고 정격이
+#   판마다 다르다. 하나로 합치지 말고 판별로 담는다.
+# ⚠ 같은 filename 이 문서ID 둘로 포털에 올라 있는 것이 있다(150.27-EG1). 저장 이름이
+#   부딪히므로 하나만 담았다.
+JCI_CHILLER_EG = [
+    ("AD5D~H2NiY4lo5Rmw5JTOQ", "chillers",
+     "JCI_EG_150.24-EG1.pdf"),   # YCW, YCR RecipPak Liquid Chiller Water and Remote Condenser 55 to 240 tons
+    ("EZv5pD_jSrPiucZkC16fsw", "chillers",
+     "JCI_EG_150.24-EG2.pdf"),   # YCW, YCR RecipPak Liquid Chiller Water and Remote Condenser 60 to 250 tons
+    ("uauGcptSXzoXxKuiwfSdPg", "chillers",
+     "JCI_EG_150.26-EG1.pdf"),   # YCWL0056SE, 0064SE, 0074SE, 0084SE, 0094SE, 0104SE, 0118SE, 0132SE, 0156SE, 0157SE, 0177
+    ("smC~qOEZxs8fOjJ6LB89vQ", "chillers",
+     "JCI_EG_150.27-EG1.pdf"),   # YCRL0064HE, 0074HE, 0084HE, 0096HE, 0118HE, 0126HE, 0156HE (High Efficiency) and 0177SE,
+    ("tW22_5OrS1gSNFHwCqoAHA", "chillers",
+     "JCI_EG_150.40-EG1.pdf"),   # YCAJ and YCAZ Styles A, B, C YCAZ33, YCAZ88, YCAJ66, YCAJ44, YCAJ77, YCAJ76, YCAJ99, YDA
+    ("FpzpsL5lRWb1YOOz00VTEw", "chillers",
+     "JCI_EG_150.44-EG1.pdf"),   # YCA Style A YCAY02, YCAA03, YCAW02, YCAV03, YCAW08, YCAV09, YCAS08, YVAT09 Air Cooled Re
+    ("bmsyYzxWQy8z6Ncr5N19zA", "chillers",
+     "JCI_EG_150.44-EG2.pdf"),   # YCAZ Style B YCAZ33JD3, YCAZ44LD3, YCAZ74LE3, YCAZ77LE3, YCAZ88ME3, and 50 Hz YCAZ33JD2,
+    ("9c4Fq9wqPiSaQ8CCC~DXuw", "chillers",
+     "JCI_EG_150.52-EG1.pdf"),   # YCAR Style A Millennium Chiller 60 Hz, 105-230 tons, YCAR0100, YCAR0110, YCAR0120, YCAR0
+    ("nueUCWXYDJ4eJuKDv~epsw", "chillers",
+     "JCI_EG_150.52-EG2.pdf"),   # YCAR Style A Millennium Chiller 50 Hz, 90-225 tons, YCAR0315, YCAR0345, YCAR0365, YCAR03
+    ("xk0SIpeSYTeAJPvBj99T7w", "chillers",
+     "JCI_EG_150.60-EG1.pdf"),   # YCAZ and YCAJ Style A ReciPak 50 and 60 Hz YCAJ44MR7, YCAJ55MR7, YCAJ55ST7, YCAJ56NS7, Y
+    ("iZ~~WUuZkhnBgiCjIHlTAw", "chillers",
+     "JCI_EG_150.62-EG1.pdf"),   # YCAL0014, 0020, 0024, 0030, 0070, 0074, 0080, 0090, 0094, 0104, 0114, 0124, 0134 Style C
+    ("XrHpy34znvwyEPxlDPxfng", "chillers",
+     "JCI_EG_150.62-EG5.pdf"),   # YCAL0070, 0080, 0090, 0091, 0101, 115, 0120, 0135, 0150, 0155 Style A 60 Hz Hermetic
+    ("mnIVtx_dNVc~yKSayhfvMg", "chillers",
+     "JCI_EG_150.63-EG5.pdf"),   # YCUL0020, YCUL0024, YCUL0031, YCUL0035, YCUL0045, YCUL0051, YCUL0055, YCUL0065, YCUL0072
+    ("IJjux0ovMXrotC_XRQLegA", "chillers",
+     "JCI_EG_150.64-EG1.pdf"),   # YCAL000012, 0018, 0021, 0025, 0027, 0032, 0041, 0045, 0051, 0055, 0061, 0065, Style D 50
+    ("5IRPPZy3Jmg4wTKhbdD7Ww", "chillers",
+     "JCI_EG_150.67-EG1.pdf"),   # YCAL0019, 0022, 0028, 0033, 0043, 0046, 0052, 0056, 0066 Style E 50 and 60 Hz Single and
+    ("C2~Q2wwO3Eti_LcsLmqryA", "chillers",
+     "JCI_EG_150.68-EG1.pdf"),   # YLPA0115SE, 0145SE, 0170SE Style A 60 Hz Reversible Scroll Heat Pumps
+    ("eZ3oUcalXVYOcFag964Pfg", "chillers",
+     "JCI_EG_150.70-EG1.pdf"),   # YCAJ and YCAZ Style A Millennium, 60 Hz YCAZ33,YCAZ44, YCAZ74, YCAZ77, YCAZ88, YCAJ110, 
+    ("p1lfoJJsPq5kR4JcpAMl3A", "chillers",
+     "JCI_EG_150.72-EG1.pdf"),   # YLAA0070SE, 0080SE, 0090SE, 0100SE, 0115SE, 0120SE, 0135SE, 0150SE, 0155SE, 0170SE (Stan
+    ("L4GgD7ZwVI9GmKwmp7_sLg", "chillers",
+     "JCI_EG_150.72-EG2.pdf"),   # YLAA0285SE, 0320SE, 0360SE, 0400SE, 0435SE, 0485SE (Standard Efficiency) 0195HE, 0220HE,
+    ("fvmg1BBBVfLpaFOcsULNkA", "chillers",
+     "JCI_EG_150.72-EG3.pdf"),   # YLAA0070, 0080, 0090, 0091, 0101, 0115, 0120, 0125, 0135, 0150, 0155 Style B 60 Hz Round
+    ("XgpCwgA3nTjTt7q8esVWXg", "chillers",
+     "JCI_EG_150.72-EG6.pdf"),   # YLAA0070SE, 0080SE, 0089SE, 0100SE, 0120SE, 0136SE, 0155SE, 0170SE (Standard Efficiency)
+    ("Jkp2uxPuV2XQxLxZ58GFLw", "chillers",
+     "JCI_EG_150.72-EG7.pdf"),   # YLAA0136SE, 0150SE, 0155SE, 0170SE (Standard Efficiency) 0125HE, 0141HE, 0156HE, 0175HE 
+    ("e4nY7EjPFUH5aGoDnELiZw", "chillers",
+     "JCI_EG_150.72-EG8.pdf"),   # YLAA180SE, 0210SE, 0241SE, 0286SE, 0320SE, 0360SE, 0400SE, 0435SE, 0485SE (Standard Effi
+    ("l370Ao1a_CD0P8RTz1mqbQ", "chillers",
+     "JCI_EG_150.73-EG1.pdf"),   # YLUA Style A YLUA0078, YLUA0088, YLUA0095, YLUA0098, YLUA0108, YLUA0130, YLUA0148, YLUA0
+    ("EJKQ7NQylva3So9TUlcWHg", "chillers",
+     "JCI_EG_150.76-EG1.pdf"),   # YSAA0070HA, YSAA0090HA, YSAA0110HA, YSAA0130HA Style A 60 Hz
+    ("QKlzL0bD5jQ3~KzNzmKS0w", "chillers",
+     "JCI_EG_150.76-EG2.pdf"),   # YSAA0070HA, YSAA0090HA, YSAA0110HA, YSAA0130HA Style A 50 Hz
+    ("juhF6mwkmG5fvvf3WI5rxQ", "chillers",
+     "JCI_EG_150.89-ICOM1.pdf"),   # YMAE Air-Cooled Inverter Scroll Chiller and Heat Pump ICOM
+    ("bo7Id0SfVh3omFqN4V76fw", "chillers",
+     "JCI_EG_160.46-EG1.pdf"),   # YT Style F CodePak Centrifugal 150 - 1000 tons
+    ("wpPfmS916nEun6~9zbw7JA", "chillers",
+     "JCI_EG_160.46-EG2.pdf"),   # YT Style G CodePak Centrifugal 150 - 850 tons
+    ("tfmLkItgCfBDwwodlqg4qQ", "chillers",
+     "JCI_EG_160.47-EG1.pdf"),   # YS Style A, C and D Rotary Screw Liquid Chiller
+    ("HFIAPQOB0avt4gT5H0N~PQ", "chillers",
+     "JCI_EG_160.48-EG1.pdf"),   # YT Style H Millennium Centrifugal Liquid Chiller, 150 - 850 tons
+    ("VBTxLg0v081Y8khNnCh6gQ", "chillers",
+     "JCI_EG_160.52-EG1.pdf"),   # YK Style D Centrifugal Chiller
+    ("gYnV1snpSkGKSB5YTPQGeA", "chillers",
+     "JCI_EG_160.54-EG1.pdf"),   # YK Style E Centrifugal Chiller
+    ("27m~DffdZBqUmw6bmE7EMg", "chillers",
+     "JCI_EG_160.55-EG1.pdf"),   # YT Style J Centrifugal Chiller
+    ("54gOvCOffEmedFB2ynflfA", "chillers",
+     "JCI_EG_160.67-EG1.pdf"),   # YST Design Level F Steam Turbine Drive Centrifugal Liquid Chiller, 700 - 2,165 tons
+    ("Wc3SlQSctQ~H7MODHCxlZg", "chillers",
+     "JCI_EG_160.69-EG1.pdf"),   # YD Mod A Dual Compressor Chiller, 2,001 - 4,600 tons
+    ("FTRMjrSX2jER3U~uny~9lw", "chillers",
+     "JCI_EG_160.69-EG2.pdf"),   # YD Mod B Dual Compressor Chiller, 2,001 - 6,000 tons
+    ("Uwn3FnRDVN2G47FzgxI2AQ", "chillers",
+     "JCI_EG_160.69-EG3.pdf"),   # YD Mod C Dual Compressor Chiller, 1,500 - 6,000 tons
+    ("YqzAm0pztiaG3_G6Q9y8Cw", "chillers",
+     "JCI_EG_160.73-EG1.pdf"),   # YK Style F Centrifugal Liquid Chiller, 250 - 3,000 tons
+    ("xtvt31Ap7Ykiyu4GFigbrQ", "chillers",
+     "JCI_EG_160.75-EG1.pdf"),   # YK Style G Centrifugal Liquid Chiller, 250 - 300 ton
+    ("jMPftZuK2wWVXODkAKqRSQ", "chillers",
+     "JCI_EG_160.76-EG1.pdf"),   # YK Style H Centrifugal Liquid Chiller, 250 - 3,000 tons, Engineering Guide
+    ("D5FtUyOY9glomeGjvtuNrw", "chillers",
+     "JCI_EG_160.77-EG2.pdf"),   # YKEP Mod A Energy Plus Centrifugal Liquid Chiller, 2,500 - 3,500 tons
+    ("dB0cWSGE_WoXMVbbFBZJnQ", "chillers",
+     "JCI_EG_160.78-EG1.pdf"),   # YMC2 Mod A Magnetic Bearing Centrifugal Chiller, 215 ton to 380 ton Engineering Guide
+    ("T2VP7icpfJVbqHwPjXECKg", "chillers",
+     "JCI_EG_160.79-EG1.pdf"),   # YD Style D Dual Centrifugal Liquid Chiller, 1,500 tons to 6,000 tons
+    ("75R17QD7qM3WQAzBGMY2oQ", "chillers",
+     "JCI_EG_160.80-EG1.pdf"),   # YS Style E Rotary Screw Liquid Chiller
+    ("846690WkjdtHpMhdnZSdww", "chillers",
+     "JCI_EG_160.81-EG1.pdf"),   # YR Style A Rotary Screw Liquid Chiller
+    ("kWzASDXwHgD~7pwnA8DHKQ", "chillers",
+     "JCI_EG_160.81-EG2.pdf"),   # YR Style C Rotary Screw Liquid Chiller
+    ("rxcraQwT1KNiqCthgt_vfQ", "chillers",
+     "JCI_EG_160.82-EG1.pdf"),   # CYK Style G Compound Centrifugal Liquid Units, 300 - 2,500 tons Quantum LX Controls
+    ("Uo_nku4c1xIduw4eHmluwQ", "chillers",
+     "JCI_EG_160.84-EG1.pdf"),   # YMC2 Mod B Magnetic Bearing Chiller, 165 - 1,000 tons Engineering Guide
+    ("jPgJ5q82T0F~3I1X4ZXLMg", "chillers",
+     "JCI_EG_160.87-EG1.pdf"),   # YK-EP Style B Efficiency Plus Chiller, 2,500 - 3,500 tons
+    ("qbcyYgIohcpaGhTlXPBUmA", "chillers",
+     "JCI_EG_160.88-EG1.pdf"),   # YVAM Air-Cooled Magnetic Bearing Centrifugal Chiller 250 to 375 ton 60 hz HFC-134a
+    ("uvk_NgaMNl9cIStavxz2iQ", "chillers",
+     "JCI_EG_160.88-EG2.pdf"),   # YVAM and YDAM Air-Cooled Magnetic Bearing Centrifugal Chillers 250 ton to 1,000 ton (880
+    ("_KVJPNZQ0cNhCYdovs1otg", "chillers",
+     "JCI_EG_160.89-EG1.pdf"),   # YMC2 Mod C Magnetic Bearing Liquid Chiller Engineering Guide
+    ("FWWU9s4saxrVzRZz~gu0NQ", "chillers",
+     "JCI_EG_160.89-EG2.pdf"),   # Model YMC2 Mod C Magnetic Bearing Centrifugal Liquid Chillers 165 ton to 780 ton (580 kW
+    ("aJIAEdVkTPmzlr7aGk3ghg", "chillers",
+     "JCI_EG_160.92-EG1.pdf"),   # Model CYK Style A Water-to-Water Compound Centrifugal Heat Pump Engineering Guide
+    ("XLCAwbDd5v6acDe7xNbozw", "chillers",
+     "JCI_EG_160.95-EG1.pdf"),   # Model YK Style J Centrifugal Liquid Chillers 2,300 tons to 3,200 tons (8,089 kW to 11,25
+    ("aqn31~iUUDoQGs8vDu8l1A", "chillers",
+     "JCI_EG_160.96-EG1.pdf"),   # YK-CP Centrifugal Liquid Chiller Engineering Guide
+    ("Pq_k2TjAkkrDfeAgRyXlXQ", "chillers",
+     "JCI_EG_160.98-EG1.pdf"),   # YVAM and YDAM Air-Cooled Magnetic Bearing Centrifugal Chillers 250 ton to 1,000 ton (880
+    ("gp37wBpt9yTm66vD3DmoAQ", "chillers",
+     "JCI_EG_161.01-EG1.pdf"),   # YZ Style A Magnetic Bearing Centrifugal Chiller Engineering Guide
+    ("XkgrUoFOLcL9INY_5wg05g", "chillers",
+     "JCI_EG_201.10-EG1.pdf"),   # YCAS140, YCAS160, YCAS170, YCAS180, YCAS190, YCAS216, YCAS236, YCAS246, YCAS266, YCAS310
+    ("j8nCiWaKrRQs_kRI5FOZ3A", "chillers",
+     "JCI_EG_201.10-EG2.pdf"),   # YCAS592, YCAS682, YCAS727, YCAS757, YCAS765, YCAS855, YCAS950, YCAS1035, YDAS790, YDAS89
+    ("Lyv2C1jj_usK7Ir9_bItgg", "chillers",
+     "JCI_EG_201.10-EG3.pdf"),   # YCAS592, YCAS682, YCAS727, YCAS757, YCAS765, YCAS855, YCAS950, YCAS1035, YDAS790, YDAS89
+    ("~hi0mJeL8DkQw9DHduJnAQ", "chillers",
+     "JCI_EG_201.18-EG1.pdf"),   # YCAS0090, YCAS0100, YCAS0110, YCAS0120, YCAS0130, YCAS0140, YCAS0150, YCAS0160, YCAS0170
+    ("RlSIK8m9JN~i~xBZ1zmq5w", "chillers",
+     "JCI_EG_201.18-EG2.pdf"),   # YCAS0283, YCAS0303, YCAS0323, YCAS0343, YCAS0373, YCAS0403, YCAS0453, YCAS0543, YCAS0573
+    ("Tjhy6NppIUoP8rCCNV3RsQ", "chillers",
+     "JCI_EG_201.18-EG3.pdf"),   # YCAS0295, YCAS0335, YCAS0375, YCAS0425, YCAS0475, YCAS0515, YCAS0555, YCAS0575, YCAS0605
+    ("69FH89SdLUZ99ODQazqQIQ", "chillers",
+     "JCI_EG_201.18-EG4.pdf"),   # YCAS0098, YCAS0118, YCAS0128, YCAS0138, YCAS0148, YCAS0158, YCAS0178, YCAS0198, YCAS0208
+    ("CIl3QACbwtklf6pU7Y3XNg", "chillers",
+     "JCI_EG_201.19-EG1.pdf"),   # YCAS130, YCAS0140, YCAS0150, YCAS0160, YCAS0170, YCAS0180, YCAS0200, YCAS0210, YCAS0230,
+    ("HPSgF9wC6~wik1f6OF5Pzg", "chillers",
+     "JCI_EG_201.19-EG2.pdf"),   # YCAS0373, YCAS0403, YCAS0453, YCAS0503, YCAS0543, YCAS0573, YCAS0623, YCAS0653, YCAS0693
+    ("_S~pN1WPs9ozEcynj08mvA", "chillers",
+     "JCI_EG_201.19-EG3.pdf"),   # YCAS0295, YCAS0335, YCAS0375, YCAS0425, YCAS0475, YCAS0515, YCAS0555, YCAS0575, YCAS0605
+    ("mgKbmwQgsB6WAgBe5V4ltw", "chillers",
+     "JCI_EG_201.19-EG4.pdf"),   # YCAS0098, YCAS0118, YCAS0128, YCAS0138, YCAS0148, YCAS0158, YCAS0178, YCAS0198, YCAS0208
+    ("45W8g8Vrzcl8boGQTa__0g", "chillers",
+     "JCI_EG_201.21-EG1.pdf"),   # YCAV0157, YCAV0177, YCAV0187, YCAV0197, YCAV0207, YCAV0227, YCAV0247, YCAV0267, YCAV287,
+    ("Rhe_VQxbuK4meELrzPqwbg", "chillers",
+     "JCI_EG_201.21-EG2.pdf"),   # YCAV0569, YCAV0639, YCAV0679, YCAV0719, YCAV0739, YCAV0819, YCAV0889, YCAV0969, YCAV1039
+    ("JSin~uStyiUk8M38bFOtgA", "chillers",
+     "JCI_EG_201.23-EG1.pdf"),   # YCIV0157, YCIV0177, YCIV0187, YCIV0197, YCIV0207, YCIV0227, YCIV0247, YCIV0267, YCIV0287
+    ("wZfqfo1omAcTaVFDEAdHfA", "chillers",
+     "JCI_EG_201.23-EG2.pdf"),   # YCIV0590, YCIV0600, YCIV0630, YCIV0650, YCIV0700, YCIV0720, YCIV0760, YCIV0770, YCIV0800
+    ("et8GNXsMVpeMaS_P3xvEdA", "chillers",
+     "JCI_EG_201.23-EG3.pdf"),   # YCIV0157, YCIV0177, YCIV0187, YCIV0207, YCIV0227, YCIV0247, YCIV0267, YCIV0287, YCIV0307
+    ("U_g92~Ey36Ob035eUQliWg", "chillers",
+     "JCI_EG_201.24-EG1.pdf"),   # YCWS0100SC, YCWS0120SC, YCWS0140SC, YCWS0180SC, YCWS0200SC, YCWS0220SC, YCWS0240SC Style
+    ("6SzST1T0qJkZ_n6q8dHrxw", "chillers",
+     "JCI_EG_201.24-EG2.pdf"),   # YCWS0313SC, YCWS0373SC, YCWS0423SC, YCWS0503SC, YCWS0563SC, YCWS0613SC, YCWS0663SC Style
+    ("tyanOJrPCcJU9AEAxiaP6g", "chillers",
+     "JCI_EG_201.24-EG3.pdf"),   # YCWS0100SB, YCWS0120SB, YCWS0140SB, YCWS0180SB, YCWS0200SB, YCWS0220SB, YCWS0240SB Style
+    ("bA5T7tt8hdhUqzzwI_eFkg", "chillers",
+     "JCI_EG_201.24-EG4.pdf"),   # YCWS0313SB, YCWS0373SB, YCWS0423SB, YCWS0503SB, YCWS0563SB, YCWS0613SB, YCWS0663SB Style
+    ("TGabdx5S7n5Isga7hx_dhQ", "chillers",
+     "JCI_EG_201.25-EG1.pdf"),   # YCRS0100SC, YCRS0120SC, YCRS0140SC, YCRS0180SC, YCRS0200SC, YCRS0220SC, YCRS0240SC Style
+    ("L0Km3r2o2X5zNqVPwflRLg", "chillers",
+     "JCI_EG_201.26-EG1.pdf"),   # YCWL0056SE, YCWL0064SE, YCWL0074SE, YCWL0084SE, YCWL0094SE, YCWL0104SE, YCWL0118SE, YCWL
+    ("QwlWcxgAUYZ_3EX6fcvp1A", "chillers",
+     "JCI_EG_201.28-EG1.pdf"),   # YVAA0153, YVAA0165, YVAA0178, YVAA0183, YVAA0195, YVAA0198, YVAA0200, YVAA0213, YVAA0215
+    ("gxnawcPF7ua2g1E2EJBxkw", "chillers",
+     "JCI_EG_201.30-EG1.pdf"),   # YVWA Style A Single and Dual Variable Speed 50 and 60 Hz
+    ("JXlKDUuMuQqHdzR9GI35uA", "chillers",
+     "JCI_EG_201.31-EG1.pdf"),   # YVFA0159, YVFA209, YVFA0259, YVFA0289, YVFA0309, YVFA0359, YVFA409, YVFA459 Open and Clo
+    ("4NqLbZMgQZptMnzcXxQS_A", "chillers",
+     "JCI_EG_201.42-EG2.pdf"),   # YVWH HP Water-Cooled Screw Heat Pump and Chiller Heating up to 176F, R-1234ze and R-515B
+    ("BJrZtLSqY9pNuvKujEiI5A", "chillers",
+     "JCI_EG_201.47-EG1.pdf"),   # YVAA Style B Air-Cooled Screw Chiller with VSD, 150 ton to 550 ton, Two Compressor 50 Hz
+]
+
+
 SOURCES = [
     {
         "id": "booster-boiler",
@@ -1302,6 +1506,29 @@ SOURCES = [
         "access": "무로그인",
         # 주소가 없어 줄 읽기 경로가 짝을 만들 열쇠가 없다 — 계통 전용 대조를 쓴다
         "crosscheck_unreliable": r"JCI_VEC100_",
+    },
+    {
+        "id": "jci-chiller-eg",
+        "vendor": "Johnson Controls / YORK",
+        "kind": "정격 카탈로그",
+        "note": "YORK 냉동기 Engineering Guide 86건 — **정격이 실린 계통**이다. "
+                "지금까지 받아 둔 JCI 냉동기 문서는 전부 BAS 포인트 리스트라 "
+                "용량·소비전력이 없었고, 그래서 냉동기 38모델이 정격 0 이었다"
+                "(오브젝트 5,711점이 정격 없이 떠 있었다). EG 는 형번별 냉동능력·"
+                "전기 정격(MCA·RLA·LRA·전압)·치수·중량·냉매 충전량을 싣는다. "
+                "⚠ 웹에서 찾은 것이 아니라 **저장소 안 스냅샷에서 라우팅**했다 — "
+                "data/haystack/_jci_docs.json 의 chillers 2,525건 중 '-EG*.pdf' 119건을 "
+                "뽑고, 문서 제목·prodname 이 우리 모델의 형번 계열을 실제로 적는 것만 "
+                "남겼다(D-017 의 반대편 — 제목 힌트로 고르지 않았다). "
+                "⚠ 한 계열이 판(Style)마다 문서가 따로다 — YK 는 D·E·F·G·H·J 여섯이고 "
+                "정격이 판마다 다르다. 합치지 말고 판별로 담는다. "
+                "⚠ EG 가 없어 못 메우는 모델은 지어내지 말고 gap 으로 남긴다 — "
+                "YAGK·YN·YIA·YB/YG·Frick·AWHP·Basildon·Verasys VEC100.",
+        "enumerate": "list",
+        "urls": [_JCI_KHUB % (site, i) for i, site, _n in JCI_CHILLER_EG],
+        "rename": {_JCI_KHUB % (site, i): n for i, site, n in JCI_CHILLER_EG},
+        "extractor": "spec",
+        "access": "무로그인",
     },
     {
         "id": "lg-bacnet-gateway",

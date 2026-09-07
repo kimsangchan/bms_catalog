@@ -227,6 +227,46 @@
   "inputFrequency": {
    "ko": "입력 주파수",
    "convUnit": "Hz"
+  },
+  "lowTempHeatingCapacity": {
+   "ko": "저온 난방능력 (-15 ℃)",
+   "convUnit": "kW"
+  },
+  "heatingPower": {
+   "ko": "난방 소비전력",
+   "convUnit": "kW"
+  },
+  "lowTempHeatingPower": {
+   "ko": "저온 난방 소비전력 (-15 ℃)",
+   "convUnit": "kW"
+  },
+  "eera": {
+   "ko": "냉난방효율 (EERa)",
+   "convUnit": ""
+  },
+  "energyEfficiencyGrade": {
+   "ko": "에너지 소비 효율 등급",
+   "convUnit": ""
+  },
+  "ratedRunningCurrentCooling": {
+   "ko": "운전 전류 (정격·냉방)",
+   "convUnit": "A"
+  },
+  "ratedRunningCurrentHeating": {
+   "ko": "운전 전류 (정격·난방)",
+   "convUnit": "A"
+  },
+  "maxRunningCurrent": {
+   "ko": "운전 전류 (최대)",
+   "convUnit": "A"
+  },
+  "refrigerantType": {
+   "ko": "냉매 종류",
+   "convUnit": ""
+  },
+  "tonsRefrigeration": {
+   "ko": "냉동톤",
+   "convUnit": "RT"
   }
  },
  "classes": {
@@ -387,6 +427,77 @@
       "ratedInputCurrent",
       "outputFrequency",
       "inputVoltage",
+      "unitWeight"
+     ]
+    }
+   }
+  },
+  "e8": {
+   "ko": "시스템에어컨 VRF (실외기·실내기)",
+   "labels": {
+    "grossCoolingCapacity": "정격 냉방능력",
+    "heatingCapacity": "정격 난방능력",
+    "systemPower": "냉방 소비전력",
+    "heatingPower": "난방 소비전력"
+   },
+   "table": [
+    "grossCoolingCapacity",
+    "heatingCapacity",
+    "systemPower",
+    "heatingPower",
+    "cop",
+    "unitWeight"
+   ],
+   "detailExtra": [
+    "lowTempHeatingCapacity",
+    "lowTempHeatingPower",
+    "ieer",
+    "eera",
+    "energyEfficiencyGrade",
+    "ratedRunningCurrentCooling",
+    "ratedRunningCurrentHeating",
+    "maxRunningCurrent",
+    "supplyVoltage",
+    "compressorConfig",
+    "refrigerantType",
+    "refrigerantCharge",
+    "tonsRefrigeration"
+   ],
+   "roles": {
+    "outdoorUnit": {
+     "ko": "실외기",
+     "detail": [
+      "grossCoolingCapacity",
+      "heatingCapacity",
+      "lowTempHeatingCapacity",
+      "systemPower",
+      "heatingPower",
+      "lowTempHeatingPower",
+      "ieer",
+      "cop",
+      "eera",
+      "ratedRunningCurrentCooling",
+      "ratedRunningCurrentHeating",
+      "maxRunningCurrent",
+      "supplyVoltage",
+      "compressorConfig",
+      "refrigerantType",
+      "refrigerantCharge",
+      "unitWeight",
+      "tonsRefrigeration"
+     ]
+    },
+    "indoorUnit": {
+     "ko": "실내기",
+     "detail": [
+      "grossCoolingCapacity",
+      "heatingCapacity",
+      "systemPower",
+      "heatingPower",
+      "ratedRunningCurrentCooling",
+      "ratedRunningCurrentHeating",
+      "supplyVoltage",
+      "refrigerantType",
       "unitWeight"
      ]
     }

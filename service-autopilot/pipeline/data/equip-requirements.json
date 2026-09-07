@@ -407,16 +407,19 @@
         }
       ]
     },
-    "e5.pac": {
-      "equipId": "e5",
-      "title": "시스템에어컨 (VRF/PAC) (Korea Standard)",
+    "e8.vrf": {
+      "equipId": "e8",
+      "title": "시스템에어컨 (VRF) — 실외기·실내기 (Korea Standard)",
       "match": {
-        "catPrefix": "HVAC.AIR.VRF"
+        "catPrefix": "HVAC.AIR.TERMINAL.VRF"
       },
-      "matchNote": "삼성 DVM S, LG Multi V 등 국내 현장 표준 VRF 장비",
+      "matchNote": "2026-09-07 e5.pac 에서 옮겼다. e5(공조기) 밑에 두고 match.catPrefix 를 'HVAC.AIR.VRF' 로 적었는데 VRF 모델의 실제 cat 은 'HVAC.AIR.TERMINAL.VRF' 라 매칭이 0건이었다 — 삼성·LG 게이트웨이 2건, JCI VRF 2건, 다이킨 1건이 요구 프로파일 없이 흘렀다. 계열도 e5 가 아니라 e8(VRF 실내기·실외기)가 맞다.",
+      "note": "냉수·온수코일이 없고 기외정압·최소외기량·이코노마이저도 없다(카세트·벽걸이는 실내기 자체가 말단이다). e5.ahu/e5.rtu 체크리스트를 그대로 쓰면 없는 부품을 찾게 된다.",
       "energyModel": {
-        "cooling": "실외기 압축기 전력 = 실내기 총 부하 ÷ COP (인버터 압축기 부분부하 특성 적용)",
-        "heating": "실외기 난방 전력 = 실내기 난방 부하 ÷ COP"
+        "cooling": "실외기 압축기 전력 = 실내기 총 냉방부하 ÷ COP(부분부하). 정격점 COP = 정격 냉방능력 ÷ 통합 냉방 소비전력, 부분부하 보정은 IEER (100/75/50/25 % 가중 — 원문 64쪽 각주 13)로 한다.",
+        "heating": "난방 전력 = 난방부하 ÷ COP. 외기 -15 ℃ 부근은 저온 난방능력·저온 난방 소비전력으로 갈아탄다 — 정격(외기 7 ℃) COP 를 그대로 쓰면 한파일 소비량을 과소평가한다.",
+        "electrical": "전기 용량·간선 검토 = 전원 사양 × 운전 전류(정격·최대).",
+        "thermalMass": "기동·정지 과도 응답 = 제품 중량(금속 열용량) + 냉매 충진량(냉매측 축열)."
       },
       "items": [
         {
@@ -424,33 +427,338 @@
           "name": "정격 냉방능력",
           "unit": "kW",
           "grade": "필수",
-          "usedBy": ["cooling"],
-          "why": "실외기 압축기 기준 용량",
-          "features": ["grossCoolingCapacity"],
-          "sourceHint": "실외기 사양표",
-          "searchTerms": ["냉방능력", "cooling capacity", "rated cooling"]
+          "usedBy": [
+            "cooling"
+          ],
+          "why": "압축기 전력 = 냉방부하 ÷ COP 의 기준 용량",
+          "features": [
+            "grossCoolingCapacity"
+          ],
+          "sourceHint": "실외기·실내기 정격표 '성능 (정격) › 냉방'",
+          "searchTerms": [
+            "냉방능력",
+            "성능 (정격)",
+            "정격냉방",
+            "cooling capacity"
+          ]
+        },
+        {
+          "id": "heatingCapacity",
+          "name": "정격 난방능력",
+          "unit": "kW",
+          "grade": "필수",
+          "usedBy": [
+            "heating"
+          ],
+          "why": "겨울 부하 기준 용량. 히트펌프는 난방능력이 냉방능력과 다르다",
+          "features": [
+            "heatingCapacity"
+          ],
+          "sourceHint": "정격표 '성능 (정격) › 난방'",
+          "searchTerms": [
+            "난방능력",
+            "정격난방",
+            "heating capacity"
+          ]
+        },
+        {
+          "id": "lowTempHeatingCapacity",
+          "name": "저온 난방능력 (-15 ℃)",
+          "unit": "kW",
+          "grade": "필수",
+          "usedBy": [
+            "heating"
+          ],
+          "why": "한랭지 구간의 실제 능력. 정격(외기 7 ℃) 값만 쓰면 한파일 난방을 못 맞춘다 — 조건은 원문 64쪽 각주 3(실외 -15 ℃ DB)에 있다",
+          "features": [
+            "lowTempHeatingCapacity"
+          ],
+          "sourceHint": "정격표 '성능 › 저온 난방 (-15 ℃) › 난방'",
+          "searchTerms": [
+            "저온 난방",
+            "-15"
+          ]
         },
         {
           "id": "coolingPower",
-          "name": "정격 냉방 소비전력",
+          "name": "통합 냉방 소비전력",
           "unit": "kW",
           "grade": "필수",
-          "usedBy": ["cooling"],
-          "why": "압축기 정격 전력, COP 산출",
-          "features": ["systemPower"],
-          "sourceHint": "실외기 사양표",
-          "searchTerms": ["소비전력", "power input", "cooling power"]
+          "usedBy": [
+            "cooling"
+          ],
+          "why": "정격점 COP 의 분모. 능력만으로는 전력이 안 나온다",
+          "features": [
+            "systemPower"
+          ],
+          "sourceHint": "정격표 '전력 › 통합 냉방 소비전력'",
+          "searchTerms": [
+            "소비전력",
+            "소비 전력",
+            "정격냉방",
+            "power input"
+          ]
+        },
+        {
+          "id": "heatingPower",
+          "name": "통합 난방 소비전력",
+          "unit": "kW",
+          "grade": "필수",
+          "usedBy": [
+            "heating"
+          ],
+          "why": "난방 COP 의 분모",
+          "features": [
+            "heatingPower"
+          ],
+          "sourceHint": "정격표 '전력 › 통합 난방 소비전력'",
+          "searchTerms": [
+            "난방 소비전력",
+            "정격난방"
+          ]
+        },
+        {
+          "id": "lowTempHeatingPower",
+          "name": "저온 난방 소비전력 (-15 ℃)",
+          "unit": "kW",
+          "grade": "필수",
+          "usedBy": [
+            "heating"
+          ],
+          "why": "한랭지 구간 COP 의 분모. 저온 능력과 짝이라 한쪽만 있으면 못 쓴다",
+          "features": [
+            "lowTempHeatingPower"
+          ],
+          "sourceHint": "정격표 '전력 › 저온 난방 소비전력 (-15 ℃)'",
+          "searchTerms": [
+            "저온 난방 소비전력"
+          ]
+        },
+        {
+          "id": "partLoadEfficiency",
+          "name": "통합 냉방 효율 (IEER)",
+          "unit": "—",
+          "grade": "필수",
+          "usedBy": [
+            "cooling"
+          ],
+          "why": "연간 운전의 대부분이 부분부하다. 정격 COP 만 쓰면 소비량이 크게 틀린다. 원문 64쪽 각주 13 이 가중식(0.02A+0.617B+0.238C+0.125D)을 준다",
+          "features": [
+            "ieer"
+          ],
+          "sourceHint": "정격표 '효율 › 통합 냉방 효율 (IEER)'",
+          "searchTerms": [
+            "IEER",
+            "통합 냉방 효율"
+          ]
         },
         {
           "id": "cop",
-          "name": "냉난방 효율 (COP/EER)",
+          "name": "통합 난방 효율 (COP)",
+          "unit": "—",
+          "grade": "필수",
+          "usedBy": [
+            "heating"
+          ],
+          "why": "난방 부분부하 효율. 원문 각주 13: (표준 난방 효율 + 한랭지 난방 효율) / 2",
+          "features": [
+            "cop"
+          ],
+          "sourceHint": "정격표 '효율 › 통합 난방 효율 (COP)'",
+          "searchTerms": [
+            "COP",
+            "통합 난방 효율"
+          ]
+        },
+        {
+          "id": "annualEfficiency",
+          "name": "냉난방효율 (EERa)",
           "unit": "—",
           "grade": "권장",
-          "usedBy": ["cooling", "heating"],
-          "why": "부분부하 운전시 전력 산출용 곡선 보정 기준",
-          "features": ["eer", "cop"],
-          "sourceHint": "효율 사양표",
-          "searchTerms": ["cop", "eer", "효율", "efficiency"]
+          "usedBy": [
+            "cooling",
+            "heating"
+          ],
+          "why": "국내 고시의 냉난방 통합 지표. IEER·COP 와 정의가 달라 같은 칸에 담으면 안 된다 — 연간 소비량 교차 검산에 쓴다",
+          "features": [
+            "eera"
+          ],
+          "sourceHint": "정격표 '효율 › 냉난방효율 (EERa)'",
+          "searchTerms": [
+            "EERa",
+            "냉난방효율"
+          ]
+        },
+        {
+          "id": "efficiencyGrade",
+          "name": "에너지 소비 효율 등급",
+          "unit": "—",
+          "grade": "참고",
+          "usedBy": [],
+          "why": "장비 선정·법규 검토용. 등급은 구간이라 계산에는 못 쓴다",
+          "features": [
+            "energyEfficiencyGrade"
+          ],
+          "sourceHint": "정격표 '효율 › 에너지 소비 효율 등급'",
+          "searchTerms": [
+            "효율 등급",
+            "1등급"
+          ]
+        },
+        {
+          "id": "ratedRunningCurrent",
+          "name": "운전 전류 (정격, 냉방·난방)",
+          "unit": "A",
+          "grade": "권장",
+          "usedBy": [
+            "electrical"
+          ],
+          "why": "전기 용량 검토와 전류 기반 부하 추정(BMS 가 CT 로 읽는 값)의 기준점",
+          "features": [
+            "ratedRunningCurrentCooling",
+            "ratedRunningCurrentHeating"
+          ],
+          "sourceHint": "정격표 '전기특성 › 운전 전류(정격)'",
+          "searchTerms": [
+            "운전 전류",
+            "정격 전류"
+          ]
+        },
+        {
+          "id": "maxRunningCurrent",
+          "name": "운전 전류 (최대)",
+          "unit": "A",
+          "grade": "권장",
+          "usedBy": [
+            "electrical"
+          ],
+          "why": "순시 최대. 간선 검토와 시뮬레이터 전류 상한",
+          "features": [
+            "maxRunningCurrent"
+          ],
+          "sourceHint": "정격표 '전기특성 › 운전 전류(최대)'",
+          "searchTerms": [
+            "최대 운전 전류",
+            "운전 전류(최대)"
+          ]
+        },
+        {
+          "id": "supplyVoltage",
+          "name": "전원 사양 (상·선식·전압·주파수)",
+          "unit": "Φ, #, V, Hz",
+          "grade": "권장",
+          "usedBy": [
+            "electrical"
+          ],
+          "why": "전류를 전력으로 바꾸는 데 필요하다 (P = √3·V·I·cosφ)",
+          "features": [
+            "supplyVoltage"
+          ],
+          "sourceHint": "정격표 '전원 사양'",
+          "searchTerms": [
+            "전원 사양",
+            "전원사양"
+          ]
+        },
+        {
+          "id": "compressorStaging",
+          "name": "압축기 형식·대수",
+          "unit": "—",
+          "grade": "권장",
+          "usedBy": [
+            "cooling",
+            "heating"
+          ],
+          "why": "인버터 스크롤 1대와 2대는 부분부하 곡선 모양이 다르다 — IEER 가중치를 어느 구간에 걸지가 달라진다",
+          "features": [
+            "compressorConfig"
+          ],
+          "sourceHint": "정격표 '압축기 › 형식'",
+          "searchTerms": [
+            "압축기",
+            "Scroll",
+            "Inverter"
+          ]
+        },
+        {
+          "id": "refrigerant",
+          "name": "냉매 종류·충진량",
+          "unit": "— / kg",
+          "grade": "권장",
+          "usedBy": [
+            "thermalMass"
+          ],
+          "why": "냉매측 축열량과 기동 과도 응답. 법규(F-gas)·현장 점검에도 쓴다",
+          "features": [
+            "refrigerantType",
+            "refrigerantCharge"
+          ],
+          "sourceHint": "정격표 '냉매 › 종류 / 충진량'",
+          "searchTerms": [
+            "냉매",
+            "R410A",
+            "충진량"
+          ]
+        },
+        {
+          "id": "unitWeight",
+          "name": "제품 중량",
+          "unit": "kg",
+          "grade": "권장",
+          "usedBy": [
+            "thermalMass"
+          ],
+          "why": "기동·정지 과도 응답의 열용량(금속 질량). 정상상태 계산에는 안 쓴다",
+          "features": [
+            "unitWeight"
+          ],
+          "sourceHint": "정격표 '본체 치수 › 제품 중량'",
+          "searchTerms": [
+            "제품 중량",
+            "중량"
+          ]
+        },
+        {
+          "id": "tonsRefrigeration",
+          "name": "냉동톤",
+          "unit": "RT",
+          "grade": "참고",
+          "usedBy": [],
+          "why": "국내 관행 용량 표기. 능력(kW)과 중복이지만 장비 선정·설계도서 대조에 쓴다",
+          "features": [
+            "tonsRefrigeration"
+          ],
+          "sourceHint": "정격표 '냉동톤'",
+          "searchTerms": [
+            "냉동톤",
+            "RT"
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "name": "제품·포장 치수, 포장 중량",
+          "why": "설치·물류 검토용. 전력·발열 계산에 들어가는 항이 없다"
+        },
+        {
+          "name": "배관경(액관·가스관·고압가스관)·배관 설치 한계",
+          "why": "시공 사양이다. 배관 길이 보정은 원문 64쪽 각주 4 가 '차이가 발생할 수 있다'고만 적고 보정식을 주지 않아, 값이 있어도 계산에 못 쓴다 (지어내지 않는다)"
+        },
+        {
+          "name": "배선 굵기(전원선·통신선)",
+          "why": "전기 시공 사양. 소비량 계산과 무관"
+        },
+        {
+          "name": "차단기 (MCCB+ELB)/(ELCB)",
+          "why": "보호기기 선정값이라 장비가 실제로 끄는 전류가 아니다. 전기 검토는 운전 전류(최대)로 한다"
+        },
+        {
+          "name": "사용 온도 범위",
+          "why": "운전 가능 구간이지 성능값이 아니다. 능력 보정 곡선이 원문에 없어 그대로는 못 쓴다"
+        },
+        {
+          "name": "송풍기 형식·출력·풍량·정압",
+          "why": "실외기 응축팬·실내기 송풍기 전력은 이미 소비전력 값 안에 들어 있다. 따로 더하면 이중계상이다. 풍량은 VRF 실내기 부하 계산에 쓰지 않는다(부하는 실내 존에서 온다)"
         }
       ]
     }

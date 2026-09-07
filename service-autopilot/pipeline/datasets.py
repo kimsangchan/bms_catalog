@@ -661,6 +661,15 @@ def label_unit(label):
     m = re.match(r"^.*\(\s*(W|Pa|m3/h|m³/h)\s*\)\s*$", text)
     if m:
         return m.group(1)
+    # 국내 문서(삼성·LS)는 **한글 라벨 + 끝 괄호에 단위 하나**가 관례다.
+    # ⚠ 같은 규칙을 영문 라벨에 쓰면 'dB(A)' 의 A 나 'Dry Weight lbs (kg)' 의 kg 을
+    #   단위로 잘못 읽는다(값이 lbs 인데 kg 이라고 적히는 사고). 그래서 **한글이 든
+    #   라벨에만** 적용하고, 토큰도 열거한 것만 받는다.
+    if re.search(r"[가-힣]", text):
+        m = re.match(r"^.*\(\s*(kg|kW|kcal/h|mmAq|mm²|m³/min|m³/h|CMM|CMH|RT|"
+                     r"Hz|Pa|mm|℃|°C|dB|A|V|W|%)\s*\)\s*$", text)
+        if m:
+            return m.group(1)
     m = re.search(r"\(([^)]*(?:%|ft|cfm|btu|mbh|hp|rpm|ton|kw|psi|°f|m³|m3|l/s|cmh|mm|db)[^)]*)\)",
                   text, re.I)
     if m and not re.search(r"nominal|standard|oversiz|fins|t/y", m.group(1), re.I):
@@ -758,6 +767,13 @@ def unit_role_for(code, title):
         return "condensingUnit"
     if re.search(r"EEV kit", title or "", re.I):
         return "eevKit"
+    # 삼성 VRF(e8) — 제목으로 실외기·실내기를 가른다. unit-schema 의 e8 roles 가 이
+    # 값으로 상세 열을 고른다(실내기에는 IEER·냉동톤이 없다). '형번별 정격' 은
+    # ingest_samsung_ratings 가 붙이는 접두라 다른 벤더 표를 건드리지 않는다.
+    if (title or "").startswith("형번별 정격"):
+        if re.search(r"카세트|덕트|벽걸이|스탠드|바닥상치|실내기|1Way|2Way|4Way|정압", title):
+            return "indoorUnit"
+        return "outdoorUnit"
     return "packagedUnit"
 
 
@@ -848,6 +864,47 @@ UNIT_FIELD_PICKS = {
     "cabinetSize": [r"^Cabinet$"],
     "airflowConfiguration": [r"^Configuration$"],
 }
+
+# 삼성 SEC 스펙 가이드(국내 VRF, e8) — ingest_samsung_ratings 가 붙인 한글 라벨.
+# ⚠ 위 리터럴 안에 같은 키를 또 적으면 **뒤엣것이 앞엣것을 조용히 지운다**
+#   (refrigerantCharge 주석 참고). 그래서 따로 두고 **뒤에 이어 붙인다** —
+#   기존 벤더 패턴이 먼저 시도되므로 다른 모델의 판정은 그대로다.
+# 전 모델 라벨과 대조해 **다른 모델에 걸리는 것 0건**을 확인하고 넣었다(규칙 3).
+# 실외기(p13~36)와 실내기(p38~57)가 라벨을 달리 적어 둘 다 담는다.
+# ⚠ 원문이 쪽마다 표기를 달리 쓴다 — '통합 냉방 소비전력'·'소비전력 (정격) 냉방'·
+#   '소비 전력 냉방'·'소비전력(정격) 냉방' 이 다 같은 값이고, 띄어쓰기도 흔들린다
+#   ('본체 치수'/'본체치수', '저온 난방'/'저온난방'). 한 쪽만 보고 패턴을 박으면
+#   나머지 쪽 형번이 확정본에서 조용히 빈다 — 실제로 처음엔 55/64 쪽만 걸렸다.
+#   그래서 라벨을 전수로 뽑아 변형을 다 덮었다.
+SAMSUNG_VRF_PICKS = {
+    # '저온' 은 따로 있으니 앞을 막는다(부정 전방탐색)
+    "grossCoolingCapacity": [r"^성능 (?!저온).*냉방 \(kW\)$"],
+    "heatingCapacity": [r"^성능 (?!저온).*난방 \(kW\)$"],
+    "lowTempHeatingCapacity": [r"^성능 저온\s?난방.*\(kW\)$"],
+    # '저온 난방 소비전력' 은 '소비전력' 뒤에 '난방' 이 없어 아래 난방 패턴에 안 걸린다
+    # 원문이 '통합 냉방 소비전력' 과 '소비전력 (정격) 냉방' 둘 다 쓴다 — 어순이 반대다
+    "systemPower": [r"^전력 (?!저온).*(냉방.*소비\s?전력|소비\s?전력.*냉방) \((kW|W)\)$",
+                    r"^소비전력 정격\s?냉방 \(kW\)$",
+                    r"^전력 소비전력 \(정격\) \(kW\)$"],   # 냉방전용 쪽 — 냉방만 있다
+    "heatingPower": [r"^전력 (?!저온).*(난방.*소비\s?전력|소비\s?전력.*난방) \((kW|W)\)$",
+                     r"^소비전력 정격\s?난방 \(kW\)$"],
+    "lowTempHeatingPower": [r"^전력 저온\s?난방 소비전력"],
+    "ieer": [r"^효율 통합 냉방 효율 \(IEER\)$"],
+    "cop": [r"^효율 통합 난방 효율 \(COP\)$"],
+    "eera": [r"^효율 냉난방효율"],
+    "energyEfficiencyGrade": [r"^효율 에너지 소비 효율 등급$"],
+    "ratedRunningCurrentCooling": [r"^(전기특성|전력|운전 전류) (?!.*최대).*냉방 \(A\)$"],
+    "ratedRunningCurrentHeating": [r"^(전기특성|전력|운전 전류) (?!.*최대).*난방 \(A\)$"],
+    "maxRunningCurrent": [r"^(전기특성|전력|운전 전류) .*최대.*\(A\)$"],
+    "supplyVoltage": [r"^전원 사양 \(", r"^전원 \(Φ"],
+    "compressorConfig": [r"^압축기 (형식|종류)$"],
+    "refrigerantType": [r"^냉매 종류$"],
+    "refrigerantCharge": [r"^냉매 충진량 \(kg\)$"],
+    "unitWeight": [r"^본체\s?치수( / 중량)? 제품\s?중량 \(kg\)$"],
+    "tonsRefrigeration": [r"^냉동톤 \(RT\)$"],
+}
+for _f, _pats in SAMSUNG_VRF_PICKS.items():
+    UNIT_FIELD_PICKS.setdefault(_f, []).extend(_pats)
 
 
 def capacity_units_from_table(table, model, merged):

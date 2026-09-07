@@ -350,7 +350,7 @@
   "note": "3x380–480 V AC · Design Guide §5.1.2 Table 12·13. **정격점 값이다.** EN 50598-2(=IEC 61800-9-2) 기준 **부분부하 8운전점 손실**은 데이터시트에 없고 제조사 계산기(Danfoss MyDrive Energy Efficiency Calculator)에 있다. typical=정격 조건, best case=고입력전압·저스위칭주파수."
  },
  "points": [],
- "gap": "**전기 데이터 확보 완료**(아래 표). 남은 것: ⑴ EN 50598-2 부분부하 8운전점 손실 — Danfoss MyDrive Energy 계산기에서 추출 필요 ⑵ Modbus 레지스터 표(Design Guide §10.8.8 Coil/Register) ⑶ 과부하 내량 ⑷ 주위온도·스위칭주파수 디레이팅 곡선(§6.3.1).",
+ "gap": "**전기 데이터 확보 완료**(아래 표). 남은 것: ⑴ EN 50598-2 부분부하 8운전점 손실 — Danfoss MyDrive Energy 계산기에서 추출 필요 ⑵ Modbus 레지스터 표(Design Guide §10.8.8 Coil/Register) ⑶ 과부하 내량 ⑷ 주위온도·스위칭주파수 디레이팅 곡선(§6.3.1). ⚠ **형번별 정격 확정본(data/units)이 아직 없다.** 원문에는 있다 — 전기 정격표(Table 10~19 'Mains Supply …')의 열이 곧 형번(PK25·P1K5·P11K …)이고 축출력·출력전류·입력전류·전력손실·효율·중량이 형번마다 적혀 있다(9열 전수 읽힘). 막힌 곳은 둘이다: ⑴ datasets.unit_models 의 제목 관문이 'general data|physical data|형번별 정격' 만 받아 'Mains Supply …' 를 지나친다. ⑵ e15 의 UNIT_FIELD_PICKS 는 LS H100 의 한글 라벨로 쓰여 있어 이 문서의 영문 라벨('Typical shaft output [kW]' 등)을 못 잡는다. 관문을 넓히고 픽을 더하면 찬다 — 카탈로그를 더 구할 필요는 없다.",
  "extractor": "manual",
  "specTables": [
   {

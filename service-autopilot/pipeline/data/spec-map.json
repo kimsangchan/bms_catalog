@@ -193,10 +193,10 @@
   "lg-ahu-comm-kit-0caa0-02m-multi-v-single-ahu-interface-modbus-pahcms000"
  ],
  "LG_Multi_V_5_Engineering_Data_Book.pdf": [
-  "lg-multi-v-5-outdoor-unit"
+  "lg-ac-smart-bacnet-gateway"
  ],
  "Samsung_DVM_S_Data_Book.pdf": [
-  "samsung-dvm-s-outdoor-unit"
+  "samsung-mim-b17bn-bacnet-gateway"
  ],
  "Samsung_SEC_SpecGuide_KR_2017-03.pdf": [
   "samsung-mim-b17bn-bacnet-gateway"
@@ -207,5 +207,6 @@
  "LG_ACSmart_BACnet_MFL69023101.pdf": [
   "lg-ac-smart-bacnet-gateway"
  ],
- "_국내벤더": "2026-09-07 삼성·LS·LG — 짝의 근거: 삼성 SpecGuide 는 국내 60Hz DVM S 라인업 형번·용량·COP 표이고 MIM-B17BN 이 그 라인업의 BACnet 게이트웨이다. LS H100 은 같은 제품의 본체 매뉴얼(통신 맵은 옵션 카드 매뉴얼에서 따로 왔다). LG AC Smart 는 게이트웨이 자신의 정격(전원·소비전력·통신)만 그 설치설명서에 있다 — 실내기·실외기 능력은 여기 없다(각 모델 gap 참고)."
+ "_국내벤더": "2026-09-07 삼성·LS·LG — 짝의 근거: 삼성 SpecGuide 는 국내 60Hz DVM S 라인업 형번·용량·COP 표이고 MIM-B17BN 이 그 라인업의 BACnet 게이트웨이다. LS H100 은 같은 제품의 본체 매뉴얼(통신 맵은 옵션 카드 매뉴얼에서 따로 왔다). LG AC Smart 는 게이트웨이 자신의 정격(전원·소비전력·통신)만 그 설치설명서에 있다 — 실내기·실외기 능력은 여기 없다(각 모델 gap 참고).",
+ "_실외기정격": "2026-09-07 실외기 정격을 **따로 모델로 만들지 않는다.** 카탈로그 관례가 그렇다 — 정격을 가진 모델 57건 중 52건이 오브젝트(통신 매뉴얼)와 정격(제품 카탈로그)을 서로 다른 문서에서 끌어와 **한 modelId 에 합친다**(Trane CGAM · Daikin · Carrier · AAON · Danfoss FC 101 …). 정격만 있고 오브젝트가 없는 레코드는 통신 문서 자체가 없는 3건(Schneider PM5300·PM5500, York RTC)뿐이다. e8 안에도 선례가 있다: JCI SI-VRFCBN02 는 게이트웨이 문서로 만든 레코드에 실외기 정격을 붙이고 name 을 '… — 실외기(ODU)' 로 적어 무엇을 덮는지 밝힌다. 그래서 Multi V 5 / DVM S 데이터북은 각각 lg-ac-smart-bacnet-gateway · samsung-mim-b17bn-bacnet-gateway 로 보낸다. 이전에 예약돼 있던 lg-multi-v-5-outdoor-unit · samsung-dvm-s-outdoor-unit 은 만들지 않는다 — 만들면 조인 키가 둘로 갈라져 BMS 가 '모델 하나 고르면 매핑 끝'을 못 한다."
 }
