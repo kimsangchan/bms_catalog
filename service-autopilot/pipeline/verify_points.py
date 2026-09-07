@@ -604,6 +604,10 @@ def main(argv):
             mnode["count"] += n
             total += n
 
+        # ⚠ 앞머리 줄이기는 **판끼리만** 한다. 정격·기타 표를 형제로 붙인 뒤에 돌리면
+        #   공통 앞머리가 없어져(‘정격’ 과 ‘BACnet Point List : 실내기’) 줄이기가
+        #   통째로 꺼진다 — LG 판 여섯이 다시 'BACnet Point List : …' 로 길어졌다.
+        shorten(mnode["children"])
         specs = spec_sections(m, pages, no_pages)
         if specs:
             sections.extend(specs)
@@ -617,7 +621,6 @@ def main(argv):
                 mnode["count"] += n2
                 total += n2
 
-        shorten(mnode["children"])
         e = tree.setdefault(eid, {"id": eid, "count": 0,
                                   "label": ("%s %s" % (eid, enames.get(eid, ""))).strip(),
                                   "children": collections.OrderedDict()})
