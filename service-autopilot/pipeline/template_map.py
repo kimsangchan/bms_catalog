@@ -66,303 +66,335 @@ CSS = """
  --bg:#0C1417;--panel:#111C20;--ink:#DCE7EA;--dim:#93A8AF;--faint:#6B838B;
  --line:#1E2C32;--accent:#3FB4C2;--soft:#10333A;--warn:#D9A441;--bad:#E08585;--ok:#5FBF8F}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 var(--ui)}
-.wrap{max-width:1420px;margin:0 auto;padding:24px 20px 70px}
-h1{font-size:21px;margin:0 0 3px}
-.sub{color:var(--faint);font-size:12.5px;margin-bottom:16px}
-.n{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
-.n span{background:var(--panel);border:1px solid var(--line);border-radius:999px;
- padding:3px 11px;font-size:12px;color:var(--dim)}
-.n b{color:var(--accent);font-family:var(--mono);font-variant-numeric:tabular-nums}
-.cols{display:grid;grid-template-columns:210px minmax(0,1fr);gap:18px;align-items:start}
-@media(max-width:900px){.cols{grid-template-columns:1fr}}
-.rail{position:sticky;top:14px}
-.rail button{display:block;width:100%;text-align:left;background:var(--panel);
- border:1px solid var(--line);border-radius:8px;padding:7px 10px;margin-bottom:5px;
- color:var(--ink);font:12.5px/1.35 var(--ui);cursor:pointer}
-.rail button:hover{border-color:var(--accent)}
-.rail button[aria-current=true]{border-color:var(--accent);background:var(--soft)}
-.rail .m{display:block;color:var(--faint);font-family:var(--mono);font-size:10.5px;
- font-variant-numeric:tabular-nums}
-.head{background:var(--panel);border:1px solid var(--line);border-radius:10px;
- padding:12px 14px;margin-bottom:12px}
-.head h2{font-size:15px;margin:0 0 6px}
-.head p{margin:0 0 6px;color:var(--dim);font-size:12.5px}
-.head .warn{color:var(--warn)}
-.calc{border-top:1px solid var(--line);margin-top:8px;padding-top:8px}
-.calc div{font-size:12px;color:var(--dim);margin-bottom:3px}
-.calc b{color:var(--accent);font-family:var(--mono);font-size:11px}
-.pick{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
-.pick select{background:var(--panel);color:var(--ink);border:1px solid var(--line);
- border-radius:7px;padding:5px 8px;font:12.5px var(--ui);max-width:420px}
-.pick .cov{font-family:var(--mono);font-size:12px;color:var(--dim);
- font-variant-numeric:tabular-nums}
-table{border-collapse:collapse;width:100%;font-size:12.5px;background:var(--panel);
- border:1px solid var(--line);border-radius:10px;overflow:hidden}
-th,td{padding:6px 9px;text-align:left;border-bottom:1px solid var(--line);
- vertical-align:top}
-th{background:var(--soft);font-weight:600;font-size:11.5px;white-space:nowrap}
+body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.5 var(--ui)}
+.wrap{max-width:1460px;margin:0 auto;padding:16px 18px 28px}
+h1{font-size:18px;margin:0 0 2px}
+.sub{color:var(--faint);font-size:12px;margin:0 0 12px}
+code{font-family:var(--mono);font-size:11px;color:var(--dim);word-break:break-all}
+
+/* 탭 + 필터 바 — 위에 붙어 따라온다. 스크롤해도 조작부가 사라지지 않는다 */
+.top{position:sticky;top:0;z-index:5;background:var(--bg);padding-top:2px;
+ border-bottom:1px solid var(--line);margin-bottom:10px}
+.tabs{display:flex;gap:4px;margin-bottom:8px}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;
+ padding:5px 12px;color:var(--dim);font:13px var(--ui);cursor:pointer}
+.tabs button[aria-current=true]{color:var(--ink);border-bottom-color:var(--accent);
+ font-weight:600}
+.bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding-bottom:8px}
+.bar input,.bar select{background:var(--panel);color:var(--ink);
+ border:1px solid var(--line);border-radius:6px;padding:4px 7px;font:12px var(--ui)}
+.bar input{width:170px}
+.bar select{max-width:300px}
+.bar .sp{flex:1}
+.bar .cnt{font-family:var(--mono);font-size:11.5px;color:var(--dim);
+ font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar .cnt b{color:var(--accent)}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;
+ padding:3px 10px;font-size:11.5px;color:var(--dim);cursor:pointer}
+.chip[aria-pressed=true]{border-color:var(--accent);background:var(--soft);
+ color:var(--ink)}
+
+table{border-collapse:collapse;width:100%;font-size:12px;background:var(--panel);
+ border:1px solid var(--line);border-radius:8px;overflow:hidden}
+th,td{padding:5px 8px;text-align:left;border-bottom:1px solid var(--line);
+ vertical-align:middle}
+th{background:var(--soft);font-weight:600;font-size:11px;white-space:nowrap;
+ position:sticky;top:0}
 tr:last-child td{border-bottom:0}
-td.k{font-weight:600;white-space:nowrap}
-td.mono,td.num{font-family:var(--mono);font-size:11.5px;
- font-variant-numeric:tabular-nums}
-td.d{color:var(--dim);font-size:12px}
-td.hit{font-family:var(--mono);font-size:11.5px;color:var(--ok);word-break:break-all}
-td.miss{color:var(--faint);font-size:11.5px}
-.g{display:inline-block;border-radius:999px;padding:1px 7px;font-size:10.5px;
+tr.sel td{background:var(--soft)}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:var(--soft)}
+td.k{font-weight:600;white-space:nowrap;max-width:230px;overflow:hidden;
+ text-overflow:ellipsis}
+td.mono{font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums;
+ white-space:nowrap}
+td.hit{font-family:var(--mono);font-size:11px;color:var(--ok);
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:290px}
+td.miss{color:var(--faint);font-size:11px;white-space:nowrap}
+td.c{text-align:center;font-family:var(--mono)}
+td.c.y b{color:var(--ok)}
+td.c.n{color:var(--line)}
+td.c .nm{display:block;font-size:9px;color:var(--faint);white-space:nowrap;
+ overflow:hidden;text-overflow:ellipsis;max-width:88px;margin:0 auto}
+th.pid{text-align:center;font-family:var(--mono);font-size:10px;padding:4px}
+th.pid .e{display:block;color:var(--faint);font-size:9px}
+.g{display:inline-block;border-radius:999px;padding:0 6px;font-size:10px;
  border:1px solid var(--line);white-space:nowrap}
 .g.f{color:var(--bad);border-color:var(--bad)}
 .g.r{color:var(--accent);border-color:var(--accent)}
 .g.o{color:var(--faint)}
-details{margin-top:3px}
-summary{cursor:pointer;color:var(--faint);font-size:11px}
-code{font-family:var(--mono);font-size:11px;color:var(--dim);word-break:break-all}
-.matrix{overflow:auto;margin-top:14px}
-.matrix table{font-size:11.5px}
-h3.mh{font-size:12.5px;margin:16px 0 7px;color:var(--dim)}
-p.ax{color:var(--faint);font-size:11.5px;margin:0 0 10px}
-table.cov2 td{vertical-align:middle}
-table.cov2 td.k{max-width:420px;white-space:normal;font-weight:500}
-table.cov2 td.bar{width:38%;padding:6px 9px}
-table.cov2 td.bar span{display:block;height:7px;border-radius:4px;
- background:var(--accent);min-width:2px}
-table.cov2 td.num{font-family:var(--mono);font-size:11.5px;text-align:right;
- font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--dim)}
-table.cov2 td.pct{color:var(--ink);width:52px}
-.empty{background:var(--panel);border:1px dashed var(--line);border-radius:10px;
- padding:22px;color:var(--faint);font-size:12.5px;text-align:center}
-.rail .sep{color:var(--faint);font-size:10.5px;margin:12px 0 5px 2px;
- text-transform:uppercase;letter-spacing:.06em}
-/* 개요 — 본문 + 계산식 사이드. 좁아지면 사이드가 아래로 내려간다 */
-.ov{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:16px;align-items:start}
-@media(max-width:1080px){.ov{grid-template-columns:1fr}}
-.ov th.pid{font-family:var(--mono);font-size:10.5px;font-weight:500;
- padding:8px 5px;text-align:center;white-space:nowrap}
-.ov td.c{text-align:center;font-family:var(--mono);line-height:1.25}
-.ov td.c.y b{color:var(--ok);font-size:13px}
-.ov td.c.n{color:var(--line)}
-.ov td.c .nm{display:block;font-size:9.5px;color:var(--faint);max-width:74px;
- margin:0 auto;word-break:keep-all}
-.ov td.c b{font-variant-numeric:tabular-nums}
-.g.w{color:var(--warn);border-color:var(--warn)}
-.ov tr.core td{background:var(--soft)}
-.ov tr.core td.k{font-weight:700}
-aside{position:sticky;top:14px}
-aside h3{font-size:13px;margin:0 0 6px}
-aside .ax{color:var(--faint);font-size:11.5px;margin:0 0 10px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;
- padding:9px 11px;margin-bottom:8px}
-.card>b{color:var(--accent);font-family:var(--mono);font-size:11.5px}
-.card .f{font-size:11.5px;color:var(--dim);margin-top:5px;padding-top:5px;
+.g.w{color:var(--warn);border-color:var(--warn);margin-left:5px}
+
+/* 페이저 — 표 바로 밑. 한 화면에 25행이면 스크롤이 거의 없다 */
+.pager{display:flex;gap:6px;align-items:center;justify-content:flex-end;
+ margin-top:7px;font-size:11.5px;color:var(--dim)}
+.pager button{background:var(--panel);border:1px solid var(--line);border-radius:6px;
+ padding:3px 9px;color:var(--ink);font:11.5px var(--mono);cursor:pointer}
+.pager button[disabled]{opacity:.35;cursor:default}
+.pager .pos{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* 본문 + 상세. 상세는 옆에 붙어 스크롤을 만들지 않는다 */
+.split{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;
+ align-items:start}
+@media(max-width:1120px){.split{grid-template-columns:1fr}}
+aside{position:sticky;top:96px;max-height:calc(100dvh - 120px);overflow:auto}
+aside h3{font-size:12.5px;margin:0 0 5px}
+aside .ax{color:var(--faint);font-size:11px;margin:0 0 8px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+ padding:8px 10px;margin-bottom:7px}
+.card>summary,.card>b{color:var(--accent);font-family:var(--mono);font-size:11px;
+ cursor:pointer}
+.card .f{font-size:11px;color:var(--dim);margin-top:5px;padding-top:5px;
  border-top:1px solid var(--line)}
-.card .f:first-of-type{border-top:0;padding-top:0}
-.card .pid{display:inline-block;font-family:var(--mono);font-size:9.5px;
- color:var(--faint);margin-right:5px}
+.card .lbl{color:var(--faint);font-size:10px;display:block}
+.card .pid2{display:inline-block;font-family:var(--mono);font-size:9px;
+ color:var(--faint);margin-right:4px}
+.empty{background:var(--panel);border:1px dashed var(--line);border-radius:8px;
+ padding:18px;color:var(--faint);font-size:12px;text-align:center}
+.nm{font-family:var(--mono);font-size:10px;color:var(--faint)}
 """
 
 JS = """
-var D=DATA, cur=null;
-function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(c){
-  return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+var D=DATA;
+var S={tab:'shared', q:'', pid:'', grade:'', hit:'', mdl:0, scp:null,
+       page:0, size:25, sel:null, core:true};
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function gcls(g){return g==='필수'?'f':g==='권장'?'r':'o';}
+function el(id){return document.getElementById(id);}
+function opt(list,cur,ph){
+  return '<option value="">'+ph+'</option>'+list.map(function(x){
+    return '<option value="'+esc(x[0])+'"'+(String(cur)===String(x[0])?' selected':'')
+      +'>'+esc(x[1])+'</option>';}).join('');}
 
-function rail(){
-  var h='<button data-pid="_" aria-current="'+(cur==='_')+'">개요 — 공용 포인트'
-    +'<span class="m">개념 '+D.shared.length+' · 계산식 '+D.calc.length+'</span></button>'
-    +'<div class="sep">계열별 화면</div>';
-  D.order.forEach(function(pid){
-    var p=D.profiles[pid];
-    h+='<button data-pid="'+pid+'" aria-current="'+(pid===cur)+'">'+esc(p.title)
-      +'<span class="m">'+pid+' · '+p.rows.length+'행 · 모델 '+p.models.length+'</span></button>';
+/* ── 1) 공용 포인트 탭 ─────────────────────────────────────────────── */
+function sharedRows(){
+  var q=S.q.toLowerCase();
+  return D.shared.filter(function(s){
+    if(S.core && s.n<3) return false;
+    if(S.pid && !s.cols[S.pid]) return false;
+    if(!q) return true;
+    return s.canon.toLowerCase().indexOf(q)>=0
+      || s.raw.some(function(r){return r[1].toLowerCase().indexOf(q)>=0;});
   });
-  document.getElementById('rail').innerHTML=h;
-  [].forEach.call(document.querySelectorAll('#rail button'),function(b){
-    b.onclick=function(){cur=b.dataset.pid;rail();
-      window.scrollTo(0,0); cur==='_'?overview():body();};});
 }
-
-/* 개요 — 계열을 가로질러 되풀이되는 개념을 한 화면에. 옆에 계산식을 붙인다. */
-function overview(){
-  var el=document.getElementById('body');
-  var h='<div class="ov">';
-
-  h+='<div><div class="head"><h2>공용 포인트 — 계열을 가로질러 되풀이되는 개념</h2>'
-    +'<p>같은 개념이 여러 계열에 나온다. <b>그래서 화면은 모델을 몰라도 설계된다</b> — '
-    +'모델은 주소를 붙일 때만 필요하다. 아래 표의 ● 은 그 계열 템플릿에 그 개념이 '
-    +'있다는 뜻이고, 칸에 뜨는 글자는 <b>그 계열이 실제로 쓰는 이름</b>이다.</p>'
-    +'<p class="ax">⚠ <code>e5.rtu</code> 와 <code>e5.ahu</code> 는 같은 계열의 형제라 '
-    +'둘만 겹치는 것은 당연하다. <b>계열 3개 이상</b>에 나오는 개념(굵게)이 진짜 공용이다.</p></div>';
-  h+='<table><thead><tr><th>개념</th>';
-  D.order.forEach(function(pid){h+='<th class="pid">'+esc(pid)+'</th>';});
+function drawShared(){
+  var rows=sharedRows(), page=slice(rows);
+  var h='<table><thead><tr><th>개념</th>';
+  D.order.forEach(function(pid){h+='<th class="pid">'
+    +esc(pid.split('.')[1]||pid)+'<span class="e">'+esc(pid.split('.')[0])+'</span></th>';});
   h+='<th>계열</th></tr></thead><tbody>';
-  D.shared.forEach(function(s){
-    h+='<tr'+(s.n>=3?' class="core"':'')+'><td class="k">'+esc(s.canon)
-      +(s.split?' <span class="g w" title="계열마다 이름이 다르다">이름 갈림</span>':'')
-      +'</td>';
+  page.forEach(function(s,i){
+    h+='<tr data-i="'+i+'"'+(S.sel===s.canon?' class="sel"':'')+'><td class="k">'
+      +esc(s.canon)+(s.split?'<span class="g w">갈림</span>':'')+'</td>';
     D.order.forEach(function(pid){
       var g=s.cols[pid];
       var nm=(s.raw.filter(function(r){return r[0]===pid;})[0]||[])[1];
       h+='<td class="c '+(g?'y':'n')+'" title="'+esc(nm||'')+'">'
-        +(g?'<b>●</b><span class="nm">'+esc(nm===s.canon?'':nm)+'</span>':'·')+'</td>';
+        +(g?'<b>●</b>'+(nm!==s.canon?'<span class="nm">'+esc(nm)+'</span>':''):'·')+'</td>';
     });
-    h+='<td class="c '+(s.n>1?'y':'n')+'"><b>'+s.n+'</b></td></tr>';
+    h+='<td class="c y"><b>'+s.n+'</b></td></tr>';
   });
-  h+='</tbody></table>';
-
-  if(D.split.length){
-    h+='<div class="head" style="margin-top:16px"><h2>이름 통일 후보 — '
-      +D.split.length+'건</h2><p class="warn">같은 개념인데 계열마다 다르게 적혀 있다. '
-      +'표기를 함부로 바꾸지 않은 이유는 <b>행 순서와 매칭 규칙이 이름에 매여</b> 있어서다 '
-      +'— 바꾸려면 그 둘을 같이 손봐야 한다.</p>';
-    h+='<table><thead><tr><th>개념</th><th>계열마다 쓰는 이름</th></tr></thead><tbody>';
-    D.split.forEach(function(s){
-      var by={};
-      s.raw.forEach(function(r){ (by[r[1]]=by[r[1]]||[]).push(r[0]); });
-      var parts=Object.keys(by).map(function(n){
-        return '<code>'+esc(n)+'</code> <span class="nm">'+by[n].join(' ')+'</span>';});
-      h+='<tr><td class="k">'+esc(s.canon)+'</td><td>'+parts.join(' &nbsp;/&nbsp; ')
-        +'</td></tr>';
-    });
-    h+='</tbody></table></div>';
+  h+='</tbody></table>'+pager(rows.length);
+  el('grid').innerHTML=h;
+  bind(page,function(s){S.sel=s.canon;detailShared(s);drawShared();});
+  if(!S.sel) detailShared(null);
+}
+function detailShared(s){
+  var h='';
+  if(s){
+    var by={}; s.raw.forEach(function(r){(by[r[1]]=by[r[1]]||[]).push(r[0]);});
+    h+='<div class="card"><b>'+esc(s.canon)+'</b>'
+      +'<div class="f"><span class="lbl">계열마다 쓰는 이름</span>'
+      +Object.keys(by).map(function(n){return '<code>'+esc(n)+'</code> <span class="nm">'
+        +by[n].join(' ')+'</span>';}).join('<br>')+'</div>'
+      +(s.split?'<div class="f"><span class="lbl">⚠ 이름 갈림</span>표기를 아직 안 바꿨다 — '
+        +'행 순서와 매칭 규칙이 이름에 매여 있어 함께 손봐야 한다.</div>':'')+'</div>';
   }
-  h+='</div>';
-
-  h+='<aside><h3>계산식 — 이 포인트들이 무엇에 쓰이나</h3>'
-    +'<p class="ax">각 계열 요구 프로파일의 <code>energyModel</code> 을 그대로 옮긴 것이다. '
+  h+='<h3>계산식</h3><p class="ax">각 계열 요구 프로파일의 <code>energyModel</code>. '
     +'템플릿 행의 <b>쓰임</b> 칸이 이 열쇠를 가리킨다.</p>';
-  var byk={};
-  D.calc.forEach(function(c){ (byk[c.key]=byk[c.key]||[]).push(c); });
+  var byk={}; D.calc.forEach(function(c){(byk[c.key]=byk[c.key]||[]).push(c);});
   Object.keys(byk).forEach(function(k){
-    h+='<div class="card"><b>'+esc(k)+'</b>';
+    h+='<details class="card"><summary>'+esc(k)+' <span class="nm">'+byk[k].length
+      +'</span></summary>';
     byk[k].forEach(function(c){
-      h+='<div class="f"><span class="pid">'+esc(c.pid)+'</span>'+esc(c.text)+'</div>';});
-    h+='</div>';
+      h+='<div class="f"><span class="pid2">'+esc(c.pid)+'</span>'+esc(c.text)+'</div>';});
+    h+='</details>';
   });
-  h+='</aside></div>';
-  el.innerHTML=h;
+  el('side').innerHTML=h;
 }
 
-function body(){
-  var p=D.profiles[cur], el=document.getElementById('body');
-  var h='<div class="head"><h2>'+esc(p.title)+' <code>'+cur+'</code></h2>';
-  if(p.basis) h+='<p>'+esc(p.basis)+'</p>';
-  if(p.pending) h+='<p class="warn">'+esc(p.pending)+'</p>';
-  if(p.coverageNote) h+='<p class="warn">'+esc(p.coverageNote)+'</p>';
-  if(p.energyModel && Object.keys(p.energyModel).length){
-    h+='<div class="calc">';
-    Object.keys(p.energyModel).forEach(function(k){
-      h+='<div><b>'+esc(k)+'</b> — '+esc(p.energyModel[k])+'</div>';});
-    h+='</div>';
-  }
-  h+='</div>';
-
+/* ── 2) 템플릿 행 탭 ───────────────────────────────────────────────── */
+function curProfile(){ return S.pid || D.order[0]; }
+function curScope(){
+  var p=D.profiles[curProfile()], m=p.models[S.mdl];
+  if(!m||!m.scopes.length) return null;
+  var i=(S.scp==null)?m.best:S.scp;
+  return m.scopes[Math.min(i,m.scopes.length-1)];
+}
+function rowRows(){
+  var p=D.profiles[curProfile()], sc=curScope(), by={};
+  if(sc) sc.map.forEach(function(x){by[x.n]=x;});
+  var q=S.q.toLowerCase();
+  return p.rows.filter(function(r){
+    if(S.grade && r.grade!==S.grade) return false;
+    var g=by[r.name];
+    if(S.hit==='y' && !(g&&g.hit)) return false;
+    if(S.hit==='n' && (g&&g.hit)) return false;
+    if(!q) return true;
+    return (r.name+' '+(g&&g.hit||'')+' '+r.why).toLowerCase().indexOf(q)>=0;
+  }).map(function(r){return {r:r, g:by[r.name]};});
+}
+function drawRows(){
+  var p=D.profiles[curProfile()];
   if(!p.rows.length){
-    el.innerHTML=h+'<div class="empty">행이 아직 없다. 위 사유를 보라 — '
-      +'빈 채로 두는 것은 규칙 ④ 가 허용하지만 <b>사유 없이 비면 잊힌다</b>.</div>';
+    el('grid').innerHTML='<div class="empty">이 계열은 행이 아직 없다 — 오른쪽에 사유가 있다.</div>';
+    el('side').innerHTML='<div class="card"><b>'+esc(curProfile())+'</b><div class="f">'
+      +esc(p.pending||'사유가 안 적혀 있다')+'</div></div>';
     return;
   }
-  if(!p.models.length){
-    h+='<div class="empty">이 프로파일에 붙는 모델이 아직 없다 — '
-      +'행은 표준·계산식으로 세웠고, 모델이 들어오면 여기서 붙는다.</div>';
-  }else{
-    h+='<div class="pick"><label>모델 <select id="mdl"></select></label>'
-      +'<label>판 <select id="scp"></select></label>'
-      +'<span class="cov" id="cov"></span></div>';
-  }
-  h+='<table><thead><tr><th>개념</th><th>종류</th><th>단위</th><th>등급</th>'
-    +'<th>붙은 포인트</th><th>왜 필요한가</th><th>쓰임</th><th>Haystack 근거</th>'
-    +'</tr></thead><tbody id="rows"></tbody></table>';
-  h+='<div class="matrix" id="mx"></div>';
-  el.innerHTML=h;
-
-  if(p.models.length){
-    var ms=document.getElementById('mdl');
-    ms.innerHTML=p.models.map(function(m,i){
-      return '<option value="'+i+'">'+esc(m.name||m.id)+'</option>';}).join('');
-    ms.onchange=scopes; scopes();
-  }else{ rows(null); }
-  matrix();
-}
-
-function scopes(){
-  var p=D.profiles[cur], m=p.models[+document.getElementById('mdl').value];
-  var ss=document.getElementById('scp');
-  ss.innerHTML=m.scopes.map(function(s,i){
-    var n=s.map.filter(function(x){return x.hit;}).length;
-    return '<option value="'+i+'">'+esc(s.label)+' — '+n+'/'+p.rows.length+'</option>';
-  }).join('');
-  ss.onchange=function(){rows(m.scopes[+ss.value]);};
-  ss.value=String(m.best);
-  rows(m.scopes[m.best]);
-}
-
-function rows(scope){
-  var p=D.profiles[cur], by={};
-  if(scope) scope.map.forEach(function(x){by[x.n]=x;});
-  var h='';
-  p.rows.forEach(function(r){
-    var g=by[r.name];
-    h+='<tr><td class="k">'+esc(r.name)+'</td><td class="mono">'+esc(r.objectType)
-      +'</td><td class="mono">'+esc(r.unit)+'</td>'
-      +'<td><span class="g '+gcls(r.grade)+'">'+esc(r.grade)+'</span></td>';
-    if(!scope){ h+='<td class="miss">모델 미선택</td>'; }
-    else if(g && g.hit){
-      h+='<td class="hit">'+esc(g.hit)
-        +(g.type?' <span style="color:var(--faint)">'+esc(g.type)+(g.inst!=null?' #'+g.inst:'')+'</span>':'')
-        +'</td>';
-    } else {
-      h+='<td class="miss">— 이 판에 없다'+(r.appliesWhen?' <details><summary>왜</summary><code>'
-        +esc(r.appliesWhen)+'</code></details>':'')+'</td>';
-    }
-    h+='<td class="d">'+esc(r.why)+'</td>'
-      +'<td class="mono">'+esc((r.usedBy||[]).join(' '))+'</td>'
-      +'<td class="d">'+esc(r.haystack)
-      +'<details><summary>매칭 규칙</summary><code>include '+esc(r.include)
-      +(r.exclude?'<br>exclude '+esc(r.exclude):'')+'</code>'
-      +(r.matchNote?'<br><code>'+esc(r.matchNote)+'</code>':'')+'</details></td></tr>';
+  var rows=rowRows(), page=slice(rows);
+  var h='<table><thead><tr><th>개념</th><th>종류</th><th>단위</th><th>등급</th>'
+    +'<th>붙은 포인트</th></tr></thead><tbody>';
+  page.forEach(function(x,i){
+    var r=x.r,g=x.g;
+    h+='<tr data-i="'+i+'"'+(S.sel===r.name?' class="sel"':'')+'>'
+      +'<td class="k">'+esc(r.name)+'</td><td class="mono">'+esc(r.objectType)+'</td>'
+      +'<td class="mono">'+esc(r.unit)+'</td>'
+      +'<td><span class="g '+gcls(r.grade)+'">'+esc(r.grade)+'</span></td>'
+      +(g&&g.hit?'<td class="hit" title="'+esc(g.hit)+'">'+esc(g.hit)
+          +(g.type?' <span class="nm">'+esc(g.type)+(g.inst!=null?' #'+g.inst:'')+'</span>':'')
+          +'</td>'
+        :'<td class="miss">— 이 판에 없다</td>')+'</tr>';
   });
-  document.getElementById('rows').innerHTML=h;
-  if(scope){
-    var n=scope.map.filter(function(x){return x.hit;}).length;
-    document.getElementById('cov').textContent=n+' / '+p.rows.length+' 행이 붙었다';
-  }
+  h+='</tbody></table>'+pager(rows.length);
+  el('grid').innerHTML=h;
+  bind(page,function(x){S.sel=x.r.name;detailRow(x);drawRows();});
+  if(!S.sel||!page.some(function(x){return x.r.name===S.sel;})) detailRow(page[0]||null);
 }
-
-function matrix(){
-  var p=D.profiles[cur], el=document.getElementById('mx');
-  if(!p.models.length){el.innerHTML='';return;}
-  /* 모델명을 세로로 세운 격자였다 — 글자가 세로로 서면 읽을 수가 없다.
-     묻는 것은 둘뿐이다: (1) 모델마다 얼마나 덮나 (2) 아무도 안 내주는 행은 무엇인가.
-     그래서 모델을 **행**으로 눕히고, 빈 행은 따로 목록으로 뺀다. */
+function detailRow(x){
+  var p=D.profiles[curProfile()], h='';
+  if(x){
+    var r=x.r;
+    h+='<div class="card"><b>'+esc(r.name)+'</b>'
+      +'<div class="f"><span class="lbl">왜 필요한가</span>'+esc(r.why)+'</div>'
+      +'<div class="f"><span class="lbl">쓰임</span><code>'
+        +esc((r.usedBy||[]).join(' ')||'—')+'</code></div>'
+      +'<div class="f"><span class="lbl">Haystack 근거</span>'+esc(r.haystack||'—')+'</div>'
+      +'<div class="f"><span class="lbl">매칭 규칙</span><code>include '+esc(r.include)
+        +(r.exclude?'<br>exclude '+esc(r.exclude):'')+'</code></div>'
+      +(r.matchNote?'<div class="f"><span class="lbl">주의</span>'+esc(r.matchNote)+'</div>':'')
+      +(r.appliesWhen?'<div class="f"><span class="lbl">적용 조건</span>'
+        +esc(r.appliesWhen)+'</div>':'')
+      +'</div>';
+  }
   var tot=p.rows.length;
-  var h='<h3 class="mh">모델별 덮개</h3><table class="cov2"><tbody>';
+  h+='<h3>모델별 덮개</h3><div class="card">';
   p.models.slice().sort(function(a,b){return b.any.length-a.any.length;})
-   .forEach(function(m){
-    var n=m.any.length, pct=tot?Math.round(n*100/tot):0;
-    h+='<tr><td class="k">'+esc(m.name)+'</td>'
-      +'<td class="bar"><span style="width:'+pct+'%"></span></td>'
-      +'<td class="num">'+n+' / '+tot+'</td>'
-      +'<td class="num pct">'+pct+'%</td></tr>';
-  });
-  h+='</tbody></table>';
+   .forEach(function(m,i){
+    h+='<div class="f"><span class="pid2">'+m.any.length+'/'+tot+'</span>'+esc(m.short)
+      +'</div>';});
+  if(!p.models.length) h+='<div class="f">붙는 모델이 아직 없다</div>';
+  h+='</div>';
   var none=p.rows.filter(function(r){
     return !p.models.some(function(m){return m.any.indexOf(r.name)>=0;});});
-  h+='<h3 class="mh">아무 모델도 안 내주는 행 — '+none.length+' / '+tot+'</h3>';
-  if(!none.length){
-    h+='<p class="ax">없다. 모든 행을 최소 한 모델이 낸다.</p>';
-  }else{
-    h+='<table class="cov2"><tbody>';
-    none.forEach(function(r){
-      h+='<tr><td class="k">'+esc(r.name)+'</td>'
-        +'<td><span class="g '+gcls(r.grade)+'">'+esc(r.grade)+'</span></td>'
-        +'<td class="d">'+esc(r.appliesWhen||'카탈로그 모델에 이 점이 없다 — 문서가 없는 것인지 그 기기에 원래 없는 것인지 가려야 한다')+'</td></tr>';
-    });
-    h+='</tbody></table>';
-  }
-  el.innerHTML=h;
+  h+='<h3>아무 모델도 안 내주는 행 — '+none.length+'/'+tot+'</h3><div class="card">'
+    +(none.length?none.map(function(r){return '<div class="f">'+esc(r.name)+'</div>';}).join('')
+      :'<div class="f">없다. 모든 행을 최소 한 모델이 낸다.</div>')+'</div>';
+  if(p.coverageNote) h+='<div class="card"><b>덮개 메모</b><div class="f">'
+    +esc(p.coverageNote)+'</div></div>';
+  el('side').innerHTML=h;
 }
 
-cur='_'; rail(); overview();
+/* ── 공통: 페이징 · 필터 바 ────────────────────────────────────────── */
+function slice(rows){
+  var n=S.size==='all'?rows.length:+S.size;
+  var max=Math.max(0,Math.ceil(rows.length/n)-1);
+  if(S.page>max) S.page=max;
+  return S.size==='all'?rows:rows.slice(S.page*n,(S.page+1)*n);
+}
+function pager(total){
+  var n=S.size==='all'?total:+S.size;
+  var pages=Math.max(1,Math.ceil(total/n)), from=total?S.page*n+1:0;
+  var to=Math.min(total,(S.page+1)*n);
+  return '<div class="pager"><span class="pos">'+from+'–'+to+' / '+total+'</span>'
+    +'<button id="pp"'+(S.page<=0?' disabled':'')+'>‹</button>'
+    +'<span class="pos">'+(S.page+1)+' / '+pages+'</span>'
+    +'<button id="pn"'+(S.page>=pages-1?' disabled':'')+'>›</button>'
+    +'<select id="ps">'+[25,50,100].map(function(v){
+       return '<option'+(String(S.size)===String(v)?' selected':'')+'>'+v+'</option>';})
+       .join('')+'<option value="all"'+(S.size==='all'?' selected':'')+'>전체</option>'
+    +'</select><span>행</span></div>';
+}
+function bind(page,pick){
+  [].forEach.call(document.querySelectorAll('#grid tbody tr'),function(tr){
+    tr.onclick=function(){pick(page[+tr.dataset.i]);};});
+  var pp=el('pp'),pn=el('pn'),ps=el('ps');
+  if(pp) pp.onclick=function(){S.page--;draw();};
+  if(pn) pn.onclick=function(){S.page++;draw();};
+  if(ps) ps.onchange=function(){S.size=ps.value;S.page=0;draw();};
+}
+function top(){
+  var h='<div class="tabs">'
+    +'<button data-t="shared" aria-current="'+(S.tab==='shared')+'">공용 포인트</button>'
+    +'<button data-t="rows" aria-current="'+(S.tab==='rows')+'">템플릿 행</button></div>';
+  h+='<div class="bar"><input id="q" placeholder="개념·포인트 이름 검색" value="'
+    +esc(S.q)+'">';
+  if(S.tab==='shared'){
+    h+='<select id="fp">'+opt(D.order.map(function(p){return [p,p];}),S.pid,'전 계열')
+      +'</select>'
+      +'<button class="chip" id="fc" aria-pressed="'+S.core+'">계열 3개 이상만</button>';
+  }else{
+    h+='<select id="fp">'+D.order.map(function(p){
+        return '<option value="'+p+'"'+(curProfile()===p?' selected':'')+'>'
+          +esc(D.profiles[p].title)+' ('+D.profiles[p].rows.length+')</option>';}).join('')
+      +'</select>';
+    var p=D.profiles[curProfile()];
+    if(p.models.length){
+      h+='<select id="fm">'+p.models.map(function(m,i){
+        return '<option value="'+i+'"'+(S.mdl===i?' selected':'')+'>'+esc(m.short)
+          +'</option>';}).join('')+'</select>';
+      var m=p.models[S.mdl], sc=curScope();
+      if(m&&m.scopes.length>1) h+='<select id="fs">'+m.scopes.map(function(s,i){
+        var n=s.map.filter(function(x){return x.hit;}).length;
+        return '<option value="'+i+'"'+(sc===s?' selected':'')+'>'+esc(s.label)+' '
+          +n+'/'+p.rows.length+'</option>';}).join('')+'</select>';
+    }
+    h+='<select id="fg">'+opt([['필수','필수'],['권장','권장'],['선택','선택']],
+        S.grade,'전 등급')+'</select>'
+      +'<select id="fh">'+opt([['y','붙은 것만'],['n','안 붙은 것만']],S.hit,'붙음 무관')
+      +'</select>';
+  }
+  h+='<span class="sp"></span><span class="cnt" id="cnt"></span></div>';
+  el('top').innerHTML=h;
+  [].forEach.call(document.querySelectorAll('.tabs button'),function(b){
+    b.onclick=function(){S.tab=b.dataset.t;S.page=0;S.sel=null;
+      if(S.tab==='rows'&&!D.profiles[S.pid]) S.pid=D.order[0];
+      if(S.tab==='shared') S.pid='';
+      render();};});
+  var q=el('q');
+  q.oninput=function(){S.q=q.value;S.page=0;draw();cnt();};
+  var fp=el('fp'); if(fp) fp.onchange=function(){S.pid=fp.value;S.page=0;S.mdl=0;
+    S.scp=null;S.sel=null;render();};
+  var fc=el('fc'); if(fc) fc.onclick=function(){S.core=!S.core;S.page=0;render();};
+  var fm=el('fm'); if(fm) fm.onchange=function(){S.mdl=+fm.value;S.scp=null;render();};
+  var fs=el('fs'); if(fs) fs.onchange=function(){S.scp=+fs.value;draw();cnt();};
+  var fg=el('fg'); if(fg) fg.onchange=function(){S.grade=fg.value;S.page=0;draw();cnt();};
+  var fh=el('fh'); if(fh) fh.onchange=function(){S.hit=fh.value;S.page=0;draw();cnt();};
+}
+function cnt(){
+  var t=el('cnt'); if(!t) return;
+  if(S.tab==='shared'){
+    t.innerHTML='공용 개념 <b>'+sharedRows().length+'</b> / '+D.shared.length;
+  }else{
+    var p=D.profiles[curProfile()], sc=curScope();
+    var n=sc?sc.map.filter(function(x){return x.hit;}).length:0;
+    t.innerHTML='붙은 행 <b>'+n+'</b> / '+p.rows.length;
+  }
+}
+function draw(){ S.tab==='shared'?drawShared():drawRows(); }
+function render(){ top(); draw(); cnt(); }
+render();
 """
 
 
@@ -471,15 +503,11 @@ def build():
             "<meta name=viewport content='width=device-width,initial-scale=1'>"
             "<title>BMS 기본화면 템플릿 검사대</title><style>%s</style>"
             "<div class=wrap><h1>BMS 기본화면 템플릿 검사대</h1>"
-            "<p class=sub>템플릿 행만으로는 맞는지 알 수 없다 — <b>모델을 붙여 봐야</b> "
-            "그 개념이 벤더마다 어떤 이름으로 오는지 보이고, 거기서 오답이 드러난다. "
-            "화면이 목록을 정하지 않는다: <code>equip-templates.json</code> · "
+            "<p class=sub>화면이 목록을 정하지 않는다 — <code>equip-templates.json</code> · "
             "<code>equip-requirements.json</code> · <code>model-mappings.json</code> 을 "
-            "그대로 보여 준다.</p>"
-            "<div class=n><span>프로파일 <b>%d</b></span><span>템플릿 행 <b>%d</b></span>"
-            "<span>붙는 모델 <b>%d</b></span></div>"
-            "<div class=cols><div><div class=rail id=rail></div></div>"
-            "<div id=body></div></div></div>"
+            "그대로 보여 준다. 프로파일 %d · 템플릿 행 %d · 붙는 모델 %d</p>"
+            "<div class=top id=top></div>"
+            "<div class=split><div id=grid></div><aside id=side></aside></div></div>"
             "<script>var DATA=%s;\n%s</script></html>"
             % (CSS, len(profiles), nrow, nmdl,
                json.dumps(data, ensure_ascii=False), JS))
