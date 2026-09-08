@@ -337,6 +337,55 @@
    "note": "Sensor 1 Type · None / Active / Passive_1K / Passive_20K / Switch / PT1000_C / NI1000_C / NTC10K_C / PT1000_F / NI1000_F / NTC10K_F"
   }
  ],
- "gap": "아래 오브젝트 목록은 **손으로 옮긴 것이 아니라 제조사 EDE 파일을 파서가 읽어 만든 것**이다 — 단위 코드(269종)와 상태 문자열(12집합)까지 자동 해석됐다. 벤더 배포 EDE 취입 경로의 첫 실증. 남은 것: Modbus 레지스터 문서 미취입. VAV 박스 자체의 정격 풍량·인렛 구경은 액추에이터가 아니라 **박스 제조사(OEM)** 자료에 있다 — Belimo는 OEM 채널로만 공급되므로 박스 제조사 선정표가 별도로 필요하다.",
- "extractor": "ede"
+ "gap": "아래 오브젝트 목록은 **손으로 옮긴 것이 아니라 제조사 EDE 파일을 파서가 읽어 만든 것**이다 — 단위 코드(269종)와 상태 문자열(12집합)까지 자동 해석됐다. 벤더 배포 EDE 취입 경로의 첫 실증. 남은 것: Modbus 레지스터 문서 미취입. VAV 박스 자체의 정격 풍량·인렛 구경은 액추에이터가 아니라 **박스 제조사(OEM)** 자료에 있다 — Belimo는 OEM 채널로만 공급되므로 박스 제조사 선정표가 별도로 필요하다. 정격은 제품 데이터시트에서 왔다(통신 맵에는 없다). 담은 것은 요구 항목(e16.actuator·e16.valve·e6.vav)뿐이다 — 재질·보호등급·배선 규격은 계산에 안 들어가 담지 않았다.",
+ "extractor": "ede",
+ "specTables": [
+  {
+   "title": "형번별 정격 — Vav Compact Modbus (데이터시트 2건)",
+   "page": 1,
+   "orientation": "row",
+   "kind": "rating",
+   "header": [
+    "항목",
+    "LMV-D3-MOD",
+    "NMV-D3-MOD"
+   ],
+   "quantities": [
+    "voltage",
+    "power",
+    "power",
+    "power",
+    "torque"
+   ],
+   "rows": [
+    [
+     "정격 전압 · Nominal voltage",
+     "AC/DC 24 V",
+     "AC/DC 24 V"
+    ],
+    [
+     "운전 중 소비전력 · Power consumption in operation (W)",
+     "2 W",
+     "3 W"
+    ],
+    [
+     "정지 시 소비전력 · Power consumption in rest position (W)",
+     "1 W",
+     "1.5 W"
+    ],
+    [
+     "변압기 용량 · Transformer sizing (VA)",
+     "4 VA",
+     "5 VA"
+    ],
+    [
+     "모터 토크 · Torque motor",
+     "45 in-lb [5 Nm]",
+     "90 in-lb [10 Nm]"
+    ]
+   ],
+   "source": "belimo_LMV-D3-MOD_datasheet_en-us.pdf",
+   "sourceNote": "형번마다 데이터시트가 따로다 — 열 하나가 문서 하나다: belimo_LMV-D3-MOD_datasheet_en-us.pdf · belimo_NMV-D3-MOD_datasheet_en-us.pdf"
+  }
+ ]
 }

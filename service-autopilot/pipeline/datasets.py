@@ -771,6 +771,12 @@ def unit_role_for(code, title):
     # 값으로 상세 열을 고른다(실내기에는 IEER·냉동톤이 없다). '형번별 정격' 은
     # ingest_samsung_ratings 가 붙이는 접두라 다른 벤더 표를 건드리지 않는다.
     if (title or "").startswith("형번별 정격"):
+        # Belimo 필드기기가 먼저다 — 아래 VRF 갈래가 '형번별 정격' 만 보고 실외기로
+        # 이름 붙이면 액추에이터가 실외기가 된다.
+        if re.search(r"Valve|Epiv|Meter|Type Overview|밸브", title, re.I):
+            return "controlValve"
+        if re.search(r"Actuator|Vav|Sensor|Vru|Cq24a", title, re.I):
+            return "vavActuator" if re.search(r"Vav", title, re.I) else "actuator"
         if re.search(r"카세트|덕트|벽걸이|스탠드|바닥상치|실내기|1Way|2Way|4Way|정압", title):
             return "indoorUnit"
         return "outdoorUnit"
@@ -904,6 +910,24 @@ SAMSUNG_VRF_PICKS = {
     "tonsRefrigeration": [r"^냉동톤 \(RT\)$"],
 }
 for _f, _pats in SAMSUNG_VRF_PICKS.items():
+    UNIT_FIELD_PICKS.setdefault(_f, []).extend(_pats)
+
+# Belimo 필드기기(e16)·VAV(e6) — ingest_belimo 가 붙인 `한글 · 원문영문 (단위)` 라벨.
+# 라벨을 우리가 지었으므로 앞머리로 고정해 잡는다(다른 벤더 라벨과 겹치지 않는다).
+BELIMO_PICKS = {
+    "supplyVoltage": [r"^정격 전압 · Nominal voltage"],
+    "powerConsumptionOperating": [r"^운전 중 소비전력 · "],
+    "powerConsumptionRest": [r"^정지 시 소비전력 · "],
+    "transformerSizing": [r"^변압기 용량 · "],
+    "torqueMotor": [r"^모터 토크 · "],
+    "runningTime": [r"^구동 시간 · "],
+    "soundRating": [r"^소음 · Sound power level"],
+    "nominalDiameter": [r"^공칭 구경 · DN"],
+    "nominalFlow": [r"^공칭 유량 · V'nom"],
+    "kvs": [r"^유량계수 Kvs · ", r"^최대 유량계수 Kvmax · "],
+    "pressureRating": [r"^압력 등급 · PN"],
+}
+for _f, _pats in BELIMO_PICKS.items():
     UNIT_FIELD_PICKS.setdefault(_f, []).extend(_pats)
 
 

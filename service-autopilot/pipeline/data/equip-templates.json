@@ -1570,6 +1570,30 @@
    ],
    "excludeCommon": "alarm setting|alarm limit|alarm delay|\\bbad [a-z]|sensor error",
    "excludeCommonNote": "모든 행에 덧붙이는 제외어. e5 에서 쓰던 것 중 이 5모델에서 실제로 걸리는 것만 남겼다 — 'active alarm'·'alarm point' 는 여기 0건이라 베끼지 않았다(규칙 1: 확인한 것만 적는다). 경보를 실제로 찾는 행은 keepAlarm=true 로 뺀다."
+  },
+  "e16.actuator": {
+   "equipId": "e16",
+   "title": "필드기기 — 댐퍼·밸브 액추에이터",
+   "basis": "정격(data/units)부터 채우고 화면 행은 그다음이다 — 규칙 0 순서.",
+   "pending": "행이 비어 있다 = 신설 과제(규칙 ④). Belimo 액추에이터 11모델 240점은 이미 있으나 BMS 기본화면 행을 아직 안 정했다. e8.vrf 를 만든 방식대로 — 벤더를 가로질러 되풀이되는 개념만 남기고 등급은 실측 노출로 정한다 — 하면 된다. 지금 정격부터 채운다.",
+   "excludeCommon": "",
+   "templatePoints": []
+  },
+  "e16.valve": {
+   "equipId": "e16",
+   "title": "필드기기 — 제어 밸브·에너지 밸브·유량계",
+   "basis": "정격(data/units)부터 채우고 화면 행은 그다음이다 — 규칙 0 순서.",
+   "pending": "행이 비어 있다 = 신설 과제(규칙 ④). Energy Valve·EPIV·TEM 8모델 320점이 있다. 액추에이터와 화면이 다르다 — 이쪽은 유량·열량이 본체다.",
+   "excludeCommon": "",
+   "templatePoints": []
+  },
+  "e6.vav": {
+   "equipId": "e6",
+   "title": "VAV 터미널 — BMS 기본화면",
+   "basis": "정격(data/units)부터 채우고 화면 행은 그다음이다 — 규칙 0 순서.",
+   "pending": "행이 비어 있다 = 신설 과제(규칙 ④). Belimo VAV Compact 4모델 98점이 있다. ⚠ 현장 VAV 제조사가 미확정이라(나라컨트롤 후보, 근거 약함) 화면 행을 확정하기 전에 제조사부터 정해야 한다 — 10-site-driven-priority.md 참고.",
+   "excludeCommon": "",
+   "templatePoints": []
   }
  }
 }

@@ -349,7 +349,7 @@
    "modbusWritableFlag": null
   }
  ],
- "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다. 정격은 제품 데이터시트에서 왔다(통신 맵에는 없다). 담은 것은 요구 항목(e16.actuator·e16.valve·e6.vav)뿐이다 — 재질·보호등급·배선 규격은 계산에 안 들어가 담지 않았다.",
  "extractor": "table",
  "sourceDoc": "belimo_BACnet_Interface-description_AirWater_V3_4_en-gb.pdf",
  "classifiedBy": "표지 제품명 근거: 'Actuator'",
@@ -1721,6 +1721,91 @@
    ],
    "photo": "data:image/jpeg;base64,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",
    "photoPage": 1
+  }
+ ],
+ "specTables": [
+  {
+   "title": "형번별 정격 — Air Water Actuator Modbus (데이터시트 5건)",
+   "page": 1,
+   "orientation": "row",
+   "kind": "rating",
+   "header": [
+    "항목",
+    "LR24A-MOD",
+    "NR24A-MOD",
+    "SR24A-MOD",
+    "LRB24-3",
+    "LVKB24-3"
+   ],
+   "quantities": [
+    "voltage",
+    "power",
+    "power",
+    "power",
+    "torque",
+    "time",
+    "sound"
+   ],
+   "rows": [
+    [
+     "정격 전압 · Nominal voltage",
+     "AC/DC 24 V",
+     "AC/DC 24 V",
+     "AC/DC 24 V",
+     "AC/DC 24 V",
+     "AC 24 V"
+    ],
+    [
+     "운전 중 소비전력 · Power consumption in operation (W)",
+     "2.5 W",
+     "3.5 W",
+     "3.5 W",
+     "1.5 W",
+     "2.5 W"
+    ],
+    [
+     "정지 시 소비전력 · Power consumption in rest position (W)",
+     "1.3 W",
+     "1.2 W",
+     "1.25 W",
+     "0.2 W",
+     "1.5 W"
+    ],
+    [
+     "변압기 용량 · Transformer sizing (VA)",
+     "5 VA",
+     "6 VA",
+     "6 VA",
+     "2.5 VA",
+     "6 VA"
+    ],
+    [
+     "모터 토크 · Torque motor",
+     "5 Nm",
+     "10 Nm",
+     "20 Nm",
+     "",
+     ""
+    ],
+    [
+     "구동 시간 · Running time",
+     "90 s / 90°",
+     "90 s / 90°",
+     "90 s / 90°",
+     "90 s / 90°",
+     "90 s /"
+    ],
+    [
+     "소음 · Sound power level (dB)",
+     "35 dB(A)",
+     "45 dB(A)",
+     "45 dB(A)",
+     "35 dB(A)",
+     "55 dB(A)"
+    ]
+   ],
+   "source": "belimo_LR24A-MOD_datasheet_en-gb.pdf",
+   "sourceNote": "형번마다 데이터시트가 따로다 — 열 하나가 문서 하나다: belimo_LR24A-MOD_datasheet_en-gb.pdf · belimo_NR24A-MOD_datasheet_en-gb.pdf · belimo_SR24A-MOD_datasheet_en-gb.pdf · belimo_LRB24-3_datasheet_en-us.pdf · belimo_LVKB24-3_datasheet_en-us.pdf"
   }
  ]
 }

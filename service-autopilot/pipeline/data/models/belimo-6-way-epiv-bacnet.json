@@ -434,7 +434,7 @@
    "modbusWritableFlag": null
   }
  ],
- "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다. 정격은 제품 데이터시트에서 왔다(통신 맵에는 없다). 담은 것은 요구 항목(e16.actuator·e16.valve·e6.vav)뿐이다 — 재질·보호등급·배선 규격은 계산에 안 들어가 담지 않았다.",
  "extractor": "table",
  "sourceDoc": "belimo_BACnet_Interface-description_6way-EPIV_en-gb.pdf",
  "classifiedBy": "표지 제품명 근거: 'EPIV'",
@@ -1681,6 +1681,116 @@
    ],
    "photo": "data:image/jpeg;base64,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",
    "photoPage": 1
+  }
+ ],
+ "specTables": [
+  {
+   "title": "형번별 정격 — 6 Way Epiv Modbus (데이터시트 2건)",
+   "page": 1,
+   "orientation": "row",
+   "kind": "rating",
+   "header": [
+    "항목",
+    "EPxxR2_BAC",
+    "EP050_LRX-E"
+   ],
+   "quantities": [
+    "voltage",
+    "power",
+    "power",
+    "power",
+    "time"
+   ],
+   "rows": [
+    [
+     "정격 전압 · Nominal voltage",
+     "AC/DC 24 V",
+     "AC/DC 24 V"
+    ],
+    [
+     "운전 중 소비전력 · Power consumption in operation (W)",
+     "4 W (DN 15...25)",
+     "3.5 W"
+    ],
+    [
+     "정지 시 소비전력 · Power consumption in rest position (W)",
+     "3.7 W (DN 15...25)",
+     "1.3 W"
+    ],
+    [
+     "변압기 용량 · Transformer sizing (VA)",
+     "6.5 VA (DN 15...25)",
+     "6 VA"
+    ],
+    [
+     "구동 시간 · Running time",
+     "",
+     "90 s"
+    ]
+   ],
+   "source": "belimo_EP..R2_BAC_datasheet_en-gb.pdf",
+   "sourceNote": "형번마다 데이터시트가 따로다 — 열 하나가 문서 하나다: belimo_EP..R2_BAC_datasheet_en-gb.pdf · belimo_EP050_LRX-E_datasheet_en-us.pdf"
+  },
+  {
+   "title": "형번별 정격 — 6 Way Epiv Modbus Type Overview",
+   "page": 1,
+   "orientation": "row",
+   "kind": "rating",
+   "header": [
+    "항목",
+    "EP015R2+BAC",
+    "EP020R2+BAC",
+    "EP025R2+BAC",
+    "EP032R2+BAC",
+    "EP040R2+BAC",
+    "EP050R2+BAC"
+   ],
+   "quantities": [
+    "length",
+    "flow",
+    "flow",
+    "pressure"
+   ],
+   "rows": [
+    [
+     "공칭 구경 · DN (mm)",
+     "15",
+     "20",
+     "25",
+     "32",
+     "40",
+     "50"
+    ],
+    [
+     "공칭 유량 · V'nom (m³/h)",
+     "1.5",
+     "2.5",
+     "3.5",
+     "6",
+     "10",
+     "15"
+    ],
+    [
+     "유량계수 Kvs · Kvs (m³/h)",
+     "3.2",
+     "5.3",
+     "8.8",
+     "14.1",
+     "19.2",
+     "30.4"
+    ],
+    [
+     "압력 등급 · PN",
+     "25",
+     "25",
+     "25",
+     "25",
+     "25",
+     "25"
+    ]
+   ],
+   "source": "belimo_EP..R2_BAC_datasheet_en-gb.pdf",
+   "sourceNote": "Type Overview 표를 가진 문서: belimo_EP..R2_BAC_datasheet_en-gb.pdf · belimo_EP050_LRX-E_datasheet_en-us.pdf"
   }
  ]
 }

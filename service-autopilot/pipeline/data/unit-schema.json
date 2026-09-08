@@ -267,6 +267,42 @@
   "tonsRefrigeration": {
    "ko": "냉동톤",
    "convUnit": "RT"
+  },
+  "powerConsumptionOperating": {
+   "ko": "운전 중 소비전력",
+   "convUnit": "W"
+  },
+  "powerConsumptionRest": {
+   "ko": "정지 시 소비전력",
+   "convUnit": "W"
+  },
+  "transformerSizing": {
+   "ko": "변압기 용량",
+   "convUnit": "VA"
+  },
+  "torqueMotor": {
+   "ko": "모터 토크",
+   "convUnit": "Nm"
+  },
+  "runningTime": {
+   "ko": "구동 시간",
+   "convUnit": "s"
+  },
+  "nominalDiameter": {
+   "ko": "공칭 구경 (DN)",
+   "convUnit": "mm"
+  },
+  "kvs": {
+   "ko": "유량계수 Kvs",
+   "convUnit": "m³/h"
+  },
+  "nominalFlow": {
+   "ko": "공칭 유량",
+   "convUnit": "m³/h"
+  },
+  "pressureRating": {
+   "ko": "압력 등급 (PN)",
+   "convUnit": ""
   }
  },
  "classes": {
@@ -499,6 +535,92 @@
       "supplyVoltage",
       "refrigerantType",
       "unitWeight"
+     ]
+    }
+   }
+  },
+  "e16": {
+   "ko": "필드기기 (액추에이터·밸브·미터·센서)",
+   "labels": {
+    "powerConsumptionOperating": "운전 소비전력",
+    "powerConsumptionRest": "정지 소비전력",
+    "torqueMotor": "토크",
+    "kvs": "Kvs"
+   },
+   "table": [
+    "powerConsumptionOperating",
+    "powerConsumptionRest",
+    "supplyVoltage",
+    "torqueMotor",
+    "runningTime"
+   ],
+   "detailExtra": [
+    "transformerSizing",
+    "soundRating",
+    "nominalDiameter",
+    "kvs",
+    "nominalFlow",
+    "pressureRating",
+    "unitWeight"
+   ],
+   "roles": {
+    "actuator": {
+     "ko": "액추에이터",
+     "detail": [
+      "supplyVoltage",
+      "powerConsumptionOperating",
+      "powerConsumptionRest",
+      "transformerSizing",
+      "torqueMotor",
+      "runningTime",
+      "soundRating"
+     ]
+    },
+    "controlValve": {
+     "ko": "제어 밸브",
+     "detail": [
+      "nominalDiameter",
+      "kvs",
+      "nominalFlow",
+      "pressureRating",
+      "supplyVoltage",
+      "powerConsumptionOperating",
+      "powerConsumptionRest",
+      "torqueMotor",
+      "runningTime"
+     ]
+    }
+   }
+  },
+  "e6": {
+   "ko": "VAV 터미널",
+   "labels": {
+    "powerConsumptionOperating": "운전 소비전력",
+    "nominalFlow": "공칭 풍량"
+   },
+   "table": [
+    "nominalFlow",
+    "powerConsumptionOperating",
+    "supplyVoltage",
+    "torqueMotor",
+    "runningTime"
+   ],
+   "detailExtra": [
+    "powerConsumptionRest",
+    "transformerSizing",
+    "nominalDiameter",
+    "soundRating"
+   ],
+   "roles": {
+    "vavActuator": {
+     "ko": "VAV 구동부",
+     "detail": [
+      "nominalFlow",
+      "supplyVoltage",
+      "powerConsumptionOperating",
+      "powerConsumptionRest",
+      "torqueMotor",
+      "runningTime"
      ]
     }
    }

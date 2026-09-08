@@ -383,12 +383,212 @@
    "modbusWritableFlag": null
   }
  ],
- "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",
+ "gap": "정격 성능(용량·소비전력·효율)은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다. 정격은 제품 데이터시트에서 왔다(통신 맵에는 없다). 담은 것은 요구 항목(e16.actuator·e16.valve·e6.vav)뿐이다 — 재질·보호등급·배선 규격은 계산에 안 들어가 담지 않았다.",
  "extractor": "table",
  "sourceDoc": "belimo_Modbus-Register_PR_V3_4_en-gb.pdf",
  "classifiedBy": "표지 제품명 근거: 'Butterfly Valve'",
  "crosscheck": {
   "unverifiable": "Belimo 소스가 교차 대조 불가로 표시 — 개요표와 상세표가 서로 다른 열이다"
  },
- "specFrom": "belimo-butterfly-valve-actuator-bacnet"
+ "specFrom": "belimo-butterfly-valve-actuator-bacnet",
+ "specTables": [
+  {
+   "title": "형번별 정격 — Butterfly Valve Actuator Modbus (데이터시트 3건)",
+   "page": 1,
+   "orientation": "row",
+   "kind": "rating",
+   "header": [
+    "항목",
+    "D6xxBL",
+    "D6xxN",
+    "GK24A-MOD"
+   ],
+   "quantities": [
+    "voltage",
+    "power",
+    "power",
+    "power",
+    "torque",
+    "time",
+    "sound"
+   ],
+   "rows": [
+    [
+     "정격 전압 · Nominal voltage",
+     "",
+     "",
+     "AC/DC 24 V"
+    ],
+    [
+     "운전 중 소비전력 · Power consumption in operation (W)",
+     "",
+     "",
+     "11 W"
+    ],
+    [
+     "정지 시 소비전력 · Power consumption in rest position (W)",
+     "",
+     "",
+     "3 W"
+    ],
+    [
+     "변압기 용량 · Transformer sizing (VA)",
+     "",
+     "",
+     "21 VA"
+    ],
+    [
+     "모터 토크 · Torque motor",
+     "",
+     "",
+     "40 Nm"
+    ],
+    [
+     "구동 시간 · Running time",
+     "",
+     "",
+     "150 s / 90°"
+    ],
+    [
+     "소음 · Sound power level (dB)",
+     "",
+     "",
+     "52 dB(A)"
+    ]
+   ],
+   "source": "belimo_D6..BL_datasheet_en-gb.pdf",
+   "sourceNote": "형번마다 데이터시트가 따로다 — 열 하나가 문서 하나다: belimo_D6..BL_datasheet_en-gb.pdf · belimo_D6..N_datasheet_en-us.pdf · belimo_GK24A-MOD_datasheet_en-gb.pdf"
+  },
+  {
+   "title": "형번별 정격 — Butterfly Valve Actuator Modbus Type Overview",
+   "page": 1,
+   "orientation": "row",
+   "kind": "rating",
+   "header": [
+    "항목",
+    "D6350BL",
+    "D6400BL",
+    "D6450BL",
+    "D6500BL",
+    "D6600BL",
+    "D625N",
+    "D632N",
+    "D640N",
+    "D650N",
+    "D665N",
+    "D680N",
+    "D6100N",
+    "D6125N",
+    "D6150N",
+    "D6350N",
+    "D6400N",
+    "D6450N",
+    "D6500N",
+    "D6600N",
+    "D6700N"
+   ],
+   "quantities": [
+    "length",
+    "flow",
+    "flow",
+    "pressure"
+   ],
+   "rows": [
+    [
+     "공칭 구경 · DN (mm)",
+     "350",
+     "400",
+     "450",
+     "500",
+     "600",
+     "25",
+     "32",
+     "40",
+     "50",
+     "65",
+     "80",
+     "100",
+     "125",
+     "150",
+     "350",
+     "400",
+     "450",
+     "500",
+     "600",
+     "700"
+    ],
+    [
+     "유량계수 Kvs · Kvs (m³/h)",
+     "3010",
+     "4140",
+     "5490",
+     "7060",
+     "10900",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "최대 유량계수 Kvmax · Kvmax (m³/h)",
+     "10300",
+     "14200",
+     "18800",
+     "24100",
+     "37300",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "압력 등급 · PN",
+     "16",
+     "16",
+     "16",
+     "16",
+     "16",
+     "6 / 10 / 16",
+     "6 / 10 / 16",
+     "6 / 10 / 16",
+     "6 / 10 / 16",
+     "6 / 10 / 16",
+     "6 / 10 / 16",
+     "6 / 10 / 16",
+     "6 / 10 / 16",
+     "6 / 10 / 16",
+     "10 / 16",
+     "16",
+     "16",
+     "16",
+     "16",
+     "16"
+    ]
+   ],
+   "source": "belimo_D6..BL_datasheet_en-gb.pdf",
+   "sourceNote": "Type Overview 표를 가진 문서: belimo_D6..BL_datasheet_en-gb.pdf · belimo_D6..N_datasheet_en-us.pdf · belimo_GK24A-MOD_datasheet_en-gb.pdf"
+  }
+ ]
 }
