@@ -49,11 +49,15 @@ service-autopilot/
 │  ├─ validate.py       게이트 (오류 0 이어야 한다)
 │  ├─ ingest_jci.py     JCI 문서 → 모델의 interfaces[] (--route·--apply·--refresh·--export[ --no-pages --only])
 │  ├─ build.py          → review/equip-catalog.html
+│  ├─ template_map.py   → review/template-map.html (BMS 기본화면 템플릿 검사대)
 │  └─ data/models/      모델 1건 = JSON 1개  ★ 산출물 본체
 ├─ evidence/gen2.py     HTML 템플릿 (화면 손보려면 여기)
 └─ review/
    ├─ data-map.html        **데이터 지도** (schema_map.py) — 원문이 어떤 층을 거쳐
    │                       시뮬레이터·BMS 모양이 되는지, 스키마와 조인 키를 한 화면에
+   ├─ template-map.html    **템플릿 검사대** (template_map.py) — 계열별 BMS 기본화면
+   │                       행에 **모델을 골라 붙여** 그 개념이 벤더마다 어떤 이름으로
+   │                       오는지 본다. 정규식은 이름만으로 뜻을 못 가른다 — 여기서 눈으로 본다
    ├─ equip-catalog.html   전체 카탈로그 (build.py) — 더블클릭해서 본다
    └─ jci-ingest.html      JCI 취입 검사대 (--export — 원문 쪽 그림 포함이 기본, 47MB · gitignore 라 직접 만든다)
 ```
