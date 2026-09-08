@@ -1,7 +1,7 @@
 <!-- NEXT-ACTION:START -->
 ## ▶ 지금 할 일 (새 세션은 이 블록부터 — SessionStart 훅이 자동 주입)
 
-**2026-09-07 인수인계 (4차).** `validate.py` 오류 0 · 모델 **158** · 판 **140** · 오브젝트 **37,385점** ·
+**2026-09-08 인수인계 (5차).** `validate.py` 오류 0 · 모델 **158** · 판 **140** · 오브젝트 **37,385점** ·
 형번 확정본 **31모델**. 시험은 **[C] 1건만 빨강**(Trane Precedent — 일부러 둔 것).
 
 ### 이번에 끝낸 것 — 삼성 정격을 전용 판독기로 다시 읽었다
@@ -56,6 +56,56 @@ DVM AHU p50(라벨 4단·한 열에 표 둘) · Hydro Unit p59(한 열에 형번
 - **LG 시험 3건을 고쳤다** — 지난 세션의 Modbus-TCP 판 99점 취입이 BACnet 전제로 쓰인
   단언을 깼는데 그때 확인을 안 했다(규칙 3 위반). 판을 갈라 보게 하고,
   Modbus 쪽도 `test_modbus_tcp_side_is_a_separate_set_of_interfaces` 로 함께 세웠다.
+
+### 이번에 함께 끝낸 것 — e8.vrf 템플릿 22행 (2026-09-08)
+
+`e5.pac` 시절부터 **0행**으로 비어 있던 프로파일을 채웠다. 근거는 국내 VRF 게이트웨이
+**5모델 619점**을 실제로 훑은 것이다(LG AC Smart 264 · 삼성 MIM-B17BN 264 ·
+JCI SI-VRFCBN02 실내기 32·실외기 26 · Daikin DMS502B71 33).
+
+**"모델을 몰라도 템플릿을 만들 수 있다"는 말이 왜 맞는가** — 개념은 같고 이름만 다르다.
+
+| 개념 | Daikin | JCI | LG | 삼성 |
+|---|---|---|---|---|
+| 실내온도 | `RoomTemp` | `ZN-T` | `RoomTemp_XXX` | `AC_RoomTemp_xx` |
+| 설정온도 | `TempAdjust` | `ZN-SP` | `SetTempStatus_XXX` | `AC_Temp_Set_xx` |
+| 운전/정지 | `StartStopCommand` | (없음) | `StartStopCommand_XXX` | `AC_Power_xx` |
+| 에러 코드 | `MalfunctionCode` | `ALARM-CODE` | `MalfunctionCode_XXX` | `AC_Error_Code_xx` |
+
+화면(왼쪽 열)은 모델 없이 설계되고, 모델은 **주소를 붙일 때만** 필요하다. 그 흡수를
+각 행의 `match.include` 가 한다. 씨앗은 `data/equips/e8.json` 의 손으로 쓴 11행이었고
+실측 노출로 22행이 됐다 — **운전/정지·운전상태·적산 전력량·배관온도·EEV 개도·외기온도가
+빠져 있었다. 전력 계산의 뼈대인데 없었다.**
+
+⚠ **정규식만 믿으면 안 된다. 집힌 것을 하나씩 봐야 한다** — 오답이 여덟 있었다:
+
+| 행 | 잘못 집은 것 | 왜 틀렸나 |
+|---|---|---|
+| 적산 전력량 | `GasTotalPower · 적산 가스` | 가스다, 전력이 아니다 |
+| 적산 전력량 | `AC_Baseline_kWh` | 기준값이다, 적산값은 `Period` 쪽 |
+| 소비전력 | `AccumPowerStatus_XXX` | 적산이다, 순시가 아니다 |
+| 풍량 단계 | `FANSPD-LO · 리모컨 풍량 잠금` | 잠금이다, 지령이 아니다 |
+| 풍향 | `LOUVER-LO · 리모컨 루버 잠금` | 〃 |
+| 압축기 운전율 | `INV-HRS · 압축기1 운전시간` | 누적 시간이다, 운전율이 아니다 |
+| 급기 온도 | `InverterDischargeTemp_XXX` | 압축기 **냉매** 토출이다, 급기(공기)가 아니다 |
+| 운전 모드 | `RemoteControlAirConModeSet` | 리모컨 허용이다, 모드 지령이 아니다 |
+
+⚠ **밑줄은 낱말 문자다.** `kwh` 가 `AC_Period_kWh_xx` 를 못 잡는다 — 국내 게이트웨이
+이름은 밑줄로 이어 붙는다. `` 를 빼야 걸린다.
+
+⚠ **매처가 보는 글자는 이름 + 비고다.** Daikin 의 `Alarm · 알람` 은 비고가
+`Normal / Malfunction` 이라 `malfunction` 하나로 에러 코드 행에 걸렸다 — 그건 코드가
+아니라 **상태 열거**다. '코드' 가 가까이 붙은 이름만 받게 고쳤다.
+
+**규칙 ⑦ Haystack 대조**(`haystack.py --diff e8`): 표준에 짝이 있는 행 **10**, 애매 3,
+우리에만 있는 행 9(냉매측·전력·제상·통신은 VRF proto 에 자리가 없다). 대조가 값을 했다 —
+`운전 모드`·`필터 청소 신호` 가 '표준에 없음' 으로 떨어져 있었는데 **우리 태그 낱말이 틀린
+것**이었다(`airfilter` → 표준은 `filter`). 고치니 짝을 찾았다.
+
+판별 매칭 결과(`data/datasets/model-mappings.json`):
+LG 실내기 판 **12/22** · Daikin 12/22 · 삼성 11/22 · JCI 실내기 11/22 · JCI 실외기 6/22.
+`소비전력` 은 **0/5** 다 — 게이트웨이가 순시 전력을 안 낸다. 지우지 않고 `appliesWhen` 에
+"별도 전력계(e19)나 형번별 정격표에서 온다" 고 적었다(미충족이 아니라 여기서 나올 값이 아님).
 
 ### [A] 다음 1순위 — 정격 결손 전수 조사 결과 (2026-09-07 산출)
 

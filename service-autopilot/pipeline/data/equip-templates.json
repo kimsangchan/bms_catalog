@@ -1175,9 +1175,401 @@
   "e8.vrf": {
    "equipId": "e8",
    "title": "시스템에어컨 VRF — BMS 기본화면",
-   "basis": "현장 도면(AAC/DDC 포인트 리스트)에서 필수 포인트를 뽑아 채운다. 아직 버전다.",
-   "pending": "templatePoints 가 비어 있다 = 신설 과제라는 뜻이다(규칙 ④). 2026-09-04 로 상황이 바뀌었다 — LG AC Smart BACnet 게이트웨이 165점이 취입돼 **붙일 포인트가 생겼다**(실내기 41·환기 20·공조기 53·실외기 14·AWHP 23·공통 14). 이제 행을 적을 수 있다. 다만 규칙 ⑦ 대로 exposure 를 실측해 등급을 정해야 하고, 규칙 ⑥ 대로 haystack proto 근거를 붙여야 한다. 행을 적기 전까지는 이 프로파일에 붙는 모델이 BMS 기본화면을 한 줄도 못 채운다. ⚠ 2026-09-07 id 를 e5.pac → **e8.vrf** 로 옮겼다. equip-requirements 쪽 match.catPrefix 가 'HVAC.AIR.VRF' 였는데 VRF 모델의 실제 cat 은 'HVAC.AIR.TERMINAL.VRF' 라 매칭이 0건이었다 — 삼성·LG 게이트웨이 2건, JCI VRF 2건, 다이킨 1건이 요구 프로파일 없이 흘렀다. 계열도 e5(공조기)가 아니라 e8 이 맞다.",
-   "templatePoints": []
+   "basis": "국내 VRF 게이트웨이 5모델 619점(LG AC Smart 264 · 삼성 MIM-B17BN 264 · JCI SI-VRFCBN02 실내기 32·실외기 26 · Daikin DMS502B71 33)을 실제로 훑어 벤더를 가로질러 되풀이되는 개념만 남겼다. 이름은 벤더마다 전혀 다르다 — 실내온도 하나가 RoomTemp(Daikin) · ZN-T(JCI) · RoomTemperature_XXX(LG) · AC_RoomTemp_xx(삼성) 넷으로 적힌다. 그래서 화면(왼쪽 열)은 모델을 몰라도 설계되고 모델은 주소를 붙일 때만 필요하다 — 그 흡수를 각 행의 match.include 가 한다. 씨앗은 data/equips/e8.json 의 손으로 쓴 11행이었고 실측 노출로 22행으로 늘렸다: 운전/정지·운전상태·적산 전력량·배관온도·EEV 개도·외기온도가 빠져 있었다 — 전력 계산의 뼈대인데 없었다.",
+   "templatePoints": [
+    {
+     "name": "설정온도 상·하한",
+     "objectType": "AV",
+     "unit": "℃",
+     "role": "sp",
+     "tags": "`zone`✓ `air`✓ `temp`✓ `limit`★",
+     "grade": "선택",
+     "haystack": "표준에 없음 — 국내 중앙제어 관행(사용자 조작 범위 제한)",
+     "why": "설정온도 행이 이것을 먼저 집어 가지 않게 앞에 둔다. 계산에는 안 쓰지만 운전 범위 상한이라 시뮬레이터가 설정온도를 훑을 때 경계로 쓴다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "limit.?temp|(?:cool|heat).?limit|상한|하한"
+     }
+    },
+    {
+     "name": "설정온도",
+     "objectType": "AV",
+     "unit": "℃",
+     "role": "sp",
+     "tags": "`zone`✓ `air`✓ `temp`✓",
+     "grade": "필수",
+     "haystack": "vrf-indoorUnit-fcu/equip.thermostat/air.effective.point.sp.temp.zone (추정 0.83)",
+     "why": "실내온도와의 차가 곧 요구 부하다. 없으면 부분부하율을 못 낸다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "temp.?set|set.?(?:room.?)?temp|\\bzn-sp\\b|tempadjust|설정.?온도",
+      "exclude": "limit|상한|하한|\\bmode\\b"
+     }
+    },
+    {
+     "name": "실내온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`zone`✓ `air`✓ `temp`✓",
+     "grade": "필수",
+     "haystack": "vrf-indoorUnit-fcu/equip.thermostat/air.point.sensor.temp.zone (일치 1.00)",
+     "why": "부하 계산의 기준점이자 시뮬레이터가 되돌려 주는 상태량. 실측-계산 대조의 잣대다",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "thermalMass"
+     ],
+     "match": {
+      "include": "room.?temp|\\bzn-t\\b|indoor.?temp|실내.?온도",
+      "exclude": "set|\\bsp\\b|limit|outdoor|outside"
+     }
+    },
+    {
+     "name": "급기(토출) 온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`discharge`✓ `air`✓ `temp`✓",
+     "grade": "권장",
+     "haystack": "vrf-indoorUnit-fcu/discharge.duct.equip/air.discharge.point.sensor.temp (일치 1.00)",
+     "why": "실내온도와의 차 × 풍량 = 실제 코일 부하. 정격 능력 대비 실부하를 가르는 유일한 실측값이다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "\\bda-t\\b|discharge.*temp|급기.*온도|토출.*온도",
+      "exclude": "inverter|compressor|comp\\b|refrig|냉매|압축기"
+     },
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+    },
+    {
+     "name": "환기(리턴) 온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`return`✓ `air`✓ `temp`✓",
+     "grade": "권장",
+     "haystack": "표준의 return duct equip 자리 — proto 는 있으나 우리 행에 위치 태그가 없어 자동 대조는 애매로 떨어진다",
+     "why": "코일 입구 조건. 실내온도 센서와 위치가 달라 외기 혼입을 가른다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "\\bra-t\\b|return.*air.*temp|리턴.*온도",
+      "exclude": "erv|ventilation"
+     }
+    },
+    {
+     "name": "배관 온도 (액관·가스관)",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`refrig`✓ `temp`✓",
+     "grade": "권장",
+     "haystack": "표준에 없음 — 냉매측 상태량은 Haystack VRF proto 에 자리가 없다",
+     "why": "액관·가스관 온도차가 냉매 순환의 실제 과열도·과냉도다. 정격 COP 를 운전점 COP 로 보정할 때 쓴다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "pipe.*temp|liq-?pipe|gas-?pipe|액관|가스관"
+     }
+    },
+    {
+     "name": "외기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`outside`✓ `air`✓ `temp`✓",
+     "grade": "권장",
+     "haystack": "표준의 outside air temp — 실외기(ODU) 쪽이라 실내기 proto 트리에서는 안 잡힌다",
+     "why": "응축·증발 온도의 기준. 정격(외기 35/7 ℃)에서 벗어난 만큼 능력·소비전력을 보정한다. 저온난방 항으로 갈아탈 판단도 이 값이다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "outdoor.?temp|outside.?air.?temp|외기.*온도",
+      "exclude": "set|humid|습도"
+     }
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`enable`✓ `cmd`✓",
+     "grade": "필수",
+     "haystack": "표준의 cmd.enable.point",
+     "why": "꺼진 시간은 소비전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "electrical"
+     ],
+     "match": {
+      "include": "start.?stop.?command|on.?off.?command|ac_power|_power_|운전.?정지",
+      "exclude": "status|상태|\\bmode\\b|kwh|baseline|period"
+     },
+     "matchNote": "밑줄은 낱말 문자라 \b 가 'AC_Power_xx'·'AC_Period_kWh_xx' 를 가로막는다 — 국내 게이트웨이 이름은 밑줄로 이어 붙는다."
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`run`✓ `sensor`✓",
+     "grade": "필수",
+     "haystack": "표준의 run point sensor",
+     "why": "지령과 실제가 다를 수 있다(인터록·보호정지). 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "match": {
+      "include": "start.?stop.?status|operat\\w*.?status|\\bsf-s\\b|운전.*상태"
+     }
+    },
+    {
+     "name": "운전 모드",
+     "objectType": "MSO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`hvacMode`✓ `sp`✓ (냉방/난방/송풍/제습/자동)",
+     "grade": "필수",
+     "haystack": "vrf-indoorUnit-fcu ▸ hvacMode point sp — 대조에서 '태그 없음'으로 떨어졌던 것을 고쳤다. 열거값이라 태그가 아니라고 봤는데 표준에 설비 직속 proto 가 있다.",
+     "why": "냉방항과 난방항 중 어느 쪽을 도는지 가른다. 모드를 모르면 같은 온도차에 두 배 틀린다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "operation.?mode|airconmode|\\bhtclg|mode.*command|운전.?모드",
+      "exclude": "lock|limit|제한|잠금|remote|리모컨|-lo\\b"
+     },
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+    },
+    {
+     "name": "풍량 단계",
+     "objectType": "MSO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`fan`✓ `speed`✓",
+     "grade": "필수",
+     "haystack": "동점 7개 — proto 는 하나인데 붙는 위치(덕트)가 여럿이다. 위치 태그를 넣어야 고를 수 있다",
+     "why": "실내기 팬 전력과 코일 통과 풍량을 같이 정한다. 단계별 풍량은 형번별 정격표의 '풍량 (강/약/미)' 에 있다",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "electrical"
+     ],
+     "match": {
+      "include": "fan.?speed|fanspd|airflowrate|fanflow|풍량",
+      "exclude": "louver|vane|풍향|lock|-lo\\b|잠금|limit|제한"
+     },
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+    },
+    {
+     "name": "풍향 (루버)",
+     "objectType": "MSO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`vane`★",
+     "grade": "선택",
+     "haystack": "표준에 없음",
+     "why": "전력·열 계산에 안 들어간다. 대부분 벤더가 내주기 때문에 화면 조작용으로만 둔다",
+     "usedBy": [],
+     "match": {
+      "include": "louver|vane|swing|air.?direction|풍향",
+      "exclude": "lock|-lo\\b|잠금|limit|제한"
+     },
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+    },
+    {
+     "name": "에러 코드",
+     "objectType": "AI/MSO",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`fault`✓ `alarm-text`✓",
+     "grade": "필수",
+     "haystack": "동점 7개 (겹침 0.60) — defs 에 없는 토큰 `fault`·`alarm-text` 탓. 사람이 정해야 한다",
+     "why": "고장 중의 운전 데이터는 시뮬레이터 대조에서 빼야 한다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+     "usedBy": [
+      "electrical"
+     ],
+     "keepAlarm": true,
+     "match": {
+      "include": "(?:error|alarm|fault|malfunction|고장|에러).{0,6}(?:code|코드)"
+     },
+     "matchNote": "Daikin 의 'Alarm · 알람' 이 'MalfunctionCode · 고장 코드' 를 제치고 집혔었다. 매처가 보는 글자는 이름+비고인데 Alarm 의 비고가 'Normal / Malfunction' 이라 malfunction 하나만으로 걸린 것이다 — 그건 코드가 아니라 **상태 열거**다. 그래서 '코드'라는 낱말이 가까이 붙은 이름만 받는다."
+    },
+    {
+     "name": "필터 청소 신호",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`filter`✓ `sensor`✓ `alarm`★",
+     "grade": "권장",
+     "haystack": "vrf-indoorUnit-fcu ▸ filter point sensor — 우리 태그가 `airfilter` 였는데 defs 에 없는 토큰이라 동점 7개로 흩어졌다. 표준 낱말은 `filter` 다.",
+     "why": "필터 막힘은 풍량 저하로 나타난다. 실측 풍량이 정격보다 낮을 때 원인을 가르는 신호",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "keepAlarm": true,
+     "match": {
+      "include": "filter",
+      "exclude": "reset|리셋"
+     }
+    },
+    {
+     "name": "팽창밸브(EEV) 개도",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "tags": "`refrig`✓ `valve`✓ `sensor`✓",
+     "grade": "권장",
+     "haystack": "표준에 없음 — 냉매측 액추에이터는 VRF proto 에 자리가 없다",
+     "why": "실내기가 실제로 끌어가는 냉매 유량의 대리 지표. 여러 실내기의 부하 배분을 재현할 때 쓴다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "\\beev\\b|expv|팽창밸브"
+     }
+    },
+    {
+     "name": "압축기 운전율",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "tags": "`compressor`✓ `load`★",
+     "grade": "권장",
+     "haystack": "표준에 없음 — 실외기(ODU) 쪽",
+     "why": "인버터 압축기 전력은 운전율의 비선형 함수다. 정격 소비전력 × 운전율 로는 안 맞고 이 값이 있어야 곡선을 맞춘다",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "electrical"
+     ],
+     "match": {
+      "include": "comp\\w*.?(?:req|freq|load|rate|hz|speed)|압축기.*(?:속도|주파수|운전율)",
+      "exclude": "\\bhrs\\b|hour|시간|누적"
+     },
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+    },
+    {
+     "name": "적산 전력량",
+     "objectType": "AI",
+     "unit": "kWh",
+     "role": "sensor",
+     "tags": "`elec`✓ `energy`✓ `sensor`✓",
+     "grade": "권장",
+     "haystack": "표준의 elec energy sensor point",
+     "why": "시뮬레이터 결과를 실측과 맞추는 유일한 정산 기준이다. 이것이 없으면 계산을 검증할 방법이 없다",
+     "usedBy": [
+      "electrical"
+     ],
+     "match": {
+      "include": "kwh|accum.*power|total.?power|적산.*전력",
+      "exclude": "gas|가스|baseline|기준"
+     },
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+    },
+    {
+     "name": "소비전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "tags": "`elec-power`✓",
+     "grade": "선택",
+     "haystack": "표준의 elec power sensor point",
+     "why": "순시 전력. 형번별 정격표의 '통합 냉방·난방 소비전력' 과 같은 물리량이라 부분부하 곡선을 직접 맞출 수 있다",
+     "usedBy": [
+      "electrical"
+     ],
+     "match": {
+      "include": "\\bpower\\b|소비.?전력|watt",
+      "exclude": "ac_power|_power_|start|stop|on.?off|kwh|적산|accum|factor|supply|baseline|gas|가스"
+     },
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+     "appliesWhen": "게이트웨이가 순시 전력을 안 낸다 — VRF 5모델 619점에서 0건이다(LG·삼성은 적산 kWh, Daikin 은 적산 전력·가스). 이 값은 별도 전력계(e19)나 형번별 정격표의 '통합 냉방·난방 소비전력' 에서 온다. 행을 지우지 않는 이유는 시뮬레이터가 실제로 쓰는 물리량이고, 미충족(missing)이 아니라 **여기서 나올 값이 아님**을 남겨야 하기 때문이다."
+    },
+    {
+     "name": "제상 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`defrost`★",
+     "grade": "선택",
+     "haystack": "표준에 없음",
+     "why": "제상 중에는 난방 능력이 0 이고 전력은 든다. 겨울철 적산이 안 맞는 흔한 원인",
+     "usedBy": [
+      "heating"
+     ],
+     "match": {
+      "include": "defrost|제상"
+     }
+    },
+    {
+     "name": "통신 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`comm`★",
+     "grade": "선택",
+     "haystack": "표준에 없음 — 게이트웨이 자신의 상태다",
+     "why": "통신 두절 구간의 값은 마지막 값이 유지될 뿐 실측이 아니다. 그 구간을 데이터에서 빼는 근거",
+     "usedBy": [],
+     "match": {
+      "include": "communication.*status|통신.*상태"
+     }
+    },
+    {
+     "name": "재실 감지",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`occupancy`✓",
+     "grade": "선택",
+     "haystack": "겹침 최대 0.50 — 표준에서 짝을 못 찾았다(가장 가까운 것도 filter point sensor)",
+     "why": "재실 스케줄은 내부발열의 입력이다. 다만 VRF 게이트웨이가 내주는 경우가 드물다(5모델 중 1)",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "occupan|재실"
+     }
+    },
+    {
+     "name": "리모컨 잠금",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`enable`✓",
+     "grade": "선택",
+     "haystack": "vrf-indoorUnit-fcu/equip.humidifier/cmd.enable.humidifier.point (추정 0.75 — 가습기 자리에 붙었다. 오탐으로 본다)",
+     "why": "계산에 안 들어간다. 다만 잠금이 걸린 구간은 설정온도가 안 바뀌므로 데이터 해석에 쓰인다",
+     "usedBy": [],
+     "match": {
+      "include": "remocon|remote.?con|\\block\\b|잠금",
+      "exclude": "unlock|해제"
+     }
+    }
+   ],
+   "excludeCommon": "alarm setting|alarm limit|alarm delay|\\bbad [a-z]|sensor error",
+   "excludeCommonNote": "모든 행에 덧붙이는 제외어. e5 에서 쓰던 것 중 이 5모델에서 실제로 걸리는 것만 남겼다 — 'active alarm'·'alarm point' 는 여기 0건이라 베끼지 않았다(규칙 1: 확인한 것만 적는다). 경보를 실제로 찾는 행은 keepAlarm=true 로 뺀다."
   }
  }
 }
