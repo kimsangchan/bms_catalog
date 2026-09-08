@@ -303,6 +303,22 @@
   "pressureRating": {
    "ko": "압력 등급 (PN)",
    "convUnit": ""
+  },
+  "staticPressure": {
+   "ko": "정압",
+   "convUnit": "Pa"
+  },
+  "fanMotorPower": {
+   "ko": "팬 모터 출력",
+   "convUnit": "kW"
+  },
+  "fanEfficiency": {
+   "ko": "팬 효율",
+   "convUnit": "%"
+  },
+  "maxSpeed": {
+   "ko": "최고 회전수",
+   "convUnit": "RPM"
   }
  },
  "classes": {
@@ -621,6 +637,42 @@
       "powerConsumptionRest",
       "torqueMotor",
       "runningTime"
+     ]
+    }
+   }
+  },
+  "e13": {
+   "ko": "송풍기 (급기·환기·배기)",
+   "labels": {
+    "ratedAirflow": "정격 풍량",
+    "staticPressure": "정압",
+    "fanMotorPower": "모터 출력"
+   },
+   "table": [
+    "ratedAirflow",
+    "staticPressure",
+    "fanMotorPower",
+    "supplyVoltage",
+    "maxSpeed"
+   ],
+   "detailExtra": [
+    "fanEfficiency",
+    "powerConsumptionOperating",
+    "soundRating",
+    "unitWeight"
+   ],
+   "roles": {
+    "fanUnit": {
+     "ko": "송풍기",
+     "detail": [
+      "ratedAirflow",
+      "staticPressure",
+      "fanMotorPower",
+      "maxSpeed",
+      "supplyVoltage",
+      "powerConsumptionOperating",
+      "fanEfficiency",
+      "soundRating"
      ]
     }
    }

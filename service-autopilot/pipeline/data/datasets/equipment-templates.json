@@ -1236,52 +1236,8 @@
     "requiredFor": "simulator"
    }
   ],
-  "templatePoints": [
-   {
-    "name": "주파수 지령",
-    "objectType": "AO",
-    "unit": "Hz",
-    "role": "cmd",
-    "tags": "(용도 fan)✓ `vfd-freq`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "현재 주파수",
-    "objectType": "AI",
-    "unit": "Hz",
-    "role": "sensor",
-    "tags": "(용도 fan)✓ `vfd-freq`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "풍량",
-    "objectType": "AI",
-    "unit": "CMH",
-    "role": "sensor",
-    "tags": "`air`✓ `flow`✓",
-    "grade": "선택",
-    "datasetTier": "template"
-   },
-   {
-    "name": "벨트 끊김·차압",
-    "objectType": "BI",
-    "unit": "—",
-    "role": "sensor",
-    "tags": "`differential-pressure`✓ `alarm`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "전류",
-    "objectType": "AI",
-    "unit": "A",
-    "role": "sensor",
-    "tags": "`elec-current`✓",
-    "grade": "선택",
-    "datasetTier": "template"
-   }
+  "templateProfileIds": [
+   "e13.fan"
   ]
  },
  "e14": {
@@ -1488,115 +1444,8 @@
     "requiredFor": "simulator"
    }
   ],
-  "templatePoints": [
-   {
-    "name": "주파수 지령",
-    "objectType": "AO",
-    "unit": "Hz",
-    "role": "cmd",
-    "tags": "`vfd`✓ `vfd-freq`✓",
-    "grade": "필수",
-    "datasetTier": "template"
-   },
-   {
-    "name": "현재 주파수",
-    "objectType": "AI",
-    "unit": "Hz",
-    "role": "sensor",
-    "tags": "`vfd`✓ `vfd-freq`✓",
-    "grade": "필수",
-    "datasetTier": "template"
-   },
-   {
-    "name": "출력 전류",
-    "objectType": "AI",
-    "unit": "A",
-    "role": "sensor",
-    "tags": "`vfd`✓ `elec-current`✓",
-    "grade": "필수",
-    "datasetTier": "template"
-   },
-   {
-    "name": "출력 전압",
-    "objectType": "AI",
-    "unit": "V",
-    "role": "sensor",
-    "tags": "`vfd`✓ `volt`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "출력 전력",
-    "objectType": "AI",
-    "unit": "kW",
-    "role": "sensor",
-    "tags": "`vfd`✓ `elec-power`✓",
-    "grade": "필수",
-    "datasetTier": "template"
-   },
-   {
-    "name": "적산 전력량",
-    "objectType": "AI",
-    "unit": "kWh",
-    "role": "sensor",
-    "tags": "`vfd`✓ `elec-energy`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "DC 링크 전압",
-    "objectType": "AI",
-    "unit": "V",
-    "role": "sensor",
-    "tags": "`vfd`✓ `dc-elec`✓ `volt`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "방열판 온도",
-    "objectType": "AI",
-    "unit": "℃",
-    "role": "sensor",
-    "tags": "`vfd`✓ `temp`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "누적 운전시간",
-    "objectType": "AI",
-    "unit": "h",
-    "role": "sensor",
-    "tags": "`vfd`✓ `runtime`★",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "트립·고장",
-    "objectType": "BI",
-    "unit": "—",
-    "role": "sensor",
-    "tags": "`vfd`✓ `fault`✓ `alarm`✓",
-    "grade": "필수",
-    "datasetTier": "template"
-   },
-   {
-    "name": "트립 코드",
-    "objectType": "AI/MSO",
-    "unit": "—",
-    "role": "sensor",
-    "tags": "`vfd`✓ `fault`✓ `alarm-text`✓",
-    "grade": "권장",
-    "datasetTier": "template"
-   },
-   {
-    "name": "정·역 지령",
-    "objectType": "BO",
-    "unit": "—",
-    "role": "cmd",
-    "tags": "`vfd`✓ `cmd`✓",
-    "grade": "선택",
-    "datasetTier": "template"
-   }
+  "templateProfileIds": [
+   "e15.vfd"
   ]
  },
  "e16": {

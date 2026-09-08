@@ -1114,6 +1114,245 @@
      ]
     }
    ]
+  },
+  "e13.fan": {
+   "equipId": "e13",
+   "title": "송풍기 (급기·환기·배기)",
+   "match": {
+    "catPrefix": [
+     "HVAC.AIR.FAN",
+     "HVAC.FAN"
+    ]
+   },
+   "matchNote": "현장 최다 설비다(368대). 카탈로그는 ebm-papst 4모델뿐이라 가장 크게 빈다.",
+   "energyModel": {
+    "electrical": "팬 축동력 = 풍량 × 정압 ÷ (팬효율 × 모터효율). 인버터 팬은 상사법칙으로 회전수 비의 3제곱에 비례한다 — 그래서 '인버터 출력(%)' 하나가 전력의 지배 변수다",
+    "airside": "급기·배기 풍량이 공조 계통의 질량유량이다. 댐퍼 개폐가 그 경로를 정한다",
+    "maintenance": "필터 차압이 오르면 같은 풍량에 더 큰 정압이 필요해 전력이 는다"
+   },
+   "items": [
+    {
+     "id": "ratedAirflow",
+     "name": "정격 풍량",
+     "unit": "CMH",
+     "grade": "필수",
+     "usedBy": [
+      "airside",
+      "electrical"
+     ],
+     "why": "축동력 식의 첫 항. 없으면 팬 전력을 못 낸다",
+     "features": [
+      "ratedAirflow"
+     ],
+     "sourceHint": "제품 카탈로그 성능표",
+     "searchTerms": [
+      "airflow",
+      "풍량",
+      "CMH"
+     ]
+    },
+    {
+     "id": "staticPressure",
+     "name": "정압",
+     "unit": "Pa",
+     "grade": "필수",
+     "usedBy": [
+      "airside",
+      "electrical"
+     ],
+     "why": "축동력 식의 둘째 항. 덕트 저항과 짝을 맞춘다",
+     "features": [
+      "staticPressure"
+     ],
+     "sourceHint": "제품 카탈로그 성능표",
+     "searchTerms": [
+      "static pressure",
+      "정압"
+     ]
+    },
+    {
+     "id": "fanMotorPower",
+     "name": "모터 출력",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "electrical"
+     ],
+     "why": "전력의 상한. 인버터 출력(%)을 곱해 순시 전력을 낸다",
+     "features": [
+      "fanMotorPower"
+     ],
+     "sourceHint": "제품 카탈로그",
+     "searchTerms": [
+      "motor power",
+      "모터 출력",
+      "kW"
+     ]
+    },
+    {
+     "id": "maxSpeed",
+     "name": "최고 회전수",
+     "unit": "RPM",
+     "grade": "권장",
+     "usedBy": [
+      "electrical"
+     ],
+     "why": "상사법칙의 기준점. 인버터 출력(%)을 회전수로 환산한다",
+     "features": [
+      "maxSpeed"
+     ],
+     "sourceHint": "제품 카탈로그",
+     "searchTerms": [
+      "speed",
+      "rpm",
+      "회전수"
+     ]
+    },
+    {
+     "id": "fanEfficiency",
+     "name": "팬 효율",
+     "unit": "%",
+     "grade": "권장",
+     "usedBy": [
+      "electrical"
+     ],
+     "why": "축동력 식의 분모. 없으면 통상값으로 가정해야 한다",
+     "features": [
+      "fanEfficiency"
+     ],
+     "sourceHint": "제품 카탈로그 성능 곡선",
+     "searchTerms": [
+      "efficiency",
+      "효율"
+     ]
+    },
+    {
+     "id": "supplyVoltage",
+     "name": "정격 전압",
+     "unit": "V",
+     "grade": "권장",
+     "usedBy": [
+      "electrical"
+     ],
+     "why": "간선·인버터 용량 검토의 입력",
+     "features": [
+      "supplyVoltage"
+     ],
+     "sourceHint": "제품 카탈로그",
+     "searchTerms": [
+      "voltage",
+      "전압"
+     ]
+    }
+   ]
+  },
+  "e15.vfd": {
+   "equipId": "e15",
+   "title": "인버터 (VFD) — 제품으로서의 화면",
+   "match": {
+    "catPrefix": [
+     "HVAC.AUX.VFD",
+     "HVAC.DRIVE.VFD"
+    ]
+   },
+   "matchNote": "⚠ 현장에서 인버터는 독립 설비가 아니다 — `INV-` 설비코드 0대이고 팬·펌프에 '인버터 출력'·'인버터 경보' 포인트로 얹혀 있다. 이 프로파일은 인버터를 **제품으로** 볼 때(LS H100 · Danfoss FC 101 · YORK AYK550)의 화면이고, 팬에 얹힌 두 점은 e13.fan 쪽에 있다.",
+   "energyModel": {
+    "electrical": "인버터 입력전력 = 모터 축동력 ÷ (모터효율 × 인버터효율). 인버터 자체 손실(정격의 2~4%)이 방열로 나온다",
+    "thermal": "제어반 발열 = 인버터 손실 합. 방열판 온도가 그 대리 지표다",
+    "dynamics": "가감속 시간이 기동 돌입전류와 계통 순간전압강하를 정한다"
+   },
+   "items": [
+    {
+     "id": "appliedMotorPower",
+     "name": "적용 전동기 출력",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "electrical"
+     ],
+     "why": "인버터가 감당하는 모터 크기. 전력 상한의 기준",
+     "features": [
+      "appliedMotorPower"
+     ],
+     "sourceHint": "형번별 정격표",
+     "searchTerms": [
+      "applied motor",
+      "적용 전동기"
+     ]
+    },
+    {
+     "id": "ratedOutputCurrent",
+     "name": "정격 출력전류",
+     "unit": "A",
+     "grade": "필수",
+     "usedBy": [
+      "electrical"
+     ],
+     "why": "연속 정격. 과부하 여부 판정의 기준",
+     "features": [
+      "ratedOutputCurrent"
+     ],
+     "sourceHint": "형번별 정격표",
+     "searchTerms": [
+      "rated current",
+      "정격 출력전류"
+     ]
+    },
+    {
+     "id": "ratedInputCurrent",
+     "name": "정격 입력전류",
+     "unit": "A",
+     "grade": "권장",
+     "usedBy": [
+      "electrical"
+     ],
+     "why": "간선·차단기 용량 검토의 입력",
+     "features": [
+      "ratedInputCurrent"
+     ],
+     "sourceHint": "형번별 정격표",
+     "searchTerms": [
+      "input current",
+      "입력전류"
+     ]
+    },
+    {
+     "id": "powerLoss",
+     "name": "전력 손실",
+     "unit": "W",
+     "grade": "권장",
+     "usedBy": [
+      "thermal"
+     ],
+     "why": "제어반 발열 계산의 직접 입력. 인버터 효율과 짝이다",
+     "features": [
+      "powerConsumptionOperating"
+     ],
+     "sourceHint": "형번별 정격표(Estimated power loss)",
+     "searchTerms": [
+      "power loss",
+      "손실"
+     ]
+    },
+    {
+     "id": "unitWeight",
+     "name": "중량",
+     "unit": "kg",
+     "grade": "참고",
+     "usedBy": [
+      "thermal"
+     ],
+     "why": "기동·정지 과도 응답의 열용량. 계산 비중은 작다",
+     "features": [
+      "unitWeight"
+     ],
+     "sourceHint": "형번별 정격표",
+     "searchTerms": [
+      "weight",
+      "중량"
+     ]
+    }
+   ]
   }
  }
 }

@@ -1313,6 +1313,555 @@
    }
   ]
  },
+ "e13.fan": {
+  "id": "e13.fan",
+  "equipId": "e13",
+  "title": "송풍기 — BMS 기본화면",
+  "basis": "현장 포인트리스트의 송풍기 368대를 실제로 세어 순서를 정했다 — 운전 상태 48% · 기동/정지 46% · 배기댐퍼 11% · 필터차압 10% · 탈취기 10% · 인버터 출력 6%. ⚠ 손으로 쓴 초안(data/equips/e13.json 5행)과 거의 겹치지 않았다: 초안에는 기동/정지도 운전 상태도 댐퍼도 없었고, 초안에 있던 풍량·전류는 현장 노출이 ~0% 다. 벤더 쪽 근거는 ebm-papst 4모델(EC 팬)뿐이라 얇다 — 회전수·DC링크·모듈온도·누적운전시간이 거기서 왔다. ⚠ 인버터는 현장에서 독립 설비가 아니라(`INV-` 0대) 팬에 얹힌 두 점('인버터 출력'·'인버터 경보')이라 여기 맨 앞에 뒀다.",
+  "templatePoints": [
+   {
+    "name": "인버터 출력",
+    "objectType": "AI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`fan`✓ `speed`✓ `vfd-freq`✓",
+    "grade": "필수",
+    "haystack": "fan point sensor speed vfd — 표준의 팬 속도 피드백",
+    "why": "팬 전력은 상사법칙으로 회전수 비의 3제곱이다. 이 한 점이 전력의 지배 변수라 정격 모터출력 × (이 값)³ 이 순시 전력이 된다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "인버터 경보",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fan`✓ `vfd`✓ `alarm`✓",
+    "grade": "권장",
+    "haystack": "alarm fan point sensor",
+    "why": "인버터가 트립하면 팬은 정지다. 전력 0 구간을 가르는 신호",
+    "usedBy": [
+     "electrical"
+    ],
+    "keepAlarm": true,
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "기동/정지 지령",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`fan`✓ `enable`✓ `cmd`✓",
+    "grade": "필수",
+    "haystack": "cmd enable fan point",
+    "why": "현장 368대 중 46% 가 내주는 가장 흔한 점. 꺼진 시간은 전력 0 이다",
+    "usedBy": [
+     "electrical",
+     "airside"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운전 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fan`✓ `run`✓ `sensor`✓",
+    "grade": "필수",
+    "haystack": "fan point run sensor",
+    "why": "현장 노출 48% 로 가장 높다. 지령이 아니라 실제 운전시간이 적산의 근거다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "고장·경보",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fan`✓ `alarm`✓",
+    "grade": "필수",
+    "haystack": "alarm fan point sensor",
+    "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+    "usedBy": [
+     "electrical"
+    ],
+    "keepAlarm": true,
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "급기 댐퍼 열림/닫힘 지령",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`discharge`✓ `damper`✓ `cmd`✓",
+    "grade": "권장",
+    "haystack": "cmd damper discharge point",
+    "why": "팬은 댐퍼와 한 몸이다. 댐퍼가 닫힌 채 도는 구간은 풍량 0 인데 전력은 든다",
+    "usedBy": [
+     "airside"
+    ],
+    "datasetTier": "template"
+   },
+   {
+    "name": "급기 댐퍼 열림 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`discharge`✓ `damper`✓ `sensor`✓",
+    "grade": "권장",
+    "haystack": "damper discharge point sensor",
+    "why": "지령과 실제가 다를 수 있다(액추에이터 고착)",
+    "usedBy": [
+     "airside"
+    ],
+    "datasetTier": "template"
+   },
+   {
+    "name": "외기 댐퍼 열림/닫힘 지령",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`outside`✓ `damper`✓ `cmd`✓",
+    "grade": "권장",
+    "haystack": "cmd damper outside point",
+    "why": "외기 도입량을 정한다 — 외기부하의 입력",
+    "usedBy": [
+     "airside"
+    ],
+    "datasetTier": "template"
+   },
+   {
+    "name": "외기 댐퍼 열림 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`outside`✓ `damper`✓ `sensor`✓",
+    "grade": "권장",
+    "haystack": "damper outside point sensor",
+    "why": "실제 외기 경로 확인",
+    "usedBy": [
+     "airside"
+    ],
+    "datasetTier": "template"
+   },
+   {
+    "name": "배기 댐퍼 열림/닫힘 지령",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`exhaust`✓ `damper`✓ `cmd`✓",
+    "grade": "권장",
+    "haystack": "cmd damper exhaust point",
+    "why": "배기 경로. 현장 노출 11% 로 댐퍼 중 가장 흔하다",
+    "usedBy": [
+     "airside"
+    ],
+    "datasetTier": "template"
+   },
+   {
+    "name": "배기 댐퍼 열림 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`exhaust`✓ `damper`✓ `sensor`✓",
+    "grade": "권장",
+    "haystack": "damper exhaust point sensor",
+    "why": "실제 배기 경로 확인",
+    "usedBy": [
+     "airside"
+    ],
+    "datasetTier": "template"
+   },
+   {
+    "name": "필터 차압",
+    "objectType": "BI/AI",
+    "unit": "Pa",
+    "role": "sensor",
+    "tags": "`filter`✓ `differential-pressure`✓",
+    "grade": "권장",
+    "haystack": "filter point sensor",
+    "why": "차압이 오르면 같은 풍량에 더 큰 정압이 필요해 전력이 는다. 실측 전력이 정격보다 높을 때 원인을 가르는 신호",
+    "usedBy": [
+     "maintenance",
+     "electrical"
+    ],
+    "keepAlarm": true,
+    "datasetTier": "template"
+   },
+   {
+    "name": "회전수",
+    "objectType": "AI",
+    "unit": "RPM",
+    "role": "sensor",
+    "tags": "`fan`✓ `speed`✓ `sensor`✓",
+    "grade": "권장",
+    "haystack": "fan point sensor speed",
+    "why": "상사법칙의 실측값. 인버터 출력(%)보다 정확하다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "출력 전류",
+    "objectType": "AI",
+    "unit": "A",
+    "role": "sensor",
+    "tags": "`fan`✓ `elec-current`✓",
+    "grade": "권장",
+    "haystack": "elec current point sensor",
+    "why": "전력의 직접 측정에 가장 가까운 값. 전압과 함께 쓴다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "출력 전력",
+    "objectType": "AI",
+    "unit": "W",
+    "role": "sensor",
+    "tags": "`fan`✓ `elec-power`✓",
+    "grade": "권장",
+    "haystack": "elec power point sensor",
+    "why": "순시 전력. 상사법칙 계산을 실측으로 맞출 수 있다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "적산 전력량",
+    "objectType": "AI",
+    "unit": "kWh",
+    "role": "sensor",
+    "tags": "`fan`✓ `elec-energy`✓",
+    "grade": "권장",
+    "haystack": "elec energy point sensor",
+    "why": "시뮬레이터 결과를 실측과 맞추는 정산 기준",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "DC 링크 전압",
+    "objectType": "AI",
+    "unit": "V",
+    "role": "sensor",
+    "tags": "`vfd`✓ `dc-elec`✓ `volt`✓",
+    "grade": "선택",
+    "haystack": "표준에 없음 — 인버터 내부값이다",
+    "why": "전원 품질과 회생 상태의 지표. 전력 계산에는 직접 안 들어간다",
+    "usedBy": [],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "모듈 온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`vfd`✓ `temp`✓ `sensor`✓",
+    "grade": "권장",
+    "haystack": "표준에 없음 — 인버터 내부값이다",
+    "why": "인버터 손실이 열로 나온다. 제어반 발열 계산의 대리 지표",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "누적 운전시간",
+    "objectType": "AI",
+    "unit": "h",
+    "role": "sensor",
+    "tags": "`fan`✓ `runtime`★",
+    "grade": "권장",
+    "haystack": "표준에 없음",
+    "why": "실제 가동률. 설계 가동시간과 벌어지면 시뮬레이터 전제를 고쳐야 한다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "탈취기 상태·경보",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`equip`✓ `alarm`✓",
+    "grade": "선택",
+    "haystack": "표준에 없음 — 주방 배기 계통의 부속이다",
+    "why": "계산에 안 들어간다. 주방 배기휀(KEF)에 붙어 현장 노출이 10% 나 되므로 화면에는 둔다",
+    "usedBy": [],
+    "keepAlarm": true,
+    "appliesWhen": "주방 배기휀(KEF)에만 붙는다 — 다른 팬에는 없는 것이 정상이다",
+    "datasetTier": "template"
+   }
+  ]
+ },
+ "e15.vfd": {
+  "id": "e15.vfd",
+  "equipId": "e15",
+  "title": "인버터 (VFD) — BMS 기본화면",
+  "basis": "손으로 쓴 초안(data/equips/e15.json 12행)을 실측으로 손질하고 넷을 더했다 — 운전/정지 지령·운전 상태·모터 토크·제어어/상태어. 인버터 5모델 947점(Danfoss FC 101 410 · LS H100 233 · BACnet MCA-125 143 · YORK AYK550 113 · MCD 500 48)에서 노출을 셌다. ⚠ 이 화면은 인버터를 **제품으로** 볼 때의 것이다 — 현장에서 인버터는 팬·펌프에 얹혀 두 점으로만 보이고, 그쪽은 e13.fan 에 있다.",
+  "templatePoints": [
+   {
+    "name": "주파수 지령",
+    "objectType": "AO",
+    "unit": "Hz",
+    "role": "cmd",
+    "tags": "`vfd`✓ `vfd-freq`✓ `cmd`✓",
+    "grade": "필수",
+    "haystack": "cmd point speed vfd",
+    "why": "BMS 가 인버터에 내리는 유일한 아날로그 지령. 부하율을 정한다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "현재 주파수",
+    "objectType": "AI",
+    "unit": "Hz",
+    "role": "sensor",
+    "tags": "`vfd`✓ `vfd-freq`✓ `sensor`✓",
+    "grade": "필수",
+    "haystack": "point sensor speed vfd",
+    "why": "실제 회전수. 상사법칙으로 축동력을 낸다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "출력 전류",
+    "objectType": "AI",
+    "unit": "A",
+    "role": "sensor",
+    "tags": "`vfd`✓ `elec-current`✓",
+    "grade": "필수",
+    "haystack": "elec current point sensor",
+    "why": "정격 출력전류 대비로 부하율을 낸다. 과부하 판정의 기준",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "출력 전압",
+    "objectType": "AI",
+    "unit": "V",
+    "role": "sensor",
+    "tags": "`vfd`✓ `volt`✓",
+    "grade": "권장",
+    "haystack": "elec volt point sensor",
+    "why": "전류와 함께 곱해 전력을 낸다(역률 보정 필요)",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "출력 전력",
+    "objectType": "AI",
+    "unit": "kW",
+    "role": "sensor",
+    "tags": "`vfd`✓ `elec-power`✓",
+    "grade": "필수",
+    "haystack": "elec power point sensor",
+    "why": "순시 전력. 시뮬레이터 결과와 직접 견주는 값",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "적산 전력량",
+    "objectType": "AI",
+    "unit": "kWh",
+    "role": "sensor",
+    "tags": "`vfd`✓ `elec-energy`✓",
+    "grade": "권장",
+    "haystack": "elec energy point sensor",
+    "why": "정산 기준. LS·Danfoss 둘 다 kWh 카운터를 낸다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "모터 토크",
+    "objectType": "AI",
+    "unit": "%",
+    "role": "sensor",
+    "tags": "`vfd`✓ `torque`★",
+    "grade": "권장",
+    "haystack": "표준에 없음 — 인버터 내부 추정값이다",
+    "why": "부하 특성(정토크/가변토크)을 가른다. 팬·펌프는 가변토크라 전력이 회전수 3제곱을 따르는데, 토크가 그 전제를 확인해 준다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "트립·고장",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`vfd`✓ `fault`✓ `alarm`✓",
+    "grade": "필수",
+    "haystack": "alarm point sensor",
+    "why": "트립 중 전력은 0 이다. 그 구간을 데이터에서 가른다",
+    "usedBy": [
+     "electrical"
+    ],
+    "keepAlarm": true,
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "트립 코드",
+    "objectType": "AI/MSO",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`vfd`✓ `fault`✓ `alarm-text`✓",
+    "grade": "권장",
+    "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+    "why": "왜 섰는지 가른다. 과부하 트립이면 사이징이 틀린 것이고 과전압이면 계통 문제다",
+    "usedBy": [
+     "electrical"
+    ],
+    "keepAlarm": true,
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "제어어 · 상태어",
+    "objectType": "AI/AO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`vfd`✓ `cmd`✓",
+    "grade": "권장",
+    "haystack": "표준에 없음 — 필드버스 규약(PROFIdrive)의 비트 묶음이다",
+    "why": "운전/정지·리셋·정역이 한 레지스터에 비트로 묶여 있다. 이 한 점이 여러 지령을 대신하므로 비트 뜻을 모르면 제어가 통째로 안 붙는다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운전 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`vfd`✓ `run`✓ `sensor`✓",
+    "grade": "필수",
+    "haystack": "point run sensor",
+    "why": "지령이 아니라 실제 운전. 적산의 근거",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운전/정지 지령",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`vfd`✓ `enable`✓ `cmd`✓",
+    "grade": "필수",
+    "haystack": "cmd enable point",
+    "why": "기동·정지. 꺼진 시간은 전력 0 이다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "정·역 지령",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`vfd`✓ `cmd`✓",
+    "grade": "선택",
+    "haystack": "표준에 없음",
+    "why": "팬·펌프는 대개 정방향 고정이라 계산에 안 들어간다",
+    "usedBy": [],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "DC 링크 전압",
+    "objectType": "AI",
+    "unit": "V",
+    "role": "sensor",
+    "tags": "`vfd`✓ `dc-elec`✓ `volt`✓",
+    "grade": "권장",
+    "haystack": "표준에 없음 — 인버터 내부값이다",
+    "why": "회생·과전압 트립의 선행 지표. 계통 전압 품질을 본다",
+    "usedBy": [],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "방열판 온도",
+    "objectType": "AI",
+    "unit": "℃",
+    "role": "sensor",
+    "tags": "`vfd`✓ `temp`✓ `sensor`✓",
+    "grade": "권장",
+    "haystack": "표준에 없음 — 인버터 내부값이다",
+    "why": "인버터 손실(정격의 2~4%)이 열로 나온다. 제어반 발열 계산의 대리 지표",
+    "usedBy": [
+     "thermal"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "누적 운전시간",
+    "objectType": "AI",
+    "unit": "h",
+    "role": "sensor",
+    "tags": "`vfd`✓ `runtime`★",
+    "grade": "권장",
+    "haystack": "표준에 없음",
+    "why": "실제 가동률. 설계 전제와 벌어지면 시뮬레이터를 고쳐야 한다",
+    "usedBy": [
+     "electrical"
+    ],
+    "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "datasetTier": "template"
+   }
+  ]
+ },
  "e16.actuator": {
   "id": "e16.actuator",
   "equipId": "e16",
