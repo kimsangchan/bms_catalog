@@ -41,7 +41,9 @@
      "match": {
       "include": "(?:supply|discharge).*air.*temp|discharge.*temp",
       "exclude": "setpoint|setp\\b|sp\\b|reheat|refrigerant|tempering status"
-     }
+     },
+     "concept": "discharge-temp",
+     "group": "온도"
     },
     {
      "name": "환기온도",
@@ -60,7 +62,9 @@
      "match": {
       "include": "return.*air.*temp|\\bra temp",
       "exclude": "setpoint|sp\\b|control temperature type"
-     }
+     },
+     "concept": "return-temp",
+     "group": "온도"
     },
     {
      "name": "외기온도",
@@ -79,7 +83,9 @@
      "match": {
       "include": "outdoor.*air.*temperature|outside.*air.*temperature|outdoortemp|outdoor temp",
       "exclude": "flow|enthalpy|humidity|setpoint|sp\\b|enable|min|dew"
-     }
+     },
+     "concept": "oa-temp",
+     "group": "온도"
     },
     {
      "name": "실내온도",
@@ -98,7 +104,9 @@
      "match": {
       "include": "space.*temp|zone.*temp|room.*temp|indoor.*air.*temp|spacetemp|roomtmp",
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|offset|sensor error|failure|override|limit|unocc|setpt|dew|humid|source"
-     }
+     },
+     "concept": "zone-temp",
+     "group": "온도"
     },
     {
      "name": "혼합공기온도",
@@ -117,7 +125,9 @@
      "match": {
       "include": "mixed.*air.*temp|mix.*air.*tmp",
       "exclude": "problem|\\bfault\\b|setpoint|sp\\b"
-     }
+     },
+     "concept": "혼합공기온도",
+     "group": "온도"
     },
     {
      "name": "배기 온도",
@@ -135,7 +145,9 @@
      "match": {
       "include": "(?:exhaust|extract)[ ._-]*air[ ._-]*temp|erlvgexhtemp|\\bereat\\b|ea[ ._-]*d?[ ._-]*temperature|ea duct temperature",
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|sensor error|failure|type|configuration|heat ?sink|regulation"
-     }
+     },
+     "concept": "배기-온도",
+     "group": "온도"
     },
     {
      "name": "급기습도",
@@ -152,7 +164,9 @@
      "match": {
       "include": "supply.*air.*(?:relative )?humidity|supply.*humidity|sply.*hum|\\bsa[ ._-]*humidity",
       "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
-     }
+     },
+     "concept": "급기습도",
+     "group": "습도·공기질"
     },
     {
      "name": "환기습도",
@@ -169,7 +183,9 @@
      "match": {
       "include": "return.*air.*(?:relative )?humidity|return.*humidity|space.*rh|room.*hum|(?:extract|\\bea)[ ._-]*humidity",
       "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
-     }
+     },
+     "concept": "환기습도",
+     "group": "습도·공기질"
     },
     {
      "name": "외기 엔탈피",
@@ -188,7 +204,9 @@
      "match": {
       "include": "(?:outdoor|outside|oa).*enthalpy|nvooaenthalpy|outenth",
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|switch|changeover|type|configuration|diff"
-     }
+     },
+     "concept": "외기-엔탈피",
+     "group": "습도·공기질"
     },
     {
      "name": "급기 정압",
@@ -205,7 +223,9 @@
      "match": {
       "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
       "exclude": "setpoint|sp\\b|reset"
-     }
+     },
+     "concept": "급기-정압",
+     "group": "풍량·압력"
     },
     {
      "name": "외기 풍량",
@@ -223,7 +243,9 @@
      "match": {
       "include": "(?:outdoor|outside|ventilation|fresh)[ ._-]*air.*flow|\\boaflow\\b|nvooaflow|outdoor airflow",
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|station|minimum|\\bmin\\b|\\bmax\\b|percent|type|configuration|bad |sensor"
-     }
+     },
+     "concept": "외기-풍량",
+     "group": "풍량·압력"
     },
     {
      "name": "급기 풍량",
@@ -242,7 +264,9 @@
      "match": {
       "include": "supply.*air.*flow|supplyflow|supply.*flow",
       "exclude": "setpoint|sp\\b|min|max|outdoor|outside|return|exhaust|percent"
-     }
+     },
+     "concept": "급기-풍량",
+     "group": "풍량·압력"
     },
     {
      "name": "환기 CO2",
@@ -259,7 +283,9 @@
      "match": {
       "include": "(?:return|space|room).*co2|carbon dioxide",
       "exclude": "setpoint|sp\\b|limit|offset|calibrat|bad |sensor error|\\balarm\\b|\\bfault\\b"
-     }
+     },
+     "concept": "환기-co2",
+     "group": "습도·공기질"
     },
     {
      "name": "급기온도 설정값",
@@ -276,7 +302,9 @@
      ],
      "match": {
       "include": "(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint"
-     }
+     },
+     "concept": "급기온도-설정값",
+     "group": "온도"
     },
     {
      "name": "급기 정압 설정값",
@@ -293,7 +321,9 @@
      "match": {
       "include": "static.*pressure.*setpoint|ductstaticsp|duct.*static.*(?:setpoint|\\bsp\\b)",
       "exclude": "current|reset"
-     }
+     },
+     "concept": "급기-정압-설정값",
+     "group": "풍량·압력"
     },
     {
      "name": "급기팬 주파수 지령",
@@ -311,7 +341,9 @@
      "match": {
       "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:speed|frequency|setpoint)|nci.*supplyfan",
       "exclude": "type|configuration|identifier|status|hours|runtime|unstable"
-     }
+     },
+     "concept": "speed-cmd",
+     "group": "제어 지령"
     },
     {
      "name": "환기팬 주파수 지령",
@@ -328,7 +360,9 @@
      "match": {
       "include": "(?:return|exhaust|ret).*fan.*(?:cap|speed|freq).*netin|(?:return|exhaust).*fan.*(?:command|speed|frequency|setpoint)",
       "exclude": "type|configuration|identifier|status|hours|runtime|pressure"
-     }
+     },
+     "concept": "speed-cmd",
+     "group": "제어 지령"
     },
     {
      "name": "외기댐퍼 개도",
@@ -346,7 +380,9 @@
       "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
       "exclude": "minimum|maximum|min|max|setpoint|sp\\b|bypass|bp ?damper|total flow"
      },
-     "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다"
+     "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다",
+     "concept": "외기댐퍼-개도",
+     "group": "풍량·압력"
     },
     {
      "name": "환기댐퍼 개도",
@@ -362,7 +398,9 @@
      "match": {
       "include": "return.*air.*damper|return.*damper|return bypass",
       "exclude": "\\balarm\\b|\\bfault\\b|active alarm"
-     }
+     },
+     "concept": "환기댐퍼-개도",
+     "group": "풍량·압력"
     },
     {
      "name": "배기댐퍼 개도",
@@ -380,7 +418,9 @@
      "match": {
       "include": "exhaust.*damper|exh.*damper",
       "exclude": "bypass|bp ?damper|\\balarm\\b|\\bfault\\b|active alarm|ala[a-z]*status|manual"
-     }
+     },
+     "concept": "배기댐퍼-개도",
+     "group": "풍량·압력"
     },
     {
      "name": "열회수 지령·상태",
@@ -399,7 +439,9 @@
      "match": {
       "include": "(?:heat ?wheel|energy recovery|heat recovery|hrec|rotary exchanger|erwheel|erwhl)[a-z]*(?:speed|spd|output|position|pos|cmd|command|on ?off|status|capacity|signal|level)|erstatus|hrecpos",
       "exclude": "\\balarm\\b|\\bfault\\b|defrost|frost|hours|trip|year|setpoint|sp\\b|failure|sensor|bypass|preheat|leaving|exhaust temp|motor ?speed"
-     }
+     },
+     "concept": "열회수-지령-상태",
+     "group": "제어 지령"
     },
     {
      "name": "필터 차압",
@@ -416,7 +458,9 @@
      "match": {
       "include": "dirtyfilter|dirty.*filter|filter.*(?:pressure|alarm|switch)|differential.*pressure"
      },
-     "keepAlarm": true
+     "keepAlarm": true,
+     "concept": "filter-dp",
+     "group": "정비"
     },
     {
      "name": "동결 방지 경보",
@@ -433,7 +477,9 @@
       "include": "freeze.*(?:fault|alarm|switch)|frost.*alarm|low.*temp.*alarm",
       "exclude": "suct|refrigerant|control mode|setpoint|evaporation|evaporator"
      },
-     "keepAlarm": true
+     "keepAlarm": true,
+     "concept": "동결-방지-경보",
+     "group": "경보"
     },
     {
      "name": "운전 모드",
@@ -453,7 +499,9 @@
      "match": {
       "include": "appliccmd|application.*mode|hvac mode|unit.*(?:state(?![a-z])|mode(?![a-z]))|currentstate|operation.*mode|drive mode",
       "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier|setpoint|sp\\b|occupancy|enabled for operation|exits.*mode"
-     }
+     },
+     "concept": "mode",
+     "group": "제어 지령"
     },
     {
      "name": "외기냉방 모드",
@@ -472,7 +520,9 @@
       "include": "econo.*(?:status|enable|mode)|economizer.*(?:status|enable|mode)|free.*cool",
       "exclude": "setpoint|sp\\b|config|type|identifier|limit"
      },
-     "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다"
+     "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다",
+     "concept": "외기냉방-모드",
+     "group": "제어 지령"
     },
     {
      "name": "압축기 단수 상태",
@@ -490,7 +540,9 @@
      "match": {
       "include": "compressor.*(?:running|status|enable|signal)|cprsrsrunning|stage.*enabled|comp.*stage|gencondstages|compcfg",
       "exclude": "\\balarm\\b|\\bfault\\b|lockout|failure|hours|run ?time|starts|setpoint|type|configuration|delay|dehum|freeze|freezing"
-     }
+     },
+     "concept": "압축기-단수-상태",
+     "group": "상태"
     },
     {
      "name": "난방 단수 상태",
@@ -508,7 +560,9 @@
      "match": {
       "include": "heat.*stage.*(?:command|status|enabled|output)|staged heating|gas valve.*(?:input|output)|heat.*run.*stage|maxhtgstages|heating stage [0-9].*command|heat run",
       "exclude": "\\balarm\\b|\\bfault\\b|lockout|failure|run ?time|hours|delay|setpoint|type|configuration"
-     }
+     },
+     "concept": "난방-단수-상태",
+     "group": "상태"
     },
     {
      "name": "냉방 지령",
@@ -526,7 +580,9 @@
      "match": {
       "include": "cool.*(?:capacity|demand|primary|command|position)|(?:clg|cool)cap|cool.*enable|coolenable|modulating cooling|staged cooling",
       "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|limit|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma"
-     }
+     },
+     "concept": "냉방-지령",
+     "group": "제어 지령"
     },
     {
      "name": "난방 지령",
@@ -544,7 +600,9 @@
      "match": {
       "include": "heat.*(?:capacity|demand|primary|secondary|command|position)|(?:htg|heat)cap|heat.*enable|heatenable|modulating heat",
       "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|setback|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma"
-     }
+     },
+     "concept": "난방-지령",
+     "group": "제어 지령"
     },
     {
      "name": "가습 지령",
@@ -560,7 +618,9 @@
      "match": {
       "include": "humid.*(?:command|enable|output)|humidifier",
       "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit|under\\s*floor.*humidity|air humidity bas"
-     }
+     },
+     "concept": "가습-지령",
+     "group": "제어 지령"
     },
     {
      "name": "냉수밸브 개도",
@@ -579,7 +639,9 @@
      "match": {
       "include": "chilled.*water.*valve|cool.*valve|cooling.*valve",
       "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting"
-     }
+     },
+     "concept": "냉수밸브-개도",
+     "group": "유량·수측"
     },
     {
      "name": "온수밸브 개도",
@@ -598,7 +660,9 @@
      "match": {
       "include": "hot.*water.*valve|heat.*valve|heating.*valve",
       "exclude": "type|configuration|identifier|enable|action|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
-     }
+     },
+     "concept": "온수밸브-개도",
+     "group": "유량·수측"
     }
    ]
   },
@@ -625,7 +689,9 @@
      "match": {
       "include": "(?:supply|discharge).*air.*temp|discharge.*temp",
       "exclude": "setpoint|setp\\b|sp\\b|reheat|refrigerant|tempering status"
-     }
+     },
+     "concept": "discharge-temp",
+     "group": "온도"
     },
     {
      "name": "환기온도",
@@ -644,7 +710,9 @@
      "match": {
       "include": "return.*air.*temp|\\bra temp",
       "exclude": "setpoint|sp\\b|control temperature type"
-     }
+     },
+     "concept": "return-temp",
+     "group": "온도"
     },
     {
      "name": "외기온도",
@@ -663,7 +731,9 @@
      "match": {
       "include": "outdoor.*air.*temperature|outside.*air.*temperature|outdoortemp|outdoor temp",
       "exclude": "flow|enthalpy|humidity|setpoint|sp\\b|enable|min|dew"
-     }
+     },
+     "concept": "oa-temp",
+     "group": "온도"
     },
     {
      "name": "실내온도",
@@ -682,7 +752,9 @@
      "match": {
       "include": "space.*temp|zone.*temp|room.*temp|indoor.*air.*temp|spacetemp|roomtmp",
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|offset|sensor error|failure|override|limit|unocc|setpt|dew|humid|source"
-     }
+     },
+     "concept": "zone-temp",
+     "group": "온도"
     },
     {
      "name": "혼합공기온도",
@@ -701,7 +773,9 @@
      "match": {
       "include": "mixed.*air.*temp|mix.*air.*tmp",
       "exclude": "problem|\\bfault\\b|setpoint|sp\\b"
-     }
+     },
+     "concept": "혼합공기온도",
+     "group": "온도"
     },
     {
      "name": "배기 온도",
@@ -719,7 +793,9 @@
      "match": {
       "include": "(?:exhaust|extract)[ ._-]*air[ ._-]*temp|erlvgexhtemp|\\bereat\\b|ea[ ._-]*d?[ ._-]*temperature|ea duct temperature",
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|sensor error|failure|type|configuration|heat ?sink|regulation"
-     }
+     },
+     "concept": "배기-온도",
+     "group": "온도"
     },
     {
      "name": "급기습도",
@@ -736,7 +812,9 @@
      "match": {
       "include": "supply.*air.*(?:relative )?humidity|supply.*humidity|sply.*hum|\\bsa[ ._-]*humidity",
       "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
-     }
+     },
+     "concept": "급기습도",
+     "group": "습도·공기질"
     },
     {
      "name": "환기습도",
@@ -753,7 +831,9 @@
      "match": {
       "include": "return.*air.*(?:relative )?humidity|return.*humidity|space.*rh|room.*hum|(?:extract|\\bea)[ ._-]*humidity",
       "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
-     }
+     },
+     "concept": "환기습도",
+     "group": "습도·공기질"
     },
     {
      "name": "외기 엔탈피",
@@ -772,7 +852,9 @@
      "match": {
       "include": "(?:outdoor|outside|oa).*enthalpy|nvooaenthalpy|outenth",
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|switch|changeover|type|configuration|diff"
-     }
+     },
+     "concept": "외기-엔탈피",
+     "group": "습도·공기질"
     },
     {
      "name": "급기 정압",
@@ -789,7 +871,9 @@
      "match": {
       "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
       "exclude": "setpoint|sp\\b|reset"
-     }
+     },
+     "concept": "급기-정압",
+     "group": "풍량·압력"
     },
     {
      "name": "외기 풍량",
@@ -807,7 +891,9 @@
      "match": {
       "include": "(?:outdoor|outside|ventilation|fresh)[ ._-]*air.*flow|\\boaflow\\b|nvooaflow|outdoor airflow",
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|station|minimum|\\bmin\\b|\\bmax\\b|percent|type|configuration|bad |sensor"
-     }
+     },
+     "concept": "외기-풍량",
+     "group": "풍량·압력"
     },
     {
      "name": "급기 풍량",
@@ -826,7 +912,9 @@
      "match": {
       "include": "supply.*air.*flow|supplyflow|supply.*flow",
       "exclude": "setpoint|sp\\b|min|max|outdoor|outside|return|exhaust|percent"
-     }
+     },
+     "concept": "급기-풍량",
+     "group": "풍량·압력"
     },
     {
      "name": "환기 CO2",
@@ -843,7 +931,9 @@
      "match": {
       "include": "(?:return|space|room).*co2|carbon dioxide",
       "exclude": "setpoint|sp\\b|limit|offset|calibrat|bad |sensor error|\\balarm\\b|\\bfault\\b"
-     }
+     },
+     "concept": "환기-co2",
+     "group": "습도·공기질"
     },
     {
      "name": "급기온도 설정값",
@@ -860,7 +950,9 @@
      ],
      "match": {
       "include": "(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint"
-     }
+     },
+     "concept": "급기온도-설정값",
+     "group": "온도"
     },
     {
      "name": "급기 정압 설정값",
@@ -877,7 +969,9 @@
      "match": {
       "include": "static.*pressure.*setpoint|ductstaticsp|duct.*static.*(?:setpoint|\\bsp\\b)",
       "exclude": "current|reset"
-     }
+     },
+     "concept": "급기-정압-설정값",
+     "group": "풍량·압력"
     },
     {
      "name": "급기팬 주파수 지령",
@@ -894,7 +988,9 @@
      "match": {
       "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:speed|frequency|setpoint)|nci.*supplyfan",
       "exclude": "type|configuration|identifier|status|hours|runtime|unstable"
-     }
+     },
+     "concept": "speed-cmd",
+     "group": "제어 지령"
     },
     {
      "name": "환기팬 주파수 지령",
@@ -911,7 +1007,9 @@
      "match": {
       "include": "(?:return|exhaust|ret).*fan.*(?:cap|speed|freq).*netin|(?:return|exhaust).*fan.*(?:command|speed|frequency|setpoint)",
       "exclude": "type|configuration|identifier|status|hours|runtime|pressure"
-     }
+     },
+     "concept": "speed-cmd",
+     "group": "제어 지령"
     },
     {
      "name": "외기댐퍼 개도",
@@ -929,7 +1027,9 @@
       "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
       "exclude": "minimum|maximum|min|max|setpoint|sp\\b|bypass|bp ?damper|total flow"
      },
-     "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다"
+     "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다",
+     "concept": "외기댐퍼-개도",
+     "group": "풍량·압력"
     },
     {
      "name": "환기댐퍼 개도",
@@ -946,7 +1046,9 @@
      "match": {
       "include": "return.*air.*damper|return.*damper|return bypass",
       "exclude": "\\balarm\\b|\\bfault\\b|active alarm"
-     }
+     },
+     "concept": "환기댐퍼-개도",
+     "group": "풍량·압력"
     },
     {
      "name": "배기댐퍼 개도",
@@ -964,7 +1066,9 @@
      "match": {
       "include": "exhaust.*damper|exh.*damper",
       "exclude": "bypass|bp ?damper|\\balarm\\b|\\bfault\\b|active alarm|ala[a-z]*status|manual"
-     }
+     },
+     "concept": "배기댐퍼-개도",
+     "group": "풍량·압력"
     },
     {
      "name": "열회수 지령·상태",
@@ -983,7 +1087,9 @@
      "match": {
       "include": "(?:heat ?wheel|energy recovery|heat recovery|hrec|rotary exchanger|erwheel|erwhl)[a-z]*(?:speed|spd|output|position|pos|cmd|command|on ?off|status|capacity|signal|level)|erstatus|hrecpos",
       "exclude": "\\balarm\\b|\\bfault\\b|defrost|frost|hours|trip|year|setpoint|sp\\b|failure|sensor|bypass|preheat|leaving|exhaust temp|motor ?speed"
-     }
+     },
+     "concept": "열회수-지령-상태",
+     "group": "제어 지령"
     },
     {
      "name": "필터 차압",
@@ -1000,7 +1106,9 @@
      "match": {
       "include": "dirtyfilter|dirty.*filter|filter.*(?:pressure|alarm|switch)|differential.*pressure"
      },
-     "keepAlarm": true
+     "keepAlarm": true,
+     "concept": "filter-dp",
+     "group": "정비"
     },
     {
      "name": "동결 방지 경보",
@@ -1017,7 +1125,9 @@
       "include": "freeze.*(?:fault|alarm|switch)|frost.*alarm|low.*temp.*alarm",
       "exclude": "suct|refrigerant|control mode|setpoint|evaporation|evaporator"
      },
-     "keepAlarm": true
+     "keepAlarm": true,
+     "concept": "동결-방지-경보",
+     "group": "경보"
     },
     {
      "name": "운전 모드",
@@ -1038,7 +1148,9 @@
      "match": {
       "include": "appliccmd|application.*mode|hvac mode|unit.*(?:state(?![a-z])|mode(?![a-z]))|currentstate|operation.*mode|drive mode",
       "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier|setpoint|sp\\b|occupancy|enabled for operation|exits.*mode"
-     }
+     },
+     "concept": "mode",
+     "group": "제어 지령"
     },
     {
      "name": "외기냉방 모드",
@@ -1057,7 +1169,9 @@
       "include": "econo.*(?:status|enable|mode)|economizer.*(?:status|enable|mode)|free.*cool",
       "exclude": "setpoint|sp\\b|config|type|identifier|limit"
      },
-     "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다"
+     "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다",
+     "concept": "외기냉방-모드",
+     "group": "제어 지령"
     },
     {
      "name": "냉수밸브 개도",
@@ -1076,7 +1190,9 @@
      "match": {
       "include": "chilled.*water.*valve|cool.*valve|cooling.*valve|feedbackcoolervalve",
       "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting"
-     }
+     },
+     "concept": "냉수밸브-개도",
+     "group": "유량·수측"
     },
     {
      "name": "온수밸브 개도",
@@ -1095,7 +1211,9 @@
      "match": {
       "include": "hot.*water.*valve|heat.*valve|heating.*valve",
       "exclude": "type|configuration|identifier|enable|action|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
-     }
+     },
+     "concept": "온수밸브-개도",
+     "group": "유량·수측"
     },
     {
      "name": "압축기 단수 상태",
@@ -1114,7 +1232,9 @@
      "match": {
       "include": "compressor.*(?:running|status|enable|signal|output)|cprsrsrunning|stage.*enabled|comp.*stage|step status|capacity request",
       "exclude": "\\balarm\\b|\\bfault\\b|lockout|failure|hours|run ?time|starts|setpoint|type|configuration|delay|dehum|freeze|freezing"
-     }
+     },
+     "concept": "압축기-단수-상태",
+     "group": "상태"
     },
     {
      "name": "냉방 지령",
@@ -1132,7 +1252,9 @@
      "match": {
       "include": "cool.*(?:capacity|demand|primary|command|position)|(?:clg|cool)cap|cool.*enable|coolenable|modulating cooling|staged cooling",
       "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|limit|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma"
-     }
+     },
+     "concept": "냉방-지령",
+     "group": "제어 지령"
     },
     {
      "name": "난방 지령",
@@ -1150,7 +1272,9 @@
      "match": {
       "include": "heat.*(?:capacity|demand|primary|secondary|command|position)|(?:htg|heat)cap|heat.*enable|heatenable|modulating heat",
       "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|setback|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma"
-     }
+     },
+     "concept": "난방-지령",
+     "group": "제어 지령"
     },
     {
      "name": "가습 지령",
@@ -1168,7 +1292,9 @@
      "match": {
       "include": "humid.*(?:command|enable|output)|humidifier",
       "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit|under\\s*floor.*humidity|air humidity bas"
-     }
+     },
+     "concept": "가습-지령",
+     "group": "제어 지령"
     }
    ]
   },
@@ -1192,7 +1318,9 @@
      ],
      "match": {
       "include": "limit.?temp|(?:cool|heat).?limit|상한|하한"
-     }
+     },
+     "concept": "설정온도-상-하한",
+     "group": "온도"
     },
     {
      "name": "설정온도",
@@ -1210,7 +1338,9 @@
      "match": {
       "include": "temp.?set|set.?(?:room.?)?temp|\\bzn-sp\\b|tempadjust|설정.?온도",
       "exclude": "limit|상한|하한|\\bmode\\b"
-     }
+     },
+     "concept": "설정온도",
+     "group": "온도"
     },
     {
      "name": "실내온도",
@@ -1229,7 +1359,9 @@
      "match": {
       "include": "room.?temp|\\bzn-t\\b|indoor.?temp|실내.?온도",
       "exclude": "set|\\bsp\\b|limit|outdoor|outside"
-     }
+     },
+     "concept": "zone-temp",
+     "group": "온도"
     },
     {
      "name": "급기(토출) 온도",
@@ -1248,7 +1380,9 @@
       "include": "\\bda-t\\b|discharge.*temp|급기.*온도|토출.*온도",
       "exclude": "inverter|compressor|comp\\b|refrig|냉매|압축기"
      },
-     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+     "concept": "discharge-temp",
+     "group": "온도"
     },
     {
      "name": "환기(리턴) 온도",
@@ -1266,7 +1400,9 @@
      "match": {
       "include": "\\bra-t\\b|return.*air.*temp|리턴.*온도",
       "exclude": "erv|ventilation"
-     }
+     },
+     "concept": "return-temp",
+     "group": "온도"
     },
     {
      "name": "배관 온도 (액관·가스관)",
@@ -1283,7 +1419,9 @@
      ],
      "match": {
       "include": "pipe.*temp|liq-?pipe|gas-?pipe|액관|가스관"
-     }
+     },
+     "concept": "배관-온도-액관-가스관",
+     "group": "온도"
     },
     {
      "name": "외기온도",
@@ -1301,7 +1439,9 @@
      "match": {
       "include": "outdoor.?temp|outside.?air.?temp|외기.*온도",
       "exclude": "set|humid|습도"
-     }
+     },
+     "concept": "oa-temp",
+     "group": "온도"
     },
     {
      "name": "운전/정지 지령",
@@ -1321,7 +1461,9 @@
       "include": "start.?stop.?command|on.?off.?command|ac_power|_power_|운전.?정지",
       "exclude": "status|상태|\\bmode\\b|kwh|baseline|period"
      },
-     "matchNote": "밑줄은 낱말 문자라 \b 가 'AC_Power_xx'·'AC_Period_kWh_xx' 를 가로막는다 — 국내 게이트웨이 이름은 밑줄로 이어 붙는다."
+     "matchNote": "밑줄은 낱말 문자라 \b 가 'AC_Power_xx'·'AC_Period_kWh_xx' 를 가로막는다 — 국내 게이트웨이 이름은 밑줄로 이어 붙는다.",
+     "concept": "run-cmd",
+     "group": "제어 지령"
     },
     {
      "name": "운전 상태",
@@ -1337,7 +1479,9 @@
      ],
      "match": {
       "include": "start.?stop.?status|operat\\w*.?status|\\bsf-s\\b|운전.*상태"
-     }
+     },
+     "concept": "run-status",
+     "group": "상태"
     },
     {
      "name": "운전 모드",
@@ -1356,7 +1500,9 @@
       "include": "operation.?mode|airconmode|\\bhtclg|mode.*command|운전.?모드",
       "exclude": "lock|limit|제한|잠금|remote|리모컨|-lo\\b"
      },
-     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+     "concept": "mode",
+     "group": "제어 지령"
     },
     {
      "name": "풍량 단계",
@@ -1376,7 +1522,9 @@
       "include": "fan.?speed|fanspd|airflowrate|fanflow|풍량",
       "exclude": "louver|vane|풍향|lock|-lo\\b|잠금|limit|제한"
      },
-     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+     "concept": "speed-cmd",
+     "group": "제어 지령"
     },
     {
      "name": "풍향 (루버)",
@@ -1392,7 +1540,9 @@
       "include": "louver|vane|swing|air.?direction|풍향",
       "exclude": "lock|-lo\\b|잠금|limit|제한"
      },
-     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+     "concept": "풍향-루버",
+     "group": "풍량·압력"
     },
     {
      "name": "에러 코드",
@@ -1410,7 +1560,9 @@
      "match": {
       "include": "(?:error|alarm|fault|malfunction|고장|에러).{0,6}(?:code|코드)"
      },
-     "matchNote": "Daikin 의 'Alarm · 알람' 이 'MalfunctionCode · 고장 코드' 를 제치고 집혔었다. 매처가 보는 글자는 이름+비고인데 Alarm 의 비고가 'Normal / Malfunction' 이라 malfunction 하나만으로 걸린 것이다 — 그건 코드가 아니라 **상태 열거**다. 그래서 '코드'라는 낱말이 가까이 붙은 이름만 받는다."
+     "matchNote": "Daikin 의 'Alarm · 알람' 이 'MalfunctionCode · 고장 코드' 를 제치고 집혔었다. 매처가 보는 글자는 이름+비고인데 Alarm 의 비고가 'Normal / Malfunction' 이라 malfunction 하나만으로 걸린 것이다 — 그건 코드가 아니라 **상태 열거**다. 그래서 '코드'라는 낱말이 가까이 붙은 이름만 받는다.",
+     "concept": "alarm-code",
+     "group": "경보"
     },
     {
      "name": "필터 청소 신호",
@@ -1429,7 +1581,9 @@
      "match": {
       "include": "filter",
       "exclude": "reset|리셋"
-     }
+     },
+     "concept": "filter-dp",
+     "group": "정비"
     },
     {
      "name": "팽창밸브(EEV) 개도",
@@ -1446,7 +1600,9 @@
      ],
      "match": {
       "include": "\\beev\\b|expv|팽창밸브"
-     }
+     },
+     "concept": "팽창밸브-eev-개도",
+     "group": "유량·수측"
     },
     {
      "name": "압축기 운전율",
@@ -1466,7 +1622,9 @@
       "include": "comp\\w*.?(?:req|freq|load|rate|hz|speed)|압축기.*(?:속도|주파수|운전율)",
       "exclude": "\\bhrs\\b|hour|시간|누적"
      },
-     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+     "concept": "압축기-운전율",
+     "group": "상태"
     },
     {
      "name": "적산 전력량",
@@ -1484,7 +1642,9 @@
       "include": "kwh|accum.*power|total.?power|적산.*전력",
       "exclude": "gas|가스|baseline|기준"
      },
-     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다."
+     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+     "concept": "energy",
+     "group": "전력"
     },
     {
      "name": "소비전력",
@@ -1503,7 +1663,9 @@
       "exclude": "ac_power|_power_|start|stop|on.?off|kwh|적산|accum|factor|supply|baseline|gas|가스"
      },
      "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
-     "appliesWhen": "게이트웨이가 순시 전력을 안 낸다 — VRF 5모델 619점에서 0건이다(LG·삼성은 적산 kWh, Daikin 은 적산 전력·가스). 이 값은 별도 전력계(e19)나 형번별 정격표의 '통합 냉방·난방 소비전력' 에서 온다. 행을 지우지 않는 이유는 시뮬레이터가 실제로 쓰는 물리량이고, 미충족(missing)이 아니라 **여기서 나올 값이 아님**을 남겨야 하기 때문이다."
+     "appliesWhen": "게이트웨이가 순시 전력을 안 낸다 — VRF 5모델 619점에서 0건이다(LG·삼성은 적산 kWh, Daikin 은 적산 전력·가스). 이 값은 별도 전력계(e19)나 형번별 정격표의 '통합 냉방·난방 소비전력' 에서 온다. 행을 지우지 않는 이유는 시뮬레이터가 실제로 쓰는 물리량이고, 미충족(missing)이 아니라 **여기서 나올 값이 아님**을 남겨야 하기 때문이다.",
+     "concept": "power",
+     "group": "전력"
     },
     {
      "name": "제상 상태",
@@ -1519,7 +1681,9 @@
      ],
      "match": {
       "include": "defrost|제상"
-     }
+     },
+     "concept": "제상-상태",
+     "group": "상태"
     },
     {
      "name": "통신 상태",
@@ -1533,7 +1697,9 @@
      "usedBy": [],
      "match": {
       "include": "communication.*status|통신.*상태"
-     }
+     },
+     "concept": "통신-상태",
+     "group": "상태"
     },
     {
      "name": "재실 감지",
@@ -1550,7 +1716,9 @@
      ],
      "match": {
       "include": "occupan|재실"
-     }
+     },
+     "concept": "재실-감지",
+     "group": "상태"
     },
     {
      "name": "리모컨 잠금",
@@ -1565,7 +1733,9 @@
      "match": {
       "include": "remocon|remote.?con|\\block\\b|잠금",
       "exclude": "unlock|해제"
-     }
+     },
+     "concept": "리모컨-잠금",
+     "group": "제어 지령"
     }
    ],
    "excludeCommon": "alarm setting|alarm limit|alarm delay|\\bbad [a-z]|sensor error",
@@ -1617,7 +1787,9 @@
       "include": "^인버터.?출력|^inverter.*output|^actual.?speed|^현재.?주파수|^출력.?주파수",
       "exclude": "경보|alarm|fault|고장"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "speed-fb",
+     "group": "상태"
     },
     {
      "name": "인버터 경보",
@@ -1635,7 +1807,9 @@
      "match": {
       "include": "^인버터.?(경보|고장|트립)|^inverter.*(alarm|fault)"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "alarm",
+     "group": "경보"
     },
     {
      "name": "기동/정지 지령",
@@ -1654,7 +1828,9 @@
       "include": "기동.?_?.?정지|기동/정지|^start.?stop|^on.?off",
       "exclude": "상태|status|댐퍼|damper"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "run-cmd",
+     "group": "제어 지령"
     },
     {
      "name": "운전 상태",
@@ -1672,7 +1848,9 @@
       "include": "^상태$|휀.?상태|^fan.*status|^motor.?status|^run.*(status|state)|운전.?상태",
       "exclude": "댐퍼|damper|탈취|경보|alarm|필터|filter|인버터"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "run-status",
+     "group": "상태"
     },
     {
      "name": "고장·경보",
@@ -1691,7 +1869,9 @@
       "include": "^경보$|^fan.*(alarm|fault)|^고장|^trip",
       "exclude": "인버터|탈취|필터|damper|댐퍼"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "alarm",
+     "group": "경보"
     },
     {
      "name": "급기 댐퍼 열림/닫힘 지령",
@@ -1707,7 +1887,9 @@
      ],
      "match": {
       "include": "급기.?댐퍼.*(열림.?_?.?닫힘|개폐)|supply.*damper.*(cmd|command)"
-     }
+     },
+     "concept": "급기-댐퍼-열림-닫힘-지령",
+     "group": "풍량·압력"
     },
     {
      "name": "급기 댐퍼 열림 상태",
@@ -1723,7 +1905,9 @@
      ],
      "match": {
       "include": "급기.?댐퍼.*열림.?상태|supply.*damper.*(status|position)"
-     }
+     },
+     "concept": "급기-댐퍼-열림-상태",
+     "group": "풍량·압력"
     },
     {
      "name": "외기 댐퍼 열림/닫힘 지령",
@@ -1739,7 +1923,9 @@
      ],
      "match": {
       "include": "외기.?댐퍼.*(열림.?_?.?닫힘|개폐)|(outdoor|outside).*damper.*(cmd|command)"
-     }
+     },
+     "concept": "외기-댐퍼-열림-닫힘-지령",
+     "group": "풍량·압력"
     },
     {
      "name": "외기 댐퍼 열림 상태",
@@ -1755,7 +1941,9 @@
      ],
      "match": {
       "include": "외기.?댐퍼.*열림.?상태|(outdoor|outside).*damper.*(status|position)"
-     }
+     },
+     "concept": "외기-댐퍼-열림-상태",
+     "group": "풍량·압력"
     },
     {
      "name": "배기 댐퍼 열림/닫힘 지령",
@@ -1771,7 +1959,9 @@
      ],
      "match": {
       "include": "배기.?댐퍼.*(열림.?_?.?닫힘|개폐)|exhaust.*damper.*(cmd|command)"
-     }
+     },
+     "concept": "배기-댐퍼-열림-닫힘-지령",
+     "group": "풍량·압력"
     },
     {
      "name": "배기 댐퍼 열림 상태",
@@ -1787,7 +1977,9 @@
      ],
      "match": {
       "include": "배기.?댐퍼.*열림.?상태|exhaust.*damper.*(status|position)"
-     }
+     },
+     "concept": "배기-댐퍼-열림-상태",
+     "group": "풍량·압력"
     },
     {
      "name": "필터 차압",
@@ -1805,7 +1997,9 @@
      "keepAlarm": true,
      "match": {
       "include": "필터.?차압|filter.*(press|dp|alarm)|차압"
-     }
+     },
+     "concept": "filter-dp",
+     "group": "정비"
     },
     {
      "name": "회전수",
@@ -1823,7 +2017,9 @@
       "include": "^actual.?speed|^\\w{0,6}rpm|^회전수|^모터.?속도",
       "exclude": "set|지령|command|max|최대"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "speed-fb",
+     "group": "상태"
     },
     {
      "name": "출력 전류",
@@ -1841,7 +2037,9 @@
       "include": "^motor.?current|^출력.?전류|^current\\b|^\\w{0,6}전류",
       "exclude": "limit|제한|\\bdc\\b"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "current",
+     "group": "전력"
     },
     {
      "name": "출력 전력",
@@ -1859,7 +2057,9 @@
       "include": "^motor.?power|^출력.?전력|^power\\b",
       "exclude": "factor|supply|up|kwh|적산"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "power",
+     "group": "전력"
     },
     {
      "name": "적산 전력량",
@@ -1876,7 +2076,9 @@
      "match": {
       "include": "^.{0,12}kwh|^energy.*(total|accum|counter)|^적산.?전력"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "energy",
+     "group": "전력"
     },
     {
      "name": "DC 링크 전압",
@@ -1891,7 +2093,9 @@
      "match": {
       "include": "^dc.?(link|bus)|^중간회로"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "dc-volt",
+     "group": "전력"
     },
     {
      "name": "모듈 온도",
@@ -1909,7 +2113,9 @@
       "include": "^(module|heat.?sink|inverter|drive).*temp|^모듈.?온도|^방열판",
       "exclude": "motor|모터"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "drive-temp",
+     "group": "온도"
     },
     {
      "name": "누적 운전시간",
@@ -1926,7 +2132,9 @@
      "match": {
       "include": "^operating.?(hour|minute)|^running.?hour|^운전.?시간|^누적.?시간"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "runtime",
+     "group": "정비"
     },
     {
      "name": "탈취기 상태·경보",
@@ -1942,7 +2150,9 @@
      "appliesWhen": "주방 배기휀(KEF)에만 붙는다 — 다른 팬에는 없는 것이 정상이다",
      "match": {
       "include": "탈취기|deodoriz"
-     }
+     },
+     "concept": "탈취기-상태-경보",
+     "group": "상태"
     }
    ],
    "coverageNote": "⚠ 카탈로그 모델은 20행 중 **6행**만 덮는다(ebm-papst EC 팬 4모델: 인버터 출력·운전 상태·출력 전류·출력 전력·DC 링크·누적 운전시간). 나머지 14행 — 기동/정지·고장경보·급기/외기/배기 댐퍼 6점·필터 차압·회전수·적산 전력량·모듈 온도·탈취기 — 은 **현장 DDC 가 내주는 점**이고 우리가 가진 팬 모델에는 없다. 이건 템플릿이 틀린 게 아니라 **카탈로그에 일반 팬(모터+인버터+댐퍼 조합) 모델이 없다**는 뜻이다. 현장 최다 설비 368대인데 EC 팬 4모델뿐이라 1순위로 올라와 있는 그 구멍이다."
@@ -1969,7 +2179,9 @@
       "include": "^(command|reference|target).?freq|^freq.*(command|ref)|^지령.?주파수|^commandfreq",
       "exclude": "actual|output|출력|max|min|limit|source|kwh"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "speed-cmd",
+     "group": "제어 지령"
     },
     {
      "name": "현재 주파수",
@@ -1987,7 +2199,9 @@
       "include": "^(output|actual|motor).?freq|^출력.?주파수|^현재.?주파수|^actual 1\\b|^frequency\\b",
       "exclude": "command|reference|지령|max|limit|kwh|setpoint|ready|준비|converter (ready|warning|fault)"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "speed-fb",
+     "group": "상태"
     },
     {
      "name": "출력 전류",
@@ -2005,7 +2219,9 @@
       "include": "^(output|motor).?current|^출력.?전류|^current\\b",
       "exclude": "limit|제한|input|입력|\\bdc\\b|power|전력"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "current",
+     "group": "전력"
     },
     {
      "name": "출력 전압",
@@ -2023,7 +2239,9 @@
       "include": "^(output|motor).?vol|^출력.?전압|^.{0,12}output volt",
       "exclude": "\\bdc\\b|input|입력|link|bus|power|전력|\\bhp\\b"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "출력-전압",
+     "group": "전력"
     },
     {
      "name": "출력 전력",
@@ -2041,7 +2259,9 @@
       "include": "^(output|motor) power\\b|^출력.?전력|^power \\[kw\\]|^outputpower",
       "exclude": "\\bhp\\b|kwh|적산|factor|nameplate|명판"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "power",
+     "group": "전력"
     },
     {
      "name": "적산 전력량",
@@ -2059,7 +2279,9 @@
       "include": "^.{0,12}kwh|^energy|^적산.?전력|^consumption energy",
       "exclude": "reset|리셋"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "energy",
+     "group": "전력"
     },
     {
      "name": "모터 토크",
@@ -2077,7 +2299,9 @@
       "include": "^torque\\b|^모터.?토크|^.{0,10}torque$",
       "exclude": "limit|boost|제한|source"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "모터-토크",
+     "group": "상태"
     },
     {
      "name": "트립·고장",
@@ -2096,7 +2320,9 @@
       "include": "^(trip|fault|alarm)\\b|^고장|^경보|^.{0,10}\\.alarm|^ok\\b",
       "exclude": "code|코드|word|log|reset|리셋|count|thermal"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "alarm",
+     "group": "경보"
     },
     {
      "name": "트립 코드",
@@ -2114,7 +2340,9 @@
      "match": {
       "include": "^(last )?(trip|fault|alarm|error).{0,8}(code|word)|^고장.?코드|^트립.?코드|^.{0,10}alarm word"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "alarm-code",
+     "group": "경보"
     },
     {
      "name": "제어어 · 상태어",
@@ -2132,7 +2360,9 @@
       "include": "^control.?word|^status.?word|^.{0,12}status word|^제어어|^상태어",
       "exclude": "lsw|msw"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "제어어-상태어",
+     "group": "제어 지령"
     },
     {
      "name": "운전 상태",
@@ -2150,7 +2380,9 @@
       "include": "^run(ning)?\\b|^run.?(status|state)|^operat\\w*.?status|^drive.*status|^운전.?상태|^.{0,12}status word lsw",
       "exclude": "command|지령|hour|시간|stop"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "run-status",
+     "group": "상태"
     },
     {
      "name": "운전/정지 지령",
@@ -2168,7 +2400,9 @@
       "include": "^(run|start|stop)\\w*\\s?(cmd|command)?$|^coast|^기동|^운전.?정지|^stopcmd|^runforward",
       "exclude": "status|상태|reverse|역|hour"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "run-cmd",
+     "group": "제어 지령"
     },
     {
      "name": "정·역 지령",
@@ -2184,7 +2418,9 @@
       "include": "^revers|^정.?역|^direction|^runreverse",
       "exclude": "status|상태"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "정-역-지령",
+     "group": "제어 지령"
     },
     {
      "name": "DC 링크 전압",
@@ -2199,7 +2435,9 @@
      "match": {
       "include": "^dc.?(link|bus)|^중간회로|^.{0,12}dc bus"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "dc-volt",
+     "group": "전력"
     },
     {
      "name": "방열판 온도",
@@ -2217,7 +2455,9 @@
       "include": "^(heat.?sink|inverter|drive|module).*temp|^방열판|^.{0,12}drive temp",
       "exclude": "motor|모터"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "drive-temp",
+     "group": "온도"
     },
     {
      "name": "누적 운전시간",
@@ -2235,7 +2475,9 @@
       "include": "^(operating|running).?(hour|time)|^운전.?시간|^누적",
       "exclude": "reset|리셋"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다."
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "concept": "runtime",
+     "group": "정비"
     }
    ]
   }

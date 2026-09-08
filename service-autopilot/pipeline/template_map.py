@@ -31,32 +31,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 OUT = os.path.join(HERE, "..", "review", "template-map.html")
 
-# 공용 포인트를 세려면 같은 개념의 다른 이름을 먼저 묶어야 한다.
-# ⚠ 이건 **판단**이다 — 그래서 묶은 것과 원래 이름을 화면에 함께 보여 준다.
-#   묶어 보니 이름이 프로파일마다 갈려 있다는 사실 자체가 드러났다(아래 '이름 통일 후보').
-#   표기를 함부로 바꾸지 않은 이유: 행 순서와 match 규칙이 이름에 매여 있다(D-016 과 같은 결).
-CANON = {
-    "운전/정지 지령": ["운전/정지 지령", "기동/정지 지령"],
-    "운전 상태": ["운전 상태"],
-    "고장·경보": ["고장·경보", "트립·고장", "인버터 경보"],
-    "고장 코드": ["에러 코드", "트립 코드"],
-    "실내온도": ["실내온도"],
-    "외기온도": ["외기온도"],
-    "급기(토출) 온도": ["급기온도", "급기(토출) 온도"],
-    "환기(리턴) 온도": ["환기온도", "환기(리턴) 온도"],
-    "운전 모드": ["운전 모드"],
-    "속도·주파수 지령": ["급기팬 주파수 지령", "환기팬 주파수 지령", "주파수 지령",
-                  "풍량 단계"],
-    "속도·주파수 실측": ["현재 주파수", "회전수", "인버터 출력"],
-    "필터 차압·신호": ["필터 차압", "필터 청소 신호"],
-    "소비전력": ["출력 전력", "소비전력"],
-    "적산 전력량": ["적산 전력량"],
-    "누적 운전시간": ["누적 운전시간"],
-    "출력 전류": ["출력 전류"],
-    "DC 링크 전압": ["DC 링크 전압"],
-    "모듈·방열판 온도": ["모듈 온도", "방열판 온도"],
-}
-
+# 공용 포인트는 **사전**이 정한다 — data/point-concepts.json.
+# 예전엔 이 파일 안에 CANON 표를 두고 이름으로 묶었다. 그건 판단이 코드에 숨는 구조였고,
+# 계열이 19개로 늘면 못 버틴다. 이제 행이 concept id 를 들고 다닌다.
 CSS = """
 :root{--bg:#F5F8F9;--panel:#fff;--ink:#0F1A1F;--dim:#4A6068;--faint:#7C949C;
  --line:#DAE3E7;--accent:#0E7A88;--soft:#DCEEF0;--warn:#9A6608;--bad:#A33;--ok:#1E7A44;
@@ -152,11 +129,12 @@ aside .ax{color:var(--faint);font-size:11px;margin:0 0 8px}
 .empty{background:var(--panel);border:1px dashed var(--line);border-radius:8px;
  padding:18px;color:var(--faint);font-size:12px;text-align:center}
 .nm{font-family:var(--mono);font-size:10px;color:var(--faint)}
+td.grp{color:var(--faint);font-size:10.5px;white-space:nowrap;width:78px}
 """
 
 JS = """
 var D=DATA;
-var S={tab:'shared', q:'', pid:'', grade:'', hit:'', mdl:0, scp:null,
+var S={tab:'shared', q:'', pid:'', grp:'', grade:'', hit:'', mdl:0, scp:null,
        page:0, size:25, sel:null, core:true};
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -173,6 +151,7 @@ function sharedRows(){
   return D.shared.filter(function(s){
     if(S.core && s.n<3) return false;
     if(S.pid && !s.cols[S.pid]) return false;
+    if(S.grp && s.group!==S.grp) return false;
     if(!q) return true;
     return s.canon.toLowerCase().indexOf(q)>=0
       || s.raw.some(function(r){return r[1].toLowerCase().indexOf(q)>=0;});
@@ -180,12 +159,13 @@ function sharedRows(){
 }
 function drawShared(){
   var rows=sharedRows(), page=slice(rows);
-  var h='<table><thead><tr><th>개념</th>';
+  var h='<table><thead><tr><th>묶음</th><th>개념</th>';
   D.order.forEach(function(pid){h+='<th class="pid">'
     +esc(pid.split('.')[1]||pid)+'<span class="e">'+esc(pid.split('.')[0])+'</span></th>';});
   h+='<th>계열</th></tr></thead><tbody>';
   page.forEach(function(s,i){
-    h+='<tr data-i="'+i+'"'+(S.sel===s.canon?' class="sel"':'')+'><td class="k">'
+    h+='<tr data-i="'+i+'"'+(S.sel===s.cid?' class="sel"':'')+'>'
+      +'<td class="grp">'+esc(s.group)+'</td><td class="k">'
       +esc(s.canon)+(s.split?'<span class="g w">갈림</span>':'')+'</td>';
     D.order.forEach(function(pid){
       var g=s.cols[pid];
@@ -197,14 +177,15 @@ function drawShared(){
   });
   h+='</tbody></table>'+pager(rows.length);
   el('grid').innerHTML=h;
-  bind(page,function(s){S.sel=s.canon;detailShared(s);drawShared();});
+  bind(page,function(s){S.sel=s.cid;detailShared(s);drawShared();});
   if(!S.sel) detailShared(null);
 }
 function detailShared(s){
   var h='';
   if(s){
     var by={}; s.raw.forEach(function(r){(by[r[1]]=by[r[1]]||[]).push(r[0]);});
-    h+='<div class="card"><b>'+esc(s.canon)+'</b>'
+    h+='<div class="card"><b>'+esc(s.canon)+'</b> <span class="nm">'+esc(s.cid)
+      +' · '+esc(s.group)+'</span>'
       +'<div class="f"><span class="lbl">계열마다 쓰는 이름</span>'
       +Object.keys(by).map(function(n){return '<code>'+esc(n)+'</code> <span class="nm">'
         +by[n].join(' ')+'</span>';}).join('<br>')+'</div>'
@@ -238,6 +219,7 @@ function rowRows(){
   var q=S.q.toLowerCase();
   return p.rows.filter(function(r){
     if(S.grade && r.grade!==S.grade) return false;
+    if(S.grp && r.group!==S.grp) return false;
     var g=by[r.name];
     if(S.hit==='y' && !(g&&g.hit)) return false;
     if(S.hit==='n' && (g&&g.hit)) return false;
@@ -254,11 +236,12 @@ function drawRows(){
     return;
   }
   var rows=rowRows(), page=slice(rows);
-  var h='<table><thead><tr><th>개념</th><th>종류</th><th>단위</th><th>등급</th>'
-    +'<th>붙은 포인트</th></tr></thead><tbody>';
+  var h='<table><thead><tr><th>묶음</th><th>개념</th><th>종류</th><th>단위</th>'
+    +'<th>등급</th><th>붙은 포인트</th></tr></thead><tbody>';
   page.forEach(function(x,i){
     var r=x.r,g=x.g;
     h+='<tr data-i="'+i+'"'+(S.sel===r.name?' class="sel"':'')+'>'
+      +'<td class="grp">'+esc(r.group)+'</td>'
       +'<td class="k">'+esc(r.name)+'</td><td class="mono">'+esc(r.objectType)+'</td>'
       +'<td class="mono">'+esc(r.unit)+'</td>'
       +'<td><span class="g '+gcls(r.grade)+'">'+esc(r.grade)+'</span></td>'
@@ -276,7 +259,8 @@ function detailRow(x){
   var p=D.profiles[curProfile()], h='';
   if(x){
     var r=x.r;
-    h+='<div class="card"><b>'+esc(r.name)+'</b>'
+    h+='<div class="card"><b>'+esc(r.name)+'</b> <span class="nm">'+esc(r.concept)
+      +' · '+esc(r.group)+'</span>'
       +'<div class="f"><span class="lbl">왜 필요한가</span>'+esc(r.why)+'</div>'
       +'<div class="f"><span class="lbl">쓰임</span><code>'
         +esc((r.usedBy||[]).join(' ')||'—')+'</code></div>'
@@ -339,7 +323,9 @@ function top(){
     +'<button data-t="shared" aria-current="'+(S.tab==='shared')+'">공용 포인트</button>'
     +'<button data-t="rows" aria-current="'+(S.tab==='rows')+'">템플릿 행</button></div>';
   h+='<div class="bar"><input id="q" placeholder="개념·포인트 이름 검색" value="'
-    +esc(S.q)+'">';
+    +esc(S.q)+'">'
+    +'<select id="fgr">'+opt(D.groups.map(function(g){return [g,g];}),S.grp,'전 묶음')
+    +'</select>';
   if(S.tab==='shared'){
     h+='<select id="fp">'+opt(D.order.map(function(p){return [p,p];}),S.pid,'전 계열')
       +'</select>'
@@ -376,6 +362,7 @@ function top(){
   q.oninput=function(){S.q=q.value;S.page=0;draw();cnt();};
   var fp=el('fp'); if(fp) fp.onchange=function(){S.pid=fp.value;S.page=0;S.mdl=0;
     S.scp=null;S.sel=null;render();};
+  var fgr=el('fgr'); if(fgr) fgr.onchange=function(){S.grp=fgr.value;S.page=0;draw();cnt();};
   var fc=el('fc'); if(fc) fc.onclick=function(){S.core=!S.core;S.page=0;render();};
   var fm=el('fm'); if(fm) fm.onchange=function(){S.mdl=+fm.value;S.scp=null;render();};
   var fs=el('fs'); if(fs) fs.onchange=function(){S.scp=+fs.value;draw();cnt();};
@@ -405,6 +392,9 @@ def build():
                             encoding="utf-8"))["profiles"]
     mm = json.load(io.open(os.path.join(DATA, "datasets", "model-mappings.json"),
                            encoding="utf-8"))
+    cdoc = json.load(io.open(os.path.join(DATA, "point-concepts.json"),
+                             encoding="utf-8"))
+    concepts = cdoc["concepts"]
 
     per = collections.defaultdict(list)
     for mid, m in mm.items():
@@ -423,6 +413,7 @@ def build():
                 "unit": r.get("unit"), "grade": r.get("grade"),
                 "why": r.get("why") or "", "usedBy": r.get("usedBy") or [],
                 "haystack": r.get("haystack") or "", "appliesWhen": r.get("appliesWhen"),
+                "concept": r.get("concept") or "", "group": r.get("group") or "기타",
                 "include": mt.get("include") or "", "exclude": mt.get("exclude") or "",
                 "matchNote": r.get("matchNote") or "",
             })
@@ -461,32 +452,27 @@ def build():
 
     order = sorted(profiles, key=lambda k: (-len(profiles[k]["rows"]), k))
 
-    # ── 개요: 공용 포인트 ────────────────────────────────────────────────
-    where = collections.defaultdict(dict)      # 원래이름 → {pid: 등급}
+    # ── 개요: 공용 포인트는 사전에서 바로 나온다 (묶는 판단이 데이터에 있다) ──
+    used = collections.defaultdict(dict)      # cid → {pid: 등급}
+    naming = collections.defaultdict(dict)    # cid → {pid: 그 계열의 표기}
     for pid, p in profiles.items():
         for r in p["rows"]:
-            where[r["name"]][pid] = r["grade"]
-    seen = set()
+            if not r["concept"]:
+                continue
+            used[r["concept"]][pid] = r["grade"]
+            naming[r["concept"]][pid] = r["name"]
     shared = []
-    for canon, names in CANON.items():
-        cols, raw = {}, []
-        for n in names:
-            for pid, g in where.get(n, {}).items():
-                cols[pid] = g
-                raw.append((pid, n))
-            seen.add(n)
-        if cols:
-            shared.append({"canon": canon, "cols": cols, "raw": raw,
-                           "n": len(cols),
-                           "split": len({n for _p, n in raw}) > 1})
-    shared.sort(key=lambda x: (-x["n"], x["canon"]))
-    solo = []
-    for name, cols in sorted(where.items()):
-        if name not in seen and len(cols) > 1:
-            solo.append({"canon": name, "cols": cols,
-                         "raw": [(p, name) for p in cols],
-                         "n": len(cols), "split": False})
-    solo.sort(key=lambda x: (-x["n"], x["canon"]))
+    for cid, c in concepts.items():
+        cols = used.get(cid) or {}
+        if not cols:
+            continue
+        names = naming.get(cid) or {}
+        shared.append({"canon": c["ko"], "cid": cid, "group": c.get("group") or "기타",
+                       "cols": cols, "raw": sorted(names.items()),
+                       "n": len(cols),
+                       "split": len(set(names.values())) > 1,
+                       "haystack": c.get("haystack") or ""})
+    shared.sort(key=lambda x: (-x["n"], x["group"], x["canon"]))
 
     calc = []
     for pid in order:
@@ -494,7 +480,8 @@ def build():
             calc.append({"pid": pid, "key": k, "text": v})
 
     data = {"order": order, "profiles": profiles,
-            "shared": shared + solo, "calc": calc,
+            "shared": shared, "calc": calc,
+            "groups": cdoc.get("groups") or [],
             "split": [s for s in shared if s["split"]]}
     nrow = sum(len(v["rows"]) for v in profiles.values())
     nmdl = sum(len(v["models"]) for v in profiles.values())

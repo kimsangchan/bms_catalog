@@ -1,0 +1,975 @@
+{
+ "version": 1,
+ "description": "BMS 기본화면 **개념 사전**. 템플릿 행은 이름 문자열이 아니라 여기의 id 를 가리킨다(row.concept). 같은 개념이 계열마다 다르게 적히던 것을 막는다 — 실제로 그렇게 10건이 갈려 있었다(운전/정지 지령 ↔ 기동/정지 지령, 필터 차압 ↔ 필터 청소 신호 …). point-schema·unit-schema 와 같은 원칙이다.",
+ "rules": [
+  "① 새 템플릿 행을 쓰기 전에 개념이 여기 있는지 본다. 없으면 **먼저 등재**한다.",
+  "② 계열이 실제로 쓰는 표기는 aliases 에 남긴다 — 지우지 않는다. 행의 name 이 곧 그 표기이고, 매칭 규칙(match.include)이 거기 매여 있다.",
+  "③ group 은 화면에서 접는 단위다. 계열이 19개로 늘면 행이 수백이 된다 — 묶음 없이는 못 읽는다.",
+  "④ usedIn 은 파생값이다(어느 프로파일이 쓰나). 손으로 고치지 않는다."
+ ],
+ "groups": [
+  "온도",
+  "습도·공기질",
+  "풍량·압력",
+  "유량·수측",
+  "전력",
+  "설정값",
+  "제어 지령",
+  "상태",
+  "경보",
+  "정비",
+  "기타"
+ ],
+ "concepts": {
+  "run-cmd": {
+   "ko": "운전/정지 지령",
+   "group": "제어 지령",
+   "objectType": "BO",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "cmd enable point",
+   "aliases": [
+    "운전/정지 지령",
+    "기동/정지 지령"
+   ],
+   "usedIn": [
+    "e8.vrf",
+    "e13.fan",
+    "e15.vfd"
+   ]
+  },
+  "run-status": {
+   "ko": "운전 상태",
+   "group": "상태",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "point run sensor",
+   "aliases": [
+    "운전 상태"
+   ],
+   "usedIn": [
+    "e8.vrf",
+    "e13.fan",
+    "e15.vfd"
+   ]
+  },
+  "mode": {
+   "ko": "운전 모드",
+   "group": "제어 지령",
+   "objectType": "MSO",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "hvacMode point sp",
+   "aliases": [
+    "운전 모드"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu",
+    "e8.vrf"
+   ]
+  },
+  "speed-cmd": {
+   "ko": "속도·주파수 지령",
+   "group": "제어 지령",
+   "objectType": "AO",
+   "unit": "Hz",
+   "role": "cmd",
+   "haystack": "cmd freq point vfd",
+   "aliases": [
+    "급기팬 주파수 지령",
+    "환기팬 주파수 지령",
+    "주파수 지령",
+    "풍량 단계"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu",
+    "e8.vrf",
+    "e15.vfd"
+   ]
+  },
+  "speed-fb": {
+   "ko": "속도·주파수 실측",
+   "group": "상태",
+   "objectType": "AI",
+   "unit": "Hz",
+   "role": "sensor",
+   "haystack": "freq point sensor vfd",
+   "aliases": [
+    "현재 주파수",
+    "회전수",
+    "인버터 출력"
+   ],
+   "usedIn": [
+    "e13.fan",
+    "e15.vfd"
+   ]
+  },
+  "alarm": {
+   "ko": "고장·경보",
+   "group": "경보",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "alarm point sensor",
+   "aliases": [
+    "고장·경보",
+    "트립·고장",
+    "인버터 경보"
+   ],
+   "usedIn": [
+    "e13.fan",
+    "e15.vfd"
+   ]
+  },
+  "alarm-code": {
+   "ko": "고장 코드",
+   "group": "경보",
+   "objectType": "AI/MSO",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+   "aliases": [
+    "에러 코드",
+    "트립 코드"
+   ],
+   "usedIn": [
+    "e8.vrf",
+    "e15.vfd"
+   ]
+  },
+  "zone-temp": {
+   "ko": "실내온도",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "air point sensor temp zone",
+   "aliases": [
+    "실내온도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu",
+    "e8.vrf"
+   ]
+  },
+  "oa-temp": {
+   "ko": "외기온도",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "air outside point sensor temp",
+   "aliases": [
+    "외기온도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu",
+    "e8.vrf"
+   ]
+  },
+  "discharge-temp": {
+   "ko": "급기(토출) 온도",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "air discharge point sensor temp",
+   "aliases": [
+    "급기온도",
+    "급기(토출) 온도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu",
+    "e8.vrf"
+   ]
+  },
+  "return-temp": {
+   "ko": "환기(리턴) 온도",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "air point return sensor temp",
+   "aliases": [
+    "환기온도",
+    "환기(리턴) 온도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu",
+    "e8.vrf"
+   ]
+  },
+  "filter-dp": {
+   "ko": "필터 차압·신호",
+   "group": "정비",
+   "objectType": "BI/AI",
+   "unit": "Pa",
+   "role": "sensor",
+   "haystack": "filter point sensor",
+   "aliases": [
+    "필터 차압",
+    "필터 청소 신호"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu",
+    "e8.vrf",
+    "e13.fan"
+   ]
+  },
+  "power": {
+   "ko": "소비전력",
+   "group": "전력",
+   "objectType": "AI",
+   "unit": "kW",
+   "role": "sensor",
+   "haystack": "elec power point sensor",
+   "aliases": [
+    "출력 전력",
+    "소비전력"
+   ],
+   "usedIn": [
+    "e8.vrf",
+    "e13.fan",
+    "e15.vfd"
+   ]
+  },
+  "energy": {
+   "ko": "적산 전력량",
+   "group": "전력",
+   "objectType": "AI",
+   "unit": "kWh",
+   "role": "sensor",
+   "haystack": "elec energy point sensor",
+   "aliases": [
+    "적산 전력량"
+   ],
+   "usedIn": [
+    "e8.vrf",
+    "e13.fan",
+    "e15.vfd"
+   ]
+  },
+  "current": {
+   "ko": "출력 전류",
+   "group": "전력",
+   "objectType": "AI",
+   "unit": "A",
+   "role": "sensor",
+   "haystack": "elec current point sensor",
+   "aliases": [
+    "출력 전류"
+   ],
+   "usedIn": [
+    "e13.fan",
+    "e15.vfd"
+   ]
+  },
+  "runtime": {
+   "ko": "누적 운전시간",
+   "group": "정비",
+   "objectType": "AI",
+   "unit": "h",
+   "role": "sensor",
+   "haystack": "표준에 없음",
+   "aliases": [
+    "누적 운전시간"
+   ],
+   "usedIn": [
+    "e13.fan",
+    "e15.vfd"
+   ]
+  },
+  "dc-volt": {
+   "ko": "DC 링크 전압",
+   "group": "전력",
+   "objectType": "AI",
+   "unit": "V",
+   "role": "sensor",
+   "haystack": "표준에 없음 — 인버터 내부값",
+   "aliases": [
+    "DC 링크 전압"
+   ],
+   "usedIn": [
+    "e13.fan",
+    "e15.vfd"
+   ]
+  },
+  "drive-temp": {
+   "ko": "모듈·방열판 온도",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "표준에 없음 — 인버터 내부값",
+   "aliases": [
+    "모듈 온도",
+    "방열판 온도"
+   ],
+   "usedIn": [
+    "e13.fan",
+    "e15.vfd"
+   ]
+  },
+  "혼합공기온도": {
+   "ko": "혼합공기온도",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "ahu ▸ mixed duct equip ▸ air mixed point sensor temp",
+   "aliases": [
+    "혼합공기온도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "배기-온도": {
+   "ko": "배기 온도",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "ahu ▸ exhaust duct equip ▸ air exhaust point sensor temp",
+   "aliases": [
+    "배기 온도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "급기습도": {
+   "ko": "급기습도",
+   "group": "습도·공기질",
+   "objectType": "AI",
+   "unit": "%",
+   "role": "sensor",
+   "haystack": "ahu ▸ discharge duct equip ▸ air discharge humidity point sensor",
+   "aliases": [
+    "급기습도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "환기습도": {
+   "ko": "환기습도",
+   "group": "습도·공기질",
+   "objectType": "AI",
+   "unit": "%",
+   "role": "sensor",
+   "haystack": "ahu ▸ return duct equip ▸ air humidity point return sensor",
+   "aliases": [
+    "환기습도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "외기-엔탈피": {
+   "ko": "외기 엔탈피",
+   "group": "습도·공기질",
+   "objectType": "AI",
+   "unit": "kJ/kg",
+   "role": "sensor",
+   "haystack": "ahu ▸ outside duct equip ▸ air enthalpy outside point sensor",
+   "aliases": [
+    "외기 엔탈피"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "급기-정압": {
+   "ko": "급기 정압",
+   "group": "풍량·압력",
+   "objectType": "AI",
+   "unit": "Pa",
+   "role": "sensor",
+   "haystack": "ahu ▸ discharge duct equip ▸ air discharge point pressure sensor",
+   "aliases": [
+    "급기 정압"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "외기-풍량": {
+   "ko": "외기 풍량",
+   "group": "풍량·압력",
+   "objectType": "AI",
+   "unit": "CMH",
+   "role": "sensor",
+   "haystack": "ahu ▸ ventilation duct equip ▸ air flow point sensor ventilation",
+   "aliases": [
+    "외기 풍량"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "급기-풍량": {
+   "ko": "급기 풍량",
+   "group": "풍량·압력",
+   "objectType": "AI",
+   "unit": "CMH",
+   "role": "sensor",
+   "haystack": "ahu ▸ discharge duct equip ▸ air discharge flow point sensor",
+   "aliases": [
+    "급기 풍량"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "환기-co2": {
+   "ko": "환기 CO2",
+   "group": "습도·공기질",
+   "objectType": "AI",
+   "unit": "ppm",
+   "role": "sensor",
+   "haystack": "ahu ▸ return duct equip ▸ air co2 concentration point return sensor",
+   "aliases": [
+    "환기 CO2"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "급기온도-설정값": {
+   "ko": "급기온도 설정값",
+   "group": "온도",
+   "objectType": "AV",
+   "unit": "℃",
+   "role": "sp",
+   "haystack": "ahu ▸ discharge duct equip ▸ air discharge point sp temp",
+   "aliases": [
+    "급기온도 설정값"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "급기-정압-설정값": {
+   "ko": "급기 정압 설정값",
+   "group": "풍량·압력",
+   "objectType": "AV",
+   "unit": "Pa",
+   "role": "sp",
+   "haystack": "ahu ▸ discharge duct equip ▸ air discharge point pressure sp",
+   "aliases": [
+    "급기 정압 설정값"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "외기댐퍼-개도": {
+   "ko": "외기댐퍼 개도",
+   "group": "풍량·압력",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "ahu ▸ outside duct equip ▸ damper-actuator equip ▸ cmd damper outside point",
+   "aliases": [
+    "외기댐퍼 개도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "환기댐퍼-개도": {
+   "ko": "환기댐퍼 개도",
+   "group": "풍량·압력",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "ahu ▸ return duct equip ▸ damper-actuator equip ▸ cmd damper point return",
+   "aliases": [
+    "환기댐퍼 개도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "배기댐퍼-개도": {
+   "ko": "배기댐퍼 개도",
+   "group": "풍량·압력",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "ahu ▸ exhaust duct equip ▸ damper-actuator equip ▸ cmd damper exhaust point",
+   "aliases": [
+    "배기댐퍼 개도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "열회수-지령-상태": {
+   "ko": "열회수 지령·상태",
+   "group": "제어 지령",
+   "objectType": "AO/BO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "ahu ▸ cmd heatWheel point",
+   "aliases": [
+    "열회수 지령·상태"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "동결-방지-경보": {
+   "ko": "동결 방지 경보",
+   "group": "경보",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "ahu ▸ freezeStat point sensor",
+   "aliases": [
+    "동결 방지 경보"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "외기냉방-모드": {
+   "ko": "외기냉방 모드",
+   "group": "제어 지령",
+   "objectType": "BV",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "ahu ▸ cmd economizing point",
+   "aliases": [
+    "외기냉방 모드"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "압축기-단수-상태": {
+   "ko": "압축기 단수 상태",
+   "group": "상태",
+   "objectType": "AI/BI",
+   "unit": "단",
+   "role": "sensor",
+   "haystack": "ahu ▸ duct equip ▸ coolingCoil equip ▸ cmd cool point run stage",
+   "aliases": [
+    "압축기 단수 상태"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "난방-단수-상태": {
+   "ko": "난방 단수 상태",
+   "group": "상태",
+   "objectType": "AI/BI",
+   "unit": "단",
+   "role": "sensor",
+   "haystack": "ahu ▸ duct equip ▸ heatingCoil equip ▸ cmd heat point run stage",
+   "aliases": [
+    "난방 단수 상태"
+   ],
+   "usedIn": [
+    "e5.rtu"
+   ]
+  },
+  "냉방-지령": {
+   "ko": "냉방 지령",
+   "group": "제어 지령",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "ahu ▸ cmd cool point",
+   "aliases": [
+    "냉방 지령"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "난방-지령": {
+   "ko": "난방 지령",
+   "group": "제어 지령",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "ahu ▸ cmd heat point",
+   "aliases": [
+    "난방 지령"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "가습-지령": {
+   "ko": "가습 지령",
+   "group": "제어 지령",
+   "objectType": "AO/BO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "ahu ▸ humidifier equip ▸ cmd enable humidifier point / cmd humidifier point run  (Haystack 에 변조(%) proto 는 없다 — 우리 AO % 는 초과분)",
+   "aliases": [
+    "가습 지령"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "냉수밸브-개도": {
+   "ko": "냉수밸브 개도",
+   "group": "유량·수측",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "ahu ▸ duct equip ▸ coolingCoil equip ▸ chilled cmd cool point valve water",
+   "aliases": [
+    "냉수밸브 개도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "온수밸브-개도": {
+   "ko": "온수밸브 개도",
+   "group": "유량·수측",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "ahu ▸ duct equip ▸ heatingCoil equip ▸ cmd heat hot point valve water",
+   "aliases": [
+    "온수밸브 개도"
+   ],
+   "usedIn": [
+    "e5.rtu",
+    "e5.ahu"
+   ]
+  },
+  "설정온도-상-하한": {
+   "ko": "설정온도 상·하한",
+   "group": "온도",
+   "objectType": "AV",
+   "unit": "℃",
+   "role": "sp",
+   "haystack": "표준에 없음 — 국내 중앙제어 관행(사용자 조작 범위 제한)",
+   "aliases": [
+    "설정온도 상·하한"
+   ],
+   "usedIn": [
+    "e8.vrf"
+   ]
+  },
+  "설정온도": {
+   "ko": "설정온도",
+   "group": "온도",
+   "objectType": "AV",
+   "unit": "℃",
+   "role": "sp",
+   "haystack": "vrf-indoorUnit-fcu/equip.thermostat/air.effective.point.sp.temp.zone (추정 0.83)",
+   "aliases": [
+    "설정온도"
+   ],
+   "usedIn": [
+    "e8.vrf"
+   ]
+  },
+  "배관-온도-액관-가스관": {
+   "ko": "배관 온도 (액관·가스관)",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "표준에 없음 — 냉매측 상태량은 Haystack VRF proto 에 자리가 없다",
+   "aliases": [
+    "배관 온도 (액관·가스관)"
+   ],
+   "usedIn": [
+    "e8.vrf"
+   ]
+  },
+  "풍향-루버": {
+   "ko": "풍향 (루버)",
+   "group": "풍량·압력",
+   "objectType": "MSO",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "표준에 없음",
+   "aliases": [
+    "풍향 (루버)"
+   ],
+   "usedIn": [
+    "e8.vrf"
+   ]
+  },
+  "팽창밸브-eev-개도": {
+   "ko": "팽창밸브(EEV) 개도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "%",
+   "role": "sensor",
+   "haystack": "표준에 없음 — 냉매측 액추에이터는 VRF proto 에 자리가 없다",
+   "aliases": [
+    "팽창밸브(EEV) 개도"
+   ],
+   "usedIn": [
+    "e8.vrf"
+   ]
+  },
+  "압축기-운전율": {
+   "ko": "압축기 운전율",
+   "group": "상태",
+   "objectType": "AI",
+   "unit": "%",
+   "role": "sensor",
+   "haystack": "표준에 없음 — 실외기(ODU) 쪽",
+   "aliases": [
+    "압축기 운전율"
+   ],
+   "usedIn": [
+    "e8.vrf"
+   ]
+  },
+  "제상-상태": {
+   "ko": "제상 상태",
+   "group": "상태",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "표준에 없음",
+   "aliases": [
+    "제상 상태"
+   ],
+   "usedIn": [
+    "e8.vrf"
+   ]
+  },
+  "통신-상태": {
+   "ko": "통신 상태",
+   "group": "상태",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "표준에 없음 — 게이트웨이 자신의 상태다",
+   "aliases": [
+    "통신 상태"
+   ],
+   "usedIn": [
+    "e8.vrf"
+   ]
+  },
+  "재실-감지": {
+   "ko": "재실 감지",
+   "group": "상태",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "겹침 최대 0.50 — 표준에서 짝을 못 찾았다(가장 가까운 것도 filter point sensor)",
+   "aliases": [
+    "재실 감지"
+   ],
+   "usedIn": [
+    "e8.vrf"
+   ]
+  },
+  "리모컨-잠금": {
+   "ko": "리모컨 잠금",
+   "group": "제어 지령",
+   "objectType": "BO",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "vrf-indoorUnit-fcu/equip.humidifier/cmd.enable.humidifier.point (추정 0.75 — 가습기 자리에 붙었다. 오탐으로 본다)",
+   "aliases": [
+    "리모컨 잠금"
+   ],
+   "usedIn": [
+    "e8.vrf"
+   ]
+  },
+  "급기-댐퍼-열림-닫힘-지령": {
+   "ko": "급기 댐퍼 열림/닫힘 지령",
+   "group": "풍량·압력",
+   "objectType": "BO",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "cmd damper discharge point",
+   "aliases": [
+    "급기 댐퍼 열림/닫힘 지령"
+   ],
+   "usedIn": [
+    "e13.fan"
+   ]
+  },
+  "급기-댐퍼-열림-상태": {
+   "ko": "급기 댐퍼 열림 상태",
+   "group": "풍량·압력",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "damper discharge point sensor",
+   "aliases": [
+    "급기 댐퍼 열림 상태"
+   ],
+   "usedIn": [
+    "e13.fan"
+   ]
+  },
+  "외기-댐퍼-열림-닫힘-지령": {
+   "ko": "외기 댐퍼 열림/닫힘 지령",
+   "group": "풍량·압력",
+   "objectType": "BO",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "cmd damper outside point",
+   "aliases": [
+    "외기 댐퍼 열림/닫힘 지령"
+   ],
+   "usedIn": [
+    "e13.fan"
+   ]
+  },
+  "외기-댐퍼-열림-상태": {
+   "ko": "외기 댐퍼 열림 상태",
+   "group": "풍량·압력",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "damper outside point sensor",
+   "aliases": [
+    "외기 댐퍼 열림 상태"
+   ],
+   "usedIn": [
+    "e13.fan"
+   ]
+  },
+  "배기-댐퍼-열림-닫힘-지령": {
+   "ko": "배기 댐퍼 열림/닫힘 지령",
+   "group": "풍량·압력",
+   "objectType": "BO",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "cmd damper exhaust point",
+   "aliases": [
+    "배기 댐퍼 열림/닫힘 지령"
+   ],
+   "usedIn": [
+    "e13.fan"
+   ]
+  },
+  "배기-댐퍼-열림-상태": {
+   "ko": "배기 댐퍼 열림 상태",
+   "group": "풍량·압력",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "damper exhaust point sensor",
+   "aliases": [
+    "배기 댐퍼 열림 상태"
+   ],
+   "usedIn": [
+    "e13.fan"
+   ]
+  },
+  "탈취기-상태-경보": {
+   "ko": "탈취기 상태·경보",
+   "group": "상태",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "표준에 없음 — 주방 배기 계통의 부속이다",
+   "aliases": [
+    "탈취기 상태·경보"
+   ],
+   "usedIn": [
+    "e13.fan"
+   ]
+  },
+  "출력-전압": {
+   "ko": "출력 전압",
+   "group": "전력",
+   "objectType": "AI",
+   "unit": "V",
+   "role": "sensor",
+   "haystack": "elec volt point sensor",
+   "aliases": [
+    "출력 전압"
+   ],
+   "usedIn": [
+    "e15.vfd"
+   ]
+  },
+  "모터-토크": {
+   "ko": "모터 토크",
+   "group": "상태",
+   "objectType": "AI",
+   "unit": "%",
+   "role": "sensor",
+   "haystack": "표준에 없음 — 인버터 내부 추정값이다",
+   "aliases": [
+    "모터 토크"
+   ],
+   "usedIn": [
+    "e15.vfd"
+   ]
+  },
+  "제어어-상태어": {
+   "ko": "제어어 · 상태어",
+   "group": "제어 지령",
+   "objectType": "AI/AO",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "표준에 없음 — 필드버스 규약(PROFIdrive)의 비트 묶음이다",
+   "aliases": [
+    "제어어 · 상태어"
+   ],
+   "usedIn": [
+    "e15.vfd"
+   ]
+  },
+  "정-역-지령": {
+   "ko": "정·역 지령",
+   "group": "제어 지령",
+   "objectType": "BO",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "표준에 없음",
+   "aliases": [
+    "정·역 지령"
+   ],
+   "usedIn": [
+    "e15.vfd"
+   ]
+  }
+ }
+}

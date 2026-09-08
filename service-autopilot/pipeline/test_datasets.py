@@ -149,6 +149,44 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(ahu["냉수밸브 개도"]["grade"], "필수")
         self.assertEqual(ahu["온수밸브 개도"]["grade"], "필수")
 
+    def test_every_template_row_points_at_a_registered_concept(self):
+        """게이트 — 템플릿 행은 **개념 사전의 id** 를 가리켜야 한다.
+
+        행이 이름 문자열로만 살면 같은 개념이 계열마다 다르게 적힌다. 실제로 그렇게
+        10건이 갈려 있었다(운전/정지 지령 ↔ 기동/정지 지령, 필터 차압 ↔ 필터 청소 신호,
+        출력 전력 ↔ 소비전력 …). 계열이 19개로 늘면 행이 수백이라 손으로는 못 막는다.
+        point-schema·unit-schema 와 같은 원칙 — **사전 우선**.
+        """
+        doc = datasets.load_json(os.path.join(datasets.DATA, "point-concepts.json"))
+        known = doc["concepts"]
+        groups = set(doc["groups"])
+        self.assertGreaterEqual(len(known), 40)      # 0건을 훑으며 통과하지 않게
+        bad, nogroup = [], []
+        for pid, prof in datasets.load_template_profiles().items():
+            for row in prof.get("templatePoints") or []:
+                cid = row.get("concept")
+                if cid not in known:
+                    bad.append("%s/%s → %r" % (pid, row.get("name"), cid))
+                elif row.get("group") not in groups:
+                    nogroup.append("%s/%s → %r" % (pid, row.get("name"), row.get("group")))
+        self.assertEqual(bad, [], "사전에 없는 개념을 가리킨다: %s" % bad)
+        self.assertEqual(nogroup, [], "사전에 없는 묶음이다: %s" % nogroup)
+
+    def test_concept_aliases_cover_the_names_rows_actually_use(self):
+        """사전의 aliases 는 **행이 실제로 쓰는 표기**를 담아야 한다.
+
+        표기를 지우면 안 되는 이유: 매칭 규칙(match.include)이 이름에 매여 있고,
+        '이 계열은 이렇게 부른다'는 사실 자체가 값이다.
+        """
+        doc = datasets.load_json(os.path.join(datasets.DATA, "point-concepts.json"))
+        miss = []
+        for pid, prof in datasets.load_template_profiles().items():
+            for row in prof.get("templatePoints") or []:
+                c = doc["concepts"].get(row.get("concept")) or {}
+                if row.get("name") not in (c.get("aliases") or []):
+                    miss.append("%s/%s" % (pid, row.get("name")))
+        self.assertEqual(miss, [], "aliases 에 없는 표기를 쓴다: %s" % miss)
+
     def test_empty_template_profile_must_say_why(self):
         """게이트 — 행이 빈 프로파일은 '왜 비었나'를 적어야 한다.
 
