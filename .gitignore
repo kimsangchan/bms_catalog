@@ -62,3 +62,12 @@ service-autopilot/포인트리스트/
 
 # 임시 디버깅 스크립트 보관소. 시험이 아니다(사유는 .scratch/README.md).
 service-autopilot/pipeline/.scratch/
+
+# review/_archive/ — 물러난 화면. 옆의 `.md`(왜 물러났나)만 담고 HTML 본체는 담지 않는다.
+# ⚠ 원래 gitignore 되던 것을 _archive/ 로 옮기면 경로가 바뀌어 무시가 풀린다 —
+#   실제로 30 MB 가 스테이징에 딸려 들어왔다. 규칙도 같이 옮겨야 한다.
+service-autopilot/review/_archive/*.html
+!service-autopilot/review/_archive/*.md
+# ⚠ 예외: 이건 8 KB 인데 **굽는 스크립트가 없다**(손으로 만든 옛 기획 산출물).
+#   git 에서 빠지면 되살릴 방법이 없으므로 담는다. 나머지는 다시 구울 수 있다.
+!service-autopilot/review/_archive/implementation_plan.html

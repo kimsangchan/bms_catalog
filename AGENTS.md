@@ -52,14 +52,18 @@ service-autopilot/
 │  ├─ template_map.py   → review/template-map.html (BMS 기본화면 템플릿 검사대)
 │  └─ data/models/      모델 1건 = JSON 1개  ★ 산출물 본체
 ├─ evidence/gen2.py     HTML 템플릿 (화면 손보려면 여기)
-└─ review/
+└─ review/              **화면. `_INDEX.md` 부터 본다** — 파일마다 같은 이름의 `.md` 가
+   │                    옆에 있어 탐색기에서 바로 무엇인지 알 수 있다(review_index.py 가 만든다)
+   ├─ _INDEX.md            폴더 안내 · 굽는 순서
+   ├─ template-map.html    **템플릿 검사대** (template_map.py) — 계열별 BMS 기본화면 행에
+   │                       **모델을 골라 붙여** 그 개념이 벤더마다 어떤 이름으로 오는지 본다.
+   │                       정규식은 이름만으로 뜻을 못 가른다 — 여기서 눈으로 본다
+   ├─ equip-catalog.html   전체 카탈로그 (build.py) — 더블클릭해서 본다
+   ├─ point-verify.html    취입 검사대 (verify_points.py) — 원문 쪽 그림과 나란히 대조
    ├─ data-map.html        **데이터 지도** (schema_map.py) — 원문이 어떤 층을 거쳐
    │                       시뮬레이터·BMS 모양이 되는지, 스키마와 조인 키를 한 화면에
-   ├─ template-map.html    **템플릿 검사대** (template_map.py) — 계열별 BMS 기본화면
-   │                       행에 **모델을 골라 붙여** 그 개념이 벤더마다 어떤 이름으로
-   │                       오는지 본다. 정규식은 이름만으로 뜻을 못 가른다 — 여기서 눈으로 본다
-   ├─ equip-catalog.html   전체 카탈로그 (build.py) — 더블클릭해서 본다
-   └─ jci-ingest.html      JCI 취입 검사대 (--export — 원문 쪽 그림 포함이 기본, 47MB · gitignore 라 직접 만든다)
+   ├─ jci-ingest.html      JCI 취입 검사대 (--export · 60MB · gitignore 라 직접 만든다)
+   └─ _archive/            물러난 화면. **지우지 않았다** — 왜 물러났는지가 옆 `.md` 에 있다
 ```
 
 ## 자주 쓰는 명령
@@ -68,6 +72,8 @@ service-autopilot/
 cd service-autopilot/pipeline
 PYTHONIOENCODING=utf-8 python validate.py          # 검사 — 오류 0 확인
 PYTHONIOENCODING=utf-8 python build.py             # HTML 다시 만들기
+PYTHONIOENCODING=utf-8 python template_map.py        # 템플릿 검사대
+PYTHONIOENCODING=utf-8 python review_index.py --run  # review/ 길잡이 .md 갱신
 PYTHONIOENCODING=utf-8 python collect.py --list    # 소스 목록
 PYTHONIOENCODING=utf-8 python collect.py --run <소스ID>
 PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류
