@@ -31,6 +31,32 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 OUT = os.path.join(HERE, "..", "review", "template-map.html")
 
+# 공용 포인트를 세려면 같은 개념의 다른 이름을 먼저 묶어야 한다.
+# ⚠ 이건 **판단**이다 — 그래서 묶은 것과 원래 이름을 화면에 함께 보여 준다.
+#   묶어 보니 이름이 프로파일마다 갈려 있다는 사실 자체가 드러났다(아래 '이름 통일 후보').
+#   표기를 함부로 바꾸지 않은 이유: 행 순서와 match 규칙이 이름에 매여 있다(D-016 과 같은 결).
+CANON = {
+    "운전/정지 지령": ["운전/정지 지령", "기동/정지 지령"],
+    "운전 상태": ["운전 상태"],
+    "고장·경보": ["고장·경보", "트립·고장", "인버터 경보"],
+    "고장 코드": ["에러 코드", "트립 코드"],
+    "실내온도": ["실내온도"],
+    "외기온도": ["외기온도"],
+    "급기(토출) 온도": ["급기온도", "급기(토출) 온도"],
+    "환기(리턴) 온도": ["환기온도", "환기(리턴) 온도"],
+    "운전 모드": ["운전 모드"],
+    "속도·주파수 지령": ["급기팬 주파수 지령", "환기팬 주파수 지령", "주파수 지령",
+                  "풍량 단계"],
+    "속도·주파수 실측": ["현재 주파수", "회전수", "인버터 출력"],
+    "필터 차압·신호": ["필터 차압", "필터 청소 신호"],
+    "소비전력": ["출력 전력", "소비전력"],
+    "적산 전력량": ["적산 전력량"],
+    "누적 운전시간": ["누적 운전시간"],
+    "출력 전류": ["출력 전류"],
+    "DC 링크 전압": ["DC 링크 전압"],
+    "모듈·방열판 온도": ["모듈 온도", "방열판 온도"],
+}
+
 CSS = """
 :root{--bg:#F5F8F9;--panel:#fff;--ink:#0F1A1F;--dim:#4A6068;--faint:#7C949C;
  --line:#DAE3E7;--accent:#0E7A88;--soft:#DCEEF0;--warn:#9A6608;--bad:#A33;--ok:#1E7A44;
@@ -93,13 +119,45 @@ summary{cursor:pointer;color:var(--faint);font-size:11px}
 code{font-family:var(--mono);font-size:11px;color:var(--dim);word-break:break-all}
 .matrix{overflow:auto;margin-top:14px}
 .matrix table{font-size:11.5px}
-.matrix th.rot{writing-mode:vertical-rl;text-orientation:mixed;padding:6px 3px;
- font-weight:500;font-size:10.5px;max-height:150px}
-.matrix td.c{text-align:center;font-family:var(--mono)}
-.matrix td.c.y{color:var(--ok)}
-.matrix td.c.n{color:var(--faint)}
+h3.mh{font-size:12.5px;margin:16px 0 7px;color:var(--dim)}
+p.ax{color:var(--faint);font-size:11.5px;margin:0 0 10px}
+table.cov2 td{vertical-align:middle}
+table.cov2 td.k{max-width:420px;white-space:normal;font-weight:500}
+table.cov2 td.bar{width:38%;padding:6px 9px}
+table.cov2 td.bar span{display:block;height:7px;border-radius:4px;
+ background:var(--accent);min-width:2px}
+table.cov2 td.num{font-family:var(--mono);font-size:11.5px;text-align:right;
+ font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--dim)}
+table.cov2 td.pct{color:var(--ink);width:52px}
 .empty{background:var(--panel);border:1px dashed var(--line);border-radius:10px;
  padding:22px;color:var(--faint);font-size:12.5px;text-align:center}
+.rail .sep{color:var(--faint);font-size:10.5px;margin:12px 0 5px 2px;
+ text-transform:uppercase;letter-spacing:.06em}
+/* 개요 — 본문 + 계산식 사이드. 좁아지면 사이드가 아래로 내려간다 */
+.ov{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:16px;align-items:start}
+@media(max-width:1080px){.ov{grid-template-columns:1fr}}
+.ov th.pid{font-family:var(--mono);font-size:10.5px;font-weight:500;
+ padding:8px 5px;text-align:center;white-space:nowrap}
+.ov td.c{text-align:center;font-family:var(--mono);line-height:1.25}
+.ov td.c.y b{color:var(--ok);font-size:13px}
+.ov td.c.n{color:var(--line)}
+.ov td.c .nm{display:block;font-size:9.5px;color:var(--faint);max-width:74px;
+ margin:0 auto;word-break:keep-all}
+.ov td.c b{font-variant-numeric:tabular-nums}
+.g.w{color:var(--warn);border-color:var(--warn)}
+.ov tr.core td{background:var(--soft)}
+.ov tr.core td.k{font-weight:700}
+aside{position:sticky;top:14px}
+aside h3{font-size:13px;margin:0 0 6px}
+aside .ax{color:var(--faint);font-size:11.5px;margin:0 0 10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+ padding:9px 11px;margin-bottom:8px}
+.card>b{color:var(--accent);font-family:var(--mono);font-size:11.5px}
+.card .f{font-size:11.5px;color:var(--dim);margin-top:5px;padding-top:5px;
+ border-top:1px solid var(--line)}
+.card .f:first-of-type{border-top:0;padding-top:0}
+.card .pid{display:inline-block;font-family:var(--mono);font-size:9.5px;
+ color:var(--faint);margin-right:5px}
 """
 
 JS = """
@@ -109,7 +167,9 @@ function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(c){
 function gcls(g){return g==='필수'?'f':g==='권장'?'r':'o';}
 
 function rail(){
-  var h='';
+  var h='<button data-pid="_" aria-current="'+(cur==='_')+'">개요 — 공용 포인트'
+    +'<span class="m">개념 '+D.shared.length+' · 계산식 '+D.calc.length+'</span></button>'
+    +'<div class="sep">계열별 화면</div>';
   D.order.forEach(function(pid){
     var p=D.profiles[pid];
     h+='<button data-pid="'+pid+'" aria-current="'+(pid===cur)+'">'+esc(p.title)
@@ -117,7 +177,69 @@ function rail(){
   });
   document.getElementById('rail').innerHTML=h;
   [].forEach.call(document.querySelectorAll('#rail button'),function(b){
-    b.onclick=function(){cur=b.dataset.pid;rail();body();};});
+    b.onclick=function(){cur=b.dataset.pid;rail();
+      window.scrollTo(0,0); cur==='_'?overview():body();};});
+}
+
+/* 개요 — 계열을 가로질러 되풀이되는 개념을 한 화면에. 옆에 계산식을 붙인다. */
+function overview(){
+  var el=document.getElementById('body');
+  var h='<div class="ov">';
+
+  h+='<div><div class="head"><h2>공용 포인트 — 계열을 가로질러 되풀이되는 개념</h2>'
+    +'<p>같은 개념이 여러 계열에 나온다. <b>그래서 화면은 모델을 몰라도 설계된다</b> — '
+    +'모델은 주소를 붙일 때만 필요하다. 아래 표의 ● 은 그 계열 템플릿에 그 개념이 '
+    +'있다는 뜻이고, 칸에 뜨는 글자는 <b>그 계열이 실제로 쓰는 이름</b>이다.</p>'
+    +'<p class="ax">⚠ <code>e5.rtu</code> 와 <code>e5.ahu</code> 는 같은 계열의 형제라 '
+    +'둘만 겹치는 것은 당연하다. <b>계열 3개 이상</b>에 나오는 개념(굵게)이 진짜 공용이다.</p></div>';
+  h+='<table><thead><tr><th>개념</th>';
+  D.order.forEach(function(pid){h+='<th class="pid">'+esc(pid)+'</th>';});
+  h+='<th>계열</th></tr></thead><tbody>';
+  D.shared.forEach(function(s){
+    h+='<tr'+(s.n>=3?' class="core"':'')+'><td class="k">'+esc(s.canon)
+      +(s.split?' <span class="g w" title="계열마다 이름이 다르다">이름 갈림</span>':'')
+      +'</td>';
+    D.order.forEach(function(pid){
+      var g=s.cols[pid];
+      var nm=(s.raw.filter(function(r){return r[0]===pid;})[0]||[])[1];
+      h+='<td class="c '+(g?'y':'n')+'" title="'+esc(nm||'')+'">'
+        +(g?'<b>●</b><span class="nm">'+esc(nm===s.canon?'':nm)+'</span>':'·')+'</td>';
+    });
+    h+='<td class="c '+(s.n>1?'y':'n')+'"><b>'+s.n+'</b></td></tr>';
+  });
+  h+='</tbody></table>';
+
+  if(D.split.length){
+    h+='<div class="head" style="margin-top:16px"><h2>이름 통일 후보 — '
+      +D.split.length+'건</h2><p class="warn">같은 개념인데 계열마다 다르게 적혀 있다. '
+      +'표기를 함부로 바꾸지 않은 이유는 <b>행 순서와 매칭 규칙이 이름에 매여</b> 있어서다 '
+      +'— 바꾸려면 그 둘을 같이 손봐야 한다.</p>';
+    h+='<table><thead><tr><th>개념</th><th>계열마다 쓰는 이름</th></tr></thead><tbody>';
+    D.split.forEach(function(s){
+      var by={};
+      s.raw.forEach(function(r){ (by[r[1]]=by[r[1]]||[]).push(r[0]); });
+      var parts=Object.keys(by).map(function(n){
+        return '<code>'+esc(n)+'</code> <span class="nm">'+by[n].join(' ')+'</span>';});
+      h+='<tr><td class="k">'+esc(s.canon)+'</td><td>'+parts.join(' &nbsp;/&nbsp; ')
+        +'</td></tr>';
+    });
+    h+='</tbody></table></div>';
+  }
+  h+='</div>';
+
+  h+='<aside><h3>계산식 — 이 포인트들이 무엇에 쓰이나</h3>'
+    +'<p class="ax">각 계열 요구 프로파일의 <code>energyModel</code> 을 그대로 옮긴 것이다. '
+    +'템플릿 행의 <b>쓰임</b> 칸이 이 열쇠를 가리킨다.</p>';
+  var byk={};
+  D.calc.forEach(function(c){ (byk[c.key]=byk[c.key]||[]).push(c); });
+  Object.keys(byk).forEach(function(k){
+    h+='<div class="card"><b>'+esc(k)+'</b>';
+    byk[k].forEach(function(c){
+      h+='<div class="f"><span class="pid">'+esc(c.pid)+'</span>'+esc(c.text)+'</div>';});
+    h+='</div>';
+  });
+  h+='</aside></div>';
+  el.innerHTML=h;
 }
 
 function body(){
@@ -207,25 +329,40 @@ function rows(scope){
 }
 
 function matrix(){
-  var p=D.profiles[cur];
-  if(!p.models.length){document.getElementById('mx').innerHTML='';return;}
-  var h='<table><thead><tr><th>행 \\\\ 모델</th>';
-  p.models.forEach(function(m){h+='<th class="rot">'+esc(m.short)+'</th>';});
-  h+='<th>덮개</th></tr></thead><tbody>';
-  p.rows.forEach(function(r){
-    var c=0,cells='';
-    p.models.forEach(function(m){
-      var y=m.any.indexOf(r.name)>=0; if(y)c++;
-      cells+='<td class="c '+(y?'y':'n')+'">'+(y?'●':'·')+'</td>';
-    });
-    h+='<tr><td class="k">'+esc(r.name)+'</td>'+cells
-      +'<td class="c '+(c?'y':'n')+'">'+c+'/'+p.models.length+'</td></tr>';
+  var p=D.profiles[cur], el=document.getElementById('mx');
+  if(!p.models.length){el.innerHTML='';return;}
+  /* 모델명을 세로로 세운 격자였다 — 글자가 세로로 서면 읽을 수가 없다.
+     묻는 것은 둘뿐이다: (1) 모델마다 얼마나 덮나 (2) 아무도 안 내주는 행은 무엇인가.
+     그래서 모델을 **행**으로 눕히고, 빈 행은 따로 목록으로 뺀다. */
+  var tot=p.rows.length;
+  var h='<h3 class="mh">모델별 덮개</h3><table class="cov2"><tbody>';
+  p.models.slice().sort(function(a,b){return b.any.length-a.any.length;})
+   .forEach(function(m){
+    var n=m.any.length, pct=tot?Math.round(n*100/tot):0;
+    h+='<tr><td class="k">'+esc(m.name)+'</td>'
+      +'<td class="bar"><span style="width:'+pct+'%"></span></td>'
+      +'<td class="num">'+n+' / '+tot+'</td>'
+      +'<td class="num pct">'+pct+'%</td></tr>';
   });
   h+='</tbody></table>';
-  document.getElementById('mx').innerHTML=h;
+  var none=p.rows.filter(function(r){
+    return !p.models.some(function(m){return m.any.indexOf(r.name)>=0;});});
+  h+='<h3 class="mh">아무 모델도 안 내주는 행 — '+none.length+' / '+tot+'</h3>';
+  if(!none.length){
+    h+='<p class="ax">없다. 모든 행을 최소 한 모델이 낸다.</p>';
+  }else{
+    h+='<table class="cov2"><tbody>';
+    none.forEach(function(r){
+      h+='<tr><td class="k">'+esc(r.name)+'</td>'
+        +'<td><span class="g '+gcls(r.grade)+'">'+esc(r.grade)+'</span></td>'
+        +'<td class="d">'+esc(r.appliesWhen||'카탈로그 모델에 이 점이 없다 — 문서가 없는 것인지 그 기기에 원래 없는 것인지 가려야 한다')+'</td></tr>';
+    });
+    h+='</tbody></table>';
+  }
+  el.innerHTML=h;
 }
 
-cur=D.order[0]; rail(); body();
+cur='_'; rail(); overview();
 """
 
 
@@ -291,7 +428,42 @@ def build():
         }
 
     order = sorted(profiles, key=lambda k: (-len(profiles[k]["rows"]), k))
-    data = {"order": order, "profiles": profiles}
+
+    # ── 개요: 공용 포인트 ────────────────────────────────────────────────
+    where = collections.defaultdict(dict)      # 원래이름 → {pid: 등급}
+    for pid, p in profiles.items():
+        for r in p["rows"]:
+            where[r["name"]][pid] = r["grade"]
+    seen = set()
+    shared = []
+    for canon, names in CANON.items():
+        cols, raw = {}, []
+        for n in names:
+            for pid, g in where.get(n, {}).items():
+                cols[pid] = g
+                raw.append((pid, n))
+            seen.add(n)
+        if cols:
+            shared.append({"canon": canon, "cols": cols, "raw": raw,
+                           "n": len(cols),
+                           "split": len({n for _p, n in raw}) > 1})
+    shared.sort(key=lambda x: (-x["n"], x["canon"]))
+    solo = []
+    for name, cols in sorted(where.items()):
+        if name not in seen and len(cols) > 1:
+            solo.append({"canon": name, "cols": cols,
+                         "raw": [(p, name) for p in cols],
+                         "n": len(cols), "split": False})
+    solo.sort(key=lambda x: (-x["n"], x["canon"]))
+
+    calc = []
+    for pid in order:
+        for k, v in (profiles[pid]["energyModel"] or {}).items():
+            calc.append({"pid": pid, "key": k, "text": v})
+
+    data = {"order": order, "profiles": profiles,
+            "shared": shared + solo, "calc": calc,
+            "split": [s for s in shared if s["split"]]}
     nrow = sum(len(v["rows"]) for v in profiles.values())
     nmdl = sum(len(v["models"]) for v in profiles.values())
 
