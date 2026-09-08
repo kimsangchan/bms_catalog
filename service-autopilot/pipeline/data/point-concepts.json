@@ -36,8 +36,14 @@
     "e5.rtu",
     "e5.ahu",
     "e8.vrf",
+    "e6.vav",
     "e13.fan",
-    "e15.vfd"
+    "e15.vfd",
+    "e7.crac",
+    "e9.chiller",
+    "e14.pump",
+    "e16.meter",
+    "e19.power"
    ]
   },
   "run-status": {
@@ -54,8 +60,15 @@
     "e5.rtu",
     "e5.ahu",
     "e8.vrf",
+    "e16.actuator",
+    "e6.vav",
     "e13.fan",
-    "e15.vfd"
+    "e15.vfd",
+    "e7.crac",
+    "e9.chiller",
+    "e14.pump",
+    "e16.meter",
+    "e19.power"
    ]
   },
   "mode": {
@@ -85,13 +98,16 @@
     "급기팬 주파수 지령",
     "환기팬 주파수 지령",
     "주파수 지령",
-    "풍량 단계"
+    "풍량 단계",
+    "개도 지령"
    ],
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
     "e8.vrf",
-    "e15.vfd"
+    "e16.actuator",
+    "e15.vfd",
+    "e14.pump"
    ]
   },
   "speed-fb": {
@@ -108,7 +124,8 @@
    ],
    "usedIn": [
     "e13.fan",
-    "e15.vfd"
+    "e15.vfd",
+    "e14.pump"
    ]
   },
   "alarm": {
@@ -126,8 +143,15 @@
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
+    "e16.actuator",
+    "e6.vav",
     "e13.fan",
-    "e15.vfd"
+    "e15.vfd",
+    "e7.crac",
+    "e9.chiller",
+    "e14.pump",
+    "e16.meter",
+    "e19.power"
    ]
   },
   "alarm-code": {
@@ -146,7 +170,14 @@
     "e5.rtu",
     "e5.ahu",
     "e8.vrf",
-    "e15.vfd"
+    "e16.actuator",
+    "e6.vav",
+    "e15.vfd",
+    "e7.crac",
+    "e9.chiller",
+    "e14.pump",
+    "e16.meter",
+    "e19.power"
    ]
   },
   "zone-temp": {
@@ -157,12 +188,15 @@
    "role": "sensor",
    "haystack": "air point sensor temp zone",
    "aliases": [
-    "실내온도"
+    "실내온도",
+    "실내(원격센서) 온도"
    ],
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
-    "e8.vrf"
+    "e8.vrf",
+    "e6.vav",
+    "e7.crac"
    ]
   },
   "oa-temp": {
@@ -190,12 +224,15 @@
    "haystack": "air discharge point sensor temp",
    "aliases": [
     "급기온도",
-    "급기(토출) 온도"
+    "급기(토출) 온도",
+    "공급 온도"
    ],
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
-    "e8.vrf"
+    "e8.vrf",
+    "e7.crac",
+    "e16.meter"
    ]
   },
   "return-temp": {
@@ -207,12 +244,15 @@
    "haystack": "air point return sensor temp",
    "aliases": [
     "환기온도",
-    "환기(리턴) 온도"
+    "환기(리턴) 온도",
+    "환수 온도"
    ],
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
-    "e8.vrf"
+    "e8.vrf",
+    "e7.crac",
+    "e16.meter"
    ]
   },
   "filter-dp": {
@@ -224,13 +264,15 @@
    "haystack": "filter point sensor",
    "aliases": [
     "필터 차압",
-    "필터 청소 신호"
+    "필터 청소 신호",
+    "필터 상태·차압"
    ],
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
     "e8.vrf",
-    "e13.fan"
+    "e13.fan",
+    "e7.crac"
    ]
   },
   "power": {
@@ -242,14 +284,22 @@
    "haystack": "elec power point sensor",
    "aliases": [
     "출력 전력",
-    "소비전력"
+    "소비전력",
+    "순시 열량·전력",
+    "유효 전력"
    ],
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
     "e8.vrf",
+    "e16.actuator",
     "e13.fan",
-    "e15.vfd"
+    "e15.vfd",
+    "e7.crac",
+    "e9.chiller",
+    "e14.pump",
+    "e16.meter",
+    "e19.power"
    ]
   },
   "energy": {
@@ -260,14 +310,18 @@
    "role": "sensor",
    "haystack": "elec energy point sensor",
    "aliases": [
-    "적산 전력량"
+    "적산 전력량",
+    "적산 열량·전력량"
    ],
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
     "e8.vrf",
     "e13.fan",
-    "e15.vfd"
+    "e15.vfd",
+    "e9.chiller",
+    "e16.meter",
+    "e19.power"
    ]
   },
   "current": {
@@ -278,11 +332,17 @@
    "role": "sensor",
    "haystack": "elec current point sensor",
    "aliases": [
-    "출력 전류"
+    "출력 전류",
+    "압축기 전류",
+    "전류",
+    "선전류"
    ],
    "usedIn": [
     "e13.fan",
-    "e15.vfd"
+    "e15.vfd",
+    "e9.chiller",
+    "e14.pump",
+    "e19.power"
    ]
   },
   "runtime": {
@@ -982,6 +1042,496 @@
    ],
    "usedIn": [
     "e15.vfd"
+   ]
+  },
+  "zone-sp": {
+   "ko": "설정온도",
+   "group": "설정값",
+   "objectType": "AV",
+   "unit": "℃",
+   "role": "sp",
+   "haystack": "air point sp temp zone",
+   "aliases": [
+    "재실 설정온도"
+   ],
+   "usedIn": [
+    "e6.vav"
+   ]
+  },
+  "zone-rh": {
+   "ko": "실내습도",
+   "group": "습도·공기질",
+   "objectType": "AI",
+   "unit": "%",
+   "role": "sensor",
+   "haystack": "air humidity point sensor zone",
+   "aliases": [
+    "실내습도"
+   ],
+   "usedIn": [
+    "e7.crac"
+   ]
+  },
+  "rh-sp": {
+   "ko": "습도 설정값",
+   "group": "설정값",
+   "objectType": "AV",
+   "unit": "%",
+   "role": "sp",
+   "haystack": "air humidity point sp",
+   "aliases": [
+    "습도 설정값"
+   ],
+   "usedIn": [
+    "e7.crac"
+   ]
+  },
+  "discharge-sp": {
+   "ko": "급기온도 설정값",
+   "group": "설정값",
+   "objectType": "AV",
+   "unit": "℃",
+   "role": "sp",
+   "haystack": "air discharge point sp temp",
+   "aliases": [
+    "급기온도 설정값"
+   ],
+   "usedIn": [
+    "e7.crac"
+   ]
+  },
+  "valve-chw": {
+   "ko": "냉수밸브 개도",
+   "group": "유량·수측",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "chilled valve water point cmd",
+   "aliases": [],
+   "usedIn": []
+  },
+  "valve-hw": {
+   "ko": "온수밸브 개도",
+   "group": "유량·수측",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "hot valve water point cmd",
+   "aliases": [],
+   "usedIn": []
+  },
+  "condensate-alarm": {
+   "ko": "응축수 넘침",
+   "group": "경보",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "alarm point sensor",
+   "aliases": [],
+   "usedIn": []
+  },
+  "damper-pos": {
+   "ko": "댐퍼 개도",
+   "group": "풍량·압력",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "cmd damper point",
+   "aliases": [
+    "댐퍼 개도",
+    "상대 개도"
+   ],
+   "usedIn": [
+    "e16.actuator",
+    "e6.vav"
+   ]
+  },
+  "airflow": {
+   "ko": "풍량",
+   "group": "풍량·압력",
+   "objectType": "AI",
+   "unit": "m³/h",
+   "role": "sensor",
+   "haystack": "air flow point sensor",
+   "aliases": [
+    "풍량",
+    "상대 유량·풍량"
+   ],
+   "usedIn": [
+    "e16.actuator",
+    "e6.vav"
+   ]
+  },
+  "airflow-sp": {
+   "ko": "풍량 설정값",
+   "group": "설정값",
+   "objectType": "AV",
+   "unit": "m³/h",
+   "role": "sp",
+   "haystack": "air flow point sp",
+   "aliases": [
+    "풍량 지령"
+   ],
+   "usedIn": [
+    "e6.vav"
+   ]
+  },
+  "airflow-min": {
+   "ko": "최소 풍량",
+   "group": "설정값",
+   "objectType": "AV",
+   "unit": "m³/h",
+   "role": "sp",
+   "haystack": "air flow min point sp",
+   "aliases": [
+    "최소 풍량 V'min"
+   ],
+   "usedIn": [
+    "e6.vav"
+   ]
+  },
+  "airflow-max": {
+   "ko": "최대 풍량",
+   "group": "설정값",
+   "objectType": "AV",
+   "unit": "m³/h",
+   "role": "sp",
+   "haystack": "air flow max point sp",
+   "aliases": [
+    "최대 풍량 V'max",
+    "최대 유량 V'max"
+   ],
+   "usedIn": [
+    "e16.actuator",
+    "e6.vav"
+   ]
+  },
+  "occupancy": {
+   "ko": "재실 감지",
+   "group": "상태",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "occupied point sensor",
+   "aliases": [
+    "재실 감지"
+   ],
+   "usedIn": [
+    "e6.vav"
+   ]
+  },
+  "chw-lvg": {
+   "ko": "냉수 출구온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "chilled leaving point sensor temp water",
+   "aliases": [
+    "냉수 출구온도"
+   ],
+   "usedIn": [
+    "e9.chiller"
+   ]
+  },
+  "chw-ent": {
+   "ko": "냉수 입구온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "chilled entering point sensor temp water",
+   "aliases": [
+    "냉수 입구온도"
+   ],
+   "usedIn": [
+    "e9.chiller"
+   ]
+  },
+  "chw-sp": {
+   "ko": "냉수 출구온도 설정값",
+   "group": "설정값",
+   "objectType": "AV",
+   "unit": "℃",
+   "role": "sp",
+   "haystack": "chilled leaving point sp temp water",
+   "aliases": [
+    "냉수 출구온도 설정값"
+   ],
+   "usedIn": [
+    "e9.chiller"
+   ]
+  },
+  "cw-lvg": {
+   "ko": "냉각수 출구온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "condenser leaving point sensor temp water",
+   "aliases": [
+    "냉각수 출구온도"
+   ],
+   "usedIn": [
+    "e9.chiller"
+   ]
+  },
+  "cw-ent": {
+   "ko": "냉각수 입구온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "condenser entering point sensor temp water",
+   "aliases": [
+    "냉각수 입구온도"
+   ],
+   "usedIn": [
+    "e9.chiller"
+   ]
+  },
+  "load-pct": {
+   "ko": "부하율",
+   "group": "상태",
+   "objectType": "AI",
+   "unit": "%",
+   "role": "sensor",
+   "haystack": "표준에 없음 — 벤더 산출값",
+   "aliases": [
+    "부하율"
+   ],
+   "usedIn": [
+    "e9.chiller"
+   ]
+  },
+  "evap-press": {
+   "ko": "증발 압력·온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "kPa",
+   "role": "sensor",
+   "haystack": "evaporator point pressure sensor",
+   "aliases": [
+    "증발 압력·온도"
+   ],
+   "usedIn": [
+    "e9.chiller"
+   ]
+  },
+  "cond-press": {
+   "ko": "응축 압력·온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "kPa",
+   "role": "sensor",
+   "haystack": "condenser point pressure sensor",
+   "aliases": [
+    "응축 압력·온도"
+   ],
+   "usedIn": [
+    "e9.chiller"
+   ]
+  },
+  "water-flow": {
+   "ko": "유량",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "m³/h",
+   "role": "sensor",
+   "haystack": "flow point sensor water",
+   "aliases": [
+    "냉수 유량",
+    "유량",
+    "순시 유량",
+    "유량 (절대)"
+   ],
+   "usedIn": [
+    "e16.actuator",
+    "e9.chiller",
+    "e14.pump",
+    "e16.meter"
+   ]
+  },
+  "remote-enable": {
+   "ko": "원격 기동 허용",
+   "group": "제어 지령",
+   "objectType": "BO",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "cmd enable point",
+   "aliases": [
+    "원격 기동 허용"
+   ],
+   "usedIn": [
+    "e9.chiller"
+   ]
+  },
+  "head-dp": {
+   "ko": "계통 차압",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "kPa",
+   "role": "sensor",
+   "haystack": "delta point pressure sensor water",
+   "aliases": [
+    "계통 차압"
+   ],
+   "usedIn": [
+    "e14.pump"
+   ]
+  },
+  "head-dp-sp": {
+   "ko": "차압 설정값",
+   "group": "설정값",
+   "objectType": "AV",
+   "unit": "kPa",
+   "role": "sp",
+   "haystack": "delta point sp pressure",
+   "aliases": [
+    "차압 설정값"
+   ],
+   "usedIn": [
+    "e14.pump"
+   ]
+  },
+  "disch-press": {
+   "ko": "토출 압력",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "kPa",
+   "role": "sensor",
+   "haystack": "discharge point pressure sensor",
+   "aliases": [
+    "토출 압력"
+   ],
+   "usedIn": [
+    "e14.pump"
+   ]
+  },
+  "valve-pos": {
+   "ko": "밸브 개도",
+   "group": "유량·수측",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "haystack": "cmd valve point",
+   "aliases": [
+    "절대 위치"
+   ],
+   "usedIn": [
+    "e16.actuator"
+   ]
+  },
+  "flow-total": {
+   "ko": "적산 유량",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "m³",
+   "role": "sensor",
+   "haystack": "flow point sensor total water",
+   "aliases": [
+    "적산 유량"
+   ],
+   "usedIn": [
+    "e16.meter"
+   ]
+  },
+  "volt": {
+   "ko": "전압",
+   "group": "전력",
+   "objectType": "AI",
+   "unit": "V",
+   "role": "sensor",
+   "haystack": "elec point sensor volt",
+   "aliases": [
+    "상전압"
+   ],
+   "usedIn": [
+    "e19.power"
+   ]
+  },
+  "pf": {
+   "ko": "역률",
+   "group": "전력",
+   "objectType": "AI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "elec pf point sensor",
+   "aliases": [
+    "역률"
+   ],
+   "usedIn": [
+    "e19.power"
+   ]
+  },
+  "breaker-state": {
+   "ko": "차단기 개폐 상태",
+   "group": "상태",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "point sensor",
+   "aliases": [
+    "차단기 개폐 상태"
+   ],
+   "usedIn": [
+    "e19.power"
+   ]
+  },
+  "winding-temp": {
+   "ko": "변압기 권선 온도",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "point sensor temp",
+   "aliases": [
+    "변압기 권선 온도"
+   ],
+   "usedIn": [
+    "e19.power"
+   ]
+  },
+  "actuator-type": {
+   "ko": "구동기 종류",
+   "group": "상태",
+   "objectType": "MSI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "표준에 없음",
+   "aliases": [
+    "구동기 종류"
+   ],
+   "usedIn": [
+    "e16.actuator"
+   ]
+  },
+  "override": {
+   "ko": "강제 조작",
+   "group": "제어 지령",
+   "objectType": "MSO",
+   "unit": "—",
+   "role": "cmd",
+   "haystack": "cmd override point",
+   "aliases": [
+    "강제 조작"
+   ],
+   "usedIn": [
+    "e16.actuator"
+   ]
+  },
+  "sensor-in": {
+   "ko": "외부 센서 입력",
+   "group": "상태",
+   "objectType": "AI",
+   "unit": "—",
+   "role": "sensor",
+   "haystack": "point sensor",
+   "aliases": [
+    "외부 센서 입력"
+   ],
+   "usedIn": [
+    "e16.actuator"
    ]
   }
  }

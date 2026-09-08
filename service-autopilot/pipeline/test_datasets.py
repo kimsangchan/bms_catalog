@@ -51,9 +51,10 @@ class DatasetBuildTest(unittest.TestCase):
 
         self.assertEqual(tpl, req)
         # 2026-09-08 Belimo 정격을 취입하며 e16(필드기기)·e6(VAV) 프로파일을 세웠다.
-        self.assertEqual(tpl, {"e5.rtu", "e5.ahu", "e8.vrf",
-                               "e16.actuator", "e16.valve", "e6.vav",
-                               "e13.fan", "e15.vfd"})
+        # 2026-09-08 빈 계열을 채웠다 — 화면이 없으면 모델이 들어와도 붙일 자리가 없다.
+        self.assertEqual(tpl, {"e5.rtu", "e5.ahu", "e6.vav", "e7.crac", "e8.vrf",
+                               "e9.chiller", "e13.fan", "e14.pump", "e15.vfd",
+                               "e16.actuator", "e16.meter", "e19.power"})
         for pid, prof in datasets.load_template_profiles().items():
             self.assertNotIn("match", prof, "%s: 매치 규칙을 여기 복제하면 규칙이 두 벌이 된다" % pid)
 

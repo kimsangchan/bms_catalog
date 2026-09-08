@@ -805,15 +805,19 @@
   },
   "e16.actuator": {
    "equipId": "e16",
-   "title": "필드기기 — 댐퍼·밸브 액추에이터",
+   "title": "필드기기 — 댐퍼·밸브 구동기",
    "match": {
-    "catPrefix": "HVAC.FIELD.ACTUATOR"
+    "catPrefix": [
+     "HVAC.FIELD.ACTUATOR"
+    ]
    },
-   "matchNote": "Belimo 액추에이터 11모델. 한 대는 작지만 현장에 수백 대라 합이 크다.",
+   "matchNote": "Belimo 구동기 11모델. ⚠ 밸브(에너지밸브·6-way EPIV·버터플라이)도 cat 이 ACTUATOR 라 여기 들어온다 — 밸브 구동기니까 맞다. 그래서 밸브 정격(DN·Kvs·유량)을 이 프로파일에 합쳤다. 따로 두었던 e16.valve 는 붙을 모델이 하나도 없어 지웠다.",
    "energyModel": {
-    "electrical": "액추에이터 총 전력 = Σ(운전 중인 대수 × 운전 소비전력) + Σ(정지 중인 대수 × 정지 소비전력). ⚠ 정지 소비전력을 0 으로 두면 안 된다 — 24 V 액추에이터는 정지 위치에서도 0.2~1 W 를 계속 먹고, 대수가 많아 이것만으로 상시 부하가 된다.",
+    "electrical": "밸브 액추에이터 전력은 액추에이터 프로파일과 같은 식으로 더한다",
     "dynamics": "개도 변화율 = 90° ÷ 구동 시간. 밸브·댐퍼가 지령을 따라가는 속도라 제어 응답을 흉내 낼 때 쓴다 — 이것이 없으면 계단 응답으로만 돈다",
-    "sizing": "변압기 용량(VA) 합이 제어반 전원 용량 검토의 입력이다"
+    "sizing": "변압기 용량(VA) 합이 제어반 전원 용량 검토의 입력이다",
+    "hydronic": "밸브 통과 유량 = Kvs × √(Δp[bar]) × 개도특성. Kvs 가 없으면 수측 유량을 못 낸다 — 코일 부하가 통째로 추정값이 된다",
+    "thermal": "코일 열량 = 유량 × 비열 × (입구-출구 온도차). 유량이 이 표에서 온다"
    },
    "items": [
     {
@@ -919,26 +923,7 @@
      "searchTerms": [
       "running time"
      ]
-    }
-   ]
-  },
-  "e16.valve": {
-   "equipId": "e16",
-   "title": "필드기기 — 제어 밸브·에너지 밸브·유량계",
-   "match": {
-    "catPrefix": [
-     "HVAC.FIELD.METER",
-     "HVAC.FIELD.SENSOR",
-     "HVAC.FIELD.CONTROLLER"
-    ]
-   },
-   "matchNote": "Belimo Energy Valve · 6-way EPIV · Thermal Energy Meter · 유량센서. 액추에이터와 계산식이 다르다 — 이쪽은 수측 유량이 본체다. FIELD.CONTROLLER(JCI SC-EQ 통신카드 1건)도 여기로 받는다 — 전용 프로파일을 만들 만한 물량이 아니고, 그 모델은 정격이 애초에 없다(펌웨어 릴리스 노트라 오브젝트도 0점). 매처가 못 봐서 터지는 것과 '맞출 값이 없다'는 다른 실패다.",
-   "energyModel": {
-    "hydronic": "밸브 통과 유량 = Kvs × √(Δp[bar]) × 개도특성. Kvs 가 없으면 수측 유량을 못 낸다 — 코일 부하가 통째로 추정값이 된다",
-    "thermal": "코일 열량 = 유량 × 비열 × (입구-출구 온도차). 유량이 이 표에서 온다",
-    "electrical": "밸브 액추에이터 전력은 액추에이터 프로파일과 같은 식으로 더한다"
-   },
-   "items": [
+    },
     {
      "id": "kvs",
      "name": "유량계수 Kvs",
@@ -1011,23 +996,6 @@
      "searchTerms": [
       "pn"
      ]
-    },
-    {
-     "id": "powerOperating",
-     "name": "운전 중 소비전력",
-     "unit": "W",
-     "grade": "권장",
-     "usedBy": [
-      "electrical"
-     ],
-     "why": "밸브 액추에이터 전력. 액추에이터와 같은 방식으로 더한다",
-     "features": [
-      "powerConsumptionOperating"
-     ],
-     "sourceHint": "데이터시트 Electrical data",
-     "searchTerms": [
-      "power consumption in operation"
-     ]
     }
    ]
   },
@@ -1035,82 +1003,75 @@
    "equipId": "e6",
    "title": "VAV 터미널 (정풍량·변풍량 유닛)",
    "match": {
-    "catPrefix": "HVAC.AIR.TERMINAL.VAV"
+    "catPrefix": [
+     "HVAC.AIR.TERMINAL.VAV"
+    ]
    },
-   "matchNote": "Belimo VAV Compact 4모델. 구동부 정격은 액추에이터와 같은 자리에 있고, 풍량은 VAV 컨트롤러 쪽 값이다.",
+   "matchNote": "2026-09-08 신설. 빈 계열을 채웠다 — 화면이 없으면 모델이 들어와도 붙일 자리가 없다.",
    "energyModel": {
-    "airside": "터미널 풍량 = 공칭 풍량 × 개도. 공조기 급기 풍량 배분의 입력이다",
+    "airside": "존 급기량 = 풍량 설정값 × 댐퍼 개도 특성. 공조기 급기 풍량 배분의 입력이다",
+    "comfort": "존 부하 = 풍량 × (급기온도 − 실내온도) × 공기 비열",
     "electrical": "구동부 전력 = 운전/정지 소비전력 × 대수"
    },
    "items": [
     {
-     "id": "nominalFlow",
-     "name": "공칭 풍량",
+     "id": "zoneTemp",
+     "name": "실내온도",
+     "unit": "℃",
+     "grade": "필수",
+     "usedBy": [
+      "comfort"
+     ],
+     "why": "존 제어의 기준값",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "실내온도"
+     ]
+    },
+    {
+     "id": "airflow",
+     "name": "풍량",
      "unit": "m³/h",
      "grade": "필수",
      "usedBy": [
       "airside"
      ],
-     "why": "터미널이 낼 수 있는 최대 풍량. 존별 부하 배분의 상한이다",
-     "features": [
-      "nominalFlow"
-     ],
-     "sourceHint": "데이터시트",
+     "why": "터미널이 실제로 보내는 공기량",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
      "searchTerms": [
-      "nominal flow",
-      "v'nom",
-      "airflow"
+      "풍량"
      ]
     },
     {
-     "id": "powerOperating",
-     "name": "운전 중 소비전력",
-     "unit": "W",
-     "grade": "권장",
-     "usedBy": [
-      "electrical"
-     ],
-     "why": "구동부 전력. 대수가 많다",
-     "features": [
-      "powerConsumptionOperating"
-     ],
-     "sourceHint": "데이터시트 Electrical data",
-     "searchTerms": [
-      "power consumption in operation"
-     ]
-    },
-    {
-     "id": "powerRest",
-     "name": "정지 시 소비전력",
-     "unit": "W",
-     "grade": "권장",
-     "usedBy": [
-      "electrical"
-     ],
-     "why": "정지 위치에서도 먹는다",
-     "features": [
-      "powerConsumptionRest"
-     ],
-     "sourceHint": "데이터시트 Electrical data",
-     "searchTerms": [
-      "power consumption in rest position"
-     ]
-    },
-    {
-     "id": "runningTime",
-     "name": "구동 시간",
-     "unit": "s",
-     "grade": "참고",
+     "id": "airflowRange",
+     "name": "최소·최대 풍량",
+     "unit": "m³/h",
+     "grade": "필수",
      "usedBy": [
       "airside"
      ],
-     "why": "댐퍼가 지령을 따라가는 속도",
-     "features": [
-      "runningTime"
-     ],
-     "sourceHint": "데이터시트 Functional data",
+     "why": "존 부하 배분의 상·하한. 최소 풍량은 환기 요구량이라 아래로 못 내려간다",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
      "searchTerms": [
-      "running time"
+      "최소·최대 풍량"
+     ]
+    },
+    {
+     "id": "damperPos",
+     "name": "댐퍼 개도",
+     "unit": "%",
+     "grade": "권장",
+     "usedBy": [
+      "airside"
+     ],
+     "why": "풍량 지령이 실제로 먹었는지",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "댐퍼 개도"
      ]
     }
    ]
@@ -1350,6 +1311,484 @@
      "searchTerms": [
       "weight",
       "중량"
+     ]
+    }
+   ]
+  },
+  "e7.crac": {
+   "equipId": "e7",
+   "title": "항온항습기 (CRAC) · 팬코일 (FCU)",
+   "match": {
+    "catPrefix": [
+     "HVAC.AIR.CRAC",
+     "HVAC.AIR.FCU"
+    ]
+   },
+   "matchNote": "2026-09-08 신설. 빈 계열을 채웠다 — 화면이 없으면 모델이 들어와도 붙일 자리가 없다.",
+   "energyModel": {
+    "airside": "순환 풍량 = 급기·환기 온도차로 역산한다",
+    "cooling": "냉방 전력 = 실부하 ÷ COP. CRAC 는 현열비가 높아 잠열 항을 따로 본다",
+    "humidity": "가습·제습 전력 = 습도 설정값과 실측의 차 × 잠열. **CRAC 에서는 이것이 냉방 못지않다** — 제습하려고 과냉하고 다시 재열하는 구간이 있다"
+   },
+   "items": [
+    {
+     "id": "supplyTemp",
+     "name": "급기온도",
+     "unit": "℃",
+     "grade": "필수",
+     "usedBy": [
+      "cooling",
+      "airside"
+     ],
+     "why": "환기온도와의 차 × 풍량 = 실제 코일 부하",
+     "features": [
+      "discharge-temp"
+     ],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "급기온도"
+     ]
+    },
+    {
+     "id": "returnTemp",
+     "name": "환기온도",
+     "unit": "℃",
+     "grade": "필수",
+     "usedBy": [
+      "cooling",
+      "airside"
+     ],
+     "why": "코일 입구 조건",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "환기온도"
+     ]
+    },
+    {
+     "id": "humidity",
+     "name": "실내습도",
+     "unit": "%",
+     "grade": "필수",
+     "usedBy": [
+      "humidity"
+     ],
+     "why": "CRAC 의 존재 이유가 습도다. 잠열 부하를 못 내면 전산실 계산이 통째로 틀린다",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "실내습도"
+     ]
+    },
+    {
+     "id": "coolingCapacity",
+     "name": "정격 냉방능력",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "cooling"
+     ],
+     "why": "부분부하율의 분모",
+     "features": [
+      "grossCoolingCapacity"
+     ],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "정격 냉방능력"
+     ]
+    },
+    {
+     "id": "systemPower",
+     "name": "정격 소비전력",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "cooling"
+     ],
+     "why": "COP 산출",
+     "features": [
+      "systemPower"
+     ],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "정격 소비전력"
+     ]
+    }
+   ]
+  },
+  "e9.chiller": {
+   "equipId": "e9",
+   "title": "냉동기 (칠러)",
+   "match": {
+    "catPrefix": [
+     "HVAC.PLANT.CHILLER"
+    ]
+   },
+   "matchNote": "2026-09-08 신설. 빈 계열을 채웠다 — 화면이 없으면 모델이 들어와도 붙일 자리가 없다.",
+   "energyModel": {
+    "condenser": "응축 조건이 COP 를 지배한다. 냉각수 출구온도가 1 ℃ 오르면 소비전력이 2~3 % 는다 — 냉각탑과 묶어 봐야 한다",
+    "cooling": "냉동기 전력 = 냉동 부하 ÷ COP(부분부하). 부하는 냉수 유량 × 입·출구 온도차 × 물 비열로 낸다 — 그래서 온도 넷과 유량이 필수다",
+    "electrical": "실측 대조는 소비전력·적산 전력량으로 한다"
+   },
+   "items": [
+    {
+     "id": "chwTemps",
+     "name": "냉수 입·출구온도",
+     "unit": "℃",
+     "grade": "필수",
+     "usedBy": [
+      "cooling"
+     ],
+     "why": "부하 = 유량 × 온도차 × 비열. 온도차가 없으면 부하를 못 낸다",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "냉수 입·출구온도"
+     ]
+    },
+    {
+     "id": "cwTemps",
+     "name": "냉각수 입·출구온도",
+     "unit": "℃",
+     "grade": "필수",
+     "usedBy": [
+      "condenser"
+     ],
+     "why": "응축 조건. COP 보정의 지배 변수다",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "냉각수 입·출구온도"
+     ]
+    },
+    {
+     "id": "chwFlow",
+     "name": "냉수 유량",
+     "unit": "m³/h",
+     "grade": "필수",
+     "usedBy": [
+      "cooling"
+     ],
+     "why": "부하 식의 첫 항",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "냉수 유량"
+     ]
+    },
+    {
+     "id": "power",
+     "name": "소비전력",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "electrical",
+      "cooling"
+     ],
+     "why": "COP = 부하 ÷ 소비전력. 실측 대조의 기준",
+     "features": [
+      "systemPower"
+     ],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "소비전력"
+     ]
+    },
+    {
+     "id": "capacity",
+     "name": "정격 냉동능력",
+     "unit": "RT",
+     "grade": "필수",
+     "usedBy": [
+      "cooling"
+     ],
+     "why": "부분부하율의 분모",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "정격 냉동능력"
+     ]
+    }
+   ]
+  },
+  "e14.pump": {
+   "equipId": "e14",
+   "title": "펌프 (냉수·냉각수·급수)",
+   "match": {
+    "catPrefix": [
+     "HVAC.PLANT.PUMP"
+    ]
+   },
+   "matchNote": "2026-09-08 신설. 빈 계열을 채웠다 — 화면이 없으면 모델이 들어와도 붙일 자리가 없다.",
+   "energyModel": {
+    "control": "차압 설정값이 제어 목표다. 설정을 낮출수록 전력이 준다(최적화 여지)",
+    "electrical": "전력 = 축동력 ÷ 인버터효율. 대수제어 구간은 대수 × 대당 전력",
+    "hydronic": "펌프 축동력 = 유량 × 양정 ÷ (펌프효율 × 모터효율). 변유량은 상사법칙으로 회전수 비의 3제곱에 비례한다 — 인버터 펌프의 지배 변수가 주파수다"
+   },
+   "items": [
+    {
+     "id": "freq",
+     "name": "현재 주파수",
+     "unit": "Hz",
+     "grade": "필수",
+     "usedBy": [
+      "hydronic",
+      "electrical"
+     ],
+     "why": "상사법칙의 입력. 인버터 펌프 전력의 지배 변수",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "현재 주파수"
+     ]
+    },
+    {
+     "id": "dp",
+     "name": "계통 차압",
+     "unit": "kPa",
+     "grade": "필수",
+     "usedBy": [
+      "control",
+      "hydronic"
+     ],
+     "why": "제어 목표이자 양정의 대리값",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "계통 차압"
+     ]
+    },
+    {
+     "id": "dpSp",
+     "name": "차압 설정값",
+     "unit": "kPa",
+     "grade": "필수",
+     "usedBy": [
+      "control"
+     ],
+     "why": "이 값을 낮추면 전력이 준다 — 최적화의 손잡이",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "차압 설정값"
+     ]
+    },
+    {
+     "id": "flow",
+     "name": "유량",
+     "unit": "m³/h",
+     "grade": "권장",
+     "usedBy": [
+      "hydronic"
+     ],
+     "why": "축동력 식의 첫 항",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "유량"
+     ]
+    },
+    {
+     "id": "motorPower",
+     "name": "모터 출력",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "electrical"
+     ],
+     "why": "전력의 상한",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "모터 출력"
+     ]
+    }
+   ]
+  },
+  "e16.meter": {
+   "equipId": "e16",
+   "title": "계량기 (열량계·유량계·전력량계)",
+   "match": {
+    "catPrefix": [
+     "HVAC.FIELD.METER",
+     "HVAC.FIELD.SENSOR",
+     "HVAC.FIELD.CONTROLLER"
+    ]
+   },
+   "matchNote": "열량계·유량센서·온습도센서 5모델. FIELD.CONTROLLER(JCI SC-EQ 통신카드 1건)도 여기로 받는다 — 전용 프로파일을 만들 물량이 아니고 그 모델은 포인트가 6점뿐이다.",
+   "energyModel": {
+    "electrical": "전력량계는 전기측 정산 기준. 열량계와 함께 보면 계통 COP 가 나온다",
+    "thermal": "열량 = 유량 × 비열 × (공급-환수 온도차). 열량계가 이 셋을 다 준다 — **시뮬레이터 결과를 실측과 맞추는 유일한 수측 기준**이다"
+   },
+   "items": [
+    {
+     "id": "flow",
+     "name": "순시 유량",
+     "unit": "m³/h",
+     "grade": "필수",
+     "usedBy": [
+      "thermal"
+     ],
+     "why": "열량 식의 첫 항",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "순시 유량"
+     ]
+    },
+    {
+     "id": "flowTotal",
+     "name": "적산 유량",
+     "unit": "m³",
+     "grade": "권장",
+     "usedBy": [
+      "thermal"
+     ],
+     "why": "정산·누수 판정",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "적산 유량"
+     ]
+    },
+    {
+     "id": "temps",
+     "name": "공급·환수 온도",
+     "unit": "℃",
+     "grade": "필수",
+     "usedBy": [
+      "thermal"
+     ],
+     "why": "열량 식의 온도차",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "공급·환수 온도"
+     ]
+    },
+    {
+     "id": "power",
+     "name": "순시 전력·열량",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "thermal",
+      "electrical"
+     ],
+     "why": "실측 대조의 기준",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "순시 전력·열량"
+     ]
+    },
+    {
+     "id": "energy",
+     "name": "적산 열량·전력량",
+     "unit": "kWh",
+     "grade": "필수",
+     "usedBy": [
+      "thermal",
+      "electrical"
+     ],
+     "why": "정산 기준",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "적산 열량·전력량"
+     ]
+    }
+   ]
+  },
+  "e19.power": {
+   "equipId": "e19",
+   "title": "전력 설비 (수배전·계측)",
+   "match": {
+    "catPrefix": [
+     "ELEC.METER",
+     "ELEC.PANEL"
+    ]
+   },
+   "matchNote": "2026-09-08 신설. 빈 계열을 채웠다 — 화면이 없으면 모델이 들어와도 붙일 자리가 없다.",
+   "energyModel": {
+    "electrical": "계통 소비전력의 **정답지**다. 설비별 계산의 합이 여기와 맞아야 한다 — 안 맞으면 계산이 틀렸거나 안 센 설비가 있다는 뜻이다",
+    "quality": "역률·불평형은 손실로 나타난다. 무효전력이 크면 같은 유효전력에 전류가 커진다",
+    "thermal": "변압기 권선 온도는 손실의 대리 지표이고 기계실 발열의 입력이다"
+   },
+   "items": [
+    {
+     "id": "power",
+     "name": "유효 전력",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "electrical"
+     ],
+     "why": "계통 합계의 정답지",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "유효 전력"
+     ]
+    },
+    {
+     "id": "energy",
+     "name": "적산 전력량",
+     "unit": "kWh",
+     "grade": "필수",
+     "usedBy": [
+      "electrical"
+     ],
+     "why": "정산 기준",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "적산 전력량"
+     ]
+    },
+    {
+     "id": "voltCurrent",
+     "name": "상전압·선전류",
+     "unit": "V / A",
+     "grade": "권장",
+     "usedBy": [
+      "quality"
+     ],
+     "why": "불평형·과부하 판정",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "상전압·선전류"
+     ]
+    },
+    {
+     "id": "pf",
+     "name": "역률",
+     "unit": "—",
+     "grade": "권장",
+     "usedBy": [
+      "quality"
+     ],
+     "why": "무효전력 손실",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "역률"
+     ]
+    },
+    {
+     "id": "windingTemp",
+     "name": "변압기 권선 온도",
+     "unit": "℃",
+     "grade": "권장",
+     "usedBy": [
+      "thermal"
+     ],
+     "why": "기계실 발열의 입력",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "변압기 권선 온도"
      ]
     }
    ]

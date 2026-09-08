@@ -30,6 +30,20 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 OUT = os.path.join(HERE, "..", "review", "template-map.html")
+CATALOG = os.path.join(HERE, "..", "08-equip-spec-tag-catalog.md")
+
+
+def equip_names():
+    """계열 한글 이름을 **기준 문서에서 읽는다** — 두 벌을 만들지 않는다.
+    '# 8. VRF (실내기 · 실외기)' -> e8. verify_points.py 와 같은 방식이다."""
+    import re
+    out = {}
+    if os.path.exists(CATALOG):
+        for line in io.open(CATALOG, encoding="utf-8"):
+            m = re.match(r"^#\s+(\d+)\.\s+(.+?)\s*$", line)
+            if m:
+                out["e" + m.group(1)] = m.group(2)
+    return out
 
 # 공용 포인트는 **사전**이 정한다 — data/point-concepts.json.
 # 예전엔 이 파일 안에 CANON 표를 두고 이름으로 묶었다. 그건 판단이 코드에 숨는 구조였고,
@@ -52,7 +66,8 @@ code{font-family:var(--mono);font-size:11px;color:var(--dim);word-break:break-al
 /* 탭 + 필터 바 — 위에 붙어 따라온다. 스크롤해도 조작부가 사라지지 않는다 */
 .top{position:sticky;top:0;z-index:5;background:var(--bg);padding-top:2px;
  border-bottom:1px solid var(--line);margin-bottom:10px}
-.tabs{display:flex;gap:4px;margin-bottom:8px}
+.tabs{display:flex;gap:4px;margin-bottom:8px;align-items:center}
+.tabs .brand{font-weight:700;font-size:13px;margin-right:10px;white-space:nowrap}
 .tabs button{background:none;border:0;border-bottom:2px solid transparent;
  padding:5px 12px;color:var(--dim);font:13px var(--ui);cursor:pointer}
 .tabs button[aria-current=true]{color:var(--ink);border-bottom-color:var(--accent);
@@ -140,6 +155,22 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function gcls(g){return g==='필수'?'f':g==='권장'?'r':'o';}
 function el(id){return document.getElementById(id);}
+/* 계열(equipId)로 묶은 드롭다운. 예전엔 e5.rtu 같은 id 를 그대로 늘어놓아
+   무엇이 무엇인지 읽히지 않았다 — 계열 이름을 optgroup 으로 세운다. */
+function optGrouped(cur,ph){
+  var h=ph?'<option value="">'+ph+'</option>':'';
+  Object.keys(D.families).forEach(function(eq){
+    var ps=D.order.filter(function(p){return D.profiles[p].equipId===eq;});
+    if(!ps.length) return;
+    h+='<optgroup label="'+esc(eq+'  '+D.families[eq])+'">';
+    ps.forEach(function(p){
+      var t=D.profiles[p].title.replace(/ — BMS 기본화면$/,'');
+      h+='<option value="'+p+'"'+(String(cur)===p?' selected':'')+'>'+esc(t)
+        +' · '+D.profiles[p].rows.length+'행</option>';});
+    h+='</optgroup>';
+  });
+  return h;
+}
 function opt(list,cur,ph){
   return '<option value="">'+ph+'</option>'+list.map(function(x){
     return '<option value="'+esc(x[0])+'"'+(String(cur)===String(x[0])?' selected':'')
@@ -160,8 +191,11 @@ function sharedRows(){
 function drawShared(){
   var rows=sharedRows(), page=slice(rows);
   var h='<table><thead><tr><th>묶음</th><th>개념</th>';
-  D.order.forEach(function(pid){h+='<th class="pid">'
-    +esc(pid.split('.')[1]||pid)+'<span class="e">'+esc(pid.split('.')[0])+'</span></th>';});
+  D.order.forEach(function(pid){
+    var pp=D.profiles[pid];
+    h+='<th class="pid" title="'+esc(pp.equipId+' '+pp.equipKo)+'">'
+      +esc(pid.split('.')[1]||pid)+'<span class="e">'+esc(pp.equipKo.split(' ')[0])
+      +'</span></th>';});
   h+='<th>계열</th></tr></thead><tbody>';
   page.forEach(function(s,i){
     h+='<tr data-i="'+i+'"'+(S.sel===s.cid?' class="sel"':'')+'>'
@@ -322,7 +356,7 @@ function bind(page,pick){
    전역**이라 덮이지 않고, 호출하는 순간 'top is not a function' 으로 죽는다.
    페이지가 통째로 안 열렸다. node 검사에는 window.top 이 없어 통과했다. */
 function drawBar(){
-  var h='<div class="tabs">'
+  var h='<div class="tabs"><span class="brand">템플릿 검사대</span>'
     +'<button data-t="shared" aria-current="'+(S.tab==='shared')+'">공용 포인트</button>'
     +'<button data-t="rows" aria-current="'+(S.tab==='rows')+'">템플릿 행</button></div>';
   h+='<div class="bar"><input id="q" placeholder="개념·포인트 이름 검색" value="'
@@ -330,14 +364,10 @@ function drawBar(){
     +'<select id="fgr">'+opt(D.groups.map(function(g){return [g,g];}),S.grp,'전 묶음')
     +'</select>';
   if(S.tab==='shared'){
-    h+='<select id="fp">'+opt(D.order.map(function(p){return [p,p];}),S.pid,'전 계열')
-      +'</select>'
+    h+='<select id="fp">'+optGrouped(S.pid,'전 계열')+'</select>'
       +'<button class="chip" id="fc" aria-pressed="'+S.core+'">계열 3개 이상만</button>';
   }else{
-    h+='<select id="fp">'+D.order.map(function(p){
-        return '<option value="'+p+'"'+(curProfile()===p?' selected':'')+'>'
-          +esc(D.profiles[p].title)+' ('+D.profiles[p].rows.length+')</option>';}).join('')
-      +'</select>';
+    h+='<select id="fp">'+optGrouped(curProfile(),null)+'</select>';
     var p=D.profiles[curProfile()];
     if(p.models.length){
       h+='<select id="fm">'+p.models.map(function(m,i){
@@ -506,7 +536,16 @@ def build():
         for k, v in (profiles[pid]["energyModel"] or {}).items():
             calc.append({"pid": pid, "key": k, "text": v})
 
+    fam = equip_names()
+    for pid, pr in profiles.items():
+        eq = pid.split(".")[0]
+        pr["equipId"] = eq
+        pr["equipKo"] = fam.get(eq, eq)
     data = {"order": order, "profiles": profiles,
+            "families": collections.OrderedDict(
+                (eq, fam.get(eq, eq)) for eq in
+                sorted({pid.split(".")[0] for pid in profiles},
+                       key=lambda x: int(x[1:]))),
             "shared": shared, "calc": calc,
             "groups": cdoc.get("groups") or [],
             "split": [s for s in shared if s["split"]]}
@@ -517,15 +556,11 @@ def build():
     html = ("<!doctype html><html lang=ko><meta charset=utf-8>"
             "<meta name=viewport content='width=device-width,initial-scale=1'>"
             "<title>BMS 기본화면 템플릿 검사대</title><style>%s</style>"
-            "<div class=wrap><h1>BMS 기본화면 템플릿 검사대</h1>"
-            "<p class=sub>화면이 목록을 정하지 않는다 — <code>equip-templates.json</code> · "
-            "<code>equip-requirements.json</code> · <code>model-mappings.json</code> 을 "
-            "그대로 보여 준다. 프로파일 %d · 템플릿 행 %d · 붙는 모델 %d</p>"
+            "<div class=wrap>"
             "<div class=top id=top></div>"
             "<div class=split><div id=grid></div><aside id=side></aside></div></div>"
             "<script>var DATA=%s;\n%s</script></html>"
-            % (CSS, len(profiles), nrow, nmdl,
-               json.dumps(data, ensure_ascii=False), JS))
+            % (CSS, json.dumps(data, ensure_ascii=False), JS))
     with io.open(OUT, "w", encoding="utf-8", newline="\n") as f:
         f.write(html)
     print("→ %s  (%.2f MB · 프로파일 %d · 행 %d · 모델 %d)"

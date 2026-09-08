@@ -1575,7 +1575,7 @@
   "e8.vrf": {
    "equipId": "e8",
    "title": "시스템에어컨 VRF — BMS 기본화면",
-   "basis": "국내 VRF 게이트웨이 5모델 619점(LG AC Smart 264 · 삼성 MIM-B17BN 264 · JCI SI-VRFCBN02 실내기 32·실외기 26 · Daikin DMS502B71 33)을 실제로 훑어 벤더를 가로질러 되풀이되는 개념만 남겼다. 이름은 벤더마다 전혀 다르다 — 실내온도 하나가 RoomTemp(Daikin) · ZN-T(JCI) · RoomTemperature_XXX(LG) · AC_RoomTemp_xx(삼성) 넷으로 적힌다. 그래서 화면(왼쪽 열)은 모델을 몰라도 설계되고 모델은 주소를 붙일 때만 필요하다 — 그 흡수를 각 행의 match.include 가 한다. 씨앗은 data/equips/e8.json 의 손으로 쓴 11행이었고 실측 노출로 22행으로 늘렸다: 운전/정지·운전상태·적산 전력량·배관온도·EEV 개도·외기온도가 빠져 있었다 — 전력 계산의 뼈대인데 없었다.",
+   "basis": "국내 VRF 게이트웨이 5모델 619점(LG AC Smart 264 · 삼성 MIM-B17BN 264 · JCI SI-VRFCBN02 실내기 32·실외기 26 · Daikin DMS502B71 33)을 실제로 훑어 벤더를 가로질러 되풀이되는 개념만 남겼다. 이름은 벤더마다 전혀 다르다 — 실내온도 하나가 RoomTemp(Daikin) · ZN-T(JCI) · RoomTemperature_XXX(LG) · AC_RoomTemp_xx(삼성) 넷으로 적힌다. 그래서 화면(왼쪽 열)은 모델을 몰라도 설계되고 모델은 주소를 붙일 때만 필요하다 — 그 흡수를 각 행의 match.include 가 한다. 출발점은 data/equips/e8.json 에 기획 초기부터 손으로 적혀 있던 11행이었고 실측 노출로 22행으로 늘렸다: 운전/정지·운전상태·적산 전력량·배관온도·EEV 개도·외기온도가 빠져 있었다 — 전력 계산의 뼈대인데 없었다.",
    "templatePoints": [
     {
      "name": "설정온도 상·하한",
@@ -2017,27 +2017,483 @@
   },
   "e16.actuator": {
    "equipId": "e16",
-   "title": "필드기기 액추에이터 — BMS 기본화면",
-   "basis": "정격(data/units)부터 채우고 화면 행은 그다음이다 — 규칙 0 순서.",
-   "pending": "행이 비어 있다 = 신설 과제(규칙 ④). Belimo 액추에이터 11모델 240점은 이미 있으나 BMS 기본화면 행을 아직 안 정했다. e8.vrf 를 만든 방식대로 — 벤더를 가로질러 되풀이되는 개념만 남기고 등급은 실측 노출로 정한다 — 하면 된다. 지금 정격부터 채운다.",
+   "title": "필드기기 구동기 — BMS 기본화면",
+   "basis": "Belimo 구동기 11모델 355점의 실제 포인트 이름을 보고 썼다 — RelPos·AbsPos·SpRel·RelFlow·AbsFlow·Vmax·Sens1Analog·Actuator Type. 밸브 구동기도 cat 이 ACTUATOR 라 여기 함께 온다.",
    "excludeCommon": "",
-   "templatePoints": []
-  },
-  "e16.valve": {
-   "equipId": "e16",
-   "title": "필드기기 제어밸브·유량계 — BMS 기본화면",
-   "basis": "정격(data/units)부터 채우고 화면 행은 그다음이다 — 규칙 0 순서.",
-   "pending": "행이 비어 있다 = 신설 과제(규칙 ④). Energy Valve·EPIV·TEM 8모델 320점이 있다. 액추에이터와 화면이 다르다 — 이쪽은 유량·열량이 본체다.",
-   "excludeCommon": "",
-   "templatePoints": []
+   "templatePoints": [
+    {
+     "name": "상대 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "cmd damper point",
+     "why": "구동기가 실제로 선 자리(0~100 %). 댐퍼·밸브의 유량은 여기서 나온다",
+     "usedBy": [
+      "hydronic",
+      "airside"
+     ],
+     "concept": "damper-pos",
+     "group": "풍량·압력",
+     "match": {
+      "include": "^relpos|relative position|상대.?개도",
+      "exclude": "setpoint|지령"
+     }
+    },
+    {
+     "name": "절대 위치",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "cmd valve point",
+     "why": "각도(°) 또는 행정(mm). 기구가 끝단에 걸렸는지 본다",
+     "usedBy": [
+      "hydronic"
+     ],
+     "concept": "valve-pos",
+     "group": "유량·수측",
+     "match": {
+      "include": "^abspos|absolute position|절대.?위치"
+     }
+    },
+    {
+     "name": "개도 지령",
+     "objectType": "AO",
+     "unit": "Hz",
+     "role": "cmd",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "cmd freq point vfd",
+     "why": "제어기가 내리는 목표. 실제 개도와의 차가 응답 지연이다",
+     "usedBy": [
+      "control"
+     ],
+     "concept": "speed-cmd",
+     "group": "제어 지령",
+     "match": {
+      "include": "^sprel|relative setpoint|^setpoint\\b|개도.?지령|설정값",
+      "exclude": "analog|min|max"
+     }
+    },
+    {
+     "name": "유량 (절대)",
+     "objectType": "AI",
+     "unit": "m³/h",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "flow point sensor water",
+     "why": "밸브가 실제로 흘린 물의 양. 코일 열량 = 유량 × 비열 × 온도차 의 첫 항",
+     "usedBy": [
+      "hydronic",
+      "thermal"
+     ],
+     "concept": "water-flow",
+     "group": "유량·수측",
+     "match": {
+      "include": "^absflow|absolute (volumetric )?flow|절대.?유량",
+      "exclude": "setpoint|지령|max|min"
+     }
+    },
+    {
+     "name": "상대 유량·풍량",
+     "objectType": "AI",
+     "unit": "m³/h",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "air flow point sensor",
+     "why": "정격 대비 몇 %인가. VAV·에너지밸브가 이 값으로 제어된다",
+     "usedBy": [
+      "hydronic",
+      "airside"
+     ],
+     "concept": "airflow",
+     "group": "풍량·압력",
+     "match": {
+      "include": "^relflow|relative (volumetric )?flow|상대.?유량|상대.?풍량"
+     }
+    },
+    {
+     "name": "최대 유량 V'max",
+     "objectType": "AV",
+     "unit": "m³/h",
+     "role": "sp",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "air flow max point sp",
+     "why": "이 값이 곧 그 회로의 설계 유량이다 — 정격표의 V'nom 과 견준다",
+     "usedBy": [
+      "hydronic"
+     ],
+     "concept": "airflow-max",
+     "group": "설정값",
+     "match": {
+      "include": "^vmax|^max\\b|maximum flow|최대.?유량|정격.?유량"
+     }
+    },
+    {
+     "name": "외부 센서 입력",
+     "objectType": "AI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "point sensor",
+     "why": "Belimo 구동기는 온도·압력 센서를 물려 값을 버스로 흘린다 — 그 값이 없으면 코일 온도차를 다른 데서 구해야 한다",
+     "usedBy": [
+      "thermal"
+     ],
+     "concept": "sensor-in",
+     "group": "상태",
+     "match": {
+      "include": "^sens\\d|sensor \\d (value|as analog)|센서.?\\d"
+     }
+    },
+    {
+     "name": "구동기 종류",
+     "objectType": "MSI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "선택",
+     "haystack": "표준에 없음",
+     "why": "공기측인지 수측인지 원문이 열거로 알려 준다. 계산에는 안 쓰고 식별에 쓴다",
+     "usedBy": [],
+     "concept": "actuator-type",
+     "group": "상태",
+     "match": {
+      "include": "actuator type|구동기.?종류"
+     }
+    },
+    {
+     "name": "강제 조작",
+     "objectType": "MSO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "",
+     "grade": "선택",
+     "haystack": "cmd override point",
+     "why": "시운전·점검 때 값을 덮어쓴다. 그 구간의 데이터는 정상 운전이 아니다",
+     "usedBy": [],
+     "concept": "override",
+     "group": "제어 지령",
+     "match": {
+      "include": "^override|강제.?조작"
+     }
+    },
+    {
+     "name": "소비전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "elec power point sensor",
+     "why": "한 대는 작지만 현장에 수백 대다. 정지 위치에서도 계속 먹는다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "power",
+     "group": "전력",
+     "match": {
+      "include": "\\bpower\\b(?!.?(factor|supply))|소비.?전력",
+      "exclude": "factor|kwh|적산"
+     }
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "point run sensor",
+     "why": "구동 중인지. 지령과 실제가 다를 수 있다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-status",
+     "group": "상태",
+     "match": {
+      "include": "^status\\b|run.?status|운전.?상태",
+      "exclude": "bus|watchdog|termination"
+     }
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "alarm point sensor",
+     "why": "고착·과부하. 고장 중 개도는 믿을 수 없다",
+     "usedBy": [
+      "hydronic"
+     ],
+     "concept": "alarm",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "malfunction|^alarm|fault|고장|경보",
+      "exclude": "code|코드|reset"
+     }
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI/MSO",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+     "why": "왜 섰는지 가른다",
+     "usedBy": [
+      "hydronic"
+     ],
+     "concept": "alarm-code",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "(malfunction|alarm|fault|error).{0,8}(code|information)|고장.?코드"
+     }
+    }
+   ]
   },
   "e6.vav": {
    "equipId": "e6",
    "title": "VAV 터미널 — BMS 기본화면",
-   "basis": "정격(data/units)부터 채우고 화면 행은 그다음이다 — 규칙 0 순서.",
-   "pending": "행이 비어 있다 = 신설 과제(규칙 ④). Belimo VAV Compact 4모델 98점이 있다. ⚠ 현장 VAV 제조사가 미확정이라(나라컨트롤 후보, 근거 약함) 화면 행을 확정하기 전에 제조사부터 정해야 한다 — 10-site-driven-priority.md 참고.",
+   "basis": "초안 표(data/equips/e6.json)과 계열 모델의 실제 포인트 이름을 보고 썼다. 모든 계열에 뼈대 4행(운전/정지·운전 상태·고장·경보·고장 코드)을 넣는다 — e5·e13 에서 이게 통째로 빠져 LG AHU 킷이 2점만 붙었다.",
    "excludeCommon": "",
-   "templatePoints": []
+   "templatePoints": [
+    {
+     "name": "실내온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "air point sensor temp zone",
+     "why": "존 제어의 기준값이자 시뮬레이터가 되돌려 주는 상태량",
+     "usedBy": [
+      "comfort"
+     ],
+     "concept": "zone-temp",
+     "group": "온도",
+     "match": {
+      "include": "room.?temp|zone.?temp|space.?temp|실내.?온도",
+      "exclude": "set|sp\\b|설정"
+     }
+    },
+    {
+     "name": "재실 설정온도",
+     "objectType": "AV",
+     "unit": "℃",
+     "role": "sp",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "air point sp temp zone",
+     "why": "실내온도와의 차가 요구 부하다",
+     "usedBy": [
+      "comfort"
+     ],
+     "concept": "zone-sp",
+     "group": "설정값",
+     "match": {
+      "include": "(zone|room|space).?(temp)?.?(setpoint|sp)\\b|설정.?온도"
+     }
+    },
+    {
+     "name": "풍량",
+     "objectType": "AI",
+     "unit": "m³/h",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "air flow point sensor",
+     "why": "터미널이 실제로 보내는 공기량. 존 부하의 첫 항",
+     "usedBy": [
+      "airside"
+     ],
+     "concept": "airflow",
+     "group": "풍량·압력",
+     "match": {
+      "include": "^abs(olute)?.?flow|absolute volumetric flow|풍량",
+      "exclude": "setpoint|nominal|max|min"
+     }
+    },
+    {
+     "name": "풍량 지령",
+     "objectType": "AV",
+     "unit": "m³/h",
+     "role": "sp",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "air flow point sp",
+     "why": "제어기가 목표로 삼는 풍량",
+     "usedBy": [
+      "airside"
+     ],
+     "concept": "airflow-sp",
+     "group": "설정값",
+     "match": {
+      "include": "^sprel\\b|relative setpoint|풍량.?지령|flow.*setpoint"
+     }
+    },
+    {
+     "name": "최소 풍량 V'min",
+     "objectType": "AV",
+     "unit": "m³/h",
+     "role": "sp",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "air flow min point sp",
+     "why": "환기 요구량의 하한. 부하가 없어도 이 아래로 못 내려간다",
+     "usedBy": [
+      "airside"
+     ],
+     "concept": "airflow-min",
+     "group": "설정값",
+     "match": {
+      "include": "^min\\b|v.?min|최소.?풍량"
+     }
+    },
+    {
+     "name": "최대 풍량 V'max",
+     "objectType": "AV",
+     "unit": "m³/h",
+     "role": "sp",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "air flow max point sp",
+     "why": "존 부하 배분의 상한",
+     "usedBy": [
+      "airside"
+     ],
+     "concept": "airflow-max",
+     "group": "설정값",
+     "match": {
+      "include": "^max\\b|v.?max|vnom|nominal flow|최대.?풍량|정격.?풍량"
+     }
+    },
+    {
+     "name": "댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "cmd damper point",
+     "why": "풍량 지령이 실제로 먹었는지 본다",
+     "usedBy": [
+      "airside"
+     ],
+     "concept": "damper-pos",
+     "group": "풍량·압력",
+     "match": {
+      "include": "^(rel|abs)pos|relative position|absolute position|댐퍼.?개도"
+     }
+    },
+    {
+     "name": "재실 감지",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "선택",
+     "haystack": "occupied point sensor",
+     "why": "재실 스케줄은 내부발열의 입력이다",
+     "usedBy": [
+      "comfort"
+     ],
+     "concept": "occupancy",
+     "group": "상태",
+     "match": {
+      "include": "occupan|재실"
+     }
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "cmd enable point",
+     "why": "꺼진 시간은 전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "match": {
+      "include": "start.?stop.*(cmd|command)|^on.?off|enable.*command|remote.*(start|enable)|기동|운전.?정지",
+      "exclude": "status|상태|hour|시간"
+     }
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "point run sensor",
+     "why": "지령과 실제가 다를 수 있다. 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-status",
+     "group": "상태",
+     "match": {
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
+      "exclude": "command|지령|hour|시간|comp|압축기"
+     }
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "alarm point sensor",
+     "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "^(alarm|fault|trip)\\b|general.*(alarm|fault)|unit.*(alarm|fault)|고장|경보",
+      "exclude": "code|코드|word|reset|리셋|count|history"
+     }
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI/MSO",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+     "why": "왜 섰는지 가른다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm-code",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "(alarm|fault|error|trip).{0,8}(code|word|no\\b)|고장.?코드"
+     }
+    }
+   ]
   },
   "e13.fan": {
    "equipId": "e13",
@@ -2752,6 +3208,1217 @@
      "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
      "concept": "runtime",
      "group": "정비"
+    }
+   ]
+  },
+  "e7.crac": {
+   "equipId": "e7",
+   "title": "항온항습기·FCU — BMS 기본화면",
+   "basis": "초안 표(data/equips/e7.json)과 계열 모델의 실제 포인트 이름을 보고 썼다. 모든 계열에 뼈대 4행(운전/정지·운전 상태·고장·경보·고장 코드)을 넣는다 — e5·e13 에서 이게 통째로 빠져 LG AHU 킷이 2점만 붙었다.",
+   "excludeCommon": "",
+   "templatePoints": [
+    {
+     "name": "급기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "air discharge point sensor temp",
+     "why": "환기온도와의 차 × 풍량 = 실제 코일 부하",
+     "usedBy": [
+      "cooling"
+     ],
+     "concept": "discharge-temp",
+     "group": "온도",
+     "match": {
+      "include": "supply air temp|급기.?온도|\\bsa[ ._-]?temp",
+      "exclude": "set ?point|설정|theoretical|sensor temperature$"
+     }
+    },
+    {
+     "name": "환기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "air point return sensor temp",
+     "why": "코일 입구 조건",
+     "usedBy": [
+      "cooling"
+     ],
+     "concept": "return-temp",
+     "group": "온도",
+     "match": {
+      "include": "return air temp|환기.?온도|\\bra[ ._-]?temp",
+      "exclude": "set ?point|설정"
+     }
+    },
+    {
+     "name": "급기온도 설정값",
+     "objectType": "AV",
+     "unit": "℃",
+     "role": "sp",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "air discharge point sp temp",
+     "why": "제어 목표. 실측과의 차가 제어 여유다",
+     "usedBy": [
+      "cooling"
+     ],
+     "concept": "discharge-sp",
+     "group": "설정값",
+     "match": {
+      "include": "supply air temp.*set ?point|급기.?온도.?설정"
+     }
+    },
+    {
+     "name": "실내(원격센서) 온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "air point sensor temp zone",
+     "why": "CRAC 는 급기·환기만으로 존 온도를 모른다 — 원격 센서가 실제 실내값이다",
+     "usedBy": [
+      "cooling"
+     ],
+     "concept": "zone-temp",
+     "group": "온도",
+     "match": {
+      "include": "remote sensor.*temp|space.?temp|실내.?온도",
+      "exclude": "set ?point|설정"
+     }
+    },
+    {
+     "name": "실내습도",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "air humidity point sensor zone",
+     "why": "CRAC 의 존재 이유가 습도다. 잠열 부하를 못 내면 전산실 계산이 통째로 틀린다",
+     "usedBy": [
+      "humidity"
+     ],
+     "concept": "zone-rh",
+     "group": "습도·공기질",
+     "match": {
+      "include": "(return|average|space|room).*humidity|실내.?습도",
+      "exclude": "set ?point|설정|supply|theoretical"
+     }
+    },
+    {
+     "name": "습도 설정값",
+     "objectType": "AV",
+     "unit": "%",
+     "role": "sp",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "air humidity point sp",
+     "why": "제습·가습 구간을 가른다",
+     "usedBy": [
+      "humidity"
+     ],
+     "concept": "rh-sp",
+     "group": "설정값",
+     "match": {
+      "include": "humidity set ?point|습도.?설정"
+     }
+    },
+    {
+     "name": "필터 상태·차압",
+     "objectType": "BI/AI",
+     "unit": "Pa",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "filter point sensor",
+     "why": "필터가 막히면 같은 풍량에 더 큰 정압이 필요해 전력이 는다",
+     "usedBy": [
+      "airside"
+     ],
+     "concept": "filter-dp",
+     "group": "정비",
+     "keepAlarm": true,
+     "match": {
+      "include": "air filter|filter.*(hour|alarm|press|dp)|필터",
+      "exclude": "reset|리셋"
+     }
+    },
+    {
+     "name": "소비전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "elec power point sensor",
+     "why": "순시 전력. 정격표와 견줘 부분부하 곡선을 맞춘다",
+     "usedBy": [
+      "cooling"
+     ],
+     "concept": "power",
+     "group": "전력",
+     "match": {
+      "include": "\\bpower\\b(?!.?(factor|supply|up))|kilowatt|소비.?전력",
+      "exclude": "factor|kwh|적산|supply"
+     }
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "cmd enable point",
+     "why": "꺼진 시간은 전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "match": {
+      "include": "start.?stop.*(cmd|command)|^on.?off|enable.*command|remote.*(start|enable)|기동|운전.?정지",
+      "exclude": "status|상태|hour|시간"
+     }
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "point run sensor",
+     "why": "지령과 실제가 다를 수 있다. 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-status",
+     "group": "상태",
+     "match": {
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
+      "exclude": "command|지령|hour|시간|comp|압축기"
+     }
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "alarm point sensor",
+     "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "^(alarm|fault|trip)\\b|general.*(alarm|fault)|unit.*(alarm|fault)|고장|경보",
+      "exclude": "code|코드|word|reset|리셋|count|history"
+     }
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI/MSO",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+     "why": "왜 섰는지 가른다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm-code",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "(alarm|fault|error|trip).{0,8}(code|word|no\\b)|고장.?코드"
+     }
+    }
+   ]
+  },
+  "e9.chiller": {
+   "equipId": "e9",
+   "title": "냉동기 — BMS 기본화면",
+   "basis": "초안 표(data/equips/e9.json)과 계열 모델의 실제 포인트 이름을 보고 썼다. 모든 계열에 뼈대 4행(운전/정지·운전 상태·고장·경보·고장 코드)을 넣는다 — e5·e13 에서 이게 통째로 빠져 LG AHU 킷이 2점만 붙었다.",
+   "excludeCommon": "",
+   "templatePoints": [
+    {
+     "name": "냉수 출구온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "chilled leaving point sensor temp water",
+     "why": "부하 식의 온도차 한쪽. 제어 목표이기도 하다",
+     "usedBy": [
+      "cooling"
+     ],
+     "concept": "chw-lvg",
+     "group": "유량·수측",
+     "match": {
+      "include": "lvg.?evap.*temp|leaving.*(evap|chilled).*temp|냉수.?출구",
+      "exclude": "set ?point|설정"
+     }
+    },
+    {
+     "name": "냉수 입구온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "chilled entering point sensor temp water",
+     "why": "부하 식의 온도차 다른 쪽",
+     "usedBy": [
+      "cooling"
+     ],
+     "concept": "chw-ent",
+     "group": "유량·수측",
+     "match": {
+      "include": "ent.?evap.*temp|entering.*(evap|chilled).*temp|냉수.?입구",
+      "exclude": "set ?point|설정"
+     }
+    },
+    {
+     "name": "냉수 출구온도 설정값",
+     "objectType": "AV",
+     "unit": "℃",
+     "role": "sp",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "chilled leaving point sp temp water",
+     "why": "제어 목표. 실측과의 차가 제어 여유다",
+     "usedBy": [
+      "cooling"
+     ],
+     "concept": "chw-sp",
+     "group": "설정값",
+     "match": {
+      "include": "(lvg|leaving).*(evap|chilled).*set ?point|chilled.*water.*setpoint|냉수.?설정"
+     }
+    },
+    {
+     "name": "냉각수 출구온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "condenser leaving point sensor temp water",
+     "why": "응축 조건. 1 ℃ 오르면 소비전력이 2~3 % 는다",
+     "usedBy": [
+      "condenser"
+     ],
+     "concept": "cw-lvg",
+     "group": "유량·수측",
+     "match": {
+      "include": "lvg.?cond.*temp|leaving.*cond.*temp|냉각수.?출구",
+      "exclude": "set ?point|설정"
+     }
+    },
+    {
+     "name": "냉각수 입구온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "condenser entering point sensor temp water",
+     "why": "냉각탑 출구와 같은 물이다 — 계통으로 묶인다",
+     "usedBy": [
+      "condenser"
+     ],
+     "concept": "cw-ent",
+     "group": "유량·수측",
+     "match": {
+      "include": "ent.?cond.*temp|entering.*cond.*temp|냉각수.?입구",
+      "exclude": "set ?point|설정"
+     }
+    },
+    {
+     "name": "부하율",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "표준에 없음 — 벤더 산출값",
+     "why": "부분부하 COP 곡선의 가로축",
+     "usedBy": [
+      "cooling"
+     ],
+     "concept": "load-pct",
+     "group": "상태",
+     "match": {
+      "include": "(unit|chiller).*(load|capacity).*(percent|%)|percent.*capacity|부하율|load ?limit",
+      "exclude": "set ?point|limit ?set"
+     }
+    },
+    {
+     "name": "소비전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "elec power point sensor",
+     "why": "COP = 부하 ÷ 소비전력. 실측 대조의 기준",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "power",
+     "group": "전력",
+     "match": {
+      "include": "kilowatt|\\bkw\\b|power ?input|소비.?전력",
+      "exclude": "kwh|적산|factor|hour"
+     }
+    },
+    {
+     "name": "적산 전력량",
+     "objectType": "AI",
+     "unit": "kWh",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "elec energy point sensor",
+     "why": "정산 기준",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "energy",
+     "group": "전력",
+     "match": {
+      "include": "\\bkwh\\b|energy.*(total|consum)|적산.?전력",
+      "exclude": "reset|리셋"
+     }
+    },
+    {
+     "name": "압축기 전류",
+     "objectType": "AI",
+     "unit": "A",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "elec current point sensor",
+     "why": "부하율의 대리 지표. 전력이 없을 때 이걸 쓴다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "current",
+     "group": "전력",
+     "match": {
+      "include": "comp\\w*.*current|chiller ?current|압축기.?전류",
+      "exclude": "limit|제한"
+     }
+    },
+    {
+     "name": "증발 압력·온도",
+     "objectType": "AI",
+     "unit": "kPa",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "evaporator point pressure sensor",
+     "why": "증발 조건. 냉매측 이상을 가른다",
+     "usedBy": [
+      "cooling"
+     ],
+     "concept": "evap-press",
+     "group": "유량·수측",
+     "match": {
+      "include": "evap.*(press|sat).*|증발.?(압력|온도)"
+     }
+    },
+    {
+     "name": "응축 압력·온도",
+     "objectType": "AI",
+     "unit": "kPa",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "condenser point pressure sensor",
+     "why": "응축 조건. COP 저하의 원인을 가른다",
+     "usedBy": [
+      "condenser"
+     ],
+     "concept": "cond-press",
+     "group": "유량·수측",
+     "match": {
+      "include": "cond.*(press|sat).*|응축.?(압력|온도)"
+     }
+    },
+    {
+     "name": "냉수 유량",
+     "objectType": "AI",
+     "unit": "m³/h",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "flow point sensor water",
+     "why": "부하 식의 첫 항. 없으면 정격 유량으로 가정해야 한다",
+     "usedBy": [
+      "cooling"
+     ],
+     "concept": "water-flow",
+     "group": "유량·수측",
+     "match": {
+      "include": "(evap|chilled).*flow|냉수.?유량"
+     }
+    },
+    {
+     "name": "원격 기동 허용",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "cmd enable point",
+     "why": "BMS 가 실제로 세울 수 있는지",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "remote-enable",
+     "group": "제어 지령",
+     "match": {
+      "include": "remote.*(start|enable|lockout)|원격.?기동"
+     }
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "cmd enable point",
+     "why": "꺼진 시간은 전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "match": {
+      "include": "start.?stop.*(cmd|command)|^on.?off|enable.*command|remote.*(start|enable)|기동|운전.?정지",
+      "exclude": "status|상태|hour|시간"
+     }
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "point run sensor",
+     "why": "지령과 실제가 다를 수 있다. 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-status",
+     "group": "상태",
+     "match": {
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
+      "exclude": "command|지령|hour|시간|comp|압축기"
+     }
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "alarm point sensor",
+     "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "^(alarm|fault|trip)\\b|general.*(alarm|fault)|unit.*(alarm|fault)|고장|경보",
+      "exclude": "code|코드|word|reset|리셋|count|history"
+     }
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI/MSO",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+     "why": "왜 섰는지 가른다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm-code",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "(alarm|fault|error|trip).{0,8}(code|word|no\\b)|고장.?코드"
+     }
+    }
+   ]
+  },
+  "e14.pump": {
+   "equipId": "e14",
+   "title": "펌프 — BMS 기본화면",
+   "basis": "초안 표(data/equips/e14.json)과 계열 모델의 실제 포인트 이름을 보고 썼다. 모든 계열에 뼈대 4행(운전/정지·운전 상태·고장·경보·고장 코드)을 넣는다 — e5·e13 에서 이게 통째로 빠져 LG AHU 킷이 2점만 붙었다.",
+   "excludeCommon": "",
+   "templatePoints": [
+    {
+     "name": "주파수 지령",
+     "objectType": "AO",
+     "unit": "Hz",
+     "role": "cmd",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "cmd freq point vfd",
+     "why": "제어기가 내리는 목표. 부하율을 정한다",
+     "usedBy": [
+      "control"
+     ],
+     "concept": "speed-cmd",
+     "group": "제어 지령",
+     "match": {
+      "include": "(setpoint|reference|command).*(freq|speed)|주파수.?지령",
+      "exclude": "actual|출력"
+     }
+    },
+    {
+     "name": "현재 주파수",
+     "objectType": "AI",
+     "unit": "Hz",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "freq point sensor vfd",
+     "why": "상사법칙의 입력. 전력의 지배 변수",
+     "usedBy": [
+      "hydronic"
+     ],
+     "concept": "speed-fb",
+     "group": "상태",
+     "match": {
+      "include": "actual.*(speed|freq)|output.?freq|현재.?주파수",
+      "exclude": "command|지령"
+     }
+    },
+    {
+     "name": "계통 차압",
+     "objectType": "AI",
+     "unit": "kPa",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "delta point pressure sensor water",
+     "why": "제어 목표이자 양정의 대리값",
+     "usedBy": [
+      "control"
+     ],
+     "concept": "head-dp",
+     "group": "유량·수측",
+     "match": {
+      "include": "differential ?press|\\bdp\\b|차압",
+      "exclude": "set ?point|설정"
+     }
+    },
+    {
+     "name": "차압 설정값",
+     "objectType": "AV",
+     "unit": "kPa",
+     "role": "sp",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "delta point sp pressure",
+     "why": "낮출수록 전력이 준다 — 최적화의 손잡이",
+     "usedBy": [
+      "control"
+     ],
+     "concept": "head-dp-sp",
+     "group": "설정값",
+     "match": {
+      "include": "differential ?press.*set ?point|차압.?설정"
+     }
+    },
+    {
+     "name": "토출 압력",
+     "objectType": "AI",
+     "unit": "kPa",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "discharge point pressure sensor",
+     "why": "양정 확인. 차압이 없을 때 대신 쓴다",
+     "usedBy": [
+      "hydronic"
+     ],
+     "concept": "disch-press",
+     "group": "유량·수측",
+     "match": {
+      "include": "discharge ?press|토출.?압력"
+     }
+    },
+    {
+     "name": "유량",
+     "objectType": "AI",
+     "unit": "m³/h",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "flow point sensor water",
+     "why": "축동력 식의 첫 항",
+     "usedBy": [
+      "hydronic"
+     ],
+     "concept": "water-flow",
+     "group": "유량·수측",
+     "match": {
+      "include": "\\bflow\\b|유량",
+      "exclude": "air|풍량"
+     }
+    },
+    {
+     "name": "소비전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "elec power point sensor",
+     "why": "순시 전력. 상사법칙 계산을 실측으로 맞춘다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "power",
+     "group": "전력",
+     "match": {
+      "include": "\\bpower\\b(?!.?(factor|supply))|소비.?전력",
+      "exclude": "factor|kwh|적산"
+     }
+    },
+    {
+     "name": "전류",
+     "objectType": "AI",
+     "unit": "A",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "elec current point sensor",
+     "why": "전력이 없을 때의 대리 지표",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "current",
+     "group": "전력",
+     "match": {
+      "include": "\\bcurrent\\b|전류",
+      "exclude": "limit|제한"
+     }
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "cmd enable point",
+     "why": "꺼진 시간은 전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "match": {
+      "include": "start.?stop.*(cmd|command)|^on.?off|enable.*command|remote.*(start|enable)|기동|운전.?정지",
+      "exclude": "status|상태|hour|시간"
+     }
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "point run sensor",
+     "why": "지령과 실제가 다를 수 있다. 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-status",
+     "group": "상태",
+     "match": {
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
+      "exclude": "command|지령|hour|시간|comp|압축기"
+     }
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "alarm point sensor",
+     "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "^(alarm|fault|trip)\\b|general.*(alarm|fault)|unit.*(alarm|fault)|고장|경보",
+      "exclude": "code|코드|word|reset|리셋|count|history"
+     }
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI/MSO",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+     "why": "왜 섰는지 가른다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm-code",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "(alarm|fault|error|trip).{0,8}(code|word|no\\b)|고장.?코드"
+     }
+    }
+   ]
+  },
+  "e16.meter": {
+   "equipId": "e16",
+   "title": "계량기 — BMS 기본화면",
+   "basis": "초안 표(data/equips/e16.json)과 계열 모델의 실제 포인트 이름을 보고 썼다. 모든 계열에 뼈대 4행(운전/정지·운전 상태·고장·경보·고장 코드)을 넣는다 — e5·e13 에서 이게 통째로 빠져 LG AHU 킷이 2점만 붙었다.",
+   "excludeCommon": "",
+   "templatePoints": [
+    {
+     "name": "순시 유량",
+     "objectType": "AI",
+     "unit": "m³/h",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "flow point sensor water",
+     "why": "열량 식의 첫 항",
+     "usedBy": [
+      "thermal"
+     ],
+     "concept": "water-flow",
+     "group": "유량·수측",
+     "match": {
+      "include": "(abs|absolute|rel|relative)?.?flow\\b|유량",
+      "exclude": "total|적산|setpoint|max|min"
+     }
+    },
+    {
+     "name": "적산 유량",
+     "objectType": "AI",
+     "unit": "m³",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "flow point sensor total water",
+     "why": "정산·누수 판정",
+     "usedBy": [
+      "thermal"
+     ],
+     "concept": "flow-total",
+     "group": "유량·수측",
+     "match": {
+      "include": "(total|accum).*flow|flow.*total|적산.?유량"
+     }
+    },
+    {
+     "name": "공급 온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "air discharge point sensor temp",
+     "why": "열량 식의 온도차 한쪽",
+     "usedBy": [
+      "thermal"
+     ],
+     "concept": "discharge-temp",
+     "group": "온도",
+     "match": {
+      "include": "(supply|flow|t1).*temp|공급.?온도",
+      "exclude": "return|환수"
+     }
+    },
+    {
+     "name": "환수 온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "air point return sensor temp",
+     "why": "열량 식의 온도차 다른 쪽",
+     "usedBy": [
+      "thermal"
+     ],
+     "concept": "return-temp",
+     "group": "온도",
+     "match": {
+      "include": "(return|t2).*temp|환수.?온도"
+     }
+    },
+    {
+     "name": "순시 열량·전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "elec power point sensor",
+     "why": "실측 대조의 기준",
+     "usedBy": [
+      "thermal"
+     ],
+     "concept": "power",
+     "group": "전력",
+     "match": {
+      "include": "\\bpower\\b(?!.?(factor|supply))|열량|소비.?전력",
+      "exclude": "factor|kwh|적산"
+     }
+    },
+    {
+     "name": "적산 열량·전력량",
+     "objectType": "AI",
+     "unit": "kWh",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "elec energy point sensor",
+     "why": "정산 기준",
+     "usedBy": [
+      "thermal"
+     ],
+     "concept": "energy",
+     "group": "전력",
+     "match": {
+      "include": "\\bkwh\\b|energy|적산",
+      "exclude": "reset|리셋"
+     }
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "cmd enable point",
+     "why": "꺼진 시간은 전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "match": {
+      "include": "start.?stop.*(cmd|command)|^on.?off|enable.*command|remote.*(start|enable)|기동|운전.?정지",
+      "exclude": "status|상태|hour|시간"
+     }
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "point run sensor",
+     "why": "지령과 실제가 다를 수 있다. 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-status",
+     "group": "상태",
+     "match": {
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
+      "exclude": "command|지령|hour|시간|comp|압축기"
+     }
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "alarm point sensor",
+     "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "^(alarm|fault|trip)\\b|general.*(alarm|fault)|unit.*(alarm|fault)|고장|경보",
+      "exclude": "code|코드|word|reset|리셋|count|history"
+     }
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI/MSO",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+     "why": "왜 섰는지 가른다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm-code",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "(alarm|fault|error|trip).{0,8}(code|word|no\\b)|고장.?코드"
+     }
+    }
+   ]
+  },
+  "e19.power": {
+   "equipId": "e19",
+   "title": "전력 설비 — BMS 기본화면",
+   "basis": "초안 표(data/equips/e19.json)과 계열 모델의 실제 포인트 이름을 보고 썼다. 모든 계열에 뼈대 4행(운전/정지·운전 상태·고장·경보·고장 코드)을 넣는다 — e5·e13 에서 이게 통째로 빠져 LG AHU 킷이 2점만 붙었다.",
+   "excludeCommon": "",
+   "templatePoints": [
+    {
+     "name": "유효 전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "elec power point sensor",
+     "why": "계통 합계의 정답지. 설비별 계산의 합이 여기와 맞아야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "power",
+     "group": "전력",
+     "match": {
+      "include": "active ?power|real ?power|\\bkw\\b|유효.?전력",
+      "exclude": "factor|kwh|reactive"
+     }
+    },
+    {
+     "name": "적산 전력량",
+     "objectType": "AI",
+     "unit": "kWh",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "elec energy point sensor",
+     "why": "정산 기준",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "energy",
+     "group": "전력",
+     "match": {
+      "include": "\\bkwh\\b|energy|적산.?전력",
+      "exclude": "reset|리셋"
+     }
+    },
+    {
+     "name": "상전압",
+     "objectType": "AI",
+     "unit": "V",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "elec point sensor volt",
+     "why": "불평형·과부하 판정",
+     "usedBy": [
+      "quality"
+     ],
+     "concept": "volt",
+     "group": "전력",
+     "match": {
+      "include": "\\bvolt|전압",
+      "exclude": "dc|link"
+     }
+    },
+    {
+     "name": "선전류",
+     "objectType": "AI",
+     "unit": "A",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "elec current point sensor",
+     "why": "과부하 판정",
+     "usedBy": [
+      "quality"
+     ],
+     "concept": "current",
+     "group": "전력",
+     "match": {
+      "include": "\\bcurrent\\b|전류",
+      "exclude": "limit|leak|누설"
+     }
+    },
+    {
+     "name": "역률",
+     "objectType": "AI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "elec pf point sensor",
+     "why": "무효전력 손실. 같은 유효전력에 전류가 커진다",
+     "usedBy": [
+      "quality"
+     ],
+     "concept": "pf",
+     "group": "전력",
+     "match": {
+      "include": "power ?factor|역률"
+     }
+    },
+    {
+     "name": "변압기 권선 온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "point sensor temp",
+     "why": "손실의 대리 지표이자 기계실 발열의 입력",
+     "usedBy": [
+      "thermal"
+     ],
+     "concept": "winding-temp",
+     "group": "온도",
+     "match": {
+      "include": "winding.*temp|권선.?온도"
+     }
+    },
+    {
+     "name": "차단기 개폐 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "point sensor",
+     "why": "정전 구간을 가른다 — 전력 0 구간의 근거",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "breaker-state",
+     "group": "상태",
+     "match": {
+      "include": "breaker.*(status|state|position)|차단기",
+      "exclude": "trip|트립"
+     }
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "cmd enable point",
+     "why": "꺼진 시간은 전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "match": {
+      "include": "start.?stop.*(cmd|command)|^on.?off|enable.*command|remote.*(start|enable)|기동|운전.?정지",
+      "exclude": "status|상태|hour|시간"
+     }
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "point run sensor",
+     "why": "지령과 실제가 다를 수 있다. 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "run-status",
+     "group": "상태",
+     "match": {
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
+      "exclude": "command|지령|hour|시간|comp|압축기"
+     }
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "필수",
+     "haystack": "alarm point sensor",
+     "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "^(alarm|fault|trip)\\b|general.*(alarm|fault)|unit.*(alarm|fault)|고장|경보",
+      "exclude": "code|코드|word|reset|리셋|count|history"
+     }
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI/MSO",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "",
+     "grade": "권장",
+     "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+     "why": "왜 섰는지 가른다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+     "usedBy": [
+      "electrical"
+     ],
+     "concept": "alarm-code",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "(alarm|fault|error|trip).{0,8}(code|word|no\\b)|고장.?코드"
+     }
     }
    ]
   }
