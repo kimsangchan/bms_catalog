@@ -74,6 +74,7 @@ PYTHONIOENCODING=utf-8 python validate.py          # 검사 — 오류 0 확인
 PYTHONIOENCODING=utf-8 python build.py             # HTML 다시 만들기
 PYTHONIOENCODING=utf-8 python template_map.py        # 템플릿 검사대
 PYTHONIOENCODING=utf-8 python review_index.py --run  # review/ 길잡이 .md 갱신
+PYTHONIOENCODING=utf-8 python concepts.py --sync     # 개념 사전 aliases·usedIn 되맞춤
 PYTHONIOENCODING=utf-8 python collect.py --list    # 소스 목록
 PYTHONIOENCODING=utf-8 python collect.py --run <소스ID>
 PYTHONIOENCODING=utf-8 python specs.py --kinds     # 사양 표 성격 분류

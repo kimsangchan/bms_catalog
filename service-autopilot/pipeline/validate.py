@@ -614,16 +614,84 @@ def check_raw_address_shown(m, add):
             "주소 원문 표기가 화면으로 안 나가는 포인트 %d점 — 매뉴얼과 대조할 수 없다" % miss)
 
 
+def check_template_cover(models):
+    """템플릿 덮개 검수 조건 → {modelId: [(등급, 코드, 메시지)]}
+
+    사용자 지시(2026-09-08): **필수 포인트가 안 붙었거나 매핑 개수가 현저히 적은 모델은
+    항상 다시 검수한다.** 실제로 LG AHU 통신킷이 28점 중 2점만 붙어 있었는데 아무도
+    몰랐다 — 화면을 눈으로 봐야만 드러났다. 그래서 게이트로 옮긴다.
+
+    두 가지를 본다.
+      ① **필수 미충족** — 프로파일의 `필수` 행 중 그 모델의 **어느 판에서도** 안 붙은 것.
+         한 건이라도 있으면 검수 대상이다.
+      ② **현저히 적음** — 같은 프로파일 모델들의 덮개 중앙값의 절반에 못 미치는 모델.
+         혼자 놓고 보면 '원래 그런 기기'인지 알 수 없다 — **또래와 견줘야** 안다.
+
+    ⚠ 오류가 아니라 경고다. 기기에 그 점이 원래 없을 수 있다(규칙 1: 지어내지 않는다).
+      다만 gap 이나 프로파일 coverageNote 에 사유가 적혀 있으면 정보로 낮춘다 —
+      '설명된 미충족'과 '아무도 모르는 미충족'은 다르다.
+    """
+    try:
+        sys.path.insert(0, HERE)
+        import datasets as DS
+    except Exception as e:                      # 데이터셋 층이 없으면 조용히 건너뛴다
+        return {"_": [("I", "template-cover", "덮개 검수를 못 돌렸다: %s" % e)]}
+
+    profs = DS.load_template_profiles()
+    per = collections.defaultdict(dict)         # pid → {mid: (붙은수, 총수, 미충족필수)}
+    for m in models:
+        try:
+            pid = DS.template_profile_for(m)
+        except Exception:
+            continue
+        rows = (profs.get(pid) or {}).get("templatePoints") or []
+        if not rows:
+            continue
+        hit = set()
+        for sc in DS.model_mapping_inputs(m):
+            for c in DS.find_template_candidates(pid, sc["points"]):
+                hit.add(c["templateName"])
+        need = [r["name"] for r in rows if r.get("grade") == "필수"]
+        miss = [n for n in need if n not in hit]
+        per[pid][m["id"]] = (len(hit), len(rows), miss, pid)
+
+    out = collections.defaultdict(list)
+    for pid, byid in per.items():
+        ratios = sorted(h / float(t) for h, t, _m, _p in byid.values())
+        mid_r = ratios[len(ratios) // 2] if ratios else 0.0
+        note = (profs.get(pid) or {}).get("coverageNote") or ""
+        for mid, (h, t, miss, _p) in sorted(byid.items()):
+            # ⚠ 모델 gap 에 아무 글이나 있으면 봐주던 것을 없앴다 — 거의 모든 모델이
+            #   gap 을 갖고 있어 **조건이 통째로 무력화**됐다(158건이 전부 정보로 떨어졌다).
+            #   계열 차원에서 이미 설명된 것(프로파일 coverageNote)만 정보로 낮춘다.
+            said = note
+            lv = "I" if said else "W"
+            if miss:
+                out[mid].append((lv, "template-required",
+                                 "%s 필수 %d행이 어느 판에서도 안 붙었다: %s%s"
+                                 % (pid, len(miss), ", ".join(miss[:5]),
+                                    " (사유가 적혀 있다)" if said else " — 검수 필요")))
+            r = h / float(t) if t else 0.0
+            if mid_r and r < mid_r * 0.5:
+                out[mid].append((lv, "template-thin",
+                                 "%s 덮개 %d/%d(%.0f%%) — 같은 계열 중앙값 %.0f%% 의 "
+                                 "절반에 못 미친다%s"
+                                 % (pid, h, t, r * 100, mid_r * 100,
+                                    " (사유가 적혀 있다)" if said else " — 검수 필요")))
+    return out
+
+
 def main(argv):
     eq, md, docs, kg = load_all()
     only = None
     if "--model" in argv:
         only = argv[argv.index("--model") + 1]
+    cover = check_template_cover(md)
     rows, tally = [], collections.Counter()
     for m in sorted(md, key=lambda x: x["id"]):
         if only and m["id"] != only:
             continue
-        res = check_model(m, eq, kg)
+        res = check_model(m, eq, kg) + cover.get(m["id"], [])
         for lv, code, msg in res:
             tally[lv] += 1
             rows.append({"model": m["id"], "level": lv, "code": code, "message": msg})
@@ -648,6 +716,17 @@ def main(argv):
                 tally[lv] += 1
                 print("   %s [%s] %s"
                       % ({"E": "✗ 오류", "W": "△ 경고", "I": "· 정보"}[lv], code, msg))
+    if not only:
+        q = sorted((mid, [x for x in v if x[0] == "W"])
+                   for mid, v in cover.items() if any(x[0] == "W" for x in v))
+        if q:
+            print("\n■ 템플릿 덮개 검수 큐 — %d모델" % len(q))
+            print("   필수 행이 안 붙었거나 또래보다 덮개가 현저히 적다. 기기에 원래 "
+                  "없는 점일 수도 있다 — 확인하고 사유를 남겨라.")
+            for mid, items in q:
+                print("   · %s" % mid)
+                for _lv, code, msg in items:
+                    print("       [%s] %s" % (code, msg))
     print("\n" + "─" * 72)
     print("모델 %d건 검사 — 오류 %d · 경고 %d · 정보 %d"
           % (len(md) if not only else 1, tally["E"], tally["W"], tally["I"]))

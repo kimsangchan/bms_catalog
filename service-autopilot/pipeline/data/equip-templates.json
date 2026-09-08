@@ -39,11 +39,12 @@
       "heating"
      ],
      "match": {
-      "include": "(?:supply|discharge).*air.*temp|discharge.*temp",
+      "include": "(?:supply|discharge).*air.*temp|discharge.*temp|\\bsa[ ._-]?temp|\\bsat\\b|급기.?온도",
       "exclude": "setpoint|setp\\b|sp\\b|reheat|refrigerant|tempering status"
      },
      "concept": "discharge-temp",
-     "group": "온도"
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "환기온도",
@@ -60,11 +61,12 @@
       "oa"
      ],
      "match": {
-      "include": "return.*air.*temp|\\bra temp",
+      "include": "return.*air.*temp|\\bra temp|\\bra[ ._-]?temp|\\brat\\b|환기.?온도|리턴.?온도",
       "exclude": "setpoint|sp\\b|control temperature type"
      },
      "concept": "return-temp",
-     "group": "온도"
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "외기온도",
@@ -81,11 +83,12 @@
       "oa"
      ],
      "match": {
-      "include": "outdoor.*air.*temperature|outside.*air.*temperature|outdoortemp|outdoor temp",
+      "include": "outdoor.*air.*temperature|outside.*air.*temperature|outdoortemp|outdoor temp|\\boa[ ._-]?temp|\\boat\\b|외기.?온도",
       "exclude": "flow|enthalpy|humidity|setpoint|sp\\b|enable|min|dew"
      },
      "concept": "oa-temp",
-     "group": "온도"
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "실내온도",
@@ -143,11 +146,12 @@
      ],
      "exposure": "RTU 노출이 낮아 선택이다 — Trane nvoERLvgExhTemp·Daikin AI:17 EREAT 뿐. AHU 쪽은 Swegon MB:30067 EA-D Temperature, Systemair AAIExhaustAirTemp 로 더 흔하다",
      "match": {
-      "include": "(?:exhaust|extract)[ ._-]*air[ ._-]*temp|erlvgexhtemp|\\bereat\\b|ea[ ._-]*d?[ ._-]*temperature|ea duct temperature",
+      "include": "(?:exhaust|extract)[ ._-]*air[ ._-]*temp|erlvgexhtemp|\\bereat\\b|ea[ ._-]*d?[ ._-]*temperature|ea duct temperature|\\bea[ ._-]?temp|배기.?온도",
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|sensor error|failure|type|configuration|heat ?sink|regulation"
      },
      "concept": "배기-온도",
-     "group": "온도"
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "급기습도",
@@ -301,10 +305,11 @@
       "heating"
      ],
      "match": {
-      "include": "(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint"
+      "include": "(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint|(cooling|heating).?target.?temp|급기.?온도.?설정"
      },
      "concept": "급기온도-설정값",
-     "group": "온도"
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "급기 정압 설정값",
@@ -339,11 +344,12 @@
      ],
      "exposure": "필수 → 권장 강등. RTU 는 정속·다단 팬이 많아 주파수 지령을 안 내는 모델이 대부분이다(Daikin SupFanCapNetIn 등 소수). '필수'로 두면 영원히 미충족이라 규칙 ④ 위반이다",
      "match": {
-      "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:speed|frequency|setpoint)|nci.*supplyfan",
-      "exclude": "type|configuration|identifier|status|hours|runtime|unstable"
+      "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:speed|frequency|setpoint)|nci.*supplyfan|^fan speed|\\bfan[ ._-]?speed\\b|급기.?팬.?(속도|주파수)",
+      "exclude": "type|configuration|identifier|status|hours|runtime|unstable|lock|잠금|\\block\\b|-lo\\b|cond|condenser|응축|exhaust|배기|\\bret\\b|return|환기"
      },
      "concept": "speed-cmd",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. ⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다."
     },
     {
      "name": "환기팬 주파수 지령",
@@ -359,10 +365,11 @@
      ],
      "match": {
       "include": "(?:return|exhaust|ret).*fan.*(?:cap|speed|freq).*netin|(?:return|exhaust).*fan.*(?:command|speed|frequency|setpoint)",
-      "exclude": "type|configuration|identifier|status|hours|runtime|pressure"
+      "exclude": "type|configuration|identifier|status|hours|runtime|pressure|lock|잠금|-lo\\b|cond|condenser|응축|supply|급기|\\bsa\\b"
      },
      "concept": "speed-cmd",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "matchNote": "⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다."
     },
     {
      "name": "외기댐퍼 개도",
@@ -538,11 +545,12 @@
      ],
      "exposure": "AAON AI:44 A1 Compressor Signal, Trane nvoCprsrsRunning, Lennox AO:115 Compressor Enable Control, York MB:101 C1 Stage Enabled, Daikin AV:163 GenCondStages, Trane RAUK BI:10111 Compressor 1A Status",
      "match": {
-      "include": "compressor.*(?:running|status|enable|signal)|cprsrsrunning|stage.*enabled|comp.*stage|gencondstages|compcfg",
+      "include": "compressor.*(?:running|status|enable|signal)|cprsrsrunning|stage.*enabled|comp.*stage|gencondstages|compcfg|comp\\.? ?status|압축기.?상태",
       "exclude": "\\balarm\\b|\\bfault\\b|lockout|failure|hours|run ?time|starts|setpoint|type|configuration|delay|dehum|freeze|freezing"
      },
      "concept": "압축기-단수-상태",
-     "group": "상태"
+     "group": "상태",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "난방 단수 상태",
@@ -578,11 +586,12 @@
      ],
      "exposure": "AAON AI:34 Modulating Cooling Position(note: Current percentage of the Modulating Chilled Water Signal), Lennox AI:247 Cool Primary, Trane nvoCoolPrimary, Daikin AV:1 ClgCapacity, Carrier AV:9006 cool demand level, York MB:263 Staged Cooling Command, Trane RAUK AV:10139 Cooling Capacity Enable",
      "match": {
-      "include": "cool.*(?:capacity|demand|primary|command|position)|(?:clg|cool)cap|cool.*enable|coolenable|modulating cooling|staged cooling",
-      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|limit|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma"
+      "include": "cool.*(?:capacity|demand|primary|command|position)|(?:clg|cool)cap|cool.*enable|coolenable|modulating cooling|staged cooling|^capacity\\b|cooling.?target|냉방.?지령",
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|limit|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma|target.?temp|setpoint|설정"
      },
      "concept": "냉방-지령",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "난방 지령",
@@ -598,11 +607,12 @@
      ],
      "exposure": "AAON AI:35 Modulating Heat Position(note: Modulating Heating signal, Hot Water or SCR heat — 한 오브젝트가 온수밸브와 SCR 히터를 함께 담는다), Lennox AI:245 Heat Primary·AI:246 Heat Secondary, Trane nvoHeatPrimary, Daikin AV:2 HtgCapacity, Carrier AV:9036 heat demand level, York MB:264 Staged Heating Command",
      "match": {
-      "include": "heat.*(?:capacity|demand|primary|secondary|command|position)|(?:htg|heat)cap|heat.*enable|heatenable|modulating heat",
-      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|setback|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma"
+      "include": "heat.*(?:capacity|demand|primary|secondary|command|position)|(?:htg|heat)cap|heat.*enable|heatenable|modulating heat|heating.?target|난방.?지령",
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|setback|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma|target.?temp|setpoint|설정"
      },
      "concept": "난방-지령",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "가습 지령",
@@ -663,6 +673,133 @@
      },
      "concept": "온수밸브-개도",
      "group": "유량·수측"
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`enable`✓ `cmd`✓",
+     "grade": "필수",
+     "haystack": "cmd enable point",
+     "why": "꺼진 시간은 전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "match": {
+      "include": "operating on ?/ ?off|start.?stop.*(cmd|command)|\\bon.?off\\b|unit.*enable|기동.?정지|운전.?정지",
+      "exclude": "status|상태|mode|모드|damper|댐퍼"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`run`✓ `sensor`✓",
+     "grade": "필수",
+     "haystack": "point run sensor",
+     "why": "지령과 실제가 다를 수 있다. 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "run-status",
+     "group": "상태",
+     "match": {
+      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태",
+      "exclude": "odu|comp|압축기|defrost|제상|error|알람"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`alarm`✓ `fault`✓",
+     "grade": "필수",
+     "haystack": "alarm point sensor",
+     "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "alarm",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보",
+      "exclude": "code|코드|freeze|동결|filter|필터|odu"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI/MSO",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`fault`✓ `alarm-text`✓",
+     "grade": "권장",
+     "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+     "why": "왜 섰는지 가른다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "alarm-code",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "(error|fault|alarm).{0,6}code|고장.?코드|에러.?코드"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "소비전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "tags": "`elec-power`✓",
+     "grade": "권장",
+     "haystack": "elec power point sensor",
+     "why": "순시 전력. 정격표의 소비전력과 같은 물리량이라 부분부하 곡선을 직접 맞춘다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "power",
+     "group": "전력",
+     "match": {
+      "include": "\\bpower\\b(?!.?(factor|supply|up))|소비.?전력|\\bkw\\b",
+      "exclude": "factor|supply|kwh|적산|accum"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "적산 전력량",
+     "objectType": "AI",
+     "unit": "kWh",
+     "role": "sensor",
+     "tags": "`elec`✓ `energy`✓",
+     "grade": "권장",
+     "haystack": "elec energy point sensor",
+     "why": "시뮬레이터 결과를 실측과 맞추는 정산 기준",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "energy",
+     "group": "전력",
+     "match": {
+      "include": "\\bkwh\\b|energy.*(total|accum|counter)|적산.?전력",
+      "exclude": "reset|리셋"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     }
    ]
   },
@@ -687,11 +824,12 @@
       "heating"
      ],
      "match": {
-      "include": "(?:supply|discharge).*air.*temp|discharge.*temp",
+      "include": "(?:supply|discharge).*air.*temp|discharge.*temp|\\bsa[ ._-]?temp|\\bsat\\b|급기.?온도",
       "exclude": "setpoint|setp\\b|sp\\b|reheat|refrigerant|tempering status"
      },
      "concept": "discharge-temp",
-     "group": "온도"
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "환기온도",
@@ -708,11 +846,12 @@
       "oa"
      ],
      "match": {
-      "include": "return.*air.*temp|\\bra temp",
+      "include": "return.*air.*temp|\\bra temp|\\bra[ ._-]?temp|\\brat\\b|환기.?온도|리턴.?온도",
       "exclude": "setpoint|sp\\b|control temperature type"
      },
      "concept": "return-temp",
-     "group": "온도"
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "외기온도",
@@ -729,11 +868,12 @@
       "oa"
      ],
      "match": {
-      "include": "outdoor.*air.*temperature|outside.*air.*temperature|outdoortemp|outdoor temp",
+      "include": "outdoor.*air.*temperature|outside.*air.*temperature|outdoortemp|outdoor temp|\\boa[ ._-]?temp|\\boat\\b|외기.?온도",
       "exclude": "flow|enthalpy|humidity|setpoint|sp\\b|enable|min|dew"
      },
      "concept": "oa-temp",
-     "group": "온도"
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "실내온도",
@@ -791,11 +931,12 @@
      ],
      "exposure": "Swegon MB:30067 EA-D Temperature·MB:30080 EA duct temperature, Systemair AAIExhaustAirTemp__, Trane nvoERLvgExhTemp",
      "match": {
-      "include": "(?:exhaust|extract)[ ._-]*air[ ._-]*temp|erlvgexhtemp|\\bereat\\b|ea[ ._-]*d?[ ._-]*temperature|ea duct temperature",
+      "include": "(?:exhaust|extract)[ ._-]*air[ ._-]*temp|erlvgexhtemp|\\bereat\\b|ea[ ._-]*d?[ ._-]*temperature|ea duct temperature|\\bea[ ._-]?temp|배기.?온도",
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|sensor error|failure|type|configuration|heat ?sink|regulation"
      },
      "concept": "배기-온도",
-     "group": "온도"
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "급기습도",
@@ -949,10 +1090,11 @@
       "heating"
      ],
      "match": {
-      "include": "(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint"
+      "include": "(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint|(cooling|heating).?target.?temp|급기.?온도.?설정"
      },
      "concept": "급기온도-설정값",
-     "group": "온도"
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "급기 정압 설정값",
@@ -986,11 +1128,12 @@
       "fan"
      ],
      "match": {
-      "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:speed|frequency|setpoint)|nci.*supplyfan",
-      "exclude": "type|configuration|identifier|status|hours|runtime|unstable"
+      "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:speed|frequency|setpoint)|nci.*supplyfan|^fan speed|\\bfan[ ._-]?speed\\b|급기.?팬.?(속도|주파수)",
+      "exclude": "type|configuration|identifier|status|hours|runtime|unstable|lock|잠금|\\block\\b|-lo\\b|cond|condenser|응축|exhaust|배기|\\bret\\b|return|환기"
      },
      "concept": "speed-cmd",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. ⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다."
     },
     {
      "name": "환기팬 주파수 지령",
@@ -1006,10 +1149,11 @@
      ],
      "match": {
       "include": "(?:return|exhaust|ret).*fan.*(?:cap|speed|freq).*netin|(?:return|exhaust).*fan.*(?:command|speed|frequency|setpoint)",
-      "exclude": "type|configuration|identifier|status|hours|runtime|pressure"
+      "exclude": "type|configuration|identifier|status|hours|runtime|pressure|lock|잠금|-lo\\b|cond|condenser|응축|supply|급기|\\bsa\\b"
      },
      "concept": "speed-cmd",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "matchNote": "⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다."
     },
     {
      "name": "외기댐퍼 개도",
@@ -1230,11 +1374,12 @@
      ],
      "exposure": "Swegon MB:10109 COOL DX compressor 1 output, Trane nvoCprsrsRunning, Mitsubishi MB:40007 Step status. 냉수 AHU 에는 없는 것이 정상이라 선택이다",
      "match": {
-      "include": "compressor.*(?:running|status|enable|signal|output)|cprsrsrunning|stage.*enabled|comp.*stage|step status|capacity request",
+      "include": "compressor.*(?:running|status|enable|signal|output)|cprsrsrunning|stage.*enabled|comp.*stage|step status|capacity request|comp\\.? ?status|압축기.?상태",
       "exclude": "\\balarm\\b|\\bfault\\b|lockout|failure|hours|run ?time|starts|setpoint|type|configuration|delay|dehum|freeze|freezing"
      },
      "concept": "압축기-단수-상태",
-     "group": "상태"
+     "group": "상태",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "냉방 지령",
@@ -1250,11 +1395,12 @@
      ],
      "exposure": "Trane nvoCoolPrimary, Siemens MSO:30094 CoolingCmdDxSt, Swegon MB:30392 AYC Chilled water cool demand. 유럽형 Systemair AY1/AY3/AY10 Sequence_ 는 어느 것이 냉방인지 문서에 정의가 없어 근거로 쓰지 않았다(gap)",
      "match": {
-      "include": "cool.*(?:capacity|demand|primary|command|position)|(?:clg|cool)cap|cool.*enable|coolenable|modulating cooling|staged cooling",
-      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|limit|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma"
+      "include": "cool.*(?:capacity|demand|primary|command|position)|(?:clg|cool)cap|cool.*enable|coolenable|modulating cooling|staged cooling|^capacity\\b|cooling.?target|냉방.?지령",
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|limit|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma|target.?temp|setpoint|설정"
      },
      "concept": "냉방-지령",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "난방 지령",
@@ -1270,11 +1416,12 @@
      ],
      "exposure": "Trane nvoHeatPrimary, Siemens MSO:11590 ElectricalHtgCmdStSt",
      "match": {
-      "include": "heat.*(?:capacity|demand|primary|secondary|command|position)|(?:htg|heat)cap|heat.*enable|heatenable|modulating heat",
-      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|setback|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma"
+      "include": "heat.*(?:capacity|demand|primary|secondary|command|position)|(?:htg|heat)cap|heat.*enable|heatenable|modulating heat|heating.?target|난방.?지령",
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|setback|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma|target.?temp|setpoint|설정"
      },
      "concept": "난방-지령",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     },
     {
      "name": "가습 지령",
@@ -1295,6 +1442,133 @@
      },
      "concept": "가습-지령",
      "group": "제어 지령"
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`enable`✓ `cmd`✓",
+     "grade": "필수",
+     "haystack": "cmd enable point",
+     "why": "꺼진 시간은 전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "match": {
+      "include": "operating on ?/ ?off|start.?stop.*(cmd|command)|\\bon.?off\\b|unit.*enable|기동.?정지|운전.?정지",
+      "exclude": "status|상태|mode|모드|damper|댐퍼"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`run`✓ `sensor`✓",
+     "grade": "필수",
+     "haystack": "point run sensor",
+     "why": "지령과 실제가 다를 수 있다. 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "run-status",
+     "group": "상태",
+     "match": {
+      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태",
+      "exclude": "odu|comp|압축기|defrost|제상|error|알람"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`alarm`✓ `fault`✓",
+     "grade": "필수",
+     "haystack": "alarm point sensor",
+     "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "alarm",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보",
+      "exclude": "code|코드|freeze|동결|filter|필터|odu"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI/MSO",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`fault`✓ `alarm-text`✓",
+     "grade": "권장",
+     "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+     "why": "왜 섰는지 가른다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "alarm-code",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "(error|fault|alarm).{0,6}code|고장.?코드|에러.?코드"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "소비전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "tags": "`elec-power`✓",
+     "grade": "권장",
+     "haystack": "elec power point sensor",
+     "why": "순시 전력. 정격표의 소비전력과 같은 물리량이라 부분부하 곡선을 직접 맞춘다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "power",
+     "group": "전력",
+     "match": {
+      "include": "\\bpower\\b(?!.?(factor|supply|up))|소비.?전력|\\bkw\\b",
+      "exclude": "factor|supply|kwh|적산|accum"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "적산 전력량",
+     "objectType": "AI",
+     "unit": "kWh",
+     "role": "sensor",
+     "tags": "`elec`✓ `energy`✓",
+     "grade": "권장",
+     "haystack": "elec energy point sensor",
+     "why": "시뮬레이터 결과를 실측과 맞추는 정산 기준",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "energy",
+     "group": "전력",
+     "match": {
+      "include": "\\bkwh\\b|energy.*(total|accum|counter)|적산.?전력",
+      "exclude": "reset|리셋"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
     }
    ]
   },

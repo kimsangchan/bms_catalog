@@ -18,6 +18,9 @@
      "cooling",
      "heating"
     ],
+    "concept": "discharge-temp",
+    "group": "온도",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -34,6 +37,9 @@
      "heating",
      "oa"
     ],
+    "concept": "return-temp",
+    "group": "온도",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -50,6 +56,9 @@
      "heating",
      "oa"
     ],
+    "concept": "oa-temp",
+    "group": "온도",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -66,6 +75,8 @@
      "heating"
     ],
     "exposure": "Siemens AI:1882 RoomTmpCOM, Swegon MB:30081 Room temperature 1, Systemair AAIRoomTemp1, Trane nvoSpaceTemp",
+    "concept": "zone-temp",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -82,6 +93,8 @@
      "heating",
      "oa"
     ],
+    "concept": "혼합공기온도",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -97,6 +110,9 @@
      "oa"
     ],
     "exposure": "Swegon MB:30067 EA-D Temperature·MB:30080 EA duct temperature, Systemair AAIExhaustAirTemp__, Trane nvoERLvgExhTemp",
+    "concept": "배기-온도",
+    "group": "온도",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -111,6 +127,8 @@
     "usedBy": [
      "cooling"
     ],
+    "concept": "급기습도",
+    "group": "습도·공기질",
     "datasetTier": "template"
    },
    {
@@ -125,6 +143,8 @@
     "usedBy": [
      "cooling"
     ],
+    "concept": "환기습도",
+    "group": "습도·공기질",
     "datasetTier": "template"
    },
    {
@@ -141,6 +161,8 @@
      "cooling"
     ],
     "exposure": "Siemens AI:57226 OutEnth, Systemair MB:30639 AOutdoorEnthalpy_, Trane nvoOAEnthalpy",
+    "concept": "외기-엔탈피",
+    "group": "습도·공기질",
     "datasetTier": "template"
    },
    {
@@ -155,6 +177,8 @@
     "usedBy": [
      "fan"
     ],
+    "concept": "급기-정압",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -170,6 +194,8 @@
      "oa"
     ],
     "exposure": "Trane nvoOAFlow, Swegon MB:30237 ReCO outdoor air flow 2",
+    "concept": "외기-풍량",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -186,6 +212,8 @@
      "heating",
      "fan"
     ],
+    "concept": "급기-풍량",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -200,6 +228,8 @@
     "usedBy": [
      "oa"
     ],
+    "concept": "환기-co2",
+    "group": "습도·공기질",
     "datasetTier": "template"
    },
    {
@@ -215,6 +245,9 @@
      "cooling",
      "heating"
     ],
+    "concept": "급기온도-설정값",
+    "group": "온도",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -229,6 +262,8 @@
     "usedBy": [
      "fan"
     ],
+    "concept": "급기-정압-설정값",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -243,6 +278,9 @@
     "usedBy": [
      "fan"
     ],
+    "concept": "speed-cmd",
+    "group": "제어 지령",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. ⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다.",
     "datasetTier": "template"
    },
    {
@@ -257,6 +295,9 @@
     "usedBy": [
      "fan"
     ],
+    "concept": "speed-cmd",
+    "group": "제어 지령",
+    "matchNote": "⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다.",
     "datasetTier": "template"
    },
    {
@@ -272,6 +313,8 @@
      "oa"
     ],
     "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다",
+    "concept": "외기댐퍼-개도",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -286,6 +329,8 @@
     "usedBy": [
      "oa"
     ],
+    "concept": "환기댐퍼-개도",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -301,6 +346,8 @@
      "oa"
     ],
     "exposure": "exclude 에 bypass·ala*status 를 넣었다. Trane 이 nvoEREABPDamper(열회수 배기 바이패스), Systemair 가 AlaManualControlDamperExhaustStatus__(수동제어 알람)을 배기댐퍼로 확정 표시하고 있었다",
+    "concept": "배기댐퍼-개도",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -317,6 +364,8 @@
      "heating"
     ],
     "exposure": "Siemens AI:5922 HrecPos·AI:11521 HrecS1Pos, Trane nvoERStatus",
+    "concept": "열회수-지령-상태",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -332,6 +381,8 @@
      "fan"
     ],
     "keepAlarm": true,
+    "concept": "filter-dp",
+    "group": "정비",
     "datasetTier": "template"
    },
    {
@@ -346,6 +397,8 @@
     "usedBy": [],
     "exposure": "exclude 에 suct 를 넣었다. Siemens LowSuctAlm3(냉매 저압흡입)이 동결 경보로 잡히고 있었다",
     "keepAlarm": true,
+    "concept": "동결-방지-경보",
+    "group": "경보",
     "datasetTier": "template"
    },
    {
@@ -364,6 +417,8 @@
      "oa"
     ],
     "exposure": "include 에 operation mode·drive mode 를 넣었다. LG MB:40001 Operation Mode·Mitsubishi MB:40002 Drive Mode 가 안 잡히고 있었다",
+    "concept": "mode",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -380,6 +435,8 @@
      "oa"
     ],
     "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다",
+    "concept": "외기냉방-모드",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -396,6 +453,8 @@
      "cooling"
     ],
     "exposure": "exclude 에 알람 라벨을 넣었다. Swegon 'Active alarm 93', Systemair 'AlaSignalErrorFeedbackCoolerValveStatus__' 가 확정으로 잡히고 있었다 — 실제 값은 Swegon MB:30127 CHX-1 Valve output, Systemair MB:30586 AAIFeedbackCoolerValve__ 다",
+    "concept": "냉수밸브-개도",
+    "group": "유량·수측",
     "datasetTier": "template"
    },
    {
@@ -412,6 +471,8 @@
      "heating"
     ],
     "exposure": "include 에서 'mod gas heat valve' 를 뺐다(가스 모듈레이팅 밸브는 '난방 지령'이다). 실제 값은 Swegon MB:30376 AYC Heat, valve output",
+    "concept": "온수밸브-개도",
+    "group": "유량·수측",
     "datasetTier": "template"
    },
    {
@@ -428,6 +489,9 @@
      "cooling"
     ],
     "exposure": "Swegon MB:10109 COOL DX compressor 1 output, Trane nvoCprsrsRunning, Mitsubishi MB:40007 Step status. 냉수 AHU 에는 없는 것이 정상이라 선택이다",
+    "concept": "압축기-단수-상태",
+    "group": "상태",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -443,6 +507,9 @@
      "cooling"
     ],
     "exposure": "Trane nvoCoolPrimary, Siemens MSO:30094 CoolingCmdDxSt, Swegon MB:30392 AYC Chilled water cool demand. 유럽형 Systemair AY1/AY3/AY10 Sequence_ 는 어느 것이 냉방인지 문서에 정의가 없어 근거로 쓰지 않았다(gap)",
+    "concept": "냉방-지령",
+    "group": "제어 지령",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -458,6 +525,9 @@
      "heating"
     ],
     "exposure": "Trane nvoHeatPrimary, Siemens MSO:11590 ElectricalHtgCmdStSt",
+    "concept": "난방-지령",
+    "group": "제어 지령",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -473,6 +543,118 @@
      "heating"
     ],
     "exposure": "include 에서 setpoint 를 뺐다. Swegon 'Active alarm 189' 등 알람 비트가 가습 지령으로 잡히고 있었다",
+    "concept": "가습-지령",
+    "group": "제어 지령",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운전/정지 지령",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`enable`✓ `cmd`✓",
+    "grade": "필수",
+    "haystack": "cmd enable point",
+    "why": "꺼진 시간은 전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "run-cmd",
+    "group": "제어 지령",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운전 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`run`✓ `sensor`✓",
+    "grade": "필수",
+    "haystack": "point run sensor",
+    "why": "지령과 실제가 다를 수 있다. 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "run-status",
+    "group": "상태",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "고장·경보",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`alarm`✓ `fault`✓",
+    "grade": "필수",
+    "haystack": "alarm point sensor",
+    "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "alarm",
+    "group": "경보",
+    "keepAlarm": true,
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "고장 코드",
+    "objectType": "AI/MSO",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fault`✓ `alarm-text`✓",
+    "grade": "권장",
+    "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+    "why": "왜 섰는지 가른다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "alarm-code",
+    "group": "경보",
+    "keepAlarm": true,
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "소비전력",
+    "objectType": "AI",
+    "unit": "kW",
+    "role": "sensor",
+    "tags": "`elec-power`✓",
+    "grade": "권장",
+    "haystack": "elec power point sensor",
+    "why": "순시 전력. 정격표의 소비전력과 같은 물리량이라 부분부하 곡선을 직접 맞춘다",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "power",
+    "group": "전력",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "적산 전력량",
+    "objectType": "AI",
+    "unit": "kWh",
+    "role": "sensor",
+    "tags": "`elec`✓ `energy`✓",
+    "grade": "권장",
+    "haystack": "elec energy point sensor",
+    "why": "시뮬레이터 결과를 실측과 맞추는 정산 기준",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "energy",
+    "group": "전력",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    }
   ]
@@ -496,6 +678,9 @@
      "cooling",
      "heating"
     ],
+    "concept": "discharge-temp",
+    "group": "온도",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -512,6 +697,9 @@
      "heating",
      "oa"
     ],
+    "concept": "return-temp",
+    "group": "온도",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -528,6 +716,9 @@
      "heating",
      "oa"
     ],
+    "concept": "oa-temp",
+    "group": "온도",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -544,6 +735,8 @@
      "heating"
     ],
     "exposure": "우리 23행에 아예 빠져 있던 항목. 근거: Trane nvoSpaceTemp, Lennox AI:239 Space Temperature, AAON AI:12 Space Temperature, Daikin AI:3 SpaceTemp, York MB:135 Operational Space Temp",
+    "concept": "zone-temp",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -560,6 +753,8 @@
      "heating",
      "oa"
     ],
+    "concept": "혼합공기온도",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -575,6 +770,9 @@
      "oa"
     ],
     "exposure": "RTU 노출이 낮아 선택이다 — Trane nvoERLvgExhTemp·Daikin AI:17 EREAT 뿐. AHU 쪽은 Swegon MB:30067 EA-D Temperature, Systemair AAIExhaustAirTemp 로 더 흔하다",
+    "concept": "배기-온도",
+    "group": "온도",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -589,6 +787,8 @@
     "usedBy": [
      "cooling"
     ],
+    "concept": "급기습도",
+    "group": "습도·공기질",
     "datasetTier": "template"
    },
    {
@@ -603,6 +803,8 @@
     "usedBy": [
      "cooling"
     ],
+    "concept": "환기습도",
+    "group": "습도·공기질",
     "datasetTier": "template"
    },
    {
@@ -619,6 +821,8 @@
      "cooling"
     ],
     "exposure": "AAON AI:145 Outdoor Enthalpy, York MB:155 Outdoor Air Enthalpy, Trane nvoOAEnthalpy, Siemens AI:57226 OutEnth, Systemair AOutdoorEnthalpy",
+    "concept": "외기-엔탈피",
+    "group": "습도·공기질",
     "datasetTier": "template"
    },
    {
@@ -633,6 +837,8 @@
     "usedBy": [
      "fan"
     ],
+    "concept": "급기-정압",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -648,6 +854,8 @@
      "oa"
     ],
     "exposure": "Trane nvoOAFlow, Daikin AV:42 OAFlow, York MB:262 Outdoor Air Flow, AAON AI:25 Outdoor Airflow. 전에는 이 값이 '급기 풍량' 규칙의 nvooa?flow 에 잘못 걸려 급기로 계상됐다",
+    "concept": "외기-풍량",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -664,6 +872,8 @@
      "heating",
      "fan"
     ],
+    "concept": "급기-풍량",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -678,6 +888,8 @@
     "usedBy": [
      "oa"
     ],
+    "concept": "환기-co2",
+    "group": "습도·공기질",
     "datasetTier": "template"
    },
    {
@@ -693,6 +905,9 @@
      "cooling",
      "heating"
     ],
+    "concept": "급기온도-설정값",
+    "group": "온도",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -707,6 +922,8 @@
     "usedBy": [
      "fan"
     ],
+    "concept": "급기-정압-설정값",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -722,6 +939,9 @@
      "fan"
     ],
     "exposure": "필수 → 권장 강등. RTU 는 정속·다단 팬이 많아 주파수 지령을 안 내는 모델이 대부분이다(Daikin SupFanCapNetIn 등 소수). '필수'로 두면 영원히 미충족이라 규칙 ④ 위반이다",
+    "concept": "speed-cmd",
+    "group": "제어 지령",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. ⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다.",
     "datasetTier": "template"
    },
    {
@@ -736,6 +956,9 @@
     "usedBy": [
      "fan"
     ],
+    "concept": "speed-cmd",
+    "group": "제어 지령",
+    "matchNote": "⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다.",
     "datasetTier": "template"
    },
    {
@@ -751,6 +974,8 @@
      "oa"
     ],
     "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다",
+    "concept": "외기댐퍼-개도",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -764,6 +989,8 @@
     "why": "혼합비 검증용. 외기댐퍼와 연동이라 단독으로는 계산에 안 쓴다",
     "usedBy": [],
     "exposure": "권장 → 선택 강등. RTU 에서 실제 노출이 거의 없다(AAON Return Bypass 정도)",
+    "concept": "환기댐퍼-개도",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -779,6 +1006,8 @@
      "oa"
     ],
     "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEREABPDamper(열회수 배기 '바이패스' 댐퍼)를 배기댐퍼로 확정 표시하고 있었다 — 회수를 우회시키는 댐퍼라 뜻이 정반대다",
+    "concept": "배기댐퍼-개도",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -795,6 +1024,8 @@
      "heating"
     ],
     "exposure": "Daikin AI:15 ERWheelSpd(%)·MSV:37 ERWhlOnOff, Trane nvoERStatus, Siemens AI:5922 HrecPos. exclude 에 bypass·preheat·leaving 을 넣어 같은 ER 접두의 다른 포인트와 갈랐다",
+    "concept": "열회수-지령-상태",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -810,6 +1041,8 @@
      "fan"
     ],
     "keepAlarm": true,
+    "concept": "filter-dp",
+    "group": "정비",
     "datasetTier": "template"
    },
    {
@@ -824,6 +1057,8 @@
     "usedBy": [],
     "exposure": "exclude 에 suct(흡입)를 넣었다. Siemens LowSuctAlm3(냉매 저압흡입 경보)이 동결 경보로 잡히고 있었다 — 둘은 다른 고장이다",
     "keepAlarm": true,
+    "concept": "동결-방지-경보",
+    "group": "경보",
     "datasetTier": "template"
    },
    {
@@ -841,6 +1076,8 @@
      "fan",
      "oa"
     ],
+    "concept": "mode",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -857,6 +1094,8 @@
      "oa"
     ],
     "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다",
+    "concept": "외기냉방-모드",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -872,6 +1111,9 @@
      "cooling"
     ],
     "exposure": "AAON AI:44 A1 Compressor Signal, Trane nvoCprsrsRunning, Lennox AO:115 Compressor Enable Control, York MB:101 C1 Stage Enabled, Daikin AV:163 GenCondStages, Trane RAUK BI:10111 Compressor 1A Status",
+    "concept": "압축기-단수-상태",
+    "group": "상태",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -887,6 +1129,8 @@
      "heating"
     ],
     "exposure": "York MB:264 Staged Heating Command·MB:349~351 Gas Valve 1~3 Input, Carrier AV:2003 heat run. Daikin MSV:119 HtgType 은 구성 열거지 단수가 아니다",
+    "concept": "난방-단수-상태",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -902,6 +1146,9 @@
      "cooling"
     ],
     "exposure": "AAON AI:34 Modulating Cooling Position(note: Current percentage of the Modulating Chilled Water Signal), Lennox AI:247 Cool Primary, Trane nvoCoolPrimary, Daikin AV:1 ClgCapacity, Carrier AV:9006 cool demand level, York MB:263 Staged Cooling Command, Trane RAUK AV:10139 Cooling Capacity Enable",
+    "concept": "냉방-지령",
+    "group": "제어 지령",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -917,6 +1164,9 @@
      "heating"
     ],
     "exposure": "AAON AI:35 Modulating Heat Position(note: Modulating Heating signal, Hot Water or SCR heat — 한 오브젝트가 온수밸브와 SCR 히터를 함께 담는다), Lennox AI:245 Heat Primary·AI:246 Heat Secondary, Trane nvoHeatPrimary, Daikin AV:2 HtgCapacity, Carrier AV:9036 heat demand level, York MB:264 Staged Heating Command",
+    "concept": "난방-지령",
+    "group": "제어 지령",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    },
    {
@@ -930,6 +1180,8 @@
     "why": "가습 열량. RTU 에는 가습기가 거의 없다",
     "usedBy": [],
     "exposure": "include 에서 setpoint 를 뺐다. 전에는 Trane nciSpaceHumSP·Lennox Dehumidification Setpoint 같은 설정값이 '가습 지령'으로 확정 표시됐다",
+    "concept": "가습-지령",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -946,6 +1198,8 @@
      "cooling"
     ],
     "exposure": "필수 → 선택 + appliesWhen. 실측 RTU 0/9 매칭. AHU 2/8 도 Swegon 'Active alarm 93'·Systemair 'AlaSignalErrorFeedbackCoolerValveStatus__' 로 둘 다 알람 비트 오매칭이었다 — 두 '필수' 포인트의 실질 매칭은 17모델 중 0 이었다",
+    "concept": "냉수밸브-개도",
+    "group": "유량·수측",
     "datasetTier": "template"
    },
    {
@@ -962,6 +1216,118 @@
      "heating"
     ],
     "exposure": "필수 → 선택 + appliesWhen. include 에서 'mod gas heat valve' 를 뺐고 exclude 에 reheat·hot gas·rev acting 을 넣었다. 전에는 AAON 'Mod Hot Gas Reheat Valve Position'(핫가스 재열밸브)과 York 'HW Heat Valve Rev Acting'(역작동 설정 플래그)이 온수밸브로 확정 표시됐다",
+    "concept": "온수밸브-개도",
+    "group": "유량·수측",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운전/정지 지령",
+    "objectType": "BO",
+    "unit": "—",
+    "role": "cmd",
+    "tags": "`enable`✓ `cmd`✓",
+    "grade": "필수",
+    "haystack": "cmd enable point",
+    "why": "꺼진 시간은 전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "run-cmd",
+    "group": "제어 지령",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "운전 상태",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`run`✓ `sensor`✓",
+    "grade": "필수",
+    "haystack": "point run sensor",
+    "why": "지령과 실제가 다를 수 있다. 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "run-status",
+    "group": "상태",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "고장·경보",
+    "objectType": "BI",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`alarm`✓ `fault`✓",
+    "grade": "필수",
+    "haystack": "alarm point sensor",
+    "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "alarm",
+    "group": "경보",
+    "keepAlarm": true,
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "고장 코드",
+    "objectType": "AI/MSO",
+    "unit": "—",
+    "role": "sensor",
+    "tags": "`fault`✓ `alarm-text`✓",
+    "grade": "권장",
+    "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+    "why": "왜 섰는지 가른다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "alarm-code",
+    "group": "경보",
+    "keepAlarm": true,
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "소비전력",
+    "objectType": "AI",
+    "unit": "kW",
+    "role": "sensor",
+    "tags": "`elec-power`✓",
+    "grade": "권장",
+    "haystack": "elec power point sensor",
+    "why": "순시 전력. 정격표의 소비전력과 같은 물리량이라 부분부하 곡선을 직접 맞춘다",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "power",
+    "group": "전력",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+    "datasetTier": "template"
+   },
+   {
+    "name": "적산 전력량",
+    "objectType": "AI",
+    "unit": "kWh",
+    "role": "sensor",
+    "tags": "`elec`✓ `energy`✓",
+    "grade": "권장",
+    "haystack": "elec energy point sensor",
+    "why": "시뮬레이터 결과를 실측과 맞추는 정산 기준",
+    "usedBy": [
+     "cooling",
+     "heating"
+    ],
+    "concept": "energy",
+    "group": "전력",
+    "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
     "datasetTier": "template"
    }
   ]
@@ -992,6 +1358,8 @@
      "cooling",
      "heating"
     ],
+    "concept": "설정온도-상-하한",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -1007,6 +1375,8 @@
      "cooling",
      "heating"
     ],
+    "concept": "설정온도",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -1023,6 +1393,8 @@
      "heating",
      "thermalMass"
     ],
+    "concept": "zone-temp",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -1039,6 +1411,8 @@
      "heating"
     ],
     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+    "concept": "discharge-temp",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -1054,6 +1428,8 @@
      "cooling",
      "heating"
     ],
+    "concept": "return-temp",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -1069,6 +1445,8 @@
      "cooling",
      "heating"
     ],
+    "concept": "배관-온도-액관-가스관",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -1084,6 +1462,8 @@
      "cooling",
      "heating"
     ],
+    "concept": "oa-temp",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -1101,6 +1481,8 @@
      "electrical"
     ],
     "matchNote": "밑줄은 낱말 문자라 \b 가 'AC_Power_xx'·'AC_Period_kWh_xx' 를 가로막는다 — 국내 게이트웨이 이름은 밑줄로 이어 붙는다.",
+    "concept": "run-cmd",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -1115,6 +1497,8 @@
     "usedBy": [
      "electrical"
     ],
+    "concept": "run-status",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -1131,6 +1515,8 @@
      "heating"
     ],
     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+    "concept": "mode",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -1148,6 +1534,8 @@
      "electrical"
     ],
     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+    "concept": "speed-cmd",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -1161,6 +1549,8 @@
     "why": "전력·열 계산에 안 들어간다. 대부분 벤더가 내주기 때문에 화면 조작용으로만 둔다",
     "usedBy": [],
     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+    "concept": "풍향-루버",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -1177,6 +1567,8 @@
     ],
     "keepAlarm": true,
     "matchNote": "Daikin 의 'Alarm · 알람' 이 'MalfunctionCode · 고장 코드' 를 제치고 집혔었다. 매처가 보는 글자는 이름+비고인데 Alarm 의 비고가 'Normal / Malfunction' 이라 malfunction 하나만으로 걸린 것이다 — 그건 코드가 아니라 **상태 열거**다. 그래서 '코드'라는 낱말이 가까이 붙은 이름만 받는다.",
+    "concept": "alarm-code",
+    "group": "경보",
     "datasetTier": "template"
    },
    {
@@ -1193,6 +1585,8 @@
      "heating"
     ],
     "keepAlarm": true,
+    "concept": "filter-dp",
+    "group": "정비",
     "datasetTier": "template"
    },
    {
@@ -1208,6 +1602,8 @@
      "cooling",
      "heating"
     ],
+    "concept": "팽창밸브-eev-개도",
+    "group": "유량·수측",
     "datasetTier": "template"
    },
    {
@@ -1225,6 +1621,8 @@
      "electrical"
     ],
     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+    "concept": "압축기-운전율",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -1240,6 +1638,8 @@
      "electrical"
     ],
     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
+    "concept": "energy",
+    "group": "전력",
     "datasetTier": "template"
    },
    {
@@ -1256,6 +1656,8 @@
     ],
     "matchNote": "집힌 것을 하나씩 보고 고쳤다 — 오답 여덟 건이 있었다(가스 적산을 전력 적산으로, 리모컨 잠금을 풍량 지령으로, 압축기 누적 운전시간을 운전율로, 압축기 냉매 토출온도를 급기온도로 집었다). 정규식은 이름만으로 뜻을 가르지 못한다 — 반드시 집힌 결과를 본다.",
     "appliesWhen": "게이트웨이가 순시 전력을 안 낸다 — VRF 5모델 619점에서 0건이다(LG·삼성은 적산 kWh, Daikin 은 적산 전력·가스). 이 값은 별도 전력계(e19)나 형번별 정격표의 '통합 냉방·난방 소비전력' 에서 온다. 행을 지우지 않는 이유는 시뮬레이터가 실제로 쓰는 물리량이고, 미충족(missing)이 아니라 **여기서 나올 값이 아님**을 남겨야 하기 때문이다.",
+    "concept": "power",
+    "group": "전력",
     "datasetTier": "template"
    },
    {
@@ -1270,6 +1672,8 @@
     "usedBy": [
      "heating"
     ],
+    "concept": "제상-상태",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -1282,6 +1686,8 @@
     "haystack": "표준에 없음 — 게이트웨이 자신의 상태다",
     "why": "통신 두절 구간의 값은 마지막 값이 유지될 뿐 실측이 아니다. 그 구간을 데이터에서 빼는 근거",
     "usedBy": [],
+    "concept": "통신-상태",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -1297,6 +1703,8 @@
      "cooling",
      "heating"
     ],
+    "concept": "재실-감지",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -1309,6 +1717,8 @@
     "haystack": "vrf-indoorUnit-fcu/equip.humidifier/cmd.enable.humidifier.point (추정 0.75 — 가습기 자리에 붙었다. 오탐으로 본다)",
     "why": "계산에 안 들어간다. 다만 잠금이 걸린 구간은 설정온도가 안 바뀌므로 데이터 해석에 쓰인다",
     "usedBy": [],
+    "concept": "리모컨-잠금",
+    "group": "제어 지령",
     "datasetTier": "template"
    }
   ]
@@ -1332,6 +1742,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "speed-fb",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -1348,6 +1760,8 @@
     ],
     "keepAlarm": true,
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "alarm",
+    "group": "경보",
     "datasetTier": "template"
    },
    {
@@ -1364,6 +1778,8 @@
      "airside"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "run-cmd",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -1379,6 +1795,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "run-status",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -1395,6 +1813,8 @@
     ],
     "keepAlarm": true,
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "alarm",
+    "group": "경보",
     "datasetTier": "template"
    },
    {
@@ -1409,6 +1829,8 @@
     "usedBy": [
      "airside"
     ],
+    "concept": "급기-댐퍼-열림-닫힘-지령",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -1423,6 +1845,8 @@
     "usedBy": [
      "airside"
     ],
+    "concept": "급기-댐퍼-열림-상태",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -1437,6 +1861,8 @@
     "usedBy": [
      "airside"
     ],
+    "concept": "외기-댐퍼-열림-닫힘-지령",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -1451,6 +1877,8 @@
     "usedBy": [
      "airside"
     ],
+    "concept": "외기-댐퍼-열림-상태",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -1465,6 +1893,8 @@
     "usedBy": [
      "airside"
     ],
+    "concept": "배기-댐퍼-열림-닫힘-지령",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -1479,6 +1909,8 @@
     "usedBy": [
      "airside"
     ],
+    "concept": "배기-댐퍼-열림-상태",
+    "group": "풍량·압력",
     "datasetTier": "template"
    },
    {
@@ -1495,6 +1927,8 @@
      "electrical"
     ],
     "keepAlarm": true,
+    "concept": "filter-dp",
+    "group": "정비",
     "datasetTier": "template"
    },
    {
@@ -1510,6 +1944,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "speed-fb",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -1525,6 +1961,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "current",
+    "group": "전력",
     "datasetTier": "template"
    },
    {
@@ -1540,6 +1978,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "power",
+    "group": "전력",
     "datasetTier": "template"
    },
    {
@@ -1555,6 +1995,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "energy",
+    "group": "전력",
     "datasetTier": "template"
    },
    {
@@ -1568,6 +2010,8 @@
     "why": "전원 품질과 회생 상태의 지표. 전력 계산에는 직접 안 들어간다",
     "usedBy": [],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "dc-volt",
+    "group": "전력",
     "datasetTier": "template"
    },
    {
@@ -1583,6 +2027,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "drive-temp",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -1598,6 +2044,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "runtime",
+    "group": "정비",
     "datasetTier": "template"
    },
    {
@@ -1612,6 +2060,8 @@
     "usedBy": [],
     "keepAlarm": true,
     "appliesWhen": "주방 배기휀(KEF)에만 붙는다 — 다른 팬에는 없는 것이 정상이다",
+    "concept": "탈취기-상태-경보",
+    "group": "상태",
     "datasetTier": "template"
    }
   ]
@@ -1635,6 +2085,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "speed-cmd",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -1650,6 +2102,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "speed-fb",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -1665,6 +2119,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "current",
+    "group": "전력",
     "datasetTier": "template"
    },
    {
@@ -1680,6 +2136,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "출력-전압",
+    "group": "전력",
     "datasetTier": "template"
    },
    {
@@ -1695,6 +2153,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "power",
+    "group": "전력",
     "datasetTier": "template"
    },
    {
@@ -1710,6 +2170,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "energy",
+    "group": "전력",
     "datasetTier": "template"
    },
    {
@@ -1725,6 +2187,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "모터-토크",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -1741,6 +2205,8 @@
     ],
     "keepAlarm": true,
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "alarm",
+    "group": "경보",
     "datasetTier": "template"
    },
    {
@@ -1757,6 +2223,8 @@
     ],
     "keepAlarm": true,
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "alarm-code",
+    "group": "경보",
     "datasetTier": "template"
    },
    {
@@ -1772,6 +2240,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "제어어-상태어",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -1787,6 +2257,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "run-status",
+    "group": "상태",
     "datasetTier": "template"
    },
    {
@@ -1802,6 +2274,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "run-cmd",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -1815,6 +2289,8 @@
     "why": "팬·펌프는 대개 정방향 고정이라 계산에 안 들어간다",
     "usedBy": [],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "정-역-지령",
+    "group": "제어 지령",
     "datasetTier": "template"
    },
    {
@@ -1828,6 +2304,8 @@
     "why": "회생·과전압 트립의 선행 지표. 계통 전압 품질을 본다",
     "usedBy": [],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "dc-volt",
+    "group": "전력",
     "datasetTier": "template"
    },
    {
@@ -1843,6 +2321,8 @@
      "thermal"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "drive-temp",
+    "group": "온도",
     "datasetTier": "template"
    },
    {
@@ -1858,6 +2338,8 @@
      "electrical"
     ],
     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+    "concept": "runtime",
+    "group": "정비",
     "datasetTier": "template"
    }
   ]
