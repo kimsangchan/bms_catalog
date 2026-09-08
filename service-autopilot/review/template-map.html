@@ -281,7 +281,10 @@ function bind(page,pick){
   if(pn) pn.onclick=function(){S.page++;draw();};
   if(ps) ps.onchange=function(){S.size=ps.value;S.page=0;draw();};
 }
-function top(){
+/* ⚠ 함수 이름을 top 으로 두면 안 된다 — 브라우저에서 window.top 은 **읽기 전용
+   전역**이라 덮이지 않고, 호출하는 순간 'top is not a function' 으로 죽는다.
+   페이지가 통째로 안 열렸다. node 검사에는 window.top 이 없어 통과했다. */
+function drawBar(){
   var h='<div class="tabs">'
     +'<button data-t="shared" aria-current="'+(S.tab==='shared')+'">공용 포인트</button>'
     +'<button data-t="rows" aria-current="'+(S.tab==='rows')+'">템플릿 행</button></div>';
@@ -343,6 +346,6 @@ function cnt(){
   }
 }
 function draw(){ S.tab==='shared'?drawShared():drawRows(); }
-function render(){ top(); draw(); cnt(); }
+function render(){ drawBar(); draw(); cnt(); }
 render();
 </script></html>

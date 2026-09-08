@@ -318,7 +318,10 @@ function bind(page,pick){
   if(pn) pn.onclick=function(){S.page++;draw();};
   if(ps) ps.onchange=function(){S.size=ps.value;S.page=0;draw();};
 }
-function top(){
+/* ⚠ 함수 이름을 top 으로 두면 안 된다 — 브라우저에서 window.top 은 **읽기 전용
+   전역**이라 덮이지 않고, 호출하는 순간 'top is not a function' 으로 죽는다.
+   페이지가 통째로 안 열렸다. node 검사에는 window.top 이 없어 통과했다. */
+function drawBar(){
   var h='<div class="tabs">'
     +'<button data-t="shared" aria-current="'+(S.tab==='shared')+'">공용 포인트</button>'
     +'<button data-t="rows" aria-current="'+(S.tab==='rows')+'">템플릿 행</button></div>';
@@ -380,9 +383,33 @@ function cnt(){
   }
 }
 function draw(){ S.tab==='shared'?drawShared():drawRows(); }
-function render(){ top(); draw(); cnt(); }
+function render(){ drawBar(); draw(); cnt(); }
 render();
 """
+
+
+# 브라우저 전역과 부딪히면 안 되는 이름. window 의 이 속성들은 **읽기 전용**이라
+# 같은 이름 함수를 만들어도 덮이지 않고, 호출하는 순간 죽는다.
+# 실제로 `function top()` 하나 때문에 페이지가 통째로 안 열렸다 —
+# node 로 돌린 검사는 window.top 이 없어 그냥 통과했다.
+WINDOW_RESERVED = {
+    "top", "parent", "self", "window", "frames", "length", "name", "status",
+    "location", "history", "origin", "closed", "document", "navigator", "screen",
+    "opener", "external", "print", "close", "open", "focus", "blur", "stop",
+}
+
+
+def check_globals(js):
+    """JS 전역 함수·변수 이름이 브라우저 전역과 부딪히나 — 빌드 때마다 본다."""
+    import re as _re
+    bad = sorted({m for m in _re.findall(r"^function\s+([A-Za-z_$][\w$]*)\s*\(",
+                                         js, _re.M)} & WINDOW_RESERVED)
+    bad += sorted({m for m in _re.findall(r"^var\s+([A-Za-z_$][\w$]*)", js, _re.M)}
+                  & WINDOW_RESERVED)
+    if bad:
+        raise SystemExit("브라우저 전역과 부딪히는 이름이다(페이지가 안 열린다): %s"
+                         % ", ".join(bad))
+    return len(bad)
 
 
 def build():
@@ -486,6 +513,7 @@ def build():
     nrow = sum(len(v["rows"]) for v in profiles.values())
     nmdl = sum(len(v["models"]) for v in profiles.values())
 
+    check_globals(JS)
     html = ("<!doctype html><html lang=ko><meta charset=utf-8>"
             "<meta name=viewport content='width=device-width,initial-scale=1'>"
             "<title>BMS 기본화면 템플릿 검사대</title><style>%s</style>"
