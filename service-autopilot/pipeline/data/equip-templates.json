@@ -61,12 +61,12 @@
       "oa"
      ],
      "match": {
-      "include": "return.*air.*temp|\\bra temp|\\bra[ ._-]?temp|\\brat\\b|환기.?온도|리턴.?온도",
+      "include": "return.*air.*temp|\\bra temp|\\bra[ ._-]?temp|\\brat\\b|환기.?온도|리턴.?온도|extract[^A-Za-z]*air[^A-Za-z]*temp|ExtractAirTemp|\\bEA\\b\\s*(?:duct\\s*)?temp",
       "exclude": "setpoint|sp\\b|control temperature type"
      },
      "concept": "return-temp",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) 유럽 벤더는 환기를 extract air 라 부른다 — Swegon 'EA Temperature RX'·'EA duct temperature', Systemair 'AAIExtractAirTemp'. EA 가 환기인 것은 원문 note 가 밝힌다('Present extract air temperature in the unit'). Swegon 의 exhaust 는 'Exhaust heat …'(열회수)로 따로 쓰여 배기 온도 행과 안 겹친다."
     },
     {
      "name": "외기온도",
@@ -225,11 +225,12 @@
       "fan"
      ],
      "match": {
-      "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
-      "exclude": "setpoint|sp\\b|reset"
+      "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs|\\bSA\\b[^A-Za-z]*duct[^A-Za-z]*press|supply[^A-Za-z]*duct[^A-Za-z]*press",
+      "exclude": "setpoint|sp\\b|reset|calibration|regulator|\\bzone\\b|i-time|compensation"
      },
      "concept": "급기-정압",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "matchNote": "2026-09-11(공조기 점검) Swegon 은 'SA Duct pressure' 라 적는다 — 'static' 이 없고 supply 대신 SA 다. 다만 같은 말로 시작하는 설정·보정 항목이 33개(auto zero calibration·regulator·I-time·compensation) 있어 제외어를 함께 넓혔다."
     },
     {
      "name": "외기 풍량",
@@ -384,12 +385,13 @@
       "oa"
      ],
      "match": {
-      "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
-      "exclude": "minimum|maximum|min|max|setpoint|sp\\b|bypass|bp ?damper|total flow"
+      "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)|economizer[^A-Za-z]*damper[^A-Za-z]*(?:%|percent|output|pos)",
+      "exclude": "minimum|maximum|min|max|setpoint|sp\\b|bypass|bp ?damper|total flow|method|installed|\\bmin\\b|minimum|enable|setpoint"
      },
      "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다",
      "concept": "외기댐퍼-개도",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "matchNote": "2026-09-11(공조기 점검) JCI·YORK 는 외기댐퍼를 'Economizer Damper % Output' 이라 적는다 — 원문 설명이 'Shows the current percentage output for the economizer damper' 로 개도 그대로다. 다만 같은 말로 시작하는 설정 항목이 많아('ECONOMIZER METHOD'·'ECONOMIZER INSTALLED'·'OA DAMPER MIN POSITION') 제외어를 함께 넓혔다. ⚠ 'UNIT STOP'·'SYSTEM STOP' 은 운전/정지 지령에 **안 넣었다** — 원문이 'manually shuts down compressor circuits' 라 압축기 회로 정지다."
     },
     {
      "name": "환기댐퍼 개도",
@@ -711,10 +713,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b|(?:^|[A-Za-z0-9])(?:unit|system)status\\b",
       "exclude": "odu|comp|압축기|defrost|제상|error|알람|enabl|permissive|control source|\\btime\\b"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다. 2026-09-11(공조기 점검) 벤더 접두어가 붙은 이름을 받는다 — 'nvoUnitStatus'(Trane LonTalk)·'CarelUnitStatus'(Siemens). 앞서 'Econ System Status' 오탐을 막으려 ^ 로 앵커했는데 그러면 접두어형이 통째로 빠진다. 가르는 기준은 앵커가 아니라 **띄어쓰기**다 — 한정어는 띄어져 있고 접두어는 붙어 있다."
     },
     {
      "name": "고장·경보",
@@ -733,10 +735,10 @@
      "group": "경보",
      "keepAlarm": true,
      "match": {
-      "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보",
+      "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보|\\bA-?alarm\\b",
       "exclude": "code|코드|freeze|동결|filter|필터|odu"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) Swegon 의 최고 등급 경보 요약이 'A-alarm active' 다. 'Active alarm group N' 은 프로파일 공용 제외어(active alarm)에 이미 걸려 안 들어온다."
     },
     {
      "name": "고장 코드",
@@ -846,12 +848,12 @@
       "oa"
      ],
      "match": {
-      "include": "return.*air.*temp|\\bra temp|\\bra[ ._-]?temp|\\brat\\b|환기.?온도|리턴.?온도",
+      "include": "return.*air.*temp|\\bra temp|\\bra[ ._-]?temp|\\brat\\b|환기.?온도|리턴.?온도|extract[^A-Za-z]*air[^A-Za-z]*temp|ExtractAirTemp|\\bEA\\b\\s*(?:duct\\s*)?temp",
       "exclude": "setpoint|sp\\b|control temperature type"
      },
      "concept": "return-temp",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) 유럽 벤더는 환기를 extract air 라 부른다 — Swegon 'EA Temperature RX'·'EA duct temperature', Systemair 'AAIExtractAirTemp'. EA 가 환기인 것은 원문 note 가 밝힌다('Present extract air temperature in the unit'). Swegon 의 exhaust 는 'Exhaust heat …'(열회수)로 따로 쓰여 배기 온도 행과 안 겹친다."
     },
     {
      "name": "외기온도",
@@ -1010,11 +1012,12 @@
       "fan"
      ],
      "match": {
-      "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
-      "exclude": "setpoint|sp\\b|reset"
+      "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs|\\bSA\\b[^A-Za-z]*duct[^A-Za-z]*press|supply[^A-Za-z]*duct[^A-Za-z]*press",
+      "exclude": "setpoint|sp\\b|reset|calibration|regulator|\\bzone\\b|i-time|compensation"
      },
      "concept": "급기-정압",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "matchNote": "2026-09-11(공조기 점검) Swegon 은 'SA Duct pressure' 라 적는다 — 'static' 이 없고 supply 대신 SA 다. 다만 같은 말로 시작하는 설정·보정 항목이 33개(auto zero calibration·regulator·I-time·compensation) 있어 제외어를 함께 넓혔다."
     },
     {
      "name": "외기 풍량",
@@ -1168,12 +1171,13 @@
       "oa"
      ],
      "match": {
-      "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
-      "exclude": "minimum|maximum|min|max|setpoint|sp\\b|bypass|bp ?damper|total flow"
+      "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)|economizer[^A-Za-z]*damper[^A-Za-z]*(?:%|percent|output|pos)",
+      "exclude": "minimum|maximum|min|max|setpoint|sp\\b|bypass|bp ?damper|total flow|method|installed|\\bmin\\b|minimum|enable|setpoint"
      },
      "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다",
      "concept": "외기댐퍼-개도",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "matchNote": "2026-09-11(공조기 점검) JCI·YORK 는 외기댐퍼를 'Economizer Damper % Output' 이라 적는다 — 원문 설명이 'Shows the current percentage output for the economizer damper' 로 개도 그대로다. 다만 같은 말로 시작하는 설정 항목이 많아('ECONOMIZER METHOD'·'ECONOMIZER INSTALLED'·'OA DAMPER MIN POSITION') 제외어를 함께 넓혔다. ⚠ 'UNIT STOP'·'SYSTEM STOP' 은 운전/정지 지령에 **안 넣었다** — 원문이 'manually shuts down compressor circuits' 라 압축기 회로 정지다."
     },
     {
      "name": "환기댐퍼 개도",
@@ -1480,10 +1484,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b|(?:^|[A-Za-z0-9])(?:unit|system)status\\b",
       "exclude": "odu|comp|압축기|defrost|제상|error|알람|enabl|permissive|control source|\\btime\\b"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다. 2026-09-11(공조기 점검) 벤더 접두어가 붙은 이름을 받는다 — 'nvoUnitStatus'(Trane LonTalk)·'CarelUnitStatus'(Siemens). 앞서 'Econ System Status' 오탐을 막으려 ^ 로 앵커했는데 그러면 접두어형이 통째로 빠진다. 가르는 기준은 앵커가 아니라 **띄어쓰기**다 — 한정어는 띄어져 있고 접두어는 붙어 있다."
     },
     {
      "name": "고장·경보",
@@ -1502,10 +1506,10 @@
      "group": "경보",
      "keepAlarm": true,
      "match": {
-      "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보",
+      "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보|\\bA-?alarm\\b",
       "exclude": "code|코드|freeze|동결|filter|필터|odu"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) Swegon 의 최고 등급 경보 요약이 'A-alarm active' 다. 'Active alarm group N' 은 프로파일 공용 제외어(active alarm)에 이미 걸려 안 들어온다."
     },
     {
      "name": "고장 코드",
@@ -5999,11 +6003,12 @@
       "fan"
      ],
      "match": {
-      "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
-      "exclude": "setpoint|sp\\b|reset"
+      "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs|\\bSA\\b[^A-Za-z]*duct[^A-Za-z]*press|supply[^A-Za-z]*duct[^A-Za-z]*press",
+      "exclude": "setpoint|sp\\b|reset|calibration|regulator|\\bzone\\b|i-time|compensation"
      },
      "concept": "급기-정압",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "matchNote": "2026-09-11(공조기 점검) Swegon 은 'SA Duct pressure' 라 적는다 — 'static' 이 없고 supply 대신 SA 다. 다만 같은 말로 시작하는 설정·보정 항목이 33개(auto zero calibration·regulator·I-time·compensation) 있어 제외어를 함께 넓혔다."
     },
     {
      "name": "외기 풍량",
@@ -6119,12 +6124,13 @@
       "oa"
      ],
      "match": {
-      "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
-      "exclude": "minimum|maximum|min|max|setpoint|sp\\b|bypass|bp ?damper|total flow"
+      "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)|economizer[^A-Za-z]*damper[^A-Za-z]*(?:%|percent|output|pos)",
+      "exclude": "minimum|maximum|min|max|setpoint|sp\\b|bypass|bp ?damper|total flow|method|installed|\\bmin\\b|minimum|enable|setpoint"
      },
      "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다",
      "concept": "외기댐퍼-개도",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "matchNote": "2026-09-11(공조기 점검) JCI·YORK 는 외기댐퍼를 'Economizer Damper % Output' 이라 적는다 — 원문 설명이 'Shows the current percentage output for the economizer damper' 로 개도 그대로다. 다만 같은 말로 시작하는 설정 항목이 많아('ECONOMIZER METHOD'·'ECONOMIZER INSTALLED'·'OA DAMPER MIN POSITION') 제외어를 함께 넓혔다. ⚠ 'UNIT STOP'·'SYSTEM STOP' 은 운전/정지 지령에 **안 넣었다** — 원문이 'manually shuts down compressor circuits' 라 압축기 회로 정지다."
     },
     {
      "name": "배기댐퍼 개도",
@@ -6413,10 +6419,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b|(?:^|[A-Za-z0-9])(?:unit|system)status\\b",
       "exclude": "odu|comp|압축기|defrost|제상|error|알람|enabl|permissive|control source|\\btime\\b"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다. 2026-09-11(공조기 점검) 벤더 접두어가 붙은 이름을 받는다 — 'nvoUnitStatus'(Trane LonTalk)·'CarelUnitStatus'(Siemens). 앞서 'Econ System Status' 오탐을 막으려 ^ 로 앵커했는데 그러면 접두어형이 통째로 빠진다. 가르는 기준은 앵커가 아니라 **띄어쓰기**다 — 한정어는 띄어져 있고 접두어는 붙어 있다."
     },
     {
      "name": "고장·경보",
@@ -6435,10 +6441,10 @@
      "group": "경보",
      "keepAlarm": true,
      "match": {
-      "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보",
+      "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보|\\bA-?alarm\\b",
       "exclude": "code|코드|freeze|동결|filter|필터|odu"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) Swegon 의 최고 등급 경보 요약이 'A-alarm active' 다. 'Active alarm group N' 은 프로파일 공용 제외어(active alarm)에 이미 걸려 안 들어온다."
     },
     {
      "name": "고장 코드",
