@@ -22,7 +22,7 @@
    "equipId": "e5",
    "title": "루프탑 패키지(RTU·직팽) — BMS 기본화면",
    "basis": "냉방은 압축기, 난방은 가스·전기히터다. 코일 밸브가 아니라 '냉방/난방 지령(%)'과 '단수'가 부하 신호다. 원문 확인: Trane RT-PRC023AY(228p) chilled 0회·모델번호 T=DX Cooling / Y=DX Cooling, Gas Heat, York ZF/ZJ/ZR(194p+102p) chilled 0회·2 stages of cooling + Two Stage Natural Gas, Lennox Enlight LGT/LHT(각 42p) chilled 0회.",
-   "excludeCommon": "active alarm|alarm point|alarm status|alarm setting|ala[a-z]*status|\\bbad [a-z]|sensor error|alarm limit|alarm delay",
+   "excludeCommon": "active alarm|alarm point|alarm status|alarm setting|ala[a-z]*status|\\bbad [a-z]|sensor error|alarm limit|alarm delay|comm loss|communication loss|통신.?(?:두절|이상|끊)|^diagnostic\\b|진단.?플래그",
    "excludeCommonNote": "모든 행에 덧붙이는 제외어 — 알람 라벨·고장센서 라벨. Swegon 'Active alarm 93', Systemair 'AlaSignalErrorFeedbackCoolerValveStatus__', AAON 'Bad Carbon Dioxide Sensor' 같은 것이 값 포인트로 확정 표시되고 있었다. 경보를 실제로 찾는 행은 keepAlarm=true 로 뺀다.",
    "templatePoints": [
     {
@@ -809,7 +809,7 @@
    "equipId": "e5",
    "title": "공조기(AHU) — BMS 기본화면",
    "basis": "냉수·온수 코일 구성이 기본이라 기존 23행을 그대로 둔다. 다만 우리 AHU 8모델 중 LG AHU 통신킷 2건·Mitsubishi PAC-IF 1건은 직팽(DX) 인터페이스라 코일 밸브가 없다 — 그래서 밸브 두 행에 appliesWhen 을 달고, 추상 냉방·난방 지령을 함께 둔다.",
-   "excludeCommon": "active alarm|alarm point|alarm status|alarm setting|ala[a-z]*status|\\bbad [a-z]|sensor error|alarm limit|alarm delay",
+   "excludeCommon": "active alarm|alarm point|alarm status|alarm setting|ala[a-z]*status|\\bbad [a-z]|sensor error|alarm limit|alarm delay|comm loss|communication loss|통신.?(?:두절|이상|끊)|^diagnostic\\b|진단.?플래그",
    "excludeCommonNote": "모든 행에 덧붙이는 제외어 — 알람 라벨·고장센서 라벨. Swegon 'Active alarm 93', Systemair 'AlaSignalErrorFeedbackCoolerValveStatus__', AAON 'Bad Carbon Dioxide Sensor' 같은 것이 값 포인트로 확정 표시되고 있었다. 경보를 실제로 찾는 행은 keepAlarm=true 로 뺀다.",
    "templatePoints": [
     {
@@ -2018,7 +2018,7 @@
      "group": "제어 지령"
     }
    ],
-   "excludeCommon": "alarm setting|alarm limit|alarm delay|\\bbad [a-z]|sensor error",
+   "excludeCommon": "alarm setting|alarm limit|alarm delay|\\bbad [a-z]|sensor error|comm loss|communication loss|통신.?(?:두절|이상|끊)|^diagnostic\\b|진단.?플래그",
    "excludeCommonNote": "모든 행에 덧붙이는 제외어. e5 에서 쓰던 것 중 이 5모델에서 실제로 걸리는 것만 남겼다 — 'active alarm'·'alarm point' 는 여기 0건이라 베끼지 않았다(규칙 1: 확인한 것만 적는다). 경보를 실제로 찾는 행은 keepAlarm=true 로 뺀다."
   },
   "e16.actuator": {
@@ -3223,7 +3223,7 @@
    "equipId": "e7",
    "title": "항온항습기·FCU — BMS 기본화면",
    "basis": "초안 표(data/equips/e7.json)과 계열 모델의 실제 포인트 이름을 보고 썼다. 모든 계열에 뼈대 4행(운전/정지·운전 상태·고장·경보·고장 코드)을 넣는다 — e5·e13 에서 이게 통째로 빠져 LG AHU 킷이 2점만 붙었다.",
-   "excludeCommon": "",
+   "excludeCommon": "comm loss|communication loss|통신.?(?:두절|이상|끊)|^diagnostic\\b|진단.?플래그",
    "templatePoints": [
     {
      "name": "급기온도",
@@ -3461,7 +3461,7 @@
    "equipId": "e9",
    "title": "냉동기 — BMS 기본화면",
    "basis": "초안 표(data/equips/e9.json)과 계열 모델의 실제 포인트 이름을 보고 썼다. 모든 계열에 뼈대 4행(운전/정지·운전 상태·고장·경보·고장 코드)을 넣는다 — e5·e13 에서 이게 통째로 빠져 LG AHU 킷이 2점만 붙었다.",
-   "excludeCommon": "",
+   "excludeCommon": "comm loss|communication loss|통신.?(?:두절|이상|끊)|^diagnostic\\b|진단.?플래그",
    "templatePoints": [
     {
      "name": "냉수 출구온도",
@@ -5860,7 +5860,7 @@
    "title": "외조기 (OHU · 외기처리 유닛) — BMS 기본화면",
    "basis": "e5.ahu 37행을 베껴 다듬었다 — 매칭 규칙이 거기서 158모델로 이미 검증됐고, 새로 쓰면 같은 규칙의 두 번째 벌이 생긴다. 뺀 것은 **환기(리턴) 계열 6행**이다(환기온도·환기습도·혼합공기온도·환기댐퍼·환기 CO2·환기팬) — 외조기는 100% 외기라 리턴 덕트가 없다. 현장 43코드에서도 그 여섯은 한 건도 안 나왔다. 더한 것은 현장에만 있던 **전기히터 2행 · 연감지기 경보 · 외기댐퍼 개폐 2행**이다. Haystack 근거는 `doas`·`mau` proto 19개로 ahu 와 같은 벌이다.",
    "coverageNote": "모델 0건 — 국내 공조기 벤더(신성엔지니어링·센추리·우원기계) 문서를 아직 안 받았다. 현장 대수는 43코드로 계열 안에서 두 번째로 크다.",
-   "excludeCommon": "active alarm|alarm point|alarm status|alarm setting|ala[a-z]*status|\\bbad [a-z]|sensor error|alarm limit|alarm delay",
+   "excludeCommon": "active alarm|alarm point|alarm status|alarm setting|ala[a-z]*status|\\bbad [a-z]|sensor error|alarm limit|alarm delay|comm loss|communication loss|통신.?(?:두절|이상|끊)|^diagnostic\\b|진단.?플래그",
    "excludeCommonNote": "모든 행에 덧붙이는 제외어 — 알람 라벨·고장센서 라벨. Swegon 'Active alarm 93', Systemair 'AlaSignalErrorFeedbackCoolerValveStatus__', AAON 'Bad Carbon Dioxide Sensor' 같은 것이 값 포인트로 확정 표시되고 있었다. 경보를 실제로 찾는 행은 keepAlarm=true 로 뺀다.",
    "note": "전열교환기가 달린 외조기가 흔하다 — 현장 전열교환기 36대는 전부 공조기(AH) 코드 아래 부속으로 붙어 있어(229점) 배기 계열 2행에 appliesWhen 으로 조건을 달았다.",
    "templatePoints": [

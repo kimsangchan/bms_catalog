@@ -366,6 +366,30 @@ def loose_search(include, text):
     return False
 
 
+_ENUM = re.compile(r"(?:^|[\s,;·•/])\d+\s*[:=]\s*[^0-9]{0,40}?(?=(?:[\s,;·•/]\d+\s*[:=])|$)")
+
+
+def match_text(point):
+    """매칭에 쓰는 글 — 이름 + 비고, **다만 비고의 선택지 목록은 걷어낸다.**
+
+    왜: 비고가 enum 라벨을 담고 있으면 그 안의 낱말이 **다른 행을 끌어온다.**
+      · YKL 공조기 `Control temperature type` 의 비고가
+        "0: Panel temperature 1: According to the return air temperature
+         2: … discharge temperature 3: According to outside air temperature" 라
+        **외기온도·환기온도·급기온도 자리를 한꺼번에** 노렸다(외기온도를 실제로 가져갔다).
+      · `Unit operating mode information` 의 비고 "… 99: Fault status" 가
+        고장·경보 자리를 가져갔다.
+      이름은 멀쩡한데 설명이 훔친 것이다. 빈 칸보다 나쁘다 — 화면에 값이 있으니
+      아무도 의심하지 않는다.
+
+    ⚠ 비고를 통째로 빼지는 않는다. 벤더가 단위·범위·조건을 거기에만 적는 일이 흔하고,
+      한글 문서는 뜻이 비고에만 있는 경우도 있다. 걷어내는 것은 **번호가 붙은 선택지**뿐이다.
+    """
+    name = point.get("name") or ""
+    note = _ENUM.sub(" ", point.get("note") or "")
+    return "%s %s" % (name, note)
+
+
 def find_template_candidates(profile_id, points):
     """프로파일의 행 순서대로 원문 포인트를 하나씩 집는다(먼저 온 행이 이긴다).
 
@@ -401,7 +425,7 @@ def find_template_candidates(profile_id, points):
         for point in points:
             if point.get("name") in seen_names:
                 continue
-            text = point_text(point)
+            text = match_text(point)
             ok = (loose_search(rule["include"], text) if loose
                   else include.search(text))
             if not ok or exclude.search(text):
@@ -422,8 +446,16 @@ def find_template_candidates(profile_id, points):
                 score += 10
             if "입력(recv)" in low or typ == "NCI":
                 score -= 20
+            # ⚠ 'type identifier' 만 보던 것을 맨 `type` 까지 넓혔다. 설정 항목이
+            #   측정값 행을 차지하고 있었다 — YKL 공조기의 외기온도가
+            #   'Control temperature type'(무엇으로 제어할지 고르는 설정)에 붙어 있었고
+            #   진짜인 'Outside temperature value' 는 놀고 있었다. Vertiv 도 실내습도가
+            #   'Return Temperature/Humidity Sensor Control Type' 에 붙어 있었다.
+            #   빈 칸보다 나쁘다 — 화면에 값이 있으니 아무도 의심하지 않는다.
             if re.search(r"setpoint|configuration|type identifier|enable|min", low):
                 score -= 15
+            if re.search(r"control type|type\s*$|선택 ?형식|설정 ?형식", low):
+                score -= 40
             # 보조·예비 계통은 본 계통보다 뒤다. 어순을 푼 2차 매칭에서
             # `Second Condenser Leaving Water Temperature` 가 본 응축기
             # `Cond Leaving Water Temp` 를 이겼다 — 'temperature' 가 점수를 더 받아서다.

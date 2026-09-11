@@ -310,6 +310,8 @@ kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border
   <button class="zbtn" type="button" data-v="page" id="foldb"
           title="원문창 접기">─ 원문 접기</button>
   <button class="zbtn" type="button" id="csv" title="지금 보이는 행만 CSV 로">CSV</button>
+  <button class="zbtn" type="button" id="vexp"
+          title="✓ 로 대조 확인한 것을 파일로 — 저장소에 넣으면 다른 PC·다른 도구에서도 보인다">검수 내려받기</button>
   <button class="zbtn" type="button" data-z="rot" id="rotb">세로로</button>
   <button class="zbtn" type="button" data-z="fitw">폭맞춤</button>
   <span class="zoomer">
@@ -770,6 +772,47 @@ document.getElementById("csv").addEventListener("click", function(){
   var a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = (D.storeKey || "points").split("/")[0] + ".csv";
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 0);
+});
+
+/* ── 검수 결과 내보내기 ─────────────────────────────────────────────
+   ✓ 표시는 여태 **이 브라우저 안에만** 남았다(localStorage). 다른 PC 에서도,
+   다른 도구(Codex·Antigravity)에서도, 커밋에서도 안 보였다. 그래서 "대조가 된
+   설비" 가 무엇인지 저장소가 알 길이 없었고, 매칭·등급이 검수 여부와 무관하게
+   158모델 전체로 매겨졌다.
+   이 화면은 오프라인 단일 파일이라 스스로 파일을 못 쓴다 — CSV 와 같은 방식으로
+   내려받아 `python mappings.py --import <파일>` 로 넣는다. */
+document.getElementById("vexp").addEventListener("click", function(){
+  var out = {}, n = 0;
+  D.sections.forEach(function(t){
+    (t.points || []).forEach(function(p){
+      var k = t.id + ":" + (p.n || p.nm);
+      if (!done[k]) return;
+      /* 구역 id 는 '<모델>/<판>/<구역>' 이다 — 앞 둘만 쓴다 */
+      var seg = String(t.id).split("/");
+      var mid = seg[0], iface = seg[1] || "";
+      out[mid] = out[mid] || {};
+      out[mid][iface] = out[mid][iface] || [];
+      out[mid][iface].push({ "이름": p.nm || "", "번호": p.n || "",
+                             "쪽": p.pg == null ? "" : String(p.pg),
+                             "PDF쪽": p.pdf == null ? "" : String(p.pdf) });
+      n++;
+    });
+  });
+  if (!n) { alert("✓ 로 표시한 것이 없다 — 행 왼쪽 동그라미를 눌러 대조를 표시한다."); return; }
+  var doc = {
+    "_설명": "point-verify.html 에서 사람이 원문 쪽과 눈으로 대조한 포인트. "
+           + "python mappings.py --import <이 파일> 로 저장소에 넣는다. 누적이라 지우지 않는다.",
+    "내보낸때": new Date().toISOString(),
+    "화면범위": D.scope || "",
+    "점수": n,
+    "검수": out
+  };
+  var blob = new Blob([JSON.stringify(doc, null, 1)], { type: "application/json" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "point-verified-" + new Date().toISOString().slice(0, 10) + ".json";
   document.body.appendChild(a); a.click();
   setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 0);
 });

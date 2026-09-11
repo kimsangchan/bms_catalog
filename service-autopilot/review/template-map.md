@@ -7,7 +7,7 @@
 |---|---|
 | 굽는 법 | `cd service-autopilot/pipeline && PYTHONIOENCODING=utf-8 python template_map.py` |
 | 다시 굽는 때 | 템플릿 행을 고치거나 모델을 새로 취입한 뒤 |
-| 크기 | 755 KB |
+| 크기 | 757 KB |
 | 여는 법 | 더블클릭 (오프라인 단일 파일 · 인터넷 없이 열린다) |
 
 ## 무엇을 보나

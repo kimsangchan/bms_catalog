@@ -97,8 +97,9 @@ tr:last-child td{border-bottom:0}
 tr.sel td{background:var(--soft)}
 tbody tr{cursor:pointer}
 tbody tr:hover td{background:var(--soft)}
-td.k{font-weight:600;white-space:nowrap;max-width:230px;overflow:hidden;
- text-overflow:ellipsis}
+/* 이름은 자르지 않는다 — 무엇인지 못 알아보면 칸이 있으나 마나다.
+   표는 이미 가로 스크롤 상자 안이라 넓어져도 오른쪽 패널을 안 덮는다 */
+td.k{font-weight:600;white-space:nowrap}
 td.mono{font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums;
  white-space:nowrap}
 td.hit{font-family:var(--mono);font-size:11px;color:var(--ok);
@@ -387,7 +388,8 @@ function drawBar(){
     var p=D.profiles[curProfile()];
     if(p.models.length){
       h+='<select id="fm">'+p.models.map(function(m,i){
-        return '<option value="'+i+'"'+(S.mdl===i?' selected':'')+'>'+esc(m.short)
+        return '<option value="'+i+'" title="'+esc(m.name)+'"'
+          +(S.mdl===i?' selected':'')+'>'+esc(m.short)
           +'</option>';}).join('')+'</select>';
       var m=p.models[S.mdl], sc=curScope();
       if(m&&m.scopes.length>1) h+='<select id="fs">'+m.scopes.map(function(s,i){
@@ -537,7 +539,9 @@ def build():
                 if scopes else 0
             models.append({
                 "id": mid, "name": "%s — %s" % (m.get("vendor") or "", m.get("name") or mid),
-                "short": (m.get("model") or mid)[:22],
+                # ⚠ 자르지 않는다. 22자에서 자르니 'YKL Compact Low Profil' 이 되어
+                #   어느 모델인지 알 수가 없었다. 고르는 칸에서 이름은 곧 신원이다.
+                "short": (m.get("model") or mid),
                 "scopes": scopes, "best": best, "any": sorted(any_hit)})
         profiles[pid] = {
             "title": p.get("title") or pid, "basis": p.get("basis") or "",

@@ -578,6 +578,31 @@ def check_conditional_notes(m, add):
             "(구조화하려면 사전에 자리를 먼저 만들어야 한다)" % n)
 
 
+def check_verified():
+    """사람이 대조한 것이 얼마나 되나 → [(등급, 코드, 메시지)].
+
+    왜 띄우나: 템플릿 매칭과 등급이 **검수 여부와 무관하게** 158모델 전체로 매겨진다.
+    검수 안 된 모델의 엉터리 매칭이 등급의 '노출률' 을 끌어내리고, 그 낮은 숫자로
+    등급을 내리면 매칭을 고칠 이유가 사라진다 — 순환이다. 그 고리를 끊으려면
+    검수된 것이 무엇인지 **늘 보여야** 한다. 새 명령을 기억하지 않아도 되게 여기 둔다.
+    """
+    path = os.path.join(DATA, "point-verified.json")
+    n_models = len(glob.glob(os.path.join(DATA, "models", "*.json")))
+    if not os.path.exists(path):
+        return [("I", "verified-none",
+                 "사람이 대조한 기록이 없다 (모델 %d건) — point-verify.html 에서 ✓ 를 "
+                 "찍고 '검수 내려받기' → python mappings.py --import <파일>" % n_models)]
+    try:
+        doc = json.load(io.open(path, encoding="utf-8"))
+    except Exception as e:
+        return [("W", "verified-broken", "검수 기록을 못 읽는다: %s" % e)]
+    got = doc.get("검수") or {}
+    pts = sum(len(v) for m in got.values() for v in m.values())
+    return [("I", "verified-count",
+             "사람이 대조한 모델 %d / %d 건 · 포인트 %d개"
+             % (len(got), n_models, pts))]
+
+
 def check_review_pages():
     """검토 화면이 데이터보다 낡았나 → [(등급, 코드, 메시지)].
 
@@ -727,7 +752,7 @@ def main(argv):
         mark = {"E": "✗ 오류", "W": "△ 경고", "I": "· 정보"}[r["level"]]
         print("   %s [%s] %s" % (mark, r["code"], r["message"]))
     if not only:
-        gl = check_review_pages()
+        gl = check_verified() + check_review_pages()
         if gl:
             print("\n■ 검토 화면")
             for lv, code, msg in gl:
