@@ -58,7 +58,7 @@ def sideways(page):
     return dy != 0
 
 
-def page_images(doc, pages, dpi=140, quality=52):
+def page_images(doc, pages, dpi=140, quality=52, out_dir=None, tag=""):
     """회색조 WebP. 컬러 JPEG 는 같은 쪽에서 몇 배가 된다(저장소 실측).
 
     눕혀 인쇄된 쪽은 시계방향(-90)으로 돌려 담는다 — 그래야 표가 한 줄씩 가로로
@@ -76,7 +76,15 @@ def page_images(doc, pages, dpi=140, quality=52):
             im = im.rotate(-90, expand=True)
         buf = io.BytesIO()
         im.save(buf, "WEBP", quality=quality, method=4)
-        out[p] = {"b": base64.b64encode(buf.getvalue()).decode("ascii"), "rot": rot}
+        if out_dir:
+            # ⚠ HTML 안에 박지 않는다. 62모델을 담으니 168MB 가 되어 브라우저가
+            #   못 열었다. 옆 폴더에 두면 **보는 쪽만** 읽는다.
+            os.makedirs(out_dir, exist_ok=True)
+            name = "%s-%d.webp" % (tag, p)
+            io.open(os.path.join(out_dir, name), "wb").write(buf.getvalue())
+            out[p] = {"f": "%s/%s" % (os.path.basename(out_dir), name), "rot": rot}
+        else:
+            out[p] = {"b": base64.b64encode(buf.getvalue()).decode("ascii"), "rot": rot}
     return out
 
 
@@ -592,7 +600,9 @@ function show(key, printed, pdf){
     natural = img.naturalWidth; naturalH = img.naturalHeight;
     if (mode === "free") apply(); else fit(mode);
   };
-  img.src = "data:image/webp;base64," + rec.b;
+  /* 파일로 뺀 것(f)이면 경로를, 박아 넣은 것(b)이면 data: 를 쓴다.
+     파일 쪽은 브라우저가 지금 보는 쪽만 읽는다 — 그래서 큰 판이 열린다. */
+  img.src = rec.f ? rec.f : ("data:image/webp;base64," + rec.b);
   document.getElementById("rotb").hidden = !rec.rot;
 }
 

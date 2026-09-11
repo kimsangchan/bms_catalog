@@ -27,6 +27,7 @@ import glob
 import io
 import json
 import os
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
@@ -120,6 +121,9 @@ th.pid .e{display:block;color:var(--faint);font-size:9px}
 .g.w{color:var(--warn);border-color:var(--warn);margin-left:5px}
 
 /* 페이저 — 표 바로 밑. 한 화면에 25행이면 스크롤이 거의 없다 */
+.vall{font-size:11.5px;color:var(--dim);display:inline-flex;align-items:center;gap:4px;
+ white-space:nowrap;cursor:pointer}
+
 .pager{display:flex;gap:6px;align-items:center;justify-content:flex-end;
  margin-top:7px;font-size:11.5px;color:var(--dim)}
 .pager button{background:var(--panel);border:1px solid var(--line);border-radius:6px;
@@ -156,7 +160,7 @@ td.grp{color:var(--faint);font-size:10.5px;white-space:nowrap;width:78px}
 JS = """
 var D=DATA;
 var S={tab:'shared', q:'', pid:'', grp:'', grade:'', hit:'', mdl:0, scp:null,
-       page:0, size:25, sel:null, core:true};
+       page:0, size:25, sel:null, core:true, showall:false};
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function gcls(g){return g==='필수'?'f':g==='권장'?'r':'o';}
@@ -271,6 +275,23 @@ function rowRows(){
     if(!q) return true;
     return (r.name+' '+(g&&g.hit||'')+' '+r.why).toLowerCase().indexOf(q)>=0;
   }).map(function(r){return {r:r, g:by[r.name]};});
+}
+/* 이 화면은 **대조가 끝난 것**을 보는 곳이다. 아직 안 된 모델은 기본에서 빼고
+   point-verify.html(대조 대기열)로 보낸다 — 섞으면 무엇이 믿을 만한지 알 수 없다.
+   지우지는 않는다. '미대조 포함' 을 켜면 다 나온다. */
+var VOK={human:1,sample:1,machine:1};
+function vmodels(p){
+  var out=[];
+  p.models.forEach(function(m,i){
+    m._i=i;
+    if(!S.showall && !VOK[m.vg]) return;
+    out.push(m);
+  });
+  return out;
+}
+function vlabel(g){
+  return g==='human'?'사람 대조':g==='sample'?'표본 확인':
+         g==='machine'?'기계 대조':g==='weak'?'대조 약함':'미대조';
 }
 function drawRows(){
   var p=D.profiles[curProfile()];
@@ -387,10 +408,13 @@ function drawBar(){
     h+='<select id="fp">'+optGrouped(curProfile(),null)+'</select>';
     var p=D.profiles[curProfile()];
     if(p.models.length){
-      h+='<select id="fm">'+p.models.map(function(m,i){
-        return '<option value="'+i+'" title="'+esc(m.name)+'"'
-          +(S.mdl===i?' selected':'')+'>'+esc(m.short)
-          +'</option>';}).join('')+'</select>';
+      var vm=vmodels(p);
+      h+='<select id="fm">'+vm.map(function(m){
+        return '<option value="'+m._i+'" title="'+esc(m.name)+' — '+esc(m.vwhy)+'"'
+          +(S.mdl===m._i?' selected':'')+'>'+esc(m.short)+' · '+vlabel(m.vg)
+          +'</option>';}).join('')+'</select>'
+        +'<label class="vall"><input type="checkbox" id="fv"'
+        +(S.showall?' checked':'')+'> 미대조 포함</label>';
       var m=p.models[S.mdl], sc=curScope();
       if(m&&m.scopes.length>1) h+='<select id="fs">'+m.scopes.map(function(s,i){
         var n=s.map.filter(function(x){return x.hit;}).length;
@@ -412,11 +436,20 @@ function drawBar(){
       render();};});
   var q=el('q');
   q.oninput=function(){S.q=q.value;S.page=0;draw();cnt();};
-  var fp=el('fp'); if(fp) fp.onchange=function(){S.pid=fp.value;S.page=0;S.mdl=0;
+  var fp=el('fp'); if(fp) fp.onchange=function(){S.pid=fp.value;S.page=0;
+    S.mdl=(function(){var vm=vmodels(D.profiles[fp.value]||{models:[]});
+                      return vm.length?vm[0]._i:0;})();
     S.scp=null;S.sel=null;render();};
   var fgr=el('fgr'); if(fgr) fgr.onchange=function(){S.grp=fgr.value;S.page=0;draw();cnt();};
   var fc=el('fc'); if(fc) fc.onclick=function(){S.core=!S.core;S.page=0;render();};
   var fm=el('fm'); if(fm) fm.onchange=function(){S.mdl=+fm.value;S.scp=null;render();};
+  var fv=el('fv'); if(fv) fv.onchange=function(){
+    S.showall=fv.checked;
+    /* 고른 모델이 걸러져 사라지면 첫 번째로 옮긴다 — 빈 화면이 되지 않게 */
+    var p=D.profiles[curProfile()], vm=vmodels(p);
+    if(!vm.some(function(m){return m._i===S.mdl;})) S.mdl=vm.length?vm[0]._i:0;
+    S.scp=null; render();
+  };
   var fs=el('fs'); if(fs) fs.onchange=function(){S.scp=+fs.value;draw();cnt();};
   var fg=el('fg'); if(fg) fg.onchange=function(){S.grade=fg.value;S.page=0;draw();cnt();};
   var fh=el('fh'); if(fh) fh.onchange=function(){S.hit=fh.value;S.page=0;draw();cnt();};
@@ -487,6 +520,13 @@ def build():
     mm = json.load(io.open(mmp, encoding="utf-8"))
     cdoc = json.load(io.open(os.path.join(DATA, "point-concepts.json"),
                              encoding="utf-8"))
+    # 모델별 확인 세기 — mappings.py 가 정본이다(두 벌로 만들지 않는다)
+    try:
+        sys.path.insert(0, HERE)
+        import mappings as MP
+        VERIFY = {k: (v[0], v[1]) for k, v in MP.status().items()}
+    except Exception:
+        VERIFY = {}
     concepts = cdoc["concepts"]
 
     per = collections.defaultdict(list)
@@ -517,6 +557,7 @@ def build():
             })
         models = []
         for mid, m in sorted(per.get(pid, [])):
+            vg = VERIFY.get(mid, ("blind", ""))[0]
             scopes, any_hit = [], set()
             cands = list(m.get("interfaceMappings") or [])
             if not cands:
@@ -538,6 +579,10 @@ def build():
                        key=lambda i: sum(1 for x in scopes[i]["map"] if x["hit"])) \
                 if scopes else 0
             models.append({
+                # ⚠ 확인 세기를 함께 싣는다. 이 화면은 **대조가 끝난 것**을 보는 곳이고,
+                #   아직 안 된 것은 point-verify.html(대조 대기열)에서 볼 일이다.
+                #   섞어 두었더니 "과거에 잘못 매칭된 걸 다 끌어와 복잡하다" 는 말을 들었다.
+                "vg": vg, "vwhy": VERIFY.get(mid, ("blind", ""))[1],
                 "id": mid, "name": "%s — %s" % (m.get("vendor") or "", m.get("name") or mid),
                 # ⚠ 자르지 않는다. 22자에서 자르니 'YKL Compact Low Profil' 이 되어
                 #   어느 모델인지 알 수가 없었다. 고르는 칸에서 이름은 곧 신원이다.

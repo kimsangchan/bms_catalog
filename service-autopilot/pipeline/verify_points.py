@@ -135,7 +135,34 @@ def as_interfaces(m):
     return out
 
 
-def load_models(only, take_all):
+def todo_models():
+    """사람이 대조해야 하는 모델 — 그리고 **지금 볼 수 있는 것만**.
+
+    기본 범위(국내 벤더 취입분 + 몇 모델)는 손으로 고른 목록이라 '무엇을 봐야 하나' 와
+    안 맞는다. 실제로 겹치는 것이 하나뿐이었다. 여기서는 확인 세기로 고른다 —
+    교차 대조가 약하거나(weak) 아예 없고(blind), **원문 PDF 가 손에 있는** 모델.
+    원문이 없으면 화면에 올려 봐야 대조를 못 한다(수집이 먼저다).
+    """
+    sys.path.insert(0, HERE)
+    import mappings as MP
+    st = MP.status()
+    want = set()
+    for mid, (g, _why, _n) in st.items():
+        if g not in ("weak", "blind"):
+            continue
+        want.add(mid)
+    return want
+
+
+def _has_raw(m):
+    srcs = {i.get("sourceFile") or m.get("sourceDoc") or ""
+            for i in (m.get("interfaces") or [])}
+    if m.get("points"):
+        srcs.add(m.get("sourceDoc") or "")
+    return any(s and os.path.isfile(os.path.join(DATA, "raw", s)) for s in srcs)
+
+
+def load_models(only, take_all, todo=None):
     out = []
     for f in sorted(glob.glob(os.path.join(DATA, "models", "*.json"))):
         m = json.load(io.open(f, encoding="utf-8"))
@@ -146,6 +173,9 @@ def load_models(only, take_all):
             m = dict(m, interfaces=as_interfaces(m), legacyFlat=True)
         if only:
             if m["id"] not in only:
+                continue
+        elif todo is not None:
+            if m["id"] not in todo or not _has_raw(m):
                 continue
         elif not take_all and (m.get("extractor") not in DOMESTIC
                                and m["id"] not in FOCUS_MODELS):
@@ -558,10 +588,13 @@ def main(argv):
     if "--only" in argv:
         only = {a for a in argv[argv.index("--only") + 1:] if not a.startswith("-")}
 
-    models = load_models(only, take_all)
+    todo = todo_models() if "--todo" in argv else None
+    models = load_models(only, take_all, todo)
     if not models:
         raise SystemExit("담을 모델이 없다 — --only 이름을 확인하거나 --all")
     scope = ("고른 모델만" if only else
+             "대조가 필요한 모델 (교차 대조가 약하거나 없고 원문이 있는 것)"
+             if todo is not None else
              "카탈로그 전체" if take_all else
              "국내 벤더 취입분 + %s" % " · ".join(FOCUS_MODELS))
 
@@ -753,7 +786,11 @@ def main(argv):
             bydoc[path][pdf].append(key)
         for path, want in bydoc.items():
             doc = fitz.open(path)
-            got = UI.page_images(doc, want.keys())
+            # 쪽 그림은 HTML 옆 폴더에 둔다(gitignore). 문서마다 이름을 달리해 섞이지 않게.
+            imgdir = os.path.join(os.path.dirname(OUT), "point-verify-pages")
+            tag = re.sub(r"[^A-Za-z0-9]+", "-",
+                         os.path.splitext(os.path.basename(path))[0])[:48]
+            got = UI.page_images(doc, want.keys(), out_dir=imgdir, tag=tag)
             for pdf, keys in want.items():
                 for key in keys:
                     imgs[key] = got[pdf]

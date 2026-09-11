@@ -41,7 +41,11 @@ STEPS = [
     ("build.py", [], "전체 카탈로그 → review/equip-catalog.html", False),
     ("template_map.py", [], "템플릿 검사대 → review/template-map.html", False),
     ("schema_map.py", [], "데이터 지도 → review/data-map.html", False),
-    ("verify_points.py", [], "취입 검사대 → review/point-verify.html (쪽 그림·느리다)", True),
+    # ⚠ --todo 다. 취입 검사대는 **대조 대기열**이다 — 아직 대조 안 된 모델(교차 대조가
+    #   약하거나 없고 원문이 있는 것)만 올린다. 대조가 끝난 것은 template-map 에서 본다.
+    #   전에는 손으로 고른 6모델만 올려서, 정작 봐야 할 83건이 화면에 없었다.
+    ("verify_points.py", ["--todo"],
+     "대조 대기열 → review/point-verify.html (쪽 그림·느리다)", True),
     ("review_index.py", ["--run"], "review/ 길잡이 .md 갱신", False),
 ]
 
