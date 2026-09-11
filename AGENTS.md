@@ -70,9 +70,9 @@ service-autopilot/
 
 ```bash
 cd service-autopilot/pipeline
+PYTHONIOENCODING=utf-8 python bake.py              # ★ 산출물 전부를 순서대로 다시 굽는다
+PYTHONIOENCODING=utf-8 python bake.py --fast       #   느린 취입 검사대만 건너뛴다
 PYTHONIOENCODING=utf-8 python validate.py          # 검사 — 오류 0 확인
-PYTHONIOENCODING=utf-8 python build.py             # HTML 다시 만들기
-PYTHONIOENCODING=utf-8 python template_map.py        # 템플릿 검사대
 PYTHONIOENCODING=utf-8 python review_index.py --run  # review/ 길잡이 .md 갱신
 PYTHONIOENCODING=utf-8 python concepts.py --sync     # 개념 사전 aliases·usedIn 되맞춤
 PYTHONIOENCODING=utf-8 python collect.py --list    # 소스 목록
@@ -83,6 +83,31 @@ PYTHONIOENCODING=utf-8 python snapshot_jci.py --probe   # JCI 포털 열거 (담
 
 `PYTHONIOENCODING=utf-8` 를 빼면 한글 출력에서 `UnicodeEncodeError` 로 죽는다(Windows cp949).
 큰 문서(1,000쪽 이상)는 표 인식이 느려 몇 분 걸린다 — 백그라운드로 돌린다.
+
+### 굽는 순서 — 이게 사슬이라 가운데를 빼면 화면이 조용히 낡는다
+
+```
+data/models/*.json · equip-templates.json · equip-requirements.json · point-concepts.json
+                  │
+                  ▼  datasets.py          ← 이걸 빼먹는 것이 함정이다
+        data/datasets/*.json
+                  │
+   ┌──────────────┼──────────────┐
+   ▼              ▼              ▼
+template_map.py  schema_map.py  build.py
+template-map     data-map       equip-catalog
+```
+
+**개별 스크립트를 손으로 돌리지 말고 `bake.py` 를 쓴다.** 실제로 매칭을 하루 종일 고치고
+화면을 다시 구웠는데 `model-mappings.json` 이 **사흘 전 것**이라 모델별 덮개가 하나도 안
+바뀐 적이 있다. 화면은 멀쩡히 열리고 숫자도 그럴듯해서 아무도 몰랐고, 사용자가
+"달라진 게 없는데" 라고 짚어서야 드러났다.
+
+막는 장치가 셋이다 — 하나라도 믿지 말고 셋 다 둔다.
+1. `bake.py` 순서를 기억할 필요를 없앤다
+2. `validate.py` 의 `[review-stale]` **어느 도구로 만졌든** 낡은 산출물을 잡는다
+   (Codex·Antigravity·사람이 직접 돌린 경우 포함)
+3. `template_map.py` 문지기 입력이 더 새것이면 **굽기를 거부**한다
 
 ## 반드시 지킬 것
 

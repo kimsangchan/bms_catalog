@@ -517,8 +517,22 @@ def check_curated_units(m, add):
         add("I", "units-ok", "형번 확정본 %d건 (사람 확인 %d)" % (len(curated), n_ver))
 
 
-REVIEW_PAGES = (("review/equip-catalog.html", "build.py"),
-                ("review/jci-ingest.html", "ingest_jci.py --export"))
+# 굽는 것 → (만드는 명령, 그것이 읽는 입력).
+# ⚠ 입력을 **제대로** 적어야 게이트가 선다. 전에는 data/models/*.json 만 봤는데
+#   그 바람에 템플릿·개념 사전을 고쳐도 안 울렸고, template-map.html 의 모델별 덮개가
+#   **사흘 동안 옛 결과**를 보여 줬다(사용자가 "달라진 게 없는데" 라고 짚어서야 드러났다).
+# ⚠ 사슬이다 — data/* → datasets/*.json → 화면. 가운데를 빼먹으면 화면이 조용히 낡는다.
+_DATA_IN = ("models/*.json", "equip-templates.json", "equip-requirements.json",
+            "point-concepts.json")
+_DATASET_IN = ("datasets/model-mappings.json",)
+REVIEW_PAGES = (
+    ("data/datasets/model-mappings.json", "datasets.py", _DATA_IN),
+    ("review/equip-catalog.html", "build.py", _DATA_IN),
+    ("review/template-map.html", "template_map.py", _DATA_IN + _DATASET_IN),
+    ("review/data-map.html", "schema_map.py", _DATASET_IN),
+    ("review/point-verify.html", "verify_points.py", ("models/*.json",)),
+    ("review/jci-ingest.html", "ingest_jci.py --export", ("models/*.json",)),
+)
 
 
 # 비고에만 글로 남은 운전 조건 — 구조가 없어 걸러 볼 수 없다.
@@ -575,21 +589,25 @@ def check_review_pages():
     """
     import glob as _g
     root = os.path.dirname(DATA)
-    newest, newest_f = 0, ""
-    for f in _g.glob(os.path.join(DATA, "models", "*.json")):
-        t = os.path.getmtime(f)
-        if t > newest:
-            newest, newest_f = t, os.path.basename(f)
     out = []
-    for rel, how in REVIEW_PAGES:
-        path = os.path.join(os.path.dirname(root), *rel.split("/"))
+    for rel, how, inputs in REVIEW_PAGES:
+        base = DATA if rel.startswith("data/") else os.path.dirname(root)
+        path = (os.path.join(DATA, *rel.split("/")[1:]) if rel.startswith("data/")
+                else os.path.join(os.path.dirname(root), *rel.split("/")))
+        newest, newest_f = 0, ""
+        for pat in inputs:
+            for f in _g.glob(os.path.join(DATA, *pat.split("/"))):
+                t = os.path.getmtime(f)
+                if t > newest:
+                    newest, newest_f = t, os.path.basename(f)
         if not os.path.exists(path):
             out.append(("I", "review-missing",
                         "%s 가 없다 — 만들려면: %s" % (rel, how)))
             continue
         if newest and os.path.getmtime(path) < newest:
             out.append(("W", "review-stale",
-                        "%s 가 데이터보다 낡았다 (최근 모델 %s) — 다시 구워라: %s"
+                        "%s 가 입력보다 낡았다 (가장 새 입력 %s) — 다시 구워라: %s "
+                        "(순서째로 한 번에: python bake.py)"
                         % (rel, newest_f, how)))
     return out
 
