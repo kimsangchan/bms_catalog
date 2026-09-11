@@ -14,7 +14,7 @@
 
 무엇을 보여 주나
   ① 프로파일(계열·하위형식)별 템플릿 행 — 개념·종류·단위·등급·왜 필요한가·계산식·근거
-  ② 모델과 판을 고르면 각 행에 **실제로 붙은 포인트 이름**이 채워진다
+  ② 모델과 판을 고르면 각 행에 **모델 원문에서 대응한 이름**이 채워진다
   ③ 덮개 표 — 모델 × 행 격자. 어느 행을 아무 모델도 안 내주는지 한눈에 본다
 
 읽는 데이터 (화면이 목록을 정하지 않는다 — 데이터가 정한다)
@@ -126,6 +126,10 @@ th.pid .e{display:block;color:var(--faint);font-size:9px}
 .pager .pos{font-family:var(--mono);font-variant-numeric:tabular-nums}
 
 /* 본문 + 상세. 상세는 옆에 붙어 스크롤을 만들지 않는다 */
+/* 표는 프로파일마다 열이 하나씩 는다 — 칸을 넘기면 오른쪽 상세를 덮으므로
+   가로 스크롤 상자에 담는다. th 의 sticky 는 이 상자 안에서 안 걸리지만
+   25행 페이징이라 세로 스크롤이 거의 없어 손해가 없다 */
+.tw{overflow-x:auto;border-radius:8px}
 .split{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;
  align-items:start}
 @media(max-width:1120px){.split{grid-template-columns:1fr}}
@@ -190,26 +194,30 @@ function sharedRows(){
 }
 function drawShared(){
   var rows=sharedRows(), page=slice(rows);
-  var h='<table><thead><tr><th>묶음</th><th>개념</th>';
+  var h='<div class=tw><table><thead><tr><th>묶음</th><th>개념</th>'
+    +'<th class="c" title="이 개념을 쓰는 계열 수">계열</th>';
   D.order.forEach(function(pid){
     var pp=D.profiles[pid];
     h+='<th class="pid" title="'+esc(pp.equipId+' '+pp.equipKo)+'">'
       +esc(pid.split('.')[1]||pid)+'<span class="e">'+esc(pp.equipKo.split(' ')[0])
       +'</span></th>';});
-  h+='<th>계열</th></tr></thead><tbody>';
+  h+='</tr></thead><tbody>';
   page.forEach(function(s,i){
     h+='<tr data-i="'+i+'"'+(S.sel===s.cid?' class="sel"':'')+'>'
       +'<td class="grp">'+esc(s.group)+'</td><td class="k">'
-      +esc(s.canon)+(s.split?'<span class="g w">갈림</span>':'')+'</td>';
+      +esc(s.canon)
+      +(s.split?'<span class="g w" title="같은 개념인데 계열마다 이름 표기가 다르다">'
+        +'표기 다름</span>':'')+'</td>'
+      +'<td class="c y"><b>'+s.n+'</b></td>';
     D.order.forEach(function(pid){
       var g=s.cols[pid];
       var nm=(s.raw.filter(function(r){return r[0]===pid;})[0]||[])[1];
       h+='<td class="c '+(g?'y':'n')+'" title="'+esc(nm||'')+'">'
         +(g?'<b>●</b>'+(nm!==s.canon?'<span class="nm">'+esc(nm)+'</span>':''):'·')+'</td>';
     });
-    h+='<td class="c y"><b>'+s.n+'</b></td></tr>';
+    h+='</tr>';
   });
-  h+='</tbody></table>'+pager(rows.length);
+  h+='</tbody></table></div>'+pager(rows.length);
   el('grid').innerHTML=h;
   bind(page,function(s){S.sel=s.cid;detailShared(s);drawShared();});
   if(!S.sel) detailShared(null);
@@ -223,8 +231,9 @@ function detailShared(s){
       +'<div class="f"><span class="lbl">계열마다 쓰는 이름</span>'
       +Object.keys(by).map(function(n){return '<code>'+esc(n)+'</code> <span class="nm">'
         +by[n].join(' ')+'</span>';}).join('<br>')+'</div>'
-      +(s.split?'<div class="f"><span class="lbl">⚠ 이름 갈림</span>표기를 아직 안 바꿨다 — '
-        +'행 순서와 매칭 규칙이 이름에 매여 있어 함께 손봐야 한다.</div>':'')+'</div>';
+      +(s.split?'<div class="f"><span class="lbl">⚠ 표기가 계열마다 다르다</span>'
+        +'같은 개념인데 계열마다 다른 이름으로 적혀 있다. 아직 통일하지 않았다 — '
+        +'매칭 규칙이 이름에 매여 있어 함께 손봐야 한다.</div>':'')+'</div>';
   }
   h+='<h3>계산식</h3><p class="ax">각 계열 요구 프로파일의 <code>energyModel</code>. '
     +'템플릿 행의 <b>쓰임</b> 칸이 이 열쇠를 가리킨다.</p>';
@@ -270,8 +279,9 @@ function drawRows(){
     return;
   }
   var rows=rowRows(), page=slice(rows);
-  var h='<table><thead><tr><th>묶음</th><th>개념</th><th>종류</th><th>단위</th>'
-    +'<th>등급</th><th>붙은 포인트</th></tr></thead><tbody>';
+  var h='<div class=tw><table><thead><tr><th>묶음</th><th>개념</th><th>종류</th><th>단위</th>'
+    +'<th>등급</th><th title="고른 모델·판의 원문에서 이 행에 대응한 이름">'
+    +'모델 원문 표기</th></tr></thead><tbody>';
   page.forEach(function(x,i){
     var r=x.r,g=x.g;
     h+='<tr data-i="'+i+'"'+(S.sel===r.name?' class="sel"':'')+'>'
@@ -282,9 +292,9 @@ function drawRows(){
       +(g&&g.hit?'<td class="hit" title="'+esc(g.hit)+'">'+esc(g.hit)
           +(g.type?' <span class="nm">'+esc(g.type)+(g.inst!=null?' #'+g.inst:'')+'</span>':'')
           +'</td>'
-        :'<td class="miss">— 이 판에 없다</td>')+'</tr>';
+        :'<td class="miss">— 원문에 없음</td>')+'</tr>';
   });
-  h+='</tbody></table>'+pager(rows.length);
+  h+='</tbody></table></div>'+pager(rows.length);
   el('grid').innerHTML=h;
   bind(page,function(x){S.sel=x.r.name;detailRow(x);drawRows();});
   if(!S.sel||!page.some(function(x){return x.r.name===S.sel;})) detailRow(page[0]||null);
@@ -298,7 +308,12 @@ function detailRow(x){
       +'<div class="f"><span class="lbl">왜 필요한가</span>'+esc(r.why)+'</div>'
       +'<div class="f"><span class="lbl">쓰임</span><code>'
         +esc((r.usedBy||[]).join(' ')||'—')+'</code></div>'
-      +'<div class="f"><span class="lbl">Haystack 근거</span>'+esc(r.haystack||'—')+'</div>'
+      +(r.haystack
+        ?'<div class="f"><span class="lbl">Haystack 근거</span>'+esc(r.haystack)+'</div>'
+        :'<div class="f"><span class="lbl">표준 proto 없음</span>'
+          +esc(r.handMade||'사유가 안 적혀 있다 — 채워야 한다')+'</div>')
+      +(r.exposure?'<div class="f"><span class="lbl">실측 노출</span>'
+        +esc(r.exposure)+'</div>':'')
       +'<div class="f"><span class="lbl">매칭 규칙</span><code>include '+esc(r.include)
         +(r.exclude?'<br>exclude '+esc(r.exclude):'')+'</code></div>'
       +(r.matchNote?'<div class="f"><span class="lbl">주의</span>'+esc(r.matchNote)+'</div>':'')
@@ -381,7 +396,8 @@ function drawBar(){
     }
     h+='<select id="fg">'+opt([['필수','필수'],['권장','권장'],['선택','선택']],
         S.grade,'전 등급')+'</select>'
-      +'<select id="fh">'+opt([['y','붙은 것만'],['n','안 붙은 것만']],S.hit,'붙음 무관')
+      +'<select id="fh">'+opt([['y','원문에 있는 것만'],['n','원문에 없는 것만']],
+        S.hit,'원문 대응 무관')
       +'</select>';
   }
   h+='<span class="sp"></span><span class="cnt" id="cnt"></span></div>';
@@ -470,6 +486,11 @@ def build():
                 "unit": r.get("unit"), "grade": r.get("grade"),
                 "why": r.get("why") or "", "usedBy": r.get("usedBy") or [],
                 "haystack": r.get("haystack") or "", "appliesWhen": r.get("appliesWhen"),
+                # ⚠ 근거 두 칸을 화면에 올린다. 데이터에만 적어 두었더니 모델이 0건인
+                #   계열(냉각탑·보일러·열교환기·급배수·외조기 88행)의 행을 **볼 수는
+                #   있는데 어디서 왔는지 확인할 길이 없었다.** 지어내지 않았다는 것을
+                #   보이는 것이 이 화면의 일이다.
+                "handMade": r.get("handMade") or "", "exposure": r.get("exposure") or "",
                 "concept": r.get("concept") or "", "group": r.get("group") or "기타",
                 "include": mt.get("include") or "", "exclude": mt.get("exclude") or "",
                 "matchNote": r.get("matchNote") or "",

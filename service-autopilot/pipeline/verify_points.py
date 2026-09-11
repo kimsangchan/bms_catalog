@@ -104,12 +104,46 @@ def shorten(nodes):
         n["label"] = n["label"][cut:].strip()
 
 
+def as_interfaces(m):
+    """평면 추출본(points[])을 판 모양으로 싸서 검사대에 올린다.
+
+    왜: 검사대가 판(interfaces)이 있는 모델만 보여 주고 있었다 — 158모델 중 49개다.
+    나머지 89모델 24,376점은 **화면에 아예 안 나왔다.** 옛 추출본이라 판으로 안
+    갈렸을 뿐, 포인트마다 원문 파일·쪽을 이미 갖고 있다. 못 보여 줄 이유가 없다.
+
+    문서가 여럿이면 문서별로 판을 나눈다 — 한 모델의 점이 두 매뉴얼에서 올 수 있다.
+    """
+    by = collections.OrderedDict()
+    for pt in m.get("points") or []:
+        by.setdefault(pt.get("sourceFile") or m.get("sourceDoc") or "", []).append(pt)
+    out = []
+    for src, pts in by.items():
+        out.append({
+            "id": "legacy" if len(by) == 1 else "legacy-%d" % (len(out) + 1),
+            "label": "평면 추출본" + ("" if len(by) == 1 else " · %s" % src[:28]),
+            "sourceFile": src,
+            "points": [{
+                "common": {"name": pt.get("name") or "",
+                           "unitSIRaw": pt.get("unitRaw") or pt.get("unit"),
+                           "note": pt.get("note")},
+                "blocks": {"bacnet": {"objectType": pt.get("type") or "",
+                                      "instance": pt.get("inst")}},
+                "provenance": {"sourcePage": pt.get("sourcePage"),
+                               "sourceColumns": {}},
+            } for pt in pts],
+        })
+    return out
+
+
 def load_models(only, take_all):
     out = []
     for f in sorted(glob.glob(os.path.join(DATA, "models", "*.json"))):
         m = json.load(io.open(f, encoding="utf-8"))
         if not (m.get("interfaces") or []):
-            continue
+            # 판이 없으면 평면 추출본을 싸서 올린다 — 빼면 24,376점이 안 보인다
+            if not (m.get("points") or []):
+                continue
+            m = dict(m, interfaces=as_interfaces(m), legacyFlat=True)
         if only:
             if m["id"] not in only:
                 continue
@@ -448,6 +482,37 @@ def spec_sections(m, pages, no_pages):
     return out
 
 
+def pages_by_name(doc, names):
+    """오브젝트 이름 → PDF 쪽. **번호표가 없어도 대조는 된다.**
+
+    쪽번호가 안 남은 판(sourcePage=None)을 전에는 '원문 쪽 없음' 으로 두고 그림을
+    안 띄웠다. 원문이 손에 있으면 못 할 이유가 없다 — 그 오브젝트 이름이 실제로
+    인쇄된 쪽을 찾으면 된다. resolve_pages 가 이미 쓰는 방법이고(글자로 찾기),
+    여기서는 인쇄 쪽번호라는 중간 다리 없이 이름만으로 간다.
+
+    두 번 본다.
+      1차 공백만 지우고 그대로 — 가장 안전하다
+      2차 **밑줄까지 지우고** — 추출기가 원문의 `AOC_HghPrs_r` 를
+         'AOC HghPrs r _ _' 로 바꿔 놓아 1차로는 안 걸린다(Siemens Climatix 196점).
+    같은 이름이 여러 쪽에 나오면 **처음 쪽**을 쓴다. 표가 쪽을 넘어 이어질 때
+    머리쪽을 가리키는 것이 눈으로 맞대기에 낫다.
+    """
+    strict = [re.sub(r"\s+", "", doc[i].get_text()) for i in range(doc.page_count)]
+    loose = [re.sub(r"_+", "", t) for t in strict]
+    out = {}
+    for nm in names:
+        k1 = re.sub(r"\s+", "", nm or "")
+        k2 = re.sub(r"[\s_]+", "", nm or "")
+        for key, pages in ((k1, strict), (k2, loose)):
+            if len(key) < 4:        # 너무 짧은 이름은 아무 쪽에나 걸린다
+                continue
+            hit = next((i for i, txt in enumerate(pages, 1) if key in txt), None)
+            if hit:
+                out[nm] = hit
+                break
+    return out
+
+
 def resolve_pages(doc, wanted, names_by_printed):
     """인쇄 쪽번호 → PDF 쪽. 머리글로 후보를 잡고 **글자로 확인한다.**
 
@@ -514,21 +579,36 @@ def main(argv):
         #    LS H100 은 BACnet 판이 옵션 카드 매뉴얼, RS-485 판이 본체 매뉴얼이다.
         #    모델의 sourceDoc 하나만 보면 뒤엣것의 쪽을 못 찾아 **원문이 안 뜬다**
         #    (실측: 판 하나 157점이 통째로 그림 없이 떴다).
-        pdfmap, docof = {}, {}
+        # ⚠ 열쇠는 (문서, pageBase) 다. **문서 하나로 묶으면 안 된다.**
+        #   한 문서에서 판이 여럿 올 때 쪽번호 성격이 판마다 다를 수 있다 —
+        #   LG AC Smart 는 PDF 한 권에서 판 9개가 오는데 BACnet 판 여섯은 **인쇄
+        #   쪽번호**(26~41)이고 Modbus 판 셋은 **PDF 순번**(54~62)이다.
+        #   전에는 'pageBase=pdf 인 판이 같은 문서에 하나라도 있으면' 통째로 변환을
+        #   껐다 — Modbus 판 셋이 BACnet 판 여섯을 오염시켜 26쪽 링크가 PDF 26쪽
+        #   (실제는 34쪽)으로 갔다. 사용자가 "실내기 41점 링크가 페이지가 안 맞는다"
+        #   고 짚은 것이 이것이다.
+        pdfmap, docof, basemap, namemap = {}, {}, {}, {}
         for iface in m["interfaces"]:
             src = iface.get("sourceFile") or m.get("sourceDoc") or ""
+            base = iface.get("pageBase")
             docof[iface["id"]] = src
-            if src in pdfmap:
+            basemap[iface["id"]] = base
+            k = (src, base)
+            if k in pdfmap:
                 continue
+            # ⚠ exists 가 아니라 isfile 이다. src 가 비면 경로가 data/raw/ (디렉터리)가
+            #   되는데 exists 는 참이라 fitz 가 'is no file' 로 터진다 — 평면 추출본에
+            #   sourceFile 이 빈 모델이 있다.
             path = os.path.join(DATA, "raw", src)
-            if not os.path.exists(path):
+            if not src or not os.path.isfile(path):
                 warns.append("%s / %s: 원문이 없다(%s) — 쪽 그림 없이 담는다"
                              % (m["id"], iface["id"], src))
-                pdfmap[src] = {}
+                pdfmap[k] = {}
                 continue
             want, names = set(), {}
             for i2 in m["interfaces"]:
-                if (i2.get("sourceFile") or m.get("sourceDoc")) != src:
+                if ((i2.get("sourceFile") or m.get("sourceDoc")) != src
+                        or i2.get("pageBase") != base):
                     continue
                 for p in i2.get("points") or []:
                     pr = (p.get("provenance") or {}).get("sourcePage")
@@ -540,14 +620,28 @@ def main(argv):
             # 판이 "이 쪽번호는 PDF 순번이다"(pageBase='pdf')라고 밝히면 찾지 않는다.
             # 찾으면 오히려 틀린다 — 인쇄 쪽번호가 없는 문서에서 본문 숫자를 쪽번호로
             # 착각해 엉뚱한 쪽을 띄웠다(Danfoss FC 101: 77쪽→34쪽, 108쪽→33쪽).
-            if any((i2.get("sourceFile") or m.get("sourceDoc")) == src
-                   and i2.get("pageBase") == "pdf" for i2 in m["interfaces"]):
-                pdfmap[src] = {x: x for x in want}
+            if base == "pdf":
+                pdfmap[k] = {x: x for x in want}
             else:
                 dd = fitz.open(path)
-                pdfmap[src], w = resolve_pages(dd, want, names)
+                pdfmap[k], w = resolve_pages(dd, want, names)
                 dd.close()
                 warns += ["%s / %s: %s" % (m["id"], src, x) for x in w]
+            # 쪽번호가 아예 안 남은 포인트는 **이름으로** 찾는다. 원문이 손에 있는데
+            # '원문 쪽 없음' 으로 두면 대조할 수 있는 것을 못 하게 막는 것이다.
+            nameless = [(p2.get("common") or {}).get("name") or ""
+                        for i2 in m["interfaces"]
+                        if ((i2.get("sourceFile") or m.get("sourceDoc")) == src
+                            and i2.get("pageBase") == base)
+                        for p2 in (i2.get("points") or [])
+                        if (p2.get("provenance") or {}).get("sourcePage") is None]
+            if nameless:
+                dd = fitz.open(path)
+                namemap[k] = pages_by_name(dd, sorted(set(nameless)))
+                dd.close()
+                got = len(namemap[k])
+                warns.append("%s / %s: 쪽번호 없는 %d점 중 %d점을 이름으로 찾았다"
+                             % (m["id"], src, len(set(nameless)), got))
 
         # 분류(cat)를 모델 줄에 늘 붙인다 — 계열(eN) 이름만으로는 어긋남이 안 보인다.
         # 실제로 LG 게이트웨이는 계열 e5(공조기)인데 분류가 HVAC.AIR.VRF 다.
@@ -568,10 +662,18 @@ def main(argv):
                 src = docof[iface["id"]]
                 for p in pts:
                     printed = (p.get("provenance") or {}).get("sourcePage")
-                    pdf = (pdfmap.get(src) or {}).get(printed)
+                    k2 = (src, basemap[iface["id"]])
+                    pdf = (pdfmap.get(k2) or {}).get(printed)
+                    byname = False
+                    if pdf is None and printed is None:
+                        pdf = (namemap.get(k2) or {}).get(
+                            (p.get("common") or {}).get("name") or "")
+                        byname = pdf is not None
                     key = "%s|%s#%s" % (m["id"], src, pdf)
                     r = row_of(p)
-                    r["pg"] = printed
+                    # 번호표가 없어 이름으로 찾은 쪽은 그렇게 밝힌다 — 인쇄 쪽번호인
+                    # 척하면 다음 사람이 원문 번호표와 맞춰 보다 헷갈린다.
+                    r["pg"] = ("이름으로" if byname else printed)
                     r["pdf"] = pdf or "?"
                     r["pk"] = key
                     rows.append(r)
@@ -621,8 +723,17 @@ def main(argv):
                 mnode["count"] += n2
                 total += n2
 
+        # ⚠ 대조할 근거가 없는 모델을 설비 트리에 섞지 않는다.
+        #   쪽을 못 찾은 모델(원문 PDF 가 data/raw 에 없거나 포인트에 쪽이 안 남은 것)은
+        #   이 화면에서 **할 수 있는 일이 없다** — 원문 그림이 안 뜨니 눈으로 맞댈 수가 없다.
+        #   섞어 두었더니 "확인 안 되는 걸 넣어버리니까 확인하기가 어렵다" 는 말을 들었다.
+        #   지우지는 않는다(무엇이 왜 빠졌는지가 값이다) — 따로 묶고 사유를 단다.
+        if not any(pdfmap.values()):
+            eid = "_noref"
         e = tree.setdefault(eid, {"id": eid, "count": 0,
-                                  "label": ("%s %s" % (eid, enames.get(eid, ""))).strip(),
+                                  "label": ("대조 불가 — 원문 쪽 근거가 없다"
+                                            if eid == "_noref"
+                                            else ("%s %s" % (eid, enames.get(eid, ""))).strip()),
                                   "children": collections.OrderedDict()})
         v = e["children"].setdefault(vid, {"id": vid, "label": vendor, "count": 0,
                                            "children": []})
@@ -662,7 +773,8 @@ def main(argv):
                     % (scope, len(models), sum(len(m["interfaces"]) for m in models), total),
         "storeKey": "point-verify/v1",
         "total": total,
-        "tree": [dict(e, children=list(e["children"].values())) for e in tree.values()],
+        "tree": [dict(e, children=list(e["children"].values()))
+                 for e in sorted(tree.values(), key=lambda x: (x["id"] == "_noref", x["id"]))],
         "sections": sections,
         "pages": imgs,
         "hint": ('왼쪽은 <b>모델에 실제로 들어간 값</b>이다(원문에서 다시 뽑은 것이 아니다). '

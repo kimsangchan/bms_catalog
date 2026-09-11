@@ -8,8 +8,8 @@
 
 | 화면 | 무엇 | 굽는 법 | 크기 |
 |---|---|---|---|
-| [`template-map.html`](template-map.html) | BMS 기본화면 템플릿 검사대 | `python template_map.py` | 620 KB |
-| [`equip-catalog.html`](equip-catalog.html) | 전체 카탈로그 — 이 저장소의 대표 산출물 | `python build.py` | 15.3 MB |
+| [`template-map.html`](template-map.html) | BMS 기본화면 템플릿 검사대 | `python template_map.py` | 699 KB |
+| [`equip-catalog.html`](equip-catalog.html) | 전체 카탈로그 — 이 저장소의 대표 산출물 | `python build.py` | 15.6 MB |
 | [`point-verify.html`](point-verify.html) | 취입 검사대 — 원문 쪽 그림과 나란히 본다 | `python verify_points.py` | 27.0 MB |
 | [`data-map.html`](data-map.html) | 데이터 지도 — 원문이 어떤 층을 거쳐 BMS·시뮬레이터 모양이 되나 | `python schema_map.py` | 29 KB |
 | [`jci-ingest.html`](jci-ingest.html) | JCI 문서 취입 검사대 | `python ingest_jci.py --export` | 58.7 MB |

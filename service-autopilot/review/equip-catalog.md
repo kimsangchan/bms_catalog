@@ -7,7 +7,7 @@
 |---|---|
 | 굽는 법 | `cd service-autopilot/pipeline && PYTHONIOENCODING=utf-8 python build.py` |
 | 다시 굽는 때 | 모델 JSON 이 바뀐 뒤 (validate.py 가 낡았다고 경고한다) |
-| 크기 | 15.3 MB |
+| 크기 | 15.6 MB |
 | 여는 법 | 더블클릭 (오프라인 단일 파일 · 인터넷 없이 열린다) |
 
 ## 무엇을 보나
