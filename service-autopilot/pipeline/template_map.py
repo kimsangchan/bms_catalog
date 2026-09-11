@@ -23,6 +23,7 @@
   data/datasets/model-mappings.json  모델·판별 매칭 결과
 """
 import collections
+import glob
 import io
 import json
 import os
@@ -463,8 +464,25 @@ def build():
                             encoding="utf-8"))["profiles"]
     req = json.load(io.open(os.path.join(DATA, "equip-requirements.json"),
                             encoding="utf-8"))["profiles"]
-    mm = json.load(io.open(os.path.join(DATA, "datasets", "model-mappings.json"),
-                           encoding="utf-8"))
+    # ⚠ 이 파일은 **미리 구운 것**이다(datasets.py 가 만든다). 라이브 계산이 아니라
+    #   템플릿을 고쳐도 여기를 다시 안 구우면 화면이 조용히 옛 결과를 보여 준다.
+    #   실제로 그랬다 — 매칭을 하루 종일 고치고 "덮개가 늘었다" 고 보고했는데
+    #   화면의 모델별 덮개는 **사흘 전 것**이었다. 측정 스크립트로만 확인하고
+    #   화면으로 확인하지 않아서 생긴 일이다(AGENTS 규칙 4).
+    mmp = os.path.join(DATA, "datasets", "model-mappings.json")
+    src = [os.path.join(DATA, "equip-templates.json"),
+           os.path.join(DATA, "equip-requirements.json"),
+           os.path.join(DATA, "point-concepts.json")]
+    src += glob.glob(os.path.join(DATA, "models", "*.json"))
+    newer = [f for f in src
+             if os.path.exists(f) and os.path.getmtime(f) > os.path.getmtime(mmp)]
+    if newer:
+        raise SystemExit(
+            "매칭 결과가 낡았다 — %s 보다 새 파일이 %d개 있다(예: %s). "
+            "먼저 다시 구워라:  PYTHONIOENCODING=utf-8 python datasets.py"
+            % (os.path.basename(mmp), len(newer),
+               os.path.basename(sorted(newer, key=os.path.getmtime)[-1])))
+    mm = json.load(io.open(mmp, encoding="utf-8"))
     cdoc = json.load(io.open(os.path.join(DATA, "point-concepts.json"),
                              encoding="utf-8"))
     concepts = cdoc["concepts"]
