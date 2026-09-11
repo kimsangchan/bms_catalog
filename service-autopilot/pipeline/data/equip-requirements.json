@@ -1792,6 +1792,463 @@
      ]
     }
    ]
+  },
+  "e10.coolingtower": {
+   "equipId": "e10",
+   "title": "냉각탑 (개방형·밀폐형)",
+   "match": {
+    "catPrefix": [
+     "HVAC.PLANT.COOLINGTOWER"
+    ]
+   },
+   "matchNote": "2026-09-11 신설. 카탈로그 모델은 0건이다 — 현장 CT 63코드가 근거다. cat 은 classify.py 에 이미 등록돼 있어(HVAC.PLANT.COOLINGTOWER) 문서를 수집하면 그대로 붙는다.",
+   "energyModel": {
+    "heatReject": "방열량 = 냉각수 유량 × (입구온도 − 출구온도) × 물 비열. 온도 둘이 없으면 냉각탑이 실제로 몇 kW 를 버렸는지 못 낸다",
+    "approach": "접근온도 = 냉각수 출구온도 − 외기 습구온도. 냉각탑 성능의 정의다 — 습구온도가 없으면 '탑이 나쁜 것'과 '날이 습한 것'을 못 가른다",
+    "fanPower": "팬 전력 ≈ 정격 × (주파수/정격주파수)³ (인버터) 또는 단수 × 단당 정격 (on/off 다단). 현장은 대개 3대 on/off 라 단수가 곧 전력이다"
+   },
+   "items": [
+    {
+     "id": "capacity",
+     "name": "정격 냉각능력",
+     "unit": "RT",
+     "grade": "필수",
+     "usedBy": [
+      "heatReject"
+     ],
+     "why": "부분부하율의 분모. 없으면 팬 전력 모델의 기준점이 없다",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "정격 냉각능력",
+      "nominal capacity",
+      "cooling capacity"
+     ]
+    },
+    {
+     "id": "cwFlow",
+     "name": "냉각수 순환수량",
+     "unit": "m³/h",
+     "grade": "필수",
+     "usedBy": [
+      "heatReject"
+     ],
+     "why": "방열량 식의 첫 항",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "순환수량",
+      "water flow rate"
+     ]
+    },
+    {
+     "id": "designWetBulb",
+     "name": "설계 습구온도·입출구 설계온도",
+     "unit": "℃",
+     "grade": "필수",
+     "usedBy": [
+      "approach"
+     ],
+     "why": "정격이 어느 조건에서 난 값인지. 없으면 접근온도를 보정 못 한다",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "설계 습구온도",
+      "wet bulb",
+      "entering/leaving water temp"
+     ]
+    },
+    {
+     "id": "fanPower",
+     "name": "팬 모터 정격출력",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "fanPower"
+     ],
+     "why": "팬 전력의 기준값. 냉각탑 소비전력의 대부분이다",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "팬 모터 출력",
+      "fan motor",
+      "motor output"
+     ]
+    },
+    {
+     "id": "sprayPumpPower",
+     "name": "살수펌프 정격출력",
+     "unit": "kW",
+     "grade": "권장",
+     "usedBy": [
+      "fanPower"
+     ],
+     "why": "밀폐형은 살수펌프가 상시 돈다 — 빼면 소비전력이 과소평가된다",
+     "features": [],
+     "sourceHint": "제품 카탈로그·성능표",
+     "searchTerms": [
+      "살수펌프",
+      "spray pump"
+     ]
+    }
+   ]
+  },
+  "e11.boiler": {
+   "equipId": "e11",
+   "title": "보일러 · 온수발생기 · 급탕 가열기",
+   "match": {
+    "catPrefix": [
+     "HVAC.PLANT.BOILER"
+    ]
+   },
+   "matchNote": "2026-09-11 신설. 모델 0건 — 현장 HWG 10 · BFW 3 코드가 근거다. cat 은 classify.py 에 이미 있다(HVAC.PLANT.BOILER). ⚠ 현장 실물은 증기·온수 보일러가 아니라 **급탕 가열기**라 초안(08장 11절)의 증기 계열 행은 대부분 노출 0 이다 — 지우지 않고 등급을 내렸다.",
+   "energyModel": {
+    "heating": "발생 열량 = 온수 유량 × (공급 − 환수) × 물 비열. 급탕 가열기는 유량계가 없는 경우가 많아 환수온도와 설정값의 차로 근사한다",
+    "fuel": "연료 소비 = 정격 연료량 × 연소율 × 운전시간. 인터록·실화 구간은 빼야 한다 — 현장 인터록 40점이 그 근거다"
+   },
+   "items": [
+    {
+     "id": "capacity",
+     "name": "정격 출력 (정격증발량·총발생열량)",
+     "unit": "kcal/h",
+     "grade": "필수",
+     "usedBy": [
+      "heating"
+     ],
+     "why": "부분부하율의 분모",
+     "features": [],
+     "sourceHint": "제품 사양표 (부스타 등 국내 벤더는 페이지 안 HTML 표)",
+     "searchTerms": [
+      "정격증발량",
+      "총발생열량",
+      "정격 출력"
+     ]
+    },
+    {
+     "id": "efficiency",
+     "name": "보일러 효율",
+     "unit": "%",
+     "grade": "필수",
+     "usedBy": [
+      "fuel"
+     ],
+     "why": "연료 → 열량 변환율. 없으면 연료 소비를 못 낸다",
+     "features": [],
+     "sourceHint": "제품 사양표",
+     "searchTerms": [
+      "보일러효율",
+      "efficiency"
+     ]
+    },
+    {
+     "id": "fuelRate",
+     "name": "연료 소비량 (13A·LPG)",
+     "unit": "N㎥/h",
+     "grade": "필수",
+     "usedBy": [
+      "fuel"
+     ],
+     "why": "정격 연소 시의 기준값",
+     "features": [],
+     "sourceHint": "제품 사양표",
+     "searchTerms": [
+      "연료소비량",
+      "gas consumption"
+     ]
+    },
+    {
+     "id": "auxPower",
+     "name": "총소비전력 (송풍기·급수펌프 포함)",
+     "unit": "kW",
+     "grade": "권장",
+     "usedBy": [
+      "fuel"
+     ],
+     "why": "보일러의 전기 부하. 연료와 따로 센다",
+     "features": [
+      "systemPower"
+     ],
+     "sourceHint": "제품 사양표",
+     "searchTerms": [
+      "총소비전력",
+      "송풍기 모터출력"
+     ]
+    }
+   ]
+  },
+  "e12.hx": {
+   "equipId": "e12",
+   "title": "열교환기 (수-수 · 증기-수)",
+   "match": {
+    "catPrefix": [
+     "HVAC.PLANT.HX"
+    ]
+   },
+   "matchNote": "2026-09-11 신설. 모델 0건 — 현장 HX 13 · HEX 2 코드가 근거다. ⚠ classify.py 에 HVAC.PLANT.HX 규칙이 아직 없다 — 문서를 수집할 때 함께 넣어야 한다. ⚠ **전열교환기(ERV)는 이 계열이 아니다.** 현장 36대가 전부 공조기(AH) 코드 아래 부속으로 붙어 있어(229점) e5.ahu·e5.ohu 쪽 행이다.",
+   "energyModel": {
+    "exchange": "열교환량 = 2차 유량 × (공급 − 환수) × 비열. 증기-수는 1차 유량을 못 재는 경우가 많아 스팀밸브 개도 × 정격으로 근사한다 — 현장 30점이 그 신호다"
+   },
+   "items": [
+    {
+     "id": "capacity",
+     "name": "정격 열교환 용량",
+     "unit": "kcal/h",
+     "grade": "필수",
+     "usedBy": [
+      "exchange"
+     ],
+     "why": "부분부하율의 분모",
+     "features": [],
+     "sourceHint": "제품 성능표",
+     "searchTerms": [
+      "열교환 용량",
+      "heat transfer capacity"
+     ]
+    },
+    {
+     "id": "designTemps",
+     "name": "설계 입·출구 온도 (1·2차)",
+     "unit": "℃",
+     "grade": "필수",
+     "usedBy": [
+      "exchange"
+     ],
+     "why": "정격이 난 조건. 없으면 실제 온도차를 보정 못 한다",
+     "features": [],
+     "sourceHint": "제품 성능표",
+     "searchTerms": [
+      "설계 온도",
+      "design temperature"
+     ]
+    },
+    {
+     "id": "flow",
+     "name": "설계 유량 (1·2차)",
+     "unit": "m³/h",
+     "grade": "필수",
+     "usedBy": [
+      "exchange"
+     ],
+     "why": "열교환량 식의 첫 항",
+     "features": [],
+     "sourceHint": "제품 성능표",
+     "searchTerms": [
+      "유량",
+      "flow rate"
+     ]
+    },
+    {
+     "id": "pressDrop",
+     "name": "설계 압력손실",
+     "unit": "kPa",
+     "grade": "권장",
+     "usedBy": [
+      "exchange"
+     ],
+     "why": "펌프 양정 배분. 차압이 설계보다 크면 막힌 것이다",
+     "features": [],
+     "sourceHint": "제품 성능표",
+     "searchTerms": [
+      "압력손실",
+      "pressure drop"
+     ]
+    }
+   ]
+  },
+  "e25.plumbing": {
+   "equipId": "e25",
+   "title": "급배수 · 위생 (수조 · 가압 · 배수 · 급탕)",
+   "match": {
+    "catPrefix": [
+     "PLUMB.WATER"
+    ]
+   },
+   "matchNote": "2026-09-11 신설. 모델 0건 — 현장 47코드(WTANK·SUMP·NPWS·EET·PWB·FOP)가 근거다. ⚠ classify.py 에 PLUMB.* 규칙이 아직 없다 — 문서를 수집할 때 함께 넣어야 한다.",
+   "energyModel": {
+    "supply": "가압펌프 전력 = 유량 × 양정 ÷ (효율 × 모터효율). 현장에 유량계(75점)와 전력계측이 둘 다 있어 모델과 실측을 맞대 볼 수 있는 드문 계열이다",
+    "dhw": "급탕 열량 = 급탕 유량 × (급탕온도 − 급수온도) × 비열. e11 급탕 가열기와 짝이다"
+   },
+   "items": [
+    {
+     "id": "pumpHead",
+     "name": "펌프 정격 양정",
+     "unit": "m",
+     "grade": "필수",
+     "usedBy": [
+      "supply"
+     ],
+     "why": "전력 식의 양정 항",
+     "features": [],
+     "sourceHint": "펌프 성능곡선",
+     "searchTerms": [
+      "양정",
+      "head"
+     ]
+    },
+    {
+     "id": "pumpFlow",
+     "name": "펌프 정격 유량",
+     "unit": "m³/h",
+     "grade": "필수",
+     "usedBy": [
+      "supply"
+     ],
+     "why": "전력 식의 유량 항이자 부분부하율의 분모",
+     "features": [],
+     "sourceHint": "펌프 성능곡선",
+     "searchTerms": [
+      "토출량",
+      "flow rate"
+     ]
+    },
+    {
+     "id": "motorPower",
+     "name": "모터 정격출력",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "supply"
+     ],
+     "why": "전력의 상한. 실측 대조의 기준",
+     "features": [
+      "systemPower"
+     ],
+     "sourceHint": "펌프 사양표",
+     "searchTerms": [
+      "모터 출력",
+      "motor power"
+     ]
+    },
+    {
+     "id": "tankVolume",
+     "name": "수조 유효 용량",
+     "unit": "m³",
+     "grade": "권장",
+     "usedBy": [
+      "supply"
+     ],
+     "why": "수위 % 를 실제 부피로 바꾸는 계수. 없으면 재고를 못 센다",
+     "features": [],
+     "sourceHint": "설비 도면·장비일람표",
+     "searchTerms": [
+      "유효용량",
+      "저수조 용량"
+     ]
+    }
+   ]
+  },
+  "e5.ohu": {
+   "equipId": "e5",
+   "title": "외조기 (OHU) — 외기처리 유닛",
+   "match": {
+    "catPrefix": [
+     "HVAC.AIR.OHU"
+    ]
+   },
+   "matchNote": "2026-09-11 신설. 모델 0건 — 현장 OHU 27 · HVU 12 · CHU 10 · PAH 2 · AVU 1 코드가 근거다. ⚠ classify.py 의 e5 규칙은 공기조화기를 전부 HVAC.AIR.AHU 로 보낸다 — 외조기 문서를 수집하면 register.py 에서 cat 을 HVAC.AIR.OHU 로 눌러 줘야 이 프로파일에 붙는다. 기존 AHU 9모델은 접두가 겹치지 않아 영향이 없다.",
+   "energyModel": {
+    "cooling": "냉방 코일 부하 = 풍량 × 엔탈피차 (냉수 유량 제어)",
+    "heating": "난방 코일 부하 = 풍량 × 비열 × 온도차",
+    "fan": "팬 전력 = 풍량 × 정압 ÷ 팬효율 (인버터 비례제어)"
+   },
+   "items": [
+    {
+     "id": "coolingCapacity",
+     "name": "정격 냉방능력",
+     "unit": "kW 또는 kcal/h",
+     "grade": "필수",
+     "usedBy": [
+      "cooling"
+     ],
+     "why": "코일 용량 기준",
+     "features": [
+      "grossCoolingCapacity"
+     ],
+     "sourceHint": "카탈로그 코일 사양표",
+     "searchTerms": [
+      "냉방능력",
+      "cooling capacity",
+      "total capacity"
+     ]
+    },
+    {
+     "id": "heatingCapacity",
+     "name": "정격 난방능력",
+     "unit": "kW 또는 kcal/h",
+     "grade": "필수",
+     "usedBy": [
+      "heating"
+     ],
+     "why": "겨울철 난방 부하 기준",
+     "features": [
+      "heatingCapacity"
+     ],
+     "sourceHint": "카탈로그 코일 사양표",
+     "searchTerms": [
+      "난방능력",
+      "heating capacity"
+     ]
+    },
+    {
+     "id": "supplyAirflow",
+     "name": "정격 급기 풍량",
+     "unit": "CMM 또는 CMH",
+     "grade": "필수",
+     "usedBy": [
+      "fan",
+      "cooling",
+      "heating"
+     ],
+     "why": "팬 동력 및 코일 열교환량 계산",
+     "features": [
+      "ratedAirflow"
+     ],
+     "sourceHint": "송풍기 사양표",
+     "searchTerms": [
+      "풍량",
+      "airflow",
+      "air volume"
+     ]
+    },
+    {
+     "id": "fanMotorPower",
+     "name": "팬 모터 동력",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "fan"
+     ],
+     "why": "팬 소비전력 한계치 및 인버터 제어 기준",
+     "features": [
+      "fanMotorHp"
+     ],
+     "sourceHint": "송풍기 사양표",
+     "searchTerms": [
+      "모터",
+      "전동기",
+      "motor",
+      "power"
+     ]
+    },
+    {
+     "id": "chilledWaterFlow",
+     "name": "냉수 유량",
+     "unit": "LPM 또는 m³/h",
+     "grade": "권장",
+     "usedBy": [
+      "cooling"
+     ],
+     "why": "냉수 밸브 제어 및 펌프 동력 연계",
+     "features": [],
+     "sourceHint": "코일 수배관 사양표",
+     "searchTerms": [
+      "수량",
+      "유량",
+      "water flow",
+      "flow rate"
+     ]
+    }
+   ]
   }
  }
 }

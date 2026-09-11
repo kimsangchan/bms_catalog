@@ -289,19 +289,104 @@ def model_mapping_inputs(model):
     return sorted(scopes, key=lambda scope: scope["kind"] != "interface")
 
 
+_LOOSE_CACHE = {}
+_WORD = re.compile(r"[0-9A-Za-z가-힣]+")
+
+
+def loose_parts(include):
+    """정규식을 '순서 없이 다 있어야 하는 조각들'로 바꾼다 — 2차 매칭용.
+
+    왜 필요한가: 룰은 처음 본 문서의 표기를 그대로 옮겨 적은 것이라 낱말 순서가
+    거기 매여 있다. 같은 뜻을 벤더마다 뒤집어 쓴다 — Trane `Evap Leaving Water Temp`,
+    York `Leaving Evap Water Temp`. `leaving.*evap.*temp` 는 뒤엣것만 잡아서
+    526점짜리 Trane 냉동기에서 '냉수 출구온도'가 통째로 비어 있었다.
+
+    ⚠ 안 푸는 것 두 가지가 오탐을 막는 장치다.
+      · `^`·`$` 로 자리를 고정한 대안 — 풀면 `^on.?off` 가
+        `Separator Oil Level Switch (ON=Closed, OFF=Open)` 을 '운전/정지 지령'으로 만든다.
+      · 조각이 하나뿐인 대안 — 그건 이미 순서와 무관하다.
+    맨 낱말 조각에는 `\\b` 를 앞에 붙인다. `ent` 가 `Different` 에 걸리는 것을 막는다.
+    """
+    if include in _LOOSE_CACHE:
+        return _LOOSE_CACHE[include]
+    alts, depth, buf = [], 0, ""
+    for ch in include:                       # 괄호 밖의 | 로만 가른다
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth -= 1
+        if ch == "|" and depth == 0:
+            alts.append(buf)
+            buf = ""
+        else:
+            buf += ch
+    alts.append(buf)
+
+    out = []
+    for alt in alts:
+        if alt.startswith("^") or alt.endswith("$"):
+            continue
+        raw = [p for p in re.split(r"\.\*|\.\?|\.\+", alt) if p.strip()]
+        if len(raw) < 2:
+            continue
+        pats = []
+        for p in raw:
+            if not re.search(r"[0-9A-Za-z가-힣]{3}", p):
+                pats = []
+                break
+            if re.match(r"^[0-9A-Za-z가-힣]+$", p):
+                p = r"\b" + p
+            try:
+                pats.append(re.compile(p, re.I))
+            except re.error:
+                pats = []
+                break
+        if pats:
+            out.append(pats)
+    _LOOSE_CACHE[include] = out
+    return out
+
+
+def loose_search(include, text):
+    """순서를 푼 매칭 — 조각이 다 있고, **이름의 절반 이상을 설명**해야 한다.
+
+    절반 조건이 없으면 `unit.?status` 가
+    `Sys 1 Economizer TXV Solenoid Status(Standard Unit)` 을 '운전 상태'로 만든다.
+    낱말 7개 중 둘만 설명하는 매칭은 우연이다.
+    """
+    words = _WORD.findall(text)
+    if not words:
+        return False
+    for pats in loose_parts(include):
+        if not all(p.search(text) for p in pats):
+            continue
+        used = sum(1 for w in words if any(p.search(w) for p in pats))
+        if used * 2 >= len(words):
+            return True
+    return False
+
+
 def find_template_candidates(profile_id, points):
     """프로파일의 행 순서대로 원문 포인트를 하나씩 집는다(먼저 온 행이 이긴다).
 
     행 순서가 곧 우선순위다 — 구체적인 행(냉수밸브)을 추상적인 행(냉방 지령)보다
     앞에 두면 추상 행이 남은 것만 집는다. equip-templates.json 의 배열 순서를 함부로
     바꾸지 마라.
+
+    두 번 훑는다.
+      1차 — 순서대로. **예전과 한 글자도 다르지 않다.**
+      2차 — 1차에서 못 붙은 행만, 남은 포인트만, 순서를 풀고(loose_search).
+    이 순서 덕분에 이미 붙어 있던 매칭은 절대 바뀌지 않는다. 2차는 더하기만 한다.
     """
     prof = load_template_profiles().get(profile_id) or {}
     profile = prof.get("templatePoints") or []
     common = prof.get("excludeCommon") or ""
-    picked = []
+    picked_by_row = {}
     seen_names = set()
-    for row in profile:
+    for loose in (False, True):
+      for row in profile:
+        if row["name"] in picked_by_row:
+            continue
         rule = dict(row.get("match") or {}, name=row["name"])
         if not rule.get("include"):
             continue
@@ -317,7 +402,9 @@ def find_template_candidates(profile_id, points):
             if point.get("name") in seen_names:
                 continue
             text = point_text(point)
-            if not include.search(text) or exclude.search(text):
+            ok = (loose_search(rule["include"], text) if loose
+                  else include.search(text))
+            if not ok or exclude.search(text):
                 continue
             score = 0
             low = text.lower()
@@ -337,6 +424,11 @@ def find_template_candidates(profile_id, points):
                 score -= 20
             if re.search(r"setpoint|configuration|type identifier|enable|min", low):
                 score -= 15
+            # 보조·예비 계통은 본 계통보다 뒤다. 어순을 푼 2차 매칭에서
+            # `Second Condenser Leaving Water Temperature` 가 본 응축기
+            # `Cond Leaving Water Temp` 를 이겼다 — 'temperature' 가 점수를 더 받아서다.
+            if re.search(r"\bsecond\b|\bspare\b|\bstandby\b|\bbackup\b|예비|보조", low):
+                score -= 25
             if re.search(r"alarm|problem|fault", low) and re.search(r"경보|필터", rule["name"]):
                 score += 20
             matches.append((score, point))
@@ -352,7 +444,7 @@ def find_template_candidates(profile_id, points):
 
         point = sorted(matches, key=lambda item: (-item[0],) + instance_key(item))[0][1]
         seen_names.add(point.get("name"))
-        picked.append({
+        picked_by_row[rule["name"]] = {
             "templateName": rule["name"],
             "sourceName": point.get("name"),
             "type": point.get("type"),
@@ -360,8 +452,10 @@ def find_template_candidates(profile_id, points):
             "unit": point.get("unit") or point.get("unitRaw"),
             "note": point.get("note", ""),
             "interfaceId": point.get("interfaceId"),
-        })
-    return picked
+            "loose": loose or None,        # 2차(어순 풀기)로 붙은 것은 표시해 둔다
+        }
+    # 돌려주는 차례는 예전처럼 **행 순서**다 — 2차로 붙은 것이 뒤에 몰리지 않게.
+    return [picked_by_row[r["name"]] for r in profile if r["name"] in picked_by_row]
 
 
 def template_point_mappings(profile_id, template_rows, points):

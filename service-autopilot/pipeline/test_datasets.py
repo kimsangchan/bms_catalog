@@ -28,8 +28,11 @@ class DatasetBuildTest(unittest.TestCase):
         ahu = data["equipmentTemplates"]["e5"]
 
         # 2026-09-07 e5.pac 은 e8.vrf 로 옮겼다 — VRF 모델의 cat 이
-        # 'HVAC.AIR.TERMINAL.VRF' 라 e5 밑에서는 매칭이 0건이었다. 이제 e5 에는 둘뿐이다.
-        self.assertEqual(ahu["templateProfileIds"], ["e5.ahu", "e5.rtu"])
+        # 'HVAC.AIR.TERMINAL.VRF' 라 e5 밑에서는 매칭이 0건이었다.
+        # 2026-09-11 e5.ohu(외조기)를 더했다. 모델은 아직 0건이지만 현장 43코드가 있고,
+        #            e5.ahu 를 베껴 환기(리턴) 계열 6행을 뺀 것이다 — 외조기는 100% 외기다.
+        #            catPrefix 가 HVAC.AIR.OHU 라 기존 AHU 9모델의 결합은 안 바뀐다.
+        self.assertEqual(ahu["templateProfileIds"], ["e5.ahu", "e5.ohu", "e5.rtu"])
         self.assertNotIn("templatePoints", ahu)   # 계열 한 벌은 더 이상 없다
         self.assertGreaterEqual(len(ahu["simulatorSpecRequirements"]), 10)
         # e8.vrf 는 아직 행이 없다(빈 배열 = 신설 과제). 비어 있어도 되는 이유는
@@ -52,9 +55,14 @@ class DatasetBuildTest(unittest.TestCase):
         self.assertEqual(tpl, req)
         # 2026-09-08 Belimo 정격을 취입하며 e16(필드기기)·e6(VAV) 프로파일을 세웠다.
         # 2026-09-08 빈 계열을 채웠다 — 화면이 없으면 모델이 들어와도 붙일 자리가 없다.
-        self.assertEqual(tpl, {"e5.rtu", "e5.ahu", "e6.vav", "e7.crac", "e8.vrf",
-                               "e9.chiller", "e13.fan", "e14.pump", "e15.vfd",
-                               "e16.actuator", "e16.meter", "e19.power"})
+        # 2026-09-11 빈 계열 다섯을 **모델 0건인데도** 세웠다 — 현장 포인트리스트의
+        #            설비코드가 근거다(CT 63 · HWG 13 · HX 15 · 급배수 47 · 외조기 43).
+        #            템플릿은 모델의 부산물이 아니라 '무엇을 화면에 올릴지'의 기준이다.
+        self.assertEqual(tpl, {"e5.rtu", "e5.ahu", "e5.ohu", "e6.vav", "e7.crac",
+                               "e8.vrf", "e9.chiller", "e10.coolingtower",
+                               "e11.boiler", "e12.hx", "e13.fan", "e14.pump",
+                               "e15.vfd", "e16.actuator", "e16.meter",
+                               "e19.power", "e25.plumbing"})
         for pid, prof in datasets.load_template_profiles().items():
             self.assertNotIn("match", prof, "%s: 매치 규칙을 여기 복제하면 규칙이 두 벌이 된다" % pid)
 
@@ -243,6 +251,52 @@ class DatasetBuildTest(unittest.TestCase):
         # 전 이름은 '냉수·냉방'이었다 — datasets.py 에만 있고 템플릿에는 없던 유령 룰이라
         # 화면에 안 나왔다. 직팽 RTU 의 실제 신호이므로 '냉방 지령'으로 정직하게 고쳤다.
         self.assertEqual(candidates["냉방 지령"], "nvoCoolPrimary")
+
+    def test_template_matching_is_not_defeated_by_word_order(self):
+        """행의 정규식이 낱말 **순서**를 고정해서 놓치던 것을 잡는다.
+
+        왜 생겼나: 룰을 쓸 때 본 문서의 표기를 그대로 옮겨 적었다. 그런데 같은 뜻을
+        벤더마다 순서를 바꿔 쓴다 — Trane 은 `Evap Leaving Water Temp`, York 는
+        `Leaving Evap Water Temp` 다. `leaving.*evap.*temp` 는 뒤엣것만 잡는다.
+        526점짜리 Trane 냉동기에서 '냉수 출구온도'가 안 붙던 것이 이것이다.
+
+        ⚠ 순서를 푸는 것은 **차선책**이라 순서대로 맞는 것이 먼저 이겨야 한다.
+          그리고 `^` 로 시작을 고정한 대안은 풀지 않는다 — 그걸 풀면
+          `Separator Oil Level Switch (ON=Closed, OFF=Open)` 이 '운전/정지 지령'이 된다.
+        """
+        pts = [
+            {"name": "Evap Leaving Water Temp", "type": "AI", "inst": 8},
+            {"name": "Evap Entering Water Temp", "type": "AI", "inst": 9},
+            {"name": "Cond Entering Water Temp", "type": "AI", "inst": 10},
+            {"name": "Cond Leaving Water Temp", "type": "AI", "inst": 11},
+            {"name": "Start / Stop Command", "type": "BO", "inst": 1},
+        ]
+        got = {c["templateName"]: c["sourceName"]
+               for c in datasets.find_template_candidates("e9.chiller", pts)}
+
+        self.assertEqual(got.get("냉수 출구온도"), "Evap Leaving Water Temp")
+        self.assertEqual(got.get("냉수 입구온도"), "Evap Entering Water Temp")
+        self.assertEqual(got.get("냉각수 입구온도"), "Cond Entering Water Temp")
+        self.assertEqual(got.get("냉각수 출구온도"), "Cond Leaving Water Temp")
+        # `start.?stop` 의 `.?` 는 한 글자라 " / " 세 글자를 못 건넌다
+        self.assertEqual(got.get("운전/정지 지령"), "Start / Stop Command")
+
+    def test_word_order_fallback_does_not_invent_matches(self):
+        """차선책이 만들어 낸 오탐이 없어야 한다 — 이게 없으면 넓히기가 곧 사고다.
+
+        실제로 LG 를 고치며 축약형 `fan speed` 를 넣자마자 YORK 의 응축팬이 급기팬
+        자리를 빼앗은 적이 있다(AGENTS.md 규칙 3).
+        """
+        bad = [
+            {"name": "Separator Oil Level Switch (ON=Closed, OFF=Open)",
+             "type": "BI", "inst": 1},
+            {"name": "Sys 1 Economizer TXV Solenoid Status(Standard Unit)",
+             "type": "BI", "inst": 2},
+        ]
+        got = {c["templateName"]: c["sourceName"]
+               for c in datasets.find_template_candidates("e9.chiller", bad)}
+        self.assertNotIn("운전/정지 지령", got)
+        self.assertNotIn("운전 상태", got)
 
     def test_ahu_model_exposes_every_template_point_with_match_status(self):
         data = datasets.build_dataset(equip_ids={"e5"})

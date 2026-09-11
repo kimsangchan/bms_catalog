@@ -711,10 +711,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태",
-      "exclude": "odu|comp|압축기|defrost|제상|error|알람"
+      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "odu|comp|압축기|defrost|제상|error|알람|enabl|permissive|control source|\\btime\\b"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
     },
     {
      "name": "고장·경보",
@@ -1480,10 +1480,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태",
-      "exclude": "odu|comp|압축기|defrost|제상|error|알람"
+      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "odu|comp|압축기|defrost|제상|error|알람|enabl|permissive|control source|\\btime\\b"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
     },
     {
      "name": "고장·경보",
@@ -1752,10 +1752,12 @@
       "electrical"
      ],
      "match": {
-      "include": "start.?stop.?status|operat\\w*.?status|\\bsf-s\\b|운전.*상태"
+      "include": "start.?stop.?status|operat\\w*.?status|\\bsf-s\\b|운전.*상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "enabl|permissive|control source|\\btime\\b"
      },
      "concept": "run-status",
-     "group": "상태"
+     "group": "상태",
+     "matchNote": "2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
     },
     {
      "name": "운전 모드",
@@ -2219,9 +2221,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^status\\b|run.?status|운전.?상태",
-      "exclude": "bus|watchdog|termination"
-     }
+      "include": "^status\\b|run.?status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "bus|watchdog|termination|enabl|permissive|control source|\\btime\\b"
+     },
+     "matchNote": "2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
     },
     {
      "name": "고장·경보",
@@ -2450,9 +2453,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
-      "exclude": "command|지령|hour|시간|comp|압축기"
-     }
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "command|지령|hour|시간|comp|압축기|enabl|permissive|control source|\\btime\\b"
+     },
+     "matchNote": "2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
     },
     {
      "name": "고장·경보",
@@ -2575,10 +2579,10 @@
       "electrical"
      ],
      "match": {
-      "include": "^상태$|휀.?상태|^fan.*status|^motor.?status|^run.*(status|state)|운전.?상태",
-      "exclude": "댐퍼|damper|탈취|경보|alarm|필터|filter|인버터"
+      "include": "^상태$|휀.?상태|^fan.*status|^motor.?status|^run.*(status|state)|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "댐퍼|damper|탈취|경보|alarm|필터|filter|인버터|enabl|permissive|control source|\\btime\\b"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다.",
      "concept": "run-status",
      "group": "상태"
     },
@@ -2596,10 +2600,10 @@
      ],
      "keepAlarm": true,
      "match": {
-      "include": "^경보$|^fan.*(alarm|fault)|^고장|^trip",
+      "include": "^경보$|^fan.*(alarm|fault)|^고장|^trip|error indicator",
       "exclude": "인버터|탈취|필터|damper|댐퍼"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다. 2026-09-11 ebm-papst 원문의 고장 출력 이름이 `Error indicator` 라 넣었다(4판). `1st error`·`Error output delay` 같은 설정 항목은 일부러 뺐다 — 경보가 아니라 파라미터다.",
      "concept": "alarm",
      "group": "경보"
     },
@@ -3107,10 +3111,10 @@
       "electrical"
      ],
      "match": {
-      "include": "^run(ning)?\\b|^run.?(status|state)|^operat\\w*.?status|^drive.*status|^운전.?상태|^.{0,12}status word lsw",
-      "exclude": "command|지령|hour|시간|stop"
+      "include": "^run(ning)?\\b|^run.?(status|state)|^operat\\w*.?status|^drive.*status|^운전.?상태|^.{0,12}status word lsw|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "command|지령|hour|시간|stop|enabl|permissive|control source|\\btime\\b"
      },
-     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다.",
+     "matchNote": "이름 앞머리에 고정한 정규식이다. 매처가 보는 글자는 이름+비고인데 Danfoss FC 101 은 파라미터 설명이 통째로 비고라, 낱말만 찾으면 'kWh Counter' 가 주파수 지령으로 잡힌다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다.",
      "concept": "run-status",
      "group": "상태"
     },
@@ -3402,9 +3406,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
-      "exclude": "command|지령|hour|시간|comp|압축기"
-     }
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "command|지령|hour|시간|comp|압축기|enabl|permissive|control source|\\btime\\b"
+     },
+     "matchNote": "2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
     },
     {
      "name": "고장·경보",
@@ -3424,7 +3429,8 @@
      "match": {
       "include": "^(alarm|fault|trip)\\b|general.*(alarm|fault)|unit.*(alarm|fault)|고장|경보",
       "exclude": "code|코드|word|reset|리셋|count|history"
-     }
+     },
+     "matchNote": " ⚠ 2026-09-11 0/19 인 이유를 확인했다 — Vertiv/Liebert 문서에는 **장비 단위 종합 경보 점이 없다.** 개별 실패만 수십 개다(`Fan Error: Phase Failure`·`EEV Driver Communication Failure`·`Chilled Water Control Valve Failure` …). 억지로 붙이지 않았다(규칙 1). 종합 경보가 필요하면 개별 실패의 OR 로 만들어야 하는데, 그건 매칭이 아니라 파생 포인트 설계다."
     },
     {
      "name": "고장 코드",
@@ -3729,9 +3735,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
-      "exclude": "command|지령|hour|시간|comp|압축기"
-     }
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "command|지령|hour|시간|comp|압축기|enabl|permissive|control source|\\btime\\b"
+     },
+     "matchNote": "2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
     },
     {
      "name": "고장·경보",
@@ -3964,9 +3971,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
-      "exclude": "command|지령|hour|시간|comp|압축기"
-     }
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "command|지령|hour|시간|comp|압축기|enabl|permissive|control source|\\btime\\b"
+     },
+     "matchNote": "2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
     },
     {
      "name": "고장·경보",
@@ -4161,9 +4169,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
-      "exclude": "command|지령|hour|시간|comp|압축기"
-     }
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "command|지령|hour|시간|comp|압축기|enabl|permissive|control source|\\btime\\b"
+     },
+     "matchNote": "2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
     },
     {
      "name": "고장·경보",
@@ -4377,9 +4386,10 @@
      "concept": "run-status",
      "group": "상태",
      "match": {
-      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태",
-      "exclude": "command|지령|hour|시간|comp|압축기"
-     }
+      "include": "^run(ning)?\\b|run.?(status|state)|operat\\w*.?status|unit.?status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "command|지령|hour|시간|comp|압축기|enabl|permissive|control source|\\btime\\b"
+     },
+     "matchNote": "2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
     },
     {
      "name": "고장·경보",
@@ -4419,6 +4429,2177 @@
      "match": {
       "include": "(alarm|fault|error|trip).{0,8}(code|word|no\\b)|고장.?코드"
      }
+    }
+   ]
+  },
+  "e10.coolingtower": {
+   "equipId": "e10",
+   "title": "냉각탑 — BMS 기본화면",
+   "basis": "카탈로그 모델이 0건이라 표준과 현장 두 갈래로 세웠다. 표준 = 08장 10절 초안 12행 + Haystack `coolingTower`(protos 3개인데 전부 장비라 포인트 근거가 못 된다). 현장 = 포인트리스트 CSV 의 CT 설비코드 63개. 둘이 크게 달랐다 — 초안은 단품 기준이고 현장은 계통(탑+살수펌프+3방밸브)으로 묶여 있다. 초안에만 있는 행(습구온도·설정값·보충수/블로우다운·수질·팬 주파수)은 지우지 않고 등급을 내렸고, 현장에만 있는 행(살수펌프·밸브 개폐와 상태·배관 압력·진동)은 더했다.",
+   "coverageNote": "모델 0건 — 카탈로그 문서를 아직 한 건도 안 받았다. 등급의 '노출률' 축을 모델로 못 재서 현장 실측 수로 대신했다(각 행 exposure). 모델이 들어오면 필수 6행 기준으로 덮개 검수가 돌기 시작한다.",
+   "excludeCommon": "",
+   "excludeCommonNote": "냉각탑은 공조기가 아니다 — 급기온도·필터차압 같은 공용 공기측 행이 붙으면 안 된다.",
+   "note": "순환펌프(현장 `냉각수 순환펌프-N`, 인버터 출력·경보 포함)는 여기 없다. e14.pump 가 이미 있고 같은 설비를 두 계열에 적으면 화면이 두 벌이 된다. 냉각탑 부속인 살수펌프만 넣었다.",
+   "templatePoints": [
+    {
+     "name": "냉각수 출구온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": "coolingTower ▸ condenser water leaving point sensor temp",
+     "why": "방열량 = 유량 × 온도차 × 비열. 출구온도 없이는 접근온도도 못 낸다",
+     "usedBy": [
+      "heatReject",
+      "approach"
+     ],
+     "exposure": "현장 8×CT계통",
+     "match": {
+      "include": "(?:condenser|cooling.?tower|cw).*(?:leaving|supply|out(?:let)?).*temp|leaving condenser water|\\bLCWT\\b|냉각수.?(?:급수|출구|공급|송수).?온도",
+      "exclude": "setpoint|set.?p\\b|설정|approach"
+     },
+     "concept": "cw-lvg",
+     "group": "유량·수측"
+    },
+    {
+     "name": "냉각수 입구온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": "coolingTower ▸ condenser water entering point sensor temp",
+     "why": "방열량 식의 온도차 한쪽",
+     "usedBy": [
+      "heatReject"
+     ],
+     "exposure": "현장 8×CT계통",
+     "match": {
+      "include": "(?:condenser|cooling.?tower|cw).*(?:entering|return|in(?:let)?).*temp|entering condenser water|\\bECWT\\b|냉각수.?(?:환수|입구|리턴|회수).?온도",
+      "exclude": "setpoint|set.?p\\b|설정"
+     },
+     "concept": "cw-ent",
+     "group": "유량·수측"
+    },
+    {
+     "name": "냉각수 출구온도 설정값",
+     "objectType": "AV",
+     "unit": "℃",
+     "role": "sp",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "Haystack 에 냉각탑 전용 sp proto 가 없다 — chilled-water-plant 의 sp 관례를 따랐다",
+     "why": "탑이 무엇을 목표로 도는지. 없으면 제어 의도를 못 읽어 추정으로 대체한다",
+     "usedBy": [
+      "approach"
+     ],
+     "exposure": "현장 0 — 초안(08장)에는 '필수'였으나 현장 63코드에 한 건도 없어 권장으로 내렸다(규칙 ④)",
+     "match": {
+      "include": "(?:condenser|cooling.?tower|cw).*(?:leaving|supply).*(?:temp.*)?(?:setpoint|set.?p\\b)|냉각수.?(?:급수|출구).?온도.?설정",
+      "exclude": "alarm|경보"
+     },
+     "concept": "cw-sp",
+     "group": "설정값"
+    },
+    {
+     "name": "외기 습구온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": "weatherStation ▸ air outside point sensor temp wetBulb",
+     "why": "접근온도 = 출구온도 − 습구온도. 없으면 성능 저하와 날씨를 못 가른다",
+     "usedBy": [
+      "approach"
+     ],
+     "exposure": "현장 0 — 기상 포인트는 대개 계통 공용이라 CT 코드에 안 붙는다",
+     "match": {
+      "include": "(?:outdoor|outside|ambient|oa).*wet.?bulb|wet.?bulb.*temp|\\bWBT\\b|외기.?습구",
+      "exclude": "setpoint|설정|dry.?bulb"
+     },
+     "concept": "oa-wetbulb",
+     "group": "온도"
+    },
+    {
+     "name": "냉각수 공급 압력",
+     "objectType": "AI",
+     "unit": "kPa",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 `냉각수 급수 배관 압력` 16점 · `환수 배관 압력` 8점",
+     "why": "유량계가 없을 때 유량을 압력·펌프 곡선으로 추정한다",
+     "usedBy": [
+      "heatReject"
+     ],
+     "exposure": "현장 24점",
+     "match": {
+      "include": "(?:condenser|cooling.?tower|cw).*(?:supply|discharge|header).*press|냉각수.?(?:급수|공급|환수).?(?:배관.?)?압력",
+      "exclude": "setpoint|설정|differential"
+     },
+     "concept": "cw-press",
+     "group": "유량·수측"
+    },
+    {
+     "name": "계통 차압",
+     "objectType": "AI",
+     "unit": "kPa",
+     "role": "sensor",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "e14.pump 와 같은 개념을 쓴다 — 계통 차압은 설비가 아니라 배관의 값이다",
+     "why": "말단 차압 제어를 쓰는 계통의 펌프 운전점. 냉각탑 자체 계산엔 안 들어간다",
+     "usedBy": [],
+     "exposure": "현장 8점",
+     "match": {
+      "include": "(?:condenser|cooling.?tower|cw).*(?:differential|diff).*press|\\bDPT?\\b.*냉각수|냉각수.*(?:말단.?)?차압",
+      "exclude": "setpoint|설정|valve|밸브"
+     },
+     "concept": "head-dp",
+     "group": "유량·수측"
+    },
+    {
+     "name": "팬 기동/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "필수",
+     "haystack": "coolingTower ▸ fan point cmd run",
+     "why": "팬 단수가 곧 냉각탑 소비전력이다. 지령이 없으면 무엇을 켰는지 모른다",
+     "usedBy": [
+      "fanPower"
+     ],
+     "exposure": "현장 8×3대",
+     "match": {
+      "include": "(?:tower|ct|fan).*(?:start|stop|run|on.?off|enable)|fan.*command|(?:휀|팬|fan).?-?\\d*.?(?:기동|운전).?[_/]?정지|기동.?정지",
+      "exclude": "status|state|상태|feedback|알람|alarm"
+     },
+     "concept": "run-cmd",
+     "group": "제어 지령"
+    },
+    {
+     "name": "팬 운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": "coolingTower ▸ fan point sensor run",
+     "why": "실제로 돌았는지. 지령과 어긋나면 그 시간의 전력 계산이 통째로 틀린다",
+     "usedBy": [
+      "fanPower"
+     ],
+     "exposure": "현장 8×3대",
+     "match": {
+      "include": "(?:tower|ct|fan).*(?:status|state|running|feedback)|(?:휀|팬|fan).?-?\\d*.?상태",
+      "exclude": "command|cmd|지령|alarm|경보|고장"
+     },
+     "concept": "run-status",
+     "group": "상태"
+    },
+    {
+     "name": "팬 주파수 지령",
+     "objectType": "AO",
+     "unit": "Hz",
+     "role": "cmd",
+     "grade": "선택",
+     "haystack": "coolingTower ▸ fan point cmd freq",
+     "why": "인버터 팬이면 전력 ∝ 주파수³. 단수 모델보다 정확하다",
+     "usedBy": [
+      "fanPower"
+     ],
+     "appliesWhen": "인버터 구동 팬일 때만. 다단 on/off 탑에는 없다",
+     "exposure": "현장 0 — 실측 CT 는 팬 3대 on/off 다. 인버터는 순환펌프에 붙어 있다",
+     "match": {
+      "include": "(?:tower|ct|fan).*(?:freq|speed|hz|vfd).*(?:cmd|command|ref|output)|(?:휀|팬).?-?\\d*.?(?:주파수|속도).?(?:지령|출력)",
+      "exclude": "status|feedback|상태|current|실측"
+     },
+     "concept": "speed-cmd",
+     "group": "제어 지령"
+    },
+    {
+     "name": "팬 현재 주파수",
+     "objectType": "AI",
+     "unit": "Hz",
+     "role": "sensor",
+     "grade": "선택",
+     "haystack": "coolingTower ▸ fan point sensor freq",
+     "why": "지령이 아니라 실제로 돈 주파수. 전력 대조의 기준",
+     "usedBy": [
+      "fanPower"
+     ],
+     "appliesWhen": "인버터 구동 팬일 때만",
+     "exposure": "현장 0 — 팬 주파수 지령과 같은 사유",
+     "match": {
+      "include": "(?:tower|ct|fan).*(?:freq|speed|hz).*(?:feedback|actual|current|status)|(?:휀|팬).?-?\\d*.?(?:현재.?)?(?:주파수|회전수)",
+      "exclude": "command|cmd|지령|setpoint"
+     },
+     "concept": "speed-fb",
+     "group": "상태"
+    },
+    {
+     "name": "살수펌프 기동/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "Haystack 에 살수펌프 proto 가 없다(`coolingTower` protos 3개는 전부 장비). 현장 표기로 세웠다",
+     "why": "밀폐형·혼합형은 살수펌프가 상시 돈다 — 빼면 소비전력이 과소평가된다",
+     "usedBy": [
+      "fanPower"
+     ],
+     "appliesWhen": "밀폐형·혼합형에만. 개방형 냉각탑에는 없다",
+     "exposure": "현장 8×3대",
+     "match": {
+      "include": "(?:spray|makeup).*pump.*(?:start|stop|run|on.?off)|살수.?펌프.?-?\\d*.?(?:기동|운전).?[_/]?정지",
+      "exclude": "status|상태|alarm|경보|순환"
+     },
+     "concept": "run-cmd",
+     "group": "제어 지령"
+    },
+    {
+     "name": "살수펌프 운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "살수펌프 지령과 같은 사유",
+     "why": "실제 운전 시간. 살수펌프 전력 적산의 근거",
+     "usedBy": [
+      "fanPower"
+     ],
+     "appliesWhen": "밀폐형·혼합형에만",
+     "exposure": "현장 8×3대",
+     "match": {
+      "include": "(?:spray|makeup).*pump.*(?:status|state|running)|살수.?펌프.?-?\\d*.?상태",
+      "exclude": "command|cmd|지령|alarm|경보|순환"
+     },
+     "concept": "run-status",
+     "group": "상태"
+    },
+    {
+     "name": "수조 수위 경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "Haystack 에 냉각탑 수조 수위 proto 가 없다. 현장 `수위센서-N 경보` 24점이 근거",
+     "why": "저수위로 돌면 펌프가 깨진다. 계산이 아니라 안전 신호라 등급을 안 내린다",
+     "usedBy": [],
+     "exposure": "현장 8×3대",
+     "match": {
+      "include": "(?:basin|sump|tower|ct).*level.*(?:alarm|low|high)|level.*(?:switch|alarm)|수위.?(?:센서)?.?-?\\d*.?(?:경보|알람)|저수위|고수위",
+      "exclude": "setpoint|설정|밸브|valve"
+     },
+     "concept": "level-alarm",
+     "group": "경보"
+    },
+    {
+     "name": "진동 경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 `진동센서-N 경보` 24점",
+     "why": "팬 축 이상. 정비 신호이고 계산에는 안 들어간다",
+     "usedBy": [],
+     "exposure": "현장 8×3대",
+     "match": {
+      "include": "vibration.*(?:alarm|switch|sensor)|진동.?(?:센서)?.?-?\\d*.?(?:경보|알람)",
+      "exclude": "setpoint|설정"
+     },
+     "concept": "vibration-alarm",
+     "group": "경보"
+    },
+    {
+     "name": "냉각수 밸브 열림/닫힘 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 `급수/환수/바이패스 밸브 열림_닫힘` 75점",
+     "why": "어느 탑이 계통에 물려 있는지. 대수제어의 실제 모습이라 방열량 배분의 근거다",
+     "usedBy": [
+      "heatReject"
+     ],
+     "appliesWhen": "급수·환수·바이패스 밸브마다 한 벌씩 온다",
+     "exposure": "현장 25×3종",
+     "match": {
+      "include": "(?:condenser|cw|tower).*valve.*(?:open|close|cmd|command)|(?:급수|환수|바이패스).?밸브.?열림[_/]?닫힘",
+      "exclude": "status|상태|position|개도|%"
+     },
+     "concept": "valve-oc",
+     "group": "유량·수측"
+    },
+    {
+     "name": "냉각수 밸브 열림 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 `… 열림상태/닫힘상태` 150점",
+     "why": "지령과 실제가 다르면 그 탑의 방열량을 잘못 배분한다",
+     "usedBy": [
+      "heatReject"
+     ],
+     "appliesWhen": "열림·닫힘 상태가 따로 온다",
+     "exposure": "현장 25×3종×2",
+     "match": {
+      "include": "(?:condenser|cw|tower).*valve.*(?:open|close).*(?:status|state|feedback)|(?:급수|환수|바이패스).?밸브.?(?:열림|닫힘).?상태",
+      "exclude": "command|cmd|지령|position|개도"
+     },
+     "concept": "valve-oc-fb",
+     "group": "유량·수측"
+    },
+    {
+     "name": "차압밸브 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "e16.actuator 와 같은 개념",
+     "why": "계통 차압 제어용. 냉각탑 자체 계산엔 안 들어간다",
+     "usedBy": [],
+     "exposure": "현장 9점",
+     "match": {
+      "include": "(?:condenser|cw|tower).*(?:differential|bypass).*valve.*(?:pos|open|%)|냉각수.?차압밸브",
+      "exclude": "status|상태|열림[_/]?닫힘"
+     },
+     "concept": "valve-pos",
+     "group": "유량·수측"
+    },
+    {
+     "name": "보충수 밸브",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 08 카탈로그 10장 초안 행",
+     "why": "증발·비산·배출로 잃은 물을 채운다. 물 소비량 추정에만 쓴다",
+     "usedBy": [],
+     "exposure": "현장 0",
+     "match": {
+      "include": "make.?up.*(?:water|valve)|보충수.?밸브",
+      "exclude": "status|상태|level"
+     },
+     "concept": "makeup-valve",
+     "group": "유량·수측"
+    },
+    {
+     "name": "블로우다운 밸브",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 08 카탈로그 10장 초안 행",
+     "why": "농축된 물을 버린다. 수질 관리용이고 열 계산엔 안 들어간다",
+     "usedBy": [],
+     "exposure": "현장 0",
+     "match": {
+      "include": "blow.?down|배출.?밸브|블로우.?다운",
+      "exclude": "status|상태"
+     },
+     "concept": "blowdown-valve",
+     "group": "유량·수측"
+    },
+    {
+     "name": "수질 (전도도·pH)",
+     "objectType": "AI",
+     "unit": "µS/cm",
+     "role": "sensor",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 08 카탈로그 10장 초안 행",
+     "why": "스케일이 끼면 열전달이 떨어진다. 장기 성능 저하의 원인 추적용",
+     "usedBy": [],
+     "exposure": "현장 0",
+     "match": {
+      "include": "conductivity|\\bTDS\\b|\\bpH\\b|전도도|수질",
+      "exclude": "setpoint|설정"
+     },
+     "concept": "water-quality",
+     "group": "기타"
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": "coolingTower ▸ point sensor alarm",
+     "why": "고장 중 시간을 빼지 않으면 운전시간·전력 적산이 부풀어 오른다",
+     "usedBy": [],
+     "exposure": "현장 8×2 (순환펌프 인버터)",
+     "match": {
+      "include": "(?:tower|ct|fan|pump).*(?:fault|alarm|trip|failure)|공통.?(?:경보|고장)|인버터.?-?\\d*.?경보|\\b고장\\b|\\b경보\\b",
+      "exclude": "\\bcode\\b|코드|reset|리셋|수위|진동|level|vibration"
+     },
+     "concept": "alarm",
+     "group": "경보"
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 벤더 코드표에 매인 값이다",
+     "why": "무엇이 고장인지. 원인별로 회복 시간이 달라 가동률 모델에 쓴다",
+     "usedBy": [],
+     "exposure": "현장 0",
+     "match": {
+      "include": "(?:fault|alarm|error|trip).*code|(?:고장|에러|경보).?코드",
+      "exclude": "reset|리셋"
+     },
+     "concept": "alarm-code",
+     "group": "경보"
+    },
+    {
+     "name": "소비전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "냉각탑에 전력계가 직접 붙는 경우가 드물다",
+     "why": "팬 전력 모델의 실측 대조 기준. 없으면 모델을 검증할 길이 없다",
+     "usedBy": [
+      "fanPower"
+     ],
+     "exposure": "현장 0",
+     "match": {
+      "include": "(?:tower|ct).*(?:power|kw)\\b|소비.?전력",
+      "exclude": "factor|역률|energy|적산|voltage|전압"
+     },
+     "concept": "power",
+     "group": "전력"
+    }
+   ]
+  },
+  "e11.boiler": {
+   "equipId": "e11",
+   "title": "보일러 · 급탕 가열기 — BMS 기본화면",
+   "basis": "표준 = 08장 11절 초안 11행 + Haystack `hot-water-boiler`·`steam-boiler`(protos 7개인데 6개가 장비라 포인트 근거는 1개뿐). 현장 = HWG 10 · BFW 3 코드. ⚠ 현장 실물은 **급탕 가열기**다 — 올라온 포인트가 환수온도 · 가열기-N 경보 · 가열기-N 인터록 셋뿐이다. 초안의 증기 계열(증기압력·연료적산·연도온도)은 노출 0 이라 등급을 내렸고, 초안에 없던 **인터록**을 현장 근거로 넣었다.",
+   "coverageNote": "모델 0건 — 부스타 보일러 사양표가 페이지 안 HTML 표라 collect.py 최소 크기 필터에 걸려 아직 못 받았다(10-site-driven-priority.md 참고). 등급의 노출률 축은 현장 실측으로 대신했다.",
+   "excludeCommon": "",
+   "excludeCommonNote": "보일러는 공조기가 아니다 — 급기온도·필터차압 같은 공기측 공용 행이 붙으면 안 된다.",
+   "note": "급수펌프·순환펌프는 여기 없다. e14.pump 가 이미 있다 — 현장 BFW(보일러 급수 유니트) 2코드도 올라온 것이 전류·유효전력·역률뿐이라 e19/e14 쪽 계측이다.",
+   "templatePoints": [
+    {
+     "name": "온수 공급온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": "hot-water-boiler ▸ hot-water leaving point sensor temp",
+     "why": "열량 = 유량 × (공급 − 환수) × 비열. 공급온도가 없으면 보일러 부하를 못 낸다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "현장 HWG 는 환수만 — 공급은 e12 열교환기 쪽에 22점",
+     "match": {
+      "include": "hot.?water.*(?:leaving|supply|out(?:let)?).*temp|\\bHWS\\b.*temp|(?:온수|급탕).?(?:공급|급수|출구|송수).?온도",
+      "exclude": "setpoint|set.?p\\b|설정|return|환수"
+     },
+     "concept": "hw-lvg",
+     "group": "유량·수측"
+    },
+    {
+     "name": "온수 환수온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": "hot-water-boiler ▸ hot-water entering point sensor temp",
+     "why": "열량 식의 온도차 한쪽. 환수만 있어도 설정값과 견줘 부하를 추정한다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "현장 40점 — HWG 13코드에서 가장 많이 나온 포인트다",
+     "match": {
+      "include": "hot.?water.*(?:entering|return|in(?:let)?).*temp|\\bHWR\\b.*temp|(?:온수|급탕).?(?:환수|회수|입구|리턴).?온도|\\b환수온도\\b",
+      "exclude": "setpoint|설정|supply|공급|급수"
+     },
+     "concept": "hw-ent",
+     "group": "유량·수측"
+    },
+    {
+     "name": "온수 공급온도 설정값",
+     "objectType": "AV",
+     "unit": "℃",
+     "role": "sp",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "무엇을 목표로 태우는지. 없으면 제어 의도를 추정으로 대체한다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "현장 0",
+     "match": {
+      "include": "hot.?water.*(?:supply|leaving).*(?:setpoint|set.?p\\b)|(?:온수|급탕).?(?:공급|급수).?온도.?설정",
+      "exclude": "alarm|경보|high|low"
+     },
+     "concept": "hw-sp",
+     "group": "설정값"
+    },
+    {
+     "name": "버너 단수·출력",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "Haystack `hot-water-boiler` protos 7개는 전부 장비(펌프·밸브)라 버너 단수 proto 가 없다",
+     "why": "연료 소비 = 정격 × 연소율. 단수·출력이 없으면 on/off 로만 근사해야 한다",
+     "usedBy": [
+      "heating",
+      "fuel"
+     ],
+     "exposure": "현장 0 — HWG 는 가열기 on/off 다",
+     "match": {
+      "include": "burner.*(?:stage|step|output|modulat|firing)|firing rate|버너.?(?:단수|출력|단계)|가열기.?-?\\d*.?(?:출력|단수)",
+      "exclude": "status|상태|alarm|경보|인터록"
+     },
+     "concept": "burner-stage",
+     "group": "제어 지령"
+    },
+    {
+     "name": "관내 압력",
+     "objectType": "AI",
+     "unit": "kPa",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 08 카탈로그 11장 초안 행",
+     "why": "순환 이상·공기 혼입 탐지. 유량계가 없을 때 유량 추정에도 쓴다",
+     "usedBy": [],
+     "exposure": "현장 0",
+     "match": {
+      "include": "hot.?water.*press|boiler.*press|(?:온수|관내|보일러).?압력",
+      "exclude": "setpoint|설정|steam|증기|differential"
+     },
+     "concept": "hw-press",
+     "group": "유량·수측"
+    },
+    {
+     "name": "증기 압력",
+     "objectType": "AI",
+     "unit": "MPa",
+     "role": "sensor",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "`steam-plant` 에 압력 proto 가 없다. 08 카탈로그 11장 초안 행",
+     "why": "증기식의 부하 지표. 온수식에는 없다",
+     "usedBy": [
+      "heating"
+     ],
+     "appliesWhen": "증기 보일러일 때만. 온수 보일러·급탕 가열기에는 없다",
+     "exposure": "현장 0",
+     "match": {
+      "include": "steam.*press|증기.?압력",
+      "exclude": "setpoint|설정|hot.?water|온수"
+     },
+     "concept": "steam-press",
+     "group": "유량·수측"
+    },
+    {
+     "name": "가열기 인터록",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 `가열기-N 인터록` 40점이 근거다 — 초안에는 없던 행이다",
+     "why": "인터록이 걸린 동안은 지령이 있어도 안 탄다 — 빼지 않으면 연료 적산이 부풀어 오른다",
+     "usedBy": [
+      "fuel"
+     ],
+     "exposure": "현장 40점 — 초안에는 없던 행이다",
+     "match": {
+      "include": "interlock|인터록|인터?록",
+      "exclude": "alarm|경보|고장"
+     },
+     "concept": "interlock",
+     "group": "상태"
+    },
+    {
+     "name": "급수 저수위",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 냉각탑 `수위센서-N 경보` 24점 · 급배수 `고/저수위 경보`",
+     "why": "저수위 공연소는 보일러를 깬다. 계산이 아니라 안전 신호라 등급을 안 내린다",
+     "usedBy": [],
+     "exposure": "현장 0 — BFW 2코드는 전력 계측만 올라와 있다",
+     "match": {
+      "include": "(?:feed.?water|boiler|drum).*(?:low|level).*(?:alarm|switch)|low.?low.*level|(?:저수위|급수.?수위)",
+      "exclude": "setpoint|설정|밸브|valve|high"
+     },
+     "concept": "level-alarm",
+     "group": "경보"
+    },
+    {
+     "name": "가스 누설 경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 법정 안전 신호다",
+     "why": "법정 안전 신호. 계산에는 안 들어가지만 화면에서 뺄 수 없다",
+     "usedBy": [],
+     "exposure": "현장 0",
+     "match": {
+      "include": "gas.*(?:leak|detect).*(?:alarm|sensor)|가스.?(?:누설|누출|감지)",
+      "exclude": "setpoint|설정|fuel|연료.?사용"
+     },
+     "concept": "gas-leak-alarm",
+     "group": "경보"
+    },
+    {
+     "name": "실화·소염 경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 08 카탈로그 11장 초안 행",
+     "why": "연소가 끊긴 구간. 연료 적산과 열량 계산에서 빼야 한다",
+     "usedBy": [
+      "fuel"
+     ],
+     "exposure": "현장 0 — `가열기-N 경보` 40점에 뭉쳐 있을 수 있다",
+     "match": {
+      "include": "flame.*(?:fail|loss|out)|ignition.*fail|실화|소염|점화.?실패",
+      "exclude": "setpoint|설정"
+     },
+     "concept": "flame-fail-alarm",
+     "group": "경보"
+    },
+    {
+     "name": "연료 적산 사용량",
+     "objectType": "AI",
+     "unit": "N㎥",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 08 카탈로그 11장 초안 행",
+     "why": "보일러 효율 = 발생 열량 ÷ 연료 발열량. 실측 대조의 분모다",
+     "usedBy": [
+      "fuel"
+     ],
+     "exposure": "현장 0",
+     "match": {
+      "include": "(?:gas|fuel|naturalGas).*(?:total|consumption|volume|적산)|연료.?(?:적산|사용량)|가스.?사용량",
+      "exclude": "leak|누설|alarm|경보|pressure|압력"
+     },
+     "concept": "fuel-total",
+     "group": "전력"
+    },
+    {
+     "name": "연도(배기가스) 온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 공조 `배기 온도`(exhaust-air)와 **다른 것**이라 따로 세웠다 — 연소 배기다",
+     "why": "배기 손실. 높아지면 전열면에 그을음이 낀 것이다",
+     "usedBy": [
+      "fuel"
+     ],
+     "exposure": "현장 0 — 공조 `배기 온도`와 다른 것이라 따로 세웠다",
+     "match": {
+      "include": "(?:flue|stack|exhaust ?gas).*temp|연도.?온도|배기가스.?온도",
+      "exclude": "setpoint|설정|공조|supply air"
+     },
+     "concept": "flue-temp",
+     "group": "온도"
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "가열기 단수가 곧 연료 소비다. 지령이 없으면 무엇을 켰는지 모른다",
+     "usedBy": [
+      "heating",
+      "fuel"
+     ],
+     "exposure": "현장 `가열기-N 경보` 40점",
+     "match": {
+      "include": "(?:start|stop|run).*(?:cmd|command)|on.?off|enable|(?:기동|운전).?[_/]?정지|기동.?정지",
+      "exclude": "status|state|상태|feedback|alarm|경보"
+     },
+     "concept": "run-cmd",
+     "group": "제어 지령"
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "지령과 실제가 어긋나면 그 시간의 계산이 통째로 틀린다",
+     "usedBy": [
+      "heating",
+      "fuel"
+     ],
+     "exposure": "현장 `가열기-N 경보` 40점",
+     "match": {
+      "include": "(?:run|operat).*(?:status|state|feedback)|running\\b|\\b상태\\b|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "command|cmd|지령|alarm|경보|고장|enabl|permissive|control source|\\btime\\b"
+     },
+     "concept": "run-status",
+     "group": "상태",
+     "matchNote": "2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "고장 중 시간을 빼지 않으면 운전시간·적산이 부풀어 오른다",
+     "usedBy": [],
+     "exposure": "현장 `가열기-N 경보` 40점",
+     "match": {
+      "include": "(?:fault|alarm|trip|failure)\\b|\\b고장\\b|\\b경보\\b",
+      "exclude": "\\bcode\\b|코드|reset|리셋|누설|누수|수위|level|leak|smoke|연감지"
+     },
+     "concept": "alarm",
+     "group": "경보"
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "무엇이 고장인지. 원인별 회복 시간이 달라 가동률 모델에 쓴다",
+     "usedBy": [],
+     "exposure": "현장 `가열기-N 경보` 40점",
+     "match": {
+      "include": "(?:fault|alarm|error|trip).*code|(?:고장|에러|경보).?코드",
+      "exclude": "reset|리셋"
+     },
+     "concept": "alarm-code",
+     "group": "경보"
+    }
+   ]
+  },
+  "e12.hx": {
+   "equipId": "e12",
+   "title": "열교환기 — BMS 기본화면",
+   "basis": "표준 = 08장 12절 초안 11행. Haystack `heatExchanger` 는 **protos 가 없다**(전개 0) — 포인트 근거를 표준에서 못 얻는 계열이다. 현장 = HX 13 · HEX 2 코드. 현장이 드러낸 것: 이 계통은 **증기→온수** 열교환이고 제어단이 **스팀밸브**다(30점). 초안의 '1차/2차' 추상 표기에는 그 구체가 없었다.",
+   "coverageNote": "모델 0건. 등급의 노출률 축을 현장 실측으로 대신했다. 초안 11행 중 전열교환기(ERV) 4행은 여기서 뺐다 — 현장 36대가 전부 공조기 부속이라 e5 쪽 행이다(별도 과제로 남겼다).",
+   "excludeCommon": "",
+   "excludeCommonNote": "열교환기는 공조기가 아니다 — 공기측 공용 행이 붙으면 안 된다.",
+   "note": "온수 순환펌프(현장 `온수 순환펌프-1/2/3`, 상태·기동_정지 60점)는 여기 없다 — e14.pump 다.",
+   "templatePoints": [
+    {
+     "name": "1차 입구온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "`heatExchanger` def 에 protos 가 없다(전개 결과 0). 08 카탈로그 12장 초안 행",
+     "why": "열교환량 = 유량 × (입구 − 출구) × 비열. 1차측 온도차가 버린 열이다",
+     "usedBy": [
+      "exchange"
+     ],
+     "exposure": "현장 0 — 1차가 증기라 온도 대신 스팀밸브 개도로 온다",
+     "match": {
+      "include": "primary.*(?:entering|in(?:let)?|supply).*temp|1차.?(?:입구|공급|급수).?온도|스팀.?(?:입구|공급).?온도",
+      "exclude": "setpoint|설정|secondary|2차"
+     },
+     "concept": "hx-pri-ent",
+     "group": "유량·수측"
+    },
+    {
+     "name": "1차 출구온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "`heatExchanger` protos 없음",
+     "why": "1차측 온도차의 한쪽",
+     "usedBy": [
+      "exchange"
+     ],
+     "exposure": "현장 0",
+     "match": {
+      "include": "primary.*(?:leaving|out(?:let)?|return).*temp|1차.?(?:출구|환수|회수).?온도",
+      "exclude": "setpoint|설정|secondary|2차"
+     },
+     "concept": "hx-pri-lvg",
+     "group": "유량·수측"
+    },
+    {
+     "name": "2차 공급온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "`heatExchanger` protos 없음",
+     "why": "받는 쪽 온도. 이게 설정값에 못 미치면 열교환기가 모자란 것이다",
+     "usedBy": [
+      "exchange"
+     ],
+     "exposure": "현장 22점 — `온수 급수온도`·`온수 공급온도`",
+     "match": {
+      "include": "secondary.*(?:leaving|out(?:let)?|supply).*temp|2차.?(?:출구|공급|급수).?온도|온수.?(?:공급|급수).?온도",
+      "exclude": "setpoint|설정|primary|1차|entering|환수"
+     },
+     "concept": "hx-sec-lvg",
+     "group": "유량·수측"
+    },
+    {
+     "name": "2차 환수온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "`heatExchanger` protos 없음",
+     "why": "2차측 온도차의 한쪽. 부하량이 여기서 나온다",
+     "usedBy": [
+      "exchange"
+     ],
+     "exposure": "현장 — e11 `환수온도` 40점과 같은 계통",
+     "match": {
+      "include": "secondary.*(?:entering|in(?:let)?|return).*temp|2차.?(?:입구|환수|회수).?온도|온수.?(?:환수|회수).?온도",
+      "exclude": "setpoint|설정|primary|1차|supply|공급"
+     },
+     "concept": "hx-sec-ent",
+     "group": "유량·수측"
+    },
+    {
+     "name": "스팀밸브 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 `스팀밸브 (좌/우)` 30점 — 증기→온수 열교환의 제어단이다",
+     "why": "증기→온수 열교환의 제어단. 개도가 곧 투입 열량이다 — 1차측 유량계가 없을 때 유일한 신호",
+     "usedBy": [
+      "exchange"
+     ],
+     "appliesWhen": "증기-온수 열교환기일 때. 수-수 열교환기는 2차측 제어밸브를 쓴다",
+     "exposure": "현장 30점 — 열교환기마다 좌/우 2개",
+     "match": {
+      "include": "steam.*valve|스팀.?밸브|증기.?밸브",
+      "exclude": "status|상태|열림[_/]?닫힘|close"
+     },
+     "concept": "steam-valve",
+     "group": "유량·수측"
+    },
+    {
+     "name": "2차측 제어밸브 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "수-수 열교환기의 제어단",
+     "usedBy": [
+      "exchange"
+     ],
+     "appliesWhen": "수-수 열교환기일 때",
+     "exposure": "현장 0",
+     "match": {
+      "include": "secondary.*valve.*(?:pos|open|%)|2차.?(?:측)?.?(?:제어)?밸브",
+      "exclude": "steam|스팀|status|상태|열림[_/]?닫힘"
+     },
+     "concept": "valve-pos",
+     "group": "유량·수측"
+    },
+    {
+     "name": "온수 밸브 열림/닫힘 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 `… 밸브 열림_닫힘` 75점",
+     "why": "어느 열교환기가 계통에 물려 있는지. 대수제어의 실제 모습이다",
+     "usedBy": [
+      "exchange"
+     ],
+     "exposure": "현장 30점",
+     "match": {
+      "include": "(?:hot.?water|hw|온수).*valve.*(?:open|close|cmd)|온수.?급수밸브.?열림[_/]?닫힘",
+      "exclude": "status|상태|position|개도|%|steam|스팀"
+     },
+     "concept": "valve-oc",
+     "group": "유량·수측"
+    },
+    {
+     "name": "온수 밸브 열림 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 `… 열림상태/닫힘상태` 150점",
+     "why": "지령과 실제가 다르면 그 열교환기의 부담을 잘못 배분한다",
+     "usedBy": [
+      "exchange"
+     ],
+     "exposure": "현장 60점 — 열림·닫힘이 따로 온다",
+     "match": {
+      "include": "(?:hot.?water|hw|온수).*valve.*(?:open|close).*(?:status|state)|온수.?급수밸브.?(?:열림|닫힘).?상태",
+      "exclude": "command|cmd|지령|position|개도|steam|스팀"
+     },
+     "concept": "valve-oc-fb",
+     "group": "유량·수측"
+    },
+    {
+     "name": "열교환기 차압",
+     "objectType": "AI",
+     "unit": "kPa",
+     "role": "sensor",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "`heatExchanger` protos 없음",
+     "why": "막힘·스케일 탐지. 차압이 오르면 전열면이 더러워진 것이다",
+     "usedBy": [],
+     "exposure": "현장 0",
+     "match": {
+      "include": "(?:heat.?exchang|hx).*(?:differential|diff).*press|열교환기.?차압",
+      "exclude": "setpoint|설정|valve|밸브"
+     },
+     "concept": "hx-dp",
+     "group": "유량·수측"
+    },
+    {
+     "name": "2차 공급온도 설정값",
+     "objectType": "AV",
+     "unit": "℃",
+     "role": "sp",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "스팀밸브가 무엇을 목표로 여닫는지",
+     "usedBy": [
+      "exchange"
+     ],
+     "exposure": "현장 0",
+     "match": {
+      "include": "secondary.*(?:supply|leaving).*(?:setpoint|set.?p\\b)|2차.?(?:공급|급수).?온도.?설정|온수.?(?:공급|급수).?온도.?설정",
+      "exclude": "alarm|경보|primary|1차"
+     },
+     "concept": "hw-sp",
+     "group": "설정값"
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "열교환기가 계통에 붙어 있는 시간. 열량 적산의 구간이다",
+     "usedBy": [
+      "exchange"
+     ],
+     "exposure": "현장 — 밸브 개폐로 갈음된다",
+     "match": {
+      "include": "(?:start|stop|run).*(?:cmd|command)|on.?off|enable|(?:기동|운전).?[_/]?정지|기동.?정지",
+      "exclude": "status|state|상태|feedback|alarm|경보"
+     },
+     "concept": "run-cmd",
+     "group": "제어 지령"
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "지령과 실제가 어긋나면 그 시간의 계산이 통째로 틀린다",
+     "usedBy": [
+      "exchange"
+     ],
+     "exposure": "현장 — 밸브 개폐로 갈음된다",
+     "match": {
+      "include": "(?:run|operat).*(?:status|state|feedback)|running\\b|\\b상태\\b|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "command|cmd|지령|alarm|경보|고장|enabl|permissive|control source|\\btime\\b"
+     },
+     "concept": "run-status",
+     "group": "상태",
+     "matchNote": "2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "고장 중 시간을 빼지 않으면 운전시간·적산이 부풀어 오른다",
+     "usedBy": [],
+     "exposure": "현장 — 밸브 개폐로 갈음된다",
+     "match": {
+      "include": "(?:fault|alarm|trip|failure)\\b|\\b고장\\b|\\b경보\\b",
+      "exclude": "\\bcode\\b|코드|reset|리셋|누설|누수|수위|level|leak|smoke|연감지"
+     },
+     "concept": "alarm",
+     "group": "경보"
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "무엇이 고장인지. 원인별 회복 시간이 달라 가동률 모델에 쓴다",
+     "usedBy": [],
+     "exposure": "현장 — 밸브 개폐로 갈음된다",
+     "match": {
+      "include": "(?:fault|alarm|error|trip).*code|(?:고장|에러|경보).?코드",
+      "exclude": "reset|리셋"
+     },
+     "concept": "alarm-code",
+     "group": "경보"
+    }
+   ]
+  },
+  "e25.plumbing": {
+   "equipId": "e25",
+   "title": "급배수 · 위생 — BMS 기본화면",
+   "basis": "표준 = 08장 25절 초안 11행 + Haystack `tank`(protos 3). 현장 = 47코드. 현장이 드러낸 것: 이 계열의 알맹이는 **유량계(순시·적산 75점)** 와 **가압펌프 전력 계측**(전류·유효전력·역률·적산전력량)이다 — 초안에는 전력 항이 통째로 없었다. 급수 원단위(kWh/㎥)를 실제로 낼 수 있는 드문 계열이다.",
+   "coverageNote": "모델 0건. 등급의 노출률 축을 현장 실측으로 대신했다.",
+   "excludeCommon": "",
+   "excludeCommonNote": "급배수는 공조기가 아니다 — 공기측 공용 행이 붙으면 안 된다.",
+   "note": "가압펌프·배수펌프 자체의 정격(양정·곡선)은 e14.pump 에도 걸친다. 여기서는 **계통**(수조·유량·수질·급탕)을 보고, 펌프 단품 화면은 e14 다.",
+   "templatePoints": [
+    {
+     "name": "수조 수위",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": "tank ▸ point sensor level",
+     "why": "저수조 수위는 급수 계통의 재고다. 가압펌프 기동 조건이자 단수 예측의 입력",
+     "usedBy": [
+      "supply"
+     ],
+     "exposure": "현장 4점 — `보급수 탱크 수위`",
+     "match": {
+      "include": "(?:tank|water|domestic).*level|(?:수조|탱크|저수조).?수위",
+      "exclude": "alarm|경보|high|low|고수위|저수위|sump|배수|오수"
+     },
+     "concept": "tank-level",
+     "group": "유량·수측"
+    },
+    {
+     "name": "고수위 경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 냉각탑 `수위센서-N 경보` 24점 · 급배수 `고/저수위 경보`",
+     "why": "넘치면 기계실이 잠긴다. 계산이 아니라 안전 신호다",
+     "usedBy": [],
+     "exposure": "현장 4점",
+     "match": {
+      "include": "high.?(?:high)?.*level.*(?:alarm|switch)|level.*high|고수위",
+      "exclude": "low|저수위|setpoint|설정"
+     },
+     "concept": "level-alarm",
+     "group": "경보"
+    },
+    {
+     "name": "저수위 경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 냉각탑 `수위센서-N 경보` 24점 · 급배수 `고/저수위 경보`",
+     "why": "저수위 공회전은 펌프를 깬다",
+     "usedBy": [],
+     "exposure": "현장 4점",
+     "match": {
+      "include": "low.?(?:low)?.*level.*(?:alarm|switch)|level.*low|저수위",
+      "exclude": "high|고수위|setpoint|설정"
+     },
+     "concept": "level-alarm",
+     "group": "경보"
+    },
+    {
+     "name": "토출 압력",
+     "objectType": "AI",
+     "unit": "kPa",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "가압펌프 제어의 목표값. 펌프 전력 = 유량 × 양정 ÷ 효율의 양정 항이다",
+     "usedBy": [
+      "supply"
+     ],
+     "exposure": "현장 0 — 압력은 계통(냉각수)쪽에만 올라와 있다",
+     "match": {
+      "include": "discharge.*press|booster.*press|(?:토출|급수).?압력",
+      "exclude": "setpoint|설정|suction|흡입|differential"
+     },
+     "concept": "disch-press",
+     "group": "유량·수측"
+    },
+    {
+     "name": "순시 유량",
+     "objectType": "AI",
+     "unit": "㎥/h",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "급수량. 펌프 전력 모델의 첫 항이고 사용량 추세의 원자료다",
+     "usedBy": [
+      "supply"
+     ],
+     "exposure": "현장 75점 — FMA 유량계가 계열에서 가장 많이 올라온 포인트다",
+     "match": {
+      "include": "(?:instant|current)?.*flow(?:.*rate)?\\b|순시.?유량|유량\\b",
+      "exclude": "total|적산|setpoint|설정|누적"
+     },
+     "concept": "water-flow",
+     "group": "유량·수측"
+    },
+    {
+     "name": "적산 유량",
+     "objectType": "AI",
+     "unit": "㎥",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "요금·원단위의 분자. 순시 유량의 적분과 견줘 계측 신뢰도를 본다",
+     "usedBy": [
+      "supply"
+     ],
+     "exposure": "현장 75점",
+     "match": {
+      "include": "total.*flow|flow.*total|accumulat|적산.?유량|누적.?유량",
+      "exclude": "instant|순시|setpoint|설정"
+     },
+     "concept": "flow-total",
+     "group": "유량·수측"
+    },
+    {
+     "name": "배수조 수위",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 08 카탈로그 25장 초안 행",
+     "why": "배수 펌프 기동 조건. 넘치면 침수다",
+     "usedBy": [],
+     "exposure": "현장 — SUMP 코드 다수",
+     "match": {
+      "include": "(?:sump|waste|sewage|drain).*level|(?:배수|오수|집수).?(?:조)?.?수위",
+      "exclude": "alarm|경보|domestic|급수|고수위|저수위"
+     },
+     "concept": "sump-level",
+     "group": "유량·수측"
+    },
+    {
+     "name": "누수 감지",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 08 카탈로그 25장 초안 행",
+     "why": "기계실 침수의 첫 신호. 계산이 아니라 안전 신호다",
+     "usedBy": [],
+     "exposure": "현장 0",
+     "match": {
+      "include": "(?:water.?)?leak.*(?:alarm|detect|sensor)|누수.?(?:감지|경보)",
+      "exclude": "setpoint|설정|level|수위"
+     },
+     "concept": "leak-alarm",
+     "group": "경보"
+    },
+    {
+     "name": "급탕 온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 08 카탈로그 25장 초안 행",
+     "why": "법정 관리 온도(레지오넬라)이자 급탕 열량의 한쪽",
+     "usedBy": [
+      "dhw"
+     ],
+     "exposure": "현장 — e11 `급탕용` 계통과 같은 곳",
+     "match": {
+      "include": "(?:domestic|dhw|service).*hot.?water.*temp|급탕.?온도",
+      "exclude": "setpoint|설정|return|환수|heating|난방"
+     },
+     "concept": "dhw-temp",
+     "group": "온도"
+    },
+    {
+     "name": "잔류 염소",
+     "objectType": "AI",
+     "unit": "mg/L",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 08 카탈로그 25장 초안 행",
+     "why": "법정 수질 항목. 계산에는 안 들어간다",
+     "usedBy": [],
+     "exposure": "현장 0",
+     "match": {
+      "include": "chlorin|residual.*cl|잔류.?염소",
+      "exclude": "setpoint|설정"
+     },
+     "concept": "chlorine",
+     "group": "기타"
+    },
+    {
+     "name": "수질 (전도도·pH)",
+     "objectType": "AI",
+     "unit": "µS/cm",
+     "role": "sensor",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "스케일·부식 관리",
+     "usedBy": [],
+     "exposure": "현장 0",
+     "match": {
+      "include": "conductivity|\\bTDS\\b|\\bpH\\b|전도도|수질",
+      "exclude": "setpoint|설정"
+     },
+     "concept": "water-quality",
+     "group": "기타"
+    },
+    {
+     "name": "펌프 소비전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "급수 전력. 유량 × 양정 모델의 실측 대조 기준이다",
+     "usedBy": [
+      "supply"
+     ],
+     "exposure": "현장 — `음용수가압펌프-유효전력` 등",
+     "match": {
+      "include": "(?:pump|booster|가압|부스터).*(?:power|kw)|유효.?전력",
+      "exclude": "factor|역률|total|적산|전력량|reactive|무효"
+     },
+     "concept": "power",
+     "group": "전력"
+    },
+    {
+     "name": "펌프 적산 전력량",
+     "objectType": "AI",
+     "unit": "kWh",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "급수 원단위(kWh/㎥)의 분자",
+     "usedBy": [
+      "supply"
+     ],
+     "exposure": "현장 — `유효전력량`",
+     "match": {
+      "include": "(?:pump|booster|가압|부스터).*(?:energy|kwh)|유효.?전력량|적산.?전력",
+      "exclude": "instant|순시|factor|역률"
+     },
+     "concept": "energy",
+     "group": "전력"
+    },
+    {
+     "name": "펌프 전류",
+     "objectType": "AI",
+     "unit": "A",
+     "role": "sensor",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "전력계가 없을 때 전류 × 전압 × 역률로 대신한다",
+     "usedBy": [
+      "supply"
+     ],
+     "exposure": "현장 — `R/S/T상 전류`",
+     "match": {
+      "include": "(?:pump|booster|가압|부스터).*current|[RST]상.?전류|\\b전류\\b",
+      "exclude": "voltage|전압|power|전력"
+     },
+     "concept": "current",
+     "group": "전력"
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "펌프 운전 시간이 곧 전력 적산 구간이다",
+     "usedBy": [
+      "supply"
+     ],
+     "exposure": "현장 — 가압펌프·배수펌프",
+     "match": {
+      "include": "(?:start|stop|run).*(?:cmd|command)|on.?off|enable|(?:기동|운전).?[_/]?정지|기동.?정지",
+      "exclude": "status|state|상태|feedback|alarm|경보"
+     },
+     "concept": "run-cmd",
+     "group": "제어 지령"
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "지령과 실제가 어긋나면 그 시간의 계산이 통째로 틀린다",
+     "usedBy": [
+      "supply"
+     ],
+     "exposure": "현장 — 가압펌프·배수펌프",
+     "match": {
+      "include": "(?:run|operat).*(?:status|state|feedback)|running\\b|\\b상태\\b|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "command|cmd|지령|alarm|경보|고장|enabl|permissive|control source|\\btime\\b"
+     },
+     "concept": "run-status",
+     "group": "상태",
+     "matchNote": "2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "고장 중 시간을 빼지 않으면 운전시간·적산이 부풀어 오른다",
+     "usedBy": [],
+     "exposure": "현장 — 가압펌프·배수펌프",
+     "match": {
+      "include": "(?:fault|alarm|trip|failure)\\b|\\b고장\\b|\\b경보\\b",
+      "exclude": "\\bcode\\b|코드|reset|리셋|누설|누수|수위|level|leak|smoke|연감지"
+     },
+     "concept": "alarm",
+     "group": "경보"
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "무엇이 고장인지. 원인별 회복 시간이 달라 가동률 모델에 쓴다",
+     "usedBy": [],
+     "exposure": "현장 — 가압펌프·배수펌프",
+     "match": {
+      "include": "(?:fault|alarm|error|trip).*code|(?:고장|에러|경보).?코드",
+      "exclude": "reset|리셋"
+     },
+     "concept": "alarm-code",
+     "group": "경보"
+    }
+   ]
+  },
+  "e5.ohu": {
+   "equipId": "e5",
+   "title": "외조기 (OHU · 외기처리 유닛) — BMS 기본화면",
+   "basis": "e5.ahu 37행을 베껴 다듬었다 — 매칭 규칙이 거기서 158모델로 이미 검증됐고, 새로 쓰면 같은 규칙의 두 번째 벌이 생긴다. 뺀 것은 **환기(리턴) 계열 6행**이다(환기온도·환기습도·혼합공기온도·환기댐퍼·환기 CO2·환기팬) — 외조기는 100% 외기라 리턴 덕트가 없다. 현장 43코드에서도 그 여섯은 한 건도 안 나왔다. 더한 것은 현장에만 있던 **전기히터 2행 · 연감지기 경보 · 외기댐퍼 개폐 2행**이다. Haystack 근거는 `doas`·`mau` proto 19개로 ahu 와 같은 벌이다.",
+   "coverageNote": "모델 0건 — 국내 공조기 벤더(신성엔지니어링·센추리·우원기계) 문서를 아직 안 받았다. 현장 대수는 43코드로 계열 안에서 두 번째로 크다.",
+   "excludeCommon": "active alarm|alarm point|alarm status|alarm setting|ala[a-z]*status|\\bbad [a-z]|sensor error|alarm limit|alarm delay",
+   "excludeCommonNote": "모든 행에 덧붙이는 제외어 — 알람 라벨·고장센서 라벨. Swegon 'Active alarm 93', Systemair 'AlaSignalErrorFeedbackCoolerValveStatus__', AAON 'Bad Carbon Dioxide Sensor' 같은 것이 값 포인트로 확정 표시되고 있었다. 경보를 실제로 찾는 행은 keepAlarm=true 로 뺀다.",
+   "note": "전열교환기가 달린 외조기가 흔하다 — 현장 전열교환기 36대는 전부 공조기(AH) 코드 아래 부속으로 붙어 있어(229점) 배기 계열 2행에 appliesWhen 으로 조건을 달았다.",
+   "templatePoints": [
+    {
+     "name": "급기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`discharge`✓ `air`✓ `temp`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point sensor temp",
+     "why": "급기-환기 온도차 × 풍량 = 코일 부하",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "(?:supply|discharge).*air.*temp|discharge.*temp|\\bsa[ ._-]?temp|\\bsat\\b|급기.?온도",
+      "exclude": "setpoint|setp\\b|sp\\b|reheat|refrigerant|tempering status"
+     },
+     "concept": "discharge-temp",
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "외기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`outside`✓ `air`✓ `temp`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ outside duct equip ▸ air outside point sensor temp",
+     "why": "외기부하 = 외기량 × 엔탈피차 의 기준",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "oa"
+     ],
+     "match": {
+      "include": "outdoor.*air.*temperature|outside.*air.*temperature|outdoortemp|outdoor temp|\\boa[ ._-]?temp|\\boat\\b|외기.?온도",
+      "exclude": "flow|enthalpy|humidity|setpoint|sp\\b|enable|min|dew"
+     },
+     "concept": "oa-temp",
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "실내온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`zone`✓ `air`✓ `temp`✓ `sensor`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ thermostat equip ▸ air sensor temp zone",
+     "why": "실내 부하 추정의 출발점. 급기온도만으로는 존 부하를 못 나눈다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "exposure": "Siemens AI:1882 RoomTmpCOM, Swegon MB:30081 Room temperature 1, Systemair AAIRoomTemp1, Trane nvoSpaceTemp",
+     "match": {
+      "include": "space.*temp|zone.*temp|room.*temp|indoor.*air.*temp|spacetemp|roomtmp",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|offset|sensor error|failure|override|limit|unocc|setpt|dew|humid|source"
+     },
+     "concept": "zone-temp",
+     "group": "온도"
+    },
+    {
+     "name": "배기 온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "tags": "`exhaust`✓ `air`✓ `temp`✓",
+     "grade": "선택",
+     "haystack": "ahu ▸ exhaust duct equip ▸ air exhaust point sensor temp",
+     "why": "열회수 효율 (SA-OA)/(RA-OA) 의 나머지 한 변",
+     "usedBy": [
+      "oa"
+     ],
+     "exposure": "Swegon MB:30067 EA-D Temperature·MB:30080 EA duct temperature, Systemair AAIExhaustAirTemp__, Trane nvoERLvgExhTemp",
+     "match": {
+      "include": "(?:exhaust|extract)[ ._-]*air[ ._-]*temp|erlvgexhtemp|\\bereat\\b|ea[ ._-]*d?[ ._-]*temperature|ea duct temperature|\\bea[ ._-]?temp|배기.?온도",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|sensor error|failure|type|configuration|heat ?sink|regulation"
+     },
+     "concept": "배기-온도",
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "appliesWhen": "전열교환기가 달린 외조기에만. 배기 덕트가 없으면 없다"
+    },
+    {
+     "name": "급기습도",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "tags": "`discharge`✓ `air`✓ `humidity`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge humidity point sensor",
+     "why": "제습·재열 판정. 잠열 부하 분리",
+     "usedBy": [
+      "cooling"
+     ],
+     "match": {
+      "include": "supply.*air.*(?:relative )?humidity|supply.*humidity|sply.*hum|\\bsa[ ._-]*humidity",
+      "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
+     },
+     "concept": "급기습도",
+     "group": "습도·공기질"
+    },
+    {
+     "name": "외기 엔탈피",
+     "objectType": "AI",
+     "unit": "kJ/kg",
+     "role": "sensor",
+     "tags": "`outside`✓ `air`✓ `enthalpy`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ outside duct equip ▸ air enthalpy outside point sensor",
+     "why": "엔탈피 이코노마이저 판정과 외기부하 직접항",
+     "usedBy": [
+      "oa",
+      "cooling"
+     ],
+     "exposure": "Siemens AI:57226 OutEnth, Systemair MB:30639 AOutdoorEnthalpy_, Trane nvoOAEnthalpy",
+     "match": {
+      "include": "(?:outdoor|outside|oa).*enthalpy|nvooaenthalpy|outenth",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|switch|changeover|type|configuration|diff"
+     },
+     "concept": "외기-엔탈피",
+     "group": "습도·공기질"
+    },
+    {
+     "name": "급기 정압",
+     "objectType": "AI",
+     "unit": "Pa",
+     "role": "sensor",
+     "tags": "`discharge`✓ `static`★ `pressure`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point pressure sensor",
+     "why": "팬 동력 = 풍량 × 정압 / 효율",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "(?:supply|discharge).*static.*pressure|duct.*static|ductstatpress|supplyprs",
+      "exclude": "setpoint|sp\\b|reset"
+     },
+     "concept": "급기-정압",
+     "group": "풍량·압력"
+    },
+    {
+     "name": "외기 풍량",
+     "objectType": "AI",
+     "unit": "CMH",
+     "role": "sensor",
+     "tags": "`outside`✓ `air`✓ `flow`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ ventilation duct equip ▸ air flow point sensor ventilation",
+     "why": "외기부하 = 외기량 × 엔탈피차 의 '량'",
+     "usedBy": [
+      "oa"
+     ],
+     "exposure": "Trane nvoOAFlow, Swegon MB:30237 ReCO outdoor air flow 2",
+     "match": {
+      "include": "(?:outdoor|outside|ventilation|fresh)[ ._-]*air.*flow|\\boaflow\\b|nvooaflow|outdoor airflow",
+      "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|station|minimum|\\bmin\\b|\\bmax\\b|percent|type|configuration|bad |sensor"
+     },
+     "concept": "외기-풍량",
+     "group": "풍량·압력"
+    },
+    {
+     "name": "급기 풍량",
+     "objectType": "AI",
+     "unit": "CMH",
+     "role": "sensor",
+     "tags": "`discharge`✓ `air`✓ `flow`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge flow point sensor",
+     "why": "코일 부하 = 풍량 × 엔탈피차. 팬 동력의 기준량",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "fan"
+     ],
+     "match": {
+      "include": "supply.*air.*flow|supplyflow|supply.*flow",
+      "exclude": "setpoint|sp\\b|min|max|outdoor|outside|return|exhaust|percent"
+     },
+     "concept": "급기-풍량",
+     "group": "풍량·압력"
+    },
+    {
+     "name": "급기온도 설정값",
+     "objectType": "AV",
+     "unit": "℃",
+     "role": "sp",
+     "tags": "`discharge`✓ `air`✓ `temp`✓ `sp`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point sp temp",
+     "why": "제어 목표. 실제 급기온도와의 차가 미달·초과 판정",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "match": {
+      "include": "(?:supply|discharge).*temp.*setpoint|discharge.*cooling.*setpoint|(cooling|heating).?target.?temp|급기.?온도.?설정"
+     },
+     "concept": "급기온도-설정값",
+     "group": "온도",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "급기 정압 설정값",
+     "objectType": "AV",
+     "unit": "Pa",
+     "role": "sp",
+     "tags": "`discharge`✓ `static`★ `pressure`✓ `sp`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ discharge duct equip ▸ air discharge point pressure sp",
+     "why": "정압 리셋 여부 — 팬 절전량의 근거",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "static.*pressure.*setpoint|ductstaticsp|duct.*static.*(?:setpoint|\\bsp\\b)",
+      "exclude": "current|reset"
+     },
+     "concept": "급기-정압-설정값",
+     "group": "풍량·압력"
+    },
+    {
+     "name": "급기팬 주파수 지령",
+     "objectType": "AO",
+     "unit": "Hz",
+     "role": "cmd",
+     "tags": "`discharge`✓ `fan`✓ `vfd`✓ `freq`✓ `cmd`✓",
+     "grade": "필수",
+     "haystack": "ahu ▸ discharge duct equip ▸ fan-motor equip ▸ cmd freq point vfd",
+     "why": "팬 동력 ∝ 회전수³. AHU 는 인버터 급기팬이 표준이라 필수를 유지한다",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "sup.*fan.*(?:cap|speed|freq).*netin|supply.*fan.*(?:speed|frequency|setpoint)|nci.*supplyfan|^fan speed|\\bfan[ ._-]?speed\\b|급기.?팬.?(속도|주파수)",
+      "exclude": "type|configuration|identifier|status|hours|runtime|unstable|lock|잠금|\\block\\b|-lo\\b|cond|condenser|응축|exhaust|배기|\\bret\\b|return|환기"
+     },
+     "concept": "speed-cmd",
+     "group": "제어 지령",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. ⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다.",
+     "exposure": "현장 0 — OHU 는 대개 정풍량 on/off 다"
+    },
+    {
+     "name": "외기댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`outside`✓ `air`✓ `damper`✓ `position`★",
+     "grade": "필수",
+     "haystack": "ahu ▸ outside duct equip ▸ damper-actuator equip ▸ cmd damper outside point",
+     "why": "외기 도입량 결정. 외기부하 계산항의 유일한 조작량",
+     "usedBy": [
+      "oa"
+     ],
+     "match": {
+      "include": "econcapacity|outdoor.*air.*damper|outside.*air.*damper|economizer.*(?:position|capacity)",
+      "exclude": "minimum|maximum|min|max|setpoint|sp\\b|bypass|bp ?damper|total flow"
+     },
+     "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다",
+     "concept": "외기댐퍼-개도",
+     "group": "풍량·압력"
+    },
+    {
+     "name": "배기댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`exhaust`✓ `air`✓ `damper`✓ `position`★",
+     "grade": "선택",
+     "haystack": "ahu ▸ exhaust duct equip ▸ damper-actuator equip ▸ cmd damper exhaust point",
+     "why": "배기량 = 급기 - 외기 균형. 실내 압력과 열회수 배기측 유량",
+     "usedBy": [
+      "oa"
+     ],
+     "exposure": "exclude 에 bypass·ala*status 를 넣었다. Trane 이 nvoEREABPDamper(열회수 배기 바이패스), Systemair 가 AlaManualControlDamperExhaustStatus__(수동제어 알람)을 배기댐퍼로 확정 표시하고 있었다",
+     "match": {
+      "include": "exhaust.*damper|exh.*damper",
+      "exclude": "bypass|bp ?damper|\\balarm\\b|\\bfault\\b|active alarm|ala[a-z]*status|manual"
+     },
+     "concept": "배기댐퍼-개도",
+     "group": "풍량·압력",
+     "appliesWhen": "전열교환기가 달린 외조기에만"
+    },
+    {
+     "name": "열회수 지령·상태",
+     "objectType": "AO/BO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`heatWheel`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ cmd heatWheel point",
+     "why": "외기부하를 회수율만큼 깎는다. 없으면 겨울 외기부하를 과대계상한다",
+     "usedBy": [
+      "oa",
+      "heating"
+     ],
+     "exposure": "현장 전열교환기 229점(공조기 코드 아래)",
+     "match": {
+      "include": "(?:heat ?wheel|energy recovery|heat recovery|hrec|rotary exchanger|erwheel|erwhl)[a-z]*(?:speed|spd|output|position|pos|cmd|command|on ?off|status|capacity|signal|level)|erstatus|hrecpos",
+      "exclude": "\\balarm\\b|\\bfault\\b|defrost|frost|hours|trip|year|setpoint|sp\\b|failure|sensor|bypass|preheat|leaving|exhaust temp|motor ?speed"
+     },
+     "concept": "열회수-지령-상태",
+     "group": "제어 지령"
+    },
+    {
+     "name": "필터 차압",
+     "objectType": "AI/BI",
+     "unit": "Pa",
+     "role": "sensor",
+     "tags": "`filter`✓ `pressure`✓ `sensor`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ filter point sensor  (Haystack proto 에 물리량이 없다 — 차압/스위치 구분은 우리 규정)",
+     "why": "필터 막힘 → 정압 상승 → 팬 전력 상승",
+     "usedBy": [
+      "fan"
+     ],
+     "match": {
+      "include": "dirtyfilter|dirty.*filter|filter.*(?:pressure|alarm|switch)|differential.*pressure"
+     },
+     "keepAlarm": true,
+     "concept": "filter-dp",
+     "group": "정비"
+    },
+    {
+     "name": "동결 방지 경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`freezeStat`✓ `sensor`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ freezeStat point sensor",
+     "why": "냉수·온수 코일 동결 보호. AHU 에서는 실제 코일 동결이라 RTU 보다 중요하다",
+     "usedBy": [],
+     "exposure": "exclude 에 suct 를 넣었다. Siemens LowSuctAlm3(냉매 저압흡입)이 동결 경보로 잡히고 있었다",
+     "match": {
+      "include": "freeze.*(?:fault|alarm|switch)|frost.*alarm|low.*temp.*alarm",
+      "exclude": "suct|refrigerant|control mode|setpoint|evaporation|evaporator"
+     },
+     "keepAlarm": true,
+     "concept": "동결-방지-경보",
+     "group": "경보"
+    },
+    {
+     "name": "운전 모드",
+     "objectType": "MSO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`hvacMode`✓ `sp`✓  (Haystack 은 sp, 우리는 cmd 로 쓴다)",
+     "grade": "필수",
+     "haystack": "ahu ▸ hvacMode point sp",
+     "why": "정지/냉방/난방/송풍/외기냉방. 어느 계산항을 켤지 고르는 스위치",
+     "usedBy": [
+      "cooling",
+      "heating",
+      "fan",
+      "oa"
+     ],
+     "exposure": "include 에 operation mode·drive mode 를 넣었다. LG MB:40001 Operation Mode·Mitsubishi MB:40002 Drive Mode 가 안 잡히고 있었다",
+     "match": {
+      "include": "appliccmd|application.*mode|hvac mode|unit.*(?:state(?![a-z])|mode(?![a-z]))|currentstate|operation.*mode|drive mode",
+      "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier|setpoint|sp\\b|occupancy|enabled for operation|exits.*mode"
+     },
+     "concept": "mode",
+     "group": "제어 지령"
+    },
+    {
+     "name": "외기냉방 모드",
+     "objectType": "BV",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`economizing`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ cmd economizing point",
+     "why": "기계냉방을 끄고 외기로 식히는 구간. 냉방 전력이 0 이 되는 조건",
+     "usedBy": [
+      "cooling",
+      "oa"
+     ],
+     "match": {
+      "include": "econo.*(?:status|enable|mode)|economizer.*(?:status|enable|mode)|free.*cool",
+      "exclude": "setpoint|sp\\b|config|type|identifier|limit"
+     },
+     "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다",
+     "concept": "외기냉방-모드",
+     "group": "제어 지령"
+    },
+    {
+     "name": "냉수밸브 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`chilled`✓ `water`✓ `valve`✓ `cool`✓ `cmd`✓ `position`★",
+     "grade": "필수",
+     "appliesWhen": "냉수코일 구성. 우리 AHU 8모델 중 LG AHU 통신킷 2건·Mitsubishi PAC-IF013B 1건은 직팽(DX) 인터페이스라 해당 없다 — 그 3건은 '냉방 지령'으로 본다.",
+     "haystack": "ahu ▸ duct equip ▸ coolingCoil equip ▸ chilled cmd cool point valve water",
+     "why": "냉수 코일 부하 조작량. 냉수 계통 유량·환수온도와 직접 연결된다",
+     "usedBy": [
+      "cooling"
+     ],
+     "exposure": "exclude 에 알람 라벨을 넣었다. Swegon 'Active alarm 93', Systemair 'AlaSignalErrorFeedbackCoolerValveStatus__' 가 확정으로 잡히고 있었다 — 실제 값은 Swegon MB:30127 CHX-1 Valve output, Systemair MB:30586 AAIFeedbackCoolerValve__ 다",
+     "match": {
+      "include": "chilled.*water.*valve|cool.*valve|cooling.*valve|feedbackcoolervalve",
+      "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting"
+     },
+     "concept": "냉수밸브-개도",
+     "group": "유량·수측"
+    },
+    {
+     "name": "온수밸브 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`hot`✓ `water`✓ `valve`✓ `heat`✓ `cmd`✓ `position`★",
+     "grade": "필수",
+     "appliesWhen": "온수·증기코일 구성. 직팽 AHU 인터페이스킷 3건과 전기히터 구성에는 해당 없다.",
+     "haystack": "ahu ▸ duct equip ▸ heatingCoil equip ▸ cmd heat hot point valve water",
+     "why": "온수 코일 부하 조작량. 보일러 계통 부하와 직접 연결된다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "include 에서 'mod gas heat valve' 를 뺐다(가스 모듈레이팅 밸브는 '난방 지령'이다). 실제 값은 Swegon MB:30376 AYC Heat, valve output",
+     "match": {
+      "include": "hot.*water.*valve|heat.*valve|heating.*valve",
+      "exclude": "type|configuration|identifier|enable|action|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
+     },
+     "concept": "온수밸브-개도",
+     "group": "유량·수측"
+    },
+    {
+     "name": "압축기 단수 상태",
+     "objectType": "AI/BI",
+     "unit": "단",
+     "role": "sensor",
+     "tags": "`cool`✓ `run`✓ `stage`✓ `cmd`✓",
+     "grade": "선택",
+     "appliesWhen": "직팽(DX) 코일 또는 DX 인터페이스킷 구성일 때만.",
+     "haystack": "ahu ▸ duct equip ▸ coolingCoil equip ▸ cmd cool point run stage",
+     "why": "DX 구성 AHU 의 부분부하 COP 보간",
+     "usedBy": [
+      "cooling"
+     ],
+     "exposure": "Swegon MB:10109 COOL DX compressor 1 output, Trane nvoCprsrsRunning, Mitsubishi MB:40007 Step status. 냉수 AHU 에는 없는 것이 정상이라 선택이다",
+     "match": {
+      "include": "compressor.*(?:running|status|enable|signal|output)|cprsrsrunning|stage.*enabled|comp.*stage|step status|capacity request|comp\\.? ?status|압축기.?상태",
+      "exclude": "\\balarm\\b|\\bfault\\b|lockout|failure|hours|run ?time|starts|setpoint|type|configuration|delay|dehum|freeze|freezing"
+     },
+     "concept": "압축기-단수-상태",
+     "group": "상태",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "냉방 지령",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`cool`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ cmd cool point",
+     "why": "밸브 개도를 안 내고 시퀀스 출력(%)만 내는 AHU 가 있다. 직팽 인터페이스킷에서는 이것이 유일한 냉방 신호다",
+     "usedBy": [
+      "cooling"
+     ],
+     "exposure": "Trane nvoCoolPrimary, Siemens MSO:30094 CoolingCmdDxSt, Swegon MB:30392 AYC Chilled water cool demand. 유럽형 Systemair AY1/AY3/AY10 Sequence_ 는 어느 것이 냉방인지 문서에 정의가 없어 근거로 쓰지 않았다(gap)",
+     "match": {
+      "include": "cool.*(?:capacity|demand|primary|command|position)|(?:clg|cool)cap|cool.*enable|coolenable|modulating cooling|staged cooling|^capacity\\b|cooling.?target|냉방.?지령",
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|limit|lockout|type|configuration|reset|failure|bad |adaptive|morning|run ?time|hours|dehum|valve|ewma|target.?temp|setpoint|설정"
+     },
+     "concept": "냉방-지령",
+     "group": "제어 지령",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "난방 지령",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`heat`✓ `cmd`✓",
+     "grade": "권장",
+     "haystack": "ahu ▸ cmd heat point",
+     "why": "전기히터·시퀀스 출력형 AHU 의 난방 신호. 직팽 인터페이스킷에서는 이것이 유일한 난방 신호다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "Trane nvoHeatPrimary, Siemens MSO:11590 ElectricalHtgCmdStSt",
+     "match": {
+      "include": "heat.*(?:capacity|demand|primary|secondary|command|position)|(?:htg|heat)cap|heat.*enable|heatenable|modulating heat|heating.?target|난방.?지령",
+      "exclude": "\\balarm\\b|\\bfault\\b|sensor error|setpoint|sp\\b|setback|lockout|type|configuration|reset|failure|bad |rev acting|wheel|reheat|hot gas|run ?time|hours|valve|recovery|ewma|target.?temp|setpoint|설정"
+     },
+     "concept": "난방-지령",
+     "group": "제어 지령",
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "가습 지령",
+     "objectType": "AO/BO",
+     "unit": "%",
+     "role": "cmd",
+     "tags": "`humidifier`✓ `cmd`✓",
+     "grade": "선택",
+     "haystack": "ahu ▸ humidifier equip ▸ cmd enable humidifier point / cmd humidifier point run  (Haystack 에 변조(%) proto 는 없다 — 우리 AO % 는 초과분)",
+     "why": "가습 열량. 증기·기화식에 따라 전력이 크게 다르다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "include 에서 setpoint 를 뺐다. Swegon 'Active alarm 189' 등 알람 비트가 가습 지령으로 잡히고 있었다",
+     "match": {
+      "include": "humid.*(?:command|enable|output)|humidifier",
+      "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit|under\\s*floor.*humidity|air humidity bas"
+     },
+     "concept": "가습-지령",
+     "group": "제어 지령"
+    },
+    {
+     "name": "운전/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "tags": "`enable`✓ `cmd`✓",
+     "grade": "필수",
+     "haystack": "cmd enable point",
+     "why": "꺼진 시간은 전력 0 이다. 이것 없이 적산하면 24시간 가동으로 계산된다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "match": {
+      "include": "operating on ?/ ?off|start.?stop.*(cmd|command)|\\bon.?off\\b|unit.*enable|기동.?정지|운전.?정지",
+      "exclude": "status|상태|mode|모드|damper|댐퍼"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "운전 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`run`✓ `sensor`✓",
+     "grade": "필수",
+     "haystack": "point run sensor",
+     "why": "지령과 실제가 다를 수 있다. 시뮬레이터는 실제 운전시간으로 적산해야 한다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "run-status",
+     "group": "상태",
+     "match": {
+      "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b",
+      "exclude": "odu|comp|압축기|defrost|제상|error|알람|enabl|permissive|control source|\\btime\\b"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다."
+    },
+    {
+     "name": "고장·경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`alarm`✓ `fault`✓",
+     "grade": "필수",
+     "haystack": "alarm point sensor",
+     "why": "고장 중의 값은 시뮬레이터 대조에서 빼야 한다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "alarm",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보",
+      "exclude": "code|코드|freeze|동결|filter|필터|odu"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "고장 코드",
+     "objectType": "AI/MSO",
+     "unit": "—",
+     "role": "sensor",
+     "tags": "`fault`✓ `alarm-text`✓",
+     "grade": "권장",
+     "haystack": "표준에 짝이 애매하다 — defs 에 `alarm-text` 토큰이 없다",
+     "why": "왜 섰는지 가른다. 코드표는 벤더 문서 밖이라 statesRef 로 둔다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "alarm-code",
+     "group": "경보",
+     "keepAlarm": true,
+     "match": {
+      "include": "(error|fault|alarm).{0,6}code|고장.?코드|에러.?코드"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "소비전력",
+     "objectType": "AI",
+     "unit": "kW",
+     "role": "sensor",
+     "tags": "`elec-power`✓",
+     "grade": "권장",
+     "haystack": "elec power point sensor",
+     "why": "순시 전력. 정격표의 소비전력과 같은 물리량이라 부분부하 곡선을 직접 맞춘다",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "power",
+     "group": "전력",
+     "match": {
+      "include": "\\bpower\\b(?!.?(factor|supply|up))|소비.?전력|\\bkw\\b",
+      "exclude": "factor|supply|kwh|적산|accum"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "적산 전력량",
+     "objectType": "AI",
+     "unit": "kWh",
+     "role": "sensor",
+     "tags": "`elec`✓ `energy`✓",
+     "grade": "권장",
+     "haystack": "elec energy point sensor",
+     "why": "시뮬레이터 결과를 실측과 맞추는 정산 기준",
+     "usedBy": [
+      "cooling",
+      "heating"
+     ],
+     "concept": "energy",
+     "group": "전력",
+     "match": {
+      "include": "\\bkwh\\b|energy.*(total|accum|counter)|적산.?전력",
+      "exclude": "reset|리셋"
+     },
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+    },
+    {
+     "name": "전기히터 기동/정지 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "전기히터는 외조기 소비전력의 큰 몫이다. 난방밸브와 따로 세야 한다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "현장 26점",
+     "match": {
+      "include": "(?:elec(?:tric)?|reheat).*heater.*(?:start|stop|on.?off|cmd|enable)|전기히터.?(?:기동|운전).?[_/]?정지",
+      "exclude": "status|상태|alarm|경보|밸브|valve"
+     },
+     "concept": "run-cmd",
+     "group": "제어 지령"
+    },
+    {
+     "name": "전기히터 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "실제 가열 시간. 전력 적산의 구간이다",
+     "usedBy": [
+      "heating"
+     ],
+     "exposure": "현장 26점",
+     "match": {
+      "include": "(?:elec(?:tric)?|reheat).*heater.*(?:status|state|running)|전기히터.?상태",
+      "exclude": "command|cmd|지령|alarm|경보"
+     },
+     "concept": "run-status",
+     "group": "상태"
+    },
+    {
+     "name": "연감지기 경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 `연감지기 경보` 26점 — 급기 정지 인터록의 입력이다",
+     "why": "급기 정지 인터록의 입력. 이게 뜨면 팬이 서므로 그 구간을 빼야 한다",
+     "usedBy": [],
+     "exposure": "현장 26점 — 급기·환기 양쪽",
+     "match": {
+      "include": "smoke.*(?:detect|alarm)|연감지(?:기)?.?경보|연기.?감지",
+      "exclude": "setpoint|설정|고장|fault"
+     },
+     "concept": "smoke-alarm",
+     "group": "경보"
+    },
+    {
+     "name": "외기댐퍼 열림/닫힘 지령",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "외조기는 외기댐퍼가 열려야 도는 기기다. 개도(%)가 아니라 개폐로 오는 판이 많다",
+     "usedBy": [
+      "airside"
+     ],
+     "exposure": "현장 16점",
+     "match": {
+      "include": "(?:outdoor|outside|oa).*damper.*(?:open|close|cmd)|외기댐퍼.?열림[_/]?닫힘",
+      "exclude": "status|상태|position|개도|%|배기|exhaust"
+     },
+     "concept": "외기-댐퍼-열림-닫힘-지령",
+     "group": "풍량·압력"
+    },
+    {
+     "name": "외기댐퍼 열림 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "표준 proto 없음 — 계열 초안과 현장 표기로 세웠다",
+     "why": "지령과 실제가 다르면 그 시간의 외기 부하가 통째로 틀린다",
+     "usedBy": [
+      "airside"
+     ],
+     "exposure": "현장 36점 — 열림·닫힘이 따로 온다",
+     "match": {
+      "include": "(?:outdoor|outside|oa).*damper.*(?:open|close).*(?:status|state)|외기댐퍼.?(?:열림|닫힘).?상태",
+      "exclude": "command|cmd|지령|position|개도|배기|exhaust"
+     },
+     "concept": "외기-댐퍼-열림-상태",
+     "group": "풍량·압력"
     }
    ]
   }

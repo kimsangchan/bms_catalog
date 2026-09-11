@@ -30,7 +30,10 @@
    "haystack": "cmd enable point",
    "aliases": [
     "운전/정지 지령",
-    "기동/정지 지령"
+    "기동/정지 지령",
+    "팬 기동/정지 지령",
+    "살수펌프 기동/정지 지령",
+    "전기히터 기동/정지 지령"
    ],
    "usedIn": [
     "e5.rtu",
@@ -43,7 +46,12 @@
     "e9.chiller",
     "e14.pump",
     "e16.meter",
-    "e19.power"
+    "e19.power",
+    "e10.coolingtower",
+    "e11.boiler",
+    "e12.hx",
+    "e25.plumbing",
+    "e5.ohu"
    ]
   },
   "run-status": {
@@ -54,7 +62,10 @@
    "role": "sensor",
    "haystack": "point run sensor",
    "aliases": [
-    "운전 상태"
+    "운전 상태",
+    "팬 운전 상태",
+    "살수펌프 운전 상태",
+    "전기히터 상태"
    ],
    "usedIn": [
     "e5.rtu",
@@ -68,7 +79,12 @@
     "e9.chiller",
     "e14.pump",
     "e16.meter",
-    "e19.power"
+    "e19.power",
+    "e10.coolingtower",
+    "e11.boiler",
+    "e12.hx",
+    "e25.plumbing",
+    "e5.ohu"
    ]
   },
   "mode": {
@@ -84,7 +100,8 @@
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
-    "e8.vrf"
+    "e8.vrf",
+    "e5.ohu"
    ]
   },
   "speed-cmd": {
@@ -99,7 +116,8 @@
     "환기팬 주파수 지령",
     "주파수 지령",
     "풍량 단계",
-    "개도 지령"
+    "개도 지령",
+    "팬 주파수 지령"
    ],
    "usedIn": [
     "e5.rtu",
@@ -107,7 +125,9 @@
     "e8.vrf",
     "e16.actuator",
     "e15.vfd",
-    "e14.pump"
+    "e14.pump",
+    "e10.coolingtower",
+    "e5.ohu"
    ]
   },
   "speed-fb": {
@@ -120,12 +140,14 @@
    "aliases": [
     "현재 주파수",
     "회전수",
-    "인버터 출력"
+    "인버터 출력",
+    "팬 현재 주파수"
    ],
    "usedIn": [
     "e13.fan",
     "e15.vfd",
-    "e14.pump"
+    "e14.pump",
+    "e10.coolingtower"
    ]
   },
   "alarm": {
@@ -151,7 +173,12 @@
     "e9.chiller",
     "e14.pump",
     "e16.meter",
-    "e19.power"
+    "e19.power",
+    "e10.coolingtower",
+    "e11.boiler",
+    "e12.hx",
+    "e25.plumbing",
+    "e5.ohu"
    ]
   },
   "alarm-code": {
@@ -177,7 +204,12 @@
     "e9.chiller",
     "e14.pump",
     "e16.meter",
-    "e19.power"
+    "e19.power",
+    "e10.coolingtower",
+    "e11.boiler",
+    "e12.hx",
+    "e25.plumbing",
+    "e5.ohu"
    ]
   },
   "zone-temp": {
@@ -196,7 +228,8 @@
     "e5.ahu",
     "e8.vrf",
     "e6.vav",
-    "e7.crac"
+    "e7.crac",
+    "e5.ohu"
    ]
   },
   "oa-temp": {
@@ -212,7 +245,8 @@
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
-    "e8.vrf"
+    "e8.vrf",
+    "e5.ohu"
    ]
   },
   "discharge-temp": {
@@ -232,7 +266,8 @@
     "e5.ahu",
     "e8.vrf",
     "e7.crac",
-    "e16.meter"
+    "e16.meter",
+    "e5.ohu"
    ]
   },
   "return-temp": {
@@ -272,7 +307,8 @@
     "e5.ahu",
     "e8.vrf",
     "e13.fan",
-    "e7.crac"
+    "e7.crac",
+    "e5.ohu"
    ]
   },
   "power": {
@@ -286,7 +322,8 @@
     "출력 전력",
     "소비전력",
     "순시 열량·전력",
-    "유효 전력"
+    "유효 전력",
+    "펌프 소비전력"
    ],
    "usedIn": [
     "e5.rtu",
@@ -299,7 +336,10 @@
     "e9.chiller",
     "e14.pump",
     "e16.meter",
-    "e19.power"
+    "e19.power",
+    "e10.coolingtower",
+    "e25.plumbing",
+    "e5.ohu"
    ]
   },
   "energy": {
@@ -311,7 +351,8 @@
    "haystack": "elec energy point sensor",
    "aliases": [
     "적산 전력량",
-    "적산 열량·전력량"
+    "적산 열량·전력량",
+    "펌프 적산 전력량"
    ],
    "usedIn": [
     "e5.rtu",
@@ -321,7 +362,9 @@
     "e15.vfd",
     "e9.chiller",
     "e16.meter",
-    "e19.power"
+    "e19.power",
+    "e25.plumbing",
+    "e5.ohu"
    ]
   },
   "current": {
@@ -335,14 +378,16 @@
     "출력 전류",
     "압축기 전류",
     "전류",
-    "선전류"
+    "선전류",
+    "펌프 전류"
    ],
    "usedIn": [
     "e13.fan",
     "e15.vfd",
     "e9.chiller",
     "e14.pump",
-    "e19.power"
+    "e19.power",
+    "e25.plumbing"
    ]
   },
   "runtime": {
@@ -418,7 +463,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "급기습도": {
@@ -433,7 +479,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "환기습도": {
@@ -463,7 +510,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "급기-정압": {
@@ -478,7 +526,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "외기-풍량": {
@@ -493,7 +542,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "급기-풍량": {
@@ -508,7 +558,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "환기-co2": {
@@ -538,7 +589,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "급기-정압-설정값": {
@@ -553,7 +605,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "외기댐퍼-개도": {
@@ -568,7 +621,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "환기댐퍼-개도": {
@@ -598,7 +652,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "열회수-지령-상태": {
@@ -613,7 +668,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "동결-방지-경보": {
@@ -628,7 +684,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "외기냉방-모드": {
@@ -643,7 +700,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "압축기-단수-상태": {
@@ -658,7 +716,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "난방-단수-상태": {
@@ -687,7 +746,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "난방-지령": {
@@ -702,7 +762,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "가습-지령": {
@@ -717,7 +778,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "냉수밸브-개도": {
@@ -732,7 +794,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "온수밸브-개도": {
@@ -747,7 +810,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ohu"
    ]
   },
   "설정온도-상-하한": {
@@ -926,10 +990,12 @@
    "role": "cmd",
    "haystack": "cmd damper outside point",
    "aliases": [
-    "외기 댐퍼 열림/닫힘 지령"
+    "외기 댐퍼 열림/닫힘 지령",
+    "외기댐퍼 열림/닫힘 지령"
    ],
    "usedIn": [
-    "e13.fan"
+    "e13.fan",
+    "e5.ohu"
    ]
   },
   "외기-댐퍼-열림-상태": {
@@ -940,10 +1006,12 @@
    "role": "sensor",
    "haystack": "damper outside point sensor",
    "aliases": [
-    "외기 댐퍼 열림 상태"
+    "외기 댐퍼 열림 상태",
+    "외기댐퍼 열림 상태"
    ],
    "usedIn": [
-    "e13.fan"
+    "e13.fan",
+    "e5.ohu"
    ]
   },
   "배기-댐퍼-열림-닫힘-지령": {
@@ -1273,7 +1341,8 @@
     "냉각수 출구온도"
    ],
    "usedIn": [
-    "e9.chiller"
+    "e9.chiller",
+    "e10.coolingtower"
    ]
   },
   "cw-ent": {
@@ -1287,7 +1356,8 @@
     "냉각수 입구온도"
    ],
    "usedIn": [
-    "e9.chiller"
+    "e9.chiller",
+    "e10.coolingtower"
    ]
   },
   "load-pct": {
@@ -1349,7 +1419,8 @@
     "e16.actuator",
     "e9.chiller",
     "e14.pump",
-    "e16.meter"
+    "e16.meter",
+    "e25.plumbing"
    ]
   },
   "remote-enable": {
@@ -1377,7 +1448,8 @@
     "계통 차압"
    ],
    "usedIn": [
-    "e14.pump"
+    "e14.pump",
+    "e10.coolingtower"
    ]
   },
   "head-dp-sp": {
@@ -1405,7 +1477,8 @@
     "토출 압력"
    ],
    "usedIn": [
-    "e14.pump"
+    "e14.pump",
+    "e25.plumbing"
    ]
   },
   "valve-pos": {
@@ -1416,10 +1489,14 @@
    "role": "cmd",
    "haystack": "cmd valve point",
    "aliases": [
-    "절대 위치"
+    "절대 위치",
+    "차압밸브 개도",
+    "2차측 제어밸브 개도"
    ],
    "usedIn": [
-    "e16.actuator"
+    "e16.actuator",
+    "e10.coolingtower",
+    "e12.hx"
    ]
   },
   "flow-total": {
@@ -1433,7 +1510,8 @@
     "적산 유량"
    ],
    "usedIn": [
-    "e16.meter"
+    "e16.meter",
+    "e25.plumbing"
    ]
   },
   "volt": {
@@ -1532,6 +1610,454 @@
    ],
    "usedIn": [
     "e16.actuator"
+   ]
+  },
+  "cw-sp": {
+   "ko": "냉각수 출구온도 설정값",
+   "group": "설정값",
+   "objectType": "AV",
+   "unit": "℃",
+   "role": "sp",
+   "haystack": "condenser water leaving temp sp",
+   "aliases": [
+    "냉각수 출구온도 설정값"
+   ],
+   "usedIn": [
+    "e10.coolingtower"
+   ]
+  },
+  "oa-wetbulb": {
+   "ko": "외기 습구온도",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "air outside point sensor temp wetBulb",
+   "aliases": [
+    "외기 습구온도"
+   ],
+   "usedIn": [
+    "e10.coolingtower"
+   ]
+  },
+  "cw-press": {
+   "ko": "냉각수 공급 압력",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "kPa",
+   "role": "sensor",
+   "haystack": "condenser water point pressure sensor",
+   "aliases": [
+    "냉각수 공급 압력"
+   ],
+   "usedIn": [
+    "e10.coolingtower"
+   ]
+  },
+  "vibration-alarm": {
+   "ko": "진동 경보",
+   "group": "경보",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "aliases": [
+    "진동 경보"
+   ],
+   "usedIn": [
+    "e10.coolingtower"
+   ]
+  },
+  "makeup-valve": {
+   "ko": "보충수 밸브",
+   "group": "유량·수측",
+   "objectType": "BO",
+   "unit": "—",
+   "role": "cmd",
+   "aliases": [
+    "보충수 밸브"
+   ],
+   "usedIn": [
+    "e10.coolingtower"
+   ]
+  },
+  "blowdown-valve": {
+   "ko": "블로우다운 밸브",
+   "group": "유량·수측",
+   "objectType": "BO",
+   "unit": "—",
+   "role": "cmd",
+   "aliases": [
+    "블로우다운 밸브"
+   ],
+   "usedIn": [
+    "e10.coolingtower"
+   ]
+  },
+  "water-quality": {
+   "ko": "수질 (전도도·pH)",
+   "group": "기타",
+   "objectType": "AI",
+   "unit": "µS/cm",
+   "role": "sensor",
+   "aliases": [
+    "수질 (전도도·pH)"
+   ],
+   "usedIn": [
+    "e10.coolingtower",
+    "e25.plumbing"
+   ]
+  },
+  "valve-oc": {
+   "ko": "밸브 열림/닫힘 지령",
+   "group": "유량·수측",
+   "objectType": "BO",
+   "unit": "—",
+   "role": "cmd",
+   "aliases": [
+    "냉각수 밸브 열림/닫힘 지령",
+    "온수 밸브 열림/닫힘 지령"
+   ],
+   "usedIn": [
+    "e10.coolingtower",
+    "e12.hx"
+   ]
+  },
+  "valve-oc-fb": {
+   "ko": "밸브 열림 상태",
+   "group": "유량·수측",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "aliases": [
+    "냉각수 밸브 열림 상태",
+    "온수 밸브 열림 상태"
+   ],
+   "usedIn": [
+    "e10.coolingtower",
+    "e12.hx"
+   ]
+  },
+  "level-alarm": {
+   "ko": "수위 경보 (고·저)",
+   "group": "경보",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "aliases": [
+    "수조 수위 경보",
+    "급수 저수위",
+    "고수위 경보",
+    "저수위 경보"
+   ],
+   "usedIn": [
+    "e10.coolingtower",
+    "e11.boiler",
+    "e25.plumbing"
+   ]
+  },
+  "hw-lvg": {
+   "ko": "온수 공급온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "hot-water leaving point sensor temp",
+   "aliases": [
+    "온수 공급온도"
+   ],
+   "usedIn": [
+    "e11.boiler"
+   ]
+  },
+  "hw-ent": {
+   "ko": "온수 환수온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "haystack": "hot-water entering point sensor temp",
+   "aliases": [
+    "온수 환수온도"
+   ],
+   "usedIn": [
+    "e11.boiler"
+   ]
+  },
+  "hw-sp": {
+   "ko": "온수 공급온도 설정값",
+   "group": "설정값",
+   "objectType": "AV",
+   "unit": "℃",
+   "role": "sp",
+   "haystack": "hot-water leaving temp sp",
+   "aliases": [
+    "온수 공급온도 설정값",
+    "2차 공급온도 설정값"
+   ],
+   "usedIn": [
+    "e11.boiler",
+    "e12.hx"
+   ]
+  },
+  "burner-stage": {
+   "ko": "버너 단수·출력",
+   "group": "제어 지령",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "aliases": [
+    "버너 단수·출력"
+   ],
+   "usedIn": [
+    "e11.boiler"
+   ]
+  },
+  "hw-press": {
+   "ko": "관내 압력",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "kPa",
+   "role": "sensor",
+   "aliases": [
+    "관내 압력"
+   ],
+   "usedIn": [
+    "e11.boiler"
+   ]
+  },
+  "steam-press": {
+   "ko": "증기 압력",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "MPa",
+   "role": "sensor",
+   "aliases": [
+    "증기 압력"
+   ],
+   "usedIn": [
+    "e11.boiler"
+   ]
+  },
+  "flue-temp": {
+   "ko": "연도(배기가스) 온도",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "aliases": [
+    "연도(배기가스) 온도"
+   ],
+   "usedIn": [
+    "e11.boiler"
+   ]
+  },
+  "fuel-total": {
+   "ko": "연료 적산 사용량",
+   "group": "전력",
+   "objectType": "AI",
+   "unit": "N㎥",
+   "role": "sensor",
+   "aliases": [
+    "연료 적산 사용량"
+   ],
+   "usedIn": [
+    "e11.boiler"
+   ]
+  },
+  "gas-leak-alarm": {
+   "ko": "가스 누설 경보",
+   "group": "경보",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "aliases": [
+    "가스 누설 경보"
+   ],
+   "usedIn": [
+    "e11.boiler"
+   ]
+  },
+  "flame-fail-alarm": {
+   "ko": "실화·소염 경보",
+   "group": "경보",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "aliases": [
+    "실화·소염 경보"
+   ],
+   "usedIn": [
+    "e11.boiler"
+   ]
+  },
+  "interlock": {
+   "ko": "인터록",
+   "group": "상태",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "aliases": [
+    "가열기 인터록"
+   ],
+   "usedIn": [
+    "e11.boiler"
+   ]
+  },
+  "hx-pri-ent": {
+   "ko": "1차 입구온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "aliases": [
+    "1차 입구온도"
+   ],
+   "usedIn": [
+    "e12.hx"
+   ]
+  },
+  "hx-pri-lvg": {
+   "ko": "1차 출구온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "aliases": [
+    "1차 출구온도"
+   ],
+   "usedIn": [
+    "e12.hx"
+   ]
+  },
+  "hx-sec-ent": {
+   "ko": "2차 입구온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "aliases": [
+    "2차 환수온도"
+   ],
+   "usedIn": [
+    "e12.hx"
+   ]
+  },
+  "hx-sec-lvg": {
+   "ko": "2차 출구온도",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "aliases": [
+    "2차 공급온도"
+   ],
+   "usedIn": [
+    "e12.hx"
+   ]
+  },
+  "hx-dp": {
+   "ko": "열교환기 차압",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "kPa",
+   "role": "sensor",
+   "aliases": [
+    "열교환기 차압"
+   ],
+   "usedIn": [
+    "e12.hx"
+   ]
+  },
+  "steam-valve": {
+   "ko": "스팀밸브 개도",
+   "group": "유량·수측",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "aliases": [
+    "스팀밸브 개도"
+   ],
+   "usedIn": [
+    "e12.hx"
+   ]
+  },
+  "tank-level": {
+   "ko": "수조 수위",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "%",
+   "role": "sensor",
+   "haystack": "tank point sensor level",
+   "aliases": [
+    "수조 수위"
+   ],
+   "usedIn": [
+    "e25.plumbing"
+   ]
+  },
+  "sump-level": {
+   "ko": "배수조 수위",
+   "group": "유량·수측",
+   "objectType": "AI",
+   "unit": "%",
+   "role": "sensor",
+   "aliases": [
+    "배수조 수위"
+   ],
+   "usedIn": [
+    "e25.plumbing"
+   ]
+  },
+  "leak-alarm": {
+   "ko": "누수 감지",
+   "group": "경보",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "aliases": [
+    "누수 감지"
+   ],
+   "usedIn": [
+    "e25.plumbing"
+   ]
+  },
+  "chlorine": {
+   "ko": "잔류 염소",
+   "group": "기타",
+   "objectType": "AI",
+   "unit": "mg/L",
+   "role": "sensor",
+   "aliases": [
+    "잔류 염소"
+   ],
+   "usedIn": [
+    "e25.plumbing"
+   ]
+  },
+  "dhw-temp": {
+   "ko": "급탕 온도",
+   "group": "온도",
+   "objectType": "AI",
+   "unit": "℃",
+   "role": "sensor",
+   "aliases": [
+    "급탕 온도"
+   ],
+   "usedIn": [
+    "e25.plumbing"
+   ]
+  },
+  "smoke-alarm": {
+   "ko": "연감지기 경보",
+   "group": "경보",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "aliases": [
+    "연감지기 경보"
+   ],
+   "usedIn": [
+    "e5.ohu"
    ]
   }
  }
