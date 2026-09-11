@@ -33,7 +33,10 @@
     "기동/정지 지령",
     "팬 기동/정지 지령",
     "살수펌프 기동/정지 지령",
-    "전기히터 기동/정지 지령"
+    "전기히터 기동/정지 지령",
+    "급기휀 기동/정지",
+    "환기휀 기동/정지",
+    "동파방지 히팅코일 기동/정지"
    ],
    "usedIn": [
     "e5.rtu",
@@ -51,7 +54,8 @@
     "e11.boiler",
     "e12.hx",
     "e25.plumbing",
-    "e5.ohu"
+    "e5.ohu",
+    "e5.ahu-ddc"
    ]
   },
   "run-status": {
@@ -65,7 +69,10 @@
     "운전 상태",
     "팬 운전 상태",
     "살수펌프 운전 상태",
-    "전기히터 상태"
+    "전기히터 상태",
+    "급기휀 상태",
+    "환기휀 상태",
+    "동파방지 히팅코일 상태"
    ],
    "usedIn": [
     "e5.rtu",
@@ -84,7 +91,8 @@
     "e11.boiler",
     "e12.hx",
     "e25.plumbing",
-    "e5.ohu"
+    "e5.ohu",
+    "e5.ahu-ddc"
    ]
   },
   "mode": {
@@ -267,7 +275,8 @@
     "e8.vrf",
     "e7.crac",
     "e16.meter",
-    "e5.ohu"
+    "e5.ohu",
+    "e5.ahu-ddc"
    ]
   },
   "return-temp": {
@@ -287,7 +296,8 @@
     "e5.ahu",
     "e8.vrf",
     "e7.crac",
-    "e16.meter"
+    "e16.meter",
+    "e5.ahu-ddc"
    ]
   },
   "filter-dp": {
@@ -444,11 +454,13 @@
    "role": "sensor",
    "haystack": "ahu ▸ mixed duct equip ▸ air mixed point sensor temp",
    "aliases": [
-    "혼합공기온도"
+    "혼합공기온도",
+    "혼합온도"
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ahu-ddc"
    ]
   },
   "배기-온도": {
@@ -480,7 +492,8 @@
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
-    "e5.ohu"
+    "e5.ohu",
+    "e5.ahu-ddc"
    ]
   },
   "환기습도": {
@@ -495,7 +508,8 @@
    ],
    "usedIn": [
     "e5.rtu",
-    "e5.ahu"
+    "e5.ahu",
+    "e5.ahu-ddc"
    ]
   },
   "외기-엔탈피": {
@@ -622,7 +636,8 @@
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
-    "e5.ohu"
+    "e5.ohu",
+    "e5.ahu-ddc"
    ]
   },
   "환기댐퍼-개도": {
@@ -653,7 +668,8 @@
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
-    "e5.ohu"
+    "e5.ohu",
+    "e5.ahu-ddc"
    ]
   },
   "열회수-지령-상태": {
@@ -774,12 +790,14 @@
    "role": "cmd",
    "haystack": "ahu ▸ humidifier equip ▸ cmd enable humidifier point / cmd humidifier point run  (Haystack 에 변조(%) proto 는 없다 — 우리 AO % 는 초과분)",
    "aliases": [
-    "가습 지령"
+    "가습 지령",
+    "가습밸브 기동/정지"
    ],
    "usedIn": [
     "e5.rtu",
     "e5.ahu",
-    "e5.ohu"
+    "e5.ohu",
+    "e5.ahu-ddc"
    ]
   },
   "냉수밸브-개도": {
@@ -2054,10 +2072,64 @@
    "unit": "—",
    "role": "sensor",
    "aliases": [
-    "연감지기 경보"
+    "연감지기 경보",
+    "연기감지기 경보"
    ],
    "usedIn": [
-    "e5.ohu"
+    "e5.ohu",
+    "e5.ahu-ddc"
+   ]
+  },
+  "co-conc": {
+   "ko": "CO 농도",
+   "group": "습도·공기질",
+   "objectType": "AI",
+   "unit": "ppm",
+   "role": "sensor",
+   "aliases": [
+    "CO 농도"
+   ],
+   "usedIn": [
+    "e5.ahu-ddc"
+   ]
+  },
+  "cool-heat-valve": {
+   "ko": "냉난방밸브 개도",
+   "group": "유량·수측",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "aliases": [
+    "냉난방밸브 개도"
+   ],
+   "usedIn": [
+    "e5.ahu-ddc"
+   ]
+  },
+  "mix-damper": {
+   "ko": "혼합댐퍼 개도",
+   "group": "풍량·압력",
+   "objectType": "AO",
+   "unit": "%",
+   "role": "cmd",
+   "aliases": [
+    "혼합댐퍼 개도"
+   ],
+   "usedIn": [
+    "e5.ahu-ddc"
+   ]
+  },
+  "filter-alarm": {
+   "ko": "필터 경보",
+   "group": "경보",
+   "objectType": "BI",
+   "unit": "—",
+   "role": "sensor",
+   "aliases": [
+    "필터경보"
+   ],
+   "usedIn": [
+    "e5.ahu-ddc"
    ]
   }
  }

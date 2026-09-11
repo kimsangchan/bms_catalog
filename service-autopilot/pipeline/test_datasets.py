@@ -32,7 +32,11 @@ class DatasetBuildTest(unittest.TestCase):
         # 2026-09-11 e5.ohu(외조기)를 더했다. 모델은 아직 0건이지만 현장 43코드가 있고,
         #            e5.ahu 를 베껴 환기(리턴) 계열 6행을 뺀 것이다 — 외조기는 100% 외기다.
         #            catPrefix 가 HVAC.AIR.OHU 라 기존 AHU 9모델의 결합은 안 바뀐다.
-        self.assertEqual(ahu["templateProfileIds"], ["e5.ahu", "e5.ohu", "e5.rtu"])
+        # 2026-09-11 e5.ahu-ddc 를 더했다. 통신형(e5.ahu 37행)과 배선형은 목록이 달라
+        #            섞으면 어느 쪽도 맞지 않는다. 모델은 0건일 가능성이 크다 —
+        #            DDC 에 직접 배선하는 공조기는 통신 문서가 아예 없기 때문이다.
+        self.assertEqual(ahu["templateProfileIds"],
+                         ["e5.ahu", "e5.ahu-ddc", "e5.ohu", "e5.rtu"])
         self.assertNotIn("templatePoints", ahu)   # 계열 한 벌은 더 이상 없다
         self.assertGreaterEqual(len(ahu["simulatorSpecRequirements"]), 10)
         # e8.vrf 는 아직 행이 없다(빈 배열 = 신설 과제). 비어 있어도 되는 이유는
@@ -58,7 +62,11 @@ class DatasetBuildTest(unittest.TestCase):
         # 2026-09-11 빈 계열 다섯을 **모델 0건인데도** 세웠다 — 현장 포인트리스트의
         #            설비코드가 근거다(CT 63 · HWG 13 · HX 15 · 급배수 47 · 외조기 43).
         #            템플릿은 모델의 부산물이 아니라 '무엇을 화면에 올릴지'의 기준이다.
-        self.assertEqual(tpl, {"e5.rtu", "e5.ahu", "e5.ohu", "e6.vav", "e7.crac",
+        # 2026-09-11 e5.ahu-ddc 를 세웠다 — 같은 공조기라도 **통신형과 배선형은 두 세계**다.
+        #            e5.ahu(37행)는 BACnet/Modbus 오브젝트 기준이고, 배선형은 주파수
+        #            지령·정압·엔탈피·소비전력이 없는 대신 팬마다 상태·기동정지가 따로
+        #            있고 연기감지기·필터경보·동파히팅이 있다. 근거는 실측 전수다.
+        self.assertEqual(tpl, {"e5.rtu", "e5.ahu", "e5.ahu-ddc", "e5.ohu", "e6.vav", "e7.crac",
                                "e8.vrf", "e9.chiller", "e10.coolingtower",
                                "e11.boiler", "e12.hx", "e13.fan", "e14.pump",
                                "e15.vfd", "e16.actuator", "e16.meter",

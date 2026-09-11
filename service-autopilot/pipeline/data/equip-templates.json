@@ -44,7 +44,9 @@
      },
      "concept": "discharge-temp",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "SATEMP",
+     "tagFrom": "현장"
     },
     {
      "name": "환기온도",
@@ -66,7 +68,9 @@
      },
      "concept": "return-temp",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) 유럽 벤더는 환기를 extract air 라 부른다 — Swegon 'EA Temperature RX'·'EA duct temperature', Systemair 'AAIExtractAirTemp'. EA 가 환기인 것은 원문 note 가 밝힌다('Present extract air temperature in the unit'). Swegon 의 exhaust 는 'Exhaust heat …'(열회수)로 따로 쓰여 배기 온도 행과 안 겹친다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) 유럽 벤더는 환기를 extract air 라 부른다 — Swegon 'EA Temperature RX'·'EA duct temperature', Systemair 'AAIExtractAirTemp'. EA 가 환기인 것은 원문 note 가 밝힌다('Present extract air temperature in the unit'). Swegon 의 exhaust 는 'Exhaust heat …'(열회수)로 따로 쓰여 배기 온도 행과 안 겹친다.",
+     "tag": "RATEMP",
+     "tagFrom": "현장"
     },
     {
      "name": "외기온도",
@@ -88,7 +92,9 @@
      },
      "concept": "oa-temp",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "OATEMP",
+     "tagFrom": "문법"
     },
     {
      "name": "실내온도",
@@ -109,7 +115,9 @@
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|offset|sensor error|failure|override|limit|unocc|setpt|dew|humid|source"
      },
      "concept": "zone-temp",
-     "group": "온도"
+     "group": "온도",
+     "tag": "ZNTEMP",
+     "tagFrom": "문법"
     },
     {
      "name": "혼합공기온도",
@@ -130,7 +138,9 @@
       "exclude": "problem|\\bfault\\b|setpoint|sp\\b"
      },
      "concept": "혼합공기온도",
-     "group": "온도"
+     "group": "온도",
+     "tag": "MATEMP",
+     "tagFrom": "현장"
     },
     {
      "name": "배기 온도",
@@ -151,7 +161,9 @@
      },
      "concept": "배기-온도",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "EATEMP",
+     "tagFrom": "문법"
     },
     {
      "name": "급기습도",
@@ -170,7 +182,9 @@
       "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
      },
      "concept": "급기습도",
-     "group": "습도·공기질"
+     "group": "습도·공기질",
+     "tag": "SAHUMT",
+     "tagFrom": "현장"
     },
     {
      "name": "환기습도",
@@ -189,7 +203,9 @@
       "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
      },
      "concept": "환기습도",
-     "group": "습도·공기질"
+     "group": "습도·공기질",
+     "tag": "RAHUMT",
+     "tagFrom": "현장"
     },
     {
      "name": "외기 엔탈피",
@@ -210,7 +226,9 @@
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|switch|changeover|type|configuration|diff"
      },
      "concept": "외기-엔탈피",
-     "group": "습도·공기질"
+     "group": "습도·공기질",
+     "tag": "OAENT",
+     "tagFrom": "문법"
     },
     {
      "name": "급기 정압",
@@ -230,7 +248,9 @@
      },
      "concept": "급기-정압",
      "group": "풍량·압력",
-     "matchNote": "2026-09-11(공조기 점검) Swegon 은 'SA Duct pressure' 라 적는다 — 'static' 이 없고 supply 대신 SA 다. 다만 같은 말로 시작하는 설정·보정 항목이 33개(auto zero calibration·regulator·I-time·compensation) 있어 제외어를 함께 넓혔다."
+     "matchNote": "2026-09-11(공조기 점검) Swegon 은 'SA Duct pressure' 라 적는다 — 'static' 이 없고 supply 대신 SA 다. 다만 같은 말로 시작하는 설정·보정 항목이 33개(auto zero calibration·regulator·I-time·compensation) 있어 제외어를 함께 넓혔다.",
+     "tag": "SASP",
+     "tagFrom": "문법"
     },
     {
      "name": "외기 풍량",
@@ -250,7 +270,9 @@
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|station|minimum|\\bmin\\b|\\bmax\\b|percent|type|configuration|bad |sensor"
      },
      "concept": "외기-풍량",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "OAFLOW",
+     "tagFrom": "문법"
     },
     {
      "name": "급기 풍량",
@@ -271,7 +293,9 @@
       "exclude": "setpoint|sp\\b|min|max|outdoor|outside|return|exhaust|percent"
      },
      "concept": "급기-풍량",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "SAFLOW",
+     "tagFrom": "문법"
     },
     {
      "name": "환기 CO2",
@@ -290,7 +314,9 @@
       "exclude": "setpoint|sp\\b|limit|offset|calibrat|bad |sensor error|\\balarm\\b|\\bfault\\b"
      },
      "concept": "환기-co2",
-     "group": "습도·공기질"
+     "group": "습도·공기질",
+     "tag": "RACO2",
+     "tagFrom": "문법"
     },
     {
      "name": "급기온도 설정값",
@@ -310,7 +336,9 @@
      },
      "concept": "급기온도-설정값",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "SATEMP-SP",
+     "tagFrom": "문법"
     },
     {
      "name": "급기 정압 설정값",
@@ -329,7 +357,9 @@
       "exclude": "current|reset"
      },
      "concept": "급기-정압-설정값",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "SASP-SP",
+     "tagFrom": "문법"
     },
     {
      "name": "급기팬 주파수 지령",
@@ -350,7 +380,9 @@
      },
      "concept": "speed-cmd",
      "group": "제어 지령",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. ⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. ⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다.",
+     "tag": "SF-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "환기팬 주파수 지령",
@@ -370,7 +402,9 @@
      },
      "concept": "speed-cmd",
      "group": "제어 지령",
-     "matchNote": "⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다."
+     "matchNote": "⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다.",
+     "tag": "RF-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "외기댐퍼 개도",
@@ -391,7 +425,9 @@
      "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다",
      "concept": "외기댐퍼-개도",
      "group": "풍량·압력",
-     "matchNote": "2026-09-11(공조기 점검) JCI·YORK 는 외기댐퍼를 'Economizer Damper % Output' 이라 적는다 — 원문 설명이 'Shows the current percentage output for the economizer damper' 로 개도 그대로다. 다만 같은 말로 시작하는 설정 항목이 많아('ECONOMIZER METHOD'·'ECONOMIZER INSTALLED'·'OA DAMPER MIN POSITION') 제외어를 함께 넓혔다. ⚠ 'UNIT STOP'·'SYSTEM STOP' 은 운전/정지 지령에 **안 넣었다** — 원문이 'manually shuts down compressor circuits' 라 압축기 회로 정지다."
+     "matchNote": "2026-09-11(공조기 점검) JCI·YORK 는 외기댐퍼를 'Economizer Damper % Output' 이라 적는다 — 원문 설명이 'Shows the current percentage output for the economizer damper' 로 개도 그대로다. 다만 같은 말로 시작하는 설정 항목이 많아('ECONOMIZER METHOD'·'ECONOMIZER INSTALLED'·'OA DAMPER MIN POSITION') 제외어를 함께 넓혔다. ⚠ 'UNIT STOP'·'SYSTEM STOP' 은 운전/정지 지령에 **안 넣었다** — 원문이 'manually shuts down compressor circuits' 라 압축기 회로 정지다.",
+     "tag": "OADAM-OUT",
+     "tagFrom": "현장"
     },
     {
      "name": "환기댐퍼 개도",
@@ -409,7 +445,9 @@
       "exclude": "\\balarm\\b|\\bfault\\b|active alarm"
      },
      "concept": "환기댐퍼-개도",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "RADAM-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "배기댐퍼 개도",
@@ -429,7 +467,9 @@
       "exclude": "bypass|bp ?damper|\\balarm\\b|\\bfault\\b|active alarm|ala[a-z]*status|manual"
      },
      "concept": "배기댐퍼-개도",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "EADAM-OUT",
+     "tagFrom": "현장"
     },
     {
      "name": "열회수 지령·상태",
@@ -450,7 +490,9 @@
       "exclude": "\\balarm\\b|\\bfault\\b|defrost|frost|hours|trip|year|setpoint|sp\\b|failure|sensor|bypass|preheat|leaving|exhaust temp|motor ?speed"
      },
      "concept": "열회수-지령-상태",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "HRW-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "필터 차압",
@@ -469,7 +511,10 @@
      },
      "keepAlarm": true,
      "concept": "filter-dp",
-     "group": "정비"
+     "group": "정비",
+     "tag": "FIL-DP",
+     "tagFrom": "문법",
+     "tagNote": "⚠ 현장 태그 `AHU01-FIL-ALM` 은 **경보 접점(BV)** 이다. 이 행은 아날로그 차압이라 같은 태그를 쓰면 뜻이 어긋난다 — 차압은 FIL-DP 로 두고, 경보 접점은 배선형 프로파일(e5.ahu-ddc)에 따로 세운다. 통신형 공조기는 차압 값을 주고, DDC 배선형은 경보 접점만 준다."
     },
     {
      "name": "동결 방지 경보",
@@ -488,7 +533,9 @@
      },
      "keepAlarm": true,
      "concept": "동결-방지-경보",
-     "group": "경보"
+     "group": "경보",
+     "tag": "FZ-ALM",
+     "tagFrom": "문법"
     },
     {
      "name": "운전 모드",
@@ -510,7 +557,9 @@
       "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier|setpoint|sp\\b|occupancy|enabled for operation|exits.*mode"
      },
      "concept": "mode",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "MODE",
+     "tagFrom": "문법"
     },
     {
      "name": "외기냉방 모드",
@@ -531,7 +580,9 @@
      },
      "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다",
      "concept": "외기냉방-모드",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "ECON-SST",
+     "tagFrom": "문법"
     },
     {
      "name": "압축기 단수 상태",
@@ -552,7 +603,9 @@
      },
      "concept": "압축기-단수-상태",
      "group": "상태",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "COMP-STS",
+     "tagFrom": "문법"
     },
     {
      "name": "난방 단수 상태",
@@ -572,7 +625,9 @@
       "exclude": "\\balarm\\b|\\bfault\\b|lockout|failure|run ?time|hours|delay|setpoint|type|configuration"
      },
      "concept": "난방-단수-상태",
-     "group": "상태"
+     "group": "상태",
+     "tag": "HTG-STS",
+     "tagFrom": "문법"
     },
     {
      "name": "냉방 지령",
@@ -593,7 +648,9 @@
      },
      "concept": "냉방-지령",
      "group": "제어 지령",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "CLG-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "난방 지령",
@@ -614,7 +671,9 @@
      },
      "concept": "난방-지령",
      "group": "제어 지령",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "HTG-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "가습 지령",
@@ -632,7 +691,9 @@
       "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit|under\\s*floor.*humidity|air humidity bas"
      },
      "concept": "가습-지령",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "HV-SST",
+     "tagFrom": "문법"
     },
     {
      "name": "냉수밸브 개도",
@@ -653,7 +714,9 @@
       "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting"
      },
      "concept": "냉수밸브-개도",
-     "group": "유량·수측"
+     "group": "유량·수측",
+     "tag": "CHV-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "온수밸브 개도",
@@ -674,7 +737,9 @@
       "exclude": "type|configuration|identifier|enable|action|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
      },
      "concept": "온수밸브-개도",
-     "group": "유량·수측"
+     "group": "유량·수측",
+     "tag": "HWV-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "운전/정지 지령",
@@ -695,7 +760,9 @@
       "include": "operating on ?/ ?off|start.?stop.*(cmd|command)|\\bon.?off\\b|\\bunit\\s*enable\\b|기동.?정지|운전.?정지|occupancy\\s*command",
       "exclude": "status|상태|\bmode\\s*status\b|모드.?상태|damper|댐퍼"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검 2차) RTU 에는 on/off 지령이 따로 없다 — BAS 가 유닛을 돌리고 세우는 유일한 지령이 'OCCUPANCY COMMAND' 다(24점). 원문: \"This BAS Command Allows the Unit to be Placed in the Occupied or Unoccupied Mode (0 = Unoccupied / 1 = Occupied)\". ⚠ 글자 그대로 on/off 는 아니다 — 비점유에서도 setback 으로 돌 수 있다. 이 값을 boolean 운전으로 읽으면 안 된다. '운전 모드' 행이 occupancy 를 제외어로 갖고 있어 안 빼앗는다. ⚠ 제외어에서 맨 'mode|모드' 를 'mode status|모드 상태' 로 좁혔다 — 제외어는 이름이 아니라 **이름+비고**에 걸리는데, OCCUPANCY COMMAND 의 비고가 'Unoccupied Mode' 라 맨 mode 에 걸려 24점이 통째로 사라지고 있었다. 막으려던 것은 '모드 상태' 포인트다. 근본 원인 하나를 함께 고쳤다 — `unit.*enable` 의 `.*` 가 비고까지 건너뛰어 'EconEnable'·'CoolEnable' 이 비고의 \"enables the unit…\" 으로 운전 지령 자리를 차지했다. `\bunit\\s*enable\b` 로 붙여 이름에서만 잡게 했다. 증상마다 제외어를 더하는 것은 답이 아니었다 — 막을 때마다 다음 것이 그 자리를 이었다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검 2차) RTU 에는 on/off 지령이 따로 없다 — BAS 가 유닛을 돌리고 세우는 유일한 지령이 'OCCUPANCY COMMAND' 다(24점). 원문: \"This BAS Command Allows the Unit to be Placed in the Occupied or Unoccupied Mode (0 = Unoccupied / 1 = Occupied)\". ⚠ 글자 그대로 on/off 는 아니다 — 비점유에서도 setback 으로 돌 수 있다. 이 값을 boolean 운전으로 읽으면 안 된다. '운전 모드' 행이 occupancy 를 제외어로 갖고 있어 안 빼앗는다. ⚠ 제외어에서 맨 'mode|모드' 를 'mode status|모드 상태' 로 좁혔다 — 제외어는 이름이 아니라 **이름+비고**에 걸리는데, OCCUPANCY COMMAND 의 비고가 'Unoccupied Mode' 라 맨 mode 에 걸려 24점이 통째로 사라지고 있었다. 막으려던 것은 '모드 상태' 포인트다. 근본 원인 하나를 함께 고쳤다 — `unit.*enable` 의 `.*` 가 비고까지 건너뛰어 'EconEnable'·'CoolEnable' 이 비고의 \"enables the unit…\" 으로 운전 지령 자리를 차지했다. `\bunit\\s*enable\b` 로 붙여 이름에서만 잡게 했다. 증상마다 제외어를 더하는 것은 답이 아니었다 — 막을 때마다 다음 것이 그 자리를 이었다.",
+     "tag": "SST",
+     "tagFrom": "문법"
     },
     {
      "name": "운전 상태",
@@ -716,7 +783,9 @@
       "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b|(?:^|[A-Za-z0-9])(?:unit|system)status\\b",
       "exclude": "odu|comp|압축기|defrost|제상|error|알람|enabl|permissive|control source|\\btime\\b"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다. 2026-09-11(공조기 점검) 벤더 접두어가 붙은 이름을 받는다 — 'nvoUnitStatus'(Trane LonTalk)·'CarelUnitStatus'(Siemens). 앞서 'Econ System Status' 오탐을 막으려 ^ 로 앵커했는데 그러면 접두어형이 통째로 빠진다. 가르는 기준은 앵커가 아니라 **띄어쓰기**다 — 한정어는 띄어져 있고 접두어는 붙어 있다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다. 2026-09-11(공조기 점검) 벤더 접두어가 붙은 이름을 받는다 — 'nvoUnitStatus'(Trane LonTalk)·'CarelUnitStatus'(Siemens). 앞서 'Econ System Status' 오탐을 막으려 ^ 로 앵커했는데 그러면 접두어형이 통째로 빠진다. 가르는 기준은 앵커가 아니라 **띄어쓰기**다 — 한정어는 띄어져 있고 접두어는 붙어 있다.",
+     "tag": "STS",
+     "tagFrom": "문법"
     },
     {
      "name": "고장·경보",
@@ -738,7 +807,9 @@
       "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보|\\bA-?alarm\\b",
       "exclude": "code|코드|freeze|동결|filter|필터|odu"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) Swegon 의 최고 등급 경보 요약이 'A-alarm active' 다. 'Active alarm group N' 은 프로파일 공용 제외어(active alarm)에 이미 걸려 안 들어온다. ⚠ 2026-09-11 21/32 모델이 안 붙는 이유를 확인했다 — YORK RTU 문서에 **장비 단위 종합 경보가 없다.** 계통별로 갈려 있다('FAN FAULT' 14 · 'SENSOR/MISC FAULT' 10 · 'COOLING/ HEATING FAULT' 7). 전수로 찾아보니 장비 단위는 'Air Hndling Unit Alarm' 한 모델뿐이다. 팬 고장을 장비 고장 자리에 넣지 않는다(규칙 1). e7.crac 과 같은 판단이고, 이건 매칭이 아니라 **파생 포인트 설계** 과제다 — 개별 실패의 OR 로 종합 경보를 만들어야 한다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) Swegon 의 최고 등급 경보 요약이 'A-alarm active' 다. 'Active alarm group N' 은 프로파일 공용 제외어(active alarm)에 이미 걸려 안 들어온다. ⚠ 2026-09-11 21/32 모델이 안 붙는 이유를 확인했다 — YORK RTU 문서에 **장비 단위 종합 경보가 없다.** 계통별로 갈려 있다('FAN FAULT' 14 · 'SENSOR/MISC FAULT' 10 · 'COOLING/ HEATING FAULT' 7). 전수로 찾아보니 장비 단위는 'Air Hndling Unit Alarm' 한 모델뿐이다. 팬 고장을 장비 고장 자리에 넣지 않는다(규칙 1). e7.crac 과 같은 판단이고, 이건 매칭이 아니라 **파생 포인트 설계** 과제다 — 개별 실패의 OR 로 종합 경보를 만들어야 한다.",
+     "tag": "ALM",
+     "tagFrom": "문법"
     },
     {
      "name": "고장 코드",
@@ -759,7 +830,9 @@
      "match": {
       "include": "(error|fault|alarm).{0,6}code|고장.?코드|에러.?코드"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "ALM-CODE",
+     "tagFrom": "문법"
     },
     {
      "name": "소비전력",
@@ -780,7 +853,9 @@
       "include": "\\bpower\\b(?!.?(factor|supply|up))|소비.?전력|\\bkw\\b",
       "exclude": "factor|supply|kwh|적산|accum"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "KW",
+     "tagFrom": "문법"
     },
     {
      "name": "적산 전력량",
@@ -801,9 +876,13 @@
       "include": "\\bkwh\\b|energy.*(total|accum|counter)|적산.?전력",
       "exclude": "reset|리셋"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "KWH",
+     "tagFrom": "문법"
     }
-   ]
+   ],
+   "system": "AHU",
+   "systemNote": "현장 포인트리스트의 SYSTEM 칸에서 실제로 쓰인 말이다 (북광주우체국 납품본: AHU · FAN · FCU · 냉열원 · HWG · EFAN · SUMP · BOOSTER · 지열 …)."
   },
   "e5.ahu": {
    "equipId": "e5",
@@ -831,7 +910,9 @@
      },
      "concept": "discharge-temp",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "SATEMP",
+     "tagFrom": "현장"
     },
     {
      "name": "환기온도",
@@ -853,7 +934,9 @@
      },
      "concept": "return-temp",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) 유럽 벤더는 환기를 extract air 라 부른다 — Swegon 'EA Temperature RX'·'EA duct temperature', Systemair 'AAIExtractAirTemp'. EA 가 환기인 것은 원문 note 가 밝힌다('Present extract air temperature in the unit'). Swegon 의 exhaust 는 'Exhaust heat …'(열회수)로 따로 쓰여 배기 온도 행과 안 겹친다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) 유럽 벤더는 환기를 extract air 라 부른다 — Swegon 'EA Temperature RX'·'EA duct temperature', Systemair 'AAIExtractAirTemp'. EA 가 환기인 것은 원문 note 가 밝힌다('Present extract air temperature in the unit'). Swegon 의 exhaust 는 'Exhaust heat …'(열회수)로 따로 쓰여 배기 온도 행과 안 겹친다.",
+     "tag": "RATEMP",
+     "tagFrom": "현장"
     },
     {
      "name": "외기온도",
@@ -875,7 +958,9 @@
      },
      "concept": "oa-temp",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "OATEMP",
+     "tagFrom": "문법"
     },
     {
      "name": "실내온도",
@@ -896,7 +981,9 @@
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|offset|sensor error|failure|override|limit|unocc|setpt|dew|humid|source"
      },
      "concept": "zone-temp",
-     "group": "온도"
+     "group": "온도",
+     "tag": "ZNTEMP",
+     "tagFrom": "문법"
     },
     {
      "name": "혼합공기온도",
@@ -917,7 +1004,9 @@
       "exclude": "problem|\\bfault\\b|setpoint|sp\\b"
      },
      "concept": "혼합공기온도",
-     "group": "온도"
+     "group": "온도",
+     "tag": "MATEMP",
+     "tagFrom": "현장"
     },
     {
      "name": "배기 온도",
@@ -938,7 +1027,9 @@
      },
      "concept": "배기-온도",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "EATEMP",
+     "tagFrom": "문법"
     },
     {
      "name": "급기습도",
@@ -957,7 +1048,9 @@
       "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
      },
      "concept": "급기습도",
-     "group": "습도·공기질"
+     "group": "습도·공기질",
+     "tag": "SAHUMT",
+     "tagFrom": "현장"
     },
     {
      "name": "환기습도",
@@ -976,7 +1069,9 @@
       "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
      },
      "concept": "환기습도",
-     "group": "습도·공기질"
+     "group": "습도·공기질",
+     "tag": "RAHUMT",
+     "tagFrom": "현장"
     },
     {
      "name": "외기 엔탈피",
@@ -997,7 +1092,9 @@
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|switch|changeover|type|configuration|diff"
      },
      "concept": "외기-엔탈피",
-     "group": "습도·공기질"
+     "group": "습도·공기질",
+     "tag": "OAENT",
+     "tagFrom": "문법"
     },
     {
      "name": "급기 정압",
@@ -1017,7 +1114,9 @@
      },
      "concept": "급기-정압",
      "group": "풍량·압력",
-     "matchNote": "2026-09-11(공조기 점검) Swegon 은 'SA Duct pressure' 라 적는다 — 'static' 이 없고 supply 대신 SA 다. 다만 같은 말로 시작하는 설정·보정 항목이 33개(auto zero calibration·regulator·I-time·compensation) 있어 제외어를 함께 넓혔다."
+     "matchNote": "2026-09-11(공조기 점검) Swegon 은 'SA Duct pressure' 라 적는다 — 'static' 이 없고 supply 대신 SA 다. 다만 같은 말로 시작하는 설정·보정 항목이 33개(auto zero calibration·regulator·I-time·compensation) 있어 제외어를 함께 넓혔다.",
+     "tag": "SASP",
+     "tagFrom": "문법"
     },
     {
      "name": "외기 풍량",
@@ -1037,7 +1136,9 @@
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|station|minimum|\\bmin\\b|\\bmax\\b|percent|type|configuration|bad |sensor"
      },
      "concept": "외기-풍량",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "OAFLOW",
+     "tagFrom": "문법"
     },
     {
      "name": "급기 풍량",
@@ -1058,7 +1159,9 @@
       "exclude": "setpoint|sp\\b|min|max|outdoor|outside|return|exhaust|percent"
      },
      "concept": "급기-풍량",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "SAFLOW",
+     "tagFrom": "문법"
     },
     {
      "name": "환기 CO2",
@@ -1077,7 +1180,9 @@
       "exclude": "setpoint|sp\\b|limit|offset|calibrat|bad |sensor error|\\balarm\\b|\\bfault\\b"
      },
      "concept": "환기-co2",
-     "group": "습도·공기질"
+     "group": "습도·공기질",
+     "tag": "RACO2",
+     "tagFrom": "문법"
     },
     {
      "name": "급기온도 설정값",
@@ -1097,7 +1202,9 @@
      },
      "concept": "급기온도-설정값",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "SATEMP-SP",
+     "tagFrom": "문법"
     },
     {
      "name": "급기 정압 설정값",
@@ -1116,7 +1223,9 @@
       "exclude": "current|reset"
      },
      "concept": "급기-정압-설정값",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "SASP-SP",
+     "tagFrom": "문법"
     },
     {
      "name": "급기팬 주파수 지령",
@@ -1136,7 +1245,9 @@
      },
      "concept": "speed-cmd",
      "group": "제어 지령",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. ⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. ⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다.",
+     "tag": "SF-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "환기팬 주파수 지령",
@@ -1156,7 +1267,9 @@
      },
      "concept": "speed-cmd",
      "group": "제어 지령",
-     "matchNote": "⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다."
+     "matchNote": "⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다.",
+     "tag": "RF-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "외기댐퍼 개도",
@@ -1177,7 +1290,9 @@
      "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다",
      "concept": "외기댐퍼-개도",
      "group": "풍량·압력",
-     "matchNote": "2026-09-11(공조기 점검) JCI·YORK 는 외기댐퍼를 'Economizer Damper % Output' 이라 적는다 — 원문 설명이 'Shows the current percentage output for the economizer damper' 로 개도 그대로다. 다만 같은 말로 시작하는 설정 항목이 많아('ECONOMIZER METHOD'·'ECONOMIZER INSTALLED'·'OA DAMPER MIN POSITION') 제외어를 함께 넓혔다. ⚠ 'UNIT STOP'·'SYSTEM STOP' 은 운전/정지 지령에 **안 넣었다** — 원문이 'manually shuts down compressor circuits' 라 압축기 회로 정지다."
+     "matchNote": "2026-09-11(공조기 점검) JCI·YORK 는 외기댐퍼를 'Economizer Damper % Output' 이라 적는다 — 원문 설명이 'Shows the current percentage output for the economizer damper' 로 개도 그대로다. 다만 같은 말로 시작하는 설정 항목이 많아('ECONOMIZER METHOD'·'ECONOMIZER INSTALLED'·'OA DAMPER MIN POSITION') 제외어를 함께 넓혔다. ⚠ 'UNIT STOP'·'SYSTEM STOP' 은 운전/정지 지령에 **안 넣었다** — 원문이 'manually shuts down compressor circuits' 라 압축기 회로 정지다.",
+     "tag": "OADAM-OUT",
+     "tagFrom": "현장"
     },
     {
      "name": "환기댐퍼 개도",
@@ -1196,7 +1311,9 @@
       "exclude": "\\balarm\\b|\\bfault\\b|active alarm"
      },
      "concept": "환기댐퍼-개도",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "RADAM-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "배기댐퍼 개도",
@@ -1216,7 +1333,9 @@
       "exclude": "bypass|bp ?damper|\\balarm\\b|\\bfault\\b|active alarm|ala[a-z]*status|manual"
      },
      "concept": "배기댐퍼-개도",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "EADAM-OUT",
+     "tagFrom": "현장"
     },
     {
      "name": "열회수 지령·상태",
@@ -1237,7 +1356,9 @@
       "exclude": "\\balarm\\b|\\bfault\\b|defrost|frost|hours|trip|year|setpoint|sp\\b|failure|sensor|bypass|preheat|leaving|exhaust temp|motor ?speed"
      },
      "concept": "열회수-지령-상태",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "HRW-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "필터 차압",
@@ -1256,7 +1377,10 @@
      },
      "keepAlarm": true,
      "concept": "filter-dp",
-     "group": "정비"
+     "group": "정비",
+     "tag": "FIL-DP",
+     "tagFrom": "문법",
+     "tagNote": "⚠ 현장 태그 `AHU01-FIL-ALM` 은 **경보 접점(BV)** 이다. 이 행은 아날로그 차압이라 같은 태그를 쓰면 뜻이 어긋난다 — 차압은 FIL-DP 로 두고, 경보 접점은 배선형 프로파일(e5.ahu-ddc)에 따로 세운다. 통신형 공조기는 차압 값을 주고, DDC 배선형은 경보 접점만 준다."
     },
     {
      "name": "동결 방지 경보",
@@ -1275,7 +1399,9 @@
      },
      "keepAlarm": true,
      "concept": "동결-방지-경보",
-     "group": "경보"
+     "group": "경보",
+     "tag": "FZ-ALM",
+     "tagFrom": "문법"
     },
     {
      "name": "운전 모드",
@@ -1298,7 +1424,9 @@
       "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier|setpoint|sp\\b|occupancy|enabled for operation|exits.*mode"
      },
      "concept": "mode",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "MODE",
+     "tagFrom": "문법"
     },
     {
      "name": "외기냉방 모드",
@@ -1319,7 +1447,9 @@
      },
      "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다",
      "concept": "외기냉방-모드",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "ECON-SST",
+     "tagFrom": "문법"
     },
     {
      "name": "냉수밸브 개도",
@@ -1340,7 +1470,9 @@
       "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting"
      },
      "concept": "냉수밸브-개도",
-     "group": "유량·수측"
+     "group": "유량·수측",
+     "tag": "CHV-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "온수밸브 개도",
@@ -1361,7 +1493,9 @@
       "exclude": "type|configuration|identifier|enable|action|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
      },
      "concept": "온수밸브-개도",
-     "group": "유량·수측"
+     "group": "유량·수측",
+     "tag": "HWV-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "압축기 단수 상태",
@@ -1383,7 +1517,9 @@
      },
      "concept": "압축기-단수-상태",
      "group": "상태",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "COMP-STS",
+     "tagFrom": "문법"
     },
     {
      "name": "냉방 지령",
@@ -1404,7 +1540,9 @@
      },
      "concept": "냉방-지령",
      "group": "제어 지령",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "CLG-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "난방 지령",
@@ -1425,7 +1563,9 @@
      },
      "concept": "난방-지령",
      "group": "제어 지령",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "HTG-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "가습 지령",
@@ -1445,7 +1585,9 @@
       "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit|under\\s*floor.*humidity|air humidity bas"
      },
      "concept": "가습-지령",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "HV-SST",
+     "tagFrom": "문법"
     },
     {
      "name": "운전/정지 지령",
@@ -1466,7 +1608,9 @@
       "include": "operating on ?/ ?off|start.?stop.*(cmd|command)|\\bon.?off\\b|unit.*enable|기동.?정지|운전.?정지",
       "exclude": "status|상태|mode|모드|damper|댐퍼"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "SST",
+     "tagFrom": "문법"
     },
     {
      "name": "운전 상태",
@@ -1487,7 +1631,9 @@
       "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b|(?:^|[A-Za-z0-9])(?:unit|system)status\\b",
       "exclude": "odu|comp|압축기|defrost|제상|error|알람|enabl|permissive|control source|\\btime\\b"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다. 2026-09-11(공조기 점검) 벤더 접두어가 붙은 이름을 받는다 — 'nvoUnitStatus'(Trane LonTalk)·'CarelUnitStatus'(Siemens). 앞서 'Econ System Status' 오탐을 막으려 ^ 로 앵커했는데 그러면 접두어형이 통째로 빠진다. 가르는 기준은 앵커가 아니라 **띄어쓰기**다 — 한정어는 띄어져 있고 접두어는 붙어 있다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다. 2026-09-11(공조기 점검) 벤더 접두어가 붙은 이름을 받는다 — 'nvoUnitStatus'(Trane LonTalk)·'CarelUnitStatus'(Siemens). 앞서 'Econ System Status' 오탐을 막으려 ^ 로 앵커했는데 그러면 접두어형이 통째로 빠진다. 가르는 기준은 앵커가 아니라 **띄어쓰기**다 — 한정어는 띄어져 있고 접두어는 붙어 있다.",
+     "tag": "STS",
+     "tagFrom": "문법"
     },
     {
      "name": "고장·경보",
@@ -1509,7 +1655,9 @@
       "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보|\\bA-?alarm\\b",
       "exclude": "code|코드|freeze|동결|filter|필터|odu"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) Swegon 의 최고 등급 경보 요약이 'A-alarm active' 다. 'Active alarm group N' 은 프로파일 공용 제외어(active alarm)에 이미 걸려 안 들어온다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) Swegon 의 최고 등급 경보 요약이 'A-alarm active' 다. 'Active alarm group N' 은 프로파일 공용 제외어(active alarm)에 이미 걸려 안 들어온다.",
+     "tag": "ALM",
+     "tagFrom": "문법"
     },
     {
      "name": "고장 코드",
@@ -1530,7 +1678,9 @@
      "match": {
       "include": "(error|fault|alarm).{0,6}code|고장.?코드|에러.?코드"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "ALM-CODE",
+     "tagFrom": "문법"
     },
     {
      "name": "소비전력",
@@ -1551,7 +1701,9 @@
       "include": "\\bpower\\b(?!.?(factor|supply|up))|소비.?전력|\\bkw\\b",
       "exclude": "factor|supply|kwh|적산|accum"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "KW",
+     "tagFrom": "문법"
     },
     {
      "name": "적산 전력량",
@@ -1572,9 +1724,13 @@
       "include": "\\bkwh\\b|energy.*(total|accum|counter)|적산.?전력",
       "exclude": "reset|리셋"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "KWH",
+     "tagFrom": "문법"
     }
-   ]
+   ],
+   "system": "AHU",
+   "systemNote": "현장 포인트리스트의 SYSTEM 칸에서 실제로 쓰인 말이다 (북광주우체국 납품본: AHU · FAN · FCU · 냉열원 · HWG · EFAN · SUMP · BOOSTER · 지열 …)."
   },
   "e8.vrf": {
    "equipId": "e8",
@@ -2893,7 +3049,9 @@
      "group": "상태"
     }
    ],
-   "coverageNote": "⚠ 카탈로그 모델은 20행 중 **6행**만 덮는다(ebm-papst EC 팬 4모델: 인버터 출력·운전 상태·출력 전류·출력 전력·DC 링크·누적 운전시간). 나머지 14행 — 기동/정지·고장경보·급기/외기/배기 댐퍼 6점·필터 차압·회전수·적산 전력량·모듈 온도·탈취기 — 은 **현장 DDC 가 내주는 점**이고 우리가 가진 팬 모델에는 없다. 이건 템플릿이 틀린 게 아니라 **카탈로그에 일반 팬(모터+인버터+댐퍼 조합) 모델이 없다**는 뜻이다. 현장 최다 설비 368대인데 EC 팬 4모델뿐이라 1순위로 올라와 있는 그 구멍이다."
+   "coverageNote": "⚠ 카탈로그 모델은 20행 중 **6행**만 덮는다(ebm-papst EC 팬 4모델: 인버터 출력·운전 상태·출력 전류·출력 전력·DC 링크·누적 운전시간). 나머지 14행 — 기동/정지·고장경보·급기/외기/배기 댐퍼 6점·필터 차압·회전수·적산 전력량·모듈 온도·탈취기 — 은 **현장 DDC 가 내주는 점**이고 우리가 가진 팬 모델에는 없다. 이건 템플릿이 틀린 게 아니라 **카탈로그에 일반 팬(모터+인버터+댐퍼 조합) 모델이 없다**는 뜻이다. 현장 최다 설비 368대인데 EC 팬 4모델뿐이라 1순위로 올라와 있는 그 구멍이다.",
+   "system": "FAN",
+   "systemNote": "현장 포인트리스트의 SYSTEM 칸에서 실제로 쓰인 말이다 (북광주우체국 납품본: AHU · FAN · FCU · 냉열원 · HWG · EFAN · SUMP · BOOSTER · 지열 …)."
   },
   "e15.vfd": {
    "equipId": "e15",
@@ -3455,7 +3613,9 @@
       "include": "(alarm|fault|error|trip).{0,8}(code|word|no\\b)|고장.?코드"
      }
     }
-   ]
+   ],
+   "system": "FCU",
+   "systemNote": "현장 포인트리스트의 SYSTEM 칸에서 실제로 쓰인 말이다 (북광주우체국 납품본: AHU · FAN · FCU · 냉열원 · HWG · EFAN · SUMP · BOOSTER · 지열 …)."
   },
   "e9.chiller": {
    "equipId": "e9",
@@ -3783,7 +3943,9 @@
       "include": "(alarm|fault|error|trip).{0,8}(code|word|no\\b)|고장.?코드"
      }
     }
-   ]
+   ],
+   "system": "냉열원",
+   "systemNote": "현장 포인트리스트의 SYSTEM 칸에서 실제로 쓰인 말이다 (북광주우체국 납품본: AHU · FAN · FCU · 냉열원 · HWG · EFAN · SUMP · BOOSTER · 지열 …)."
   },
   "e14.pump": {
    "equipId": "e14",
@@ -5210,7 +5372,9 @@
      "concept": "alarm-code",
      "group": "경보"
     }
-   ]
+   ],
+   "system": "HWG",
+   "systemNote": "현장 포인트리스트의 SYSTEM 칸에서 실제로 쓰인 말이다 (북광주우체국 납품본: AHU · FAN · FCU · 냉열원 · HWG · EFAN · SUMP · BOOSTER · 지열 …)."
   },
   "e12.hx": {
    "equipId": "e12",
@@ -5883,7 +6047,9 @@
      },
      "concept": "discharge-temp",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "SATEMP",
+     "tagFrom": "현장"
     },
     {
      "name": "외기온도",
@@ -5905,7 +6071,9 @@
      },
      "concept": "oa-temp",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "OATEMP",
+     "tagFrom": "문법"
     },
     {
      "name": "실내온도",
@@ -5926,7 +6094,9 @@
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|offset|sensor error|failure|override|limit|unocc|setpt|dew|humid|source"
      },
      "concept": "zone-temp",
-     "group": "온도"
+     "group": "온도",
+     "tag": "ZNTEMP",
+     "tagFrom": "문법"
     },
     {
      "name": "배기 온도",
@@ -5948,7 +6118,9 @@
      "concept": "배기-온도",
      "group": "온도",
      "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
-     "appliesWhen": "전열교환기가 달린 외조기에만. 배기 덕트가 없으면 없다"
+     "appliesWhen": "전열교환기가 달린 외조기에만. 배기 덕트가 없으면 없다",
+     "tag": "EATEMP",
+     "tagFrom": "문법"
     },
     {
      "name": "급기습도",
@@ -5967,7 +6139,9 @@
       "exclude": "setpoint|sp\\b|abs|temperature|\\btemp\\b"
      },
      "concept": "급기습도",
-     "group": "습도·공기질"
+     "group": "습도·공기질",
+     "tag": "SAHUMT",
+     "tagFrom": "현장"
     },
     {
      "name": "외기 엔탈피",
@@ -5988,7 +6162,9 @@
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|switch|changeover|type|configuration|diff"
      },
      "concept": "외기-엔탈피",
-     "group": "습도·공기질"
+     "group": "습도·공기질",
+     "tag": "OAENT",
+     "tagFrom": "문법"
     },
     {
      "name": "급기 정압",
@@ -6008,7 +6184,9 @@
      },
      "concept": "급기-정압",
      "group": "풍량·압력",
-     "matchNote": "2026-09-11(공조기 점검) Swegon 은 'SA Duct pressure' 라 적는다 — 'static' 이 없고 supply 대신 SA 다. 다만 같은 말로 시작하는 설정·보정 항목이 33개(auto zero calibration·regulator·I-time·compensation) 있어 제외어를 함께 넓혔다."
+     "matchNote": "2026-09-11(공조기 점검) Swegon 은 'SA Duct pressure' 라 적는다 — 'static' 이 없고 supply 대신 SA 다. 다만 같은 말로 시작하는 설정·보정 항목이 33개(auto zero calibration·regulator·I-time·compensation) 있어 제외어를 함께 넓혔다.",
+     "tag": "SASP",
+     "tagFrom": "문법"
     },
     {
      "name": "외기 풍량",
@@ -6028,7 +6206,9 @@
       "exclude": "setpoint|sp\\b|\\balarm\\b|\\bfault\\b|station|minimum|\\bmin\\b|\\bmax\\b|percent|type|configuration|bad |sensor"
      },
      "concept": "외기-풍량",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "OAFLOW",
+     "tagFrom": "문법"
     },
     {
      "name": "급기 풍량",
@@ -6049,7 +6229,9 @@
       "exclude": "setpoint|sp\\b|min|max|outdoor|outside|return|exhaust|percent"
      },
      "concept": "급기-풍량",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "SAFLOW",
+     "tagFrom": "문법"
     },
     {
      "name": "급기온도 설정값",
@@ -6069,7 +6251,9 @@
      },
      "concept": "급기온도-설정값",
      "group": "온도",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "SATEMP-SP",
+     "tagFrom": "문법"
     },
     {
      "name": "급기 정압 설정값",
@@ -6088,7 +6272,9 @@
       "exclude": "current|reset"
      },
      "concept": "급기-정압-설정값",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "SASP-SP",
+     "tagFrom": "문법"
     },
     {
      "name": "급기팬 주파수 지령",
@@ -6109,7 +6295,9 @@
      "concept": "speed-cmd",
      "group": "제어 지령",
      "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. ⚠ 축약형 `fan speed` 를 받자 응축팬(COND FAN SPEED)까지 삼켰다 — 위치 낱말로 막는다.",
-     "exposure": "현장 0 — OHU 는 대개 정풍량 on/off 다"
+     "exposure": "현장 0 — OHU 는 대개 정풍량 on/off 다",
+     "tag": "SF-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "외기댐퍼 개도",
@@ -6130,7 +6318,9 @@
      "exposure": "exclude 에 bypass 를 넣었다. Trane 5모델이 nvoEROABPDamper(열회수 외기 바이패스 댐퍼)를 외기댐퍼로 확정 표시하고 있었다 — 실제 값은 nvoOADamper(Outdoor Air Damper Position)다",
      "concept": "외기댐퍼-개도",
      "group": "풍량·압력",
-     "matchNote": "2026-09-11(공조기 점검) JCI·YORK 는 외기댐퍼를 'Economizer Damper % Output' 이라 적는다 — 원문 설명이 'Shows the current percentage output for the economizer damper' 로 개도 그대로다. 다만 같은 말로 시작하는 설정 항목이 많아('ECONOMIZER METHOD'·'ECONOMIZER INSTALLED'·'OA DAMPER MIN POSITION') 제외어를 함께 넓혔다. ⚠ 'UNIT STOP'·'SYSTEM STOP' 은 운전/정지 지령에 **안 넣었다** — 원문이 'manually shuts down compressor circuits' 라 압축기 회로 정지다."
+     "matchNote": "2026-09-11(공조기 점검) JCI·YORK 는 외기댐퍼를 'Economizer Damper % Output' 이라 적는다 — 원문 설명이 'Shows the current percentage output for the economizer damper' 로 개도 그대로다. 다만 같은 말로 시작하는 설정 항목이 많아('ECONOMIZER METHOD'·'ECONOMIZER INSTALLED'·'OA DAMPER MIN POSITION') 제외어를 함께 넓혔다. ⚠ 'UNIT STOP'·'SYSTEM STOP' 은 운전/정지 지령에 **안 넣었다** — 원문이 'manually shuts down compressor circuits' 라 압축기 회로 정지다.",
+     "tag": "OADAM-OUT",
+     "tagFrom": "현장"
     },
     {
      "name": "배기댐퍼 개도",
@@ -6151,7 +6341,9 @@
      },
      "concept": "배기댐퍼-개도",
      "group": "풍량·압력",
-     "appliesWhen": "전열교환기가 달린 외조기에만"
+     "appliesWhen": "전열교환기가 달린 외조기에만",
+     "tag": "EADAM-OUT",
+     "tagFrom": "현장"
     },
     {
      "name": "열회수 지령·상태",
@@ -6172,7 +6364,9 @@
       "exclude": "\\balarm\\b|\\bfault\\b|defrost|frost|hours|trip|year|setpoint|sp\\b|failure|sensor|bypass|preheat|leaving|exhaust temp|motor ?speed"
      },
      "concept": "열회수-지령-상태",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "HRW-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "필터 차압",
@@ -6191,7 +6385,10 @@
      },
      "keepAlarm": true,
      "concept": "filter-dp",
-     "group": "정비"
+     "group": "정비",
+     "tag": "FIL-DP",
+     "tagFrom": "문법",
+     "tagNote": "⚠ 현장 태그 `AHU01-FIL-ALM` 은 **경보 접점(BV)** 이다. 이 행은 아날로그 차압이라 같은 태그를 쓰면 뜻이 어긋난다 — 차압은 FIL-DP 로 두고, 경보 접점은 배선형 프로파일(e5.ahu-ddc)에 따로 세운다. 통신형 공조기는 차압 값을 주고, DDC 배선형은 경보 접점만 준다."
     },
     {
      "name": "동결 방지 경보",
@@ -6210,7 +6407,9 @@
      },
      "keepAlarm": true,
      "concept": "동결-방지-경보",
-     "group": "경보"
+     "group": "경보",
+     "tag": "FZ-ALM",
+     "tagFrom": "문법"
     },
     {
      "name": "운전 모드",
@@ -6233,7 +6432,9 @@
       "exclude": "\\balarm\\b|problem|\\bfault\\b|type|configuration|identifier|setpoint|sp\\b|occupancy|enabled for operation|exits.*mode"
      },
      "concept": "mode",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "MODE",
+     "tagFrom": "문법"
     },
     {
      "name": "외기냉방 모드",
@@ -6254,7 +6455,9 @@
      },
      "exposure": "exclude 에 setpoint 를 넣었다. Trane nciOAEnthSP(Economizer Outdoor Air Enthalpy Enable Setpoint)가 모드로 잡히고 있었다 — 실제 값은 nviEconEnable(Economizer Enable BAS)다",
      "concept": "외기냉방-모드",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "ECON-SST",
+     "tagFrom": "문법"
     },
     {
      "name": "냉수밸브 개도",
@@ -6275,7 +6478,9 @@
       "exclude": "type|configuration|identifier|enable|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting"
      },
      "concept": "냉수밸브-개도",
-     "group": "유량·수측"
+     "group": "유량·수측",
+     "tag": "CHV-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "온수밸브 개도",
@@ -6296,7 +6501,9 @@
       "exclude": "type|configuration|identifier|enable|action|setpoint|sp\\b|active alarm|ala[a-z]*status|bad |sensor error|reheat|hot gas|rev acting|gas|heat exchanger"
      },
      "concept": "온수밸브-개도",
-     "group": "유량·수측"
+     "group": "유량·수측",
+     "tag": "HWV-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "압축기 단수 상태",
@@ -6318,7 +6525,9 @@
      },
      "concept": "압축기-단수-상태",
      "group": "상태",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "COMP-STS",
+     "tagFrom": "문법"
     },
     {
      "name": "냉방 지령",
@@ -6339,7 +6548,9 @@
      },
      "concept": "냉방-지령",
      "group": "제어 지령",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "CLG-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "난방 지령",
@@ -6360,7 +6571,9 @@
      },
      "concept": "난방-지령",
      "group": "제어 지령",
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "HTG-OUT",
+     "tagFrom": "문법"
     },
     {
      "name": "가습 지령",
@@ -6380,7 +6593,9 @@
       "exclude": "setpoint|sp\\b|dehumid|\\balarm\\b|\\bfault\\b|active alarm|limit|under\\s*floor.*humidity|air humidity bas"
      },
      "concept": "가습-지령",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "HV-SST",
+     "tagFrom": "문법"
     },
     {
      "name": "운전/정지 지령",
@@ -6401,7 +6616,9 @@
       "include": "operating on ?/ ?off|start.?stop.*(cmd|command)|\\bon.?off\\b|unit.*enable|기동.?정지|운전.?정지",
       "exclude": "status|상태|mode|모드|damper|댐퍼"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "SST",
+     "tagFrom": "문법"
     },
     {
      "name": "운전 상태",
@@ -6422,7 +6639,9 @@
       "include": "^operation status|unit.*run.*(status|state)|\\brun status|운전.?상태|^(?:unit|system)\\s*(?:run(?:ning)?\\s*|operat\\w*\\s*)?(?:status|state)\\b|(?:^|[A-Za-z0-9])(?:unit|system)status\\b",
       "exclude": "odu|comp|압축기|defrost|제상|error|알람|enabl|permissive|control source|\\btime\\b"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다. 2026-09-11(공조기 점검) 벤더 접두어가 붙은 이름을 받는다 — 'nvoUnitStatus'(Trane LonTalk)·'CarelUnitStatus'(Siemens). 앞서 'Econ System Status' 오탐을 막으려 ^ 로 앵커했는데 그러면 접두어형이 통째로 빠진다. 가르는 기준은 앵커가 아니라 **띄어쓰기**다 — 한정어는 띄어져 있고 접두어는 붙어 있다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11 벤더 표기를 넓혔다 — 룰에 문서 하나의 표기가 박혀 있었다. e5 계열은 unit.*run.*status 라 'unit' 과 'status' 사이에 'run' 을 요구해서 YORK·JCI 의 'Unit Status' 를 놓쳤고(0/23), e7 은 operat\\w*.?status 라 Vertiv 의 'Unit Operating State' 를 놓쳤다(0/19). 부품 상태('Fan State'·'Compressor State'·'Dehumidifier State')는 일부러 안 넣었다 — 원문에 그쪽이 더 자주 나와서 넣으면 장비 상태 자리를 빼앗는다. 그런데 그렇게 넓혔더니 'Econ System Status'(경제기 계통, 10판)와 'Heating System Status'(난방 계통, 2판)까지 집었다. 계통 이름이 앞에 붙은 것은 그 계통의 상태이지 장비 한 대의 상태가 아니다 — unit·system 이 이름 맨 앞에 오도록 좁혔다. 반대 방향으로도 한 번 좁혔다 — `^run(ning)?\\b` 가 `Run Enabled`·`Run/Stop Control Source`·`Run Time Since Last Start` 를 집고 있었다. 허가·지령·시간은 상태가 아니다. 허가가 켜져 있어도 안 돌 수 있으므로 틀린 매핑은 빈 칸보다 나쁘다. 2026-09-11(공조기 점검) 벤더 접두어가 붙은 이름을 받는다 — 'nvoUnitStatus'(Trane LonTalk)·'CarelUnitStatus'(Siemens). 앞서 'Econ System Status' 오탐을 막으려 ^ 로 앵커했는데 그러면 접두어형이 통째로 빠진다. 가르는 기준은 앵커가 아니라 **띄어쓰기**다 — 한정어는 띄어져 있고 접두어는 붙어 있다.",
+     "tag": "STS",
+     "tagFrom": "문법"
     },
     {
      "name": "고장·경보",
@@ -6444,7 +6663,9 @@
       "include": "^error status|unit.*(alarm|fault)|general.*(alarm|fault)|고장|경보|\\bA-?alarm\\b",
       "exclude": "code|코드|freeze|동결|filter|필터|odu"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) Swegon 의 최고 등급 경보 요약이 'A-alarm active' 다. 'Active alarm group N' 은 프로파일 공용 제외어(active alarm)에 이미 걸려 안 들어온다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다. 2026-09-11(공조기 점검) Swegon 의 최고 등급 경보 요약이 'A-alarm active' 다. 'Active alarm group N' 은 프로파일 공용 제외어(active alarm)에 이미 걸려 안 들어온다.",
+     "tag": "ALM",
+     "tagFrom": "문법"
     },
     {
      "name": "고장 코드",
@@ -6465,7 +6686,9 @@
      "match": {
       "include": "(error|fault|alarm).{0,6}code|고장.?코드|에러.?코드"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "ALM-CODE",
+     "tagFrom": "문법"
     },
     {
      "name": "소비전력",
@@ -6486,7 +6709,9 @@
       "include": "\\bpower\\b(?!.?(factor|supply|up))|소비.?전력|\\bkw\\b",
       "exclude": "factor|supply|kwh|적산|accum"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "KW",
+     "tagFrom": "문법"
     },
     {
      "name": "적산 전력량",
@@ -6507,7 +6732,9 @@
       "include": "\\bkwh\\b|energy.*(total|accum|counter)|적산.?전력",
       "exclude": "reset|리셋"
      },
-     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다."
+     "matchNote": "LG AHU 통신킷(0CAA0-02M)이 28점 중 2점만 붙어 드러났다 — 원문 표기가 축약형(`SA Temp.`·`Fan Speed`)이라 긴 영문 기준 정규식에 안 걸렸다. 축약형을 함께 받는다.",
+     "tag": "KWH",
+     "tagFrom": "문법"
     },
     {
      "name": "전기히터 기동/정지 지령",
@@ -6527,7 +6754,9 @@
       "exclude": "status|상태|alarm|경보|밸브|valve"
      },
      "concept": "run-cmd",
-     "group": "제어 지령"
+     "group": "제어 지령",
+     "tag": "EH-SST",
+     "tagFrom": "현장"
     },
     {
      "name": "전기히터 상태",
@@ -6547,7 +6776,9 @@
       "exclude": "command|cmd|지령|alarm|경보"
      },
      "concept": "run-status",
-     "group": "상태"
+     "group": "상태",
+     "tag": "EH-STS",
+     "tagFrom": "현장"
     },
     {
      "name": "연감지기 경보",
@@ -6565,7 +6796,9 @@
       "exclude": "setpoint|설정|고장|fault"
      },
      "concept": "smoke-alarm",
-     "group": "경보"
+     "group": "경보",
+     "tag": "SD-ALM",
+     "tagFrom": "현장"
     },
     {
      "name": "외기댐퍼 열림/닫힘 지령",
@@ -6585,7 +6818,9 @@
       "exclude": "status|상태|position|개도|%|배기|exhaust"
      },
      "concept": "외기-댐퍼-열림-닫힘-지령",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "OADAM-SST",
+     "tagFrom": "문법"
     },
     {
      "name": "외기댐퍼 열림 상태",
@@ -6605,7 +6840,401 @@
       "exclude": "command|cmd|지령|position|개도|배기|exhaust"
      },
      "concept": "외기-댐퍼-열림-상태",
-     "group": "풍량·압력"
+     "group": "풍량·압력",
+     "tag": "OADAM-STS",
+     "tagFrom": "문법"
+    }
+   ],
+   "system": "AHU",
+   "systemNote": "현장 포인트리스트의 SYSTEM 칸에서 실제로 쓰인 말이다 (북광주우체국 납품본: AHU · FAN · FCU · 냉열원 · HWG · EFAN · SUMP · BOOSTER · 지열 …)."
+  },
+  "e5.ahu-ddc": {
+   "equipId": "e5",
+   "title": "공조기 — DDC 배선형 (현장 납품본)",
+   "system": "AHU",
+   "basis": "실제 납품본 전수다. docs/북광주우체국_POINTLIST_200411 FP-1 시트 SYSTEM='AHU' 19점과 docs/실제 화면 캡쳐/7.png 의 장비맵 [559] AHU01 오브젝트 19점이 **같은 19점**이고 태그·종류·채널번호까지 일치한다. 짐작한 행이 하나도 없다.",
+   "coverageNote": "e5.ahu(37행)는 **통신형** 기준이다. 배선형은 주파수 지령·정압·엔탈피·소비전력이 없고, 대신 팬마다 상태·기동정지가 따로 있고 연기감지기·필터경보·동파히팅이 있다. 같은 공조기라도 두 세계라 섞지 않았다.",
+   "excludeCommon": "",
+   "templatePoints": [
+    {
+     "name": "급기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "급기-환기 온도차 × 풍량 = 코일 부하. 없으면 냉방·난방 항을 못 돌린다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "SATEMP|급기.?온도",
+      "exclude": ""
+     },
+     "concept": "discharge-temp",
+     "group": "온도",
+     "tag": "SATEMP",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "환기온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "온도차의 한쪽. 실내 상태의 대표값이기도 하다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "RATEMP|환기.?온도",
+      "exclude": ""
+     },
+     "concept": "return-temp",
+     "group": "온도",
+     "tag": "RATEMP",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "혼합온도",
+     "objectType": "AI",
+     "unit": "℃",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "외기·환기가 섞인 뒤 온도. 외기 도입률을 여기서 역산한다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "MATEMP|혼합.?온도",
+      "exclude": ""
+     },
+     "concept": "혼합공기온도",
+     "group": "온도",
+     "tag": "MATEMP",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "급기습도",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "가습·제습 부하. 잠열 항이 없으면 전열량을 못 낸다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "SAHUMT|급기.?습도",
+      "exclude": ""
+     },
+     "concept": "급기습도",
+     "group": "습도·공기질",
+     "tag": "SAHUMT",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "환기습도",
+     "objectType": "AI",
+     "unit": "%",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "실내 습도의 대표값",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "RAHUMT|환기.?습도",
+      "exclude": ""
+     },
+     "concept": "환기습도",
+     "group": "습도·공기질",
+     "tag": "RAHUMT",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "CO 농도",
+     "objectType": "AI",
+     "unit": "ppm",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "Haystack 에 co proto 가 있으나 공조기 급기측 CO 는 proto 로 안 온다. 현장 AHU01-CO 실측",
+     "why": "주차장·연소 계통의 환기 제어 입력. 법정 관리 항목이다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "\\bCO\\b(?!2)|일산화탄소",
+      "exclude": ""
+     },
+     "concept": "co-conc",
+     "group": "습도·공기질",
+     "tag": "CO",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "냉난방밸브 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "2관식이라 냉수·온수가 **한 밸브**다. Haystack 은 코일별로 나눠 보아 이 모양이 없다. 현장 AHU01-CSV-OUT 실측",
+     "why": "2관식이라 냉수·온수가 한 밸브다. 이 개도가 곧 코일 열량이다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "CSV|냉난방.?밸브",
+      "exclude": ""
+     },
+     "concept": "cool-heat-valve",
+     "group": "유량·수측",
+     "tag": "CSV-OUT",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "외기댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "외기 도입률. 외기 부하의 첫 항이다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "OADAM|외기.?댐퍼",
+      "exclude": ""
+     },
+     "concept": "외기댐퍼-개도",
+     "group": "풍량·압력",
+     "tag": "OADAM-OUT",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "배기댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "배기량. 실내 압력 균형을 본다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "EADAM|배기.?댐퍼",
+      "exclude": ""
+     },
+     "concept": "배기댐퍼-개도",
+     "group": "풍량·압력",
+     "tag": "EADAM-OUT",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "혼합댐퍼 개도",
+     "objectType": "AO",
+     "unit": "%",
+     "role": "cmd",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 AHU01-MADAM-OUT 실측",
+     "why": "환기 재순환 비율. 외기댐퍼와 짝으로 움직인다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "MADAM|혼합.?댐퍼",
+      "exclude": ""
+     },
+     "concept": "mix-damper",
+     "group": "풍량·압력",
+     "tag": "MADAM-OUT",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "급기휀 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "실제로 돌았는지. 팬이 서면 그 시간의 계산이 통째로 무의미하다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "SF.?STS|급기.?휀.?상태|급기팬.?상태",
+      "exclude": ""
+     },
+     "concept": "run-status",
+     "group": "상태",
+     "tag": "SF-STS",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "환기휀 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "환기팬 운전 시간",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "RF.?STS|환기.?휀.?상태|환기팬.?상태",
+      "exclude": ""
+     },
+     "concept": "run-status",
+     "group": "상태",
+     "tag": "RF-STS",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "연기감지기 경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "급기 정지 인터록의 입력. 이게 뜨면 팬이 서므로 그 구간을 빼야 한다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "SD.?ALM|연기?.?감지",
+      "exclude": ""
+     },
+     "concept": "smoke-alarm",
+     "group": "경보",
+     "tag": "SD-ALM",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "필터경보",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "표준 proto 없음. 현장 AHU01-FIL-ALM(BI 접점) 실측 — 우리 '필터 차압'(아날로그)과 다른 점이다",
+     "why": "필터 교체 시점. 배선형은 차압 값 없이 **경보 접점만** 온다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "FIL.?ALM|필터.?경보",
+      "exclude": ""
+     },
+     "concept": "filter-alarm",
+     "group": "경보",
+     "tag": "FIL-ALM",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "동파방지 히팅코일 상태",
+     "objectType": "BI",
+     "unit": "—",
+     "role": "sensor",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "전기히터 운전 시간. 겨울철 전력의 큰 몫이다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "EH.?STS|히팅코일.?상태|전기히터.?상태",
+      "exclude": ""
+     },
+     "concept": "run-status",
+     "group": "상태",
+     "tag": "EH-STS",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "급기휀 기동/정지",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "필수",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "공조기를 돌리고 세우는 지령. 배선형은 **팬마다** 따로다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "SF.?SST|급기.?휀.?기동|급기팬.?기동",
+      "exclude": ""
+     },
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "tag": "SF-SST",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "환기휀 기동/정지",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "환기팬 지령",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "RF.?SST|환기.?휀.?기동|환기팬.?기동",
+      "exclude": ""
+     },
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "tag": "RF-SST",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "동파방지 히팅코일 기동/정지",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "권장",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "동파 방지 가열. 외기온도와 묶어 봐야 한다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "EH.?SST|히팅코일.?기동|전기히터.?기동",
+      "exclude": ""
+     },
+     "concept": "run-cmd",
+     "group": "제어 지령",
+     "tag": "EH-SST",
+     "tagFrom": "현장"
+    },
+    {
+     "name": "가습밸브 기동/정지",
+     "objectType": "BO",
+     "unit": "—",
+     "role": "cmd",
+     "grade": "선택",
+     "haystack": null,
+     "handMade": "현장 납품본 19점에서 직접 읽었다 — 배선형은 표준 proto 축과 다르다",
+     "why": "가습 on/off. 배선형은 비례 제어가 아니라 접점이다",
+     "usedBy": [],
+     "exposure": "현장 1대 전수 (북광주우체국 AHU01)",
+     "match": {
+      "include": "HV.?SST|가습.?밸브",
+      "exclude": ""
+     },
+     "concept": "가습-지령",
+     "group": "제어 지령",
+     "tag": "HV-SST",
+     "tagFrom": "현장"
     }
    ]
   }

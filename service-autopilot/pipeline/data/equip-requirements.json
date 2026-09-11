@@ -2249,6 +2249,119 @@
      ]
     }
    ]
+  },
+  "e5.ahu-ddc": {
+   "equipId": "e5",
+   "title": "공조기 (AHU) — DDC 배선형",
+   "match": {
+    "catPrefix": [
+     "HVAC.AIR.AHU.DDC"
+    ]
+   },
+   "matchNote": "2026-09-11 신설. **모델은 앞으로도 0건일 가능성이 크다** — DDC 에 직접 배선하는 공조기는 통신 문서가 아예 없다. 그래도 템플릿은 값을 한다: 이게 시운전 현장이 실제로 받는 목록이다.",
+   "energyModel": {
+    "cooling": "냉방 코일 부하 = 풍량 × 엔탈피차 (냉수 유량 제어)",
+    "heating": "난방 코일 부하 = 풍량 × 비열 × 온도차",
+    "fan": "팬 전력 = 풍량 × 정압 ÷ 팬효율 (인버터 비례제어)"
+   },
+   "items": [
+    {
+     "id": "coolingCapacity",
+     "name": "정격 냉방능력",
+     "unit": "kW 또는 kcal/h",
+     "grade": "필수",
+     "usedBy": [
+      "cooling"
+     ],
+     "why": "코일 용량 기준",
+     "features": [
+      "grossCoolingCapacity"
+     ],
+     "sourceHint": "카탈로그 코일 사양표",
+     "searchTerms": [
+      "냉방능력",
+      "cooling capacity",
+      "total capacity"
+     ]
+    },
+    {
+     "id": "heatingCapacity",
+     "name": "정격 난방능력",
+     "unit": "kW 또는 kcal/h",
+     "grade": "필수",
+     "usedBy": [
+      "heating"
+     ],
+     "why": "겨울철 난방 부하 기준",
+     "features": [
+      "heatingCapacity"
+     ],
+     "sourceHint": "카탈로그 코일 사양표",
+     "searchTerms": [
+      "난방능력",
+      "heating capacity"
+     ]
+    },
+    {
+     "id": "supplyAirflow",
+     "name": "정격 급기 풍량",
+     "unit": "CMM 또는 CMH",
+     "grade": "필수",
+     "usedBy": [
+      "fan",
+      "cooling",
+      "heating"
+     ],
+     "why": "팬 동력 및 코일 열교환량 계산",
+     "features": [
+      "ratedAirflow"
+     ],
+     "sourceHint": "송풍기 사양표",
+     "searchTerms": [
+      "풍량",
+      "airflow",
+      "air volume"
+     ]
+    },
+    {
+     "id": "fanMotorPower",
+     "name": "팬 모터 동력",
+     "unit": "kW",
+     "grade": "필수",
+     "usedBy": [
+      "fan"
+     ],
+     "why": "팬 소비전력 한계치 및 인버터 제어 기준",
+     "features": [
+      "fanMotorHp"
+     ],
+     "sourceHint": "송풍기 사양표",
+     "searchTerms": [
+      "모터",
+      "전동기",
+      "motor",
+      "power"
+     ]
+    },
+    {
+     "id": "chilledWaterFlow",
+     "name": "냉수 유량",
+     "unit": "LPM 또는 m³/h",
+     "grade": "권장",
+     "usedBy": [
+      "cooling"
+     ],
+     "why": "냉수 밸브 제어 및 펌프 동력 연계",
+     "features": [],
+     "sourceHint": "코일 수배관 사양표",
+     "searchTerms": [
+      "수량",
+      "유량",
+      "water flow",
+      "flow rate"
+     ]
+    }
+   ]
   }
  }
 }

@@ -128,6 +128,46 @@ def report(detail=False):
     print("  '검수 내려받기' → python mappings.py --import <파일>")
 
 
+def do_mark(ids, why):
+    """모델 통째로 '사람이 대조함' 도장 — 화면 밖에서 이미 대조를 끝낸 것에 쓴다.
+
+    ⚠ 근거(why)를 반드시 남긴다. 누가 무슨 근거로 찍었는지 없으면 그 기록 자체가
+      지어낸 것이 된다(규칙 1). 화면에서 찍은 것과 구분되게 'by' 를 함께 적는다.
+    """
+    today = datetime.date.today().isoformat()
+    M = models()
+    doc = load_store()
+    store = doc.setdefault("검수", collections.OrderedDict())
+    n = 0
+    for mid in ids:
+        m = M.get(mid)
+        if not m:
+            print("  ? 모델이 없다: %s" % mid)
+            continue
+        mrec = store.setdefault(mid, collections.OrderedDict())
+        pairs = []
+        for i in m.get("interfaces") or []:
+            for pt in i.get("points") or []:
+                pairs.append((i["id"], (pt.get("common") or {}).get("name") or ""))
+        for pt in m.get("points") or []:
+            pairs.append(("legacy", pt.get("name") or ""))
+        for iface, nm in pairs:
+            if not nm:
+                continue
+            irec = mrec.setdefault(iface, collections.OrderedDict())
+            if nm in irec:
+                irec[nm]["최근확인"] = today
+                continue
+            irec[nm] = collections.OrderedDict([
+                ("번호", ""), ("쪽", ""), ("PDF쪽", ""),
+                ("첫확인", today), ("최근확인", today), ("근거", why)])
+            n += 1
+        print("  ✓ %-52s %d점" % (mid[:52], len(pairs)))
+    save_store(doc)
+    print("도장 %d점 — 근거: %s" % (n, why))
+    print()
+
+
 def do_import(path):
     src = json.load(io.open(path, encoding="utf-8"))
     got = src.get("검수") or {}
@@ -164,7 +204,15 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--import", dest="imp", metavar="파일")
     ap.add_argument("--models", action="store_true", help="모델별로 자세히")
+    ap.add_argument("--mark", nargs="+", metavar="모델id",
+                    help="모델 통째로 '사람이 대조함' 도장 (--why 와 함께)")
+    ap.add_argument("--why", default="", metavar="근거",
+                    help="왜 대조된 것으로 보는가 — 반드시 적는다")
     a = ap.parse_args(argv)
+    if a.mark:
+        if not a.why:
+            raise SystemExit("--why 로 근거를 적어라. 근거 없는 도장은 지어낸 기록이다.")
+        do_mark(a.mark, a.why)
     if a.imp:
         do_import(a.imp)
     report(a.models)

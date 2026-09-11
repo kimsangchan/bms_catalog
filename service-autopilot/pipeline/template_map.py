@@ -119,6 +119,12 @@ th.pid .e{display:block;color:var(--faint);font-size:9px}
 .g.r{color:var(--accent);border-color:var(--accent)}
 .g.o{color:var(--faint)}
 .g.w{color:var(--warn);border-color:var(--warn);margin-left:5px}
+/* 문법으로 만든 태그는 흐리게 — 현장에서 확인한 것과 눈으로 갈려야 한다 */
+td.mono.guess{color:var(--faint)}
+/* 이름 칸의 ⟨설비⟩_ 접두는 현장에서 붙는 부분이라 흐리게 — 우리가 아는 건 뒤쪽뿐이다 */
+td.nmfull .pre{color:var(--faint)}
+th.c,td.c{text-align:center}
+td.mono.guess .nm{color:var(--warn)}
 
 /* 페이저 — 표 바로 밑. 한 화면에 25행이면 스크롤이 거의 없다 */
 .vall{font-size:11.5px;color:var(--dim);display:inline-flex;align-items:center;gap:4px;
@@ -279,7 +285,11 @@ function rowRows(){
 /* 이 화면은 **대조가 끝난 것**을 보는 곳이다. 아직 안 된 모델은 기본에서 빼고
    point-verify.html(대조 대기열)로 보낸다 — 섞으면 무엇이 믿을 만한지 알 수 없다.
    지우지는 않는다. '미대조 포함' 을 켜면 다 나온다. */
-var VOK={human:1,sample:1,machine:1};
+/* ⚠ **사람이 직접 대조한 것만** 이 화면에 반영한다.
+   전에는 기계 교차 대조(crosscheck)도 '대조됨' 으로 쳤는데, 그건 사람이 확인한 게
+   아니라 기계가 두 번 읽어 같은 답이 나왔다는 뜻일 뿐이다. 그걸 대조라고 부르면
+   이 화면의 숫자가 부정확해진다 — 확인 안 한 것을 확인했다고 말하는 셈이다. */
+var VOK={human:1};
 function vmodels(p){
   var out=[];
   p.models.forEach(function(m,i){
@@ -290,8 +300,16 @@ function vmodels(p){
   return out;
 }
 function vlabel(g){
-  return g==='human'?'사람 대조':g==='sample'?'표본 확인':
-         g==='machine'?'기계 대조':g==='weak'?'대조 약함':'미대조';
+  /* 부르는 말을 둘로만 둔다 — 사람이 봤나, 아직 안 봤나. 기계가 한 것을
+     '대조' 라고 부르지 않는다. */
+  return g==='human' ? '대조함' : '아직 안 봄';
+}
+/* 채널번호 — 종류별로 1부터. 태그가 없는 행은 배선 자리를 안 차지하므로 세지 않는다. */
+function chNo(ch,t,tag){
+  if(!tag) return '—';
+  var k=String(t||'').split('/')[0];
+  ch[k]=(ch[k]||0)+1;
+  return ch[k];
 }
 function drawRows(){
   var p=D.profiles[curProfile()];
@@ -302,16 +320,37 @@ function drawRows(){
     return;
   }
   var rows=rowRows(), page=slice(rows);
-  var h='<div class=tw><table><thead><tr><th>묶음</th><th>개념</th><th>종류</th><th>단위</th>'
-    +'<th>등급</th><th title="고른 모델·판의 원문에서 이 행에 대응한 이름">'
-    +'모델 원문 표기</th></tr></thead><tbody>';
+  var hasTag=rows.some(function(x){return x.r.tag;});
+  /* ControlCity PLUS '시스템 구성기 - 오브젝트 목록모드' 와 같은 열 구성.
+     시운전 담당자가 매일 보는 화면이 그것이라, 우리가 다른 모양이면 두 번 배워야 한다. */
+  var ch={};  /* 채널번호는 **종류별로 1부터** — 실제 화면이 AI 1~6 · AO 1~4 · BI 1~5 다 */
+  var h='<div class=tw><table><thead><tr>'
+    +(hasTag?'<th class="c" title="행 차례">속성번호</th>'
+      +'<th title="현장 포인트리스트의 POINT 칸 — 설비코드는 현장에서 붙는다">속성 이름</th>':'')
+    +'<th class="c">종류</th>'
+    +(hasTag?'<th class="c" title="종류별로 1부터 다시 센다">채널번호</th>'
+      +'<th title="&lt;설비코드&gt;_&lt;속성 이름&gt;. 설비코드는 현장 것이라 ⟨설비⟩ 로 둔다">이름</th>':'')
+    +'<th>설명</th>'
+    +(hasTag?'<th title="양식의 신호 칸">신호</th>':'<th>단위</th>')
+    +'<th class="c">등급</th>'
+    +'<th title="고른 모델·판의 원문에서 이 행에 대응한 이름">모델 원문 표기</th>'
+    +'</tr></thead><tbody>';
   page.forEach(function(x,i){
     var r=x.r,g=x.g;
     h+='<tr data-i="'+i+'"'+(S.sel===r.name?' class="sel"':'')+'>'
-      +'<td class="grp">'+esc(r.group)+'</td>'
-      +'<td class="k">'+esc(r.name)+'</td><td class="mono">'+esc(r.objectType)+'</td>'
-      +'<td class="mono">'+esc(r.unit)+'</td>'
-      +'<td><span class="g '+gcls(r.grade)+'">'+esc(r.grade)+'</span></td>'
+      +(hasTag?'<td class="c mono">'+(S.page*(S.size==='all'?rows.length:+S.size)+i+1)+'</td>'
+        +'<td class="mono'+(r.tagFrom==='문법'?' guess':'')+'" title="'
+        +esc(r.tagFrom==='문법'?'문법으로 만든 것 — 현장에서 본 적 없다':'현장 납품본에서 본 태그')
+        +(r.tagNote?' / '+esc(r.tagNote):'')+'">'+esc(r.tag||'—')
+        +(r.tagFrom==='문법'?'<span class="nm">?</span>':'')+'</td>':'')
+      +'<td class="c mono">'+esc(r.objectType)+'</td>'
+      +(hasTag?'<td class="c mono">'+chNo(ch,r.objectType,r.tag)+'</td>'
+        +'<td class="mono nmfull">'+(r.tag?'<span class="pre">⟨설비⟩_</span>'+esc(r.tag):'—')
+        +'</td>':'')
+      +'<td class="k">'+esc(r.name)+'</td>'
+      +(hasTag?'<td class="mono">'+esc(r.formSignal||'—')+'</td>'
+              :'<td class="mono">'+esc(r.unit)+'</td>')
+      +'<td class="c"><span class="g '+gcls(r.grade)+'">'+esc(r.grade)+'</span></td>'
       +(g&&g.hit?'<td class="hit" title="'+esc(g.hit)+'">'+esc(g.hit)
           +(g.type?' <span class="nm">'+esc(g.type)+(g.inst!=null?' #'+g.inst:'')+'</span>':'')
           +'</td>'
@@ -337,6 +376,12 @@ function detailRow(x){
           +esc(r.handMade||'사유가 안 적혀 있다 — 채워야 한다')+'</div>')
       +(r.exposure?'<div class="f"><span class="lbl">실측 노출</span>'
         +esc(r.exposure)+'</div>':'')
+      +(r.tag?'<div class="f"><span class="lbl">현장 양식</span><code>'
+        +esc((p.system?p.system+' · ':'')+r.tag)+'</code> · '+esc(r.formKind||'')+' '
+        +esc(r.formSignal||'')+' <span class="nm">'
+        +esc(r.tagFrom==='현장'?'현장 납품본에서 본 태그':'문법으로 만든 것 — 현장 확인 전')
+        +'</span></div>':'')
+      +(r.tagNote?'<div class="f"><span class="lbl">태그 주의</span>'+esc(r.tagNote)+'</div>':'')
       +'<div class="f"><span class="lbl">매칭 규칙</span><code>include '+esc(r.include)
         +(r.exclude?'<br>exclude '+esc(r.exclude):'')+'</code></div>'
       +(r.matchNote?'<div class="f"><span class="lbl">주의</span>'+esc(r.matchNote)+'</div>':'')
@@ -345,15 +390,23 @@ function detailRow(x){
       +'</div>';
   }
   var tot=p.rows.length;
-  h+='<h3>모델별 덮개</h3><div class="card">';
-  p.models.slice().sort(function(a,b){return b.any.length-a.any.length;})
+  /* ⚠ 숫자도 **대조된 모델만** 센다. 목록에서만 숨기고 덮개·통계를 158모델 전부로
+     계산하면, 대조도 안 된 모델의 엉터리 매칭이 이 화면의 숫자를 그대로 물들인다.
+     대기열 모델은 대기열에서만 보이고 여기 숫자에는 안 들어온다.
+     ('미대조 포함' 을 켜면 그때는 다 센다 — 보이는 것과 세는 것이 늘 같다.) */
+  var vm=vmodels(p);
+  h+='<h3>모델별 덮개'+(S.showall?'':' <span class="nm">대조한 것만</span>')+'</h3>'
+    +'<div class="card">';
+  vm.slice().sort(function(a,b){return b.any.length-a.any.length;})
    .forEach(function(m,i){
     h+='<div class="f"><span class="pid2">'+m.any.length+'/'+tot+'</span>'+esc(m.short)
-      +'</div>';});
-  if(!p.models.length) h+='<div class="f">붙는 모델이 아직 없다</div>';
+      +' <span class="nm">'+vlabel(m.vg)+'</span></div>';});
+  if(!vm.length) h+='<div class="f">'
+    +(p.models.length?'대조한 모델이 아직 없다 — 대기열에 '+p.models.length+'건 있다'
+                     :'붙는 모델이 아직 없다')+'</div>';
   h+='</div>';
   var none=p.rows.filter(function(r){
-    return !p.models.some(function(m){return m.any.indexOf(r.name)>=0;});});
+    return !vm.some(function(m){return m.any.indexOf(r.name)>=0;});});
   h+='<h3>아무 모델도 안 내주는 행 — '+none.length+'/'+tot+'</h3><div class="card">'
     +(none.length?none.map(function(r){return '<div class="f">'+esc(r.name)+'</div>';}).join('')
       :'<div class="f">없다. 모든 행을 최소 한 모델이 낸다.</div>')+'</div>';
@@ -414,7 +467,7 @@ function drawBar(){
           +(S.mdl===m._i?' selected':'')+'>'+esc(m.short)+' · '+vlabel(m.vg)
           +'</option>';}).join('')+'</select>'
         +'<label class="vall"><input type="checkbox" id="fv"'
-        +(S.showall?' checked':'')+'> 미대조 포함</label>';
+        +(S.showall?' checked':'')+'> 아직 안 본 것도 보기</label>';
       var m=p.models[S.mdl], sc=curScope();
       if(m&&m.scopes.length>1) h+='<select id="fs">'+m.scopes.map(function(s,i){
         var n=s.map.filter(function(x){return x.hit;}).length;
@@ -520,6 +573,11 @@ def build():
     mm = json.load(io.open(mmp, encoding="utf-8"))
     cdoc = json.load(io.open(os.path.join(DATA, "point-concepts.json"),
                              encoding="utf-8"))
+    try:
+        import form as FORM
+        _formdoc = FORM.load()
+    except Exception:
+        FORM, _formdoc = None, None
     # 모델별 확인 세기 — mappings.py 가 정본이다(두 벌로 만들지 않는다)
     try:
         sys.path.insert(0, HERE)
@@ -541,6 +599,7 @@ def build():
         rows = []
         for r in p.get("templatePoints") or []:
             mt = r.get("match") or {}
+            _fk, _fs = FORM.derive(r, _formdoc) if FORM else ("", "")
             rows.append({
                 "name": r.get("name"), "objectType": r.get("objectType"),
                 "unit": r.get("unit"), "grade": r.get("grade"),
@@ -551,6 +610,11 @@ def build():
                 #   있는데 어디서 왔는지 확인할 길이 없었다.** 지어내지 않았다는 것을
                 #   보이는 것이 이 화면의 일이다.
                 "handMade": r.get("handMade") or "", "exposure": r.get("exposure") or "",
+                # 현장 포인트리스트 양식 칸 — 이게 있어야 "모델만 고르면 포인트리스트가
+                # 나온다" 가 성립한다. 종류·신호는 form.py 가 유도한다(두 벌로 만들지 않는다).
+                "tag": r.get("tag") or "", "tagFrom": r.get("tagFrom") or "",
+                "tagNote": r.get("tagNote") or "",
+                "formKind": _fk, "formSignal": _fs,
                 "concept": r.get("concept") or "", "group": r.get("group") or "기타",
                 "include": mt.get("include") or "", "exclude": mt.get("exclude") or "",
                 "matchNote": r.get("matchNote") or "",
@@ -590,6 +654,7 @@ def build():
                 "scopes": scopes, "best": best, "any": sorted(any_hit)})
         profiles[pid] = {
             "title": p.get("title") or pid, "basis": p.get("basis") or "",
+            "system": p.get("system") or "",
             "pending": p.get("pending") or "", "coverageNote": p.get("coverageNote") or "",
             "energyModel": rq.get("energyModel") or {},
             "rows": rows, "models": models,

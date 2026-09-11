@@ -136,22 +136,24 @@ def as_interfaces(m):
 
 
 def todo_models():
-    """사람이 대조해야 하는 모델 — 그리고 **지금 볼 수 있는 것만**.
+    """대조대에 올릴 모델 — **전부**. 끝난 것도 뺀다.
 
-    기본 범위(국내 벤더 취입분 + 몇 모델)는 손으로 고른 목록이라 '무엇을 봐야 하나' 와
-    안 맞는다. 실제로 겹치는 것이 하나뿐이었다. 여기서는 확인 세기로 고른다 —
-    교차 대조가 약하거나(weak) 아예 없고(blind), **원문 PDF 가 손에 있는** 모델.
-    원문이 없으면 화면에 올려 봐야 대조를 못 한다(수집이 먼저다).
+    처음엔 '아직 안 한 것' 만 올렸다. 그건 틀렸다 — 끝난 모델이 화면에서 아예 사라져
+    다시 볼 수도, 무엇이 끝났는지 볼 수도 없었다. 대조대는 **전수 현황판**이어야 한다.
+    끝난 것은 ✓ 로 보인다(표시는 point-verified.json 에서 온다).
+
+    옛 기본 범위(국내 벤더 취입분 + 몇 모델)는 손으로 고른 목록이라 '무엇을 봐야 하나'
+    와 안 맞았다 — 실제로 겹치는 것이 하나뿐이었다. 그래서 손 목록을 버렸다.
+    거르는 것은 하나뿐: **원문 PDF 가 없어 대조 자체가 불가능한 것**은 따로 묶는다.
     """
     sys.path.insert(0, HERE)
     import mappings as MP
     st = MP.status()
-    want = set()
-    for mid, (g, _why, _n) in st.items():
-        if g not in ("weak", "blind"):
-            continue
-        want.add(mid)
-    return want
+    # ⚠ **대조를 끝낸 것도 빼지 않는다.** 한때 끝난 모델을 대기열에서 덜어냈는데,
+    #   그러면 화면에서 아예 사라져 다시 볼 수도, 무엇이 끝났는지 볼 수도 없었다.
+    #   여기엔 다 둔다 — 끝난 것은 ✓ 로 표시될 뿐이다(표시는 point-verified.json 에서 온다).
+    #   거르는 것은 하나뿐: **원문 PDF 가 없어 대조 자체가 불가능한 것**은 따로 묶는다.
+    return set(st)
 
 
 def _has_raw(m):
@@ -796,9 +798,31 @@ def main(argv):
                     imgs[key] = got[pdf]
             doc.close()
 
+    # 저장소에 남긴 검수 기록(mappings.py)을 화면 열쇠 모양으로 바꿔 싣는다.
+    # 열쇠는 JS 와 **똑같이** 만든다: '<구역id>:<번호 또는 이름>'.
+    vdone = {}
+    try:
+        vf = os.path.join(DATA, "point-verified.json")
+        if os.path.exists(vf):
+            rec = json.load(io.open(vf, encoding="utf-8")).get("검수") or {}
+            for sec in sections:
+                seg = str(sec["id"]).split("/")
+                got = ((rec.get(seg[0]) or {}).get(seg[1] if len(seg) > 1 else "") or {})
+                if not got:
+                    continue
+                for p in sec.get("points") or []:
+                    nm = p.get("nm") or ""
+                    if nm in got:
+                        vdone["%s:%s" % (sec["id"], p.get("n") or nm)] = 1
+    except Exception as e:
+        warns.append("검수 기록을 못 실었다: %s" % e)
+
     import pathlib
     payload = {
         "title": "취입 대조대",
+        # ⚠ 화면은 이것을 바탕으로 깔고 그 위에 localStorage 를 덮는다 —
+        #   사람이 화면에서 해제한 것을 파일이 되살리면 안 된다.
+        "verified": vdone,
         # 원문 PDF 를 여는 절대 주소. 이 산출물은 로컬에서 file:// 로 여는 물건이라
         # (쪽 그림을 담아 gitignore 된다) 상대경로보다 절대경로가 확실하다 —
         # 사용자가 "링크가 안 열린다" 고 두 번 짚었다. 상대경로는 JS 가 대비로 갖는다.

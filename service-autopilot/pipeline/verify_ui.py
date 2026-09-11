@@ -68,6 +68,16 @@ def page_images(doc, pages, dpi=140, quality=52, out_dir=None, tag=""):
     from PIL import Image
     out = {}
     for p in sorted(pages):
+        # ⚠ 이미 그려 둔 쪽은 다시 안 그린다. 1,226쪽을 매번 다시 그리느라 한 번 굽는 데
+        #   몇 분이 걸렸다 — 원문이 안 바뀌면 그림도 안 바뀐다.
+        #   원문을 다시 받았으면 폴더를 지우면 된다.
+        if out_dir:
+            _name = "%s-%d.webp" % (tag, p)
+            _path = os.path.join(out_dir, _name)
+            if os.path.isfile(_path) and os.path.getsize(_path) > 0:
+                out[p] = {"f": "%s/%s" % (os.path.basename(out_dir), _name),
+                          "rot": sideways(doc[p - 1])}
+                continue
         page = doc[p - 1]
         pix = page.get_pixmap(dpi=dpi, colorspace=fitz.csGRAY)
         im = Image.open(io.BytesIO(pix.tobytes("png")))
@@ -393,7 +403,14 @@ document.getElementById("hint").innerHTML = D.hint ||
 
 /* 확인 표시는 브라우저에만 남는다. 저장이 막힌 환경에서도 화면은 돌아야 한다. */
 var KEY = D.storeKey || "verify/v1", done = {};
-try { done = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { done = {}; }
+/* 저장소에 남긴 검수 기록을 바탕으로 깔고, 그 위에 이 브라우저의 표시를 덮는다.
+   순서가 중요하다 — 사람이 화면에서 **해제한 것**을 파일이 되살리면 안 된다. */
+(function(){
+  var base = D.verified || {}, mine = {};
+  try { mine = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { mine = {}; }
+  for (var k in base) done[k] = base[k];
+  for (var k2 in mine) done[k2] = mine[k2];
+})();
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
 
 var node = null, query = "", sel = null, addr = null;
@@ -403,7 +420,9 @@ var openSet = {};
 function treeHTML(nodes, depth){
   return '<ul>' + nodes.map(function(n){
     var kids = n.children || [];
-    var open = openSet[n.id] !== false;
+    /* ⚠ 기본은 **접힘**이다. 전에는 기본이 펼침이라 62모델 283마디가 한꺼번에
+       늘어서서 메뉴가 화면을 넘겼다. 누른 것만 펼친다. */
+    var open = openSet[n.id] === true;
     return '<li class="' + (kids.length && !open ? "closed" : "") + '" data-id="' + esc(n.id) + '">'
       + '<button class="tnode d' + depth + '" type="button" data-id="' + esc(n.id) + '"'
       + ' title="' + esc(n.full || n.label) + '"'
@@ -729,7 +748,11 @@ document.getElementById("tree").addEventListener("click", function(e){
   var b = e.target.closest(".tnode");
   if (!b) return;
   var id = b.dataset.id || null;
-  if (id && id === node) { openSet[id] = openSet[id] === false; drawTree(); return; }
+  /* ⚠ 기본이 '접힘' 으로 바뀌었으니 토글도 그에 맞춘다. 전에는
+     openSet[id] = (openSet[id] === false) 라, 처음 누르면 false 가 되어 **안 펼쳐진다.** */
+  if (id && id === node) { openSet[id] = !(openSet[id] === true); drawTree(); return; }
+  /* 고른 마디는 펼쳐 준다 — 접힌 채로 고르면 아래가 안 보여 한 번 더 눌러야 했다 */
+  if (id) openSet[id] = true;
   node = id; drawTree(); why(); render(); first();
 });
 document.getElementById("q").addEventListener("input", function(e){
