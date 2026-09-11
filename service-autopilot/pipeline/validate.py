@@ -579,28 +579,41 @@ def check_conditional_notes(m, add):
 
 
 def check_verified():
-    """사람이 대조한 것이 얼마나 되나 → [(등급, 코드, 메시지)].
+    """무엇이 얼마나 확인됐나 → [(등급, 코드, 메시지)].
 
     왜 띄우나: 템플릿 매칭과 등급이 **검수 여부와 무관하게** 158모델 전체로 매겨진다.
     검수 안 된 모델의 엉터리 매칭이 등급의 '노출률' 을 끌어내리고, 그 낮은 숫자로
     등급을 내리면 매칭을 고칠 이유가 사라진다 — 순환이다. 그 고리를 끊으려면
-    검수된 것이 무엇인지 **늘 보여야** 한다. 새 명령을 기억하지 않아도 되게 여기 둔다.
+    확인 세기가 **늘 보여야** 한다. 새 명령을 기억하지 않아도 되게 여기 둔다.
+
+    ⚠ 사람 ✓ 만 세면 안 된다. 교차 대조(crosscheck)가 이미 130모델에 있고 그중
+      67모델은 99% 이상이다 — 기계가 표 인식과 **다른 경로로** 원문을 한 번 더 읽어
+      같은 결과를 낸 것이다. 사람 손이 안 닿았을 뿐 확인이 안 된 게 아니다.
     """
-    path = os.path.join(DATA, "point-verified.json")
-    n_models = len(glob.glob(os.path.join(DATA, "models", "*.json")))
-    if not os.path.exists(path):
-        return [("I", "verified-none",
-                 "사람이 대조한 기록이 없다 (모델 %d건) — point-verify.html 에서 ✓ 를 "
-                 "찍고 '검수 내려받기' → python mappings.py --import <파일>" % n_models)]
     try:
-        doc = json.load(io.open(path, encoding="utf-8"))
+        sys.path.insert(0, HERE)
+        import mappings as MP
+        st = MP.status()
     except Exception as e:
-        return [("W", "verified-broken", "검수 기록을 못 읽는다: %s" % e)]
-    got = doc.get("검수") or {}
-    pts = sum(len(v) for m in got.values() for v in m.values())
-    return [("I", "verified-count",
-             "사람이 대조한 모델 %d / %d 건 · 포인트 %d개"
-             % (len(got), n_models, pts))]
+        return [("I", "verified-skip", "확인 세기를 못 셌다: %s" % e)]
+    by = collections.Counter(g for g, _w, _n in st.values())
+    pts = collections.Counter()
+    for g, _w, n in st.values():
+        pts[g] += n
+    ok = by["human"] + by["sample"] + by["machine"]
+    okp = pts["human"] + pts["sample"] + pts["machine"]
+    total = sum(pts.values()) or 1
+    out = [("I", "verified-count",
+            "확인됨 모델 %d/%d · 포인트 %d/%d (%.0f%%) — 사람 직접 %d · 표본 %d · 기계 %d"
+            % (ok, len(st), okp, total, 100.0 * okp / total,
+               by["human"], by["sample"], by["machine"]))]
+    if by["weak"] or by["blind"]:
+        out.append(("W", "verified-thin",
+                    "확인이 약하거나 없는 모델 %d건 (포인트 %d점) — 교차 대조 90%% 미만 %d · "
+                    "대조 자체가 없음 %d. 자세히: python mappings.py --models"
+                    % (by["weak"] + by["blind"], pts["weak"] + pts["blind"],
+                       by["weak"], by["blind"])))
+    return out
 
 
 def check_review_pages():

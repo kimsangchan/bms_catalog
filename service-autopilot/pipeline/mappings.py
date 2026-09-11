@@ -1,34 +1,29 @@
 # -*- coding: utf-8 -*-
-"""검수 기록 — 사람이 원문과 눈으로 대조한 것을 저장소에 남긴다.
+"""검수 현황 — 무엇이 얼마나 확인됐나. 그리고 사람이 확인한 것을 저장소에 남긴다.
 
-  PYTHONIOENCODING=utf-8 python mappings.py                    지금 상태
+  PYTHONIOENCODING=utf-8 python mappings.py                    현황
   PYTHONIOENCODING=utf-8 python mappings.py --import <파일>     화면에서 내려받은 것을 넣는다
-  PYTHONIOENCODING=utf-8 python mappings.py --report           모델별 검수율
+  PYTHONIOENCODING=utf-8 python mappings.py --models           모델별로 자세히
 
 왜 있나
   `point-verify.html` 의 ✓ 표시는 여태 **그 브라우저 안에만** 남았다(localStorage).
-  다른 PC 에서도, 다른 도구(Codex·Antigravity)에서도, 커밋에서도 안 보였다.
-  그래서 "대조가 된 설비" 가 무엇인지 저장소가 알 길이 없었고, 템플릿 매칭과 등급이
-  **검수 여부와 무관하게 158모델 전체**로 매겨졌다. 검수 안 된 152모델의 엉터리 매칭이
-  등급의 '노출률' 을 끌어내리고, 그 낮은 숫자로 등급을 내리면 매칭을 고칠 이유가
-  사라진다 — 순환이다. 그 고리를 끊으려면 **검수된 것이 무엇인지** 먼저 알아야 한다.
+  다른 PC 에서도, 다른 도구에서도, 커밋에서도 안 보였다. 그래서 "대조가 된 설비" 가
+  무엇인지 저장소가 알 길이 없었고, 템플릿 매칭과 등급이 **검수 여부와 무관하게**
+  158모델 전체로 매겨졌다.
 
-  정격 쪽은 이미 같은 문제를 겪고 골든 레코드로 풀었다(units.py 의 verified —
-  "사람 확인, 동기화가 절대 덮지 않는다"). 이 파일은 그 방식을 **포인트 대조**에 옮기는
-  첫 조각이다.
+⚠ 처음엔 사람 ✓ 만 셌다. 그건 두 가지가 틀렸다.
+  ① **이미 있는 검증을 안 셌다.** 교차 대조(crosscheck)가 130모델에 있고 그중 73모델은
+     일치율 99% 이상이다 — 기계가 표 인식과 **다른 경로로** 원문을 한 번 더 읽어 같은
+     결과를 낸 것이다. 사람 손이 닿지 않았을 뿐 확인이 안 된 게 아니다.
+  ② **사람 ✓ 의 단위가 틀렸다.** 6,777행을 하나씩 찍으라는 건 말이 안 된다. 사람은
+     "이 쪽 표를 통째로 맞춰 본다" — 그래서 화면의 ✓ 도 구역 단위로 찍게 고쳤다.
 
-무엇을 기록하나
-  "이 모델의 이 판에서 이 원문 점을 사람이 원문 쪽과 대조했다" — 그 사실뿐이다.
-  ⚠ "이 점이 어느 템플릿 행이다" 는 **아직 아니다.** 그건 다음 조각이다
-    (화면이 템플릿 행을 안 보여 주므로 화면부터 손봐야 한다).
-
-규칙
-  · **누적이다. 지우지 않는다.** 한 번 대조한 사실은 사라지지 않는다. 여러 사람이
-    여러 번 내려받아 넣어도 합쳐진다.
-  · 첫 확인일과 최근 확인일을 같이 남긴다 — 원문이 개정되면 다시 봐야 하므로
-    "언제 본 것인가" 가 값이다.
-  · 이름이 바뀐 점은 **지우지 않고 그대로 둔다.** 추출이 달라진 것인지 원문이 바뀐
-    것인지 사람이 봐야 한다. --report 가 '지금 원문에 없는 점' 으로 보고한다.
+등급 (믿음의 세기 순)
+  human      사람이 화면에서 직접 대조 (point-verified.json) — 가장 세다
+  sample     사람이 원문 보고 4~6쌍 표본 확인 (known-good.json)
+  machine    교차 대조 99%+ — 다른 경로로 읽어 같은 결과
+  weak       교차 대조 90% 미만 — **다시 봐야 한다**
+  blind      대조 자체가 불가(문서가 개요/상세 열이 달라 두 번 못 읽는다) 또는 없음
 """
 import argparse
 import collections
@@ -37,7 +32,6 @@ import glob
 import io
 import json
 import os
-import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
@@ -47,36 +41,91 @@ HEAD = ("사람이 point-verify.html 에서 원문 쪽과 눈으로 대조한 �
         "누적이며 지우지 않는다. 넣기: python mappings.py --import <내려받은파일>")
 
 
-def load():
+def load_store():
     if not os.path.exists(STORE):
-        return collections.OrderedDict([("_설명", HEAD), ("검수", collections.OrderedDict())])
+        return collections.OrderedDict([("_설명", HEAD),
+                                        ("검수", collections.OrderedDict())])
     return json.load(io.open(STORE, encoding="utf-8"),
                      object_pairs_hook=collections.OrderedDict)
 
 
-def save(doc):
+def save_store(doc):
     doc["_설명"] = HEAD
     io.open(STORE, "w", encoding="utf-8").write(
         json.dumps(doc, ensure_ascii=False, indent=1) + "\n")
 
 
 def models():
-    out = {}
-    for f in glob.glob(os.path.join(DATA, "models", "*.json")):
+    out = collections.OrderedDict()
+    for f in sorted(glob.glob(os.path.join(DATA, "models", "*.json"))):
         m = json.load(io.open(f, encoding="utf-8"))
         out[m["id"]] = m
     return out
 
 
-def point_names(m):
-    """모델의 원문 점 이름 — 판별로."""
-    out = collections.defaultdict(set)
-    for i in m.get("interfaces") or []:
-        for p in i.get("points") or []:
-            out[i["id"]].add((p.get("common") or {}).get("name") or "")
-    for p in m.get("points") or []:
-        out["legacy"].add(p.get("name") or "")
+def n_points(m):
+    n = sum(len(i.get("points") or []) for i in (m.get("interfaces") or []))
+    return n + len(m.get("points") or [])
+
+
+def grade(mid, m, human, sample):
+    """이 모델이 어느 세기로 확인됐나 → (등급, 한 줄 사유)."""
+    if mid in human:
+        k = sum(len(v) for v in human[mid].values())
+        return "human", "사람이 화면에서 %d점 대조" % k
+    if mid in sample:
+        return "sample", "사람이 원문 보고 %d쌍 표본 확인" % len(sample[mid])
+    c = m.get("crosscheck") or {}
+    if isinstance(c, dict) and c.get("rate") is not None:
+        r = c["rate"]
+        if r >= 0.99:
+            return "machine", "교차 대조 %.1f%% (%d점)" % (r * 100, c.get("both") or 0)
+        if r >= 0.90:
+            return "weak", "교차 대조 %.1f%% — 차이 %d건" % (r * 100, len(c.get("diff") or []))
+        return "weak", "교차 대조 %.1f%% — 다시 봐야 한다" % (r * 100)
+    if isinstance(c, dict) and c.get("unverifiable"):
+        return "blind", str(c["unverifiable"])[:60]
+    return "blind", "교차 대조도 사람 확인도 없다"
+
+
+ORDER = [("human", "사람이 직접 대조"), ("sample", "사람이 표본 확인"),
+         ("machine", "기계 교차 대조 99%+"), ("weak", "교차 대조 약함 — 다시 봐야"),
+         ("blind", "확인 없음")]
+
+
+def status():
+    M = models()
+    human = (load_store().get("검수") or {})
+    kg = json.load(io.open(os.path.join(DATA, "known-good.json"), encoding="utf-8"))
+    sample = {k: v for k, v in kg.items() if not k.startswith("_")}
+    out = collections.OrderedDict()
+    for mid, m in M.items():
+        g, why = grade(mid, m, human, sample)
+        out[mid] = (g, why, n_points(m))
     return out
+
+
+def report(detail=False):
+    st = status()
+    by = collections.defaultdict(list)
+    for mid, (g, why, n) in st.items():
+        by[g].append((n, mid, why))
+    tot = len(st)
+    totpts = sum(v[2] for v in st.values())
+    print("■ 확인 세기 — 모델 %d건 · 포인트 %d점" % (tot, totpts))
+    for g, label in ORDER:
+        rows = sorted(by.get(g) or [], reverse=True)
+        pts = sum(r[0] for r in rows)
+        print("   %-22s 모델 %3d (%2.0f%%) · 포인트 %6d"
+              % (label, len(rows), 100.0 * len(rows) / tot, pts))
+        if detail:
+            for n, mid, why in rows[:40]:
+                print("        %6d점  %-46s %s" % (n, mid[:46], why[:44]))
+    print()
+    weak = len(by.get("weak") or []) + len(by.get("blind") or [])
+    print("사람 손이 필요한 것 %d건 — 교차 대조가 약하거나 없는 모델이다." % weak)
+    print("  point-verify.html 에서 구역 머리의 '이 구역 다 봤다' 로 찍고")
+    print("  '검수 내려받기' → python mappings.py --import <파일>")
 
 
 def do_import(path):
@@ -85,7 +134,7 @@ def do_import(path):
     if not got:
         raise SystemExit("검수 기록이 없는 파일이다 — 화면의 '검수 내려받기' 로 받은 것인가?")
     today = datetime.date.today().isoformat()
-    doc = load()
+    doc = load_store()
     store = doc.setdefault("검수", collections.OrderedDict())
     added = seen = 0
     for mid, ifaces in got.items():
@@ -98,70 +147,27 @@ def do_import(path):
                     continue
                 seen += 1
                 if key in irec:
-                    irec[key]["최근확인"] = today          # 다시 본 것은 날짜만 새로
+                    irec[key]["최근확인"] = today
                 else:
                     irec[key] = collections.OrderedDict([
-                        ("번호", p.get("번호") or ""),
-                        ("쪽", p.get("쪽") or ""),
+                        ("번호", p.get("번호") or ""), ("쪽", p.get("쪽") or ""),
                         ("PDF쪽", p.get("PDF쪽") or ""),
                         ("첫확인", today), ("최근확인", today)])
                     added += 1
-    save(doc)
-    print("넣었다 — 새로 %d점 · 다시 본 것 %d점 (파일 안 %d점)"
-          % (added, seen - added, seen))
+    save_store(doc)
+    print("넣었다 — 새로 %d점 · 다시 본 것 %d점" % (added, seen - added))
     print("  → %s" % os.path.relpath(STORE, HERE))
-
-
-def report():
-    doc = load()
-    store = doc.get("검수") or {}
-    if not store:
-        print("아직 검수 기록이 없다.")
-        print("  point-verify.html 에서 행 왼쪽 동그라미를 눌러 대조를 표시하고,")
-        print("  '검수 내려받기' 로 받은 파일을 --import 로 넣는다.")
-        return
-    M = models()
-    rows, orphan = [], []
-    for mid, ifaces in store.items():
-        m = M.get(mid)
-        have = point_names(m) if m else {}
-        n = tot = 0
-        for iface, pts in ifaces.items():
-            n += len(pts)
-            cur = have.get(iface) or set()
-            tot += len(cur)
-            for nm in pts:
-                if cur and nm not in cur:
-                    orphan.append((mid, iface, nm))
-        rows.append((n, tot, mid, "없는 모델" if not m else ""))
-    rows.sort(reverse=True)
-    print("■ 검수된 모델 %d건 · 검수된 점 %d개"
-          % (len(rows), sum(r[0] for r in rows)))
-    for n, tot, mid, note in rows:
-        pct = (" (%.0f%%)" % (100.0 * n / tot)) if tot else ""
-        print("   %5d / %-5s %s  %-46s %s"
-              % (n, tot or "?", pct.ljust(7), mid[:46], note))
-    if orphan:
-        print()
-        print("⚠ 지금 원문에 없는 점 %d개 — 추출이 달라졌거나 원문이 개정된 것이다."
-              % len(orphan))
-        print("  지우지 않았다. 사람이 봐야 한다.")
-        for mid, iface, nm in orphan[:10]:
-            print("   %-40s %-14s %s" % (mid[:40], iface[:14], nm[:40]))
     print()
-    print("전체 모델 %d건 중 검수된 것 %d건" % (len(M), len(rows)))
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--import", dest="imp", metavar="파일",
-                    help="화면에서 내려받은 검수 파일을 넣는다")
-    ap.add_argument("--report", action="store_true", help="모델별 검수율")
+    ap.add_argument("--import", dest="imp", metavar="파일")
+    ap.add_argument("--models", action="store_true", help="모델별로 자세히")
     a = ap.parse_args(argv)
     if a.imp:
         do_import(a.imp)
-        print()
-    report()
+    report(a.models)
     return 0
 
 

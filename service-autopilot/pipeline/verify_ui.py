@@ -226,6 +226,10 @@ input.addr{width:74px;font-family:var(--mono);text-align:right}
 .gh .pg{margin-left:auto;font-family:var(--mono);letter-spacing:0;white-space:nowrap}
 table{border-collapse:collapse;width:100%;font-size:12px}
 td,th{padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.gh button.gall{background:var(--panel);border:1px solid var(--line);
+ border-radius:6px;padding:2px 8px;font:11px var(--mono);color:var(--dim);cursor:pointer}
+.gh button.gall:hover{border-color:var(--accent);color:var(--ink)}
+
 /* 열 머리글 — 구역 머리글 바로 밑에 붙어 같이 따라온다 */
 thead th{position:sticky;top:29px;z-index:1;background:var(--panel);text-align:left;
  font-size:10.5px;font-weight:700;letter-spacing:.03em;color:var(--faint);
@@ -489,9 +493,16 @@ function render(){
     var cols = (t.cols || []).filter(function(c){
       return c.k !== "inst" || t.addr;
     });
+    /* ⚠ 행을 하나씩 찍게 두면 안 된다. 기본 범위만 6,777행이라 사람이 못 한다.
+       실제로 사람은 '이 쪽 표를 통째로 맞춰 본다' — 그래서 구역 단위로 찍는다.
+       구역은 341개고, 그게 대조하는 실제 단위다. */
+    var gdone = pts.every(function(p){ return done[t.id + ":" + (p.n || p.nm)]; });
     out.push('<div class="gh"><b>' + esc(t.path.join(" › ")) + '</b><span>'
            + pts.length + '점</span><span class="pg">원문 ' + esc(t.span)
-           + '쪽</span></div><table><thead><tr><th class="ck"></th>'
+           + '쪽</span>'
+           + '<button type="button" class="gall" data-sec="' + esc(t.id) + '">'
+           + (gdone ? "✓ 이 구역 다 봤다" : "이 구역 다 봤다") + '</button>'
+           + '</div><table><thead><tr><th class="ck"></th>'
            + cols.map(function(c){
                return '<th class="c-' + esc(c.k.replace(/[^a-zA-Z]/g, "")) + '">'
                     + esc(c.h) + '</th>';
@@ -670,6 +681,18 @@ function toggle(tr){
   counts();
 }
 document.getElementById("list").addEventListener("click", function(e){
+  var gb = e.target.closest("button.gall");
+  if (gb) {
+    var sid = gb.dataset.sec;
+    var sec = D.sections.filter(function(x){ return x.id === sid; })[0];
+    if (sec) {
+      var ks = (sec.points || []).map(function(p){ return sid + ":" + (p.n || p.nm); });
+      var all = ks.every(function(k){ return done[k]; });
+      ks.forEach(function(k){ done[k] = !all; });   /* 되돌릴 수 있어야 한다 */
+      save(); render(); counts();
+    }
+    return;
+  }
   var tr = e.target.closest("tr.row");
   if (!tr) return;
   if (e.target.classList.contains("ck")) { toggle(tr); return; }
