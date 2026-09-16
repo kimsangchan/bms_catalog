@@ -33,7 +33,477 @@
    "unit": null,
    "note": "원표기 0x0001 · Resets all active alarms",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 3
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 10001,
+   "name": "Operation active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0001 · Relay output status",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 10002,
+   "name": "Damper operation active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0002 · Relay output status",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 10003,
+   "name": "Low speed operation active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0003 · Low speed operation status",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 10004,
+   "name": "High speed operation active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0004 · High speed operation status",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 10013,
+   "name": "A-alarm active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0013 · Any alarm with priority class A active",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 10014,
+   "name": "B-alarm active",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0014 · Any alarm with priority class B active",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 10027,
+   "name": "CHX-1 pump output",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0027 · CHX-1 relay output status",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 10038,
+   "name": "Re-heat output",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0038 · Relay output status",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 10043,
+   "name": "Cool output 1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0043 · Relay output status",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 10044,
+   "name": "Cool output 2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0044 · Relay output status",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30004,
+   "name": "SA Air flow",
+   "unitRaw": "l/s",
+   "unit": "Lps",
+   "note": "원표기 3x0004 · Present supply air flow.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30006,
+   "name": "EA Air flow",
+   "unitRaw": "l/s",
+   "unit": "Lps",
+   "note": "원표기 3x0006 · Present extract air flow.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30008,
+   "name": "SA Duct pressure",
+   "unitRaw": "Pa",
+   "unit": "Pa",
+   "note": "원표기 3x0008 · Present supply air duct pressure.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30010,
+   "name": "EA Duct pressure",
+   "unitRaw": "Pa",
+   "unit": "Pa",
+   "note": "원표기 3x0010 · Present extract air duct pressure.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30027,
+   "name": "SA AHU filter pressure level",
+   "unitRaw": "Pa",
+   "unit": "Pa",
+   "note": "원표기 3x0027 · Present supply air filter pressure drop.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30028,
+   "name": "SA AHU filter pressure alarm limit",
+   "unitRaw": "Pa",
+   "unit": "Pa",
+   "note": "원표기 3x0028 · Present supply air filter pressure alarm limit.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30029,
+   "name": "EA AHU filter pressure level",
+   "unitRaw": "Pa",
+   "unit": "Pa",
+   "note": "원표기 3x0029 · Present extract air filter pressure drop.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30030,
+   "name": "EA AHU filter pressure alarm limit",
+   "unitRaw": "Pa",
+   "unit": "Pa",
+   "note": "원표기 3x0030 · Present extract air filter pressure alarm limit.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30037,
+   "name": "SA Fan level",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "원표기 3x0037 · Present fan speed level of the supply air fan.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30038,
+   "name": "EA Fan level",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "원표기 3x0038 · Present fan speed level of the extract air fan.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30064,
+   "name": "SA Temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x0064 · Present supply air temperature.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30073,
+   "name": "Outdoor temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x0073 · Present outdoor air temperature in the unit.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30091,
+   "name": "Heat exchanger regulator level",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "원표기 3x0091 · Present operation level of heat recovery.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30094,
+   "name": "Reheat regulator level",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "원표기 3x0094 · Present level of reheat.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30101,
+   "name": "Cool regulator level",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "원표기 3x0101 · Present level of cooling.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30105,
+   "name": "RHX operation level",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "원표기 3x0105 · Present speed level of the rotary heat exchanger.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30121,
+   "name": "PHX-2 Damper 1 output",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "원표기 3x0121 · Present level of plate heat exchanger damper 1 output.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30123,
+   "name": "PHX-2 Damper 2 output",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "원표기 3x0123 · Present level of plate heat exchanger damper 2 output.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30125,
+   "name": "PHX-2 Bypass output",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "원표기 3x0125 · Present level of plate heat exchanger bypass output.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30137,
+   "name": "CHX-2 Valve output",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "원표기 3x0137 · Present level of coil heat exchanger valve output.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30139,
+   "name": "CHX-2 Pump output",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "원표기 3x0139 · Present level of pump heat exchanger output",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30592,
+   "name": "Operation level",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 3x0592 · 0=Fan not available 1=Alarm stop 2=Manual total stop (on hand terminal) 3=External total stop (digital input) 4=Communication total stop 5=Communication normal stop 6=Communication extended normal stop 7=Time channel total stop",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 30604,
+   "name": "Triggered alarm #1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 3x0604 · ((Alarm group - 1) x 15) + alarm number in group=Triggered alarm number. Zero if no triggered alarm.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40003,
+   "name": "SA low speed air flow set point",
+   "unitRaw": "l/s",
+   "unit": "Lps",
+   "note": "원표기 4x0003 · Supply air flow set point for the unit when running in low speed operation.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40004,
+   "name": "EA low speed air flow set point",
+   "unitRaw": "l/s",
+   "unit": "Lps",
+   "note": "원표기 4x0004 · Extract air flow set point for the unit when running in low speed operation.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40005,
+   "name": "SA high speed air flow set point",
+   "unitRaw": "l/s",
+   "unit": "Lps",
+   "note": "원표기 4x0005 · Supply air flow set point for the unit when running in high speed operation.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40006,
+   "name": "EA high speed air flow set point",
+   "unitRaw": "l/s",
+   "unit": "Lps",
+   "note": "원표기 4x0006 · Extract air flow set point for the unit when running in high speed operation.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40019,
+   "name": "SA low speed pressure set point",
+   "unitRaw": "Pa",
+   "unit": "Pa",
+   "note": "원표기 4x0019 · Supply air duct pressure set point for the unit when running in low speed operation.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40020,
+   "name": "EA low speed pressure set point",
+   "unitRaw": "Pa",
+   "unit": "Pa",
+   "note": "원표기 4x0020 · Extract air duct pressure set point for the unit when running in low speed operation.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40021,
+   "name": "SA high speed pressure set point",
+   "unitRaw": "Pa",
+   "unit": "Pa",
+   "note": "원표기 4x0021 · Supply air duct pressure for the unit when running in high speed operation.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40022,
+   "name": "EA high speed pressure set point",
+   "unitRaw": "Pa",
+   "unit": "Pa",
+   "note": "원표기 4x0022 · Extract air duct pressure set point for the unit when running in high speed operation.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40118,
+   "name": "ERS 1 diff",
+   "unitRaw": "K",
+   "unit": "K",
+   "note": "원표기 4x0118 · Supply air temp difference setting according to the diagram for ERS 1.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40132,
+   "name": "SA temperature set point",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 4x0132 · Supply air temperature setting, for supply air temp regulation mode.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40135,
+   "name": "EA/Room temperature set point",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 4x0135 · Extract air/room temperature setting, for Extract air/room temp regulation mode.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40136,
+   "name": "SA min temp set point",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 4x0136 · Supply air min. set point during EA/room regulation mode.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40137,
+   "name": "SA max temp set point",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 4x0137 · Supply air max. set point during EA/room regulation mode.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
+  },
+  {
+   "type": "MB",
+   "inst": 40793,
+   "name": "Communication operation level",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 4x0793 · 0=auto, 1=total stop, 2=low speed, 3=high speed, 4=normal stop, 5=extended normal stop.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 2
   },
   {
    "type": "MB",
@@ -537,43 +1007,63 @@
   },
   {
    "type": "MB",
-   "inst": 10001,
-   "name": "Operation active",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0001 · Relay output status",
+   "inst": 30813,
+   "name": "External operation I/O-module A, temp sensor 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x0813",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 5
+   "sourcePage": 4
   },
   {
    "type": "MB",
-   "inst": 10002,
-   "name": "Damper operation active",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0002 · Relay output status",
+   "inst": 30814,
+   "name": "External operation I/O-module A, temp sensor 2",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x0814",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 5
+   "sourcePage": 4
   },
   {
    "type": "MB",
-   "inst": 10003,
-   "name": "Low speed operation active",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0003 · Low speed operation status",
+   "inst": 30816,
+   "name": "External operation I/O-module B, temp sensor 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x0816",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 5
+   "sourcePage": 4
   },
   {
    "type": "MB",
-   "inst": 10004,
-   "name": "High speed operation active",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0004 · High speed operation status",
+   "inst": 30817,
+   "name": "External operation I/O-module B, temp sensor 2",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x0817",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 5
+   "sourcePage": 4
+  },
+  {
+   "type": "MB",
+   "inst": 30819,
+   "name": "External operation I/O-module C, temp sensor 1",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x0819",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 4
+  },
+  {
+   "type": "MB",
+   "inst": 30820,
+   "name": "External operation I/O-module C, temp sensor 2",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x0820",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 4
   },
   {
    "type": "MB",
@@ -627,26 +1117,6 @@
   },
   {
    "type": "MB",
-   "inst": 10013,
-   "name": "A-alarm active",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0013 · Any alarm with priority class A active",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 5
-  },
-  {
-   "type": "MB",
-   "inst": 10014,
-   "name": "B-alarm active",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0014 · Any alarm with priority class B active",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 5
-  },
-  {
-   "type": "MB",
    "inst": 10017,
    "name": "HX operation active",
    "unitRaw": null,
@@ -682,16 +1152,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0022 · RHX speed monitor status",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 5
-  },
-  {
-   "type": "MB",
-   "inst": 10027,
-   "name": "CHX-1 pump output",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0027 · CHX-1 relay output status",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 5
   },
@@ -787,16 +1247,6 @@
   },
   {
    "type": "MB",
-   "inst": 10038,
-   "name": "Re-heat output",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0038 · Relay output status",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 5
-  },
-  {
-   "type": "MB",
    "inst": 10039,
    "name": "Re-heat power reduction active",
    "unitRaw": null,
@@ -817,31 +1267,21 @@
   },
   {
    "type": "MB",
-   "inst": 10043,
-   "name": "Cool output 1",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0043 · Relay output status",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 5
-  },
-  {
-   "type": "MB",
-   "inst": 10044,
-   "name": "Cool output 2",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0044 · Relay output status",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 5
-  },
-  {
-   "type": "MB",
    "inst": 10046,
    "name": "Extra regulation sequence 2 combi coil input",
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0046",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 5
+  },
+  {
+   "type": "MB",
+   "inst": 40111,
+   "name": "Seasonal controlled temperature regulation",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 4x0111 · 0=Inactive, 1=Active",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 5
   },
@@ -1707,6 +2147,426 @@
   },
   {
    "type": "MB",
+   "inst": 10550,
+   "name": "Active alarm 50",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0550 · Alarm 4:5 Extra regulation sequence 1, valve monitoring tripped",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10560,
+   "name": "Active alarm 60",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0560 · Alarm 4:15 Extra regulation sequence 2 combi coil temperature sensor defective",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10570,
+   "name": "Active alarm 70",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0570",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10580,
+   "name": "Active alarm 80",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0580 · Alarm 6:5 Xzone, supply air temperature sensor defective",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10590,
+   "name": "Active alarm 90",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0590",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10600,
+   "name": "Active alarm 100",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0600",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10610,
+   "name": "Active alarm 110",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0610 · Alarm 8:5 Cool valve monitoring tripped",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10620,
+   "name": "Active alarm 120",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0620",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10630,
+   "name": "Active alarm 130",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0630",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10640,
+   "name": "Active alarm 140",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0640 · Alarm 10:5 Extract air temperature sensor for heat exchanger defrosting defective",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10650,
+   "name": "Active alarm 150",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0650",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10680,
+   "name": "Active alarm 180",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0680",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10690,
+   "name": "Active alarm 190",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0690",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10700,
+   "name": "Active alarm 200",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0700 · Alarm 14:5 Re-heat liquid flow measurement flow sensor defective",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10710,
+   "name": "Active alarm 210",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0710",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10720,
+   "name": "Active alarm 220",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0720 · Alarm 15:10 Plate heat exchanger, damper no. 2 monitor tripped",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10730,
+   "name": "Active alarm 230",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0730 · Alarm 16:5 Coil heat exchanger, I/O-module no. C communication error",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10740,
+   "name": "Active alarm 240",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0740",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10750,
+   "name": "Active alarm 250",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0750 · Alarm 17:10 Rotary heat exchanger, motor controller internal error",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10760,
+   "name": "Active alarm 260",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0760 · Alarm 18:5 AYC heat, temperature below set point alarm limit",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10770,
+   "name": "Active alarm 270",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0770",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10780,
+   "name": "Active alarm 280",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0780",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10790,
+   "name": "Active alarm 290",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0790",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10800,
+   "name": "Active alarm 300",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0800",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10890,
+   "name": "Active alarm 390",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0890",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10900,
+   "name": "Active alarm 400",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0900",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10901,
+   "name": "Active alarm 401",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0901",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10910,
+   "name": "Active alarm 410",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0910",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10920,
+   "name": "Active alarm 420",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0920",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10930,
+   "name": "Active alarm 430",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0930",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10940,
+   "name": "Active alarm 440",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0940",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 10950,
+   "name": "Active alarm 450",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x0950",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 11001,
+   "name": "Active alarm 501",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1001",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 11101,
+   "name": "Active alarm 601",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1101 · Alarm 41:1 MIRU Control no. 4 communication error",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 11201,
+   "name": "Active alarm 701",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1201",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 11301,
+   "name": "Active alarm 801",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1301 · Alarm 54:6 Supply air fan no. 3B motor controller start error",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 11401,
+   "name": "Active alarm 901",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1401 · Alarm 61:1 Supply air fan no. 1A I/O-module com. error",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 11501,
+   "name": "Active alarm 1001",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1501",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 11601,
+   "name": "Active alarm 1101",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1601",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 11701,
+   "name": "Active alarm 1201",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1701",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 11801,
+   "name": "Active alarm 1301",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1801",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
+   "inst": 11901,
+   "name": "Active alarm 1401",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1901",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 9
+  },
+  {
+   "type": "MB",
    "inst": 10548,
    "name": "Active alarm 48",
    "unitRaw": null,
@@ -1722,16 +2582,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0549 · Alarm 4:4 Extra regulation sequence 1, frost protection temperature sensor defective",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 10
-  },
-  {
-   "type": "MB",
-   "inst": 10550,
-   "name": "Active alarm 50",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0550 · Alarm 4:5 Extra regulation sequence 1, valve monitoring tripped",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 10
   },
@@ -1827,16 +2677,6 @@
   },
   {
    "type": "MB",
-   "inst": 10560,
-   "name": "Active alarm 60",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0560 · Alarm 4:15 Extra regulation sequence 2 combi coil temperature sensor defective",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 10
-  },
-  {
-   "type": "MB",
    "inst": 10561,
    "name": "Active alarm 61",
    "unitRaw": null,
@@ -1922,16 +2762,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0569",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 10
-  },
-  {
-   "type": "MB",
-   "inst": 10570,
-   "name": "Active alarm 70",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0570",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 10
   },
@@ -2027,16 +2857,6 @@
   },
   {
    "type": "MB",
-   "inst": 10580,
-   "name": "Active alarm 80",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0580 · Alarm 6:5 Xzone, supply air temperature sensor defective",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 10
-  },
-  {
-   "type": "MB",
    "inst": 10581,
    "name": "Active alarm 81",
    "unitRaw": null,
@@ -2127,11 +2947,141 @@
   },
   {
    "type": "MB",
-   "inst": 10590,
-   "name": "Active alarm 90",
+   "inst": 11160,
+   "name": "Active alarm 660",
    "unitRaw": null,
    "unit": null,
-   "note": "원표기 1x0590",
+   "note": "원표기 1x1160",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11170,
+   "name": "Active alarm 670",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1170",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11180,
+   "name": "Active alarm 680",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1180 · Alarm 46:5 MIRU Control no. 9 pressure regulation sensor no. 1 communication error",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11190,
+   "name": "Active alarm 690",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1190",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11200,
+   "name": "Active alarm 700",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1200",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11210,
+   "name": "Active alarm 710",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1210",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11220,
+   "name": "Active alarm 720",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1220",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11230,
+   "name": "Active alarm 730",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1230 · Alarm 49:10 Supply air fan no. 1A motor controller current reduction",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11240,
+   "name": "Active alarm 740",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1240 · Alarm 50:5 Supply air fan no. 2A motor controller over temperature",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11250,
+   "name": "Active alarm 750",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1250",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11370,
+   "name": "Active alarm 870",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1370",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11380,
+   "name": "Active alarm 880",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1380 · Alarm 59:10 Extract air fan no. 2B motor controller current reduction",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11390,
+   "name": "Active alarm 890",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1390 · Alarm 60:5 Extract air fan no. 3B motor controller over temperature",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 10
+  },
+  {
+   "type": "MB",
+   "inst": 11400,
+   "name": "Active alarm 900",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1400",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 10
   },
@@ -2227,16 +3177,6 @@
   },
   {
    "type": "MB",
-   "inst": 10600,
-   "name": "Active alarm 100",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0600",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 11
-  },
-  {
-   "type": "MB",
    "inst": 10601,
    "name": "Active alarm 101",
    "unitRaw": null,
@@ -2322,16 +3262,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0609",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 11
-  },
-  {
-   "type": "MB",
-   "inst": 10610,
-   "name": "Active alarm 110",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0610 · Alarm 8:5 Cool valve monitoring tripped",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 11
   },
@@ -2427,16 +3357,6 @@
   },
   {
    "type": "MB",
-   "inst": 10620,
-   "name": "Active alarm 120",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0620",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 11
-  },
-  {
-   "type": "MB",
    "inst": 10621,
    "name": "Active alarm 121",
    "unitRaw": null,
@@ -2527,16 +3447,6 @@
   },
   {
    "type": "MB",
-   "inst": 10630,
-   "name": "Active alarm 130",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0630",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 11
-  },
-  {
-   "type": "MB",
    "inst": 10631,
    "name": "Active alarm 131",
    "unitRaw": null,
@@ -2617,21 +3527,291 @@
   },
   {
    "type": "MB",
+   "inst": 11480,
+   "name": "Active alarm 980",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1480",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11490,
+   "name": "Active alarm 990",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1490",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11500,
+   "name": "Active alarm 1000",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1500",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11510,
+   "name": "Active alarm 1010",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1510",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11520,
+   "name": "Active alarm 1020",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1520",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11530,
+   "name": "Active alarm 1030",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1530",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11540,
+   "name": "Active alarm 1040",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1540 · Alarm 70:5 H/C defrost pressure sensor no. D com. Error",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11550,
+   "name": "Active alarm 1050",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1550",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11560,
+   "name": "Active alarm 1060",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1560",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11570,
+   "name": "Active alarm 1070",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1570 · Alarm 72:5 H/C discharge temperature sensor defective",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11580,
+   "name": "Active alarm 1080",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1580 · Alarm 72:15 H/C thermal switch compressor no. 2 tripped",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11590,
+   "name": "Active alarm 1090",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1590",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11630,
+   "name": "Active alarm 1130",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1630",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11640,
+   "name": "Active alarm 1140",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1640",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11650,
+   "name": "Active alarm 1150",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1650 · Alarm 77:10 MIRU 1 motor controller current reduction",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11660,
+   "name": "Active alarm 1160",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1660 · Alarm 78:5 MIRU 2 motor controller over temperature",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11670,
+   "name": "Active alarm 1170",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1670",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11680,
+   "name": "Active alarm 1180",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1680 · Alarm 79:10 MIRU 3 motor controller current reduction",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11690,
+   "name": "Active alarm 1190",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1690",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11700,
+   "name": "Active alarm 1200",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1700",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11790,
+   "name": "Active alarm 1290",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1790",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11800,
+   "name": "Active alarm 1300",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1800",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11810,
+   "name": "Active alarm 1310",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1810",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11820,
+   "name": "Active alarm 1320",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1820",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11830,
+   "name": "Active alarm 1330",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1830",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11840,
+   "name": "Active alarm 1340",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1840",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 11850,
+   "name": "Active alarm 1350",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1850",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
+   "inst": 30281,
+   "name": "Exhaust heat temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x0281 · Present exhaust heat temperature",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 11
+  },
+  {
+   "type": "MB",
    "inst": 10639,
    "name": "Active alarm 139",
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0639 · Alarm 10:4 Extract air temperature sensor for density compensation defective",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "MB",
-   "inst": 10640,
-   "name": "Active alarm 140",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0640 · Alarm 10:5 Extract air temperature sensor for heat exchanger defrosting defective",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 12
   },
@@ -2722,16 +3902,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0649",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "MB",
-   "inst": 10650,
-   "name": "Active alarm 150",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0650",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 12
   },
@@ -3027,16 +4197,6 @@
   },
   {
    "type": "MB",
-   "inst": 10680,
-   "name": "Active alarm 180",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0680",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "MB",
    "inst": 10681,
    "name": "Active alarm 181",
    "unitRaw": null,
@@ -3087,6 +4247,106 @@
   },
   {
    "type": "MB",
+   "inst": 11930,
+   "name": "Active alarm 1430",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1930 · Info 96:5 H/C OA temp limit for heating below factory setting",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "MB",
+   "inst": 11940,
+   "name": "Active alarm 1440",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1940",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "MB",
+   "inst": 11960,
+   "name": "Active alarm 1460",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1960 · Info 98:5 Supply air air handling unit filter calibration not performed",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "MB",
+   "inst": 11970,
+   "name": "Active alarm 1470",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1970 · Info 98:15 ReCO2 incorrect setting",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "MB",
+   "inst": 11980,
+   "name": "Active alarm 1480",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1980",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "MB",
+   "inst": 11990,
+   "name": "Active alarm 1490",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x1990",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "MB",
+   "inst": 12000,
+   "name": "Active alarm 1500",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x2000",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "MB",
+   "inst": 30260,
+   "name": "Exhaust air humidity",
+   "unitRaw": "%RH",
+   "unit": "percentRH",
+   "note": "원표기 3x0260 · Present level of exhaust air humidity.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "MB",
+   "inst": 30262,
+   "name": "Outdoor air humidity",
+   "unitRaw": "%RH",
+   "unit": "percentRH",
+   "note": "원표기 3x0262 · Present level of outdoor air humidity.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "MB",
+   "inst": 30263,
+   "name": "Outdoor air temperature",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x0263 · Present temperature inside the outdoor air humidity sensor.",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "MB",
    "inst": 10686,
    "name": "Active alarm 186",
    "unitRaw": null,
@@ -3122,16 +4382,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0689 · Alarm 13:9 Humidifier alarm output tripped",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "MB",
-   "inst": 10690,
-   "name": "Active alarm 190",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0690",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 13
   },
@@ -3227,16 +4477,6 @@
   },
   {
    "type": "MB",
-   "inst": 10700,
-   "name": "Active alarm 200",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0700 · Alarm 14:5 Re-heat liquid flow measurement flow sensor defective",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "MB",
    "inst": 10701,
    "name": "Active alarm 201",
    "unitRaw": null,
@@ -3322,16 +4562,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0709",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "MB",
-   "inst": 10710,
-   "name": "Active alarm 210",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0710",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 13
   },
@@ -3427,16 +4657,6 @@
   },
   {
    "type": "MB",
-   "inst": 10720,
-   "name": "Active alarm 220",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0720 · Alarm 15:10 Plate heat exchanger, damper no. 2 monitor tripped",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "MB",
    "inst": 10721,
    "name": "Active alarm 221",
    "unitRaw": null,
@@ -3522,16 +4742,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0729 · Alarm 16:4 Coil heat exchanger, pump monitor tripped",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "MB",
-   "inst": 10730,
-   "name": "Active alarm 230",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0730 · Alarm 16:5 Coil heat exchanger, I/O-module no. C communication error",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 13
   },
@@ -3627,16 +4837,6 @@
   },
   {
    "type": "MB",
-   "inst": 10740,
-   "name": "Active alarm 240",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0740",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "MB",
    "inst": 10741,
    "name": "Active alarm 241",
    "unitRaw": null,
@@ -3722,16 +4922,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0749 · Alarm 17:9 Rotary heat exchanger, motor controller start error",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "MB",
-   "inst": 10750,
-   "name": "Active alarm 250",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0750 · Alarm 17:10 Rotary heat exchanger, motor controller internal error",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 14
   },
@@ -3827,16 +5017,6 @@
   },
   {
    "type": "MB",
-   "inst": 10760,
-   "name": "Active alarm 260",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0760 · Alarm 18:5 AYC heat, temperature below set point alarm limit",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "MB",
    "inst": 10761,
    "name": "Active alarm 261",
    "unitRaw": null,
@@ -3922,16 +5102,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0769",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "MB",
-   "inst": 10770,
-   "name": "Active alarm 270",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0770",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 14
   },
@@ -4027,16 +5197,6 @@
   },
   {
    "type": "MB",
-   "inst": 10780,
-   "name": "Active alarm 280",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0780",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "MB",
    "inst": 10781,
    "name": "Active alarm 281",
    "unitRaw": null,
@@ -4127,16 +5287,6 @@
   },
   {
    "type": "MB",
-   "inst": 10790,
-   "name": "Active alarm 290",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0790",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "MB",
    "inst": 10791,
    "name": "Active alarm 291",
    "unitRaw": null,
@@ -4222,16 +5372,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0799",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "MB",
-   "inst": 10800,
-   "name": "Active alarm 300",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0800",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 15
   },
@@ -5127,16 +6267,6 @@
   },
   {
    "type": "MB",
-   "inst": 10890,
-   "name": "Active alarm 390",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0890",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MB",
    "inst": 10891,
    "name": "Active alarm 391",
    "unitRaw": null,
@@ -5227,26 +6357,6 @@
   },
   {
    "type": "MB",
-   "inst": 10900,
-   "name": "Active alarm 400",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0900",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MB",
-   "inst": 10901,
-   "name": "Active alarm 401",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0901",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MB",
    "inst": 10902,
    "name": "Active alarm 402",
    "unitRaw": null,
@@ -5322,16 +6432,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0909",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MB",
-   "inst": 10910,
-   "name": "Active alarm 410",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0910",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 17
   },
@@ -5427,16 +6527,6 @@
   },
   {
    "type": "MB",
-   "inst": 10920,
-   "name": "Active alarm 420",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0920",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MB",
    "inst": 10921,
    "name": "Active alarm 421",
    "unitRaw": null,
@@ -5522,16 +6612,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0929",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MB",
-   "inst": 10930,
-   "name": "Active alarm 430",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0930",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 18
   },
@@ -5627,16 +6707,6 @@
   },
   {
    "type": "MB",
-   "inst": 10940,
-   "name": "Active alarm 440",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0940",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MB",
    "inst": 10941,
    "name": "Active alarm 441",
    "unitRaw": null,
@@ -5722,16 +6792,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x0949",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MB",
-   "inst": 10950,
-   "name": "Active alarm 450",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x0950",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 18
   },
@@ -6232,16 +7292,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1000",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 19
-  },
-  {
-   "type": "MB",
-   "inst": 11001,
-   "name": "Active alarm 501",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1001",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 19
   },
@@ -7237,16 +8287,6 @@
   },
   {
    "type": "MB",
-   "inst": 11101,
-   "name": "Active alarm 601",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1101 · Alarm 41:1 MIRU Control no. 4 communication error",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 22
-  },
-  {
-   "type": "MB",
    "inst": 11102,
    "name": "Active alarm 602",
    "unitRaw": null,
@@ -7827,16 +8867,6 @@
   },
   {
    "type": "MB",
-   "inst": 11160,
-   "name": "Active alarm 660",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1160",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 23
-  },
-  {
-   "type": "MB",
    "inst": 11161,
    "name": "Active alarm 661",
    "unitRaw": null,
@@ -7922,16 +8952,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1169",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 23
-  },
-  {
-   "type": "MB",
-   "inst": 11170,
-   "name": "Active alarm 670",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1170",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 23
   },
@@ -8027,16 +9047,6 @@
   },
   {
    "type": "MB",
-   "inst": 11180,
-   "name": "Active alarm 680",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1180 · Alarm 46:5 MIRU Control no. 9 pressure regulation sensor no. 1 communication error",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 24
-  },
-  {
-   "type": "MB",
    "inst": 11181,
    "name": "Active alarm 681",
    "unitRaw": null,
@@ -8122,16 +9132,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1189",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 24
-  },
-  {
-   "type": "MB",
-   "inst": 11190,
-   "name": "Active alarm 690",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1190",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 24
   },
@@ -8227,26 +9227,6 @@
   },
   {
    "type": "MB",
-   "inst": 11200,
-   "name": "Active alarm 700",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1200",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 24
-  },
-  {
-   "type": "MB",
-   "inst": 11201,
-   "name": "Active alarm 701",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1201",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 24
-  },
-  {
-   "type": "MB",
    "inst": 11202,
    "name": "Active alarm 702",
    "unitRaw": null,
@@ -8322,16 +9302,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1209",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 24
-  },
-  {
-   "type": "MB",
-   "inst": 11210,
-   "name": "Active alarm 710",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1210",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 24
   },
@@ -8427,16 +9397,6 @@
   },
   {
    "type": "MB",
-   "inst": 11220,
-   "name": "Active alarm 720",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1220",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 24
-  },
-  {
-   "type": "MB",
    "inst": 11221,
    "name": "Active alarm 721",
    "unitRaw": null,
@@ -8522,16 +9482,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1229 · Alarm 49:9 Supply air fan no. 1A motor controller internal memory error",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 25
-  },
-  {
-   "type": "MB",
-   "inst": 11230,
-   "name": "Active alarm 730",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1230 · Alarm 49:10 Supply air fan no. 1A motor controller current reduction",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 25
   },
@@ -8627,16 +9577,6 @@
   },
   {
    "type": "MB",
-   "inst": 11240,
-   "name": "Active alarm 740",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1240 · Alarm 50:5 Supply air fan no. 2A motor controller over temperature",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 25
-  },
-  {
-   "type": "MB",
    "inst": 11241,
    "name": "Active alarm 741",
    "unitRaw": null,
@@ -8722,16 +9662,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1249",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 25
-  },
-  {
-   "type": "MB",
-   "inst": 11250,
-   "name": "Active alarm 750",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1250",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 25
   },
@@ -9232,16 +10162,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1300 · Alarm 54:5 Supply air fan no. 3B motor controller over temperature",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 26
-  },
-  {
-   "type": "MB",
-   "inst": 11301,
-   "name": "Active alarm 801",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1301 · Alarm 54:6 Supply air fan no. 3B motor controller start error",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 26
   },
@@ -9927,16 +10847,6 @@
   },
   {
    "type": "MB",
-   "inst": 11370,
-   "name": "Active alarm 870",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1370",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 28
-  },
-  {
-   "type": "MB",
    "inst": 11371,
    "name": "Active alarm 871",
    "unitRaw": null,
@@ -10022,16 +10932,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1379 · Alarm 59:9 Extract air fan no. 2B motor controller internal memory error",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 28
-  },
-  {
-   "type": "MB",
-   "inst": 11380,
-   "name": "Active alarm 880",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1380 · Alarm 59:10 Extract air fan no. 2B motor controller current reduction",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 28
   },
@@ -10127,16 +11027,6 @@
   },
   {
    "type": "MB",
-   "inst": 11390,
-   "name": "Active alarm 890",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1390 · Alarm 60:5 Extract air fan no. 3B motor controller over temperature",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 28
-  },
-  {
-   "type": "MB",
    "inst": 11391,
    "name": "Active alarm 891",
    "unitRaw": null,
@@ -10222,26 +11112,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1399",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 28
-  },
-  {
-   "type": "MB",
-   "inst": 11400,
-   "name": "Active alarm 900",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1400",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 28
-  },
-  {
-   "type": "MB",
-   "inst": 11401,
-   "name": "Active alarm 901",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1401 · Alarm 61:1 Supply air fan no. 1A I/O-module com. error",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 28
   },
@@ -11027,16 +11897,6 @@
   },
   {
    "type": "MB",
-   "inst": 11480,
-   "name": "Active alarm 980",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1480",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 30
-  },
-  {
-   "type": "MB",
    "inst": 11481,
    "name": "Active alarm 981",
    "unitRaw": null,
@@ -11122,16 +11982,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1489",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 30
-  },
-  {
-   "type": "MB",
-   "inst": 11490,
-   "name": "Active alarm 990",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1490",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 30
   },
@@ -11227,26 +12077,6 @@
   },
   {
    "type": "MB",
-   "inst": 11500,
-   "name": "Active alarm 1000",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1500",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 30
-  },
-  {
-   "type": "MB",
-   "inst": 11501,
-   "name": "Active alarm 1001",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1501",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 30
-  },
-  {
-   "type": "MB",
    "inst": 11502,
    "name": "Active alarm 1002",
    "unitRaw": null,
@@ -11322,16 +12152,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1509",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 30
-  },
-  {
-   "type": "MB",
-   "inst": 11510,
-   "name": "Active alarm 1010",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1510",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 30
   },
@@ -11427,16 +12247,6 @@
   },
   {
    "type": "MB",
-   "inst": 11520,
-   "name": "Active alarm 1020",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1520",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 31
-  },
-  {
-   "type": "MB",
    "inst": 11521,
    "name": "Active alarm 1021",
    "unitRaw": null,
@@ -11522,16 +12332,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1529",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 31
-  },
-  {
-   "type": "MB",
-   "inst": 11530,
-   "name": "Active alarm 1030",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1530",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 31
   },
@@ -11627,16 +12427,6 @@
   },
   {
    "type": "MB",
-   "inst": 11540,
-   "name": "Active alarm 1040",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1540 · Alarm 70:5 H/C defrost pressure sensor no. D com. Error",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 31
-  },
-  {
-   "type": "MB",
    "inst": 11541,
    "name": "Active alarm 1041",
    "unitRaw": null,
@@ -11722,16 +12512,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1549",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 31
-  },
-  {
-   "type": "MB",
-   "inst": 11550,
-   "name": "Active alarm 1050",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1550",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 31
   },
@@ -11827,16 +12607,6 @@
   },
   {
    "type": "MB",
-   "inst": 11560,
-   "name": "Active alarm 1060",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1560",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 31
-  },
-  {
-   "type": "MB",
    "inst": 11561,
    "name": "Active alarm 1061",
    "unitRaw": null,
@@ -11922,16 +12692,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1569 · Alarm 72:4 H/C discharge temperature above alarm limit",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 32
-  },
-  {
-   "type": "MB",
-   "inst": 11570,
-   "name": "Active alarm 1070",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1570 · Alarm 72:5 H/C discharge temperature sensor defective",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 32
   },
@@ -12027,16 +12787,6 @@
   },
   {
    "type": "MB",
-   "inst": 11580,
-   "name": "Active alarm 1080",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1580 · Alarm 72:15 H/C thermal switch compressor no. 2 tripped",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 32
-  },
-  {
-   "type": "MB",
    "inst": 11581,
    "name": "Active alarm 1081",
    "unitRaw": null,
@@ -12122,16 +12872,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1589",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 32
-  },
-  {
-   "type": "MB",
-   "inst": 11590,
-   "name": "Active alarm 1090",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1590",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 32
   },
@@ -12232,16 +12972,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1600",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 32
-  },
-  {
-   "type": "MB",
-   "inst": 11601,
-   "name": "Active alarm 1101",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1601",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 32
   },
@@ -12372,6 +13102,56 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1614",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 32
+  },
+  {
+   "type": "MB",
+   "inst": 31418,
+   "name": "H/C superheat temp",
+   "unitRaw": "K",
+   "unit": "K",
+   "note": "원표기 3x1418",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 32
+  },
+  {
+   "type": "MB",
+   "inst": 31419,
+   "name": "H/C discharge temp",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x1419",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 32
+  },
+  {
+   "type": "MB",
+   "inst": 31420,
+   "name": "H/C suction temp",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "원표기 3x1420",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 32
+  },
+  {
+   "type": "MB",
+   "inst": 31423,
+   "name": "H/C high pressure",
+   "unitRaw": "Bar",
+   "unit": "bar",
+   "note": "원표기 3x1423",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 32
+  },
+  {
+   "type": "MB",
+   "inst": 31424,
+   "name": "H/C low pressure",
+   "unitRaw": "Bar",
+   "unit": "bar",
+   "note": "원표기 3x1424",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 32
   },
@@ -12527,16 +13307,6 @@
   },
   {
    "type": "MB",
-   "inst": 11630,
-   "name": "Active alarm 1130",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1630",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 33
-  },
-  {
-   "type": "MB",
    "inst": 11631,
    "name": "Active alarm 1131",
    "unitRaw": null,
@@ -12622,16 +13392,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1639",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 33
-  },
-  {
-   "type": "MB",
-   "inst": 11640,
-   "name": "Active alarm 1140",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1640",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 33
   },
@@ -12727,16 +13487,6 @@
   },
   {
    "type": "MB",
-   "inst": 11650,
-   "name": "Active alarm 1150",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1650 · Alarm 77:10 MIRU 1 motor controller current reduction",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 33
-  },
-  {
-   "type": "MB",
    "inst": 11651,
    "name": "Active alarm 1151",
    "unitRaw": null,
@@ -12822,16 +13572,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1659 · Alarm 78:4 MIRU 2 motor controller over voltage",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 33
-  },
-  {
-   "type": "MB",
-   "inst": 11660,
-   "name": "Active alarm 1160",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1660 · Alarm 78:5 MIRU 2 motor controller over temperature",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 33
   },
@@ -12927,16 +13667,6 @@
   },
   {
    "type": "MB",
-   "inst": 11670,
-   "name": "Active alarm 1170",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1670",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 34
-  },
-  {
-   "type": "MB",
    "inst": 11671,
    "name": "Active alarm 1171",
    "unitRaw": null,
@@ -13022,16 +13752,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1679 · Alarm 79:9 MIRU 3 motor controller internal memory error",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 34
-  },
-  {
-   "type": "MB",
-   "inst": 11680,
-   "name": "Active alarm 1180",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1680 · Alarm 79:10 MIRU 3 motor controller current reduction",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 34
   },
@@ -13127,16 +13847,6 @@
   },
   {
    "type": "MB",
-   "inst": 11690,
-   "name": "Active alarm 1190",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1690",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 34
-  },
-  {
-   "type": "MB",
    "inst": 11691,
    "name": "Active alarm 1191",
    "unitRaw": null,
@@ -13222,26 +13932,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1699",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 34
-  },
-  {
-   "type": "MB",
-   "inst": 11700,
-   "name": "Active alarm 1200",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1700",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 34
-  },
-  {
-   "type": "MB",
-   "inst": 11701,
-   "name": "Active alarm 1201",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1701",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 34
   },
@@ -14127,16 +14817,6 @@
   },
   {
    "type": "MB",
-   "inst": 11790,
-   "name": "Active alarm 1290",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1790",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 36
-  },
-  {
-   "type": "MB",
    "inst": 11791,
    "name": "Active alarm 1291",
    "unitRaw": null,
@@ -14227,26 +14907,6 @@
   },
   {
    "type": "MB",
-   "inst": 11800,
-   "name": "Active alarm 1300",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1800",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 36
-  },
-  {
-   "type": "MB",
-   "inst": 11801,
-   "name": "Active alarm 1301",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1801",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 36
-  },
-  {
-   "type": "MB",
    "inst": 11802,
    "name": "Active alarm 1302",
    "unitRaw": null,
@@ -14322,16 +14982,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1809",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 36
-  },
-  {
-   "type": "MB",
-   "inst": 11810,
-   "name": "Active alarm 1310",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1810",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 36
   },
@@ -14427,16 +15077,6 @@
   },
   {
    "type": "MB",
-   "inst": 11820,
-   "name": "Active alarm 1320",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1820",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 37
-  },
-  {
-   "type": "MB",
    "inst": 11821,
    "name": "Active alarm 1321",
    "unitRaw": null,
@@ -14522,16 +15162,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1829",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 37
-  },
-  {
-   "type": "MB",
-   "inst": 11830,
-   "name": "Active alarm 1330",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1830",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 37
   },
@@ -14627,16 +15257,6 @@
   },
   {
    "type": "MB",
-   "inst": 11840,
-   "name": "Active alarm 1340",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1840",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 37
-  },
-  {
-   "type": "MB",
    "inst": 11841,
    "name": "Active alarm 1341",
    "unitRaw": null,
@@ -14722,16 +15342,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1849",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 37
-  },
-  {
-   "type": "MB",
-   "inst": 11850,
-   "name": "Active alarm 1350",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1850",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 37
   },
@@ -15237,16 +15847,6 @@
   },
   {
    "type": "MB",
-   "inst": 11901,
-   "name": "Active alarm 1401",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1901",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 38
-  },
-  {
-   "type": "MB",
    "inst": 11902,
    "name": "Active alarm 1402",
    "unitRaw": null,
@@ -15527,16 +16127,6 @@
   },
   {
    "type": "MB",
-   "inst": 11930,
-   "name": "Active alarm 1430",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1930 · Info 96:5 H/C OA temp limit for heating below factory setting",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 39
-  },
-  {
-   "type": "MB",
    "inst": 11931,
    "name": "Active alarm 1431",
    "unitRaw": null,
@@ -15622,16 +16212,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1939",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 39
-  },
-  {
-   "type": "MB",
-   "inst": 11940,
-   "name": "Active alarm 1440",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1940",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 39
   },
@@ -15807,6 +16387,16 @@
   },
   {
    "type": "MB",
+   "inst": 40102,
+   "name": "AHU filter calibration",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 4x0102 · 0=Inactive, 1=SA, 2=EA, 3=SA and EA",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 39
+  },
+  {
+   "type": "MB",
    "inst": 11958,
    "name": "Active alarm 1458",
    "unitRaw": null,
@@ -15822,16 +16412,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1959 · Info 98:4 Extract air pre-filter calibration not approved",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 40
-  },
-  {
-   "type": "MB",
-   "inst": 11960,
-   "name": "Active alarm 1460",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1960 · Info 98:5 Supply air air handling unit filter calibration not performed",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 40
   },
@@ -15927,16 +16507,6 @@
   },
   {
    "type": "MB",
-   "inst": 11970,
-   "name": "Active alarm 1470",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1970 · Info 98:15 ReCO2 incorrect setting",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 40
-  },
-  {
-   "type": "MB",
    "inst": 11971,
    "name": "Active alarm 1471",
    "unitRaw": null,
@@ -16022,16 +16592,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x1979 · Info 99:9 IQlogic CPU2 reboot caused by corrupt SD card remove and replace",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 40
-  },
-  {
-   "type": "MB",
-   "inst": 11980,
-   "name": "Active alarm 1480",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1980",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 40
   },
@@ -16127,16 +16687,6 @@
   },
   {
    "type": "MB",
-   "inst": 11990,
-   "name": "Active alarm 1490",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x1990",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 40
-  },
-  {
-   "type": "MB",
    "inst": 11991,
    "name": "Active alarm 1491",
    "unitRaw": null,
@@ -16227,16 +16777,6 @@
   },
   {
    "type": "MB",
-   "inst": 12000,
-   "name": "Active alarm 1500",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x2000",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 40
-  },
-  {
-   "type": "MB",
    "inst": 12001,
    "name": "Active alarm group 1",
    "unitRaw": null,
@@ -16287,6 +16827,56 @@
   },
   {
    "type": "MB",
+   "inst": 12010,
+   "name": "Active alarm group 10",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x2010",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 40
+  },
+  {
+   "type": "MB",
+   "inst": 12020,
+   "name": "Active alarm group 20",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x2020",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 40
+  },
+  {
+   "type": "MB",
+   "inst": 12030,
+   "name": "Active alarm group 30",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x2030",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 40
+  },
+  {
+   "type": "MB",
+   "inst": 12040,
+   "name": "Active alarm group 40",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x2040",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 40
+  },
+  {
+   "type": "MB",
+   "inst": 12050,
+   "name": "Active alarm group 50",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x2050",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 40
+  },
+  {
+   "type": "MB",
    "inst": 12006,
    "name": "Active alarm group 6",
    "unitRaw": null,
@@ -16322,16 +16912,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x2009",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 41
-  },
-  {
-   "type": "MB",
-   "inst": 12010,
-   "name": "Active alarm group 10",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x2010",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 41
   },
@@ -16427,16 +17007,6 @@
   },
   {
    "type": "MB",
-   "inst": 12020,
-   "name": "Active alarm group 20",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x2020",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 41
-  },
-  {
-   "type": "MB",
    "inst": 12021,
    "name": "Active alarm group 21",
    "unitRaw": null,
@@ -16522,16 +17092,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x2029",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 41
-  },
-  {
-   "type": "MB",
-   "inst": 12030,
-   "name": "Active alarm group 30",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x2030",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 41
   },
@@ -16627,16 +17187,6 @@
   },
   {
    "type": "MB",
-   "inst": 12040,
-   "name": "Active alarm group 40",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x2040",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 41
-  },
-  {
-   "type": "MB",
    "inst": 12041,
    "name": "Active alarm group 41",
    "unitRaw": null,
@@ -16727,16 +17277,6 @@
   },
   {
    "type": "MB",
-   "inst": 12050,
-   "name": "Active alarm group 50",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x2050",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 41
-  },
-  {
-   "type": "MB",
    "inst": 12051,
    "name": "Active alarm group 51",
    "unitRaw": null,
@@ -16772,6 +17312,56 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x2054",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 41
+  },
+  {
+   "type": "MB",
+   "inst": 12060,
+   "name": "Active alarm group 60",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x2060",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 41
+  },
+  {
+   "type": "MB",
+   "inst": 12070,
+   "name": "Active alarm group 70",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x2070",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 41
+  },
+  {
+   "type": "MB",
+   "inst": 12080,
+   "name": "Active alarm group 80",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x2080",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 41
+  },
+  {
+   "type": "MB",
+   "inst": 12090,
+   "name": "Active alarm group 90",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x2090",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 41
+  },
+  {
+   "type": "MB",
+   "inst": 12100,
+   "name": "Active alarm group 100",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 1x2100",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 41
   },
@@ -16822,16 +17412,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x2059",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 42
-  },
-  {
-   "type": "MB",
-   "inst": 12060,
-   "name": "Active alarm group 60",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x2060",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 42
   },
@@ -16927,16 +17507,6 @@
   },
   {
    "type": "MB",
-   "inst": 12070,
-   "name": "Active alarm group 70",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x2070",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 42
-  },
-  {
-   "type": "MB",
    "inst": 12071,
    "name": "Active alarm group 71",
    "unitRaw": null,
@@ -17022,16 +17592,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 1x2079",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 42
-  },
-  {
-   "type": "MB",
-   "inst": 12080,
-   "name": "Active alarm group 80",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x2080",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 42
   },
@@ -17127,16 +17687,6 @@
   },
   {
    "type": "MB",
-   "inst": 12090,
-   "name": "Active alarm group 90",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x2090",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 42
-  },
-  {
-   "type": "MB",
    "inst": 12091,
    "name": "Active alarm group 91",
    "unitRaw": null,
@@ -17227,16 +17777,6 @@
   },
   {
    "type": "MB",
-   "inst": 12100,
-   "name": "Active alarm group 100",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 1x2100",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 42
-  },
-  {
-   "type": "MB",
    "inst": 30001,
    "name": "Component name",
    "unitRaw": null,
@@ -17267,31 +17807,11 @@
   },
   {
    "type": "MB",
-   "inst": 30004,
-   "name": "SA Air flow",
-   "unitRaw": "l/s",
-   "unit": "Lps",
-   "note": "원표기 3x0004 · Present supply air flow.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 43
-  },
-  {
-   "type": "MB",
    "inst": 30005,
    "name": "SA Air flow regulator",
    "unitRaw": "l/s",
    "unit": "Lps",
    "note": "원표기 3x0005 · Present supply air flow regulator set point.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 43
-  },
-  {
-   "type": "MB",
-   "inst": 30006,
-   "name": "EA Air flow",
-   "unitRaw": "l/s",
-   "unit": "Lps",
-   "note": "원표기 3x0006 · Present extract air flow.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 43
   },
@@ -17307,31 +17827,11 @@
   },
   {
    "type": "MB",
-   "inst": 30008,
-   "name": "SA Duct pressure",
-   "unitRaw": "Pa",
-   "unit": "Pa",
-   "note": "원표기 3x0008 · Present supply air duct pressure.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 43
-  },
-  {
-   "type": "MB",
    "inst": 30009,
    "name": "SA Duct pressure regulator",
    "unitRaw": "Pa",
    "unit": "Pa",
    "note": "원표기 3x0009 · Present supply air duct pressure regulator set point.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 43
-  },
-  {
-   "type": "MB",
-   "inst": 30010,
-   "name": "EA Duct pressure",
-   "unitRaw": "Pa",
-   "unit": "Pa",
-   "note": "원표기 3x0010 · Present extract air duct pressure.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 43
   },
@@ -17447,46 +17947,6 @@
   },
   {
    "type": "MB",
-   "inst": 30027,
-   "name": "SA AHU filter pressure level",
-   "unitRaw": "Pa",
-   "unit": "Pa",
-   "note": "원표기 3x0027 · Present supply air filter pressure drop.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 43
-  },
-  {
-   "type": "MB",
-   "inst": 30028,
-   "name": "SA AHU filter pressure alarm limit",
-   "unitRaw": "Pa",
-   "unit": "Pa",
-   "note": "원표기 3x0028 · Present supply air filter pressure alarm limit.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 43
-  },
-  {
-   "type": "MB",
-   "inst": 30029,
-   "name": "EA AHU filter pressure level",
-   "unitRaw": "Pa",
-   "unit": "Pa",
-   "note": "원표기 3x0029 · Present extract air filter pressure drop.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 43
-  },
-  {
-   "type": "MB",
-   "inst": 30030,
-   "name": "EA AHU filter pressure alarm limit",
-   "unitRaw": "Pa",
-   "unit": "Pa",
-   "note": "원표기 3x0030 · Present extract air filter pressure alarm limit.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 43
-  },
-  {
-   "type": "MB",
    "inst": 30031,
    "name": "SA End-filter pressure level",
    "unitRaw": "Pa",
@@ -17504,26 +17964,6 @@
    "note": "원표기 3x0032 · Present supply air end-filter pressure alarm limit.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 43
-  },
-  {
-   "type": "MB",
-   "inst": 30037,
-   "name": "SA Fan level",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "원표기 3x0037 · Present fan speed level of the supply air fan.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 44
-  },
-  {
-   "type": "MB",
-   "inst": 30038,
-   "name": "EA Fan level",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "원표기 3x0038 · Present fan speed level of the extract air fan.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 44
   },
   {
    "type": "MB",
@@ -17717,16 +18157,6 @@
   },
   {
    "type": "MB",
-   "inst": 30064,
-   "name": "SA Temperature",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x0064 · Present supply air temperature.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 45
-  },
-  {
-   "type": "MB",
    "inst": 30065,
    "name": "SA-D Temperature",
    "unitRaw": "℃",
@@ -17792,16 +18222,6 @@
    "unitRaw": "℃",
    "unit": "degC",
    "note": "원표기 3x0072 · Present outdoor air temperature in the COOL DX unit.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 45
-  },
-  {
-   "type": "MB",
-   "inst": 30073,
-   "name": "Outdoor temperature",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x0073 · Present outdoor air temperature in the unit.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 45
   },
@@ -17957,16 +18377,6 @@
   },
   {
    "type": "MB",
-   "inst": 30091,
-   "name": "Heat exchanger regulator level",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "원표기 3x0091 · Present operation level of heat recovery.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 45
-  },
-  {
-   "type": "MB",
    "inst": 30092,
    "name": "Extra regulation sequence 1 heat regulator level",
    "unitRaw": "%",
@@ -17982,16 +18392,6 @@
    "unitRaw": "%",
    "unit": "percent",
    "note": "원표기 3x0093",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 45
-  },
-  {
-   "type": "MB",
-   "inst": 30094,
-   "name": "Reheat regulator level",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "원표기 3x0094 · Present level of reheat.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 45
   },
@@ -18057,16 +18457,6 @@
   },
   {
    "type": "MB",
-   "inst": 30101,
-   "name": "Cool regulator level",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "원표기 3x0101 · Present level of cooling.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 45
-  },
-  {
-   "type": "MB",
    "inst": 30102,
    "name": "Cool output level",
    "unitRaw": "%",
@@ -18094,16 +18484,6 @@
    "note": "원표기 3x0104 · Present level of cooling boost.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 45
-  },
-  {
-   "type": "MB",
-   "inst": 30105,
-   "name": "RHX operation level",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "원표기 3x0105 · Present speed level of the rotary heat exchanger.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 46
   },
   {
    "type": "MB",
@@ -18257,16 +18637,6 @@
   },
   {
    "type": "MB",
-   "inst": 30121,
-   "name": "PHX-2 Damper 1 output",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "원표기 3x0121 · Present level of plate heat exchanger damper 1 output.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 46
-  },
-  {
-   "type": "MB",
    "inst": 30122,
    "name": "PHX-2 Damper 1 input",
    "unitRaw": "%",
@@ -18277,31 +18647,11 @@
   },
   {
    "type": "MB",
-   "inst": 30123,
-   "name": "PHX-2 Damper 2 output",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "원표기 3x0123 · Present level of plate heat exchanger damper 2 output.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 46
-  },
-  {
-   "type": "MB",
    "inst": 30124,
    "name": "PHX-2 Damper 2 input",
    "unitRaw": "%",
    "unit": "percent",
    "note": "원표기 3x0124 · Present level of plate heat exchanger damper 2 input.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 46
-  },
-  {
-   "type": "MB",
-   "inst": 30125,
-   "name": "PHX-2 Bypass output",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "원표기 3x0125 · Present level of plate heat exchanger bypass output.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 46
   },
@@ -18407,31 +18757,11 @@
   },
   {
    "type": "MB",
-   "inst": 30137,
-   "name": "CHX-2 Valve output",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "원표기 3x0137 · Present level of coil heat exchanger valve output.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 46
-  },
-  {
-   "type": "MB",
    "inst": 30138,
    "name": "CHX-2 Valve input",
    "unitRaw": "%",
    "unit": "percent",
    "note": "원표기 3x0138 · Present level of coil heat exchanger valve input.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 46
-  },
-  {
-   "type": "MB",
-   "inst": 30139,
-   "name": "CHX-2 Pump output",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "원표기 3x0139 · Present level of pump heat exchanger output",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 46
   },
@@ -19117,41 +19447,11 @@
   },
   {
    "type": "MB",
-   "inst": 30260,
-   "name": "Exhaust air humidity",
-   "unitRaw": "%RH",
-   "unit": "percentRH",
-   "note": "원표기 3x0260 · Present level of exhaust air humidity.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 49
-  },
-  {
-   "type": "MB",
    "inst": 30261,
    "name": "Exhaust air temperature",
    "unitRaw": "℃",
    "unit": "degC",
    "note": "원표기 3x0261 · Present temperature inside the exhaust air humidity sensor.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 49
-  },
-  {
-   "type": "MB",
-   "inst": 30262,
-   "name": "Outdoor air humidity",
-   "unitRaw": "%RH",
-   "unit": "percentRH",
-   "note": "원표기 3x0262 · Present level of outdoor air humidity.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 49
-  },
-  {
-   "type": "MB",
-   "inst": 30263,
-   "name": "Outdoor air temperature",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x0263 · Present temperature inside the outdoor air humidity sensor.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 49
   },
@@ -19242,16 +19542,6 @@
    "unitRaw": "Bar",
    "unit": "bar",
    "note": "원표기 3x0277",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 50
-  },
-  {
-   "type": "MB",
-   "inst": 30281,
-   "name": "Exhaust heat temperature",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x0281 · Present exhaust heat temperature",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 50
   },
@@ -21197,26 +21487,6 @@
   },
   {
    "type": "MB",
-   "inst": 30592,
-   "name": "Operation level",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 3x0592 · 0=Fan not available 1=Alarm stop 2=Manual total stop (on hand terminal) 3=External total stop (digital input) 4=Communication total stop 5=Communication normal stop 6=Communication extended normal stop 7=Time channel total stop",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 59
-  },
-  {
-   "type": "MB",
-   "inst": 30604,
-   "name": "Triggered alarm #1",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 3x0604 · ((Alarm group - 1) x 15) + alarm number in group=Triggered alarm number. Zero if no triggered alarm.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 60
-  },
-  {
-   "type": "MB",
    "inst": 30605,
    "name": "Triggered alarm #2",
    "unitRaw": null,
@@ -22417,26 +22687,6 @@
   },
   {
    "type": "MB",
-   "inst": 30813,
-   "name": "External operation I/O-module A, temp sensor 1",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x0813",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 64
-  },
-  {
-   "type": "MB",
-   "inst": 30814,
-   "name": "External operation I/O-module A, temp sensor 2",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x0814",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 64
-  },
-  {
-   "type": "MB",
    "inst": 30815,
    "name": "External operation I/O-module B, analogue input",
    "unitRaw": "%",
@@ -22447,51 +22697,11 @@
   },
   {
    "type": "MB",
-   "inst": 30816,
-   "name": "External operation I/O-module B, temp sensor 1",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x0816",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 64
-  },
-  {
-   "type": "MB",
-   "inst": 30817,
-   "name": "External operation I/O-module B, temp sensor 2",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x0817",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 64
-  },
-  {
-   "type": "MB",
    "inst": 30818,
    "name": "External operation I/O-module C, analogue input",
    "unitRaw": "%",
    "unit": "percent",
    "note": "원표기 3x0818",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 64
-  },
-  {
-   "type": "MB",
-   "inst": 30819,
-   "name": "External operation I/O-module C, temp sensor 1",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x0819",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 64
-  },
-  {
-   "type": "MB",
-   "inst": 30820,
-   "name": "External operation I/O-module C, temp sensor 2",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x0820",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 64
   },
@@ -22847,6 +23057,76 @@
   },
   {
    "type": "MB",
+   "inst": 31040,
+   "name": "Alarm group 40",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 3x1040",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 65
+  },
+  {
+   "type": "MB",
+   "inst": 31050,
+   "name": "Alarm group 50",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 3x1050",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 65
+  },
+  {
+   "type": "MB",
+   "inst": 31060,
+   "name": "Alarm group 60",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 3x1060",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 65
+  },
+  {
+   "type": "MB",
+   "inst": 31070,
+   "name": "Alarm group 70",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 3x1070",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 65
+  },
+  {
+   "type": "MB",
+   "inst": 31080,
+   "name": "Alarm group 80",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 3x1080",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 65
+  },
+  {
+   "type": "MB",
+   "inst": 31090,
+   "name": "Alarm group 90",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 3x1090",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 65
+  },
+  {
+   "type": "MB",
+   "inst": 31100,
+   "name": "Alarm group 100",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 3x1100",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 65
+  },
+  {
+   "type": "MB",
    "inst": 31036,
    "name": "Alarm group 36",
    "unitRaw": null,
@@ -22882,16 +23162,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 3x1039",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 66
-  },
-  {
-   "type": "MB",
-   "inst": 31040,
-   "name": "Alarm group 40",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 3x1040",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 66
   },
@@ -22987,16 +23257,6 @@
   },
   {
    "type": "MB",
-   "inst": 31050,
-   "name": "Alarm group 50",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 3x1050",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 66
-  },
-  {
-   "type": "MB",
    "inst": 31051,
    "name": "Alarm group 51",
    "unitRaw": null,
@@ -23082,16 +23342,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 3x1059",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 66
-  },
-  {
-   "type": "MB",
-   "inst": 31060,
-   "name": "Alarm group 60",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 3x1060",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 66
   },
@@ -23187,16 +23437,6 @@
   },
   {
    "type": "MB",
-   "inst": 31070,
-   "name": "Alarm group 70",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 3x1070",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 66
-  },
-  {
-   "type": "MB",
    "inst": 31071,
    "name": "Alarm group 71",
    "unitRaw": null,
@@ -23282,16 +23522,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 3x1079",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 66
-  },
-  {
-   "type": "MB",
-   "inst": 31080,
-   "name": "Alarm group 80",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 3x1080",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 66
   },
@@ -23387,16 +23617,6 @@
   },
   {
    "type": "MB",
-   "inst": 31090,
-   "name": "Alarm group 90",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 3x1090",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 67
-  },
-  {
-   "type": "MB",
    "inst": 31091,
    "name": "Alarm group 91",
    "unitRaw": null,
@@ -23482,16 +23702,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 3x1099",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 67
-  },
-  {
-   "type": "MB",
-   "inst": 31100,
-   "name": "Alarm group 100",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 3x1100",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 67
   },
@@ -23657,36 +23867,6 @@
   },
   {
    "type": "MB",
-   "inst": 31418,
-   "name": "H/C superheat temp",
-   "unitRaw": "K",
-   "unit": "K",
-   "note": "원표기 3x1418",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 67
-  },
-  {
-   "type": "MB",
-   "inst": 31419,
-   "name": "H/C discharge temp",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x1419",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 67
-  },
-  {
-   "type": "MB",
-   "inst": 31420,
-   "name": "H/C suction temp",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 3x1420",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 67
-  },
-  {
-   "type": "MB",
    "inst": 31421,
    "name": "H/C condensation temp",
    "unitRaw": "℃",
@@ -23707,26 +23887,6 @@
   },
   {
    "type": "MB",
-   "inst": 31423,
-   "name": "H/C high pressure",
-   "unitRaw": "Bar",
-   "unit": "bar",
-   "note": "원표기 3x1423",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 67
-  },
-  {
-   "type": "MB",
-   "inst": 31424,
-   "name": "H/C low pressure",
-   "unitRaw": "Bar",
-   "unit": "bar",
-   "note": "원표기 3x1424",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 67
-  },
-  {
-   "type": "MB",
    "inst": 40001,
    "name": "SA Fan regulation mode",
    "unitRaw": null,
@@ -23742,46 +23902,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 4x0002 · Setting of regulation type for the extract air fan. 0=Air flow reg. 1=Pressure reg. 2=Demand reg. 3=Slave controlled by SA fan",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 68
-  },
-  {
-   "type": "MB",
-   "inst": 40003,
-   "name": "SA low speed air flow set point",
-   "unitRaw": "l/s",
-   "unit": "Lps",
-   "note": "원표기 4x0003 · Supply air flow set point for the unit when running in low speed operation.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 68
-  },
-  {
-   "type": "MB",
-   "inst": 40004,
-   "name": "EA low speed air flow set point",
-   "unitRaw": "l/s",
-   "unit": "Lps",
-   "note": "원표기 4x0004 · Extract air flow set point for the unit when running in low speed operation.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 68
-  },
-  {
-   "type": "MB",
-   "inst": 40005,
-   "name": "SA high speed air flow set point",
-   "unitRaw": "l/s",
-   "unit": "Lps",
-   "note": "원표기 4x0005 · Supply air flow set point for the unit when running in high speed operation.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 68
-  },
-  {
-   "type": "MB",
-   "inst": 40006,
-   "name": "EA high speed air flow set point",
-   "unitRaw": "l/s",
-   "unit": "Lps",
-   "note": "원표기 4x0006 · Extract air flow set point for the unit when running in high speed operation.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 68
   },
@@ -23842,46 +23962,6 @@
    "unitRaw": "s",
    "unit": "s",
    "note": "원표기 4x0012 · Extract air flow regulator affection setting.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 68
-  },
-  {
-   "type": "MB",
-   "inst": 40019,
-   "name": "SA low speed pressure set point",
-   "unitRaw": "Pa",
-   "unit": "Pa",
-   "note": "원표기 4x0019 · Supply air duct pressure set point for the unit when running in low speed operation.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 68
-  },
-  {
-   "type": "MB",
-   "inst": 40020,
-   "name": "EA low speed pressure set point",
-   "unitRaw": "Pa",
-   "unit": "Pa",
-   "note": "원표기 4x0020 · Extract air duct pressure set point for the unit when running in low speed operation.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 68
-  },
-  {
-   "type": "MB",
-   "inst": 40021,
-   "name": "SA high speed pressure set point",
-   "unitRaw": "Pa",
-   "unit": "Pa",
-   "note": "원표기 4x0021 · Supply air duct pressure for the unit when running in high speed operation.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 68
-  },
-  {
-   "type": "MB",
-   "inst": 40022,
-   "name": "EA high speed pressure set point",
-   "unitRaw": "Pa",
-   "unit": "Pa",
-   "note": "원표기 4x0022 · Extract air duct pressure set point for the unit when running in high speed operation.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 68
   },
@@ -24527,16 +24607,6 @@
   },
   {
    "type": "MB",
-   "inst": 40102,
-   "name": "AHU filter calibration",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 4x0102 · 0=Inactive, 1=SA, 2=EA, 3=SA and EA",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "MB",
    "inst": 40103,
    "name": "SA AHU-filter alarm limit",
    "unitRaw": "Pa",
@@ -24587,16 +24657,6 @@
   },
   {
    "type": "MB",
-   "inst": 40111,
-   "name": "Seasonal controlled temperature regulation",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 4x0111 · 0=Inactive, 1=Active",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "MB",
    "inst": 40112,
    "name": "Seasonal controlled temperature regulation mode",
    "unitRaw": null,
@@ -24642,16 +24702,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 4x0117 · Curve setting according to the diagram for ERS 1.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "MB",
-   "inst": 40118,
-   "name": "ERS 1 diff",
-   "unitRaw": "K",
-   "unit": "K",
-   "note": "원표기 4x0118 · Supply air temp difference setting according to the diagram for ERS 1.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 71
   },
@@ -24744,46 +24794,6 @@
    "note": "원표기 4x0129 · Breakpoint Y4 setting according to the diagram for ERS 2.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 71
-  },
-  {
-   "type": "MB",
-   "inst": 40132,
-   "name": "SA temperature set point",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 4x0132 · Supply air temperature setting, for supply air temp regulation mode.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "MB",
-   "inst": 40135,
-   "name": "EA/Room temperature set point",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 4x0135 · Extract air/room temperature setting, for Extract air/room temp regulation mode.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 72
-  },
-  {
-   "type": "MB",
-   "inst": 40136,
-   "name": "SA min temp set point",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 4x0136 · Supply air min. set point during EA/room regulation mode.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 72
-  },
-  {
-   "type": "MB",
-   "inst": 40137,
-   "name": "SA max temp set point",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "원표기 4x0137 · Supply air max. set point during EA/room regulation mode.",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 72
   },
   {
    "type": "MB",
@@ -27557,6 +27567,16 @@
   },
   {
    "type": "MB",
+   "inst": 40637,
+   "name": "Optimize function",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 4x0637",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 79
+  },
+  {
+   "type": "MB",
    "inst": 40504,
    "name": "AQUA Link Function",
    "unitRaw": null,
@@ -28342,16 +28362,6 @@
    "unitRaw": "s",
    "unit": "s",
    "note": "원표기 4x0624",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 82
-  },
-  {
-   "type": "MB",
-   "inst": 40637,
-   "name": "Optimize function",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 4x0637",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 82
   },
@@ -29302,16 +29312,6 @@
    "unitRaw": "min",
    "unit": "min",
    "note": "원표기 4x0786",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 86
-  },
-  {
-   "type": "MB",
-   "inst": 40793,
-   "name": "Communication operation level",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 4x0793 · 0=auto, 1=total stop, 2=low speed, 3=high speed, 4=normal stop, 5=extended normal stop.",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 86
   },
@@ -31507,6 +31507,16 @@
   },
   {
    "type": "MB",
+   "inst": 41097,
+   "name": "Calendar 1, function #10",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 4x1097 · 0=Date (MaxStartDate = 34) 1=Date range (MaxStartDate = 34) 2=Weekday (MaxStartDate = 6) 3=Inactive",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 95
+  },
+  {
+   "type": "MB",
    "inst": 41094,
    "name": "Calendar 1, function #7",
    "unitRaw": null,
@@ -31532,16 +31542,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 4x1096 · 0=Date (MaxStartDate = 34) 1=Date range (MaxStartDate = 34) 2=Weekday (MaxStartDate = 6) 3=Inactive",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 96
-  },
-  {
-   "type": "MB",
-   "inst": 41097,
-   "name": "Calendar 1, function #10",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 4x1097 · 0=Date (MaxStartDate = 34) 1=Date range (MaxStartDate = 34) 2=Weekday (MaxStartDate = 6) 3=Inactive",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 96
   },
@@ -31757,6 +31757,16 @@
   },
   {
    "type": "MB",
+   "inst": 41127,
+   "name": "Calendar 1, Start date #10",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 4x1127 · 0=Unspecified -------------------Max = 34-------------- 32=Last day of month 33=odd days of month 34=even days of month -------------------Max = 6---------------- 1=days numbered 1..7 2=days numbered 8..14 3=days numbered 15..2",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 96
+  },
+  {
+   "type": "MB",
    "inst": 41119,
    "name": "Calendar 1, Start date #2",
    "unitRaw": null,
@@ -31834,16 +31844,6 @@
    "note": "원표기 4x1126 · 0=Unspecified -------------------Max = 34-------------- 32=Last day of month 33=odd days of month 34=even days of month -------------------Max = 6---------------- 1=days numbered 1..7 2=days numbered 8..14 3=days numbered 15..2",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 98
-  },
-  {
-   "type": "MB",
-   "inst": 41127,
-   "name": "Calendar 1, Start date #10",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 4x1127 · 0=Unspecified -------------------Max = 34-------------- 32=Last day of month 33=odd days of month 34=even days of month -------------------Max = 6---------------- 1=days numbered 1..7 2=days numbered 8..14 3=days numbered 15..2",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 99
   },
   {
    "type": "MB",
@@ -32467,6 +32467,16 @@
   },
   {
    "type": "MB",
+   "inst": 41197,
+   "name": "Calendar 2, Start year #10",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 4x1197 · 0=Unspecified",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 100
+  },
+  {
+   "type": "MB",
    "inst": 41190,
    "name": "Calendar 2, Start year #3",
    "unitRaw": null,
@@ -32532,16 +32542,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 4x1196 · 0=Unspecified",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 101
-  },
-  {
-   "type": "MB",
-   "inst": 41197,
-   "name": "Calendar 2, Start year #10",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 4x1197 · 0=Unspecified",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 101
   },
@@ -32667,6 +32667,16 @@
   },
   {
    "type": "MB",
+   "inst": 41217,
+   "name": "Calendar 2, Start date #10",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 4x1217 · 0=Unspecified -------------------Max = 34-------------- 32=Last day of month 33=odd days of month 34=even days of month -------------------Max = 6---------------- 1=days numbered 1..7 2=days numbered 8..14 3=days numbered 15..2",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 101
+  },
+  {
+   "type": "MB",
    "inst": 41210,
    "name": "Calendar 2, Start date #3",
    "unitRaw": null,
@@ -32737,16 +32747,6 @@
   },
   {
    "type": "MB",
-   "inst": 41217,
-   "name": "Calendar 2, Start date #10",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 4x1217 · 0=Unspecified -------------------Max = 34-------------- 32=Last day of month 33=odd days of month 34=even days of month -------------------Max = 6---------------- 1=days numbered 1..7 2=days numbered 8..14 3=days numbered 15..2",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 103
-  },
-  {
-   "type": "MB",
    "inst": 41218,
    "name": "Calendar 2, Start week day #1",
    "unitRaw": null,
@@ -32782,6 +32782,16 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 4x1221 · 0=Unspecified, 1-7=Mon..Sun",
+   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
+   "sourcePage": 103
+  },
+  {
+   "type": "MB",
+   "inst": 41227,
+   "name": "Calendar 2, Start week day #10",
+   "unitRaw": null,
+   "unit": null,
+   "note": "원표기 4x1227 · 0=Unspecified, 1-7=Mon..Sun",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 103
   },
@@ -32832,16 +32842,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "원표기 4x1226 · 0=Unspecified, 1-7=Mon..Sun",
-   "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
-   "sourcePage": 104
-  },
-  {
-   "type": "MB",
-   "inst": 41227,
-   "name": "Calendar 2, Start week day #10",
-   "unitRaw": null,
-   "unit": null,
-   "note": "원표기 4x1227 · 0=Unspecified, 1-7=Mon..Sun",
    "sourceFile": "Swegon_GOLD-EF_Modbus_RTU-TCP.pdf",
    "sourcePage": 104
   },

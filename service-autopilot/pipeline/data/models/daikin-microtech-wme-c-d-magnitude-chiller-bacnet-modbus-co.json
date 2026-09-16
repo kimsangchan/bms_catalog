@@ -33,26 +33,6 @@
  "points": [
   {
    "type": "AI",
-   "inst": 1,
-   "name": "EntEvapWaterTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The temperature of the fluid entering the evaporator. · 범위 -40 – 230°F -40 – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "AI",
-   "inst": 2,
-   "name": "LvgEvapWaterTempUnit",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current temperature of the fluid leaving the evapo­ rator. · 범위 -40 – 230°F -40 – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "AI",
    "inst": 3,
    "name": "EntCondWaterTemp",
    "unitRaw": null,
@@ -60,16 +40,6 @@
    "note": "The current temperature of the fluid entering the con­ denser. · 범위 -40 – 230°F -40 – 110°C Default: NA",
    "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
    "sourcePage": 11
-  },
-  {
-   "type": "AI",
-   "inst": 4,
-   "name": "LvgCondWaterTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current temperature of the fluid leaving the con­ denser. · 범위 -40 – 230°F -40 – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 12
   },
   {
    "type": "AI",
@@ -173,16 +143,6 @@
   },
   {
    "type": "AI",
-   "inst": 99,
-   "name": "Cond1RefPressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current condenser refrig­ erant pressure. · 범위 0-410 Psi (700 Psi for R410A) 0-2827 kPa, (4826 kPa for R410A) Default: NA",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "AI",
    "inst": 105,
    "name": "C1Comp1SuctionTemp",
    "unitRaw": null,
@@ -223,16 +183,6 @@
   },
   {
    "type": "AI",
-   "inst": 141,
-   "name": "C1EvapRefPressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current evaporator refrig­ erant pressure. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "AI",
    "inst": 147,
    "name": "CondWaterFlowRate",
    "unitRaw": null,
@@ -240,6 +190,56 @@
    "note": "The current fluid flow rate for the condenser (Field-Sup­ plied Flow Meter). · 범위 0-65,535 GPM 0-4134.6 L/S Default: NA",
    "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
    "sourcePage": 11
+  },
+  {
+   "type": "AI",
+   "inst": 1,
+   "name": "EntEvapWaterTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The temperature of the fluid entering the evaporator. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "AI",
+   "inst": 2,
+   "name": "LvgEvapWaterTempUnit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current temperature of the fluid leaving the evapo­ rator. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "AI",
+   "inst": 4,
+   "name": "LvgCondWaterTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current temperature of the fluid leaving the con­ denser. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "AI",
+   "inst": 99,
+   "name": "Cond1RefPressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current condenser refrig­ erant pressure. · 범위 0-410 Psi (700 Psi for R410A) 0-2827 kPa, (4826 kPa for R410A) Default: NA",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "AI",
+   "inst": 141,
+   "name": "C1EvapRefPressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current evaporator refrig­ erant pressure. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 12
   },
   {
    "type": "AI",
@@ -293,16 +293,6 @@
   },
   {
    "type": "AV",
-   "inst": 4,
-   "name": "NetworkCoolTempSetpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Changes the cooling setpoint from the network. It sets the temperature of the leaving Chilled Fluid when the chiller is operating in the Cooling Mode. It cannot be set below the local Cool Setpoint. The unit controller only uses this variab",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AV",
    "inst": 5,
    "name": "ActiveLvgWaterTarget",
    "unitRaw": null,
@@ -350,6 +340,56 @@
    "note": "",
    "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
    "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 901,
+   "name": "AVFaultAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See BACnet Alarm Indices section for additional information. See BAC­ net Fault Alarm Index for additional information.",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 902,
+   "name": "AVWarningAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See BACnet Warning Alarm Index for additional information.",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 903,
+   "name": "AVWarningAlarmCode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See Warning Alarms for additional information.",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 905,
+   "name": "AVFaultAlarmCode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See BACnet Alarm Codes section for additional information. See Fault Alarms for additional information.",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 4,
+   "name": "NetworkCoolTempSetpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Changes the cooling setpoint from the network. It sets the temperature of the leaving Chilled Fluid when the chiller is operating in the Cooling Mode. It cannot be set below the local Cool Setpoint. The unit controller only uses this variab",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 14
   },
   {
    "type": "AV",
@@ -472,44 +512,24 @@
    "sourcePage": 14
   },
   {
-   "type": "AV",
-   "inst": 901,
-   "name": "AVFaultAlarm",
+   "type": "BV",
+   "inst": 2,
+   "name": "ChillerEnableStp",
    "unitRaw": null,
    "unit": null,
-   "note": "See BACnet Alarm Indices section for additional information. See BAC­ net Fault Alarm Index for additional information.",
+   "note": "Disables or enables chiller operation over the net­ work. Setting this variable to Enable does not start the chiller. It only allows the chiller to start if other operating conditions are satisfied. The unit controller only uses this variab",
    "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 13
+   "sourcePage": 15
   },
   {
-   "type": "AV",
-   "inst": 902,
-   "name": "AVWarningAlarm",
+   "type": "BV",
+   "inst": 8,
+   "name": "ClearAlarm",
    "unitRaw": null,
    "unit": null,
-   "note": "See BACnet Warning Alarm Index for additional information.",
+   "note": "Clears all active alarms. Many alarms are automati­ cally clearing alarms. Of the alarms that need to be manually cleared, the alarms listed below cannot be cleared from the network: • COMPRESSOR SHUTDOWN – Evaporator Pressure Low Circuit #",
    "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 903,
-   "name": "AVWarningAlarmCode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See Warning Alarms for additional information.",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 905,
-   "name": "AVFaultAlarmCode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See BACnet Alarm Codes section for additional information. See Fault Alarms for additional information.",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 13
+   "sourcePage": 15
   },
   {
    "type": "BI",
@@ -652,24 +672,54 @@
    "sourcePage": 16
   },
   {
-   "type": "BV",
-   "inst": 2,
-   "name": "ChillerEnableStp",
+   "type": "MSV",
+   "inst": 1,
+   "name": "UnitStatus",
    "unitRaw": null,
    "unit": null,
-   "note": "Disables or enables chiller operation over the net­ work. Setting this variable to Enable does not start the chiller. It only allows the chiller to start if other operating conditions are satisfied. The unit controller only uses this variab",
+   "note": "The unit status of the chiller. · 범위 1 = OFF 2 = START 3 = RUN 4 = PRESHUT­ DOWN 5 = SERVICE",
    "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 15
+   "sourcePage": 17
   },
   {
-   "type": "BV",
-   "inst": 8,
-   "name": "ClearAlarm",
+   "type": "MSV",
+   "inst": 2,
+   "name": "ActiveMode",
    "unitRaw": null,
    "unit": null,
-   "note": "Clears all active alarms. Many alarms are automati­ cally clearing alarms. Of the alarms that need to be manually cleared, the alarms listed below cannot be cleared from the network: • COMPRESSOR SHUTDOWN – Evaporator Pressure Low Circuit #",
+   "note": "The current operating mode of the chiller. Only Cool Mode applies to models WME-C and WME-D. · 범위 1 = ICE 2 = COOL 3 = HEAT 4= COOL/HEAT RECOVERY Default: 2 = COOL",
    "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 15
+   "sourcePage": 17
+  },
+  {
+   "type": "MSV",
+   "inst": 3,
+   "name": "ChillerOpera­ tionMode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Changes the operating mode of the chiller and provides the ability for another node on the network to place a chiller in another mode. The unit controller only uses this variable if Remote Enable is set to Enable. Remote Enable can only be ",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "MSV",
+   "inst": 100,
+   "name": "C1Comp1OffAuto",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Enables (default) or disables the compressor. When power is cycled to the controller, the object returns to the default value (Auto). Note: Must have chiller appli­ cation code 1.2.4 or newer for these objects to be available. · 범위 1 = OFF ",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "MSV",
+   "inst": 101,
+   "name": "C1Comp2OffAuto",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
+   "sourcePage": 17
   },
   {
    "type": "MB",
@@ -760,56 +810,6 @@
    "note": "Indicates the liquid line refrigerant temperature for the circuit. · 범위 -40 – 230°F × 10 -40 – 110°C × 10 Default: NA",
    "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
    "sourcePage": 21
-  },
-  {
-   "type": "MSV",
-   "inst": 1,
-   "name": "UnitStatus",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The unit status of the chiller. · 범위 1 = OFF 2 = START 3 = RUN 4 = PRESHUT­ DOWN 5 = SERVICE",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MSV",
-   "inst": 2,
-   "name": "ActiveMode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current operating mode of the chiller. Only Cool Mode applies to models WME-C and WME-D. · 범위 1 = ICE 2 = COOL 3 = HEAT 4= COOL/HEAT RECOVERY Default: 2 = COOL",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MSV",
-   "inst": 3,
-   "name": "ChillerOpera­ tionMode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Changes the operating mode of the chiller and provides the ability for another node on the network to place a chiller in another mode. The unit controller only uses this variable if Remote Enable is set to Enable. Remote Enable can only be ",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MSV",
-   "inst": 100,
-   "name": "C1Comp1OffAuto",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Enables (default) or disables the compressor. When power is cycled to the controller, the object returns to the default value (Auto). Note: Must have chiller appli­ cation code 1.2.4 or newer for these objects to be available. · 범위 1 = OFF ",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MSV",
-   "inst": 101,
-   "name": "C1Comp2OffAuto",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19111-3_MicroTech_WME-CD_Protocol.pdf",
-   "sourcePage": 17
   }
  ],
  "gap": "정격은 WME-C 카탈로그(CAT 632-5)와 WME-D 엔지니어링 데이터(ED 19135)에서 연결했다(원문표). 형번별 냉동능력·kW/ton 상세표는 선정 소프트웨어 기반이라 문서에 없다.",

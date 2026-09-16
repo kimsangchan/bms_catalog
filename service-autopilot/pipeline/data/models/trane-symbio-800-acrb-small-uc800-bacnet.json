@@ -27,6 +27,136 @@
  "points": [
   {
    "type": "MB",
+   "inst": 40010,
+   "name": "Chilled Water Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Chilled Water Setpoint · Modbus TEMPERATURE 40010",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 40012,
+   "name": "Demand Limit Setpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Demand Limit Setpoint · Modbus PERCENTAGE 40012",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 40014,
+   "name": "Evaporator Water Pump Flow Rate Setpt BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Evap Water Flow Rate Setpt · Modbus FLOW FLUIDIC _ 40014",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 40016,
+   "name": "Evaporator Water Pump Speed Setpt BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Evap Water Pump Speed Setpt · Modbus PERCENTAGE 40016",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 42010,
+   "name": "Chiller Mode Command BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Chiller Mode Command · Modbus ENNUM 42010",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 43010,
+   "name": "Reset Diagnostic",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Reset Diagnostic · Modbus NA 43010",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 43011,
+   "name": "Noise Reduction Request BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Noise Reduction Request · Modbus BINARY 43011",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 43012,
+   "name": "Chiller Auto Stop Command BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Chiller Auto Stop Command · Modbus BINARY 43012",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 43013,
+   "name": "Free Cooling Auto Stop Command BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Free Cooling Auto Stop Command · Modbus BINARY 43013",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 43014,
+   "name": "Free Cooling Compressor Lockout",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Free Cooling Compressor Lockout · Modbus BINARY 43014",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 43015,
+   "name": "Circuit 1 Lockout BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Lockout of Circuit 1 · Modbus BINARY 43015",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 43016,
+   "name": "Circuit 2 Lockout BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Lockout of Circuit 2 · Modbus BINARY 43016",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
+   "inst": 43017,
+   "name": "Energy Consumption Reset",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Energy Consumption Reset · Modbus NA 43017",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 29
+  },
+  {
+   "type": "MB",
    "inst": 30010,
    "name": "Active Chilled Water Setpoint",
    "unitRaw": null,
@@ -1307,74 +1437,6 @@
   },
   {
    "type": "MB",
-   "inst": 32010,
-   "name": "Running Mode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Chiller Running Status · Modbus ENNUM 32010",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 36
-  },
-  {
-   "type": "MB",
-   "inst": 32011,
-   "name": "Operating Mode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Operating Mode · Modbus ENNUM 32011",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 36
-  },
-  {
-   "type": "MB",
-   "inst": 32012,
-   "name": "Chiller Setpoint Source",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Setpoint Source · Modbus ENNUM 32012",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 36
-  },
-  {
-   "type": "MB",
-   "inst": 32013,
-   "name": "Refrigerant Type",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Refrigerant Type · Modbus ENNUM 32013",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 36
-  },
-  {
-   "type": "MB",
-   "inst": 32014,
-   "name": "Cooling Type",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Cooling Type · Modbus ENNUM 32014",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 36
-  },
-  {
-   "type": "MB",
-   "inst": 32015,
-   "name": "Manufacture Location",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Manufacture Location · Modbus ENNUM 32015",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 36
-  },
-  {
-   "type": "MB",
-   "inst": 32016,
-   "name": "Model Information [GEN2]",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Model Information · Modbus ENNUM 32016"
-  },
-  {
-   "type": "MB",
    "inst": 33010,
    "name": "Run Enable",
    "unitRaw": null,
@@ -1565,6 +1627,66 @@
   },
   {
    "type": "MB",
+   "inst": 32010,
+   "name": "Running Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Chiller Running Status · Modbus ENNUM 32010",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 36
+  },
+  {
+   "type": "MB",
+   "inst": 32011,
+   "name": "Operating Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Operating Mode · Modbus ENNUM 32011",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 36
+  },
+  {
+   "type": "MB",
+   "inst": 32012,
+   "name": "Chiller Setpoint Source",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Setpoint Source · Modbus ENNUM 32012",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 36
+  },
+  {
+   "type": "MB",
+   "inst": 32013,
+   "name": "Refrigerant Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Refrigerant Type · Modbus ENNUM 32013",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 36
+  },
+  {
+   "type": "MB",
+   "inst": 32014,
+   "name": "Cooling Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Cooling Type · Modbus ENNUM 32014",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 36
+  },
+  {
+   "type": "MB",
+   "inst": 32015,
+   "name": "Manufacture Location",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Manufacture Location · Modbus ENNUM 32015",
+   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
+   "sourcePage": 36
+  },
+  {
+   "type": "MB",
    "inst": 33037,
    "name": "Oil Sensor Circuit 1",
    "unitRaw": null,
@@ -1615,133 +1737,11 @@
   },
   {
    "type": "MB",
-   "inst": 40010,
-   "name": "Chilled Water Setpoint",
+   "inst": 32016,
+   "name": "Model Information [GEN2]",
    "unitRaw": null,
    "unit": null,
-   "note": "BAS Chilled Water Setpoint · Modbus TEMPERATURE 40010",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 40012,
-   "name": "Demand Limit Setpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Demand Limit Setpoint · Modbus PERCENTAGE 40012",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 40014,
-   "name": "Evaporator Water Pump Flow Rate Setpt BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Evap Water Flow Rate Setpt · Modbus FLOW FLUIDIC _ 40014",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 40016,
-   "name": "Evaporator Water Pump Speed Setpt BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Evap Water Pump Speed Setpt · Modbus PERCENTAGE 40016",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 42010,
-   "name": "Chiller Mode Command BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Chiller Mode Command · Modbus ENNUM 42010",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 43010,
-   "name": "Reset Diagnostic",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Reset Diagnostic · Modbus NA 43010",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 43011,
-   "name": "Noise Reduction Request BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Noise Reduction Request · Modbus BINARY 43011",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 43012,
-   "name": "Chiller Auto Stop Command BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Chiller Auto Stop Command · Modbus BINARY 43012",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 43013,
-   "name": "Free Cooling Auto Stop Command BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Free Cooling Auto Stop Command · Modbus BINARY 43013",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 43014,
-   "name": "Free Cooling Compressor Lockout",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Free Cooling Compressor Lockout · Modbus BINARY 43014",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 43015,
-   "name": "Circuit 1 Lockout BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Lockout of Circuit 1 · Modbus BINARY 43015",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 43016,
-   "name": "Circuit 2 Lockout BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Lockout of Circuit 2 · Modbus BINARY 43016",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MB",
-   "inst": 43017,
-   "name": "Energy Consumption Reset",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Energy Consumption Reset · Modbus NA 43017",
-   "sourceFile": "BAS-PTS025A-EN_12062024.pdf",
-   "sourcePage": 29
+   "note": "Model Information · Modbus ENNUM 32016"
   }
  ],
  "gap": "정격 성능(용량·COP·소비전력)과 냉각 방식은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",

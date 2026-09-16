@@ -3892,6 +3892,116 @@
    "sourcePage": 21
   },
   {
+   "type": "MSI",
+   "inst": 10100,
+   "name": "Running Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Chiller Off 2 = Chiller In Start Mode 3 = Chiller In Run Mode 4 = Chiller In Pre-Shutdown Mode 5 = Chiller In Service Mode · 조건: Standard",
+   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
+   "sourcePage": 22
+  },
+  {
+   "type": "MSI",
+   "inst": 10101,
+   "name": "Operating Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard",
+   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
+   "sourcePage": 22
+  },
+  {
+   "type": "MSI",
+   "inst": 10102,
+   "name": "Chiller Setpoint Source",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = BAS 2 = External 3 = Front Panel · 조건: Standard",
+   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
+   "sourcePage": 22
+  },
+  {
+   "type": "MSI",
+   "inst": 10103,
+   "name": "Refrigerant Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = R-11 2 = R-12 3= R-22 4= R-123 5 = R-134a 6 = R-407C 7 = R-410A 8 = R-113 9 = R-114 10 = R-500 11 = R-502 12 = R-404A 13 = R-513A 14 = R-1233zd(E) 15 = R-514A 16 = R-1234z(E) 17 = R-454B 18 = R-515B · 조건: Standard",
+   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
+   "sourcePage": 22
+  },
+  {
+   "type": "MSI",
+   "inst": 10104,
+   "name": "Cooling Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Water Cooled 2 = Air Cooled · 조건: Standard",
+   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
+   "sourcePage": 22
+  },
+  {
+   "type": "MSI",
+   "inst": 10105,
+   "name": "Manufacture Location",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Field Applied 2= La Crosse 3 = Pueblo 4 = Charmes 5 = Rushville 6 = Macon 7 = Waco 8 = Lexington 9 = Forsyth 10 = Clarksville 11 = Ft. Smith 12 = Penang 13 = Colchester 14 = Curitiba 15 = Taicang 16 = Taiwan 17 = Epinal 18 = Golbey · 조건",
+   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
+   "sourcePage": 23
+  },
+  {
+   "type": "MSI",
+   "inst": 10107,
+   "name": "Front Panel Chiller Mode Command",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard",
+   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
+   "sourcePage": 23
+  },
+  {
+   "type": "MSI",
+   "inst": 10108,
+   "name": "Model Information [GEN2]",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = CVHF 2 = CVGF 3= CVHS 4= RTAE 5 = RTAF 6 = RTHA 7 = RTHB 8 = RTHC 9 = RTHD 10 = RTW 11 = CTVD 12 = CVR 13 = CVHH 14 = CDHH 15 = VMAX 16 = GVAF 17 = RTWF 18 = RTHF 19 = RTAC 20 = CVHM 21 = RTAG 22 = CGAF 23 = RTXG 24 = GVWF 25 = HDWA 26 ",
+   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
+   "sourcePage": 24
+  },
+  {
+   "type": "MSI",
+   "inst": 10109,
+   "name": "Circuit 1 Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Available 2 = Heat Recovery 3 = Cooling 4 = Heating 5 = Defrost 6 = Not Available · 조건: Standard",
+   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
+   "sourcePage": 24
+  },
+  {
+   "type": "MSI",
+   "inst": 10110,
+   "name": "Circuit 2 Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "1 = Available 2 = Heat Recovery 3 = Cooling 4 = Heating 5 = Defrost 6 = Not Available · 조건: Standard",
+   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
+   "sourcePage": 25
+  },
+  {
+   "type": "MSV",
+   "inst": 10100,
+   "name": "Chiller Mode Command BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "BAS Chiller Mode Command · 1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard",
+   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
+   "sourcePage": 26
+  },
+  {
    "type": "MB",
    "inst": 30011,
    "name": "Active Cool/Heat Setpoint Temperature",
@@ -5114,116 +5224,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "0 = Off 1 = On · 조건: Hot Water Control (Heat Pump)"
-  },
-  {
-   "type": "MSI",
-   "inst": 10100,
-   "name": "Running Mode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1 = Chiller Off 2 = Chiller In Start Mode 3 = Chiller In Run Mode 4 = Chiller In Pre-Shutdown Mode 5 = Chiller In Service Mode · 조건: Standard",
-   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
-   "sourcePage": 22
-  },
-  {
-   "type": "MSI",
-   "inst": 10101,
-   "name": "Operating Mode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard",
-   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
-   "sourcePage": 22
-  },
-  {
-   "type": "MSI",
-   "inst": 10102,
-   "name": "Chiller Setpoint Source",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1 = BAS 2 = External 3 = Front Panel · 조건: Standard",
-   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
-   "sourcePage": 22
-  },
-  {
-   "type": "MSI",
-   "inst": 10103,
-   "name": "Refrigerant Type",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1 = R-11 2 = R-12 3= R-22 4= R-123 5 = R-134a 6 = R-407C 7 = R-410A 8 = R-113 9 = R-114 10 = R-500 11 = R-502 12 = R-404A 13 = R-513A 14 = R-1233zd(E) 15 = R-514A 16 = R-1234z(E) 17 = R-454B 18 = R-515B · 조건: Standard",
-   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
-   "sourcePage": 22
-  },
-  {
-   "type": "MSI",
-   "inst": 10104,
-   "name": "Cooling Type",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1 = Water Cooled 2 = Air Cooled · 조건: Standard",
-   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
-   "sourcePage": 22
-  },
-  {
-   "type": "MSI",
-   "inst": 10105,
-   "name": "Manufacture Location",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1 = Field Applied 2= La Crosse 3 = Pueblo 4 = Charmes 5 = Rushville 6 = Macon 7 = Waco 8 = Lexington 9 = Forsyth 10 = Clarksville 11 = Ft. Smith 12 = Penang 13 = Colchester 14 = Curitiba 15 = Taicang 16 = Taiwan 17 = Epinal 18 = Golbey · 조건",
-   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
-   "sourcePage": 23
-  },
-  {
-   "type": "MSI",
-   "inst": 10107,
-   "name": "Front Panel Chiller Mode Command",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard",
-   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
-   "sourcePage": 23
-  },
-  {
-   "type": "MSI",
-   "inst": 10108,
-   "name": "Model Information [GEN2]",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1 = CVHF 2 = CVGF 3= CVHS 4= RTAE 5 = RTAF 6 = RTHA 7 = RTHB 8 = RTHC 9 = RTHD 10 = RTW 11 = CTVD 12 = CVR 13 = CVHH 14 = CDHH 15 = VMAX 16 = GVAF 17 = RTWF 18 = RTHF 19 = RTAC 20 = CVHM 21 = RTAG 22 = CGAF 23 = RTXG 24 = GVWF 25 = HDWA 26 ",
-   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
-   "sourcePage": 24
-  },
-  {
-   "type": "MSI",
-   "inst": 10109,
-   "name": "Circuit 1 Status",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1 = Available 2 = Heat Recovery 3 = Cooling 4 = Heating 5 = Defrost 6 = Not Available · 조건: Standard",
-   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
-   "sourcePage": 24
-  },
-  {
-   "type": "MSI",
-   "inst": 10110,
-   "name": "Circuit 2 Status",
-   "unitRaw": null,
-   "unit": null,
-   "note": "1 = Available 2 = Heat Recovery 3 = Cooling 4 = Heating 5 = Defrost 6 = Not Available · 조건: Standard",
-   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
-   "sourcePage": 25
-  },
-  {
-   "type": "MSV",
-   "inst": 10100,
-   "name": "Chiller Mode Command BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "BAS Chiller Mode Command · 1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard",
-   "sourceFile": "BAS-PTS011A-EN_11152024.pdf",
-   "sourcePage": 26
   }
  ],
  "gap": "정격 성능(용량·COP·소비전력)과 냉각 방식은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",

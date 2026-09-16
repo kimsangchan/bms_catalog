@@ -27,56 +27,6 @@
  "points": [
   {
    "type": "AI",
-   "inst": 1,
-   "name": "EntEvapWaterTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The temperature of the fluid entering the evaporator. This data point is also used for Intrinsic Alarming. See “BACnet Intrinsic Alarming” on page 71. · 범위 -40 – 230°F -40 – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
-  },
-  {
-   "type": "AI",
-   "inst": 2,
-   "name": "LvgEvapWaterTempUnit",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current temperature of the fluid leaving the evaporator. This data point is also used for Intrinsic Alarming. See “BACnet Intrinsic Alarming” on page 71. · 범위 -40 – 230°F -40 – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "AI",
-   "inst": 3,
-   "name": "EntCondWaterTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current temperature of the water entering the condenser. · 범위 -40°–230°F -40°–110°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
-  },
-  {
-   "type": "AI",
-   "inst": 4,
-   "name": "LvgCondWaterTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current temperature of the water leaving the condenser. · 범위 -40°–230°F -40°–110°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
-  },
-  {
-   "type": "AI",
-   "inst": 5,
-   "name": "OutdoorAirTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 79
-  },
-  {
-   "type": "AI",
    "inst": 6,
    "name": "ChillerCurrent",
    "unitRaw": null,
@@ -124,86 +74,6 @@
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
    "sourcePage": 13
-  },
-  {
-   "type": "AI",
-   "inst": 27,
-   "name": "C1Comp1Voltage",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The average voltage of the compressor motor. BAC- net uses a separate output for each compressor. · 범위 0 – 15000 VAC Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AI",
-   "inst": 28,
-   "name": "C1Comp2Voltage",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AI",
-   "inst": 30,
-   "name": "C2Comp1Voltage",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AI",
-   "inst": 33,
-   "name": "C3Comp1Voltage",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AI",
-   "inst": 45,
-   "name": "C1Comp11Kilowatts",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current power of the compressor motor. BACnet uses a separate variable for each compressor. · 범위 0 – 3500 kilowatts Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 46,
-   "name": "C1Comp2Kilowatts",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 48,
-   "name": "C2Comp11Kilowatts",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 51,
-   "name": "C3Comp11Kilowatts",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
   },
   {
    "type": "AI",
@@ -257,63 +127,253 @@
   },
   {
    "type": "AI",
-   "inst": 81,
-   "name": "C1Comp1DischRefPres- sure",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current discharge refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "AI",
-   "inst": 82,
-   "name": "C1Comp2DischRefPres- sure",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current discharge refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "AI",
-   "inst": 99,
-   "name": "Cond1RefPressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current condenser pressure. BACnet has three objects for each circuit. The Present Value property of each object is the same for each circuit. BACnet Intrinsic Alarming supports the ability for each of the three objects to generate sepa",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
-  },
-  {
-   "type": "AI",
-   "inst": 100,
-   "name": "Cond2RefPressure",
+   "inst": 181,
+   "name": "C1Co1CurrentUnl",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
+   "sourcePage": 13
   },
   {
    "type": "AI",
-   "inst": 101,
-   "name": "Cond3RefPressure",
+   "inst": 182,
+   "name": "C2Co1CurrentUnl",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
+   "sourcePage": 13
   },
   {
    "type": "AI",
-   "inst": 102,
-   "name": "Cond4RefPressure",
+   "inst": 183,
+   "name": "C3Co1CurrentUnl",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
+   "sourcePage": 13
+  },
+  {
+   "type": "AI",
+   "inst": 184,
+   "name": "C1Co1CurrentHold",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AI",
+   "inst": 185,
+   "name": "C2Co1CurrentHold",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AI",
+   "inst": 186,
+   "name": "C3Co1CurrentHold",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AI",
+   "inst": 224,
+   "name": "C1SuctionTemperature",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current circuit 1 suction refrigerant temperature. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AI",
+   "inst": 45,
+   "name": "C1Comp11Kilowatts",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current power of the compressor motor. BACnet uses a separate variable for each compressor. · 범위 0 – 3500 kilowatts Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 46,
+   "name": "C1Comp2Kilowatts",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 48,
+   "name": "C2Comp11Kilowatts",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 51,
+   "name": "C3Comp11Kilowatts",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 217,
+   "name": "C1Comp1MotorCurrent- Percent",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current percent RLA for the compressor motor of the compressor. BACnet uses a separate variable for each compressor.",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 250,
+   "name": "C1Comp1StatorTemp1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 251,
+   "name": "C1Comp2StatorTemp1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 268,
+   "name": "C1Comp1MotorGapTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current motor gap temperature for the compres- sor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 269,
+   "name": "C1Comp2MotorGapTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current motor gap temperature for the compres- sor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 274,
+   "name": "C1Comp1MotorCaseTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current motor case temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 275,
+   "name": "C1Comp2MotorGapTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current motor case temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 280,
+   "name": "C1Comp1RotorPumpTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current rotor pump temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 281,
+   "name": "C1Comp2RotorPumpTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current rotor pump temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 286,
+   "name": "C1Comp2MotorCurrent- Percent",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 14
+  },
+  {
+   "type": "AI",
+   "inst": 27,
+   "name": "C1Comp1Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The average voltage of the compressor motor. BAC- net uses a separate output for each compressor. · 범위 0 – 15000 VAC Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AI",
+   "inst": 28,
+   "name": "C1Comp2Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AI",
+   "inst": 30,
+   "name": "C2Comp1Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AI",
+   "inst": 33,
+   "name": "C3Comp1Voltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 15
   },
   {
    "type": "AI",
@@ -367,63 +427,163 @@
   },
   {
    "type": "AI",
-   "inst": 123,
-   "name": "C1Comp1SuctionPressure",
+   "inst": 178,
+   "name": "C1Co1VfdTemp",
    "unitRaw": null,
    "unit": null,
-   "note": "The current suction refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
+   "note": "The current compressor VFD heat sink temperature. These objects can be used for Intrinsic Alarming, and only apply to units configured for a VFD. There is one parameter for each compressor. · 범위 14 - 302 °F -10 - 150 °C Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 19
+   "sourcePage": 15
   },
   {
    "type": "AI",
-   "inst": 124,
-   "name": "C1Comp2SuctionPressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current suction refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 19
-  },
-  {
-   "type": "AI",
-   "inst": 141,
-   "name": "C1EvapRefPressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current refrigerant pressure in the evapora- tor. BACnet has four objects for each circuit. The Present Value property of each object is the same for each circuit. BACnet Intrinsic Alarming supports the ability for each of the four obje",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "AI",
-   "inst": 142,
-   "name": "C2EvapRefPressure",
+   "inst": 179,
+   "name": "C2Co1VfdTemp",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
+   "sourcePage": 15
   },
   {
    "type": "AI",
-   "inst": 143,
-   "name": "C3EvapRefPressure",
+   "inst": 180,
+   "name": "C3Co1VfdTemp",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
+   "sourcePage": 15
   },
   {
    "type": "AI",
-   "inst": 144,
-   "name": "C4EvapRefPressure",
+   "inst": 256,
+   "name": "C1Comp1StatorTemp2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AI",
+   "inst": 257,
+   "name": "C1Comp2StatorTemp2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AI",
+   "inst": 262,
+   "name": "C1Comp1StatorTemp3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AI",
+   "inst": 263,
+   "name": "C1Comp2StatorTemp3",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AI",
+   "inst": 378,
+   "name": "C1CondApproachT",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current circuit condenser approach temperature. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AI",
+   "inst": 379,
+   "name": "C2CondApproachT",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
+   "sourcePage": 15
+  },
+  {
+   "type": "AI",
+   "inst": 1,
+   "name": "EntEvapWaterTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The temperature of the fluid entering the evaporator. This data point is also used for Intrinsic Alarming. See “BACnet Intrinsic Alarming” on page 71. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 16
+  },
+  {
+   "type": "AI",
+   "inst": 3,
+   "name": "EntCondWaterTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current temperature of the water entering the condenser. · 범위 -40°–230°F -40°–110°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 16
+  },
+  {
+   "type": "AI",
+   "inst": 4,
+   "name": "LvgCondWaterTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current temperature of the water leaving the condenser. · 범위 -40°–230°F -40°–110°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 16
+  },
+  {
+   "type": "AI",
+   "inst": 99,
+   "name": "Cond1RefPressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current condenser pressure. BACnet has three objects for each circuit. The Present Value property of each object is the same for each circuit. BACnet Intrinsic Alarming supports the ability for each of the three objects to generate sepa",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 16
+  },
+  {
+   "type": "AI",
+   "inst": 100,
+   "name": "Cond2RefPressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 16
+  },
+  {
+   "type": "AI",
+   "inst": 101,
+   "name": "Cond3RefPressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 16
+  },
+  {
+   "type": "AI",
+   "inst": 102,
+   "name": "Cond4RefPressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 16
   },
   {
    "type": "AI",
@@ -444,86 +604,6 @@
    "note": "The rate of water flow through the evaporator. · 범위 0-65,535 GPM 0-4134.6 L/S; Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
    "sourcePage": 16
-  },
-  {
-   "type": "AI",
-   "inst": 149,
-   "name": "OutdoorAirTempLow",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 72
-  },
-  {
-   "type": "AI",
-   "inst": 150,
-   "name": "HeatRecLvgWaterTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current heat recovery leaving fluid temperature. · 범위 -40° – 230°F -40° – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "AI",
-   "inst": 151,
-   "name": "EvapLWT1¹",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 74
-  },
-  {
-   "type": "AI",
-   "inst": 152,
-   "name": "EvapLWT2¹",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 74
-  },
-  {
-   "type": "AI",
-   "inst": 153,
-   "name": "C1EvapRefPressureUn- load",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "AI",
-   "inst": 154,
-   "name": "C2EvapRefPressureUn- load",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "AI",
-   "inst": 155,
-   "name": "C3EvapRefPressureUn- load",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "AI",
-   "inst": 156,
-   "name": "C4EvapRefPressureUn- load",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
   },
   {
    "type": "AI",
@@ -607,43 +687,153 @@
   },
   {
    "type": "AI",
-   "inst": 165,
-   "name": "C1Comp1OilFeedPress",
+   "inst": 370,
+   "name": "CtrlBoxTemp",
    "unitRaw": null,
    "unit": null,
-   "note": "The current Oil Feed Pressure. There is one BACnet object for each compressor. These objects generate the COMPRESSOR SHUTDOWN - Oil Feed Pres- sure Sensor Fault Circuit #n Comp #n alarms. · 범위 -5.801473 – 17.54946 psi -40 – 121 kPA Default:",
+   "note": "The current control panel internal temperature. · 범위 -40 - 244 °F -40 - 118 °C Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 18
+   "sourcePage": 16
   },
   {
    "type": "AI",
-   "inst": 166,
-   "name": "C2Comp1OilFeedPress",
+   "inst": 374,
+   "name": "C1DischargeSHTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current circuit discharge superheat temperature. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 16
+  },
+  {
+   "type": "AI",
+   "inst": 375,
+   "name": "C2DischargeSHTemp",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 18
+   "sourcePage": 16
   },
   {
    "type": "AI",
-   "inst": 167,
-   "name": "C3Comp1OilFeedPress",
+   "inst": 382,
+   "name": "C1\\EvapApproachT",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current circuit evaporator approach tempera- ture. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 16
+  },
+  {
+   "type": "AI",
+   "inst": 383,
+   "name": "C2\\EvapApproachT",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 18
+   "sourcePage": 16
   },
   {
    "type": "AI",
-   "inst": 168,
-   "name": "C4Comp1OilFeedPress",
+   "inst": 2,
+   "name": "LvgEvapWaterTempUnit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current temperature of the fluid leaving the evaporator. This data point is also used for Intrinsic Alarming. See “BACnet Intrinsic Alarming” on page 71. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "AI",
+   "inst": 141,
+   "name": "C1EvapRefPressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current refrigerant pressure in the evapora- tor. BACnet has four objects for each circuit. The Present Value property of each object is the same for each circuit. BACnet Intrinsic Alarming supports the ability for each of the four obje",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "AI",
+   "inst": 142,
+   "name": "C2EvapRefPressure",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 18
+   "sourcePage": 17
+  },
+  {
+   "type": "AI",
+   "inst": 143,
+   "name": "C3EvapRefPressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "AI",
+   "inst": 144,
+   "name": "C4EvapRefPressure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "AI",
+   "inst": 150,
+   "name": "HeatRecLvgWaterTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current heat recovery leaving fluid temperature. · 범위 -40° – 230°F -40° – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "AI",
+   "inst": 153,
+   "name": "C1EvapRefPressureUn- load",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "AI",
+   "inst": 154,
+   "name": "C2EvapRefPressureUn- load",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "AI",
+   "inst": 155,
+   "name": "C3EvapRefPressureUn- load",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "AI",
+   "inst": 156,
+   "name": "C4EvapRefPressureUn- load",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 17
   },
   {
    "type": "AI",
@@ -737,103 +927,93 @@
   },
   {
    "type": "AI",
-   "inst": 178,
-   "name": "C1Co1VfdTemp",
+   "inst": 372,
+   "name": "HarmFiltTemp",
    "unitRaw": null,
    "unit": null,
-   "note": "The current compressor VFD heat sink temperature. These objects can be used for Intrinsic Alarming, and only apply to units configured for a VFD. There is one parameter for each compressor. · 범위 14 - 302 °F -10 - 150 °C Default: NA",
+   "note": "The current harmonic filter internal temperature. · 범위 -40 - 244 °F -40 - 118 °C Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
+   "sourcePage": 17
   },
   {
    "type": "AI",
-   "inst": 179,
-   "name": "C2Co1VfdTemp",
+   "inst": 386,
+   "name": "C1Ev1SuperHeatT",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current circuit evaporator superheat tempera- ture. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "AI",
+   "inst": 387,
+   "name": "C2Ev1SuperHeatT",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
+   "sourcePage": 17
   },
   {
    "type": "AI",
-   "inst": 180,
-   "name": "C3Co1VfdTemp",
+   "inst": 81,
+   "name": "C1Comp1DischRefPres- sure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current discharge refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "AI",
+   "inst": 82,
+   "name": "C1Comp2DischRefPres- sure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current discharge refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "AI",
+   "inst": 165,
+   "name": "C1Comp1OilFeedPress",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current Oil Feed Pressure. There is one BACnet object for each compressor. These objects generate the COMPRESSOR SHUTDOWN - Oil Feed Pres- sure Sensor Fault Circuit #n Comp #n alarms. · 범위 -5.801473 – 17.54946 psi -40 – 121 kPA Default:",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "AI",
+   "inst": 166,
+   "name": "C2Comp1OilFeedPress",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
+   "sourcePage": 18
   },
   {
    "type": "AI",
-   "inst": 181,
-   "name": "C1Co1CurrentUnl",
+   "inst": 167,
+   "name": "C3Comp1OilFeedPress",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 13
+   "sourcePage": 18
   },
   {
    "type": "AI",
-   "inst": 182,
-   "name": "C2Co1CurrentUnl",
+   "inst": 168,
+   "name": "C4Comp1OilFeedPress",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AI",
-   "inst": 183,
-   "name": "C3Co1CurrentUnl",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AI",
-   "inst": 184,
-   "name": "C1Co1CurrentHold",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AI",
-   "inst": 185,
-   "name": "C2Co1CurrentHold",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AI",
-   "inst": 186,
-   "name": "C3Co1CurrentHold",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AI",
-   "inst": 217,
-   "name": "C1Comp1MotorCurrent- Percent",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current percent RLA for the compressor motor of the compressor. BACnet uses a separate variable for each compressor.",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
+   "sourcePage": 18
   },
   {
    "type": "AI",
@@ -857,206 +1037,6 @@
   },
   {
    "type": "AI",
-   "inst": 224,
-   "name": "C1SuctionTemperature",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current circuit 1 suction refrigerant temperature. · 범위 -40 – 230°F -40 – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AI",
-   "inst": 234,
-   "name": "C1EconRefPress",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 1 Economizer Refrigerant Pressure Sensor Fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "AI",
-   "inst": 235,
-   "name": "C2EconRefPress",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 2 Economizer Refrigerant Pressure Sensor Fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "AI",
-   "inst": 238,
-   "name": "C1EconRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 1 Economizer Temperature Sensor Fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "AI",
-   "inst": 239,
-   "name": "C2EconRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 2 Economizer Temperature Sensor Fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "AI",
-   "inst": 250,
-   "name": "C1Comp1StatorTemp1",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 251,
-   "name": "C1Comp2StatorTemp1",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 256,
-   "name": "C1Comp1StatorTemp2",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AI",
-   "inst": 257,
-   "name": "C1Comp2StatorTemp2",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AI",
-   "inst": 262,
-   "name": "C1Comp1StatorTemp3",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AI",
-   "inst": 263,
-   "name": "C1Comp2StatorTemp3",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current stator temperature for the compressor. · 범위 -58-392°F -50.0~200.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AI",
-   "inst": 268,
-   "name": "C1Comp1MotorGapTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current motor gap temperature for the compres- sor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 269,
-   "name": "C1Comp2MotorGapTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current motor gap temperature for the compres- sor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 274,
-   "name": "C1Comp1MotorCaseTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current motor case temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 275,
-   "name": "C1Comp2MotorGapTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current motor case temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 280,
-   "name": "C1Comp1RotorPumpTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current rotor pump temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 281,
-   "name": "C1Comp2RotorPumpTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current rotor pump temperature for the com- pressor. · 범위 -45-212°F -42.8~100.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 286,
-   "name": "C1Comp2MotorCurrent- Percent",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 14
-  },
-  {
-   "type": "AI",
-   "inst": 308,
-   "name": "EntWseWaterTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current waterside economizer entering water temperature. · 범위 -40 - 230 °F -40 - 110 °C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 19
-  },
-  {
-   "type": "AI",
-   "inst": 370,
-   "name": "CtrlBoxTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current control panel internal temperature. · 범위 -40 - 244 °F -40 - 118 °C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
-  },
-  {
-   "type": "AI",
    "inst": 371,
    "name": "PwrBoxTemp",
    "unitRaw": null,
@@ -1067,93 +1047,33 @@
   },
   {
    "type": "AI",
-   "inst": 372,
-   "name": "HarmFiltTemp",
+   "inst": 123,
+   "name": "C1Comp1SuctionPressure",
    "unitRaw": null,
    "unit": null,
-   "note": "The current harmonic filter internal temperature. · 범위 -40 - 244 °F -40 - 118 °C Default: NA",
+   "note": "The current suction refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
+   "sourcePage": 19
   },
   {
    "type": "AI",
-   "inst": 374,
-   "name": "C1DischargeSHTemp",
+   "inst": 124,
+   "name": "C1Comp2SuctionPressure",
    "unitRaw": null,
    "unit": null,
-   "note": "The current circuit discharge superheat temperature. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA",
+   "note": "The current suction refrigerant pressure for the compressor. · 범위 -350–350 Psi, -2413 kPa – 2413 kPa Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
+   "sourcePage": 19
   },
   {
    "type": "AI",
-   "inst": 375,
-   "name": "C2DischargeSHTemp",
+   "inst": 308,
+   "name": "EntWseWaterTemp",
    "unitRaw": null,
    "unit": null,
-   "note": "",
+   "note": "The current waterside economizer entering water temperature. · 범위 -40 - 230 °F -40 - 110 °C Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
-  },
-  {
-   "type": "AI",
-   "inst": 378,
-   "name": "C1CondApproachT",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current circuit condenser approach temperature. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AI",
-   "inst": 379,
-   "name": "C2CondApproachT",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AI",
-   "inst": 382,
-   "name": "C1\\EvapApproachT",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current circuit evaporator approach tempera- ture. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
-  },
-  {
-   "type": "AI",
-   "inst": 383,
-   "name": "C2\\EvapApproachT",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 16
-  },
-  {
-   "type": "AI",
-   "inst": 386,
-   "name": "C1Ev1SuperHeatT",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current circuit evaporator superheat tempera- ture. · 범위 0 - 50 °F 0 - 27.8 °C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "AI",
-   "inst": 387,
-   "name": "C2Ev1SuperHeatT",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 17
+   "sourcePage": 19
   },
   {
    "type": "AI",
@@ -1197,6 +1117,76 @@
   },
   {
    "type": "AV",
+   "inst": 5,
+   "name": "ActiveLvgWaterTarget",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current setpoint used to control the chiller. The setpoint that is used is based on the operating mode (Ice, Cool or Heat) of the chiller and any “LWT reset” functions that are in effect. See Chiller Mode Output and Chiller Mode Setpoin",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 20
+  },
+  {
+   "type": "AV",
+   "inst": 900,
+   "name": "AVProblemAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See “BACnet Problem Alarm Index” for additional information.",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 20
+  },
+  {
+   "type": "AV",
+   "inst": 901,
+   "name": "AVFaultAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See “BACnet Alarm Indices” on page 68 section for additional information. See “BACnet Fault Alarm Index” for additional information.",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 20
+  },
+  {
+   "type": "AV",
+   "inst": 902,
+   "name": "AVWarningAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See “BACnet Warning Alarm Index” for additional information.",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 20
+  },
+  {
+   "type": "AV",
+   "inst": 903,
+   "name": "AVWarningAlarmCode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See “Warning Alarms” on page 42 for additional information.",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 20
+  },
+  {
+   "type": "AV",
+   "inst": 904,
+   "name": "AVProblemAlarmCode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See “Problem Alarms” on page 42 for additional information.",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 20
+  },
+  {
+   "type": "AV",
+   "inst": 905,
+   "name": "AVFaultAlarmCode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See “BACnet Alarm Codes” section for additional information. See “Fault Alarms” on page 42 for additional information.",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 20
+  },
+  {
+   "type": "AV",
    "inst": 3,
    "name": "NetworkCapacityLimitPct",
    "unitRaw": null,
@@ -1217,33 +1207,43 @@
   },
   {
    "type": "AV",
-   "inst": 5,
-   "name": "ActiveLvgWaterTarget",
+   "inst": 121,
+   "name": "C1Comp1LiftPressure",
    "unitRaw": null,
    "unit": null,
-   "note": "The current setpoint used to control the chiller. The setpoint that is used is based on the operating mode (Ice, Cool or Heat) of the chiller and any “LWT reset” functions that are in effect. See Chiller Mode Output and Chiller Mode Setpoin",
+   "note": "The current lift pressure for the com- pressor. · 범위 -350 – 350 Psi, -2413 – 2413 kPa Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 20
+   "sourcePage": 21
   },
   {
    "type": "AV",
-   "inst": 6,
-   "name": "NetworkHeatTempSetpoint",
-   "unitRaw": "68 to 150 °F (20 to 65.56 °C)",
+   "inst": 122,
+   "name": "C1Comp2LiftPressure",
+   "unitRaw": null,
    "unit": null,
-   "note": "Changes the Heat setpoint from the network. It sets the temperature of the Leaving Chilled Fluid when the chiller is operating in the Heat Mode. The unit controller only uses this variable if Chiller Local/Network is set to Remote (0). Chil",
+   "note": "The current lift pressure for the com- pressor. · 범위 -350 – 350 Psi, -2413 – 2413 kPa Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 23
+   "sourcePage": 21
   },
   {
    "type": "AV",
-   "inst": 7,
-   "name": "NetworkIceTempSetpoint",
+   "inst": 140,
+   "name": "C1CycleTimeRem",
    "unitRaw": null,
    "unit": null,
-   "note": "Changes the Ice setpoint from the network. It sets the temperature of the Leaving Chilled Fluid when the chiller is operating in the Ice Mode. The unit controller only uses this variable if Chiller Local/Network is set to Remote (0). Chille",
+   "note": "The time remaining on the internal circuit cycle timer. · 범위 0 - 3600 seconds Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 24
+   "sourcePage": 21
+  },
+  {
+   "type": "AV",
+   "inst": 141,
+   "name": "C2CycleTimeRem",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 21
   },
   {
    "type": "AV",
@@ -1284,86 +1284,6 @@
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
    "sourcePage": 22
-  },
-  {
-   "type": "AV",
-   "inst": 44,
-   "name": "Cond1SatRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current saturated refrigerant temperature of the condenser. BACnet uses a separate read-only object for each condenser.",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 23
-  },
-  {
-   "type": "AV",
-   "inst": 45,
-   "name": "Cond2SatRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 23
-  },
-  {
-   "type": "AV",
-   "inst": 46,
-   "name": "Cond3SatRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 23
-  },
-  {
-   "type": "AV",
-   "inst": 47,
-   "name": "Cond4SatRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 23
-  },
-  {
-   "type": "AV",
-   "inst": 68,
-   "name": "C1EvapSatRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current saturated refrigerant tem- perature of the evaporator. For BACnet, there is a separate output for each condenser.",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 23
-  },
-  {
-   "type": "AV",
-   "inst": 69,
-   "name": "C2EvapSatRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 23
-  },
-  {
-   "type": "AV",
-   "inst": 70,
-   "name": "C3EvapSatRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 23
-  },
-  {
-   "type": "AV",
-   "inst": 71,
-   "name": "C4EvapSatRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 23
   },
   {
    "type": "AV",
@@ -1527,6 +1447,116 @@
   },
   {
    "type": "AV",
+   "inst": 115,
+   "name": "C1Comp1LiftTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current lift temperature for the compressor. · 범위 -45 – 212°F -42.8~100.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 22
+  },
+  {
+   "type": "AV",
+   "inst": 116,
+   "name": "C1Comp2LiftTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current lift temperature for the compressor. · 범위 -45 – 212°F -42.8~100.0°C Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 22
+  },
+  {
+   "type": "AV",
+   "inst": 6,
+   "name": "NetworkHeatTempSetpoint",
+   "unitRaw": "68 to 150 °F (20 to 65.56 °C)",
+   "unit": null,
+   "note": "Changes the Heat setpoint from the network. It sets the temperature of the Leaving Chilled Fluid when the chiller is operating in the Heat Mode. The unit controller only uses this variable if Chiller Local/Network is set to Remote (0). Chil",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 23
+  },
+  {
+   "type": "AV",
+   "inst": 44,
+   "name": "Cond1SatRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current saturated refrigerant temperature of the condenser. BACnet uses a separate read-only object for each condenser.",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 23
+  },
+  {
+   "type": "AV",
+   "inst": 45,
+   "name": "Cond2SatRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 23
+  },
+  {
+   "type": "AV",
+   "inst": 46,
+   "name": "Cond3SatRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 23
+  },
+  {
+   "type": "AV",
+   "inst": 47,
+   "name": "Cond4SatRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 23
+  },
+  {
+   "type": "AV",
+   "inst": 68,
+   "name": "C1EvapSatRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current saturated refrigerant tem- perature of the evaporator. For BACnet, there is a separate output for each condenser.",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 23
+  },
+  {
+   "type": "AV",
+   "inst": 69,
+   "name": "C2EvapSatRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 23
+  },
+  {
+   "type": "AV",
+   "inst": 70,
+   "name": "C3EvapSatRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 23
+  },
+  {
+   "type": "AV",
+   "inst": 71,
+   "name": "C4EvapSatRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 23
+  },
+  {
+   "type": "AV",
    "inst": 110,
    "name": "CondPump1RunHours",
    "unitRaw": null,
@@ -1567,46 +1597,6 @@
   },
   {
    "type": "AV",
-   "inst": 115,
-   "name": "C1Comp1LiftTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current lift temperature for the compressor. · 범위 -45 – 212°F -42.8~100.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 22
-  },
-  {
-   "type": "AV",
-   "inst": 116,
-   "name": "C1Comp2LiftTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current lift temperature for the compressor. · 범위 -45 – 212°F -42.8~100.0°C Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 22
-  },
-  {
-   "type": "AV",
-   "inst": 121,
-   "name": "C1Comp1LiftPressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current lift pressure for the com- pressor. · 범위 -350 – 350 Psi, -2413 – 2413 kPa Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 21
-  },
-  {
-   "type": "AV",
-   "inst": 122,
-   "name": "C1Comp2LiftPressure",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current lift pressure for the com- pressor. · 범위 -350 – 350 Psi, -2413 – 2413 kPa Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 21
-  },
-  {
-   "type": "AV",
    "inst": 139,
    "name": "EvRecircTimeRem",
    "unitRaw": null,
@@ -1617,23 +1607,13 @@
   },
   {
    "type": "AV",
-   "inst": 140,
-   "name": "C1CycleTimeRem",
+   "inst": 7,
+   "name": "NetworkIceTempSetpoint",
    "unitRaw": null,
    "unit": null,
-   "note": "The time remaining on the internal circuit cycle timer. · 범위 0 - 3600 seconds Default: NA",
+   "note": "Changes the Ice setpoint from the network. It sets the temperature of the Leaving Chilled Fluid when the chiller is operating in the Ice Mode. The unit controller only uses this variable if Chiller Local/Network is set to Remote (0). Chille",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 21
-  },
-  {
-   "type": "AV",
-   "inst": 141,
-   "name": "C2CycleTimeRem",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 21
+   "sourcePage": 24
   },
   {
    "type": "AV",
@@ -1656,66 +1636,6 @@
    "sourcePage": 24
   },
   {
-   "type": "AV",
-   "inst": 900,
-   "name": "AVProblemAlarm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See “BACnet Problem Alarm Index” for additional information.",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 20
-  },
-  {
-   "type": "AV",
-   "inst": 901,
-   "name": "AVFaultAlarm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See “BACnet Alarm Indices” on page 68 section for additional information. See “BACnet Fault Alarm Index” for additional information.",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 20
-  },
-  {
-   "type": "AV",
-   "inst": 902,
-   "name": "AVWarningAlarm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See “BACnet Warning Alarm Index” for additional information.",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 20
-  },
-  {
-   "type": "AV",
-   "inst": 903,
-   "name": "AVWarningAlarmCode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See “Warning Alarms” on page 42 for additional information.",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 20
-  },
-  {
-   "type": "AV",
-   "inst": 904,
-   "name": "AVProblemAlarmCode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See “Problem Alarms” on page 42 for additional information.",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 20
-  },
-  {
-   "type": "AV",
-   "inst": 905,
-   "name": "AVFaultAlarmCode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See “BACnet Alarm Codes” section for additional information. See “Fault Alarms” on page 42 for additional information.",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 20
-  },
-  {
    "type": "BI",
    "inst": 1,
    "name": "CondWaterFlow- Status",
@@ -1724,16 +1644,6 @@
    "note": "The status of the fluid flowing through the condenser. · 범위 0 = No Flow (Inac- tive) 1 = Flow (Active) Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
    "sourcePage": 25
-  },
-  {
-   "type": "BI",
-   "inst": 2,
-   "name": "EvapWaterFlowSta- tus",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The status of the fluid flowing through the evaporator. · 범위 0 = No Flow (Inac- tive) 1 = Flow (Active) Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 26
   },
   {
    "type": "BI",
@@ -1757,16 +1667,6 @@
   },
   {
    "type": "BI",
-   "inst": 5,
-   "name": "RunEnabled",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The running mode of the chiller. Run Enabled indi- cates that the chiller can start if operating conditions are met. · 범위 0 = OFF (Inactive) 1 = Run Allowed (Active) Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 26
-  },
-  {
-   "type": "BI",
    "inst": 6,
    "name": "ChillerLimited",
    "unitRaw": null,
@@ -1787,36 +1687,6 @@
   },
   {
    "type": "BI",
-   "inst": 8,
-   "name": "EvapPump1State",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates if the pump has been commanded ON or OFF. BACnet uses separate outputs for each pump. · 범위 0 = Pump OFF Request 1 = Pump ON Re- quest Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 26
-  },
-  {
-   "type": "BI",
-   "inst": 9,
-   "name": "EvapPump2State",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 26
-  },
-  {
-   "type": "BI",
-   "inst": 10,
-   "name": "AlarmDigitalOutput",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether an alarm condition has occurred. This variable must be polled for alarm notification. · 범위 0 = No Alarm 1 = Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 49
-  },
-  {
-   "type": "BI",
    "inst": 11,
    "name": "CondPump1State",
    "unitRaw": null,
@@ -1824,626 +1694,6 @@
    "note": "Indicates if the pump has been commanded ON or OFF. BACnet uses separate outputs for each pump. · 범위 0 = Pump OFF Request 1 = Pump ON Re- quest Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
    "sourcePage": 25
-  },
-  {
-   "type": "BI",
-   "inst": 12,
-   "name": "CondPump2State",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates if the pump has been commanded ON or OFF. BACnet uses separate outputs for each pump. · 범위 0 = Pump OFF Request 1 = Pump ON Re- quest Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 26
-  },
-  {
-   "type": "BI",
-   "inst": 13,
-   "name": "C1MotorProtect",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Motor Protector Trip Circuit #n fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 50
-  },
-  {
-   "type": "BI",
-   "inst": 17,
-   "name": "MainPwrLoss",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the unit has lost main power. · 범위 0 = Normal, 1 = Power Loss, Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 26
-  },
-  {
-   "type": "BI",
-   "inst": 18,
-   "name": "C1HighPress",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Mechanical High Pressure fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 50
-  },
-  {
-   "type": "BI",
-   "inst": 24,
-   "name": "C1NbrRestarts",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Number of Compressor Re-Starts Exceeded Circuit #n fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 50
-  },
-  {
-   "type": "BI",
-   "inst": 40,
-   "name": "UnitGroundFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Unit Ground Fault Protection alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 59
-  },
-  {
-   "type": "BI",
-   "inst": 41,
-   "name": "C1GroundFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 1 Ground Fault Protection alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 52
-  },
-  {
-   "type": "BI",
-   "inst": 42,
-   "name": "C2GroundFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 2 Ground Fault Protection alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 52
-  },
-  {
-   "type": "BI",
-   "inst": 45,
-   "name": "EvapExvCommFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Evaporator EXV Comm Fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 57
-  },
-  {
-   "type": "BI",
-   "inst": 46,
-   "name": "DcFanCtrlCommFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the DC Fan Controller Comm Failure fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "BI",
-   "inst": 47,
-   "name": "EconExvCommFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Economizer EXV Comm Failure warning alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "BI",
-   "inst": 48,
-   "name": "C1Cmp1LowPr DiffOrRatio",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 1 Low Pressure Difference or Ratio fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BI",
-   "inst": 49,
-   "name": "C2Cmp1LowPr DiffOrRatio",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 2 Low Pressure Difference or Ratio fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BI",
-   "inst": 52,
-   "name": "C1Cmp1MultiStartFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 1 Multistart Fail Compres- sor fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BI",
-   "inst": 53,
-   "name": "C2Cmp1MultiStartFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 2 Multistart Fail Compres- sor fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BI",
-   "inst": 56,
-   "name": "C1EvapExvMtrFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 1 Evaporator EXV Motor Error Fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 57
-  },
-  {
-   "type": "BI",
-   "inst": 57,
-   "name": "C2EvapExvMtrFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 2 Evaporator EXV Motor Error Fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 57
-  },
-  {
-   "type": "BI",
-   "inst": 64,
-   "name": "C1DcFanFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 1 DC Fan warning alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "BI",
-   "inst": 65,
-   "name": "C2DcFanFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 2 DC Fan warning alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "BI",
-   "inst": 70,
-   "name": "C1Co1HighVfdCurrent",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 1 Compressor VFD Current High fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 55
-  },
-  {
-   "type": "BI",
-   "inst": 71,
-   "name": "C2Co1HighVfdCurrent",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Circuit 2 Compressor VFD Current High fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 55
-  },
-  {
-   "type": "BI",
-   "inst": 74,
-   "name": "C1Co1SuctPressLow",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 75,
-   "name": "C1Co2SuctPressLow",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 76,
-   "name": "C1Co1DischPressHigh",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 77,
-   "name": "C1Co2DischPressHigh",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 78,
-   "name": "C1Co1DidNotStart",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 79,
-   "name": "C1Co2DidNotStart",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 80,
-   "name": "C1Co1StatorTempHigh",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 81,
-   "name": "C1Co2StatorTempHigh",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 82,
-   "name": "C1Co1MtrGapTempHigh",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 83,
-   "name": "C1Co2MtrGapTempHigh",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 84,
-   "name": "C1Co1RtrPmpShtLow",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 85,
-   "name": "C1Co2RtrPmpShtLow",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 86,
-   "name": "C1Co1SurgeTempAlm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 87,
-   "name": "C1Co2SurgeTempAlm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 88,
-   "name": "C1Co1MotorSpeedFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 89,
-   "name": "C1Co2MotorSpeedFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 90,
-   "name": "C1Co1NoCompStopAlm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 91,
-   "name": "C1Co2NoCompStopAlm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 92,
-   "name": "C1Co1MBCFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 93,
-   "name": "C1Co2MBCFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 94,
-   "name": "C1Co1IGVDriverFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 95,
-   "name": "C1Co2IGVDriverFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 96,
-   "name": "C1Co1IGVCalibFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 97,
-   "name": "C1Co2IGVCalibFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 98,
-   "name": "C1Co1EnRelayOffFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 99,
-   "name": "C1Co2EnRelayOffFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 122,
-   "name": "C1Co1MBCMdbsComFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 123,
-   "name": "C1Co2MBCMdbsComFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 124,
-   "name": "C1Co1VFDMdbsComFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 125,
-   "name": "C1Co2VFDMdbsComFlt",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 126,
-   "name": "C1Co1MBCOrbitError",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 127,
-   "name": "C1Co2MBCOrbitError",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 128,
-   "name": "C1Co1PrimaryPwrFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 129,
-   "name": "C1Co2PrimaryPwrFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BI",
-   "inst": 130,
-   "name": "C1Co1IPSOverTmp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 131,
-   "name": "C1Co2IPSOverTmp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 132,
-   "name": "C1Co1IgvPositionWarn",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "BI",
-   "inst": 133,
-   "name": "C1Co2IgvPositionWarn",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "BI",
-   "inst": 134,
-   "name": "C1Co1VfdOvrhtWarn",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "BI",
-   "inst": 135,
-   "name": "C1Co2VfdOvrhtWarn",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "BI",
-   "inst": 149,
-   "name": "RpdRestoreCommFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Rapid Restore Module Communi- cation Failure fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 59
   },
   {
    "type": "BI",
@@ -2467,223 +1717,153 @@
   },
   {
    "type": "BI",
-   "inst": 169,
-   "name": "WseValvePrblm",
+   "inst": 2,
+   "name": "EvapWaterFlowSta- tus",
    "unitRaw": null,
    "unit": null,
-   "note": "",
+   "note": "The status of the fluid flowing through the evaporator. · 범위 0 = No Flow (Inac- tive) 1 = Flow (Active) Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 72
+   "sourcePage": 26
   },
   {
    "type": "BI",
-   "inst": 170,
-   "name": "WseEwtSenf",
+   "inst": 5,
+   "name": "RunEnabled",
    "unitRaw": null,
    "unit": null,
-   "note": "",
+   "note": "The running mode of the chiller. Run Enabled indi- cates that the chiller can start if operating conditions are met. · 범위 0 = OFF (Inactive) 1 = Run Allowed (Active) Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 72
+   "sourcePage": 26
   },
   {
    "type": "BI",
-   "inst": 171,
-   "name": "WseValveFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 79
-  },
-  {
-   "type": "BI",
-   "inst": 172,
-   "name": "C1Cmp1OilFeedLoss",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 174,
-   "name": "C2Cmp1OilFeedLoss",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 196,
-   "name": "LowSourceTempWarn",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "BI",
-   "inst": 973,
-   "name": "C1OffRefrigCharge",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 974,
-   "name": "C2OffRefrigCharge",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 975,
-   "name": "C3OffRefrigCharge",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BI",
-   "inst": 976,
-   "name": "C1RefrigCharge",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "BI",
-   "inst": 977,
-   "name": "C2RefrigCharge",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "BI",
-   "inst": 978,
-   "name": "C3RefrigCharge",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "BI",
-   "inst": 979,
-   "name": "ProcessBusFailure",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "BV",
    "inst": 8,
-   "name": "ClearAlarm",
+   "name": "EvapPump1State",
    "unitRaw": null,
    "unit": null,
-   "note": "Clears all active alarms. Many alarms are automatically clearing alarms. Of the alarms that need to be manually cleared, the alarms listed below cannot be cleared from the network: COMPRESSOR SHUTDOWN - Evaporator Pressure Low Circuit #n Co",
+   "note": "Indicates if the pump has been commanded ON or OFF. BACnet uses separate outputs for each pump. · 범위 0 = Pump OFF Request 1 = Pump ON Re- quest Default: NA",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 51
+   "sourcePage": 26
   },
   {
-   "type": "BV",
+   "type": "BI",
    "inst": 9,
-   "name": "C1OffCmpCtrlrComFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Compressor Controller Communi- cation Failed alarm is active (1) or not active (0). · 범위 “0 = No Alarm 1 = Alarm”",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 51
-  },
-  {
-   "type": "BV",
-   "inst": 10,
-   "name": "C2OffCmpCtrlrComFail",
+   "name": "EvapPump2State",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 51
+   "sourcePage": 26
   },
   {
-   "type": "BV",
-   "inst": 11,
-   "name": "Comp3CntrlrCommFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
-  },
-  {
-   "type": "BV",
+   "type": "BI",
    "inst": 12,
-   "name": "Comp4CntrlrCommFail",
+   "name": "CondPump2State",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates if the pump has been commanded ON or OFF. BACnet uses separate outputs for each pump. · 범위 0 = Pump OFF Request 1 = Pump ON Re- quest Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 26
+  },
+  {
+   "type": "BI",
+   "inst": 17,
+   "name": "MainPwrLoss",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the unit has lost main power. · 범위 0 = Normal, 1 = Power Loss, Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 26
+  },
+  {
+   "type": "MSV",
+   "inst": 1,
+   "name": "UnitStatus",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The unit status of the chiller. · 범위 1 = OFF 2 = Start 3 = Run 4 = Preshutdown 5 = Service Default: Determined by current state of the chiller",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 28
+  },
+  {
+   "type": "MSV",
+   "inst": 2,
+   "name": "ActiveMode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current operating mode of the chiller. · 범위 1 = Ice 2 = Cool 3 = Heat 4 = Cool/Heat Recovery 5 = Defrost Default: NA",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 28
+  },
+  {
+   "type": "MSV",
+   "inst": 3,
+   "name": "ChillerOpera- tionMode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Changes the operating mode of the chiller and provides the ability for another node on the network to place a chiller in another mode. The unit controller only uses this variable if Chiller Local/Network is set to Network (0). Chiller Local",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 28
+  },
+  {
+   "type": "MSV",
+   "inst": 9,
+   "name": "HMICircuit1Status",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the Circuit Status as shown on the unit HMI. For more information, see unit Installation and Operation Manual. · 범위 OR = Off:Ready OCT = Off:Cycle Timer OAT = Off:OAT Low OMS = Off:Max Starts Per Hr OBD = Off:BAS Disable OKD = Off",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 28
+  },
+  {
+   "type": "MSV",
+   "inst": 10,
+   "name": "HMICircuit2Status",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 78
+   "sourcePage": 28
   },
   {
-   "type": "BV",
-   "inst": 13,
-   "name": "C1OffEXVCrtlrComFail",
+   "type": "MSV",
+   "inst": 5,
+   "name": "WsEconState",
    "unitRaw": null,
    "unit": null,
-   "note": "Indicates whether the EXV Controller Communication Failed alarm is active (1) or not active (0). · 범위 “0 = No Alarm 1 = Alarm”",
+   "note": "Indicates the current cooling mode of the chiller. Hybrid and Waterside Economizer modes are only available on units ordered with optional Wa- terside Economizer. For more information, see unit installation and Operation Manual. · 범위 1 = Of",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 57
+   "sourcePage": 29
   },
   {
-   "type": "BV",
-   "inst": 14,
-   "name": "C2OffEXVCrtlrComFail",
+   "type": "MSV",
+   "inst": 6,
+   "name": "WsEconStp",
    "unitRaw": null,
    "unit": null,
-   "note": "",
+   "note": "Enables Waterside Economizer operation. Setting this variable to Enable allows the chiller to enter Hybrid or Waterside Economizer cooling mode if operating conditions are satisfied for either mode. Otherwise, the unit will operate in Mecha",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 57
+   "sourcePage": 29
   },
   {
-   "type": "BV",
-   "inst": 15,
-   "name": "EXVCntrlr3CommFail",
+   "type": "MSV",
+   "inst": 8,
+   "name": "HMIUnitStatus",
    "unitRaw": null,
    "unit": null,
-   "note": "",
+   "note": "Indicates the Unit Status as shown on the unit HMI. For more information, see unit Installation and Operation Manual. · 범위 A = Auto AS = Auto:Sound Reduction OIT = Off:Ice Mode Timer OL = Off:Low OAT Lockout ODC = Off:DC not ready OCD = Off",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 79
+   "sourcePage": 29
   },
   {
-   "type": "BV",
-   "inst": 16,
-   "name": "EXVCntrlr4CommFail",
+   "type": "BI",
+   "inst": 10,
+   "name": "AlarmDigitalOutput",
    "unitRaw": null,
    "unit": null,
-   "note": "",
+   "note": "Indicates whether an alarm condition has occurred. This variable must be polled for alarm notification. · 범위 0 = No Alarm 1 = Alarm",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 79
+   "sourcePage": 49
   },
   {
    "type": "BV",
@@ -2697,73 +1877,123 @@
   },
   {
    "type": "BV",
+   "inst": 533,
+   "name": "StartInhbtAmbTempLow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the START INHIBITED – Ambient Temperature Low Problem alarm is active (1) or not active (0). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 49
+  },
+  {
+   "type": "BV",
+   "inst": 668,
+   "name": "C1CondPsenf",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the CIRCUIT SHUTDOWN - Con- denser Pressure Sensor Circuit #n Fault is active (1) or inactive (2). There is one BACnet object for each circuit/ compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 49
+  },
+  {
+   "type": "BV",
+   "inst": 670,
+   "name": "C2CondPsenf",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 49
+  },
+  {
+   "type": "BV",
+   "inst": 676,
+   "name": "C1OFF CondPressHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the CIRCUIT SHUTDOWN - Con- denser Pressure High Trip Circuit #n Fault is active (1) or inactive (2). There is one BACnet object for each circuit/ compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 49
+  },
+  {
+   "type": "BV",
+   "inst": 678,
+   "name": "C2OFFCondPressHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 49
+  },
+  {
+   "type": "BV",
+   "inst": 711,
+   "name": "C1EvapPsenf",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the CIRCUIT SHUTDOWN - Evap- orator Pressure Sensor Circuit #n Fault is active (1) or inactive (2). There is one BACnet object for each circuit/ compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 49
+  },
+  {
+   "type": "BV",
+   "inst": 713,
+   "name": "C2EvapPsenf",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 49
+  },
+  {
+   "type": "BV",
+   "inst": 751,
+   "name": "Evap1FreezeProtect",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the CIRCUIT SHUTDOWN - Evap- orator 1 Freeze Protection Fault alarm is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 49
+  },
+  {
+   "type": "BV",
+   "inst": 752,
+   "name": "Evap2FreezeProtect",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the CIRCUIT SHUTDOWN - Evap- orator 2 Freeze Protection Fault alarm is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 49
+  },
+  {
+   "type": "BI",
+   "inst": 13,
+   "name": "C1MotorProtect",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Motor Protector Trip Circuit #n fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 50
+  },
+  {
+   "type": "BI",
    "inst": 18,
-   "name": "FanCrtlr1and2ComFail",
+   "name": "C1HighPress",
    "unitRaw": null,
    "unit": null,
-   "note": "",
+   "note": "Indicates whether the Mechanical High Pressure fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 79
+   "sourcePage": 50
   },
   {
-   "type": "BV",
-   "inst": 19,
-   "name": "FanCrtlr3ComFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 79
-  },
-  {
-   "type": "BV",
-   "inst": 20,
-   "name": "FanCrtlr4ComFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 79
-  },
-  {
-   "type": "BV",
-   "inst": 21,
-   "name": "FanCrtlr3and4ComFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 79
-  },
-  {
-   "type": "BV",
-   "inst": 22,
-   "name": "UnitOffCndLvgW- TempSen/",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the UNIT SHUITDOWN - Condenser LWT or EWT Low (Freeze) alarm is active (1) or not active (0) · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 60
-  },
-  {
-   "type": "BV",
-   "inst": 23,
-   "name": "C1OffCtrlCardTmpHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the CIRCUIT SHUTDOWN - VFD Control Card High Temperature alarm is active (1) or not active (0). · 범위 “0 = No Alarm 1 = Alarm”",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 51
-  },
-  {
-   "type": "BV",
+   "type": "BI",
    "inst": 24,
-   "name": "C2OffCtrlCardTmpHi",
+   "name": "C1NbrRestarts",
    "unitRaw": null,
    "unit": null,
-   "note": "",
+   "note": "Indicates whether the Number of Compressor Re-Starts Exceeded Circuit #n fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 51
+   "sourcePage": 50
   },
   {
    "type": "BV",
@@ -2827,423 +2057,123 @@
   },
   {
    "type": "BV",
-   "inst": 501,
-   "name": "EvapEntWTempSensor- Fail",
+   "inst": 704,
+   "name": "C1LowEvPr",
    "unitRaw": null,
    "unit": null,
-   "note": "Indicates whether the Evaporator Entering Water Tem- perature Sensor Warning alarm is active (1) or not active (0). · 범위 0 = No Alarm 1 = In Alarm",
+   "note": "Indicates whether the CIRCUIT SHUTDOWN - Low Evaporator Pressure Trip Circuit #n Fault is active (1) or inactive (2). There is one BACnet object for each circuit/ compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 57
+   "sourcePage": 50
   },
   {
    "type": "BV",
-   "inst": 512,
-   "name": "BadSPointOverrideInput",
+   "inst": 706,
+   "name": "C2LowEvPr",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
+   "sourcePage": 50
   },
   {
    "type": "BV",
-   "inst": 513,
-   "name": "BadDemandLimitInput",
+   "inst": 8,
+   "name": "ClearAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Clears all active alarms. Many alarms are automatically clearing alarms. Of the alarms that need to be manually cleared, the alarms listed below cannot be cleared from the network: COMPRESSOR SHUTDOWN - Evaporator Pressure Low Circuit #n Co",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 51
+  },
+  {
+   "type": "BV",
+   "inst": 9,
+   "name": "C1OffCmpCtrlrComFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Compressor Controller Communi- cation Failed alarm is active (1) or not active (0). · 범위 “0 = No Alarm 1 = Alarm”",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 51
+  },
+  {
+   "type": "BV",
+   "inst": 10,
+   "name": "C2OffCmpCtrlrComFail",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
+   "sourcePage": 51
   },
   {
    "type": "BV",
-   "inst": 515,
-   "name": "UnitPowerRestore",
+   "inst": 23,
+   "name": "C1OffCtrlCardTmpHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the CIRCUIT SHUTDOWN - VFD Control Card High Temperature alarm is active (1) or not active (0). · 범위 “0 = No Alarm 1 = Alarm”",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 51
+  },
+  {
+   "type": "BV",
+   "inst": 24,
+   "name": "C2OffCtrlCardTmpHi",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
+   "sourcePage": 51
   },
   {
    "type": "BV",
-   "inst": 516,
-   "name": "C1FailedPumpdown",
+   "inst": 942,
+   "name": "C1Cmp1OffVfdTempHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the COMPRESSOR SHUTDOWN - COMPRESSOR VFD Over Heat #n Fault is active (1) or inactive (2).There is one BACnet object for each circuit/ compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 51
+  },
+  {
+   "type": "BV",
+   "inst": 944,
+   "name": "C2Cmp1OffVfdTempHi",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
+   "sourcePage": 51
   },
   {
    "type": "BV",
-   "inst": 517,
-   "name": "C2FailedPumpdown",
+   "inst": 946,
+   "name": "C3Cmp1OffVfdTempHi",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
+   "sourcePage": 51
   },
   {
-   "type": "BV",
-   "inst": 518,
-   "name": "C3FailedPumpdown",
+   "type": "BI",
+   "inst": 41,
+   "name": "C1GroundFault",
    "unitRaw": null,
    "unit": null,
-   "note": "",
+   "note": "Indicates whether the Circuit 1 Ground Fault Protection alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
+   "sourcePage": 52
   },
   {
-   "type": "BV",
-   "inst": 519,
-   "name": "C4FailedPumpdown",
+   "type": "BI",
+   "inst": 42,
+   "name": "C2GroundFault",
    "unitRaw": null,
    "unit": null,
-   "note": "",
+   "note": "Indicates whether the Circuit 2 Ground Fault Protection alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "BV",
-   "inst": 529,
-   "name": "C1RestartDelayPwrLRun",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 72
-  },
-  {
-   "type": "BV",
-   "inst": 530,
-   "name": "C2RestartDelayPwrLRun",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 72
-  },
-  {
-   "type": "BV",
-   "inst": 531,
-   "name": "C3RestartDelayPwrLRun",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 72
-  },
-  {
-   "type": "BV",
-   "inst": 532,
-   "name": "C4RestartDelayPwrLRun",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 72
-  },
-  {
-   "type": "BV",
-   "inst": 533,
-   "name": "StartInhbtAmbTempLow",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the START INHIBITED – Ambient Temperature Low Problem alarm is active (1) or not active (0). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 49
-  },
-  {
-   "type": "BV",
-   "inst": 535,
-   "name": "C1InhbtLoadCondPressHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether INHIBIT LOAD - Condenser Pressure High Circuit #n Problem is active (1) or not active (0). There is one BACnet object for each circuit. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BV",
-   "inst": 536,
-   "name": "C2InhbtLoadCondPressHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BV",
-   "inst": 537,
-   "name": "C3InhbtLoadCondPressHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BV",
-   "inst": 538,
-   "name": "C4InhbtLoadCondPressHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BV",
-   "inst": 540,
-   "name": "C1UnloadCondPressHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether UNLOAD - Condenser Pressure High #n Problem is active (1) or not active (0).There is one BACnet object for each circuit. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 60
-  },
-  {
-   "type": "BV",
-   "inst": 541,
-   "name": "C2UnloadCondPressHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 60
-  },
-  {
-   "type": "BV",
-   "inst": 542,
-   "name": "C3UnloadCondPressHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 60
-  },
-  {
-   "type": "BV",
-   "inst": 543,
-   "name": "C4UnloadCondPressHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 60
-  },
-  {
-   "type": "BV",
-   "inst": 556,
-   "name": "C1InhbtLoadEvapPressLo",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether INHIBIT LOAD - Evaporator Pressure Low Problem is active (1) or not active (0).There is one BACnet object for each circuit. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BV",
-   "inst": 557,
-   "name": "C2InhbtLoadEvapPressLo",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BV",
-   "inst": 558,
-   "name": "C3InhbtLoadEvapPressLo",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BV",
-   "inst": 559,
-   "name": "C4InhbtLoadEvapPressLo",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "BV",
-   "inst": 561,
-   "name": "C1UnloadEvapPressLow",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether UNLOAD - Evaporator Pressure Low #n Problem is active (1) or not active (0). There is one BACnet point for each circuit. Circuit 2 · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 61
-  },
-  {
-   "type": "BV",
-   "inst": 562,
-   "name": "C2UnloadEvapPressLow",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 61
-  },
-  {
-   "type": "BV",
-   "inst": 563,
-   "name": "C3UnloadEvapPressLow",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 61
-  },
-  {
-   "type": "BV",
-   "inst": 564,
-   "name": "C4UnloadEvapPressLow",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 61
-  },
-  {
-   "type": "BV",
-   "inst": 565,
-   "name": "C1Cmp1UnloadAmpsHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether UNLOAD - Compressor Motor Current High #n Problem is active (1) or not active (0) There is one BACnet object for each compressor. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 60
-  },
-  {
-   "type": "BV",
-   "inst": 567,
-   "name": "C2Cmp1UnloadAmpsHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 60
-  },
-  {
-   "type": "BV",
-   "inst": 569,
-   "name": "C3Cmp1UnloadAmpsHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 60
-  },
-  {
-   "type": "BV",
-   "inst": 575,
-   "name": "EvPumpFault1",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the PUMP 2 START ATTEMPTED - Evaporator Pump 1 Failure alarm is active (1) or not active (0). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 59
-  },
-  {
-   "type": "BV",
-   "inst": 576,
-   "name": "EvPumpFault2",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the PUMP 1 START ATTEMPTED - Evaporator Pump 2 Failure alarm is active (1) or not active (2). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 59
-  },
-  {
-   "type": "BV",
-   "inst": 578,
-   "name": "C1Cmp1HoldAmpsHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the INHIBIT LOAD - Compressor Motor Current High #n Problem alarm is active (1) or inactive (2). There is one BACnet object for each circuit. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 57
-  },
-  {
-   "type": "BV",
-   "inst": 580,
-   "name": "C2Cmp1HoldAmpsHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 57
-  },
-  {
-   "type": "BV",
-   "inst": 582,
-   "name": "C3Cmp1HoldAmpsHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 57
-  },
-  {
-   "type": "BV",
-   "inst": 599,
-   "name": "C1Comp1OFFLoPress- Ratio",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 601,
-   "name": "C2Comp1OFFLoPress- Ratio",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 603,
-   "name": "C3Comp1OFFLoPress- Ratio",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 604,
-   "name": "C4Comp1OFFLoPress- Ratio",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 605,
-   "name": "UnitOFFOATempSenFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the COMPRESSOR SHUTDOWN - Outside Air Temperature Sensor Fault is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 54
+   "sourcePage": 52
   },
   {
    "type": "BV",
@@ -3287,126 +2217,6 @@
   },
   {
    "type": "BV",
-   "inst": 625,
-   "name": "C1Cmp1OffMtrProtect",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 627,
-   "name": "C2Cmp1OffMtrProtect",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 637,
-   "name": "C1Comp1OFFMotor- TempHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 639,
-   "name": "C2Comp1OFFMotor- TempHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 76
-  },
-  {
-   "type": "BV",
-   "inst": 641,
-   "name": "C3Comp1OFFMotor- TempHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 76
-  },
-  {
-   "type": "BV",
-   "inst": 642,
-   "name": "C4Comp1OFFMotor- TempHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 76
-  },
-  {
-   "type": "BV",
-   "inst": 655,
-   "name": "C1OffOverVoltage",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the COMPRESSOR SHUTDOWN - Overvoltage alarm is active (1) or not active (0). · 범위 “0 = No Alarm 1 = Alarm”",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 54
-  },
-  {
-   "type": "BV",
-   "inst": 657,
-   "name": "C2OffOverVoltage",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 54
-  },
-  {
-   "type": "BV",
-   "inst": 661,
-   "name": "C1OffUnderVoltage",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the COMPRESSOR SHUTDOWN - Undervoltage alarm is active (1) or not active (0). · 범위 “0 = No Alarm 1 = Alarm”",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 55
-  },
-  {
-   "type": "BV",
-   "inst": 663,
-   "name": "C2OffUnderVoltage",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 55
-  },
-  {
-   "type": "BV",
-   "inst": 668,
-   "name": "C1CondPsenf",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the CIRCUIT SHUTDOWN - Con- denser Pressure Sensor Circuit #n Fault is active (1) or inactive (2). There is one BACnet object for each circuit/ compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 49
-  },
-  {
-   "type": "BV",
-   "inst": 670,
-   "name": "C2CondPsenf",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 49
-  },
-  {
-   "type": "BV",
    "inst": 672,
    "name": "C3Comp1OFFCond- PressSen",
    "unitRaw": null,
@@ -3424,26 +2234,6 @@
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
    "sourcePage": 52
-  },
-  {
-   "type": "BV",
-   "inst": 676,
-   "name": "C1OFF CondPressHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the CIRCUIT SHUTDOWN - Con- denser Pressure High Trip Circuit #n Fault is active (1) or inactive (2). There is one BACnet object for each circuit/ compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 49
-  },
-  {
-   "type": "BV",
-   "inst": 678,
-   "name": "C2OFFCondPressHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 49
   },
   {
    "type": "BV",
@@ -3547,46 +2337,6 @@
   },
   {
    "type": "BV",
-   "inst": 701,
-   "name": "UnitOFFEvapWaterFlow",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 79
-  },
-  {
-   "type": "BV",
-   "inst": 702,
-   "name": "UnitOffEvpLvgW- TempSen/",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the UNIT SHUTDOWN - Evaporator LWT or EWT Low (Freeze) alarm is active (1) or not active (0). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 60
-  },
-  {
-   "type": "BV",
-   "inst": 704,
-   "name": "C1LowEvPr",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the CIRCUIT SHUTDOWN - Low Evaporator Pressure Trip Circuit #n Fault is active (1) or inactive (2). There is one BACnet object for each circuit/ compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 50
-  },
-  {
-   "type": "BV",
-   "inst": 706,
-   "name": "C2LowEvPr",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 50
-  },
-  {
-   "type": "BV",
    "inst": 708,
    "name": "C3Comp1OFFEvap- PressLow",
    "unitRaw": null,
@@ -3607,23 +2357,33 @@
   },
   {
    "type": "BV",
-   "inst": 711,
-   "name": "C1EvapPsenf",
+   "inst": 605,
+   "name": "UnitOFFOATempSenFail",
    "unitRaw": null,
    "unit": null,
-   "note": "Indicates whether the CIRCUIT SHUTDOWN - Evap- orator Pressure Sensor Circuit #n Fault is active (1) or inactive (2). There is one BACnet object for each circuit/ compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
+   "note": "Indicates whether the COMPRESSOR SHUTDOWN - Outside Air Temperature Sensor Fault is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 49
+   "sourcePage": 54
   },
   {
    "type": "BV",
-   "inst": 713,
-   "name": "C2EvapPsenf",
+   "inst": 655,
+   "name": "C1OffOverVoltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the COMPRESSOR SHUTDOWN - Overvoltage alarm is active (1) or not active (0). · 범위 “0 = No Alarm 1 = Alarm”",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 54
+  },
+  {
+   "type": "BV",
+   "inst": 657,
+   "name": "C2OffOverVoltage",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 49
+   "sourcePage": 54
   },
   {
    "type": "BV",
@@ -3644,6 +2404,966 @@
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
    "sourcePage": 54
+  },
+  {
+   "type": "BV",
+   "inst": 802,
+   "name": "C1Comp1OFFOilFeed- PSen",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the COMPRESSOR SHUTDOWN - Oil Feed Pressure Sensor Circuit #n Compressor #n Fault is active (1) or inactive (2).There is one BACnet object for each circuit/compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 54
+  },
+  {
+   "type": "BV",
+   "inst": 804,
+   "name": "C2Comp1OFFOilFeed- PSen",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 54
+  },
+  {
+   "type": "BV",
+   "inst": 806,
+   "name": "C3Comp1OFFOilFeed- PSen",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 54
+  },
+  {
+   "type": "BV",
+   "inst": 807,
+   "name": "C4Comp1OFFOilFeed- PSen",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 54
+  },
+  {
+   "type": "BI",
+   "inst": 70,
+   "name": "C1Co1HighVfdCurrent",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 1 Compressor VFD Current High fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 55
+  },
+  {
+   "type": "BI",
+   "inst": 71,
+   "name": "C2Co1HighVfdCurrent",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 2 Compressor VFD Current High fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 55
+  },
+  {
+   "type": "BV",
+   "inst": 661,
+   "name": "C1OffUnderVoltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the COMPRESSOR SHUTDOWN - Undervoltage alarm is active (1) or not active (0). · 범위 “0 = No Alarm 1 = Alarm”",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 55
+  },
+  {
+   "type": "BV",
+   "inst": 663,
+   "name": "C2OffUnderVoltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 55
+  },
+  {
+   "type": "BV",
+   "inst": 857,
+   "name": "C1Comp1OFFSuct- TempSen",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the COMPRESSOR SHUTDOWN - Suction Temperature Sensor Circuit #n Compressor #n Fault is active (1) or inactive (2).There is one BACnet object for each circuit/compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 55
+  },
+  {
+   "type": "BV",
+   "inst": 859,
+   "name": "C2Comp1OFFSuct- TempSen",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 55
+  },
+  {
+   "type": "BV",
+   "inst": 861,
+   "name": "C3Comp1OFFSuct- TempSen",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 55
+  },
+  {
+   "type": "BV",
+   "inst": 862,
+   "name": "C4Comp1OFFSuct- TempSen",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 55
+  },
+  {
+   "type": "AI",
+   "inst": 234,
+   "name": "C1EconRefPress",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 1 Economizer Refrigerant Pressure Sensor Fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "AI",
+   "inst": 235,
+   "name": "C2EconRefPress",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 2 Economizer Refrigerant Pressure Sensor Fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "AI",
+   "inst": 238,
+   "name": "C1EconRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 1 Economizer Temperature Sensor Fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "AI",
+   "inst": 239,
+   "name": "C2EconRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 2 Economizer Temperature Sensor Fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "BI",
+   "inst": 46,
+   "name": "DcFanCtrlCommFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the DC Fan Controller Comm Failure fault alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "BI",
+   "inst": 47,
+   "name": "EconExvCommFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Economizer EXV Comm Failure warning alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "BI",
+   "inst": 64,
+   "name": "C1DcFanFault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 1 DC Fan warning alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "BI",
+   "inst": 65,
+   "name": "C2DcFanFault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 2 DC Fan warning alarm is normal (0) or in alarm (1). · 범위 0 = Normal 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "BV",
+   "inst": 882,
+   "name": "C1ControlBoardOffline",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "BV",
+   "inst": 883,
+   "name": "C2ControlBoardOffline",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "BV",
+   "inst": 884,
+   "name": "C3ControlBoardOffline",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "BV",
+   "inst": 885,
+   "name": "C4ControlBoardOffline",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "BV",
+   "inst": 917,
+   "name": "EvapEntWTempSensor- Fail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Evaporator Entering Water Tem- perature Sensor Fault alarm is active (1) or not active (0). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "BV",
+   "inst": 925,
+   "name": "UnitBoardOffline",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Controller Board #n Offline Fault is active (1) or inactive (2).There is one BACnet object for each circuit/compressor combination. There is one BACnet object for each circuit. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 56
+  },
+  {
+   "type": "BI",
+   "inst": 45,
+   "name": "EvapExvCommFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Evaporator EXV Comm Fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 57
+  },
+  {
+   "type": "BI",
+   "inst": 56,
+   "name": "C1EvapExvMtrFault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 1 Evaporator EXV Motor Error Fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 57
+  },
+  {
+   "type": "BI",
+   "inst": 57,
+   "name": "C2EvapExvMtrFault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 2 Evaporator EXV Motor Error Fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 57
+  },
+  {
+   "type": "BV",
+   "inst": 13,
+   "name": "C1OffEXVCrtlrComFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the EXV Controller Communication Failed alarm is active (1) or not active (0). · 범위 “0 = No Alarm 1 = Alarm”",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 57
+  },
+  {
+   "type": "BV",
+   "inst": 14,
+   "name": "C2OffEXVCrtlrComFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 57
+  },
+  {
+   "type": "BV",
+   "inst": 501,
+   "name": "EvapEntWTempSensor- Fail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Evaporator Entering Water Tem- perature Sensor Warning alarm is active (1) or not active (0). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 57
+  },
+  {
+   "type": "BV",
+   "inst": 578,
+   "name": "C1Cmp1HoldAmpsHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the INHIBIT LOAD - Compressor Motor Current High #n Problem alarm is active (1) or inactive (2). There is one BACnet object for each circuit. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 57
+  },
+  {
+   "type": "BV",
+   "inst": 580,
+   "name": "C2Cmp1HoldAmpsHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 57
+  },
+  {
+   "type": "BV",
+   "inst": 582,
+   "name": "C3Cmp1HoldAmpsHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 57
+  },
+  {
+   "type": "BV",
+   "inst": 749,
+   "name": "EvpLvgWTmp1SensorFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Evaporator Leaving Water Tem- perature 1 Sensor Fault alarm is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 57
+  },
+  {
+   "type": "BV",
+   "inst": 750,
+   "name": "EvpLvgWTmp2SensorFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Evaporator Leaving Water Tem- perature 2 Sensor Fault alarm is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 57
+  },
+  {
+   "type": "BI",
+   "inst": 48,
+   "name": "C1Cmp1LowPr DiffOrRatio",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 1 Low Pressure Difference or Ratio fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BI",
+   "inst": 49,
+   "name": "C2Cmp1LowPr DiffOrRatio",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 2 Low Pressure Difference or Ratio fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BI",
+   "inst": 52,
+   "name": "C1Cmp1MultiStartFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 1 Multistart Fail Compres- sor fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BI",
+   "inst": 53,
+   "name": "C2Cmp1MultiStartFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Circuit 2 Multistart Fail Compres- sor fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BV",
+   "inst": 535,
+   "name": "C1InhbtLoadCondPressHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether INHIBIT LOAD - Condenser Pressure High Circuit #n Problem is active (1) or not active (0). There is one BACnet object for each circuit. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BV",
+   "inst": 536,
+   "name": "C2InhbtLoadCondPressHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BV",
+   "inst": 537,
+   "name": "C3InhbtLoadCondPressHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BV",
+   "inst": 538,
+   "name": "C4InhbtLoadCondPressHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BV",
+   "inst": 556,
+   "name": "C1InhbtLoadEvapPressLo",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether INHIBIT LOAD - Evaporator Pressure Low Problem is active (1) or not active (0).There is one BACnet object for each circuit. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BV",
+   "inst": 557,
+   "name": "C2InhbtLoadEvapPressLo",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BV",
+   "inst": 558,
+   "name": "C3InhbtLoadEvapPressLo",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BV",
+   "inst": 559,
+   "name": "C4InhbtLoadEvapPressLo",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "NC",
+   "inst": 1,
+   "name": "NC1-Faults4,5 Ack Required _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "All faults report to this notification class. The Recipi- ent List conveys a list of one or more recipients to which _ notifications will be sent. The Ack Required property _ defines whether or not acknowledgment is required for notificatio",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 58
+  },
+  {
+   "type": "BI",
+   "inst": 40,
+   "name": "UnitGroundFault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Unit Ground Fault Protection alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 59
+  },
+  {
+   "type": "BI",
+   "inst": 149,
+   "name": "RpdRestoreCommFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the Rapid Restore Module Communi- cation Failure fault alarm is normal (0) or in alarm (1). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 59
+  },
+  {
+   "type": "BV",
+   "inst": 575,
+   "name": "EvPumpFault1",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the PUMP 2 START ATTEMPTED - Evaporator Pump 1 Failure alarm is active (1) or not active (0). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 59
+  },
+  {
+   "type": "BV",
+   "inst": 576,
+   "name": "EvPumpFault2",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the PUMP 1 START ATTEMPTED - Evaporator Pump 2 Failure alarm is active (1) or not active (2). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 59
+  },
+  {
+   "type": "NC",
+   "inst": 2,
+   "name": "NC1-Problems4,5 Ack Required _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "All problems report to this notification class. These read/ write properties allow subscription to alarm notifications. The Recipient List conveys a list of one or more recip- _ ients to which notifications will be sent. The Ack Re- _ quire",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 59
+  },
+  {
+   "type": "NC",
+   "inst": 3,
+   "name": "NC1-Warnings4, 5 Ack Required _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "All warnings report to this notification class. These read/ write properties allow subscription to alarm notifications. The Recipient list conveys a list of one or more recip- _ ients to which notifications will be sent. The Ack Re- _ quire",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 59
+  },
+  {
+   "type": "BV",
+   "inst": 22,
+   "name": "UnitOffCndLvgW- TempSen/",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the UNIT SHUITDOWN - Condenser LWT or EWT Low (Freeze) alarm is active (1) or not active (0) · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 60
+  },
+  {
+   "type": "BV",
+   "inst": 540,
+   "name": "C1UnloadCondPressHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether UNLOAD - Condenser Pressure High #n Problem is active (1) or not active (0).There is one BACnet object for each circuit. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 60
+  },
+  {
+   "type": "BV",
+   "inst": 541,
+   "name": "C2UnloadCondPressHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 60
+  },
+  {
+   "type": "BV",
+   "inst": 542,
+   "name": "C3UnloadCondPressHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 60
+  },
+  {
+   "type": "BV",
+   "inst": 543,
+   "name": "C4UnloadCondPressHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 60
+  },
+  {
+   "type": "BV",
+   "inst": 565,
+   "name": "C1Cmp1UnloadAmpsHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether UNLOAD - Compressor Motor Current High #n Problem is active (1) or not active (0) There is one BACnet object for each compressor. · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 60
+  },
+  {
+   "type": "BV",
+   "inst": 567,
+   "name": "C2Cmp1UnloadAmpsHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 60
+  },
+  {
+   "type": "BV",
+   "inst": 569,
+   "name": "C3Cmp1UnloadAmpsHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 60
+  },
+  {
+   "type": "BV",
+   "inst": 702,
+   "name": "UnitOffEvpLvgW- TempSen/",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the UNIT SHUTDOWN - Evaporator LWT or EWT Low (Freeze) alarm is active (1) or not active (0). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 60
+  },
+  {
+   "type": "BV",
+   "inst": 748,
+   "name": "UnitOFFEvapLvgW- TempSen",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether the UNIT SHUTDOWN - Evaporator Leaving Water Temperature Sensor Fault is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 60
+  },
+  {
+   "type": "BV",
+   "inst": 561,
+   "name": "C1UnloadEvapPressLow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates whether UNLOAD - Evaporator Pressure Low #n Problem is active (1) or not active (0). There is one BACnet point for each circuit. Circuit 2 · 범위 0 = No Alarm 1 = In Alarm",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 61
+  },
+  {
+   "type": "BV",
+   "inst": 562,
+   "name": "C2UnloadEvapPressLow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 61
+  },
+  {
+   "type": "BV",
+   "inst": 563,
+   "name": "C3UnloadEvapPressLow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 61
+  },
+  {
+   "type": "BV",
+   "inst": 564,
+   "name": "C4UnloadEvapPressLow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 61
+  },
+  {
+   "type": "BI",
+   "inst": 132,
+   "name": "C1Co1IgvPositionWarn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BI",
+   "inst": 133,
+   "name": "C1Co2IgvPositionWarn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BI",
+   "inst": 134,
+   "name": "C1Co1VfdOvrhtWarn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BI",
+   "inst": 135,
+   "name": "C1Co2VfdOvrhtWarn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BI",
+   "inst": 196,
+   "name": "LowSourceTempWarn",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BI",
+   "inst": 976,
+   "name": "C1RefrigCharge",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BI",
+   "inst": 977,
+   "name": "C2RefrigCharge",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BI",
+   "inst": 978,
+   "name": "C3RefrigCharge",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BI",
+   "inst": 979,
+   "name": "ProcessBusFailure",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BV",
+   "inst": 512,
+   "name": "BadSPointOverrideInput",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BV",
+   "inst": 513,
+   "name": "BadDemandLimitInput",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BV",
+   "inst": 515,
+   "name": "UnitPowerRestore",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BV",
+   "inst": 516,
+   "name": "C1FailedPumpdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BV",
+   "inst": 517,
+   "name": "C2FailedPumpdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BV",
+   "inst": 518,
+   "name": "C3FailedPumpdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BV",
+   "inst": 519,
+   "name": "C4FailedPumpdown",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BV",
+   "inst": 918,
+   "name": "BadCurrentLimitInput",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BV",
+   "inst": 919,
+   "name": "OptionCtrlrCommFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "BV",
+   "inst": 924,
+   "name": "UnitExternalEvent",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 71
+  },
+  {
+   "type": "AI",
+   "inst": 149,
+   "name": "OutdoorAirTempLow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 72
+  },
+  {
+   "type": "BI",
+   "inst": 169,
+   "name": "WseValvePrblm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 72
+  },
+  {
+   "type": "BI",
+   "inst": 170,
+   "name": "WseEwtSenf",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 72
+  },
+  {
+   "type": "BV",
+   "inst": 529,
+   "name": "C1RestartDelayPwrLRun",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 72
+  },
+  {
+   "type": "BV",
+   "inst": 530,
+   "name": "C2RestartDelayPwrLRun",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 72
+  },
+  {
+   "type": "BV",
+   "inst": 531,
+   "name": "C3RestartDelayPwrLRun",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 72
+  },
+  {
+   "type": "BV",
+   "inst": 532,
+   "name": "C4RestartDelayPwrLRun",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 72
   },
   {
    "type": "BV",
@@ -3687,53 +3407,273 @@
   },
   {
    "type": "BV",
-   "inst": 748,
-   "name": "UnitOFFEvapLvgW- TempSen",
+   "inst": 968,
+   "name": "C1OffPvmGfp",
    "unitRaw": null,
    "unit": null,
-   "note": "Indicates whether the UNIT SHUTDOWN - Evaporator Leaving Water Temperature Sensor Fault is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
+   "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 60
+   "sourcePage": 73
   },
   {
    "type": "BV",
-   "inst": 749,
-   "name": "EvpLvgWTmp1SensorFail",
+   "inst": 969,
+   "name": "C2OffPvmGfp",
    "unitRaw": null,
    "unit": null,
-   "note": "Indicates whether the Evaporator Leaving Water Tem- perature 1 Sensor Fault alarm is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
+   "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 57
+   "sourcePage": 73
+  },
+  {
+   "type": "AI",
+   "inst": 151,
+   "name": "EvapLWT1¹",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 74
+  },
+  {
+   "type": "AI",
+   "inst": 152,
+   "name": "EvapLWT2¹",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 74
   },
   {
    "type": "BV",
-   "inst": 750,
-   "name": "EvpLvgWTmp2SensorFail",
+   "inst": 886,
+   "name": "C1Cmp1OffVfdFault",
    "unitRaw": null,
    "unit": null,
-   "note": "Indicates whether the Evaporator Leaving Water Tem- perature 2 Sensor Fault alarm is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
+   "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 57
+   "sourcePage": 74
   },
   {
    "type": "BV",
-   "inst": 751,
-   "name": "Evap1FreezeProtect",
+   "inst": 888,
+   "name": "C2Cmp1OffVfdFault",
    "unitRaw": null,
    "unit": null,
-   "note": "Indicates whether the CIRCUIT SHUTDOWN - Evap- orator 1 Freeze Protection Fault alarm is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
+   "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 49
+   "sourcePage": 74
   },
   {
    "type": "BV",
-   "inst": 752,
-   "name": "Evap2FreezeProtect",
+   "inst": 890,
+   "name": "C3Cmp1OffVfdFault",
    "unitRaw": null,
    "unit": null,
-   "note": "Indicates whether the CIRCUIT SHUTDOWN - Evap- orator 2 Freeze Protection Fault alarm is active (1) or inactive (2). · 범위 0 = No Alarm 1 = In Alarm",
+   "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 49
+   "sourcePage": 74
+  },
+  {
+   "type": "BV",
+   "inst": 948,
+   "name": "C1Cmp1OffVfdCom- mFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 74
+  },
+  {
+   "type": "BV",
+   "inst": 950,
+   "name": "C2Cmp1OffVfdCom- mFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 74
+  },
+  {
+   "type": "BV",
+   "inst": 952,
+   "name": "C3Cmp1OffVfdCom- mFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 74
+  },
+  {
+   "type": "BV",
+   "inst": 599,
+   "name": "C1Comp1OFFLoPress- Ratio",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 601,
+   "name": "C2Comp1OFFLoPress- Ratio",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 603,
+   "name": "C3Comp1OFFLoPress- Ratio",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 604,
+   "name": "C4Comp1OFFLoPress- Ratio",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 625,
+   "name": "C1Cmp1OffMtrProtect",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 627,
+   "name": "C2Cmp1OffMtrProtect",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 637,
+   "name": "C1Comp1OFFMotor- TempHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 876,
+   "name": "C1Comp1OFFMechLo- Press",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 878,
+   "name": "C2Comp1OFFMechLo- Press",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 880,
+   "name": "C3Comp1OFFMechLo- Press",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 881,
+   "name": "C4Comp1OFFMechLo- Press",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 961,
+   "name": "C1Co1LowDischSHAlm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 963,
+   "name": "C2Co1LowDischSHAlm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 965,
+   "name": "C3Co1LowDischSHAlm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 75
+  },
+  {
+   "type": "BV",
+   "inst": 639,
+   "name": "C2Comp1OFFMotor- TempHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 76
+  },
+  {
+   "type": "BV",
+   "inst": 641,
+   "name": "C3Comp1OFFMotor- TempHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 76
+  },
+  {
+   "type": "BV",
+   "inst": 642,
+   "name": "C4Comp1OFFMotor- TempHi",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 76
   },
   {
    "type": "BV",
@@ -3814,246 +3754,6 @@
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
    "sourcePage": 76
-  },
-  {
-   "type": "BV",
-   "inst": 802,
-   "name": "C1Comp1OFFOilFeed- PSen",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the COMPRESSOR SHUTDOWN - Oil Feed Pressure Sensor Circuit #n Compressor #n Fault is active (1) or inactive (2).There is one BACnet object for each circuit/compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 54
-  },
-  {
-   "type": "BV",
-   "inst": 804,
-   "name": "C2Comp1OFFOilFeed- PSen",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 54
-  },
-  {
-   "type": "BV",
-   "inst": 806,
-   "name": "C3Comp1OFFOilFeed- PSen",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 54
-  },
-  {
-   "type": "BV",
-   "inst": 807,
-   "name": "C4Comp1OFFOilFeed- PSen",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 54
-  },
-  {
-   "type": "BV",
-   "inst": 820,
-   "name": "UnitOFFPhaseVoltage",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 79
-  },
-  {
-   "type": "BV",
-   "inst": 821,
-   "name": "C1Comp1OFFStarter- Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BV",
-   "inst": 823,
-   "name": "C2Comp1OFFStarter- Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BV",
-   "inst": 825,
-   "name": "C3Comp1OFFStarter- Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BV",
-   "inst": 826,
-   "name": "C4Comp1OFFStarter- Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BV",
-   "inst": 857,
-   "name": "C1Comp1OFFSuct- TempSen",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the COMPRESSOR SHUTDOWN - Suction Temperature Sensor Circuit #n Compressor #n Fault is active (1) or inactive (2).There is one BACnet object for each circuit/compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 55
-  },
-  {
-   "type": "BV",
-   "inst": 859,
-   "name": "C2Comp1OFFSuct- TempSen",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 55
-  },
-  {
-   "type": "BV",
-   "inst": 861,
-   "name": "C3Comp1OFFSuct- TempSen",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 55
-  },
-  {
-   "type": "BV",
-   "inst": 862,
-   "name": "C4Comp1OFFSuct- TempSen",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 55
-  },
-  {
-   "type": "BV",
-   "inst": 876,
-   "name": "C1Comp1OFFMechLo- Press",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 878,
-   "name": "C2Comp1OFFMechLo- Press",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 880,
-   "name": "C3Comp1OFFMechLo- Press",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 881,
-   "name": "C4Comp1OFFMechLo- Press",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 882,
-   "name": "C1ControlBoardOffline",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "BV",
-   "inst": 883,
-   "name": "C2ControlBoardOffline",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "BV",
-   "inst": 884,
-   "name": "C3ControlBoardOffline",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "BV",
-   "inst": 885,
-   "name": "C4ControlBoardOffline",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "BV",
-   "inst": 886,
-   "name": "C1Cmp1OffVfdFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 74
-  },
-  {
-   "type": "BV",
-   "inst": 888,
-   "name": "C2Cmp1OffVfdFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 74
-  },
-  {
-   "type": "BV",
-   "inst": 890,
-   "name": "C3Cmp1OffVfdFault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 74
   },
   {
    "type": "BV",
@@ -4176,34 +3876,614 @@
    "sourcePage": 76
   },
   {
-   "type": "BV",
-   "inst": 917,
-   "name": "EvapEntWTempSensor- Fail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Evaporator Entering Water Tem- perature Sensor Fault alarm is active (1) or not active (0). · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
-  },
-  {
-   "type": "BV",
-   "inst": 918,
-   "name": "BadCurrentLimitInput",
+   "type": "BI",
+   "inst": 76,
+   "name": "C1Co1DischPressHigh",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
+   "sourcePage": 77
   },
   {
-   "type": "BV",
-   "inst": 919,
-   "name": "OptionCtrlrCommFail",
+   "type": "BI",
+   "inst": 77,
+   "name": "C1Co2DischPressHigh",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 78,
+   "name": "C1Co1DidNotStart",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 79,
+   "name": "C1Co2DidNotStart",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 90,
+   "name": "C1Co1NoCompStopAlm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 91,
+   "name": "C1Co2NoCompStopAlm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 94,
+   "name": "C1Co1IGVDriverFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 95,
+   "name": "C1Co2IGVDriverFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 96,
+   "name": "C1Co1IGVCalibFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 97,
+   "name": "C1Co2IGVCalibFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 98,
+   "name": "C1Co1EnRelayOffFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 99,
+   "name": "C1Co2EnRelayOffFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 130,
+   "name": "C1Co1IPSOverTmp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 131,
+   "name": "C1Co2IPSOverTmp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 172,
+   "name": "C1Cmp1OilFeedLoss",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 174,
+   "name": "C2Cmp1OilFeedLoss",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 973,
+   "name": "C1OffRefrigCharge",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 974,
+   "name": "C2OffRefrigCharge",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 975,
+   "name": "C3OffRefrigCharge",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BV",
+   "inst": 821,
+   "name": "C1Comp1OFFStarter- Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BV",
+   "inst": 823,
+   "name": "C2Comp1OFFStarter- Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BV",
+   "inst": 825,
+   "name": "C3Comp1OFFStarter- Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BV",
+   "inst": 826,
+   "name": "C4Comp1OFFStarter- Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BV",
+   "inst": 930,
+   "name": "C1Comp1SlidePosSenf",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BV",
+   "inst": 932,
+   "name": "C2Comp1SlidePosSenf",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BV",
+   "inst": 934,
+   "name": "C3Comp1SlidePosSenf",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BV",
+   "inst": 935,
+   "name": "C4Comp1SlidePosSenf",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 77
+  },
+  {
+   "type": "BI",
+   "inst": 74,
+   "name": "C1Co1SuctPressLow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 75,
+   "name": "C1Co2SuctPressLow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 80,
+   "name": "C1Co1StatorTempHigh",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 81,
+   "name": "C1Co2StatorTempHigh",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 82,
+   "name": "C1Co1MtrGapTempHigh",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 83,
+   "name": "C1Co2MtrGapTempHigh",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 84,
+   "name": "C1Co1RtrPmpShtLow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 85,
+   "name": "C1Co2RtrPmpShtLow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 86,
+   "name": "C1Co1SurgeTempAlm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 87,
+   "name": "C1Co2SurgeTempAlm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 88,
+   "name": "C1Co1MotorSpeedFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 89,
+   "name": "C1Co2MotorSpeedFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 92,
+   "name": "C1Co1MBCFault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 93,
+   "name": "C1Co2MBCFault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 122,
+   "name": "C1Co1MBCMdbsComFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 123,
+   "name": "C1Co2MBCMdbsComFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 124,
+   "name": "C1Co1VFDMdbsComFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 125,
+   "name": "C1Co2VFDMdbsComFlt",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 126,
+   "name": "C1Co1MBCOrbitError",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 127,
+   "name": "C1Co2MBCOrbitError",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 128,
+   "name": "C1Co1PrimaryPwrFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BI",
+   "inst": 129,
+   "name": "C1Co2PrimaryPwrFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BV",
+   "inst": 11,
+   "name": "Comp3CntrlrCommFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "BV",
+   "inst": 12,
+   "name": "Comp4CntrlrCommFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 78
+  },
+  {
+   "type": "AI",
+   "inst": 5,
+   "name": "OutdoorAirTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 79
+  },
+  {
+   "type": "BI",
+   "inst": 171,
+   "name": "WseValveFault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 79
+  },
+  {
+   "type": "BV",
+   "inst": 15,
+   "name": "EXVCntrlr3CommFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 79
+  },
+  {
+   "type": "BV",
+   "inst": 16,
+   "name": "EXVCntrlr4CommFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 79
+  },
+  {
+   "type": "BV",
+   "inst": 18,
+   "name": "FanCrtlr1and2ComFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 79
+  },
+  {
+   "type": "BV",
+   "inst": 19,
+   "name": "FanCrtlr3ComFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 79
+  },
+  {
+   "type": "BV",
+   "inst": 20,
+   "name": "FanCrtlr4ComFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 79
+  },
+  {
+   "type": "BV",
+   "inst": 21,
+   "name": "FanCrtlr3and4ComFail",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 79
+  },
+  {
+   "type": "BV",
+   "inst": 701,
+   "name": "UnitOFFEvapWaterFlow",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 79
+  },
+  {
+   "type": "BV",
+   "inst": 820,
+   "name": "UnitOFFPhaseVoltage",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
+   "sourcePage": 79
   },
   {
    "type": "BV",
@@ -4234,26 +4514,6 @@
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
    "sourcePage": 79
-  },
-  {
-   "type": "BV",
-   "inst": 924,
-   "name": "UnitExternalEvent",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 71
-  },
-  {
-   "type": "BV",
-   "inst": 925,
-   "name": "UnitBoardOffline",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the Controller Board #n Offline Fault is active (1) or inactive (2).There is one BACnet object for each circuit/compressor combination. There is one BACnet object for each circuit. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 56
   },
   {
    "type": "BV",
@@ -4297,136 +4557,6 @@
   },
   {
    "type": "BV",
-   "inst": 930,
-   "name": "C1Comp1SlidePosSenf",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BV",
-   "inst": 932,
-   "name": "C2Comp1SlidePosSenf",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BV",
-   "inst": 934,
-   "name": "C3Comp1SlidePosSenf",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BV",
-   "inst": 935,
-   "name": "C4Comp1SlidePosSenf",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 77
-  },
-  {
-   "type": "BV",
-   "inst": 942,
-   "name": "C1Cmp1OffVfdTempHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates whether the COMPRESSOR SHUTDOWN - COMPRESSOR VFD Over Heat #n Fault is active (1) or inactive (2).There is one BACnet object for each circuit/ compressor combination. · 범위 0 = No Alarm 1 = In Alarm",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 51
-  },
-  {
-   "type": "BV",
-   "inst": 944,
-   "name": "C2Cmp1OffVfdTempHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 51
-  },
-  {
-   "type": "BV",
-   "inst": 946,
-   "name": "C3Cmp1OffVfdTempHi",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 51
-  },
-  {
-   "type": "BV",
-   "inst": 948,
-   "name": "C1Cmp1OffVfdCom- mFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 74
-  },
-  {
-   "type": "BV",
-   "inst": 950,
-   "name": "C2Cmp1OffVfdCom- mFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 74
-  },
-  {
-   "type": "BV",
-   "inst": 952,
-   "name": "C3Cmp1OffVfdCom- mFail",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 74
-  },
-  {
-   "type": "BV",
-   "inst": 961,
-   "name": "C1Co1LowDischSHAlm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 963,
-   "name": "C2Co1LowDischSHAlm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
-   "inst": 965,
-   "name": "C3Co1LowDischSHAlm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 75
-  },
-  {
-   "type": "BV",
    "inst": 967,
    "name": "UnitOffPvmGfp",
    "unitRaw": null,
@@ -4434,136 +4564,6 @@
    "note": "",
    "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
    "sourcePage": 79
-  },
-  {
-   "type": "BV",
-   "inst": 968,
-   "name": "C1OffPvmGfp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 73
-  },
-  {
-   "type": "BV",
-   "inst": 969,
-   "name": "C2OffPvmGfp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 73
-  },
-  {
-   "type": "MSV",
-   "inst": 1,
-   "name": "UnitStatus",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The unit status of the chiller. · 범위 1 = OFF 2 = Start 3 = Run 4 = Preshutdown 5 = Service Default: Determined by current state of the chiller",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 28
-  },
-  {
-   "type": "MSV",
-   "inst": 2,
-   "name": "ActiveMode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current operating mode of the chiller. · 범위 1 = Ice 2 = Cool 3 = Heat 4 = Cool/Heat Recovery 5 = Defrost Default: NA",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 28
-  },
-  {
-   "type": "MSV",
-   "inst": 3,
-   "name": "ChillerOpera- tionMode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Changes the operating mode of the chiller and provides the ability for another node on the network to place a chiller in another mode. The unit controller only uses this variable if Chiller Local/Network is set to Network (0). Chiller Local",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 28
-  },
-  {
-   "type": "MSV",
-   "inst": 5,
-   "name": "WsEconState",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the current cooling mode of the chiller. Hybrid and Waterside Economizer modes are only available on units ordered with optional Wa- terside Economizer. For more information, see unit installation and Operation Manual. · 범위 1 = Of",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MSV",
-   "inst": 6,
-   "name": "WsEconStp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Enables Waterside Economizer operation. Setting this variable to Enable allows the chiller to enter Hybrid or Waterside Economizer cooling mode if operating conditions are satisfied for either mode. Otherwise, the unit will operate in Mecha",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MSV",
-   "inst": 8,
-   "name": "HMIUnitStatus",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the Unit Status as shown on the unit HMI. For more information, see unit Installation and Operation Manual. · 범위 A = Auto AS = Auto:Sound Reduction OIT = Off:Ice Mode Timer OL = Off:Low OAT Lockout ODC = Off:DC not ready OCD = Off",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 29
-  },
-  {
-   "type": "MSV",
-   "inst": 9,
-   "name": "HMICircuit1Status",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the Circuit Status as shown on the unit HMI. For more information, see unit Installation and Operation Manual. · 범위 OR = Off:Ready OCT = Off:Cycle Timer OAT = Off:OAT Low OMS = Off:Max Starts Per Hr OBD = Off:BAS Disable OKD = Off",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 28
-  },
-  {
-   "type": "MSV",
-   "inst": 10,
-   "name": "HMICircuit2Status",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 28
-  },
-  {
-   "type": "NC",
-   "inst": 1,
-   "name": "NC1-Faults4,5 Ack Required _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "All faults report to this notification class. The Recipi- ent List conveys a list of one or more recipients to which _ notifications will be sent. The Ack Required property _ defines whether or not acknowledgment is required for notificatio",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 58
-  },
-  {
-   "type": "NC",
-   "inst": 2,
-   "name": "NC1-Problems4,5 Ack Required _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "All problems report to this notification class. These read/ write properties allow subscription to alarm notifications. The Recipient List conveys a list of one or more recip- _ ients to which notifications will be sent. The Ack Re- _ quire",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 59
-  },
-  {
-   "type": "NC",
-   "inst": 3,
-   "name": "NC1-Warnings4, 5 Ack Required _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "All warnings report to this notification class. These read/ write properties allow subscription to alarm notifications. The Recipient list conveys a list of one or more recip- _ ients to which notifications will be sent. The Ack Re- _ quire",
-   "sourceFile": "Daikin_ED-15120-12_MicroTech_Chiller_Protocol.pdf",
-   "sourcePage": 59
   }
  ],
  "gap": "정격은 Trailblazer AGZ-E 카탈로그(CAT 624-23)에서 연결했다(원문표). AMZ·ADS·AWV·WWV 등 다른 냉동기 계열의 카탈로그는 아직 없다.",

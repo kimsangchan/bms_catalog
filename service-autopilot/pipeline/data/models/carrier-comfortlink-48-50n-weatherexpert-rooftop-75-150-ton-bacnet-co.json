@@ -47,16 +47,6 @@
   },
   {
    "type": "AV",
-   "inst": 15,
-   "name": "sasptemp 1 _",
-   "unitRaw": "℉",
-   "unit": "degF",
-   "note": "Temper Supply Air Setpt · 범위 35 to 70 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 250
-  },
-  {
-   "type": "AV",
    "inst": 40,
    "name": "oatlcomp 1 _",
    "unitRaw": "℉",
@@ -167,6 +157,316 @@
   },
   {
    "type": "AV",
+   "inst": 67,
+   "name": "econocmd 1 _",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Econ1Out Act. Cmd Pos · 범위 0 to 100 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 70,
+   "name": "economax 1 _",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Economizer Max.Position · 범위 0 to 100 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 129,
+   "name": "ecn3cpos 1 _",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Econ3 Ret Cmd Position · 범위 0 to 100 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1024,
+   "name": "cool ctrl point 1 _ _ _",
+   "unitRaw": "dF",
+   "unit": null,
+   "note": "Cooling Control Point · 범위 –20 to 140",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1028,
+   "name": "econ1 pos 1 _ _",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Econ 1 Out Act.Curr.Pos.",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1030,
+   "name": "re temp 1 _ _",
+   "unitRaw": "dF",
+   "unit": null,
+   "note": "Controlling Return Air Temp · 범위 –40 to 240 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1070,
+   "name": "bldg static press 1 _ _ _",
+   "unitRaw": "“H2O",
+   "unit": null,
+   "note": "Building Pressure",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1600,
+   "name": "suction press a 1 _ _ _",
+   "unitRaw": "PSIG",
+   "unit": null,
+   "note": "Cir A Suction Pressure",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1601,
+   "name": "discharge press a 1 _ _ _",
+   "unitRaw": "PSIG",
+   "unit": null,
+   "note": "Cir A Discharge Pressure",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1602,
+   "name": "sat cond temp a 1 _ _ _ _",
+   "unitRaw": "℉",
+   "unit": "degF",
+   "note": "Cir A Sat. Condensing Temperature",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1603,
+   "name": "sat suction temp a 1 _ _ _ _",
+   "unitRaw": "℉",
+   "unit": "degF",
+   "note": "Cir A Sat. Suction Temperature",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1604,
+   "name": "suction press b 1 _ _ _",
+   "unitRaw": "PSIG",
+   "unit": null,
+   "note": "Cir B Suction Pressure",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1605,
+   "name": "discharge press b 1 _ _ _",
+   "unitRaw": "PSIG",
+   "unit": null,
+   "note": "Cir B Discharge Pressure",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1606,
+   "name": "sat cond temp b 1 _ _ _ _",
+   "unitRaw": "℉",
+   "unit": "degF",
+   "note": "Cir B Sat. Condensing Temperature",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 1607,
+   "name": "sat suction temp b 1 _ _ _ _",
+   "unitRaw": "℉",
+   "unit": "degF",
+   "note": "Cir B Sat. Suction Temperature",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 2007,
+   "name": "space temp 1 _ _",
+   "unitRaw": "dF",
+   "unit": null,
+   "note": "Controlling Space Temp · 범위 –40 to 240 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 3070,
+   "name": "bldg press stpt 1 _ _ _",
+   "unitRaw": "H2O",
+   "unit": null,
+   "note": "Building Pressure Setp. · 범위 –0.25 to 0.25 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
+   "inst": 4005,
+   "name": "econ min 1 _ _",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Economizer Min.Position · 범위 0 to 100",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 2,
+   "name": "m684 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Dmd Level Map Select",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 9,
+   "name": "alm 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Alarm State",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 13,
+   "name": "cmpa3 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Compressor A3 Relay · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 14,
+   "name": "cmpb3 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Compressor B3 Relay · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 16,
+   "name": "cmpa1 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Compressor A1 Relay · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 17,
+   "name": "cmpa2 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Compressor A2 Relay · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 18,
+   "name": "cmpb1 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Compressor B1 Relay · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 19,
+   "name": "cmpb2 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Compressor B2 Relay · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 30,
+   "name": "dhdiscin 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Dehumidify Input · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 36,
+   "name": "ecactive 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Economizer Active? · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 88,
+   "name": "a700 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Air Temp Lvg Supply Fan Thermistor Failure",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 2601,
+   "name": "a link status 1 _ _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Airside Linkage",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "BV",
+   "inst": 7030,
+   "name": "air linkage fail 1 _ _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Airside Linkage Alarm",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 248
+  },
+  {
+   "type": "AV",
    "inst": 55,
    "name": "htclcpos 1 _",
    "unitRaw": "%",
@@ -207,16 +507,6 @@
   },
   {
    "type": "AV",
-   "inst": 67,
-   "name": "econocmd 1 _",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "Econ1Out Act. Cmd Pos · 범위 0 to 100 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
    "inst": 69,
    "name": "racfm 1 _",
    "unitRaw": "CFM",
@@ -224,46 +514,6 @@
    "note": "Return Air CFM · 범위 0 to 50000",
    "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
    "sourcePage": 249
-  },
-  {
-   "type": "AV",
-   "inst": 70,
-   "name": "economax 1 _",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "Economizer Max.Position · 범위 0 to 100 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 72,
-   "name": "sprh 1 _",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "Space Relative Humidity · 범위 0 to 100 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 250
-  },
-  {
-   "type": "AV",
-   "inst": 73,
-   "name": "sph 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SP High Alert Limit · 범위 0 to 5 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 250
-  },
-  {
-   "type": "AV",
-   "inst": 74,
-   "name": "spl 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "SP Low Alert Limit · 범위 –0.5 to 5 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 250
   },
   {
    "type": "AV",
@@ -287,46 +537,6 @@
   },
   {
    "type": "AV",
-   "inst": 78,
-   "name": "sacfm 1 _",
-   "unitRaw": "CFM",
-   "unit": null,
-   "note": "Supply Air CFM · 범위 0 to 50000",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 250
-  },
-  {
-   "type": "AV",
-   "inst": 80,
-   "name": "vfd1freq 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "VFD1 Actual Motor Freq · 범위 0 to 500",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 251
-  },
-  {
-   "type": "AV",
-   "inst": 81,
-   "name": "vfd1pwr 1 _",
-   "unitRaw": "kW",
-   "unit": "kW",
-   "note": "VFD1 Actual Motor Power",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 251
-  },
-  {
-   "type": "AV",
-   "inst": 82,
-   "name": "vfd1rpm 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "VFD1 Actual Motor RPM · 범위 0 to 30000",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 251
-  },
-  {
-   "type": "AV",
    "inst": 83,
    "name": "hcsp gap 1 _ _",
    "unitRaw": "°^F",
@@ -344,36 +554,6 @@
    "note": "Heating Supply Air Setpt · 범위 80 to 120 · 쓰기 가능",
    "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
    "sourcePage": 249
-  },
-  {
-   "type": "AV",
-   "inst": 93,
-   "name": "vfd2freq 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "VFD2 Actual Motor Freq · 범위 10 to 500",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 251
-  },
-  {
-   "type": "AV",
-   "inst": 94,
-   "name": "vfd2pwr 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "VFD2 Actual Motor Power",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 251
-  },
-  {
-   "type": "AV",
-   "inst": 95,
-   "name": "vfd2rpm 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "VFD2 Actual Motor RPM",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 251
   },
   {
    "type": "AV",
@@ -437,16 +617,6 @@
   },
   {
    "type": "AV",
-   "inst": 129,
-   "name": "ecn3cpos 1 _",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "Econ3 Ret Cmd Position · 범위 0 to 100 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
    "inst": 131,
    "name": "limt 1 _",
    "unitRaw": "^F",
@@ -494,6 +664,416 @@
    "note": "Return Air Temperature · 범위 –40 to 240 · 쓰기 가능",
    "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
    "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 1003,
+   "name": "oat 1 _",
+   "unitRaw": "dF",
+   "unit": null,
+   "note": "Outside Air Temperature · 범위 –40 to 240",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 1009,
+   "name": "iaq 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "IAQ - PPM Indoor CO2 · 범위 0 to 5000",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 1022,
+   "name": "hvac mode 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "HVAC Mode Numerical Form · 범위 0 to 40",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 1025,
+   "name": "heat ctrl point 1 _ _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Heating Control Point · 범위 –10 to 140",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 1027,
+   "name": "lvg air temeprature 1 _ _ _",
+   "unitRaw": "dF",
+   "unit": null,
+   "note": "Leaving Air Temperature · 범위 –40 to 240",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 1500,
+   "name": "ma temp 1 _ _",
+   "unitRaw": "dF",
+   "unit": null,
+   "note": "Mixed Air Temperature",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 2003,
+   "name": "heat run 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Requested Heat Stage · 범위 0 to 20",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 2075,
+   "name": "ef vfd output 1 _ _ _",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Exhaust Fan VFD Speed · 범위 0 to 100",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 2607,
+   "name": "link iaq 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indoor Air CO2",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 2611,
+   "name": "link max dmpr 1 _ _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Linkage Max Damper Position · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 9008,
+   "name": "econ oat lockout 1 _ _ _",
+   "unitRaw": "dF",
+   "unit": null,
+   "note": "High OAT Lockout Temp · 범위 –40 to 120 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 5,
+   "name": "schedule 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Local Schedule",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 41,
+   "name": "frz 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Freeze Status Switch · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 45,
+   "name": "emstop 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Emergency Stop · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 47,
+   "name": "hum3wval 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "HumidiMizer 3-way Valve · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 50,
+   "name": "sfs shut 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Fan Fail Shuts Down Unit · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 52,
+   "name": "hs1 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Heat Relay 1 · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 53,
+   "name": "hs2 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Heat Relay 2 · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 59,
+   "name": "unitstop 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Local Machine Disable · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 70,
+   "name": "htoccena 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Occupied Heating Enabled · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 72,
+   "name": "pflts status 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Post Filter Stat. Input · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 76,
+   "name": "hs3 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Relay 3 W1 Gas Valve 2 · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 77,
+   "name": "hs4 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Relay 4 W2 Gas Valve 2 · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 78,
+   "name": "hs5 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Relay 5 W1 Gas Valve 3 · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 79,
+   "name": "hs6 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Relay 6 W2 Gas Valve 3 · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 81,
+   "name": "rmtin 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Remote Input State · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 105,
+   "name": "comm lost alm 1 _ _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Element Communications Alarm",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 114,
+   "name": "a404 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Fire Shut Down Emergency Mode (fire-smoke)",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 127,
+   "name": "element alarm 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Equipment Alarm",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 1005,
+   "name": "firedown status 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Fire Shutdown Input · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 1026,
+   "name": "heat interlock relay 1 _ _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Heat Interlock Relay · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 1050,
+   "name": "iaq status 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "IAQ - Discrete Input · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 1052,
+   "name": "filter status 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Filter Status Input · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 2008,
+   "name": "occ status 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Occupied? · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 2014,
+   "name": "aux relay 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Remote Alarm/Aux Relay · 범위 0 to 1",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "BV",
+   "inst": 2999,
+   "name": "element stat 1 _ _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Element Comm Status",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 249
+  },
+  {
+   "type": "AV",
+   "inst": 15,
+   "name": "sasptemp 1 _",
+   "unitRaw": "℉",
+   "unit": "degF",
+   "note": "Temper Supply Air Setpt · 범위 35 to 70 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 250
+  },
+  {
+   "type": "AV",
+   "inst": 72,
+   "name": "sprh 1 _",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "Space Relative Humidity · 범위 0 to 100 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 250
+  },
+  {
+   "type": "AV",
+   "inst": 73,
+   "name": "sph 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SP High Alert Limit · 범위 0 to 5 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 250
+  },
+  {
+   "type": "AV",
+   "inst": 74,
+   "name": "spl 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "SP Low Alert Limit · 범위 –0.5 to 5 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 250
+  },
+  {
+   "type": "AV",
+   "inst": 78,
+   "name": "sacfm 1 _",
+   "unitRaw": "CFM",
+   "unit": null,
+   "note": "Supply Air CFM · 범위 0 to 50000",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 250
   },
   {
    "type": "AV",
@@ -677,66 +1257,6 @@
   },
   {
    "type": "AV",
-   "inst": 180,
-   "name": "vavocoff 1 _",
-   "unitRaw": "°^F",
-   "unit": null,
-   "note": "VAV Occ. Cool Off Delta · 범위 1 to 25 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 251
-  },
-  {
-   "type": "AV",
-   "inst": 181,
-   "name": "vavocon 1 _",
-   "unitRaw": "°^F",
-   "unit": null,
-   "note": "VAV Occ. Cool On Delta · 범위 0 to 25 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 251
-  },
-  {
-   "type": "AV",
-   "inst": 188,
-   "name": "statpmax 1 _",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "VFD Maximum Speed · 범위 0 to 100 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 251
-  },
-  {
-   "type": "AV",
-   "inst": 189,
-   "name": "statpmin 1 _",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "VFD Minimum Speed · 범위 0 to 100 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 251
-  },
-  {
-   "type": "AV",
-   "inst": 1003,
-   "name": "oat 1 _",
-   "unitRaw": "dF",
-   "unit": null,
-   "note": "Outside Air Temperature · 범위 –40 to 240",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "AV",
-   "inst": 1009,
-   "name": "iaq 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "IAQ - PPM Indoor CO2 · 범위 0 to 5000",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "AV",
    "inst": 1016,
    "name": "bldg static press 1 _ _ _",
    "unitRaw": "H20",
@@ -747,186 +1267,6 @@
   },
   {
    "type": "AV",
-   "inst": 1022,
-   "name": "hvac mode 1 _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "HVAC Mode Numerical Form · 범위 0 to 40",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "AV",
-   "inst": 1024,
-   "name": "cool ctrl point 1 _ _ _",
-   "unitRaw": "dF",
-   "unit": null,
-   "note": "Cooling Control Point · 범위 –20 to 140",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 1025,
-   "name": "heat ctrl point 1 _ _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Heating Control Point · 범위 –10 to 140",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "AV",
-   "inst": 1027,
-   "name": "lvg air temeprature 1 _ _ _",
-   "unitRaw": "dF",
-   "unit": null,
-   "note": "Leaving Air Temperature · 범위 –40 to 240",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "AV",
-   "inst": 1028,
-   "name": "econ1 pos 1 _ _",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "Econ 1 Out Act.Curr.Pos.",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 1030,
-   "name": "re temp 1 _ _",
-   "unitRaw": "dF",
-   "unit": null,
-   "note": "Controlling Return Air Temp · 범위 –40 to 240 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 1070,
-   "name": "bldg static press 1 _ _ _",
-   "unitRaw": "“H2O",
-   "unit": null,
-   "note": "Building Pressure",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 1500,
-   "name": "ma temp 1 _ _",
-   "unitRaw": "dF",
-   "unit": null,
-   "note": "Mixed Air Temperature",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "AV",
-   "inst": 1600,
-   "name": "suction press a 1 _ _ _",
-   "unitRaw": "PSIG",
-   "unit": null,
-   "note": "Cir A Suction Pressure",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 1601,
-   "name": "discharge press a 1 _ _ _",
-   "unitRaw": "PSIG",
-   "unit": null,
-   "note": "Cir A Discharge Pressure",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 1602,
-   "name": "sat cond temp a 1 _ _ _ _",
-   "unitRaw": "℉",
-   "unit": "degF",
-   "note": "Cir A Sat. Condensing Temperature",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 1603,
-   "name": "sat suction temp a 1 _ _ _ _",
-   "unitRaw": "℉",
-   "unit": "degF",
-   "note": "Cir A Sat. Suction Temperature",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 1604,
-   "name": "suction press b 1 _ _ _",
-   "unitRaw": "PSIG",
-   "unit": null,
-   "note": "Cir B Suction Pressure",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 1605,
-   "name": "discharge press b 1 _ _ _",
-   "unitRaw": "PSIG",
-   "unit": null,
-   "note": "Cir B Discharge Pressure",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 1606,
-   "name": "sat cond temp b 1 _ _ _ _",
-   "unitRaw": "℉",
-   "unit": "degF",
-   "note": "Cir B Sat. Condensing Temperature",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 1607,
-   "name": "sat suction temp b 1 _ _ _ _",
-   "unitRaw": "℉",
-   "unit": "degF",
-   "note": "Cir B Sat. Suction Temperature",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 2003,
-   "name": "heat run 1 _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Requested Heat Stage · 범위 0 to 20",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "AV",
-   "inst": 2007,
-   "name": "space temp 1 _ _",
-   "unitRaw": "dF",
-   "unit": null,
-   "note": "Controlling Space Temp · 범위 –40 to 240 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
    "inst": 2050,
    "name": "sf vfd output 1 _ _ _",
    "unitRaw": "%",
@@ -934,36 +1274,6 @@
    "note": "Supply Fan VFD Speed · 범위 0 to 100",
    "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
    "sourcePage": 250
-  },
-  {
-   "type": "AV",
-   "inst": 2075,
-   "name": "ef vfd output 1 _ _ _",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "Exhaust Fan VFD Speed · 범위 0 to 100",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "AV",
-   "inst": 2607,
-   "name": "link iaq 1 _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indoor Air CO2",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "AV",
-   "inst": 2611,
-   "name": "link max dmpr 1 _ _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Linkage Max Damper Position · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
   },
   {
    "type": "AV",
@@ -1027,26 +1337,6 @@
   },
   {
    "type": "AV",
-   "inst": 3070,
-   "name": "bldg press stpt 1 _ _ _",
-   "unitRaw": "H2O",
-   "unit": null,
-   "note": "Building Pressure Setp. · 범위 –0.25 to 0.25 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
-   "inst": 4005,
-   "name": "econ min 1 _ _",
-   "unitRaw": "%",
-   "unit": "percent",
-   "note": "Economizer Min.Position · 범위 0 to 100",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "AV",
    "inst": 9006,
    "name": "cool demand level 1 _ _ _",
    "unitRaw": null,
@@ -1054,16 +1344,6 @@
    "note": "System Cooling Demand Level",
    "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
    "sourcePage": 250
-  },
-  {
-   "type": "AV",
-   "inst": 9008,
-   "name": "econ oat lockout 1 _ _ _",
-   "unitRaw": "dF",
-   "unit": null,
-   "note": "High OAT Lockout Temp · 범위 –40 to 120 · 쓰기 가능",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
   },
   {
    "type": "AV",
@@ -1087,26 +1367,6 @@
   },
   {
    "type": "BV",
-   "inst": 2,
-   "name": "m684 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Dmd Level Map Select",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "BV",
-   "inst": 5,
-   "name": "schedule 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Local Schedule",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
    "inst": 6,
    "name": "stpt adj enable 1 _ _ _",
    "unitRaw": null,
@@ -1127,156 +1387,6 @@
   },
   {
    "type": "BV",
-   "inst": 9,
-   "name": "alm 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Alarm State",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "BV",
-   "inst": 13,
-   "name": "cmpa3 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Compressor A3 Relay · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "BV",
-   "inst": 14,
-   "name": "cmpb3 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Compressor B3 Relay · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "BV",
-   "inst": 16,
-   "name": "cmpa1 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Compressor A1 Relay · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "BV",
-   "inst": 17,
-   "name": "cmpa2 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Compressor A2 Relay · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "BV",
-   "inst": 18,
-   "name": "cmpb1 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Compressor B1 Relay · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "BV",
-   "inst": 19,
-   "name": "cmpb2 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Compressor B2 Relay · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "BV",
-   "inst": 30,
-   "name": "dhdiscin 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Dehumidify Input · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "BV",
-   "inst": 36,
-   "name": "ecactive 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Economizer Active? · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "BV",
-   "inst": 41,
-   "name": "frz 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Freeze Status Switch · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 45,
-   "name": "emstop 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Emergency Stop · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 47,
-   "name": "hum3wval 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "HumidiMizer 3-way Valve · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 50,
-   "name": "sfs shut 1 _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Fan Fail Shuts Down Unit · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 52,
-   "name": "hs1 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Heat Relay 1 · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 53,
-   "name": "hs2 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Heat Relay 2 · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
    "inst": 54,
    "name": "spt over 1 _ _",
    "unitRaw": null,
@@ -1284,86 +1394,6 @@
    "note": "SPT Override Enabled ? · 범위 0 to 1",
    "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
    "sourcePage": 250
-  },
-  {
-   "type": "BV",
-   "inst": 59,
-   "name": "unitstop 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Local Machine Disable · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 70,
-   "name": "htoccena 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Occupied Heating Enabled · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 72,
-   "name": "pflts status 1 _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Post Filter Stat. Input · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 76,
-   "name": "hs3 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Relay 3 W1 Gas Valve 2 · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 77,
-   "name": "hs4 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Relay 4 W2 Gas Valve 2 · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 78,
-   "name": "hs5 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Relay 5 W1 Gas Valve 3 · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 79,
-   "name": "hs6 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Relay 6 W2 Gas Valve 3 · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 81,
-   "name": "rmtin 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Remote Input State · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
   },
   {
    "type": "BV",
@@ -1387,16 +1417,6 @@
   },
   {
    "type": "BV",
-   "inst": 88,
-   "name": "a700 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Air Temp Lvg Supply Fan Thermistor Failure",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
-  },
-  {
-   "type": "BV",
    "inst": 93,
    "name": "modesars 1 _",
    "unitRaw": null,
@@ -1417,26 +1437,6 @@
   },
   {
    "type": "BV",
-   "inst": 105,
-   "name": "comm lost alm 1 _ _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Element Communications Alarm",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 114,
-   "name": "a404 1 _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Fire Shut Down Emergency Mode (fire-smoke)",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
    "inst": 116,
    "name": "t211 1 _",
    "unitRaw": null,
@@ -1454,26 +1454,6 @@
    "note": "Unit Down Due to Failure",
    "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
    "sourcePage": 250
-  },
-  {
-   "type": "BV",
-   "inst": 127,
-   "name": "element alarm 1 _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Equipment Alarm",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 1005,
-   "name": "firedown status 1 _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Fire Shutdown Input · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
   },
   {
    "type": "BV",
@@ -1527,36 +1507,6 @@
   },
   {
    "type": "BV",
-   "inst": 1026,
-   "name": "heat interlock relay 1 _ _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Heat Interlock Relay · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 1050,
-   "name": "iaq status 1 _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "IAQ - Discrete Input · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 1052,
-   "name": "filter status 1 _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Filter Status Input · 범위 0 to 1",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
    "inst": 2004,
    "name": "sfan forc 1 _ _",
    "unitRaw": null,
@@ -1566,34 +1516,104 @@
    "sourcePage": 250
   },
   {
-   "type": "BV",
-   "inst": 2008,
-   "name": "occ status 1 _ _",
+   "type": "AV",
+   "inst": 80,
+   "name": "vfd1freq 1 _",
    "unitRaw": null,
    "unit": null,
-   "note": "Occupied? · 범위 0 to 1",
+   "note": "VFD1 Actual Motor Freq · 범위 0 to 500",
    "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
+   "sourcePage": 251
   },
   {
-   "type": "BV",
-   "inst": 2014,
-   "name": "aux relay 1 _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Remote Alarm/Aux Relay · 범위 0 to 1",
+   "type": "AV",
+   "inst": 81,
+   "name": "vfd1pwr 1 _",
+   "unitRaw": "kW",
+   "unit": "kW",
+   "note": "VFD1 Actual Motor Power",
    "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
+   "sourcePage": 251
   },
   {
-   "type": "BV",
-   "inst": 2601,
-   "name": "a link status 1 _ _ _",
+   "type": "AV",
+   "inst": 82,
+   "name": "vfd1rpm 1 _",
    "unitRaw": null,
    "unit": null,
-   "note": "Airside Linkage",
+   "note": "VFD1 Actual Motor RPM · 범위 0 to 30000",
    "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
+   "sourcePage": 251
+  },
+  {
+   "type": "AV",
+   "inst": 93,
+   "name": "vfd2freq 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "VFD2 Actual Motor Freq · 범위 10 to 500",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 251
+  },
+  {
+   "type": "AV",
+   "inst": 94,
+   "name": "vfd2pwr 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "VFD2 Actual Motor Power",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 251
+  },
+  {
+   "type": "AV",
+   "inst": 95,
+   "name": "vfd2rpm 1 _",
+   "unitRaw": null,
+   "unit": null,
+   "note": "VFD2 Actual Motor RPM",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 251
+  },
+  {
+   "type": "AV",
+   "inst": 180,
+   "name": "vavocoff 1 _",
+   "unitRaw": "°^F",
+   "unit": null,
+   "note": "VAV Occ. Cool Off Delta · 범위 1 to 25 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 251
+  },
+  {
+   "type": "AV",
+   "inst": 181,
+   "name": "vavocon 1 _",
+   "unitRaw": "°^F",
+   "unit": null,
+   "note": "VAV Occ. Cool On Delta · 범위 0 to 25 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 251
+  },
+  {
+   "type": "AV",
+   "inst": 188,
+   "name": "statpmax 1 _",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "VFD Maximum Speed · 범위 0 to 100 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 251
+  },
+  {
+   "type": "AV",
+   "inst": 189,
+   "name": "statpmin 1 _",
+   "unitRaw": "%",
+   "unit": "percent",
+   "note": "VFD Minimum Speed · 범위 0 to 100 · 쓰기 가능",
+   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
+   "sourcePage": 251
   },
   {
    "type": "BV",
@@ -1644,26 +1664,6 @@
    "note": "User Defined Binary 5",
    "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
    "sourcePage": 251
-  },
-  {
-   "type": "BV",
-   "inst": 2999,
-   "name": "element stat 1 _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Element Comm Status",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 249
-  },
-  {
-   "type": "BV",
-   "inst": 7030,
-   "name": "air linkage fail 1 _ _ _",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Airside Linkage Alarm",
-   "sourceFile": "Carrier_48-50N-7T_WeatherExpert_Controls.pdf",
-   "sourcePage": 248
   }
  ],
  "gap": "포인트는 컨트롤 매뉴얼(48/50N-7T) APPENDIX F BACnet NETWORK POINTS LIST 에서, 정격은 Product Data(48/50N-6PD)에서 연결했다 — 크기 N~T(75~150톤) 형번 카드 6건. BACnet 은 공장 옵션이고 Modbus·LonWorks 는 별매 액세서리다. 형번별 전기 데이터(RLA·MCA)는 옵션 조합표 구조라 미취입 — 원문표 참조.",

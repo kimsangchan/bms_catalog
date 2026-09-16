@@ -6812,6 +6812,76 @@
    "sourcePage": 33
   },
   {
+   "type": "MSI",
+   "inst": 10100,
+   "name": "Running Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the running state of the chiller · 1 = Chiller Off 2 = Chiller In Start Mode 3 = Chiller In Run Mode 4 = Chiller In Pre-Shutdown Mode 5 = Chiller In Service Mode · 조건: Standard",
+   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
+   "sourcePage": 34
+  },
+  {
+   "type": "MSI",
+   "inst": 10101,
+   "name": "Operating Mode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the operating mode of the chiller · 1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard",
+   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
+   "sourcePage": 34
+  },
+  {
+   "type": "MSI",
+   "inst": 10103,
+   "name": "Refrigerant Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the chiller refrigerant type · 5 = R-134a 13 = R-513A 16 = R-1234ze(E) 18 = R-515B · 조건: Standard",
+   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
+   "sourcePage": 34
+  },
+  {
+   "type": "MSI",
+   "inst": 10104,
+   "name": "Manufacturing Location",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the location that the chiller was manufactured · 3 = Pueblo 4 = Charmes · 조건: Standard",
+   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
+   "sourcePage": 34
+  },
+  {
+   "type": "MSI",
+   "inst": 10105,
+   "name": "Cooling Type",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the cooling Type of chiller · 1 = Water Cooled 2 = Air Cooled · 조건: Standard",
+   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
+   "sourcePage": 34
+  },
+  {
+   "type": "MSI",
+   "inst": 10106,
+   "name": "Model Information [GEN2]",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the model information of chiller · 17 = RTWF 30 = RTSF 41 = RTWF XSE 45 = RTWD 46 = RTUD · 조건: Standard",
+   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
+   "sourcePage": 34
+  },
+  {
+   "type": "MSV",
+   "inst": 10100,
+   "name": "Chiller Mode Command BAS",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Normally used by the BMS to command the chiller Mode · 1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard",
+   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
+   "sourcePage": 35
+  },
+  {
    "type": "MB",
    "inst": 30011,
    "name": "Active Cool/Heat Setpoint Temperature",
@@ -12194,76 +12264,6 @@
    "unitRaw": null,
    "unit": null,
    "note": "Normally used by the BMS to command the chiller Mode · 1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard"
-  },
-  {
-   "type": "MSI",
-   "inst": 10100,
-   "name": "Running Mode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the running state of the chiller · 1 = Chiller Off 2 = Chiller In Start Mode 3 = Chiller In Run Mode 4 = Chiller In Pre-Shutdown Mode 5 = Chiller In Service Mode · 조건: Standard",
-   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
-   "sourcePage": 34
-  },
-  {
-   "type": "MSI",
-   "inst": 10101,
-   "name": "Operating Mode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the operating mode of the chiller · 1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard",
-   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
-   "sourcePage": 34
-  },
-  {
-   "type": "MSI",
-   "inst": 10103,
-   "name": "Refrigerant Type",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the chiller refrigerant type · 5 = R-134a 13 = R-513A 16 = R-1234ze(E) 18 = R-515B · 조건: Standard",
-   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
-   "sourcePage": 34
-  },
-  {
-   "type": "MSI",
-   "inst": 10104,
-   "name": "Manufacturing Location",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the location that the chiller was manufactured · 3 = Pueblo 4 = Charmes · 조건: Standard",
-   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
-   "sourcePage": 34
-  },
-  {
-   "type": "MSI",
-   "inst": 10105,
-   "name": "Cooling Type",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the cooling Type of chiller · 1 = Water Cooled 2 = Air Cooled · 조건: Standard",
-   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
-   "sourcePage": 34
-  },
-  {
-   "type": "MSI",
-   "inst": 10106,
-   "name": "Model Information [GEN2]",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the model information of chiller · 17 = RTWF 30 = RTSF 41 = RTWF XSE 45 = RTWD 46 = RTUD · 조건: Standard",
-   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
-   "sourcePage": 34
-  },
-  {
-   "type": "MSV",
-   "inst": 10100,
-   "name": "Chiller Mode Command BAS",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Normally used by the BMS to command the chiller Mode · 1 = Cool 2 = Heat 3 = Ice Making 4 = Free Cooling · 조건: Standard",
-   "sourceFile": "BAS-PTS017A-EN_11152024.pdf",
-   "sourcePage": 35
   }
  ],
  "gap": "정격 성능(용량·COP·소비전력)과 냉각 방식은 이 문서에 없다 — 제품 카탈로그가 따로 필요하다.",

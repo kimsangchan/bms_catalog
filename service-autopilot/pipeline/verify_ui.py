@@ -511,30 +511,33 @@ function cell(t, p, c){
 }
 
 function render(){
-  var out = [], shown = 0;
+  var out = [], shown = 0, limitHit = false;
   shownSections().forEach(function(t){
+    if (limitHit) return;
     var pts = t.points.filter(match);
     if (!pts.length) return;
-    /* 열은 구역마다 다르다 — 원문 표가 주는 칸이 다르기 때문이다.
+    /* 표 구역마다 다르게 (원문 쪽 주는 칸이 다르기 때문이다.
        머리글을 세워야 어느 값이 어느 칸인지 눈으로 맞출 수 있다. */
     var cols = (t.cols || []).filter(function(c){
       return c.k !== "inst" || t.addr;
     });
-    /* ⚠ 행을 하나씩 찍게 두면 안 된다. 기본 범위만 6,777행이라 사람이 못 한다.
-       실제로 사람은 '이 쪽 표를 통째로 맞춰 본다' — 그래서 구역 단위로 찍는다.
-       구역은 341개고, 그게 대조하는 실제 단위다. */
+    /* 포인트를 하나씩 찍게 하면 병난다. 기본 범위가 6,777점이라 사람도 못 본다.
+       실제로 사람은 '이 구역이 쭉 다 제대로 맞춰져 있네' 라고 구역 단위로 찍는다.
+       구역이 341개고, 그게 대조하는 실제 단위다. */
     var gdone = pts.every(function(p){ return done[t.id + ":" + (p.n || p.nm)]; });
     out.push('<div class="gh"><b>' + esc(t.path.join(" › ")) + '</b><span>'
            + pts.length + '점</span><span class="pg">원문 ' + esc(t.span)
            + '쪽</span>'
            + '<button type="button" class="gall" data-sec="' + esc(t.id) + '">'
-           + (gdone ? "✓ 이 구역 다 봤다" : "이 구역 다 봤다") + '</button>'
+           + (gdone ? "이 구역 다 봤다 취소" : "이 구역 다 봤다") + '</button>'
            + '</div><table><thead><tr><th class="ck"></th>'
            + cols.map(function(c){
                return '<th class="c-' + esc(c.k.replace(/[^a-zA-Z]/g, "")) + '">'
                     + esc(c.h) + '</th>';
              }).join("") + '</tr></thead><tbody>');
     pts.forEach(function(p){
+      if (limitHit) return;
+      if (shown >= 1000) { limitHit = true; return; }
       var k = t.id + ":" + (p.n || p.nm);
       shown++;
       out.push('<tr class="row' + (done[k] ? " done" : "") + (sel === k ? " sel" : "")
@@ -548,6 +551,9 @@ function render(){
     });
     out.push('</tbody></table>');
   });
+  if (limitHit) {
+    out.push('<div style="padding:20px;text-align:center;color:var(--warn);font-weight:bold;">포인트가 너무 많습니다 (1000개 초과).<br>브라우저 성능을 위해 목록을 1000개로 제한했습니다. 왼쪽 메뉴에서 특정 장비나 모델을 선택해주세요.</div>');
+  }
   document.getElementById("list").innerHTML =
     shown ? out.join("") : '<p class="none">찾는 포인트가 없다.</p>';
   counts();
@@ -614,13 +620,16 @@ function show(key, printed, pdf){
   }
   var rec = D.pages[key];
   if (!rec) { img.removeAttribute("src"); return; }
-  /* 눕혀 인쇄된 쪽만 돌려 담았다 — 담긴 그대로가 읽기 좋은 방향이다 */
+  /* 사용자의 요청에 따라, 원본이 가로로 누워있던(세로로 긴) 표는 오픈할 때 가로(landscape)로 돌려놓는다. */
+  upright = !rec.rot;
+  document.getElementById("rotb").textContent = upright ? "가로로" : "세로로";
+  
   img.onload = function(){
     natural = img.naturalWidth; naturalH = img.naturalHeight;
     if (mode === "free") apply(); else fit(mode);
   };
-  /* 파일로 뺀 것(f)이면 경로를, 박아 넣은 것(b)이면 data: 를 쓴다.
-     파일 쪽은 브라우저가 지금 보는 쪽만 읽는다 — 그래서 큰 판이 열린다. */
+  /* 파일을 뺀 것(f)이면 경로를 박아 주고 (b)면 data: 로 쓴다.
+     파일 쪽이 브라우저가 직접 보는 쪽만 푸는 거라 훨씬 덜 질린다 */
   img.src = rec.f ? rec.f : ("data:image/webp;base64," + rec.b);
   document.getElementById("rotb").hidden = !rec.rot;
 }
@@ -725,6 +734,11 @@ document.getElementById("list").addEventListener("click", function(e){
   var tr = e.target.closest("tr.row");
   if (!tr) return;
   if (e.target.classList.contains("ck")) { toggle(tr); return; }
+  pick(tr, false);
+});
+document.getElementById("list").addEventListener("mouseover", function(e){
+  var tr = e.target.closest("tr.row");
+  if (!tr) return;
   pick(tr, false);
 });
 addEventListener("keydown", function(e){

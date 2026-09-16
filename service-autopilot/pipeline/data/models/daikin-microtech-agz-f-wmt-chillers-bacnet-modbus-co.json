@@ -33,26 +33,6 @@
  "points": [
   {
    "type": "AI",
-   "inst": 1,
-   "name": "EntEvapWaterTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The temperature of the fluid entering the evaporator. · 범위 -40 – 230°F -40 – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "AI",
-   "inst": 2,
-   "name": "LvgEvapWaterTempUnit",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current temperature of the fluid leaving the evapo- rator. · 범위 -40 – 230°F -40 – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "AI",
    "inst": 3,
    "name": "EntCondWaterTemp",
    "unitRaw": null,
@@ -70,16 +50,6 @@
    "note": "The current temperature of the fluid leaving the con- denser. · 범위 -40 – 230°F -40 – 110°C Default: NA",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
    "sourcePage": 11
-  },
-  {
-   "type": "AI",
-   "inst": 5,
-   "name": "OutdoorAirTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the current outdoor air temperature. · 범위 -40 – 230°F -40 – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 12
   },
   {
    "type": "AI",
@@ -143,36 +113,6 @@
   },
   {
    "type": "AI",
-   "inst": 63,
-   "name": "C1Comp1Discharge- Temp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the current dis- charge refrigerant tem- perature for the circuit or compressor. NOTE: On AGZ-F, there is a single sensor per circuit. · 범위 -40 – 249.8°F -40 – 121°C Default: NA",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "AI",
-   "inst": 64,
-   "name": "C1Comp2Discharge- Temp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "AI",
-   "inst": 66,
-   "name": "C2Comp1Discharge- Temp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 12
-  },
-  {
-   "type": "AI",
    "inst": 81,
    "name": "C1Comp1DischRefPres- sure",
    "unitRaw": null,
@@ -213,23 +153,73 @@
   },
   {
    "type": "AI",
-   "inst": 105,
-   "name": "C1Comp1SuctionTemp",
+   "inst": 147,
+   "name": "CondWaterFlowRate",
    "unitRaw": null,
    "unit": null,
-   "note": "Indicates the current suction refrigerant temperature for the circuit or compressor. NOTE: On AGZ-F, there is a single sensor per circuit. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "note": "The current fluid flow rate for the condenser (Field-Sup- plied Flow Meter). · 범위 0-65,535 GPM 0-4134.6 L/S Default: NA",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
+   "sourcePage": 11
   },
   {
    "type": "AI",
-   "inst": 106,
-   "name": "C1Comp2SuctionTemp",
+   "inst": 1,
+   "name": "EntEvapWaterTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The temperature of the fluid entering the evaporator. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "AI",
+   "inst": 2,
+   "name": "LvgEvapWaterTempUnit",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current temperature of the fluid leaving the evapo- rator. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "AI",
+   "inst": 5,
+   "name": "OutdoorAirTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the current outdoor air temperature. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "AI",
+   "inst": 63,
+   "name": "C1Comp1Discharge- Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the current dis- charge refrigerant tem- perature for the circuit or compressor. NOTE: On AGZ-F, there is a single sensor per circuit. · 범위 -40 – 249.8°F -40 – 121°C Default: NA",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 12
+  },
+  {
+   "type": "AI",
+   "inst": 64,
+   "name": "C1Comp2Discharge- Temp",
    "unitRaw": null,
    "unit": null,
    "note": "",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
+   "sourcePage": 12
+  },
+  {
+   "type": "AI",
+   "inst": 66,
+   "name": "C2Comp1Discharge- Temp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 12
   },
   {
    "type": "AI",
@@ -273,16 +263,6 @@
   },
   {
    "type": "AI",
-   "inst": 147,
-   "name": "CondWaterFlowRate",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current fluid flow rate for the condenser (Field-Sup- plied Flow Meter). · 범위 0-65,535 GPM 0-4134.6 L/S Default: NA",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 11
-  },
-  {
-   "type": "AI",
    "inst": 148,
    "name": "EvapWaterFlowRate",
    "unitRaw": null,
@@ -320,6 +300,26 @@
    "note": "The current liquid line refrig- erant temperature. · 범위 -40°–230°F -40°–110°C Default: NA",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
    "sourcePage": 12
+  },
+  {
+   "type": "AI",
+   "inst": 105,
+   "name": "C1Comp1SuctionTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the current suction refrigerant temperature for the circuit or compressor. NOTE: On AGZ-F, there is a single sensor per circuit. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AI",
+   "inst": 106,
+   "name": "C1Comp2SuctionTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
   },
   {
    "type": "AI",
@@ -363,6 +363,136 @@
   },
   {
    "type": "AV",
+   "inst": 5,
+   "name": "ActiveLvgWaterTarget",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the current setpoint used to control the chiller. The setpoint that is used is based on the operating mode (Cool or Ice) of the chiller and any “LWT reset” functions that are in effect. See Chiller Mode Output and Chiller Mode Set",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 900,
+   "name": "AVProblemAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 901,
+   "name": "AVFaultAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See BACnet Alarm Indices sec- tion for additional information.",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 902,
+   "name": "AVWarningAlarm",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 906,
+   "name": "AVProblemModType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 907,
+   "name": "AVProblemModID",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 908,
+   "name": "AVProblemModPayload",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 909,
+   "name": "AVFaultModType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See BACnet Alarm Type section for additional information.",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 910,
+   "name": "AVFaultModID",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See BACnet Alarm Module ID section for additional information.",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 911,
+   "name": "AVFaultModPayload",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See BACnet Alarm Module Payload section for additional information.",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 912,
+   "name": "AVWarningModType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 913,
+   "name": "AVWarningModID",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
+   "inst": 914,
+   "name": "AVWarningModPayload",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 13
+  },
+  {
+   "type": "AV",
    "inst": 3,
    "name": "NetworkCapacityLimitPct",
    "unitRaw": null,
@@ -380,36 +510,6 @@
    "note": "Changes the Cooling setpoint from the network. It sets the tem- perature of the Leaving Chilled Fluid when the chiller is operating in the Cooling Mode. It cannot be set below the local Cool Setpoint. The unit controller only uses this valu",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
    "sourcePage": 14
-  },
-  {
-   "type": "AV",
-   "inst": 5,
-   "name": "ActiveLvgWaterTarget",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the current setpoint used to control the chiller. The setpoint that is used is based on the operating mode (Cool or Ice) of the chiller and any “LWT reset” functions that are in effect. See Chiller Mode Output and Chiller Mode Set",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 6,
-   "name": "NetworkHeatTempSetpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Changes the Heating setpoint in from the network. It sets the temperature of the Leaving Condenser Fluid when the chiller is operating in Heating Mode. It cannot be set above the local Heat Setpoint. The unit controller only uses this value",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AV",
-   "inst": 7,
-   "name": "NetworkIceTempSetpoint",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Changes the Ice setpoint from the network. It sets the tempera- ture of the Leaving Chilled Fluid when the chiller is operating in the Ice Mode. The unit control- ler only uses this variable if the Control Source is set to “BAS” at the unit",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 15
   },
   {
    "type": "AV",
@@ -470,46 +570,6 @@
    "note": "",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
    "sourcePage": 14
-  },
-  {
-   "type": "AV",
-   "inst": 50,
-   "name": "C1Comp1SuctSatTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current suction saturated refrigerant temperature for the compressor. · 범위 -40 – 230°F -40 – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AV",
-   "inst": 51,
-   "name": "C1Comp2SuctSatTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AV",
-   "inst": 68,
-   "name": "C1EvapSatRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the current saturated refrigerant temperature of the evaporator. · 범위 -40 – 230°F -40 – 110°C Default: NA",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 15
-  },
-  {
-   "type": "AV",
-   "inst": 69,
-   "name": "C2EvapSatRefTemp",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 15
   },
   {
    "type": "AV",
@@ -653,6 +713,66 @@
   },
   {
    "type": "AV",
+   "inst": 6,
+   "name": "NetworkHeatTempSetpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Changes the Heating setpoint in from the network. It sets the temperature of the Leaving Condenser Fluid when the chiller is operating in Heating Mode. It cannot be set above the local Heat Setpoint. The unit controller only uses this value",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AV",
+   "inst": 7,
+   "name": "NetworkIceTempSetpoint",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Changes the Ice setpoint from the network. It sets the tempera- ture of the Leaving Chilled Fluid when the chiller is operating in the Ice Mode. The unit control- ler only uses this variable if the Control Source is set to “BAS” at the unit",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AV",
+   "inst": 50,
+   "name": "C1Comp1SuctSatTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "The current suction saturated refrigerant temperature for the compressor. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AV",
+   "inst": 51,
+   "name": "C1Comp2SuctSatTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AV",
+   "inst": 68,
+   "name": "C1EvapSatRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the current saturated refrigerant temperature of the evaporator. · 범위 -40 – 230°F -40 – 110°C Default: NA",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AV",
+   "inst": 69,
+   "name": "C2EvapSatRefTemp",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 15
+  },
+  {
+   "type": "AV",
    "inst": 112,
    "name": "EvapPump1OperHours",
    "unitRaw": null,
@@ -672,124 +792,24 @@
    "sourcePage": 15
   },
   {
-   "type": "AV",
-   "inst": 900,
-   "name": "AVProblemAlarm",
+   "type": "BV",
+   "inst": 2,
+   "name": "ChillerEnableStp",
    "unitRaw": null,
    "unit": null,
-   "note": "",
+   "note": "Disables or enables chiller operation over the network. Setting this variable to Enable does not start the chiller. It only allows the chiller to start if other operating conditions are satisfied. The unit controller only uses this value if",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
+   "sourcePage": 15
   },
   {
-   "type": "AV",
-   "inst": 901,
-   "name": "AVFaultAlarm",
+   "type": "BV",
+   "inst": 8,
+   "name": "ClearAlarm",
    "unitRaw": null,
    "unit": null,
-   "note": "See BACnet Alarm Indices sec- tion for additional information.",
+   "note": "Clears all active alarms. Many alarms are auto- matically clearing alarms. Refer to the respective chiller Installation, Operation and Maintenance Manual (IOM), available on www.DaikinApplied. com, for details on auto-clearing alarms. · 범위 ",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 902,
-   "name": "AVWarningAlarm",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 906,
-   "name": "AVProblemModType",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 907,
-   "name": "AVProblemModID",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 908,
-   "name": "AVProblemModPayload",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 909,
-   "name": "AVFaultModType",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See BACnet Alarm Type section for additional information.",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 910,
-   "name": "AVFaultModID",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See BACnet Alarm Module ID section for additional information.",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 911,
-   "name": "AVFaultModPayload",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See BACnet Alarm Module Payload section for additional information.",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 912,
-   "name": "AVWarningModType",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 913,
-   "name": "AVWarningModID",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
-  },
-  {
-   "type": "AV",
-   "inst": 914,
-   "name": "AVWarningModPayload",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 13
+   "sourcePage": 15
   },
   {
    "type": "BI",
@@ -932,24 +952,44 @@
    "sourcePage": 16
   },
   {
-   "type": "BV",
-   "inst": 2,
-   "name": "ChillerEnableStp",
+   "type": "MSV",
+   "inst": 1,
+   "name": "UnitStatus",
    "unitRaw": null,
    "unit": null,
-   "note": "Disables or enables chiller operation over the network. Setting this variable to Enable does not start the chiller. It only allows the chiller to start if other operating conditions are satisfied. The unit controller only uses this value if",
+   "note": "The unit status of the chiller. · 범위 1 = OFF 2 = START 3 = RUN 4 = PRESHUT- DOWN 5 = SERVICE",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 15
+   "sourcePage": 17
   },
   {
-   "type": "BV",
-   "inst": 8,
-   "name": "ClearAlarm",
+   "type": "MSV",
+   "inst": 2,
+   "name": "ActiveMode",
    "unitRaw": null,
    "unit": null,
-   "note": "Clears all active alarms. Many alarms are auto- matically clearing alarms. Refer to the respective chiller Installation, Operation and Maintenance Manual (IOM), available on www.DaikinApplied. com, for details on auto-clearing alarms. · 범위 ",
+   "note": "The current operating mode of the chiller. · 범위 1 = ICE 2 = COOL 3 = HEAT 4= COOL/HEAT RECOVERY Default: 2 = COOL",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 15
+   "sourcePage": 17
+  },
+  {
+   "type": "MSV",
+   "inst": 3,
+   "name": "ChillerOpera- tionMode",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Changes the operating mode of the chiller and provides the ability for another node on the network to place a chiller in another mode. The unit controller only uses this value if Control Source is set to BAS. Control Source can only be chan",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 17
+  },
+  {
+   "type": "MSV",
+   "inst": 7,
+   "name": "RefrigerantType",
+   "unitRaw": null,
+   "unit": null,
+   "note": "Indicates the type of refrigerant used in the chiller. · 범위 1 = R22 2 = R134a 3 = R407c 4 = R410a 5 = R32 6 = R454C 7 = R513A 8 = R515B 9 = R1233zd(E) 10 = R1234ze(E)",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 17
   },
   {
    "type": "MB",
@@ -978,6 +1018,96 @@
    "unitRaw": null,
    "unit": null,
    "note": "See Modbus Alarm Indices section for additional informa- tion.",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "MB",
+   "inst": 2001,
+   "name": "Warning",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "MB",
+   "inst": 2002,
+   "name": "Warning",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "MB",
+   "inst": 2003,
+   "name": "Warning",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "MB",
+   "inst": 2004,
+   "name": "Problem",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "MB",
+   "inst": 2005,
+   "name": "Problem",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "MB",
+   "inst": 2006,
+   "name": "Problem",
+   "unitRaw": null,
+   "unit": null,
+   "note": "",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "MB",
+   "inst": 2007,
+   "name": "Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See Modbus Alarm Module Type section for additional information.",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "MB",
+   "inst": 2008,
+   "name": "Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See Modbus Alarm Module ID section for additional information.",
+   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
+   "sourcePage": 18
+  },
+  {
+   "type": "MB",
+   "inst": 2009,
+   "name": "Fault",
+   "unitRaw": null,
+   "unit": null,
+   "note": "See Modbus Alarm Module Payload section for additional information.",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
    "sourcePage": 18
   },
@@ -1180,136 +1310,6 @@
    "note": "",
    "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
    "sourcePage": 22
-  },
-  {
-   "type": "MB",
-   "inst": 2001,
-   "name": "Warning",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MB",
-   "inst": 2002,
-   "name": "Warning",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MB",
-   "inst": 2003,
-   "name": "Warning",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MB",
-   "inst": 2004,
-   "name": "Problem",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MB",
-   "inst": 2005,
-   "name": "Problem",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MB",
-   "inst": 2006,
-   "name": "Problem",
-   "unitRaw": null,
-   "unit": null,
-   "note": "",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MB",
-   "inst": 2007,
-   "name": "Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See Modbus Alarm Module Type section for additional information.",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MB",
-   "inst": 2008,
-   "name": "Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See Modbus Alarm Module ID section for additional information.",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MB",
-   "inst": 2009,
-   "name": "Fault",
-   "unitRaw": null,
-   "unit": null,
-   "note": "See Modbus Alarm Module Payload section for additional information.",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 18
-  },
-  {
-   "type": "MSV",
-   "inst": 1,
-   "name": "UnitStatus",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The unit status of the chiller. · 범위 1 = OFF 2 = START 3 = RUN 4 = PRESHUT- DOWN 5 = SERVICE",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MSV",
-   "inst": 2,
-   "name": "ActiveMode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "The current operating mode of the chiller. · 범위 1 = ICE 2 = COOL 3 = HEAT 4= COOL/HEAT RECOVERY Default: 2 = COOL",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MSV",
-   "inst": 3,
-   "name": "ChillerOpera- tionMode",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Changes the operating mode of the chiller and provides the ability for another node on the network to place a chiller in another mode. The unit controller only uses this value if Control Source is set to BAS. Control Source can only be chan",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 17
-  },
-  {
-   "type": "MSV",
-   "inst": 7,
-   "name": "RefrigerantType",
-   "unitRaw": null,
-   "unit": null,
-   "note": "Indicates the type of refrigerant used in the chiller. · 범위 1 = R22 2 = R134a 3 = R407c 4 = R410a 5 = R32 6 = R454C 7 = R513A 8 = R515B 9 = R1233zd(E) 10 = R1234ze(E)",
-   "sourceFile": "Daikin_ED-19131-1_MicroTech_AGZ-F-WMT_Protocol.pdf",
-   "sourcePage": 17
   }
  ],
  "gap": "정격은 Trailblazer AGZ-F 카탈로그(CAT 635-4)에서 연결했다(원문표 3개 — 표가 적은 신형 카탈로그다). WMT 수랭 계열 카탈로그는 아직 없다.",

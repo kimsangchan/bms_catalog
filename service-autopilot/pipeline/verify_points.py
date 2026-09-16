@@ -122,6 +122,7 @@ def as_interfaces(m):
             "id": "legacy" if len(by) == 1 else "legacy-%d" % (len(out) + 1),
             "label": "평면 추출본" + ("" if len(by) == 1 else " · %s" % src[:28]),
             "sourceFile": src,
+            "pageBase": "pdf",
             "points": [{
                 "common": {"name": pt.get("name") or "",
                            "unitSIRaw": pt.get("unitRaw") or pt.get("unit"),

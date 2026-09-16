@@ -61,12 +61,36 @@
  "elec": null,
  "points": [
   {
-   "type": "BO",
-   "inst": 1,
-   "name": "StartStopCommand · 운전·정지 지령",
+   "type": "AI",
+   "inst": 9,
+   "name": "RoomTemp · 실내온도",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "℃ / ℉"
+  },
+  {
+   "type": "AI",
+   "inst": 23,
+   "name": "AirDirectionStatus · 풍향 상태",
    "unitRaw": "—",
    "unit": null,
-   "note": "On / Off"
+   "note": ""
+  },
+  {
+   "type": "AV",
+   "inst": 10,
+   "name": "TempAdjust · 설정온도",
+   "unitRaw": "℃",
+   "unit": "degC",
+   "note": "℃ / ℉"
+  },
+  {
+   "type": "AV",
+   "inst": 22,
+   "name": "AirDirectionCommand · 풍향 지령",
+   "unitRaw": "—",
+   "unit": null,
+   "note": ""
   },
   {
    "type": "BI",
@@ -85,116 +109,12 @@
    "note": "Normal / Malfunction"
   },
   {
-   "type": "MSI",
-   "inst": 4,
-   "name": "MalfunctionCode · 고장 코드",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Daikin 지정 코드"
-  },
-  {
-   "type": "MSO",
-   "inst": 5,
-   "name": "AirConModeCommand · 운전모드 지령",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Cool / Heat / Fan / Auto / Dry"
-  },
-  {
-   "type": "MSI",
-   "inst": 6,
-   "name": "AirConModeStatus · 운전모드 상태",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Cool / Heat / Fan / Dry"
-  },
-  {
-   "type": "MSO",
-   "inst": 7,
-   "name": "AirFlowRateCommand · 풍량 지령",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Low / … "
-  },
-  {
-   "type": "MSI",
-   "inst": 8,
-   "name": "AirFlowRateStatus · 풍량 상태",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Low / …"
-  },
-  {
-   "type": "AI",
-   "inst": 9,
-   "name": "RoomTemp · 실내온도",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "℃ / ℉"
-  },
-  {
-   "type": "AV",
-   "inst": 10,
-   "name": "TempAdjust · 설정온도",
-   "unitRaw": "℃",
-   "unit": "degC",
-   "note": "℃ / ℉"
-  },
-  {
    "type": "BI",
    "inst": 11,
    "name": "FilterSign · 필터 신호",
    "unitRaw": "—",
    "unit": null,
    "note": "No / Yes"
-  },
-  {
-   "type": "BV",
-   "inst": 12,
-   "name": "FilterSignReset · 필터 신호 리셋",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Reset"
-  },
-  {
-   "type": "BV",
-   "inst": 13,
-   "name": "RemoteControlStart · 리모컨 운전 허용",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Permit / Prohibit"
-  },
-  {
-   "type": "BV",
-   "inst": 14,
-   "name": "RemoteControlAirConModeSet · 리모컨 모드 허용",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Permit / Prohibit"
-  },
-  {
-   "type": "BV",
-   "inst": 16,
-   "name": "RemoteControlTempAdjust · 리모컨 설정온도 허용",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Permit / Prohibit"
-  },
-  {
-   "type": "—",
-   "inst": 18,
-   "name": "GasTotalPower · 적산 가스",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Accumulator"
-  },
-  {
-   "type": "—",
-   "inst": 19,
-   "name": "ElecTotalPower · 적산 전력",
-   "unitRaw": "kWh",
-   "unit": "kWh",
-   "note": "Accumulator"
   },
   {
    "type": "BI",
@@ -205,49 +125,9 @@
    "note": "Normal / Communication error"
   },
   {
-   "type": "BV",
-   "inst": 21,
-   "name": "SystemForcedOff · 강제 정지",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Inactive / Active"
-  },
-  {
-   "type": "AV",
-   "inst": 22,
-   "name": "AirDirectionCommand · 풍향 지령",
-   "unitRaw": "—",
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "AI",
-   "inst": 23,
-   "name": "AirDirectionStatus · 풍향 상태",
-   "unitRaw": "—",
-   "unit": null,
-   "note": ""
-  },
-  {
-   "type": "BO",
-   "inst": 24,
-   "name": "ForcedThermoOFFCommand · 강제 서모오프 지령",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Inactive / Active"
-  },
-  {
    "type": "BI",
    "inst": 25,
    "name": "ForcedThermoOFFStatus · 강제 서모오프 상태",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "Inactive / Active"
-  },
-  {
-   "type": "BO",
-   "inst": 26,
-   "name": "EnergyEfficiencyCommand · 절전 지령",
    "unitRaw": "—",
    "unit": null,
    "note": "Inactive / Active"
@@ -293,17 +173,129 @@
    "note": "Off / On"
   },
   {
-   "type": "MSO",
-   "inst": 32,
-   "name": "VentilationModeCommand · 환기모드 지령",
+   "type": "BO",
+   "inst": 1,
+   "name": "StartStopCommand · 운전·정지 지령",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "On / Off"
+  },
+  {
+   "type": "BO",
+   "inst": 24,
+   "name": "ForcedThermoOFFCommand · 강제 서모오프 지령",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Inactive / Active"
+  },
+  {
+   "type": "BO",
+   "inst": 26,
+   "name": "EnergyEfficiencyCommand · 절전 지령",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Inactive / Active"
+  },
+  {
+   "type": "BV",
+   "inst": 12,
+   "name": "FilterSignReset · 필터 신호 리셋",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Reset"
+  },
+  {
+   "type": "BV",
+   "inst": 13,
+   "name": "RemoteControlStart · 리모컨 운전 허용",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Permit / Prohibit"
+  },
+  {
+   "type": "BV",
+   "inst": 14,
+   "name": "RemoteControlAirConModeSet · 리모컨 모드 허용",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Permit / Prohibit"
+  },
+  {
+   "type": "BV",
+   "inst": 16,
+   "name": "RemoteControlTempAdjust · 리모컨 설정온도 허용",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Permit / Prohibit"
+  },
+  {
+   "type": "BV",
+   "inst": 21,
+   "name": "SystemForcedOff · 강제 정지",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Inactive / Active"
+  },
+  {
+   "type": "MSI",
+   "inst": 4,
+   "name": "MalfunctionCode · 고장 코드",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Daikin 지정 코드"
+  },
+  {
+   "type": "MSI",
+   "inst": 6,
+   "name": "AirConModeStatus · 운전모드 상태",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Cool / Heat / Fan / Dry"
+  },
+  {
+   "type": "MSI",
+   "inst": 8,
+   "name": "AirFlowRateStatus · 풍량 상태",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Low / …"
+  },
+  {
+   "type": "MSI",
+   "inst": 33,
+   "name": "VentilationModeStatus · 환기모드 상태",
    "unitRaw": "—",
    "unit": null,
    "note": "Bypass / ERV / Auto"
   },
   {
    "type": "MSI",
-   "inst": 33,
-   "name": "VentilationModeStatus · 환기모드 상태",
+   "inst": 35,
+   "name": "VentilationAmountStatus · 환기량 상태",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Low / High / Auto"
+  },
+  {
+   "type": "MSO",
+   "inst": 5,
+   "name": "AirConModeCommand · 운전모드 지령",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Cool / Heat / Fan / Auto / Dry"
+  },
+  {
+   "type": "MSO",
+   "inst": 7,
+   "name": "AirFlowRateCommand · 풍량 지령",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "Low / … "
+  },
+  {
+   "type": "MSO",
+   "inst": 32,
+   "name": "VentilationModeCommand · 환기모드 지령",
    "unitRaw": "—",
    "unit": null,
    "note": "Bypass / ERV / Auto"
@@ -317,12 +309,20 @@
    "note": "Low / High / Auto"
   },
   {
-   "type": "MSI",
-   "inst": 35,
-   "name": "VentilationAmountStatus · 환기량 상태",
+   "type": "—",
+   "inst": 18,
+   "name": "GasTotalPower · 적산 가스",
    "unitRaw": "—",
    "unit": null,
-   "note": "Low / High / Auto"
+   "note": "Accumulator"
+  },
+  {
+   "type": "—",
+   "inst": 19,
+   "name": "ElecTotalPower · 적산 전력",
+   "unitRaw": "kWh",
+   "unit": "kWh",
+   "note": "Accumulator"
   }
  ],
  "gap": "실내기 정격(냉난방능력·소비전력·냉매)은 게이트웨이 문서에 없다 → 실내기 카탈로그 필요. **오브젝트 ID가 계산식이라 실내기 수만큼 자동 전개된다** — 카탈로그가 '식'을 저장해야지 8,960개(256×35) 행을 저장할 일이 아니다.",

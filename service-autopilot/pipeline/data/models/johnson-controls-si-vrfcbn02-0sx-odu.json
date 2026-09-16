@@ -124,46 +124,6 @@
    "note": "0~255"
   },
   {
-   "type": "MSI",
-   "inst": 6,
-   "name": "SYSTEM-MODE · 계통 모드",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "1 Heat · 2 Cool · 3 Auto"
-  },
-  {
-   "type": "MSI",
-   "inst": 7,
-   "name": "SYSTEM-S · 계통 상태",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "13종 (Thermo off·Pump down·Defrost 등)"
-  },
-  {
-   "type": "MSI",
-   "inst": 8,
-   "name": "HX-STATE · 열교환기 상태",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "증발/응축 모드 4종"
-  },
-  {
-   "type": "MSI",
-   "inst": 9,
-   "name": "INV-STATE · 인버터 상태",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "31종 (과전류·저전압·결상 등)"
-  },
-  {
-   "type": "MSI",
-   "inst": 10,
-   "name": "FAN-STATE · 팬제어 상태",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "INV-STATE와 동일 집합"
-  },
-  {
    "type": "AI",
    "inst": 11,
    "name": "INV-HRS · 인버터 압축기1 운전시간",
@@ -284,14 +244,6 @@
    "note": "0~99 ℃"
   },
   {
-   "type": "MSI",
-   "inst": 26,
-   "name": "PROT-CODE · 보호 코드",
-   "unitRaw": "—",
-   "unit": null,
-   "note": "9종 (압력비·전류보호 등)"
-  },
-  {
    "type": "BI",
    "inst": 27,
    "name": "DEFROST-S · 제상 상태",
@@ -322,6 +274,54 @@
    "unitRaw": "—",
    "unit": null,
    "note": "Stop / Run"
+  },
+  {
+   "type": "MSI",
+   "inst": 6,
+   "name": "SYSTEM-MODE · 계통 모드",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "1 Heat · 2 Cool · 3 Auto"
+  },
+  {
+   "type": "MSI",
+   "inst": 7,
+   "name": "SYSTEM-S · 계통 상태",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "13종 (Thermo off·Pump down·Defrost 등)"
+  },
+  {
+   "type": "MSI",
+   "inst": 8,
+   "name": "HX-STATE · 열교환기 상태",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "증발/응축 모드 4종"
+  },
+  {
+   "type": "MSI",
+   "inst": 9,
+   "name": "INV-STATE · 인버터 상태",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "31종 (과전류·저전압·결상 등)"
+  },
+  {
+   "type": "MSI",
+   "inst": 10,
+   "name": "FAN-STATE · 팬제어 상태",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "INV-STATE와 동일 집합"
+  },
+  {
+   "type": "MSI",
+   "inst": 26,
+   "name": "PROT-CODE · 보호 코드",
+   "unitRaw": "—",
+   "unit": null,
+   "note": "9종 (압력비·전류보호 등)"
   }
  ],
  "gap": "게이트웨이 자신의 정격(전원 12~15 VDC·5.2 W, 주위 0~50 ℃, BACnet IP·H-LINK)은 제출자료로 확보했다. 아직 없는 것은 실내기·실외기의 정격 성능 — 냉난방능력·소비전력·냉매량은 게이트웨이 문서에 없고 실내기 제조사 카탈로그 몫이다. 국내는 삼성 DMS·LG ACP 게이트웨이가 같은 역할이며 포인트 구성이 유사하다(LG ACP: RS-485 4포트·실내기 256대, 삼성 DMS 2.5: 실내기당 제어·감시 25점·최대 256대).",
