@@ -172,7 +172,12 @@ def row_to_point(vals, cmap, fname, page):
         i = cmap.get(k)
         return clean(vals[i]) if i is not None and i < len(vals) else ""
 
-    obj, ui, desc = get("obj"), get("uiName"), get("desc")
+    obj = get("obj")
+    # FIX: normalize separators in BACnet object string (e.g. "BV5, AV81", "BV6-AV82")
+    obj = re.sub(r'[,|&/\-]', ' ', obj)
+    obj = re.sub(r'\s+', ' ', obj).strip()
+    
+    ui, desc = get("uiName"), get("desc")
     name = ui or desc
     if not name and not obj:
         return None, "empty"
@@ -265,7 +270,30 @@ def parse_doc(path):
                 continue                       # 이 표는 우리 것이 아니다
             head_seen = head_seen or head
             unknown.update(unk)
+            unmerged = []
             for r in data[1:]:
+                if "obj" in cmap and cmap["obj"] < len(r) and "modbus" in cmap and cmap["modbus"] < len(r):
+                    obj_raw = r[cmap["obj"]] or ""
+                    mb_raw = r[cmap["modbus"]] or ""
+                    # fix wrapped BACnet lines e.g. "AV85, BV9\nAV88,\nBV10"
+                    obj_raw = re.sub(r',\s*\n\s*', ', ', obj_raw)
+                    ol = [x.strip() for x in obj_raw.split('\n') if x.strip()]
+                    ml = [x.strip() for x in mb_raw.split('\n') if x.strip()]
+                    # verify they are merged rows (BACnet formats and digits)
+                    if len(ol) > 1 and len(ol) == len(ml) and all(re.match(r"^[A-Za-z]{2,3}[\s,\-]*\d+", x) for x in ol) and all(x.isdigit() for x in ml):
+                        ui_raw = r[cmap.get("uiName", -1)] if "uiName" in cmap and cmap["uiName"] < len(r) else ""
+                        ul = [x.strip() for x in ui_raw.split('\n') if x.strip()]
+                        for i in range(len(ol)):
+                            new_r = list(r)
+                            new_r[cmap["obj"]] = ol[i]
+                            new_r[cmap["modbus"]] = ml[i]
+                            if len(ul) == len(ol):
+                                new_r[cmap.get("uiName", -1)] = ul[i]
+                            unmerged.append(new_r)
+                        continue
+                unmerged.append(r)
+                
+            for r in unmerged:
                 vals = [clean(c) for c in r]
                 if not any(vals):
                     continue

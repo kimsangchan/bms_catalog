@@ -2550,7 +2550,7 @@ def apply_air(dry=False):
     return 0
 
 
-def apply_iom(dry=False):
+def apply_iom(only=None, dry=False):
     """IOM 본문 포인트 표 → 모델의 interfaces[]. 제품이 이미 있으면 판을 잇는다."""
     import vendor_jci_ipu as P
     try:
@@ -2561,6 +2561,8 @@ def apply_iom(dry=False):
         cat = {}
     groups = collections.OrderedDict()
     for h, path in P.docs():
+        if only and only.lower() not in path.lower() and only.lower() not in (h.get("title") or "").lower():
+            continue
         meta = dict(cat.get(h.get("id"), {}))
         meta.setdefault("prod", h.get("prod") or "")
         meta.setdefault("category", h.get("cat") or "")
@@ -2686,7 +2688,7 @@ def main(argv):
     if a.apply_air:
         return apply_air(dry=a.dry)
     if a.apply_iom:
-        return apply_iom(dry=a.dry)
+        return apply_iom(only=a.only, dry=a.dry)
     if a.export:
         # 그림 없는 축소본이 산출물을 덮으면, 행을 눌러도 팝업이 안 뜨고 원문 PDF 로
         # 나가 버린다. 작업 중 빠른 확인용으로 뽑았다가 그대로 두어 실제로 밟았다 —
